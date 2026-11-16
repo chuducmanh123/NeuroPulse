@@ -8,7 +8,7 @@
 2. Every non-null clinical value is a `Sourced<T>` with ≥ 1 `SourceRef { source_id, locator, quote }`. `quote` is copied **verbatim** from the source text (no paraphrase, no translation, ≤ 400 chars).
 3. If the source is silent or ambiguous → `value: null` (UI: "No recommendation in sources"). Do not interpolate, extrapolate, convert between populations, or "fill typical values".
 4. Different sources disagreeing → keep both as separate entries/refs; never average or merge (e.g. MCM per registry, ASRA vs EHRA hold times).
-5. Agents NEVER set `status: "verified"`, `verified_by`, `verified_at`, or `content_hash`. Only the human runs `npm run rx:verify`. New/edited records are always `draft`.
+5. Agents NEVER set `status: "verified"`, `verified_by`, `verified_at`, or `content_hash`. Only the human runs `npm run rx:verify` or triggers Verify in Admin (Sync v2 server-side seal). New/edited records are always `draft`.
 6. Interaction severity mapping (Decision 4): "avoid concomitant use/co-administration" or "contraindicated" ⇒ `contraindicated`; otherwise per source wording. Mechanism-based flags are never given a curated severity.
 7. Tall Man casing only from `data/neurorx/tall-man.json` (ISMP/FDA source). Otherwise plain lowercase generic.
 8. `bhyt` and `registration_no` stay `null` until the user supplies sources (Decision 2).
@@ -19,7 +19,7 @@
 2. Empty or invalid patient inputs ⇒ no computed dose anywhere (cards, omnibar, copy, print, drawer).
 3. Records with `status !== "verified"` or hash mismatch ⇒ treated as draft ⇒ no dosing numbers rendered.
 4. Next.js 16 has breaking changes: read the relevant guide in `node_modules/next/dist/docs/` before writing routes, metadata, manifest, service worker, or server code.
-5. Supabase is allowed only through the Sync v2 design in `tasks/neurorx-sync/00-design-neurorx-sync.md` (tables `neurorx_drug_records`, `neurorx_drug_revisions`, `neurorx_sync_state`, `neurorx_sync_config`). No new dependencies. No edits to other apps beyond: AppSwitcher NeuroRx `href`, mounting the NeuroRx section in `src/app/admin/page.tsx`. Ask first otherwise.
+5. Supabase Sync v2 (`tasks/neurorx-sync/00-design-neurorx-sync.md`: tables `neurorx_drug_records`, `neurorx_drug_revisions`, `neurorx_sync_state`, `neurorx_sync_config` + browser IndexedDB mirror) is the sole runtime storage architecture for NeuroRx drug records (`I1`). Legacy 4-tier storage (`data.ts` drug caches) is retired. `data/neurorx/drugs/*.json` is a read-only CI mirror generated via `npm run rx:pull`. No new dependencies. No edits to other apps beyond: AppSwitcher NeuroRx `href`, mounting the NeuroRx section in `src/app/admin/page.tsx`. Ask first otherwise.
 6. Each task touches ≤ ~5 files (data files excepted). Finish with `npm test` and `npm run build` green; report the output.
 7. Do not delete or weaken existing tests; do not add `@ts-ignore`/`eslint-disable` to get green.
 

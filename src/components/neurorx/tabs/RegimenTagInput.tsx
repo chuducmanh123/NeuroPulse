@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { Search, X, Plus, AlertCircle } from "lucide-react";
-import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
+import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 
 interface RegimenTagInputProps {
   selectedDrugIds: string[];

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { CheckCircle2, AlertTriangle, XCircle, Milk, ExternalLink } from "lucide-react";
-import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
+import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import type { Source } from "@/types/neurorx";
 import { SourcePopover } from "../drug/SourcePopover";
 

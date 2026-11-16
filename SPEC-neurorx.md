@@ -10,7 +10,7 @@ A clinical decision support tool for neurology & stroke physicians, used **perso
 - Is this regimen safe (interactions, myasthenia worsening, pregnancy/lactation)?
 - How to hold/restart antithrombotics, reverse anticoagulation in ICH, keep Parkinson patients on dopaminergic therapy while NPO?
 
-**Non-goals (v1):** patient-facing app, storing patient data, commercial distribution, Code Stroke mode, TDM calculators, immunization passport, Vancomycin, runtime AI answers, Supabase.
+**Non-goals (v1):** patient-facing app, storing patient data, commercial distribution, Code Stroke mode, TDM calculators, immunization passport, Vancomycin, runtime AI answers.
 
 ### User stories (acceptance-level)
 1. Typing `keppra 60kg crcl 35` opens Levetiracetam with weight 60 and CrCl 35 pre-filled and the matching renal band highlighted.
@@ -33,28 +33,33 @@ Build:     npm run build
 Test:      npm test
 Validate:  npm run rx:validate          # schema + provenance + hash checks on data/neurorx
 Quotes:    npm run rx:check-quotes      # every verbatim quote must exist in its source text
-Verify:    npm run rx:verify -- <drug_id> --by "<Name>"   # draft → verified, stamps hash/date
+Pull:      npm run rx:pull              # export live Supabase Sync v2 rows -> read-only data/neurorx/drugs mirror
+Push:      npm run rx:push -- --apply   # push mirror changes -> Sync v2 via repo.create/update
+Verify:    npm run rx:verify -- <drug_id> --by "<Name>"   # draft -> verified via Sync v2 repo + mirror refresh
 ```
-(`rx:*` scripts are added in `rx-data-core`.)
+(`rx:*` scripts are defined in `package.json`; Sync v2 architecture is specified in `tasks/neurorx-sync/00-design-neurorx-sync.md`.)
 
-## 4. Project Structure
+## 4. Project Structure & Storage (Sync v2)
 ```
 data/neurorx/
   sources/            → source PDFs + extracted .txt (one per source_id)   [user-provided]
   sources.json        → source registry
   tall-man.json       → official ISMP/FDA Tall Man list (verbatim, sourced)
-  drugs/<drug_id>.json→ one record per drug
+  drugs/<drug_id>.json→ read-only mirror exported from Supabase (`rx:pull`) for CI validation (never read by runtime app, Invariant I1)
   interactions.json   → curated DDI pairs
   updates_queue.json  → written by rx-update-watch
-src/app/neurorx/      → route (layout.tsx, page.tsx)
-src/components/neurorx/admin/ → NeuroRx section mounted inside existing /admin
+src/app/neurorx/      → route (layout.tsx, page.tsx) — static metadata + client SyncEngine hydration
+src/app/api/neurorx/sync/ → Sync v2 API routes (`Cache-Control: no-store`, ETag `304`, optimistic `expectedRev` -> `409`)
+src/components/neurorx/admin/ → NeuroRx section mounted inside existing /admin (Draft auto-save, 3-mode ConflictDialog, HistoryPanel)
 src/components/neurorx/ → UI components (tabs/, drug/, tools/)
-src/lib/neurorx/      → engine (pure TS): patient.ts, dosing.ts, infusion.ts, interactions.ts, ledd.ts, omnibar.ts, tallman.ts, orderText.ts
+src/lib/neurorx/      → engine (pure TS) + Sync v2 core under `src/lib/neurorx/sync/` (IndexedDB cache, single-flight delta engine, Realtime bridge)
 src/types/neurorx.ts  → shared types
-scripts/neurorx/      → validate.ts, verify.ts, check-quotes.ts, watch-labels.ts
+scripts/neurorx/      → validate.ts, verify.ts, pull.ts, push_local_to_v2.ts, check-quotes.ts, watch-labels.ts
 tests/neurorx*.test.mjs
 .github/workflows/neurorx_label_watch.yml
+.github/workflows/neurorx_purge.yml
 ```
+**Single source of truth (Sync v2):** Live drug records are stored exclusively in Supabase PostgreSQL (`neurorx_drug_records`, `neurorx_drug_revisions`, `neurorx_sync_state`, `neurorx_sync_config`) with an `IdbLocalStore` IndexedDB mirror in the browser kept up to date via `/api/neurorx/sync/changes` delta pulls + Supabase Realtime signals.
 
 ## 5. Data Contract (anti-hallucination core)
 

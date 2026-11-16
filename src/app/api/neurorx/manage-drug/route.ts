@@ -7,17 +7,6 @@ import {
 import { SupabaseDrugRepo } from "@/lib/neurorx/sync/repoSupabase";
 import { invalidateSyncTag } from "@/lib/neurorx/sync/routeHelpers";
 import type { SyncRow } from "@/lib/neurorx/sync/types";
-import {
-  getAllDrugs,
-  getAllDrugsAsync,
-  getDrugById,
-  saveDrugToStorage,
-  deleteDrugFromStorage,
-  verifyDrugInStorage,
-  verifyAllDraftsInStorage,
-  getDataVersionHash,
-} from "@/lib/neurorx/data";
-import type { DrugRecord } from "@/types/neurorx";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -31,7 +20,7 @@ export async function POST(req: NextRequest) {
     if (!verifyAdminToken(adminToken)) {
       return NextResponse.json(
         { ok: false, error: "Unauthorized. Administrator credentials required." },
-        { status: 401 }
+        { status: 401, headers: { "Cache-Control": "no-store" } }
       );
     }
 
@@ -39,186 +28,112 @@ export async function POST(req: NextRequest) {
     const { action } = body;
 
     if (!action) {
-      return NextResponse.json({ ok: false, error: "Missing required 'action'." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "Missing required 'action'." },
+        { status: 400, headers: { "Cache-Control": "no-store" } }
+      );
     }
+
+    const actor =
+      typeof body?.verified_by === "string" && body.verified_by.trim()
+        ? body.verified_by.trim()
+        : "Admin";
 
     switch (action) {
       case "verify": {
-        if (process.env.NEXT_PUBLIC_NEURORX_SYNC_V2 === "1") {
-          const result = await handleVerifyDrugV2(
-            {
-              repo: new SupabaseDrugRepo(),
-              isAdmin: true,
-              actor:
-                typeof body?.verified_by === "string" && body.verified_by.trim()
-                  ? body.verified_by.trim()
-                  : "Admin",
-              onInvalidateTag: invalidateSyncTag,
-            },
-            body
-          );
-          if (result.status !== 200) {
-            return NextResponse.json(
-              { ok: false, ...(result.body as Record<string, unknown>) },
-              {
-                status: result.status,
-                headers: { ...result.headers, "Cache-Control": "no-store" },
-              }
-            );
-          }
-          const payload = result.body as { row: SyncRow; unchanged: boolean };
+        const result = await handleVerifyDrugV2(
+          {
+            repo: new SupabaseDrugRepo(),
+            isAdmin: true,
+            actor,
+            onInvalidateTag: invalidateSyncTag,
+          },
+          body
+        );
+        if (result.status !== 200) {
           return NextResponse.json(
+            { ok: false, ...(result.body as Record<string, unknown>) },
             {
-              ok: true,
-              message: `Drug '${payload.row.data.generic_name}' has been verified and sealed cryptographically!`,
-              drug: payload.row.data,
-              row: payload.row,
-              unchanged: payload.unchanged,
-              content_hash: payload.row.contentHash,
-              version_hash: payload.row.contentHash,
-            },
-            {
-              status: 200,
+              status: result.status,
               headers: { ...result.headers, "Cache-Control": "no-store" },
             }
           );
         }
-
-        const { drug_id, verified_by = "Admin" } = body;
-        if (!drug_id) {
-          return NextResponse.json({ ok: false, error: "Missing drug_id." }, { status: 400 });
-        }
-        const result = await verifyDrugInStorage(drug_id, verified_by);
-        return NextResponse.json({
-          ok: true,
-          message: `Drug '${result.drug.generic_name}' has been verified and sealed cryptographically!`,
-          drug: result.drug,
-          content_hash: result.hash,
-          version_hash: getDataVersionHash(),
-        });
+        const payload = result.body as { row: SyncRow; unchanged: boolean };
+        return NextResponse.json(
+          {
+            ok: true,
+            message: `Drug '${payload.row.data.generic_name}' has been verified and sealed cryptographically!`,
+            drug: payload.row.data,
+            row: payload.row,
+            unchanged: payload.unchanged,
+            content_hash: payload.row.contentHash,
+            version_hash: payload.row.contentHash,
+          },
+          {
+            status: 200,
+            headers: { ...result.headers, "Cache-Control": "no-store" },
+          }
+        );
       }
 
       case "verify_all": {
-        if (process.env.NEXT_PUBLIC_NEURORX_SYNC_V2 === "1") {
-          const result = await handleVerifyAllDrugsV2(
-            {
-              repo: new SupabaseDrugRepo(),
-              isAdmin: true,
-              actor:
-                typeof body?.verified_by === "string" && body.verified_by.trim()
-                  ? body.verified_by.trim()
-                  : "Admin",
-              onInvalidateTag: invalidateSyncTag,
-            },
-            body
-          );
-          if (result.status !== 200) {
-            return NextResponse.json(
-              { ok: false, ...(result.body as Record<string, unknown>) },
-              {
-                status: result.status,
-                headers: { ...result.headers, "Cache-Control": "no-store" },
-              }
-            );
-          }
-          const payload = result.body as {
-            verified_count: number;
-            rows: SyncRow[];
-            conflicts: Array<{ uid: string; slug: string; currentRev: number }>;
-            max_seq: number;
-            root_hash: string;
-          };
+        const result = await handleVerifyAllDrugsV2(
+          {
+            repo: new SupabaseDrugRepo(),
+            isAdmin: true,
+            actor,
+            onInvalidateTag: invalidateSyncTag,
+          },
+          body
+        );
+        if (result.status !== 200) {
           return NextResponse.json(
+            { ok: false, ...(result.body as Record<string, unknown>) },
             {
-              ok: true,
-              message: `Successfully verified and unlocked ${payload.verified_count} draft drugs!`,
-              verified_count: payload.verified_count,
-              rows: payload.rows,
-              conflicts: payload.conflicts,
-              max_seq: payload.max_seq,
-              version_hash: payload.root_hash || "sync-v2",
-            },
-            {
-              status: 200,
+              status: result.status,
               headers: { ...result.headers, "Cache-Control": "no-store" },
             }
           );
         }
-
-        const { verified_by = "Admin" } = body;
-        const result = await verifyAllDraftsInStorage(verified_by);
-        return NextResponse.json({
-          ok: true,
-          message: `Successfully verified and unlocked ${result.verifiedCount} draft drugs!`,
-          verified_count: result.verifiedCount,
-          version_hash: getDataVersionHash(),
-        });
-      }
-
-      case "save": {
-        const { drug, old_id } = body;
-        if (!drug || !drug.id || !drug.generic_name) {
-          return NextResponse.json({ ok: false, error: "Invalid drug record payload." }, { status: 400 });
-        }
-
-        // If ID changed, safely delete the old file & tombstone old ID
-        if (old_id && old_id.toLowerCase().trim() !== drug.id.toLowerCase().trim()) {
-          await deleteDrugFromStorage(old_id);
-        }
-
-        const result = await saveDrugToStorage(drug as DrugRecord);
-        return NextResponse.json({
-          ok: true,
-          message: `Saved and updated drug '${drug.generic_name}' successfully!`,
-          drug,
-          content_hash: result.hash,
-          version_hash: getDataVersionHash(),
-        });
-      }
-
-      case "delete": {
-        const { drug_id } = body;
-        if (!drug_id) {
-          return NextResponse.json({ ok: false, error: "Missing drug_id." }, { status: 400 });
-        }
-        await deleteDrugFromStorage(drug_id);
-        return NextResponse.json({
-          ok: true,
-          message: `Permanently deleted drug '${drug_id}' from storage.`,
-          deleted_id: drug_id,
-          version_hash: getDataVersionHash(),
-        });
-      }
-
-      case "get": {
-        const { drug_id } = body;
-        if (!drug_id) {
-          return NextResponse.json({ ok: false, error: "Missing drug_id." }, { status: 400 });
-        }
-        const item = getDrugById(drug_id);
-        if (!item) {
-          return NextResponse.json({ ok: false, error: `Drug not found: ${drug_id}` }, { status: 404 });
-        }
-        return NextResponse.json({ ok: true, drug: item.drug });
-      }
-
-      case "get_all": {
-        const drugs = await getAllDrugsAsync();
-        return NextResponse.json({
-          ok: true,
-          drugs: drugs.map((d) => d.drug),
-          version_hash: getDataVersionHash(),
-        });
+        const payload = result.body as {
+          verified_count: number;
+          rows: SyncRow[];
+          conflicts: Array<{ uid: string; slug: string; currentRev: number }>;
+          max_seq: number;
+          root_hash: string;
+        };
+        return NextResponse.json(
+          {
+            ok: true,
+            message: `Successfully verified and unlocked ${payload.verified_count} draft drugs!`,
+            verified_count: payload.verified_count,
+            rows: payload.rows,
+            conflicts: payload.conflicts,
+            max_seq: payload.max_seq,
+            version_hash: payload.root_hash || "sync-v2",
+          },
+          {
+            status: 200,
+            headers: { ...result.headers, "Cache-Control": "no-store" },
+          }
+        );
       }
 
       default:
-        return NextResponse.json({ ok: false, error: `Unknown action '${action}'.` }, { status: 400 });
+        return NextResponse.json(
+          {
+            ok: false,
+            error: `Unsupported legacy action '${action}'. Use /api/neurorx/sync/drugs* endpoints.`,
+          },
+          { status: 400, headers: { "Cache-Control": "no-store" } }
+        );
     }
   } catch (err: any) {
     console.error("Error in /api/neurorx/manage-drug:", err);
     return NextResponse.json(
       { ok: false, error: err?.message || "Internal server error." },
-      { status: 500 }
+      { status: 500, headers: { "Cache-Control": "no-store" } }
     );
   }
 }

@@ -1,5 +1,11 @@
 import type { DrugRecord } from "../../../types/neurorx.ts";
 
+export interface DrugWithEffectiveStatus {
+  drug: DrugRecord;
+  effectiveStatus: "verified" | "draft" | "retired";
+  hashMatches: boolean;
+}
+
 export type JsonPatchOpType = "replace" | "add" | "remove";
 
 export interface JsonPatchOp {

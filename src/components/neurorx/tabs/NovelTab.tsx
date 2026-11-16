@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
+import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import type { Source, Subspecialty } from "@/types/neurorx";
 import { NovelCard } from "./NovelCard";
 

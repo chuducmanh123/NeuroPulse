@@ -1,135 +1,46 @@
 #!/usr/bin/env node
 /**
- * Phase 0 Read-Only Effective Snapshot Exporter for NeuroRx Sync v2
+ * Sync v2 Snapshot Exporter (`rx:snapshot`)
  *
- * Calls the legacy getAllDrugsAsync() read path (protected by a read-only FS guard
- * so nothing is written to /tmp or data/neurorx/drugs) and writes:
+ * Exports live effective drug records from Sync v2 (`neurorx_drug_records` via SupabaseDrugRepo,
+ * falling back to the read-only mirror `data/neurorx/drugs/*.json` when offline/unconfigured)
+ * and writes:
  *   - data/neurorx/_migration/snapshot-<YYYYMMDD>.json
  *   - data/neurorx/_migration/summary-<YYYYMMDD>.json
- *
- * Usage:
- *   npm run rx:snapshot
  */
 
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
-import { registerHooks } from "node:module";
-import { fileURLToPath, pathToFileURL } from "node:url";
 import type { DrugRecord } from "../../src/types/neurorx.ts";
+import { computeContentHashSync } from "../../src/lib/neurorx/integrity.ts";
+import { listAllLiveRows } from "../../src/lib/neurorx/sync/handlers.ts";
+import { evaluateEffectiveDrug } from "../../src/lib/neurorx/sync/jsonPatch.ts";
+import { SupabaseDrugRepo } from "../../src/lib/neurorx/sync/repoSupabase.ts";
+import type { DrugWithEffectiveStatus } from "../../src/lib/neurorx/sync/types.ts";
+import { loadEnvLocal } from "./migrate-to-v2.ts";
 
 const ROOT_DIR = process.cwd();
-const SRC_DIR = path.join(ROOT_DIR, "src");
-const SRC_URL_PREFIX = pathToFileURL(SRC_DIR).href;
 const DATA_DIR = path.join(ROOT_DIR, "data", "neurorx");
-const STATIC_DRUGS_DIR = path.join(DATA_DIR, "drugs");
-const TMP_DRUGS_DIR = path.join(os.tmpdir(), "neurorx", "drugs");
+const MIRROR_DRUGS_DIR = path.join(DATA_DIR, "drugs");
 const MIGRATION_DIR = path.join(DATA_DIR, "_migration");
 
-function loadEnvLocal(): void {
-  const envPath = path.join(ROOT_DIR, ".env.local");
-  if (!fs.existsSync(envPath)) return;
-
-  const content = fs.readFileSync(envPath, "utf-8");
-  for (const rawLine of content.split(/\r?\n/)) {
-    const trimmed = rawLine.trim();
-    if (!trimmed || trimmed.startsWith("#")) continue;
-    const eqIdx = trimmed.indexOf("=");
-    if (eqIdx === -1) continue;
-
-    const key = trimmed.slice(0, eqIdx).trim();
-    let val = trimmed.slice(eqIdx + 1).trim();
-    if (
-      (val.startsWith('"') && val.endsWith('"')) ||
-      (val.startsWith("'") && val.endsWith("'"))
-    ) {
-      val = val.slice(1, -1);
-    }
-    if (!process.env[key]) {
-      process.env[key] = val;
-    }
-  }
-}
-
-function findExistingModuleFile(basePath: string): string | null {
-  const candidates = [
-    basePath,
-    `${basePath}.ts`,
-    `${basePath}.tsx`,
-    `${basePath}.js`,
-    `${basePath}.mjs`,
-    path.join(basePath, "index.ts"),
-    path.join(basePath, "index.tsx"),
-    path.join(basePath, "index.js"),
-  ];
-  for (const candidate of candidates) {
-    try {
-      if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
-        return candidate;
-      }
-    } catch {
-      // Ignore invalid stat paths
-    }
-  }
-  return null;
-}
-
-loadEnvLocal();
-
-registerHooks({
-  resolve(specifier, context, nextResolve) {
-    if (specifier.startsWith("@/")) {
-      const target = path.join(SRC_DIR, specifier.slice(2));
-      const resolved = findExistingModuleFile(target);
-      if (resolved) {
-        return nextResolve(pathToFileURL(resolved).href, context);
-      }
-    }
-
-    if (
-      (specifier.startsWith("./") || specifier.startsWith("../")) &&
-      context.parentURL?.startsWith(SRC_URL_PREFIX)
-    ) {
-      const parentFile = fileURLToPath(context.parentURL);
-      const target = path.resolve(path.dirname(parentFile), specifier);
-      const resolved = findExistingModuleFile(target);
-      if (resolved) {
-        return nextResolve(pathToFileURL(resolved).href, context);
-      }
-    }
-
-    return nextResolve(specifier, context);
-  },
-});
-
-function readSlugsFromJsonDir(dirPath: string): Set<string> {
-  const slugs = new Set<string>();
-  if (!fs.existsSync(dirPath)) return slugs;
-  for (const fileName of fs.readdirSync(dirPath)) {
+function readMirrorDrugs(): DrugWithEffectiveStatus[] {
+  if (!fs.existsSync(MIRROR_DRUGS_DIR)) return [];
+  const entries: DrugWithEffectiveStatus[] = [];
+  for (const fileName of fs.readdirSync(MIRROR_DRUGS_DIR)) {
     if (!fileName.endsWith(".json")) continue;
     try {
-      const raw = JSON.parse(
-        fs.readFileSync(path.join(dirPath, fileName), "utf-8")
-      ) as Partial<DrugRecord>;
-      if (raw?.id) {
-        slugs.add(raw.id.toLowerCase().trim());
+      const record = JSON.parse(
+        fs.readFileSync(path.join(MIRROR_DRUGS_DIR, fileName), "utf-8")
+      ) as DrugRecord;
+      if (record?.id) {
+        entries.push(evaluateEffectiveDrug(record));
       }
     } catch {
-      // Skip malformed files here; validate.ts catches schema issues separately
+      // Malformed mirror files are flagged by rx:validate
     }
   }
-  return slugs;
-}
-
-function isAllowedMigrationPath(target: fs.PathLike): boolean {
-  const resolved = path.resolve(
-    typeof target === "string"
-      ? target
-      : target instanceof URL
-        ? fileURLToPath(target)
-        : target.toString()
-  );
-  return resolved === MIGRATION_DIR || resolved.startsWith(`${MIGRATION_DIR}${path.sep}`);
+  return entries;
 }
 
 function getDateStamp(): string {
@@ -141,93 +52,29 @@ function getDateStamp(): string {
 }
 
 async function run(): Promise<void> {
-  const [{ getAllDrugsAsync }, { computeContentHashSync }, { supabaseAdmin, hasSupabaseConfig }] =
-    await Promise.all([
-      import("../../src/lib/neurorx/data.ts"),
-      import("../../src/lib/neurorx/integrity.ts"),
-      import("../../src/lib/supabase.ts"),
-    ]);
+  loadEnvLocal(ROOT_DIR);
 
-  const staticSlugs = readSlugsFromJsonDir(STATIC_DRUGS_DIR);
-  const tmpSlugs = readSlugsFromJsonDir(TMP_DRUGS_DIR);
-  const supabaseSlugs = new Set<string>();
+  const hasUrl = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL);
+  const hasServiceKey = Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY);
+  const supabaseConfigured = hasUrl && hasServiceKey;
   let supabaseReachable = false;
   let supabaseErrorReason: string | null = null;
+  let sourceTier: "supabase-v2" | "mirror" = "mirror";
+  let effectiveEntries: DrugWithEffectiveStatus[] = [];
 
-  if (hasSupabaseConfig()) {
+  if (supabaseConfigured) {
     try {
-      const { data: nrRows, error: nrErr } = await supabaseAdmin
-        .from("neurorx_drugs")
-        .select("id");
-
-      if (!nrErr && Array.isArray(nrRows)) {
-        supabaseReachable = true;
-        for (const row of nrRows) {
-          if (row?.id) supabaseSlugs.add(String(row.id).toLowerCase().trim());
-        }
-      } else if (nrErr && !String(nrErr.message || "").toLowerCase().includes("fetch failed")) {
-        // PostgREST responded (e.g., table missing) -> Supabase is reachable
-        supabaseReachable = true;
-      } else if (nrErr) {
-        supabaseErrorReason = nrErr.message;
-      }
-
-      if (supabaseSlugs.size === 0) {
-        const { data: ngRows, error: ngErr } = await supabaseAdmin
-          .from("neuroguide_docs")
-          .select("id, data")
-          .like("id", "neurorx_drug_%");
-
-        if (!ngErr && Array.isArray(ngRows)) {
-          supabaseReachable = true;
-          for (const row of ngRows) {
-            const drug = row?.data as Partial<DrugRecord> | undefined;
-            if (drug?.id) supabaseSlugs.add(drug.id.toLowerCase().trim());
-          }
-        } else if (ngErr && !String(ngErr.message || "").toLowerCase().includes("fetch failed")) {
-          supabaseReachable = true;
-        } else if (ngErr && !supabaseErrorReason) {
-          supabaseErrorReason = ngErr.message;
-        }
-      }
+      const repo = new SupabaseDrugRepo();
+      const liveRows = await listAllLiveRows(repo);
+      supabaseReachable = true;
+      sourceTier = "supabase-v2";
+      effectiveEntries = liveRows.map((row) => evaluateEffectiveDrug(row.data));
     } catch (err) {
       supabaseErrorReason = err instanceof Error ? err.message : String(err);
+      effectiveEntries = readMirrorDrugs();
     }
-  }
-
-  // Guard fs mutations while getAllDrugsAsync() runs so /tmp and data/neurorx/drugs are never modified
-  const origWriteFileSync = fs.writeFileSync;
-  const origUnlinkSync = fs.unlinkSync;
-  const origMkdirSync = fs.mkdirSync;
-
-  fs.writeFileSync = ((file: fs.PathOrFileDescriptor, data: string | NodeJS.ArrayBufferView, options?: fs.WriteFileOptions) => {
-    if (typeof file === "number" || !isAllowedMigrationPath(file)) {
-      return;
-    }
-    return origWriteFileSync.call(fs, file, data, options);
-  }) as typeof fs.writeFileSync;
-
-  fs.unlinkSync = ((target: fs.PathLike) => {
-    if (!isAllowedMigrationPath(target)) {
-      return;
-    }
-    return origUnlinkSync.call(fs, target);
-  }) as typeof fs.unlinkSync;
-
-  fs.mkdirSync = ((target: fs.PathLike, options?: fs.MakeDirectoryOptions | fs.Mode | null) => {
-    if (!isAllowedMigrationPath(target)) {
-      return undefined;
-    }
-    return origMkdirSync.call(fs, target, options);
-  }) as typeof fs.mkdirSync;
-
-  let effectiveEntries: Awaited<ReturnType<typeof getAllDrugsAsync>>;
-  try {
-    effectiveEntries = await getAllDrugsAsync();
-  } finally {
-    fs.writeFileSync = origWriteFileSync;
-    fs.unlinkSync = origUnlinkSync;
-    fs.mkdirSync = origMkdirSync;
+  } else {
+    effectiveEntries = readMirrorDrugs();
   }
 
   const sortedEntries = [...effectiveEntries].sort((a, b) =>
@@ -253,12 +100,7 @@ async function run(): Promise<void> {
       hashMatchCount += 1;
     }
     perSlugContentHash[slug] = computeContentHashSync(entry.drug);
-
-    const tiers: string[] = [];
-    if (staticSlugs.has(slug)) tiers.push("static");
-    if (tmpSlugs.has(slug)) tiers.push("tmp");
-    if (supabaseSlugs.has(slug)) tiers.push("supabase");
-    sourceTierHints[slug] = tiers.length > 0 ? tiers : ["unknown"];
+    sourceTierHints[slug] = [sourceTier];
   }
 
   const stamp = getDateStamp();
@@ -274,7 +116,7 @@ async function run(): Promise<void> {
     slugs,
     perSlugContentHash,
     sourceTierHints,
-    supabaseConfigured: hasSupabaseConfig(),
+    supabaseConfigured,
     supabaseReachable,
     ...(supabaseErrorReason ? { supabaseErrorReason } : {}),
     generatedAt: new Date().toISOString(),
@@ -285,13 +127,9 @@ async function run(): Promise<void> {
 
   console.log(`Snapshot written: ${path.relative(ROOT_DIR, snapshotPath)}`);
   console.log(`Summary written:  ${path.relative(ROOT_DIR, summaryPath)}`);
-  console.log(`Total effective drugs: ${summary.total}`);
+  console.log(`Total effective drugs: ${summary.total} (source: ${sourceTier})`);
   console.log(`Effective status counts: ${JSON.stringify(summary.countByEffectiveStatus)}`);
   console.log(`Hash matches: ${summary.hashMatchCount}`);
-  console.log(`Supabase configured: ${summary.supabaseConfigured}, reachable: ${summary.supabaseReachable}`);
-  if (supabaseErrorReason) {
-    console.log(`Supabase note: ${supabaseErrorReason}`);
-  }
 }
 
 run().catch((err) => {

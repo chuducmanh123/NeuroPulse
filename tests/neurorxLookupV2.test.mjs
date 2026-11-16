@@ -150,14 +150,14 @@ describe("Phase 6a — Lookup V2 Helpers, Deep Links & Sub-150ms Latency", () =>
     assert.equal(backParams.get("crcl"), "35");
   });
 
-  it("AC6.2: resolves drug click -> URL state -> detail lookup across all 69 drugs in < 150ms with 0 network calls", () => {
+  it("AC6.2: resolves drug click -> URL state -> detail lookup across all mirror drugs in < 150ms with 0 network calls", () => {
     const fixtures = loadAllDrugFixtures();
-    assert.equal(fixtures.length, 69);
+    assert.ok(fixtures.length >= 69);
 
     const rowsMap = new Map(fixtures.map((row) => [row.uid, row]));
     const { drugs, rowsBySlug } = deriveDrugsFromRows(rowsMap);
-    assert.equal(drugs.length, 69);
-    assert.equal(rowsBySlug.size, 69);
+    assert.equal(drugs.length, fixtures.length);
+    assert.equal(rowsBySlug.size, fixtures.length);
 
     const originalFetch = globalThis.fetch;
     let networkCalls = 0;

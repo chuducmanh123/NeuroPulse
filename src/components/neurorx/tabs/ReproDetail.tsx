@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { X, Baby, HeartHandshake, ShieldAlert, Sparkles, AlertCircle } from "lucide-react";
-import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
+import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import type { Source, Sourced } from "@/types/neurorx";
 import { SourcePopover } from "../drug/SourcePopover";
 

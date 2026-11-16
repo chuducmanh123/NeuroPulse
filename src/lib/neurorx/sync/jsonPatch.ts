@@ -6,8 +6,9 @@
  *   4. Section-aware 3-way merge (`threeWayMergeDrug`)
  */
 
-import type { DrugRecord } from "../../../types/neurorx.ts";
+import type { DrugRecord, RecordStatus } from "../../../types/neurorx.ts";
 import type {
+  DrugWithEffectiveStatus,
   JsonPatchOp,
   MergeConflict,
   ThreeWayMergeResult,
@@ -158,6 +159,29 @@ export function canonicalizeSyncValue(
 
 export function computeRecordContentHashSync(drug: unknown): string {
   return sha256Hex(JSON.stringify(canonicalizeSyncValue(drug, true)));
+}
+
+/**
+ * Evaluates effective clinical verification status and content hash match purely
+ * from a DrugRecord without server-only modules (`node:*`).
+ */
+export function evaluateEffectiveDrug(drug: DrugRecord): DrugWithEffectiveStatus {
+  const expectedHash = drug.verification?.content_hash ?? null;
+  const computedHash = computeRecordContentHashSync(drug);
+  const hashMatches = expectedHash !== null && computedHash === expectedHash;
+
+  let effectiveStatus: RecordStatus = "draft";
+  if (drug.status === "retired") {
+    effectiveStatus = "retired";
+  } else if (drug.status === "verified" && hashMatches) {
+    effectiveStatus = "verified";
+  }
+
+  return {
+    drug,
+    effectiveStatus,
+    hashMatches,
+  };
 }
 
 function cloneJson<T>(value: T): T {

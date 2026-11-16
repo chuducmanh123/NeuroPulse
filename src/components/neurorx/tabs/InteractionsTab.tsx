@@ -10,7 +10,7 @@ import {
   AlertCircle,
   X,
 } from "lucide-react";
-import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
+import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import type { Interaction, Source, InteractionAlternative } from "@/types/neurorx";
 import { analyzeRegimen } from "@/lib/neurorx/interactions";
 import { RegimenTagInput } from "./RegimenTagInput";

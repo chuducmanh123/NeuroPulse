@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useEffect, useRef } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import {
   Pill,
   ShieldCheck,
@@ -13,7 +13,7 @@ import {
   Layers,
 } from "lucide-react";
 import type { Subspecialty, DrugRecord, Source } from "@/types/neurorx";
-import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
+import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import { parseQuery, searchDrugs, type ParsedPatientParams } from "@/lib/neurorx/omnibar";
 import { buildDrugSelectionSearchParams } from "@/lib/neurorx/sync/lookupHelpers";
 import type { SyncRow } from "@/lib/neurorx/sync/types";
@@ -27,7 +27,6 @@ interface LookupTabProps {
   drugs: DrugWithEffectiveStatus[];
   sources?: Source[];
   darkMode?: boolean;
-  syncV2?: boolean;
   syncRowsBySlug?: ReadonlyMap<string, SyncRow>;
   onApplyLocalWrite?: (row: SyncRow) => Promise<void> | void;
 }
@@ -36,11 +35,9 @@ export function LookupTab({
   drugs,
   sources = [],
   darkMode = false,
-  syncV2 = process.env.NEXT_PUBLIC_NEURORX_SYNC_V2 === "1",
   syncRowsBySlug,
   onApplyLocalWrite,
 }: LookupTabProps) {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const selectMarkRef = useRef<{ drugId: string; startMs: number } | null>(null);
 
@@ -50,7 +47,7 @@ export function LookupTab({
   // Parse omnibar query in real time
   const parsed = useMemo(() => parseQuery(query), [query]);
 
-  // Selected drug from URL (?drug=<id>) with instant client override when syncV2 is on
+  // Selected drug from URL (?drug=<id>) with instant client override
   const searchParamDrugId = searchParams.get("drug");
   const [clientDrugId, setClientDrugId] = useState<string | null>(searchParamDrugId);
 
@@ -59,22 +56,21 @@ export function LookupTab({
   }, [searchParamDrugId]);
 
   useEffect(() => {
-    if (!syncV2) return;
     const handlePopState = () => {
       setClientDrugId(new URLSearchParams(window.location.search).get("drug"));
     };
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, [syncV2]);
+  }, []);
 
-  const selectedDrugId = syncV2 ? clientDrugId : searchParamDrugId;
+  const selectedDrugId = clientDrugId;
   const selectedDrugItem = useMemo(() => {
     if (!selectedDrugId) return null;
     return drugs.find((d) => d.drug.id === selectedDrugId) || null;
   }, [selectedDrugId, drugs]);
 
   useEffect(() => {
-    if (!syncV2 || !selectedDrugItem || typeof performance === "undefined") {
+    if (!selectedDrugItem || typeof performance === "undefined") {
       return;
     }
     const pending = selectMarkRef.current;
@@ -93,7 +89,7 @@ export function LookupTab({
       }
       selectMarkRef.current = null;
     }
-  }, [syncV2, selectedDrugItem]);
+  }, [selectedDrugItem]);
 
   // Filter and rank drugs
   const searchResults = useMemo(() => {
@@ -104,12 +100,10 @@ export function LookupTab({
   const handleSelectDrug = (drugId: string, patientParams?: ParsedPatientParams) => {
     const p = patientParams || parsed.patient;
     const currentSearch =
-      syncV2 && typeof window !== "undefined"
-        ? window.location.search
-        : searchParams.toString();
+      typeof window !== "undefined" ? window.location.search : searchParams.toString();
     const nextQuery = buildDrugSelectionSearchParams(currentSearch, drugId, p);
 
-    if (syncV2 && typeof window !== "undefined") {
+    if (typeof window !== "undefined") {
       if (typeof performance !== "undefined") {
         performance.mark?.("neurorx:drug-select-start");
         selectMarkRef.current = { drugId, startMs: performance.now() };
@@ -117,27 +111,19 @@ export function LookupTab({
       useNeuroRxStore.getState().initFromSearchParams(new URLSearchParams(nextQuery));
       setClientDrugId(drugId);
       window.history.pushState(null, "", `/neurorx?${nextQuery}`);
-      return;
     }
-
-    router.push(`/neurorx?${nextQuery}`);
   };
 
   // Back to directory
   const handleBackToDirectory = () => {
     const currentSearch =
-      syncV2 && typeof window !== "undefined"
-        ? window.location.search
-        : searchParams.toString();
+      typeof window !== "undefined" ? window.location.search : searchParams.toString();
     const nextQuery = buildDrugSelectionSearchParams(currentSearch, null);
 
-    if (syncV2 && typeof window !== "undefined") {
+    if (typeof window !== "undefined") {
       setClientDrugId(null);
       window.history.pushState(null, "", nextQuery ? `/neurorx?${nextQuery}` : "/neurorx");
-      return;
     }
-
-    router.push(`/neurorx?${nextQuery}`);
   };
 
   // If a drug is selected, render full Tier 1 & Tier 2 DrugDetail
@@ -148,8 +134,8 @@ export function LookupTab({
         sources={sources}
         onBack={handleBackToDirectory}
         darkMode={darkMode}
-        syncRow={syncV2 ? syncRowsBySlug?.get(selectedDrugItem.drug.id) ?? null : null}
-        onApplyLocalWrite={syncV2 ? onApplyLocalWrite : undefined}
+        syncRow={syncRowsBySlug?.get(selectedDrugItem.drug.id) ?? null}
+        onApplyLocalWrite={onApplyLocalWrite}
       />
     );
   }

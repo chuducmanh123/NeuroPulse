@@ -1,10 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type { DrugWithEffectiveStatus } from "../lib/neurorx/data.ts";
 import {
   canonicalizeSyncValue,
   computeRecordContentHashSync,
+  evaluateEffectiveDrug,
 } from "../lib/neurorx/sync/jsonPatch.ts";
 import { createLocalStore, type LocalStore } from "../lib/neurorx/sync/localStore.ts";
 import { createRealtimeSyncBridge, type CreateRealtimeSyncBridgeOptions } from "../lib/neurorx/sync/realtime.ts";
@@ -15,8 +15,11 @@ import {
   type SyncEngineSnapshot,
   type SyncStatus,
 } from "../lib/neurorx/sync/syncEngine.ts";
-import type { SyncRow } from "../lib/neurorx/sync/types.ts";
-import type { DrugRecord, RecordStatus } from "../types/neurorx.ts";
+import type { DrugWithEffectiveStatus, SyncRow } from "../lib/neurorx/sync/types.ts";
+import type { DrugRecord } from "../types/neurorx.ts";
+
+export { evaluateEffectiveDrug };
+export type { DrugWithEffectiveStatus };
 
 export type UseNeuroRxDrugsStatus = SyncStatus | "loading";
 
@@ -63,29 +66,6 @@ export async function computeClientContentHashWebCrypto(drug: DrugRecord): Promi
   }
 
   return computeRecordContentHashSync(drug);
-}
-
-/**
- * Computes effective status and verification hash integrity purely on the client
- * without importing server-only modules (`node:crypto` / `node:fs`).
- */
-export function evaluateEffectiveDrug(drug: DrugRecord): DrugWithEffectiveStatus {
-  const expectedHash = drug.verification?.content_hash ?? null;
-  const computedHash = computeRecordContentHashSync(drug);
-  const hashMatches = expectedHash !== null && computedHash === expectedHash;
-
-  let effectiveStatus: RecordStatus = "draft";
-  if (drug.status === "retired") {
-    effectiveStatus = "retired";
-  } else if (drug.status === "verified" && hashMatches) {
-    effectiveStatus = "verified";
-  }
-
-  return {
-    drug,
-    effectiveStatus,
-    hashMatches,
-  };
 }
 
 /**

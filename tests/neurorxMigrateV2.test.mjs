@@ -1,12 +1,18 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { MemoryDrugRepo } from "../src/lib/neurorx/sync/repoMemory.ts";
+import {
+  computeRecordContentHashSync,
+  computeSectionHashes,
+} from "../src/lib/neurorx/sync/jsonPatch.ts";
 import {
   findLatestSnapshotPair,
   runMigrationToV2,
 } from "../scripts/neurorx/migrate-to-v2.ts";
+import { pullLiveDrugsToMirror } from "../scripts/neurorx/pull.ts";
 
 function loadPhase0Snapshot() {
   const { snapshotPath, summaryPath } = findLatestSnapshotPair(
@@ -130,5 +136,51 @@ describe("Phase 3 — migrate-to-v2.ts (AC3.1–AC3.3)", () => {
     assert.ok(
       report.postCheck?.errors.some((e) => e.includes("Verified count mismatch"))
     );
+  });
+
+  it("Phase 7 (rx:pull): exports live rows to read-only mirror and prunes tombstoned files while preserving README.md", async () => {
+    const repo = new MemoryDrugRepo();
+    const { records } = loadPhase0Snapshot();
+    const firstDrug = records[0];
+    const secondDrug = records[1];
+
+    const r1 = await repo.create(
+      firstDrug,
+      computeRecordContentHashSync(firstDrug),
+      computeSectionHashes(firstDrug),
+      "test-pull"
+    );
+    const r2 = await repo.create(
+      secondDrug,
+      computeRecordContentHashSync(secondDrug),
+      computeSectionHashes(secondDrug),
+      "test-pull"
+    );
+    await repo.remove(r2.uid, r2.rev, "test-pull");
+    await repo.recomputeRootHash();
+
+    const tempMirror = fs.mkdtempSync(path.join(os.tmpdir(), "neurorx-pull-mirror-"));
+    try {
+      fs.writeFileSync(path.join(tempMirror, "README.md"), "# Read-Only Mirror\n", "utf-8");
+      fs.writeFileSync(
+        path.join(tempMirror, `${secondDrug.id}.json`),
+        JSON.stringify(secondDrug, null, 2),
+        "utf-8"
+      );
+
+      const res = await pullLiveDrugsToMirror({ repo, outDir: tempMirror, prune: true });
+      assert.equal(res.written, 1);
+      assert.deepEqual(res.slugs, [firstDrug.id]);
+      assert.deepEqual(res.pruned, [`${secondDrug.id}.json`]);
+
+      const exported = JSON.parse(
+        fs.readFileSync(path.join(tempMirror, `${firstDrug.id}.json`), "utf-8")
+      );
+      assert.deepEqual(exported, r1.data);
+      assert.equal(fs.existsSync(path.join(tempMirror, `${secondDrug.id}.json`)), false);
+      assert.equal(fs.existsSync(path.join(tempMirror, "README.md")), true);
+    } finally {
+      fs.rmSync(tempMirror, { recursive: true, force: true });
+    }
   });
 });

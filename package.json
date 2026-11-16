@@ -10,9 +10,9 @@
     "rx:validate": "node --experimental-strip-types scripts/neurorx/validate.ts",
     "rx:check-quotes": "node --experimental-strip-types scripts/neurorx/check-quotes.ts",
     "rx:check-constants": "node --experimental-strip-types scripts/neurorx/check-no-clinical-constants.ts",
-    "rx:sync": "node scripts/neurorx/sync_remote_to_local.mjs",
-    "rx:push": "node scripts/neurorx/push_local_to_remote.mjs",
-    "rx:verify": "node --experimental-strip-types scripts/neurorx/verify.ts",
+    "rx:pull": "node --use-system-ca --experimental-strip-types scripts/neurorx/pull.ts",
+    "rx:push": "node --use-system-ca --experimental-strip-types scripts/neurorx/push_local_to_v2.ts",
+    "rx:verify": "node --use-system-ca --experimental-strip-types scripts/neurorx/verify.ts",
     "rx:snapshot": "node --experimental-strip-types scripts/neurorx/export-effective-snapshot.ts",
     "rx:migrate-v2": "node --use-system-ca --experimental-strip-types scripts/neurorx/migrate-to-v2.ts"
   },

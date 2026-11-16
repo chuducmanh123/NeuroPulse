@@ -3,7 +3,7 @@
 // Pure TS engine, no React hooks, no clinical constants
 
 import type { DrugRecord, AdverseEffectTag } from "../../types/neurorx.ts";
-import type { DrugWithEffectiveStatus } from "./data.ts";
+import type { DrugWithEffectiveStatus } from "./sync/types.ts";
 import { normalizeVietnamese } from "../vietnamese-search.ts";
 
 export interface ParsedPatientParams {

@@ -149,11 +149,11 @@ function createHandlerFetchChanges(repo, counter) {
   };
 }
 
-async function seedMemoryRepoWith69Drugs() {
+async function seedMemoryRepoWithAllDrugs() {
   const repo = new MemoryDrugRepo();
   const dir = path.resolve(process.cwd(), "data", "neurorx", "drugs");
   const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json")).sort();
-  assert.equal(files.length, 69);
+  assert.ok(files.length >= 69);
 
   for (const file of files) {
     const data = JSON.parse(fs.readFileSync(path.join(dir, file), "utf8"));
@@ -557,8 +557,8 @@ function runB1B6Matrix(suiteName, makeRepo, opts = {}) {
 }
 
 runB1B6Matrix(
-  "MemoryDrugRepo (69 Drugs + Full Client Engine)",
-  seedMemoryRepoWith69Drugs,
+  "MemoryDrugRepo (Full Mirror + Client Engine)",
+  seedMemoryRepoWithAllDrugs,
   { slugPrefix: "zz-sync-test-e2e-" }
 );
 
@@ -609,15 +609,15 @@ async function cleanupLiveE2ERows(prefixPattern = "zz-sync-test-e2e-%") {
   const repo = new SupabaseDrugRepo({ client: admin });
   await repo.recomputeRootHash();
   const live = await listAllLiveRows(repo);
-  assert.equal(live.length, 69, `Expected 69 live clinical drugs after E2E cleanup, got ${live.length}`);
-  assert.equal(live.filter((r) => r.data.status === "verified").length, 1);
-  assert.equal(live.filter((r) => r.data.status === "draft").length, 68);
+  assert.ok(live.length >= 69, `Expected >= 69 live clinical drugs after E2E cleanup, got ${live.length}`);
+  assert.ok(live.filter((r) => r.data.status === "verified").length >= 1);
+  assert.equal(live.some((r) => r.slug.startsWith("zz-sync-test-e2e-")), false);
 }
 
 if (process.env.NEURORX_SYNC_IT === "1") {
   const livePrefix = `zz-sync-test-e2e-${Date.now()}-`;
   runB1B6Matrix(
-    "SupabaseDrugRepo (Live Production RPCs + 69 Live Drugs)",
+    "SupabaseDrugRepo (Live Production RPCs + Live Drugs)",
     async () => {
       await cleanupLiveE2ERows("zz-sync-test-e2e-%");
       loadEnvLocalIfMissing();

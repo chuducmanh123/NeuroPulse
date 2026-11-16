@@ -16,7 +16,7 @@ import {
   Edit,
 } from "lucide-react";
 import type { DrugRecord, Source } from "@/types/neurorx";
-import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
+import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import { useNeuroRxStore } from "@/store/useNeuroRxStore";
 import { resolveRenalFunction } from "@/lib/neurorx/patient";
 import { getStoredAdminToken } from "@/utils/clientAuth";
@@ -47,7 +47,6 @@ export function DrugDetail({
   syncRow = null,
   onApplyLocalWrite,
 }: DrugDetailProps) {
-  const isSyncV2 = process.env.NEXT_PUBLIC_NEURORX_SYNC_V2 === "1";
   const searchParams = useSearchParams();
   const { initFromSearchParams, patientParsed } = useNeuroRxStore();
 
@@ -89,52 +88,14 @@ export function DrugDetail({
   const ngTube = drug.ng_tube?.value;
   const blackBox = drug.black_box?.value;
 
-  const handleSaveDrug = async (updatedDrug: DrugRecord, oldId?: string): Promise<boolean> => {
-    if (isSyncV2) {
-      setCurrentDrugItem({
-        drug: updatedDrug,
-        effectiveStatus: updatedDrug.status === "verified" ? "verified" : "draft",
-        hashMatches: true,
-      });
-      window.dispatchEvent(new CustomEvent("neurorx_drug_updated"));
-      return true;
-    }
-
-    let token = getStoredAdminToken();
-    if (!token) {
-      const input = window.prompt("Enter Admin Passcode to save drug updates (default: @neuro2026):");
-      if (!input) return false;
-      token = input.trim();
-      try {
-        sessionStorage.setItem("adminToken", token);
-      } catch {}
-    }
-    try {
-      const res = await fetch("/api/neurorx/manage-drug", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-admin-token": token,
-        },
-        body: JSON.stringify({ action: "save", drug: updatedDrug, old_id: oldId }),
-      });
-      const json = await res.json();
-      if (!res.ok || !json.ok) {
-        alert("Save failed: " + (json.error || "Unable to save changes"));
-        return false;
-      }
-      alert(json.message || "✓ Drug saved successfully!");
-      setCurrentDrugItem({
-        drug: updatedDrug,
-        effectiveStatus: updatedDrug.status === "verified" ? "verified" : "draft",
-        hashMatches: true,
-      });
-      window.dispatchEvent(new CustomEvent("neurorx_drug_updated"));
-      return true;
-    } catch (err: any) {
-      alert("Error saving drug: " + err?.message);
-      return false;
-    }
+  const handleSaveDrug = async (updatedDrug: DrugRecord): Promise<boolean> => {
+    setCurrentDrugItem({
+      drug: updatedDrug,
+      effectiveStatus: updatedDrug.status === "verified" ? "verified" : "draft",
+      hashMatches: true,
+    });
+    window.dispatchEvent(new CustomEvent("neurorx_drug_updated"));
+    return true;
   };
 
   return (
@@ -442,20 +403,16 @@ export function DrugDetail({
           onClose={() => setIsEditModalOpen(false)}
           onSave={handleSaveDrug}
           darkMode={darkMode}
-          syncRow={isSyncV2 ? syncRow : null}
-          onApplyLocalWrite={isSyncV2 ? onApplyLocalWrite : undefined}
-          onOpenHistory={
-            isSyncV2
-              ? (row) => {
-                  setIsEditModalOpen(false);
-                  setHistoryRow(row);
-                }
-              : undefined
-          }
+          syncRow={syncRow}
+          onApplyLocalWrite={onApplyLocalWrite}
+          onOpenHistory={(row) => {
+            setIsEditModalOpen(false);
+            setHistoryRow(row);
+          }}
         />
       )}
 
-      {isSyncV2 && historyRow && (
+      {historyRow && (
         <HistoryPanel
           isOpen={true}
           uid={historyRow.uid}

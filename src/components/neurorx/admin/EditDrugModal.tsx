@@ -79,7 +79,6 @@ export function EditDrugModal({
   onApplyLocalWrite,
   onOpenHistory,
 }: EditDrugModalProps) {
-  const isSyncV2 = process.env.NEXT_PUBLIC_NEURORX_SYNC_V2 === "1";
   const [activeTab, setActiveTab] = useState<
     "general" | "dosing" | "renal_hepatic" | "safety" | "pregnancy" | "interactions"
   >("general");
@@ -327,11 +326,10 @@ export function EditDrugModal({
         overrideCleanId ?? id.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "-");
       const cleanGeneric = overrideCleanGeneric ?? genericName.trim();
       const baseRecord = activeSyncRow?.data ?? drug;
-      const fallbackSourceId = isSyncV2
-        ? baseRecord.regimens?.[0]?.refs?.[0]?.source_id ||
-          baseRecord.tall_man?.refs?.[0]?.source_id ||
-          "fda-keppra-label"
-        : "system";
+      const fallbackSourceId =
+        baseRecord.regimens?.[0]?.refs?.[0]?.source_id ||
+        baseRecord.tall_man?.refs?.[0]?.source_id ||
+        "fda-keppra-label";
 
       const cleanRegimens: Regimen[] = regimens.map((r, idx) => ({
         ...r,
@@ -646,7 +644,6 @@ export function EditDrugModal({
       genericName,
       activeSyncRow,
       drug,
-      isSyncV2,
       regimens,
       renalBands,
       tallMan,
@@ -696,7 +693,7 @@ export function EditDrugModal({
     setConflictState(null);
     setLastAutoSaveAt(null);
 
-    if (isSyncV2 && typeof window !== "undefined") {
+    if (typeof window !== "undefined") {
       const uidForDraft =
         initialRow?.uid || (isNewDrug ? "__new__" : `slug:${drug.id || "draft"}`);
       const revForDraft = initialRow?.rev ?? 0;
@@ -709,11 +706,11 @@ export function EditDrugModal({
     } else {
       setSavedLocalDraft(null);
     }
-  }, [isOpen, drug, syncRow, isSyncV2, isNewDrug, applyDrugRecordToForm]);
+  }, [isOpen, drug, syncRow, isNewDrug, applyDrugRecordToForm]);
 
   // Phase 6b (I15 / AC6.5): 3s local draft auto-save while modal is open
   useEffect(() => {
-    if (!isSyncV2 || !isOpen || conflictState !== null || typeof window === "undefined") {
+    if (!isOpen || conflictState !== null || typeof window === "undefined") {
       return;
     }
     const timer = window.setInterval(() => {
@@ -733,7 +730,7 @@ export function EditDrugModal({
     }, DRAFT_AUTOSAVE_INTERVAL_MS);
 
     return () => window.clearInterval(timer);
-  }, [isSyncV2, isOpen, conflictState, effectiveDraftUid, effectiveBaseRev]);
+  }, [isOpen, conflictState, effectiveDraftUid, effectiveBaseRev]);
 
   if (!isOpen) return null;
 
@@ -1133,37 +1130,25 @@ export function EditDrugModal({
 
     try {
       const updatedDrug = buildDrugRecordFromState(cleanId, cleanGeneric);
+      const isCreate = isNewDrug || !activeSyncRow;
+      const outcome = await commitV2DrugSave(updatedDrug, {
+        isCreate,
+        uid: activeSyncRow?.uid,
+        expectedRev: isCreate ? undefined : effectiveBaseRev,
+      });
 
-      if (isSyncV2) {
-        const isCreate = isNewDrug || !activeSyncRow;
-        const outcome = await commitV2DrugSave(updatedDrug, {
-          isCreate,
-          uid: activeSyncRow?.uid,
-          expectedRev: isCreate ? undefined : effectiveBaseRev,
+      if (outcome.conflict) {
+        setConflictState({
+          mine: updatedDrug,
+          cloudRow: outcome.conflict.cloudRow,
+          baseRev: effectiveBaseRev,
+          error: null,
+          submitting: false,
         });
-
-        if (outcome.conflict) {
-          setConflictState({
-            mine: updatedDrug,
-            cloudRow: outcome.conflict.cloudRow,
-            baseRev: effectiveBaseRev,
-            error: null,
-            submitting: false,
-          });
-          return;
-        }
-        if (!outcome.ok && outcome.errorMsg) {
-          setError(outcome.errorMsg);
-        }
         return;
       }
-
-      const ok = await onSave(
-        updatedDrug,
-        drug.id !== cleanId ? drug.id : undefined
-      );
-      if (ok) {
-        onClose();
+      if (!outcome.ok && outcome.errorMsg) {
+        setError(outcome.errorMsg);
       }
     } catch (err: any) {
       setError(err?.message || "Error saving drug.");
@@ -1201,7 +1186,7 @@ export function EditDrugModal({
                 >
                   {status}
                 </span>
-                {isSyncV2 && activeSyncRow && (
+                {activeSyncRow && (
                   <span className="text-xs px-2.5 py-0.5 rounded-full font-mono font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/20">
                     rev {activeSyncRow.rev}
                   </span>
@@ -1209,7 +1194,7 @@ export function EditDrugModal({
               </div>
               <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400 font-mono">
                 <span>ID: {drug.id}</span>
-                {isSyncV2 && lastAutoSaveAt && (
+                {lastAutoSaveAt && (
                   <span className="text-emerald-600 dark:text-emerald-400 font-sans font-semibold">
                     · Auto-saved at {new Date(lastAutoSaveAt).toLocaleTimeString()}
                   </span>
@@ -1219,7 +1204,7 @@ export function EditDrugModal({
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
-            {isSyncV2 && activeSyncRow && onOpenHistory && (
+            {activeSyncRow && onOpenHistory && (
               <button
                 type="button"
                 onClick={() => onOpenHistory(activeSyncRow)}
@@ -1318,7 +1303,7 @@ export function EditDrugModal({
           className="flex-1 min-h-0 flex flex-col"
         >
           <div className="flex-1 min-h-0 overflow-y-auto [scrollbar-gutter:stable] p-4 sm:p-6 space-y-5">
-          {isSyncV2 && savedLocalDraft && (
+          {savedLocalDraft && (
             <div
               role="status"
               className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-200 text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
@@ -2524,7 +2509,7 @@ export function EditDrugModal({
         </form>
       </div>
 
-      {isSyncV2 && conflictState && (
+      {conflictState && (
         <ConflictDialog
           isOpen={true}
           base={baseDrugSnapshot}

@@ -1,0 +1,37 @@
+name: NeuroRx Weekly Sync v2 Retention Purge
+
+# Automatic fallback if pg_cron (supabase/migrations/20261120_neurorx_purge_cron.sql)
+# is unavailable on the current Supabase tier. Calls POST /api/neurorx/sync/purge
+# every Sunday at 03:00 UTC.
+
+on:
+  schedule:
+    - cron: '0 3 * * 0'
+  workflow_dispatch:
+
+jobs:
+  purge_sync_retention:
+    name: Run NeuroRx Retention Purge
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call POST /api/neurorx/sync/purge
+        env:
+          APP_URL: ${{ secrets.NEURORX_APP_URL || vars.NEURORX_APP_URL }}
+          ADMIN_TOKEN: ${{ secrets.NEURORX_ADMIN_TOKEN || secrets.ADMIN_TOKEN }}
+        run: |
+          if [ -z "$APP_URL" ] || [ -z "$ADMIN_TOKEN" ]; then
+            echo "Missing APP_URL (NEURORX_APP_URL) or ADMIN_TOKEN (NEURORX_ADMIN_TOKEN / ADMIN_TOKEN)." >&2
+            exit 1
+          fi
+          BASE_URL="${APP_URL%/}"
+          RESPONSE_FILE=$(mktemp)
+          HTTP_CODE=$(curl -sS -o "$RESPONSE_FILE" -w "%{http_code}" \
+            -X POST \
+            -H "Content-Type: application/json" \
+            -H "x-admin-token: $ADMIN_TOKEN" \
+            "$BASE_URL/api/neurorx/sync/purge")
+          echo "HTTP $HTTP_CODE"
+          cat "$RESPONSE_FILE"
+          if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 300 ]; then
+            exit 1
+          fi

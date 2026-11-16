@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import {
-  Moon,
-  Sun,
   Pill,
   Zap,
   Baby,
@@ -16,7 +14,7 @@ import { MedicalDisclaimerFooter } from "@/components/ecosystem/MedicalDisclaime
 import { OfflineStatus } from "@/components/neurorx/OfflineStatus";
 import { useNeuroRxDrugs } from "@/hooks/useNeuroRxDrugs";
 import type { Source, Interaction } from "@/types/neurorx";
-import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
+import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import { LookupTab } from "./tabs/LookupTab";
 import { InteractionsTab } from "./tabs/InteractionsTab";
 import { PregnancyTab } from "./tabs/PregnancyTab";
@@ -25,28 +23,24 @@ import { NovelTab } from "./tabs/NovelTab";
 export type NeuroRxTab = "lookup" | "interactions" | "pregnancy" | "novel";
 
 interface NeuroRxShellProps {
-  initialDrugs: DrugWithEffectiveStatus[];
+  initialDrugs?: DrugWithEffectiveStatus[];
   totalSourcesCount: number;
   sources?: Source[];
   interactions?: Interaction[];
   dataVersionHash?: string;
-  syncV2Enabled?: boolean;
 }
 
 export function NeuroRxShell({
-  initialDrugs,
+  initialDrugs = [],
   totalSourcesCount,
   sources = [],
   interactions = [],
-  dataVersionHash = "v1-live",
-  syncV2Enabled = process.env.NEXT_PUBLIC_NEURORX_SYNC_V2 === "1",
+  dataVersionHash = "v2-live",
 }: NeuroRxShellProps) {
-  const isSyncV2 = syncV2Enabled;
-  const router = useRouter();
   const searchParams = useSearchParams();
   const syncState = useNeuroRxDrugs({
     initialDrugs,
-    enabled: isSyncV2,
+    enabled: true,
   });
 
   // Dark Mode State (Night Shift) - Synced with local storage and html class
@@ -86,28 +80,15 @@ export function NeuroRxShell({
       : "lookup"
   );
 
-  // Live Drugs State — synced with initial server render and live updates
-  const [drugs, setDrugs] = useState<DrugWithEffectiveStatus[]>(initialDrugs);
   const refreshSync = syncState.refresh;
 
   useEffect(() => {
     const handleDrugUpdated = () => {
-      if (isSyncV2) {
-        void refreshSync();
-        return;
-      }
-      fetch("/api/neurorx/drugs")
-        .then((r) => r.json())
-        .then((data) => {
-          if (data.ok && Array.isArray(data.drugs)) {
-            setDrugs(data.drugs);
-          }
-        })
-        .catch(() => {});
+      void refreshSync();
     };
     window.addEventListener("neurorx_drug_updated", handleDrugUpdated);
     return () => window.removeEventListener("neurorx_drug_updated", handleDrugUpdated);
-  }, [isSyncV2, refreshSync]);
+  }, [refreshSync]);
 
   useEffect(() => {
     if (["lookup", "interactions", "pregnancy", "novel"].includes(tabParam)) {
@@ -116,7 +97,6 @@ export function NeuroRxShell({
   }, [tabParam]);
 
   useEffect(() => {
-    if (!isSyncV2) return;
     const handlePopState = () => {
       const nextTab = (new URLSearchParams(window.location.search).get("tab") as NeuroRxTab) || "lookup";
       if (["lookup", "interactions", "pregnancy", "novel"].includes(nextTab)) {
@@ -127,24 +107,20 @@ export function NeuroRxShell({
     };
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, [isSyncV2]);
+  }, []);
 
   const handleTabChange = (tab: NeuroRxTab) => {
     setActiveTab(tab);
     const currentSearch =
-      isSyncV2 && typeof window !== "undefined"
-        ? window.location.search
-        : searchParams.toString();
+      typeof window !== "undefined" ? window.location.search : searchParams.toString();
     const params = new URLSearchParams(currentSearch);
     params.set("tab", tab);
-    if (isSyncV2 && typeof window !== "undefined") {
+    if (typeof window !== "undefined") {
       window.history.pushState(null, "", `/neurorx?${params.toString()}`);
-      return;
     }
-    router.push(`/neurorx?${params.toString()}`, { scroll: false });
   };
 
-  const activeDrugs = isSyncV2 ? syncState.drugs : drugs;
+  const activeDrugs = syncState.drugs;
 
   // Count verified drugs and stats
   const verifiedCount = activeDrugs.filter((d) => d.effectiveStatus === "verified").length;
@@ -191,18 +167,16 @@ export function NeuroRxShell({
 
           {/* Quick Header Badges & Actions */}
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 self-start sm:self-auto">
-            {isSyncV2 && (
-              <OfflineStatus
-                dataHash={dataVersionHash}
-                darkMode={darkMode}
-                syncV2={true}
-                syncStatus={syncState.status}
-                lastSyncAt={syncState.lastSyncAt}
-                lastChangeCount={syncState.lastChangeCount}
-                lastSeq={syncState.lastSeq}
-                onRefresh={syncState.refresh}
-              />
-            )}
+            <OfflineStatus
+              dataHash={dataVersionHash}
+              darkMode={darkMode}
+              syncV2={true}
+              syncStatus={syncState.status}
+              lastSyncAt={syncState.lastSyncAt}
+              lastChangeCount={syncState.lastChangeCount}
+              lastSeq={syncState.lastSeq}
+              onRefresh={syncState.refresh}
+            />
 
             {/* Night Shift Toggle */}
             <button
@@ -329,7 +303,7 @@ export function NeuroRxShell({
             TAB CONTENT PANES
            ========================================================================= */}
         <main className="min-h-[500px]">
-          {isSyncV2 && syncState.status === "loading" && activeDrugs.length === 0 ? (
+          {syncState.status === "loading" && activeDrugs.length === 0 ? (
             <div role="status" aria-live="polite" className="space-y-4">
               <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 Loading drug directory…
@@ -354,9 +328,8 @@ export function NeuroRxShell({
                   drugs={activeDrugs}
                   sources={sources}
                   darkMode={darkMode}
-                  syncV2={isSyncV2}
-                  syncRowsBySlug={isSyncV2 ? syncState.rowsBySlug : undefined}
-                  onApplyLocalWrite={isSyncV2 ? syncState.applyLocalWrite : undefined}
+                  syncRowsBySlug={syncState.rowsBySlug}
+                  onApplyLocalWrite={syncState.applyLocalWrite}
                 />
               )}
 

@@ -12,7 +12,7 @@ import {
   FileText,
   BookOpen,
 } from "lucide-react";
-import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
+import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import type { Source } from "@/types/neurorx";
 import { SourcePopover } from "../drug/SourcePopover";
 import { MonitoringTimeline } from "./MonitoringTimeline";

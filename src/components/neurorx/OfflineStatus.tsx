@@ -23,9 +23,9 @@ interface OfflineStatusProps {
 type PwaStatus = "online-only" | "caching" | "ready" | "update-available";
 
 export function OfflineStatus({
-  dataHash = "v1-live",
+  dataHash = "v2-live",
   darkMode = false,
-  syncV2 = false,
+  syncV2 = true,
   syncStatus = "loading",
   lastSyncAt = null,
   lastChangeCount = 0,

@@ -17,7 +17,7 @@
 | **5** | Client `LocalStore` (IDB) + `syncEngine` + `realtime` + `useNeuroRxDrugs` | **Argon** | `DONE` | `PASS (Iter 1)` | — | `localStore.ts`, `syncEngine.ts`, `realtime.ts`, `useNeuroRxDrugs.ts` + `neurorxSyncEngine.test.mjs` |
 | **6a** | UI Lookup sau cờ `NEXT_PUBLIC_NEURORX_SYNC_V2` (0 ms click) | **Hydrogen** | `DONE` | `PASS (Iter 1)` | — | `page.tsx`, `NeuroRxShell.tsx`, `LookupTab.tsx`, `OfflineStatus.tsx`, `lookupHelpers.ts` + `neurorxLookupV2.test.mjs` |
 | **6b** | UI Admin (Draft Auto-Save, 3-Mode ConflictDialog, HistoryPanel) | **Argon** | `DONE` | `PASS (Iter 1)` | E2E B1–B6: PASS (Live Supabase) | Theo dõi production ≥ 3 ngày |
-| **7** | Cutover, gỡ code legacy, đặt lịch `pg_cron` + GHA fallback & mirror | **Argon** | `PENDING` | Chưa chạy | Lệnh `"GO CUTOVER"` | Không xóa bảng cũ ngay |
+| **7** | Cutover, gỡ code legacy, đặt lịch `pg_cron` + GHA fallback & mirror | **Argon** | `DONE` | `PASS (Iter 1)` | User đã xác nhận `"GO CUTOVER"` (2026-11-16) | Đã giữ bảng cũ; có `LATER_drop_legacy_neurorx.sql` chờ ≥ 30 ngày |
 | **8** | Tách lõi `src/lib/sync/` & áp dụng Granular Blocks cho NeuroGuide | **Argon** / **Hydrogen** | `BACKLOG` | — | Chờ Phase 7 ổn định ≥ 7 ngày | Xem `00-design-neurorx-sync.md §10` |
 
 ---
@@ -90,7 +90,7 @@ Hướng dẫn chạy (khi Phase 1 hoàn thành):
 ### Gate 6/7 — Xác nhận E2E (B1–B6) & Lệnh Cutover
 - [ ] Đã bật `NEXT_PUBLIC_NEURORX_SYNC_V2=1` trên production ≥ 3 ngày, 6 kịch bản B1–B6 trong [`20-evaluation-neurorx-sync.md §4`](./20-evaluation-neurorx-sync.md) đạt hết.
   - *(2026-11-14)* Kiểm thử E2E tự động B1–B6 (`tests/neurorxE2EB1B6.test.mjs`) đã **PASS** cả in-memory (69 thuốc) lẫn **Live Supabase RPCs** (`NEURORX_SYNC_IT=1`); còn bước bật `NEXT_PUBLIC_NEURORX_SYNC_V2=1` theo dõi production ≥ 3 ngày trước khi `"GO CUTOVER"`.
-- [ ] User đã xác nhận `"GO CUTOVER"`.
+- [x] User đã xác nhận `"GO CUTOVER"` (`2026-11-16` — kích hoạt Phase 7 Cutover).
 
 ---
 
@@ -331,3 +331,27 @@ Hướng dẫn chạy (khi Phase 1 hoàn thành):
   - **B6(a)/(b):** Xóa trắng trường tùy chọn (`hepatic`, `black_box`) về `null` được giữ nguyên `null` sau reload; tab 1 sửa lên `rev=3` khiến tab 2 (`expectedRev=2`) nhận `409 REV_CONFLICT`, giữ nguyên bản nháp local cho tới khi phân giải `smart_merge` lên `rev=4` (`HTTP 200`) mới xóa draft.
 - **Post-cleanup Supabase state:** Tự động xóa toàn bộ dòng test `zz-sync-test-e2e-%`, gọi `recomputeRootHash()` và kiểm chứng DB live còn đúng `69` thuốc (`verified = 1`, `draft = 68`).
 - **Phạm vi thực tế / lưu ý:** Kiểm thử E2E này xác minh end-to-end tầng RPC Supabase + SyncEngine + API handlers + state/calc helpers; tín hiệu Realtime B1 dùng fake hub kích hoạt handler `{ max_seq, root_hash }`, cache dùng `MemoryLocalStore` và draft dùng `createMemoryStorage()` (không phải thao tác click DOM/WebSocket trực tiếp trên trình duyệt Chrome).
+
+---
+
+## Phase 7 — Execution Log (2026-11-16)
+- **Model:** Argon
+- **Lệnh kích hoạt:** User xác nhận `"GO CUTOVER"`
+- **Files changed / added / deleted:**
+  - `src/lib/neurorx/sync/types.ts` & `src/lib/neurorx/sync/jsonPatch.ts`: chuyển `DrugWithEffectiveStatus` sang `sync/types.ts`; tách `evaluateEffectiveDrug` sang `sync/jsonPatch.ts` (thuần ISOMORPHIC, dùng chung giữa client hook và API route server) và re-export tại `src/hooks/useNeuroRxDrugs.ts`.
+  - `src/lib/neurorx/data.ts`: xóa bỏ toàn bộ tầng lưu trữ thuốc cũ (`TMP_DRUGS_DIR`, `inMemoryDrugs`, `inMemoryDeletedIds`, `getDeletedDrugIds`, `recordDeletedDrugId`, `unmarkDeletedDrugId`, `syncFromSupabase`, `mergeDrugRecords`, `getAllDrugs*`, `saveDrugToStorage`, `deleteDrugFromStorage`, `verify*InStorage`, `getDrugById`); chỉ giữ loader metadata tĩnh (`getAllSources`, `getTallManEntries`, `getAllInteractions`, `getDataVersionHash`). Cập nhật import `DrugWithEffectiveStatus` tại `omnibar.ts`, `NeuroRxShell.tsx`, `DrugDetail.tsx`, và 8 component tab (`tabs/*.tsx`).
+  - `src/app/api/neurorx/drugs/route.ts`: **đã xóa** route legacy `/api/neurorx/drugs`.
+  - `src/app/api/neurorx/manage-drug/route.ts` & `src/app/api/neurorx/admin-data/route.ts`: gỡ nhánh legacy `save`/`delete`/`get`/`get_all` và `getAllDrugsAsync`; `manage-drug` chỉ giữ adapter `verify` / `verify_all` qua v2; `admin-data` đọc trực tiếp từ `SupabaseDrugRepo` (`listAllLiveRows`) + `Cache-Control: no-store`.
+  - `src/app/neurorx/page.tsx`, `src/components/neurorx/NeuroRxShell.tsx`, `OfflineStatus.tsx`, `tabs/LookupTab.tsx`, `drug/DrugDetail.tsx`, `admin/EditDrugModal.tsx`, `admin/NeuroRxAdminSection.tsx`: bật mặc định Sync v2, gỡ toàn bộ nhánh cờ `NEXT_PUBLIC_NEURORX_SYNC_V2` và đường dẫn fallback cũ.
+  - `data/neurorx/drugs/README.md`, `scripts/neurorx/pull.ts`, `scripts/neurorx/verify.ts`, `scripts/neurorx/export-effective-snapshot.ts`, `package.json`: thêm `rx:pull` (export mirror read-only + `--prune`), cập nhật `rx:verify` và `rx:push` qua `SupabaseDrugRepo` (`expectedRev`), cập nhật `rx:snapshot` dùng Sync v2, xóa `sync_remote_to_local.mjs` và `push_local_to_remote.mjs` (gỡ `rx:sync`).
+  - `supabase/migrations/20261120_neurorx_purge_cron.sql`, `.github/workflows/neurorx_purge.yml`, `supabase/migrations/LATER_drop_legacy_neurorx.sql`: đặt lịch purge 03:00 UTC Chủ Nhật bằng `pg_cron` (guarded `DO $$` block) kèm fallback GitHub Actions; tạo script xóa bảng cũ sau ≥ 30 ngày (chưa xóa bảng cũ).
+  - `public/neurorx-sw.js`: nâng cấp cache lên `v2-latest` / `neurorx-cache-v2-${DATA_VERSION}`, giữ nguyên precache shell và loại trừ `/api/*`.
+  - `SPEC-neurorx.md` & `NEURORX-GUARDRAILS.md`: cập nhật đặc tả lưu trữ & guardrails theo Sync v2.
+  - `tests/neurorxLookupV2.test.mjs`, `tests/neurorxE2EB1B6.test.mjs`, `tests/neurorxMigrateV2.test.mjs`: cập nhật kiểm tra động theo số thuốc hiện tại trên mirror (`>= 69`, hiện tại `103` thuốc) và bổ sung test `pullLiveDrugsToMirror` (`rx:pull --prune`).
+- **Next.js docs cited:** [`node_modules/next/dist/docs/01-app/02-guides/progressive-web-apps.md`](../../node_modules/next/dist/docs/01-app/02-guides/progressive-web-apps.md) (PWA Service Worker & route exclusion).
+
+### Evaluation Log (Phase 7)
+- **Self-eval:** **PASS** (Iteration 1)
+- **Gates:** G-HYGIENE [PASS] · Grep Gate AC7.1 [PASS] · G-TEST [PASS] · G-BUILD [PASS] · TypeScript `tsc --noEmit` [PASS]
+- **AC checklist:** AC7.1 [x] · AC7.2 [x] · AC7.3 [x] · AC7.4 [x]
+- **Next step for user:** Chạy `supabase/migrations/20261120_neurorx_purge_cron.sql` trên Supabase SQL Editor (và/hoặc cấu hình secret `NEURORX_APP_URL`, `NEURORX_ADMIN_TOKEN` cho GitHub Actions fallback `.github/workflows/neurorx_purge.yml`); giữ `LATER_drop_legacy_neurorx.sql` đến sau ≥ 30 ngày ổn định. Sau ≥ 7 ngày ổn định, sẵn sàng chuyển sang **Phase 8** (NeuroGuide Granular Blocks & Merkle Tree).

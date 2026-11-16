@@ -15,7 +15,7 @@ import type {
   MgHit,
 } from "@/lib/neurorx/interactions";
 import type { InteractionAlternative, Source } from "@/types/neurorx";
-import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
+import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import { SourcePopover } from "../drug/SourcePopover";
 
 interface InteractionCardProps {

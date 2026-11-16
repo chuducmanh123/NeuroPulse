@@ -6,8 +6,8 @@
  */
 
 const swUrl = new URL(self.location.href);
-const DATA_VERSION = swUrl.searchParams.get("v") || "v1-latest";
-const CACHE_NAME = `neurorx-cache-${DATA_VERSION}`;
+const DATA_VERSION = swUrl.searchParams.get("v") || "v2-latest";
+const CACHE_NAME = `neurorx-cache-v2-${DATA_VERSION}`;
 
 const PRECACHE_URLS = [
   "/neurorx",

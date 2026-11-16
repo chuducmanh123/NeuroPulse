@@ -13,7 +13,7 @@ import {
   Clock,
   Bug,
 } from "lucide-react";
-import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
+import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import type { Source, Subspecialty } from "@/types/neurorx";
 import { ReproBoard } from "./ReproBoard";
 import { ReproDetail } from "./ReproDetail";
