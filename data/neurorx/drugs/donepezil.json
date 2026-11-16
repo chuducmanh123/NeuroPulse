@@ -178,11 +178,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No adequate human pregnancy data; not teratogenic during organogenesis in rats/rabbits (6-7x MRHD), but late-gestation/lactation dosing in rats increased stillbirths and reduced pup survival at clinically relevant doses.",
       "refs": [
         {
           "source_id": "fda-donepezil-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "ARICEPT is indicated for the treatment of dementia of the Alzheimer’s type. Efficacy has been demonstrated in patients with mild, moderate, and severe Alzheimer’s disease."
+          "locator": "PREGNANCY",
+          "quote": "There are no adequate data on the developmental risks associated with the use of ARICEPT in pregnant women. In animal studies, developmental toxicity was not observed when donepezil was administered to pregnant rats and rabbits during organogenesis, but administration to rats during the latter part of pregnancy and throughout lactation resulted in increased stillbirths"
         }
       ]
     },
@@ -192,14 +193,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "There are no adequate and well-controlled studies in pregnant women; use during pregnancy only if the potential benefit justifies potential fetal risk.",
-      "refs": [
-        {
-          "source_id": "fda-donepezil-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "ARICEPT is indicated for the treatment of dementia of the Alzheimer’s type. Efficacy has been demonstrated in patients with mild, moderate, and severe Alzheimer’s disease."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -214,12 +209,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excretion in human breast milk is unknown; not recommended during nursing.",
+      "value": "No data on presence in human milk, effects on breastfed infant, or milk production; weigh developmental/health benefits of breastfeeding against maternal clinical need.",
       "refs": [
         {
           "source_id": "fda-donepezil-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "ARICEPT is indicated for the treatment of dementia of the Alzheimer’s type. Efficacy has been demonstrated in patients with mild, moderate, and severe Alzheimer’s disease."
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "There are no data on the presence of donepezil or its metabolites in human milk, the effects on the breastfed infant, or on milk production. The developmental and health benefits of breastfeeding should be considered along with the mother’s clinical need for ARICEPT"
         }
       ]
     }

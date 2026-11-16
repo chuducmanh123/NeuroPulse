@@ -224,12 +224,13 @@
   },
   "reproductive": {
     "tier": {
-      "value": "avoid",
+      "value": "caution",
+      "note": "Published observational studies do not report a clear association between benzodiazepines and major birth defects and animal malformations occurred only at high maternally toxic doses (~20x MRHD), but late-pregnancy exposure can cause neonatal sedation/withdrawal and obstetrical use is not recommended.",
       "refs": [
         {
           "source_id": "fda-diazepam-label",
-          "locator": "PRECAUTIONS - Pregnancy: Risk Summary",
-          "quote": "Neonates born to mothers using benzodiazepines late in pregnancy have been reported to experience symptoms of sedation and/or neonatal withdrawal"
+          "locator": "PRECAUTIONS",
+          "quote": "Available data from published observational studies of pregnant women exposed to benzodiazepines do not report a clear association with benzodiazepines and major birth defects (see Data )."
         }
       ]
     },
@@ -255,12 +256,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Breastfeeding is not recommended during treatment with diazepam due to excretion in breast milk and risk of sedation and poor feeding in nursing infants.",
+      "value": "Breastfeeding is not recommended during treatment with diazepam due to excretion in breast milk and risk of sedation, poor feeding, and poor weight gain in nursing infants.",
       "refs": [
         {
           "source_id": "fda-diazepam-label",
-          "locator": "PRECAUTIONS - Nursing",
-          "quote": "Advise patients that breastfeeding is not recommended during treatment with diazepam"
+          "locator": "PRECAUTIONS",
+          "quote": "Diazepam is present in breastmilk. There are reports of sedation, poor feeding and poor weight gain in infants exposed to benzodiazepines through breast milk."
         }
       ]
     }

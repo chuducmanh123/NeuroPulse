@@ -330,11 +330,17 @@
   "reproductive": {
     "tier": {
       "value": "avoid",
+      "note": "Contraindicated in pregnancy except in women with mechanical heart valves at high thromboembolism risk; first-trimester exposure causes warfarin embryopathy (~5%) and fatal fetal hemorrhage.",
       "refs": [
         {
           "source_id": "fda-warfarin-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Warfarin sodium is contraindicated in women who are pregnant except in pregnant women with mechanical heart valves, who are at high risk of thromboembolism, and for whom the benefits of warfarin sodium may outweigh the risks"
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Warfarin sodium is contraindicated in women who are pregnant except in pregnant women with mechanical heart valves, who are at high risk of thromboembolism, and for whom the benefits of warfarin sodium may outweigh the risks [see Warnings and Precautions ( 5.7 )] . Warfarin sodium can cause fetal harm."
+        },
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Exposure to warfarin during the first trimester of pregnancy caused a pattern of congenital malformations in about 5% of exposed offspring."
         }
       ]
     },
@@ -344,12 +350,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Crosses placental barrier with risks of fatal hemorrhage and warfarin embryopathy (nasal hypoplasia, stippled epiphyses, CNS defects).",
+      "value": "Crosses the placenta with fetal plasma concentrations approaching maternal values; first-trimester exposure causes warfarin embryopathy (~5%) and CNS/fetal hemorrhage risks.",
       "refs": [
         {
           "source_id": "fda-warfarin-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Warfarin sodium is contraindicated in women who are pregnant except in pregnant women with mechanical heart valves, who are at high risk of thromboembolism, and for whom the benefits of warfarin sodium may outweigh the risks"
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "In humans, warfarin crosses the placenta, and concentrations in fetal plasma approach the maternal values. Exposure to warfarin during the first trimester of pregnancy caused a pattern of congenital malformations in about 5% of exposed offspring."
         }
       ]
     },
@@ -358,12 +364,17 @@
       "refs": []
     },
     "contraception": {
-      "value": "Contraindicated in women of childbearing potential unless using effective contraception; assess pregnancy status before initiation.",
+      "value": "Verify pregnancy status prior to initiation; advise females of reproductive potential to use effective contraception during treatment and for at least 1 month after the final dose.",
       "refs": [
         {
           "source_id": "fda-warfarin-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Warfarin sodium is contraindicated in women who are pregnant except in pregnant women with mechanical heart valves, who are at high risk of thromboembolism, and for whom the benefits of warfarin sodium may outweigh the risks"
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Verify the pregnancy status of females of reproductive potential prior to initiating warfarin sodium therapy."
+        },
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Advise females of reproductive potential to use effective contraception during treatment and for at least 1 month after the final dose of warfarin sodium."
         }
       ]
     },
@@ -372,12 +383,17 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Warfarin was not detected in human breast milk in limited published studies; compatible with breastfeeding but monitor infant for bruising.",
+      "value": "Warfarin was not detected in human milk in a limited published study (15 nursing mothers); monitor breastfeeding infants for bruising or bleeding.",
       "refs": [
         {
           "source_id": "fda-warfarin-label",
-          "locator": "Section 8.2 Lactation",
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
           "quote": "Warfarin was not present in human milk from mothers treated with warfarin from a limited published study."
+        },
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Monitor breastfeeding infants for bruising or bleeding."
         }
       ]
     }

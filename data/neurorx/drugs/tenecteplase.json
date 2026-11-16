@@ -185,10 +185,11 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No human pregnancy data for tenecteplase (only small case reports for related thrombolytics), though rabbit studies showed no embryotoxicity and life-sustaining STEMI therapy should not be withheld.",
       "refs": [
         {
           "source_id": "fda-tenecteplase-label",
-          "locator": "Section 8.1 Pregnancy",
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.1 Pregnancy)",
           "quote": "There are no data on the use of tenecteplase during pregnancy to evaluate for a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes."
         }
       ]
@@ -215,11 +216,11 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "There are no data on the presence of tenecteplase in human or animal milk, effects on breastfed infant, or milk production.",
+      "value": "There are no data on the presence of tenecteplase in human or animal milk, effects on the breastfed infant, or milk production.",
       "refs": [
         {
           "source_id": "fda-tenecteplase-label",
-          "locator": "Section 8.2 Lactation",
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
           "quote": "There are no data on the presence of tenecteplase in either human or animal milk, the effects on the breastfed infant, or the effect on milk production."
         }
       ]

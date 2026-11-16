@@ -233,11 +233,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No human pregnancy data are available; animal studies showed no adverse developmental outcomes, though third-trimester placental transfer of efgartigimod alfa may reduce maternal IgG passive immunity in the newborn.",
       "refs": [
         {
           "source_id": "fda-efgartigimod-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "generalized myasthenia gravis (gMG) chronic inflammatory demyelinating polyneuropathy (CIDP) VYVGART HYTRULO is a combination of efgartigimod alfa, a neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, i"
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "There are no available data on the use of VYVGART HYTRULO or efgartigimod alfa containing products during pregnancy. There was no evidence of adverse developmental outcomes following the intravenous administration of efgartigimod alfa at up to 100 mg/kg/day in rats and rabbits"
         }
       ]
     },
@@ -247,12 +248,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "FcRn blockade reduces transplacental transfer of maternal IgG to the fetus, potentially leaving the neonate transiently hypogammaglobulinemic. Evaluate clinical benefit vs fetal risk.",
+      "value": "Monoclonal antibodies are increasingly transported across the placenta during pregnancy (largest amount in third trimester); efgartigimod alfa may be transmitted to the fetus and reduce maternal IgG passive protection to the newborn.",
       "refs": [
         {
           "source_id": "fda-efgartigimod-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "generalized myasthenia gravis (gMG) chronic inflammatory demyelinating polyneuropathy (CIDP) VYVGART HYTRULO is a combination of efgartigimod alfa, a neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, i"
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Monoclonal antibodies are increasingly transported across the placenta as pregnancy progresses, with the largest amount transferred during the third trimester. Therefore, efgartigimod alfa may be transmitted from the mother to the developing fetus. As VYVGART HYTRULO is expected to reduce maternal IgG antibody levels, reduction in passive protection to the newborn is anticipated."
         }
       ]
     },
@@ -269,12 +270,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Maternal IgG is excreted into colostrum/milk; consider potential for FcRn blockade in infant GI tract vs maternal need.",
+      "value": "No information on efgartigimod alfa or hyaluronidase in human milk or effects on breastfed infants; maternal IgG is known to be present in human milk. Weigh breastfeeding benefits against maternal clinical need.",
       "refs": [
         {
           "source_id": "fda-efgartigimod-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "generalized myasthenia gravis (gMG) chronic inflammatory demyelinating polyneuropathy (CIDP) VYVGART HYTRULO is a combination of efgartigimod alfa, a neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, i"
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "There is no information regarding the presence of efgartigimod alfa or hyaluronidase, from administration of VYVGART HYTRULO, in human milk, the effects on the breastfed infant, or the effects on milk production. Maternal IgG is known to be present in human milk."
         }
       ]
     }

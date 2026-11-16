@@ -216,11 +216,17 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No human pregnancy data or animal reproduction studies are available; administer during pregnancy only if clearly needed.",
       "refs": [
         {
           "source_id": "fda-idarucizumab-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "There are no available data on PRAXBIND use in pregnant women to inform a drug-associated risk of major birth defects and miscarriage."
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "There are no available data on PRAXBIND use in pregnant women to inform a drug-associated risk of major birth defects and miscarriage. Animal reproductive and development studies have not been conducted with idarucizumab."
+        },
+        {
+          "source_id": "fda-idarucizumab-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "PRAXBIND should be given to a pregnant woman only if clearly needed."
         }
       ]
     },
@@ -246,12 +252,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Unknown if idarucizumab is excreted in human milk; exercise caution when administered to nursing mothers.",
+      "value": "Unknown whether idarucizumab is excreted in human milk; no data on effects on the breastfed child or milk production. Exercise caution when administering to a nursing woman.",
       "refs": [
         {
           "source_id": "fda-idarucizumab-label",
-          "locator": "Section 8.2 Lactation",
-          "quote": "Because many drugs are excreted in human milk, caution should be exercised when PRAXBIND is administered to a nursing woman."
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "There are no data on the effects of PRAXBIND on the breastfed child or on milk production. It is not known whether idarucizumab is excreted in human milk. Because many drugs are excreted in human milk, caution should be exercised when PRAXBIND is administered to a nursing woman."
         }
       ]
     }

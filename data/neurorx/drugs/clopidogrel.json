@@ -331,11 +331,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "Published case reports and postmarketing surveillance have not identified risks for major birth defects or miscarriage and animal studies were negative at 65-78x human dose, but labor/delivery use increases maternal hemorrhage and spinal hematoma risk.",
       "refs": [
         {
           "source_id": "fda-clopidogrel-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Available data from cases reported in published literature and postmarketing surveillance with clopidogrel use in pregnant women have not identified any drug-associated risks for major birth defects or miscarriage"
+          "locator": "8.1 Pregnancy",
+          "quote": "Available data from cases reported in published literature and postmarketing surveillance with clopidogrel use in pregnant women have not identified any drug-associated risks for major birth defects or miscarriage [see Data ] ."
         }
       ]
     },
@@ -345,12 +346,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "No evidence of fetotoxicity, but increased risk of maternal hemorrhage during labor and delivery; discontinue 5-7 days before planned delivery if possible.",
+      "value": "Use during labor or delivery increases maternal bleeding risk and neuraxial blockade spinal hematoma risk; discontinue 5 to 7 days prior to labor, delivery, or neuraxial blockade when possible.",
       "refs": [
         {
           "source_id": "fda-clopidogrel-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Available data from cases reported in published literature and postmarketing surveillance with clopidogrel use in pregnant women have not identified any drug-associated risks for major birth defects or miscarriage"
+          "locator": "8.1 Pregnancy",
+          "quote": "Clopidogrel use during labor or delivery will increase the risk of maternal bleeding and hemorrhage. Avoid neuraxial blockade during clopidogrel use because of the risk of spinal hematoma. When possible, discontinue clopidogrel 5 to 7 days prior to labor, delivery, or neuraxial blockade."
         }
       ]
     },
@@ -367,12 +368,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk; consider maternal indication and potential infant risk. No adverse infant events reported in postmarketing cases.",
+      "value": "No data on presence in human milk; no adverse infant events reported in a small number of postmarketing cases.",
       "refs": [
         {
           "source_id": "fda-clopidogrel-label",
-          "locator": "Section 8.2 Lactation",
-          "quote": "There are no data on the presence of clopidogrel in human milk or the effects on milk production."
+          "locator": "8.2 Lactation",
+          "quote": "There are no data on the presence of clopidogrel in human milk or the effects on milk production. No adverse effects on breastfed infants have been observed with maternal clopidogrel use during lactation in a small number of postmarketing cases."
         }
       ]
     }

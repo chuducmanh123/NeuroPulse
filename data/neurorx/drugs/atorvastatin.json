@@ -221,11 +221,12 @@
   "reproductive": {
     "tier": {
       "value": "avoid",
+      "note": "Label instructs to discontinue when pregnancy is recognized because cholesterol synthesis inhibition may cause fetal harm, and hyperlipidemia treatment is generally unnecessary during pregnancy.",
       "refs": [
         {
           "source_id": "fda-atorvastatin-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Discontinue LIPITOR when pregnancy is recognized. Alternatively, consider the ongoing therapeutic needs of the individual patient."
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.1 Pregnancy)",
+          "quote": "Discontinue LIPITOR when pregnancy is recognized. Alternatively, consider the ongoing therapeutic needs of the individual patient. LIPITOR decreases synthesis of cholesterol and possibly other biologically active substances derived from cholesterol; therefore, LIPITOR may cause fetal harm when administered to pregnant patients based on the mechanism of action"
         }
       ]
     },
@@ -251,11 +252,11 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Breastfeeding is not recommended during atorvastatin treatment due to potential for serious adverse reactions in nursing infants.",
+      "value": "Breastfeeding is not recommended during atorvastatin treatment; no information on presence in human milk or effects on breastfed infant or milk production.",
       "refs": [
         {
           "source_id": "fda-atorvastatin-label",
-          "locator": "Section 8.2 Lactation",
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
           "quote": "There is no information about the presence of atorvastatin in human milk, the effects of the drug on the breastfed infant or the effects of the drug on milk production."
         }
       ]

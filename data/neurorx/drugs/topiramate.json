@@ -182,46 +182,45 @@
   "reproductive": {
     "tier": {
       "value": "avoid",
+      "note": "Pregnancy registries (NAAED, UK, MBRN) show markedly increased risks of major congenital malformations, especially oral clefts (RR 12.5), and small-for-gestational-age infants.",
       "refs": [
         {
           "source_id": "fda-topiramate-label",
-          "locator": "WARNINGS AND PRECAUTIONS",
-          "quote": "TOPAMAX can cause fetal harm when administered to a pregnant woman."
+          "locator": "WARNINGS AND CAUTIONS (5.7 Fetal Toxicity)",
+          "quote": "TOPAMAX can cause fetal harm when administered to a pregnant woman. Data from pregnancy registries indicate that infants exposed to topiramate in utero have an increased risk of major congenital malformations, including but not limited to cleft lip and/or cleft palate (oral clefts), and of being small for gestational age (SGA)."
+        },
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "PREGNANCY (8.1 Pregnancy)",
+          "quote": "The relative risk of oral clefts in topiramate-exposed pregnancies in the NAAED Pregnancy Registry was 12.5 (95% Confidence Interval [CI] 5.9–26.37) as compared to the risk in a background population of untreated women."
         }
       ]
     },
     "mcm": [],
     "folic_acid": {
-      "value": "Daily folic acid supplementation is recommended for women of childbearing potential.",
-      "refs": [
-        {
-          "source_id": "fda-topiramate-label",
-          "locator": "WARNINGS AND PRECAUTIONS",
-          "quote": "TOPAMAX can cause fetal harm when administered to a pregnant woman."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "pregnancy_pk": {
-      "value": "Topiramate clearance is increased during pregnancy; monitor serum concentrations closely.",
-      "refs": [
-        {
-          "source_id": "fda-topiramate-label",
-          "locator": "WARNINGS AND PRECAUTIONS",
-          "quote": "TOPAMAX can cause fetal harm when administered to a pregnant woman."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
       "refs": []
     },
     "contraception": {
-      "value": "Doses > 200 mg/day induce CYP3A4 and decrease estrogen component of oral contraceptives; use high-dose estrogen or barrier methods.",
+      "value": "Women of childbearing potential not planning pregnancy should use effective contraception; topiramate may decrease contraceptive efficacy and increase breakthrough bleeding.",
       "refs": [
         {
           "source_id": "fda-topiramate-label",
-          "locator": "CLINICAL PHARMACOLOGY",
-          "quote": "Hepatic Impairment Plasma clearance of topiramate decreased a mean of 26% in patients with moderate to severe hepatic impairment."
+          "locator": "USE IN SPECIFIC POPULATIONS (8.3 Females and Males of Reproductive Potential)",
+          "quote": "Women of childbearing potential who are not planning a pregnancy should use effective contraception because of the risk of major congenital malformations, including oral clefts, and the risk of infants being SGA"
+        },
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "DRUG INTERACTIONS (7.4 Contraceptives)",
+          "quote": "The possibility of decreased contraceptive efficacy and increased breakthrough bleeding may occur in patients taking contraceptive products with TOPAMAX. Patients taking estrogen-containing or progestin-only contraceptives should be asked to report any change in their bleeding patterns."
         }
       ]
     },
@@ -230,12 +229,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Topiramate is excreted in human milk; monitor nursing infant for sedation and diarrhea.",
+      "value": "Topiramate is excreted in human milk; diarrhea and somnolence have been reported in breastfed infants.",
       "refs": [
         {
           "source_id": "fda-topiramate-label",
-          "locator": "WARNINGS AND PRECAUTIONS",
-          "quote": "TOPAMAX can cause fetal harm when administered to a pregnant woman."
+          "locator": "USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
+          "quote": "Topiramate is excreted in human milk [see Data ] . The effects of topiramate on milk production are unknown. Diarrhea and somnolence have been reported in breastfed infants whose mothers receive topiramate treatment."
         }
       ]
     }

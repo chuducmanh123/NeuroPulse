@@ -188,11 +188,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No adequate human pregnancy data; animal studies showed rat embryolethality (attributed to prolactin lowering) and inhibited postnatal growth at clinically relevant exposures.",
       "refs": [
         {
           "source_id": "fda-pramipexole-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "extended-release tablets are indicated for the treatment of Parkinson's disease."
+          "locator": "8.1 Pregnancy",
+          "quote": "There are no adequate data on the developmental risk associated with the use of pramipexole dihydrochloride extended-release in pregnant women. No adverse developmental effects were observed in animal studies in which pramipexole was administered to rabbits during pregnancy."
         }
       ]
     },
@@ -202,14 +203,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "In animal studies, caused embryonic loss and inhibition of implantation; limited human pregnancy data available.",
-      "refs": [
-        {
-          "source_id": "fda-pramipexole-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "extended-release tablets are indicated for the treatment of Parkinson's disease."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -224,12 +219,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Dopamine agonism inhibits prolactin secretion and lactation; avoid during breastfeeding.",
+      "value": "No data on presence in human milk; inhibition of lactation is expected because pramipexole inhibits prolactin secretion in humans. Weigh breastfeeding benefits against maternal clinical need.",
       "refs": [
         {
           "source_id": "fda-pramipexole-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "extended-release tablets are indicated for the treatment of Parkinson's disease."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "There are no data on the presence of pramipexole in human milk, the effects of pramipexole on the breastfed infant, or the effects of pramipexole on milk production. However, inhibition of lactation is expected because pramipexole inhibits secretion of prolactin in humans."
         }
       ]
     }

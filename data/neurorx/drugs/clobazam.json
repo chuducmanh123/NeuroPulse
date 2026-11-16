@@ -239,12 +239,13 @@
   },
   "reproductive": {
     "tier": {
-      "value": "avoid",
+      "value": "caution",
+      "note": "Human observational studies of benzodiazepines do not report a clear association with major birth defects, though animal studies show developmental toxicity below MRHD and late-pregnancy exposure can cause neonatal sedation/withdrawal; use only if potential benefit justifies fetal risk.",
       "refs": [
         {
           "source_id": "fda-clobazam-label",
-          "locator": "USE IN SPECIFIC POPULATIONS",
-          "quote": "Pregnancy: Based on animal data, may cause fetal harm ( 8.1 ) 8.1 Pregnancy Pregnancy Registry There is a pregnancy exposure registry that monitors pregnancy ou"
+          "locator": "8.1 Pregnancy",
+          "quote": "ONFI should be used during pregnancy only if the potential benefit to the mother justifies the potential risk to the fetus. Advise a pregnant woman and women of childbearing age of the potential risk to a fetus."
         }
       ]
     },
@@ -262,20 +263,26 @@
       "refs": []
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Weak CYP3A4 inducer; effectiveness of hormonal contraceptives metabolized by CYP3A4 may be diminished. Additional non-hormonal forms of contraception are recommended.",
+      "refs": [
+        {
+          "source_id": "fda-clobazam-label",
+          "locator": "7.3 Effect of ONFI on Other Drugs",
+          "quote": "ONFI is a weak CYP3A4 inducer. As some hormonal contraceptives are metabolized by CYP3A4, their effectiveness may be diminished when given with ONFI. Additional non-hormonal forms of contraception are recommended when using ONFI"
+        }
+      ]
     },
     "lactation_rid": {
       "value": null,
       "refs": []
     },
     "lactation_summary": {
-      "value": "Clobazam is excreted in human milk. Monitor breastfed infants for sedation and poor feeding.",
+      "value": "Excreted in human milk; monitor breastfed infants for sedation, poor feeding, and poor weight gain.",
       "refs": [
         {
           "source_id": "fda-clobazam-label",
-          "locator": "USE IN SPECIFIC POPULATIONS",
-          "quote": "Pregnancy: Based on animal data, may cause fetal harm ( 8.1 ) 8.1 Pregnancy Pregnancy Registry There is a pregnancy exposure registry that monitors pregnancy ou"
+          "locator": "8.2 Lactation",
+          "quote": "ONFI is excreted in human milk ( see Data) . There are reports of sedation, poor feeding and poor weight gain in infants exposed to benzodiazepines through breast milk."
         }
       ]
     }

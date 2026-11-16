@@ -361,7 +361,8 @@
   },
   "reproductive": {
     "tier": {
-      "value": "contraindicated",
+      "value": "avoid",
+      "note": "Boxed Warning for embryofetal toxicity with pregnancy registry data showing 45-49% first-trimester pregnancy loss and 23-27% congenital malformations; avoid if safer treatment options are available.",
       "refs": [
         {
           "source_id": "fda-mycophenolate-label",
@@ -376,12 +377,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Contraindicated in pregnancy. Severe teratogen: 45-49% first trimester miscarriage rate, 23-27% major congenital malformations. Discontinue at least 6 weeks prior to planned conception.",
+      "value": "Pregnancy registry data show 45-49% first-trimester pregnancy loss and 23-27% congenital malformations; consider alternative immunosuppressants with less embryofetal toxicity.",
       "refs": [
         {
           "source_id": "fda-mycophenolate-label",
-          "locator": "BOXED WARNING",
-          "quote": "WARNING: EMBRYOFETAL TOXICITY, MALIGNANCIES and SERIOUS INFECTIONS Use during pregnancy is associated with increased risks of first trimester pregnancy loss and congenital malformations."
+          "locator": "8.1 Pregnancy",
+          "quote": "A spectrum of congenital malformations (including multiple malformations in individual newborns) has been reported in 23 to 27% of live births in MMF exposed pregnancies, based on published data from pregnancy registries."
         }
       ]
     },
@@ -390,12 +391,12 @@
       "refs": []
     },
     "contraception": {
-      "value": "Must use two acceptable forms of reliable effective contraception simultaneously before beginning therapy, during therapy, and for 6 weeks following discontinuation.",
+      "value": "Females of reproductive potential must use acceptable contraception during therapy and for 6 weeks after stopping; reduces levonorgestrel levels (use additional barrier method). Sexually active males should use effective contraception during therapy and for 90 days after.",
       "refs": [
         {
           "source_id": "fda-mycophenolate-label",
-          "locator": "BOXED WARNING",
-          "quote": "WARNING: EMBRYOFETAL TOXICITY, MALIGNANCIES and SERIOUS INFECTIONS Use during pregnancy is associated with increased risks of first trimester pregnancy loss and congenital malformations."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.3 Females and Males of Reproductive Potential",
+          "quote": "Patients must use acceptable birth control during the entire CELLCEPT therapy, and for 6 weeks after stopping CELLCEPT, unless the patient chooses abstinence."
         }
       ]
     },
@@ -404,12 +405,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excretion in human milk is unknown; due to the potential for serious adverse reactions in nursing infants, avoid breastfeeding during therapy.",
+      "value": "No data on presence in human milk; animal studies show MPA in rat milk. Limited registry data (7 infants) reported no adverse events, but potential risks to a breastfeeding infant cannot be excluded.",
       "refs": [
         {
           "source_id": "fda-mycophenolate-label",
-          "locator": "BOXED WARNING",
-          "quote": "WARNING: EMBRYOFETAL TOXICITY, MALIGNANCIES and SERIOUS INFECTIONS Use during pregnancy is associated with increased risks of first trimester pregnancy loss and congenital malformations."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "There are no data on the presence of mycophenolate in human milk, or the effects on milk production. There are limited data in the National Transplantation Pregnancy Registry on the effects of mycophenolate on a breastfed child [see Data ] ."
         }
       ]
     }

@@ -261,10 +261,11 @@
       "refs": [
         {
           "source_id": "fda-4fpcc-kcentra-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "There are no data with KCENTRA use in pregnancy to inform on drug-associated risk. Animal reproduction studies have not been conducted with KCENTRA."
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "There are no data with KCENTRA use in pregnancy to inform on drug-associated risk. Animal reproduction studies have not been conducted with KCENTRA. It is not known whether KCENTRA can cause fetal harm when administered to a pregnant woman or can affect reproduction capacity. KCENTRA should be prescribed for a pregnant woman only if clearly needed."
         }
-      ]
+      ],
+      "note": "No human pregnancy data or animal reproduction studies available; prescribe during pregnancy only if clearly needed."
     },
     "mcm": [],
     "folic_acid": {
@@ -288,12 +289,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "No information regarding excretion in human milk; use only if clearly needed in nursing women.",
+      "value": "No information regarding excretion in human milk or effects on breastfed infants; use only if clearly needed when treating a nursing woman.",
       "refs": [
         {
           "source_id": "fda-4fpcc-kcentra-label",
-          "locator": "Section 8.2 Lactation",
-          "quote": "Because many drugs are excreted in human milk, use KCENTRA only if clearly needed when treating a nursing woman."
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "There is no information regarding the excretion of KCENTRA in human milk, the effect on the breastfed infant, or the effects on milk production. Because many drugs are excreted in human milk, use KCENTRA only if clearly needed when treating a nursing woman."
         }
       ]
     }

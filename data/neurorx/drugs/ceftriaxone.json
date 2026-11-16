@@ -372,12 +372,13 @@
   },
   "reproductive": {
     "tier": {
-      "value": "preferred",
+      "value": "caution",
+      "note": "Negative animal teratogenicity at 3-20x human dose, but FDA label notes no adequate and well-controlled studies in pregnant women and recommends use during pregnancy only if clearly needed.",
       "refs": [
         {
           "source_id": "fda-ceftriaxone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+          "locator": "PREGNANCY",
+          "quote": "There are, however, no adequate and well-controlled studies in pregnant women. Because animal reproductive studies are not always predictive of human response, this drug should be used during pregnancy only if clearly needed."
         }
       ]
     },
@@ -387,12 +388,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Crosses the placenta; extensive human clinical experience confirms safety in pregnancy; preferred cephalosporin for CNS infections in pregnancy.",
+      "value": "Ceftriaxone crosses the blood-placenta barrier.",
       "refs": [
         {
           "source_id": "fda-ceftriaxone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+          "locator": "CLINICAL PHARMACOLOGY",
+          "quote": "Ceftriaxone crosses the blood placenta barrier."
         }
       ]
     },
@@ -409,12 +410,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excreted in human milk in low concentrations; compatible with breastfeeding.",
+      "value": "Low concentrations of ceftriaxone are excreted in human milk; exercise caution when administered to a nursing woman.",
       "refs": [
         {
           "source_id": "fda-ceftriaxone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+          "locator": "NURSING_MOTHERS",
+          "quote": "Nursing Mothers Low concentrations of ceftriaxone are excreted in human milk. Caution should be exercised when ceftriaxone is administered to a nursing woman."
         }
       ]
     }

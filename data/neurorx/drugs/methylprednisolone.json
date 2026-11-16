@@ -297,12 +297,13 @@
   },
   "reproductive": {
     "tier": {
-      "value": "acceptable",
+      "value": "caution",
+      "note": "No adequate and well-controlled studies in pregnant women and animal studies show cleft palate at human-equivalent doses; use during pregnancy only if potential benefit justifies potential risk and monitor neonates for hypoadrenalism.",
       "refs": [
         {
           "source_id": "fda-methylprednisolone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "Acute exacerbations of multiple sclerosis; cerebral edema associated with primary or metastatic brain tumor, or craniotomy."
+          "locator": "PREGNANCY",
+          "quote": "Corticosteroids have been shown to be teratogenic in many species when given in doses equivalent to the human dose. Animal studies in which corticosteroids have been given to pregnant mice, rats, and rabbits have yielded an increased incidence of cleft palate in the offspring. There are no adequate and well-controlled studies in pregnant women."
         }
       ]
     },
@@ -312,14 +313,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Inactivated by placental 11-beta-HSD2; high-dose pulse therapy should be reserved for severe maternal relapse.",
-      "refs": [
-        {
-          "source_id": "fda-methylprednisolone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "Acute exacerbations of multiple sclerosis; cerebral edema associated with primary or metastatic brain tumor, or craniotomy."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -334,12 +329,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Minimal excretion in breast milk; after high-dose IV pulse, waiting 2 to 4 hours before nursing further minimizes infant exposure.",
+      "value": "Systemically administered corticosteroids appear in human milk and could suppress growth, interfere with endogenous corticosteroid production, or cause other untoward effects; weigh maternal clinical need against infant risk.",
       "refs": [
         {
           "source_id": "fda-methylprednisolone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "Acute exacerbations of multiple sclerosis; cerebral edema associated with primary or metastatic brain tumor, or craniotomy."
+          "locator": "NURSING_MOTHERS",
+          "quote": "Systemically administered corticosteroids appear in human milk and could suppress growth, interfere with endogenous corticosteroid production, or cause other untoward effects."
         }
       ]
     }

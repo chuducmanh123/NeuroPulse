@@ -129,6 +129,20 @@ CRITICAL MANDATORY RULES (ZERO HALLUCINATION):
    - Create a SEPARATE object in "regimens" for each distinct combination of: (a) clinical indication, (b) age/population group (e.g. Adults & Adolescents, Pediatrics, Neonates, Elderly), (c) route ("IV" | "PO" | "IM" | "SC" | "NG" | "TD"), and (d) setting ("acute_inpatient" | "maintenance_outpatient", e.g. acute/loading vs maintenance/prophylaxis).
    - Include the population/age group in "indication" when stratified (e.g. "Herpes Simplex Encephalitis — Pediatrics (3 months to 12 years)") and give each entry a unique slug in "id".
    - Provide a verbatim "quote" (<= 400 chars) from DOSAGE AND ADMINISTRATION for each regimen, plus complete "dose" (kind, amount, unit, frequency, max_single, max_daily) and full "dose_text" (infusion rate, duration, weight basis like IBW, titration, hydration).
+7. REPRODUCTIVE, PREGNANCY & LACTATION ("reproductive") — SECTION-AGNOSTIC SEARCH & MULTI-AXIS SYNTHESIS:
+   - Do NOT assume pregnancy/lactation is always in "Section 8.1 / 8.2". Search across ALL possible headings in the source text: BOXED WARNING, CONTRAINDICATIONS, WARNINGS AND PRECAUTIONS, PRECAUTIONS -> Pregnancy (Teratogenic/Nonteratogenic Effects) & Nursing Mothers, USE IN SPECIFIC POPULATIONS -> Pregnancy / Lactation / Females and Males of Reproductive Potential, and CLINICAL PHARMACOLOGY. Record the exact heading found in "locator", and quote directly from that pregnancy/lactation paragraph (never point reproductive refs to INDICATIONS AND USAGE).
+   - Synthesize "reproductive.tier.value" ("preferred" | "caution" | "avoid" | null) by weighing 5 axes:
+     (1) Contraindications/Boxed Warnings/REMS for fetal harm;
+     (2) Human epidemiologic/registry data (sample size adequacy, MCM rate vs baseline, neonatal toxicity/withdrawal);
+     (3) Animal teratogenicity & exposure margin (AUC/BSA vs maternal toxicity);
+     (4) Maternal disease risk-benefit context;
+     (5) Legacy Pregnancy Category (A/B/C/D/X) if stated.
+   - Mapping standard:
+     * "avoid": Pregnancy contraindication, fetal harm Boxed Warning, Category D/X, strong human teratogenicity/embryo-fetal toxicity, or explicit "avoid/do not use in pregnancy".
+     * "caution": Limited/small-sample human data ("no adequate and well-controlled studies", "insufficient to evaluate"), "used during pregnancy only if the potential benefit justifies the potential risk to the fetus", Category C (or B with limited human data / high-dose animal signal), or requires pregnancy PK/TDM monitoring.
+     * "preferred": Large-scale human registry/observational data showing no increased risk of MCM/miscarriage/adverse fetal outcomes + no major fetal toxicity warning (Category A, or B with robust reassuring human data), or explicitly recommended as preferred/first-line in pregnancy by a clinical guideline in the source. Do NOT assign "preferred" if the label cites small sample size and "only if potential benefit justifies risk".
+     * null: No pregnancy data in source.
+   - Record a concise 1-sentence synthesis in "reproductive.tier.note" explaining the evidence basis.
 
 JSON SCHEMA STRUCTURE TO POPULATE:
 {

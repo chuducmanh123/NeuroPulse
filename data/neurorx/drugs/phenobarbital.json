@@ -295,11 +295,12 @@
   "reproductive": {
     "tier": {
       "value": "avoid",
+      "note": "FDA Pregnancy Category D with teratogenic risk and acute neonatal withdrawal syndrome (seizures and hyperirritability up to 14 days) following in utero exposure; avoid in pregnancy unless safer alternatives are ineffective.",
       "refs": [
         {
           "source_id": "fda-phenobarbital-label",
-          "locator": "PRECAUTIONS - Usage in Pregnancy",
-          "quote": "Reports of infants suffering from long-term barbiturate exposure in utero included the acute withdrawal syndrome of seizures and hyperirritability from birth to a delayed onset of up to 14 days"
+          "locator": "8 USE IN SPECIFIC POPULATIONS - Usage in Pregnancy",
+          "quote": "Pregnancy Category D ( see Usage in Pregnancy under WARNINGS ). Nonteratogenic Effects –Reports of infants suffering from long-term barbiturate exposure in utero included the acute withdrawal syndrome of seizures and hyperirritability from birth to a delayed onset of up to 14 days"
         }
       ]
     },
@@ -317,11 +318,11 @@
       "refs": []
     },
     "contraception": {
-      "value": "Phenobarbital induces hepatic enzymes metabolizing estrogen and progestin, reducing oral contraceptive efficacy; recommend barrier or non-hormonal contraception.",
+      "value": "Phenobarbital induces hepatic enzymes metabolizing estradiol and other steroidal hormones, reducing oral contraceptive efficacy; suggest an alternate contraceptive method.",
       "refs": [
         {
           "source_id": "fda-phenobarbital-label",
-          "locator": "PRECAUTIONS - Drug Interactions",
+          "locator": "7 DRUG INTERACTIONS",
           "quote": "An alternate contraceptive method might be suggested to women taking phenobarbital."
         }
       ]
@@ -331,11 +332,11 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Small amounts of barbiturates are excreted in milk. Caution should be exercised and infant monitored for somnolence and weight gain.",
+      "value": "Small amounts of barbiturates are excreted in milk; exercise caution when administered to a nursing woman.",
       "refs": [
         {
           "source_id": "fda-phenobarbital-label",
-          "locator": "PRECAUTIONS - Nursing Mothers",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - Nursing Mothers",
           "quote": "Caution should be exercised when phenobarbital is administered to a nursing woman, because small amounts of barbiturates are excreted in the milk."
         }
       ]

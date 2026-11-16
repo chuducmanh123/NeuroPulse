@@ -151,11 +151,17 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "Pregnancy Category C with no clinical pregnancy data and animal developmental toxicity (including fetal eye anomalies at 7x MRDD); use only if potential benefit justifies potential fetal risk.",
       "refs": [
         {
           "source_id": "fda-entacapone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
+          "locator": "PREGNANCY",
+          "quote": "Pregnancy Category C"
+        },
+        {
+          "source_id": "fda-entacapone-label",
+          "locator": "PREGNANCY",
+          "quote": "There is no experience from clinical studies regarding the use of entacapone in pregnant women. Therefore, entacapone should be used during pregnancy only if the potential benefit justifies the potential risk to the fetus."
         }
       ]
     },
@@ -165,14 +171,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "In animal studies, entacapone crossed the placental barrier; human pregnancy data are lacking.",
-      "refs": [
-        {
-          "source_id": "fda-entacapone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -187,12 +187,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excreted into animal milk; human milk excretion unknown. Use caution during breastfeeding.",
+      "value": "Excreted into maternal rat milk in animal studies; human milk excretion is unknown. Exercise caution when administering to a nursing woman.",
       "refs": [
         {
           "source_id": "fda-entacapone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
+          "locator": "NURSING_MOTHERS",
+          "quote": "In animal studies, entacapone was excreted into maternal rat milk. It is not known whether entacapone is excreted in human milk. Because many drugs are excreted in human milk, caution should be exercised when entacapone is administered to a nursing woman."
         }
       ]
     }

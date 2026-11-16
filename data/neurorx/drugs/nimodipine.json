@@ -220,10 +220,11 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No adequate developmental risk data in pregnant women and animal studies show teratogenicity and embryotoxicity at or below recommended human doses; weigh maternal benefit in SAH against potential fetal harm.",
       "refs": [
         {
           "source_id": "fda-nimodipine-label",
-          "locator": "Section 8.1 Pregnancy",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
           "quote": "There are no adequate data on the developmental risk associated with the use of NYMALIZE in pregnant women."
         }
       ]
@@ -254,7 +255,7 @@
       "refs": [
         {
           "source_id": "fda-nimodipine-label",
-          "locator": "Section 8.2 Lactation",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
           "quote": "Nimodipine has been detected in human milk."
         }
       ]

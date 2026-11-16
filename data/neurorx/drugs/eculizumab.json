@@ -189,11 +189,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "Pooled data from >300 pregnant women have not suggested safety concerns but sample size cannot definitively exclude risk, while murine anti-C5 animal studies showed developmental abnormalities and increased offspring death at 2-8x human dose; balance against severe maternal/fetal risks of untreated PNH/aHUS.",
       "refs": [
         {
           "source_id": "fda-eculizumab-label",
-          "locator": "BOXED WARNING",
-          "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+          "locator": "PREGNANCY",
+          "quote": "A pooled analysis of prospectively (50.3%) and retrospectively (49.7%) collected data in more than 300 pregnant women with live births following exposure to SOLIRIS have not suggested safety concerns. However, these data cannot definitively exclude any drug-associated risk during pregnancy, because of the limited sample size."
         }
       ]
     },
@@ -203,14 +204,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "IgG crosses placenta; clinical registry data in PNH and aHUS show favorable outcomes, but assess maternal benefits against neonatal complement deficiency risks.",
-      "refs": [
-        {
-          "source_id": "fda-eculizumab-label",
-          "locator": "BOXED WARNING",
-          "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -225,12 +220,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Eculizumab has not been detected in breast milk; considered compatible with breastfeeding with infant monitoring.",
+      "value": "Limited published data do not report detectable levels in human milk, though maternal IgG is present in human milk; information is insufficient to inform infant effects.",
       "refs": [
         {
           "source_id": "fda-eculizumab-label",
-          "locator": "BOXED WARNING",
-          "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Although limited published data does not report detectable levels of eculizumab in human milk, maternal IgG is known to be present in human milk. Available information is insufficient to inform the effect of eculizumab on the breastfed infant."
         }
       ]
     }

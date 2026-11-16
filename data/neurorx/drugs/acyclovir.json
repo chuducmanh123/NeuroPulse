@@ -325,12 +325,13 @@
   },
   "reproductive": {
     "tier": {
-      "value": "preferred",
+      "value": "caution",
+      "note": "No adequate well-controlled human studies; prospective registry (n=749 first-trimester exposures) showed no overall birth defect increase, but small sample size is insufficient for definitive conclusions and label advises use only if potential benefit justifies fetal risk.",
       "refs": [
         {
           "source_id": "fda-acyclovir-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of herpes simplex encephalitis. Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
+          "locator": "PREGNANCY",
+          "quote": "However, the small size of the registry is insufficient to evaluate the risk for less common defects or to permit reliable or definitive conclusions regarding the safety of acyclovir in pregnant women and their developing fetuses. Acyclovir should be used during pregnancy only if the potential benefit justifies the potential risk to the fetus."
         }
       ]
     },
@@ -340,14 +341,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Extensive prospective pregnancy registry data show no increase in overall birth defects compared with general population; indicated for maternal CNS viral infection.",
-      "refs": [
-        {
-          "source_id": "fda-acyclovir-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of herpes simplex encephalitis. Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -362,12 +357,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excreted in human milk; compatible with breastfeeding; evaluate clinical necessity.",
+      "value": "Excreted in human milk (milk-to-plasma ratio 0.6 to 4.1, potentially exposing infant up to 0.3 mg/kg/day); administer to a nursing mother with caution and only when indicated.",
       "refs": [
         {
           "source_id": "fda-acyclovir-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of herpes simplex encephalitis. Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
+          "locator": "NURSING_MOTHERS",
+          "quote": "Acyclovir concentrations have been documented in breast milk in two women following oral administration of acyclovir and ranged from 0.6 to 4.1 times corresponding plasma levels. These concentrations would potentially expose the nursing infant to a dose of acyclovir up to 0.3 mg/kg/day. Acyclovir should be administered to a nursing mother with caution and only when indicated."
         }
       ]
     }

@@ -202,10 +202,11 @@
       "refs": [
         {
           "source_id": "fda-protamine-label",
-          "locator": "PRECAUTIONS - Pregnancy Category C",
-          "quote": "Animal reproduction studies have not been conducted with protamine sulfate. It is also not known whether protamine sulfate can cause fetal harm when administered to a pregnant woman or can affect reproduction capacity."
+          "locator": "PRECAUTIONS - Pregnancy",
+          "quote": "Pregnancy Category C Animal reproduction studies have not been conducted with protamine sulfate. It is also not known whether protamine sulfate can cause fetal harm when administered to a pregnant woman or can affect reproduction capacity. Protamine sulfate should be given to a pregnant woman only if clearly needed."
         }
-      ]
+      ],
+      "note": "Pregnancy Category C with no human or animal reproduction studies; administer during pregnancy only if clearly needed."
     },
     "mcm": [],
     "folic_acid": {
@@ -229,12 +230,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Unknown whether protamine is excreted in human milk; exercise caution when administered to a nursing woman.",
+      "value": "Unknown whether protamine sulfate is excreted in human milk; exercise caution when administering to a nursing woman.",
       "refs": [
         {
           "source_id": "fda-protamine-label",
           "locator": "PRECAUTIONS - Nursing Mothers",
-          "quote": "It is not known whether this drug is excreted in human milk. Because many drugs are excreted in human milk, caution should be exercised when protamine sulfate is administered to a nursing woman."
+          "quote": "Nursing Mothers It is not known whether this drug is excreted in human milk. Because many drugs are excreted in human milk, caution should be exercised when protamine sulfate is administered to a nursing woman."
         }
       ]
     }

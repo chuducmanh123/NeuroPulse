@@ -316,46 +316,51 @@
   "reproductive": {
     "tier": {
       "value": "avoid",
+      "note": "Boxed Warning for fetal risk (neural tube defects, major malformations, decreased IQ); contraindicated for migraine prophylaxis in pregnancy and in non-contracepting women of childbearing potential.",
       "refs": [
         {
           "source_id": "fda-valproate-label",
-          "locator": "Section 8.1 Pregnancy",
+          "locator": "BOXED WARNING",
+          "quote": "Valproate can cause major congenital malformations, particularly neural tube defects (e.g., spina bifida). In addition, valproate can cause decreased IQ scores and neurodevelopmental disorders following in utero exposure. Valproate is therefore contraindicated for prophylaxis of migraine headaches in pregnant women and in women of childbearing potential who are not using effective contraception"
+        },
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.1 Pregnancy)",
           "quote": "For use in prophylaxis of migraine headaches, valproate is contraindicated in women who are pregnant and in women of childbearing potential who are not using effective contraception"
         }
       ]
     },
     "mcm": [],
     "folic_acid": {
-      "value": "Folic acid supplementation prior to conception and during the first trimester is recommended, though it may not fully prevent valproate-induced malformations.",
+      "value": "Folic acid supplementation prior to conception and during pregnancy should be routinely recommended, though it is unknown whether it reduces valproate-induced neural tube defects or decreased IQ.",
       "refs": [
         {
           "source_id": "fda-valproate-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Evidence suggests that folic acid supplementation prior to conception and during the first trimester of pregnancy decreases the risk for congenital neural tube defects in the general population."
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.1 Pregnancy)",
+          "quote": "Evidence suggests that folic acid supplementation prior to conception and during the first trimester of pregnancy decreases the risk for congenital neural tube defects in the general population. It is not known whether the risk of neural tube defects or decreased IQ in the offspring of women receiving valproate is reduced by folic acid supplementation."
         }
       ]
     },
     "pregnancy_pk": {
-      "value": "Valproate clearance increases during pregnancy with lower total plasma concentrations; monitor unbound valproate concentrations.",
-      "refs": [
-        {
-          "source_id": "fda-valproate-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "For use in prophylaxis of migraine headaches, valproate is contraindicated in women who are pregnant and in women of childbearing potential who are not using effective contraception"
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
       "refs": []
     },
     "contraception": {
-      "value": "Contraindicated in women of childbearing potential unless using effective contraception. Note that estrogen-containing contraceptives may lower valproate levels.",
+      "value": "Women of childbearing potential should use effective contraception while taking valproate; monitor valproate concentrations when used with estrogen-containing hormonal contraceptives.",
       "refs": [
         {
           "source_id": "fda-valproate-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "valproate is contraindicated in women who are pregnant and in women of childbearing potential who are not using effective contraception"
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.3 Females and Males of Reproductive Potential)",
+          "quote": "Women of childbearing potential should use effective contraception while taking valproate"
+        },
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "7 DRUG INTERACTIONS",
+          "quote": "Aspirin, carbapenem antibiotics, estrogen-containing hormonal contraceptives: Monitoring of valproate concentrations is recommended"
         }
       ]
     },
@@ -364,18 +369,23 @@
       "refs": [
         {
           "source_id": "fda-valproate-label",
-          "locator": "Section 8.2 Lactation",
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
           "quote": "Valproate is excreted in human milk. Data in the published literature describe the presence of valproate in human milk (range: 0.4 mcg/mL to 3.9 mcg/mL), corresponding to 1% to 10% of maternal serum levels."
         }
       ]
     },
     "lactation_summary": {
-      "value": "Valproate is excreted in human milk (1% to 10% of maternal serum levels). Monitor breastfed infants for somnolence, jaundice, or bruising.",
+      "value": "Valproate is excreted in human milk (1% to 10% of maternal serum levels). Monitor breastfed infants for signs of liver damage including jaundice and unusual bruising or bleeding.",
       "refs": [
         {
           "source_id": "fda-valproate-label",
-          "locator": "Section 8.2 Lactation",
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
           "quote": "Valproate is excreted in human milk. Data in the published literature describe the presence of valproate in human milk (range: 0.4 mcg/mL to 3.9 mcg/mL), corresponding to 1% to 10% of maternal serum levels."
+        },
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
+          "quote": "Monitor the breastfed infant for signs of liver damage including jaundice and unusual bruising or bleeding."
         }
       ]
     }

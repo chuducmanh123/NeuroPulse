@@ -239,11 +239,17 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No adequate and well-controlled studies in pregnant women; label advises use only if potential benefit justifies potential fetal risk and notes neonatal hypotension, bradycardia, hypoglycemia, and respiratory depression.",
       "refs": [
         {
           "source_id": "fda-labetalol-label",
-          "locator": "PRECAUTIONS - Pregnancy: Teratogenic Effects",
-          "quote": "Teratogenic studies have been performed with labetalol in rats and rabbits at oral doses up to approximately 6 and 4 times the maximum recommended human dose (MRHD), respectively."
+          "locator": "12 CLINICAL PHARMACOLOGY",
+          "quote": "There are no adequate and well-controlled studies in pregnant women. Labetalol should be used during pregnancy only if the potential benefit justifies the potential risk to the fetus."
+        },
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "12 CLINICAL PHARMACOLOGY",
+          "quote": "Nonteratogenic Effects Hypotension, bradycardia, hypoglycemia, and respiratory depression have been reported in infants of mothers who were treated with labetalol for hypertension during pregnancy."
         }
       ]
     },
@@ -269,18 +275,18 @@
       "refs": [
         {
           "source_id": "fda-labetalol-label",
-          "locator": "PRECAUTIONS - Nursing Mothers",
-          "quote": "Small amounts of labetalol (approximately 0.004% of the maternal dose) are excreted in human milk. Caution should be exercised when labetalol injection is administered to a nursing woman."
+          "locator": "12 CLINICAL PHARMACOLOGY",
+          "quote": "Nursing Mothers Small amounts of labetalol (approximately 0.004% of the maternal dose) are excreted in human milk."
         }
       ]
     },
     "lactation_summary": {
-      "value": "Small amounts of labetalol (approximately 0.004% of maternal dose) are excreted in human milk. Exercise caution when administering to nursing women.",
+      "value": "Small amounts of labetalol (approximately 0.004% of the maternal dose) are excreted in human milk; exercise caution when administering to a nursing woman.",
       "refs": [
         {
           "source_id": "fda-labetalol-label",
-          "locator": "PRECAUTIONS - Nursing Mothers",
-          "quote": "Small amounts of labetalol (approximately 0.004% of the maternal dose) are excreted in human milk. Caution should be exercised when labetalol injection is administered to a nursing woman."
+          "locator": "12 CLINICAL PHARMACOLOGY",
+          "quote": "Nursing Mothers Small amounts of labetalol (approximately 0.004% of the maternal dose) are excreted in human milk. Caution should be exercised when labetalol injection is administered to a nursing woman."
         }
       ]
     }

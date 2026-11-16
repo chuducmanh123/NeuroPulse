@@ -186,11 +186,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No adequate data in pregnant women and no animal reproductive or developmental toxicity studies have been conducted.",
       "refs": [
         {
           "source_id": "fda-donanemab-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+          "locator": "PREGNANCY",
+          "quote": "8.1 Pregnancy Risk Summary There are no adequate data on KISUNLA use in pregnant women to evaluate for a drug-associated risk of major birth defects, miscarriage, or other adverse maternal or fetal outcomes. No animal studies have been conducted to assess the potential reproductive or developmental toxicity of KISUNLA."
         }
       ]
     },
@@ -200,14 +201,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "IgG1 antibodies cross the placenta; no human pregnancy data. Target population is post-reproductive.",
-      "refs": [
-        {
-          "source_id": "fda-donanemab-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -222,12 +217,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excretion in human milk unknown; evaluate clinical benefit vs infant risk.",
+      "value": "No data on presence in human milk, effects on breastfed infant, or milk production; published data from other monoclonal antibodies indicate low passage into human milk with unknown effects.",
       "refs": [
         {
           "source_id": "fda-donanemab-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "There are no data on the presence of donanemab-azbt in human milk, the effects on the breastfed infant, or the effects of the drug on milk production. Published data from other monoclonal antibodies generally indicate low passage of monoclonal antibodies into human milk and limited systemic exposure in the breastfed infant."
         }
       ]
     }

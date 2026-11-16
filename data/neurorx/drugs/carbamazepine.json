@@ -203,32 +203,27 @@
   "reproductive": {
     "tier": {
       "value": "avoid",
+      "note": "Can cause fetal harm; epidemiological data associate pregnancy exposure with congenital malformations (including spina bifida, craniofacial and cardiovascular defects) and neurobehavioral developmental delays.",
       "refs": [
         {
           "source_id": "fda-carbamazepine-label",
           "locator": "PREGNANCY",
-          "quote": "Carbamazepine can cause fetal harm when administered to a pregnant woman."
+          "quote": "Carbamazepine can cause fetal harm when administered to a pregnant woman. Epidemiological data suggest that there may be an association between the use of carbamazepine during pregnancy and congenital malformations, including spina bifida."
         }
       ]
     },
     "mcm": [],
     "folic_acid": {
-      "value": "Folic acid supplementation is recommended before conception and during pregnancy.",
-      "refs": [
-        {
-          "source_id": "fda-carbamazepine-label",
-          "locator": "PREGNANCY",
-          "quote": "Carbamazepine can cause fetal harm when administered to a pregnant woman."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "pregnancy_pk": {
-      "value": "Decreased carbamazepine concentrations and increased clearance may occur during pregnancy; monitor plasma levels.",
+      "value": "Rapid transplacental passage (30 to 60 minutes) with accumulation in fetal tissues, higher in liver and kidney than in brain and lung.",
       "refs": [
         {
           "source_id": "fda-carbamazepine-label",
           "locator": "PREGNANCY",
-          "quote": "Carbamazepine can cause fetal harm when administered to a pregnant woman."
+          "quote": "In humans, transplacental passage of carbamazepine is rapid (30 to 60 minutes), and the drug is accumulated in the fetal tissues, with higher levels found in liver and kidney than in brain and lung."
         }
       ]
     },
@@ -237,12 +232,12 @@
       "refs": []
     },
     "contraception": {
-      "value": "Strong enzyme induction decreases the efficacy of hormonal contraceptives; use alternative non-hormonal contraception.",
+      "value": "Decreases plasma concentrations of oral and other hormonal contraceptives; breakthrough bleeding and unintended pregnancies reported, so consider alternative or back-up contraception.",
       "refs": [
         {
           "source_id": "fda-carbamazepine-label",
-          "locator": "CLINICAL PHARMACOLOGY",
-          "quote": "Cytochrome P450 3A4 was identified as the major isoform responsible for the formation of carbamazepine-10,11-epoxide from Tegretol."
+          "locator": "DRUG INTERACTIONS",
+          "quote": "Breakthrough bleeding and unintended pregnancies have been reported. Alternative or back-up methods of contraception should be considered."
         }
       ]
     },
@@ -251,12 +246,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Carbamazepine and its epoxide metabolite transfer into breast milk; monitor nursing infants for hepatic dysfunction and sedation.",
+      "value": "Carbamazepine (milk-to-plasma ratio ~0.4; estimated infant dose 2–5 mg/day) and epoxide metabolite (~0.5; 1–2 mg/day) transfer into breast milk; decide whether to discontinue nursing or drug due to potential serious infant adverse reactions.",
       "refs": [
         {
           "source_id": "fda-carbamazepine-label",
-          "locator": "PREGNANCY",
-          "quote": "Carbamazepine can cause fetal harm when administered to a pregnant woman."
+          "locator": "NURSING_MOTHERS",
+          "quote": "Tegretol and its epoxide metabolite are transferred to breast milk. The ratio of the concentration in breast milk to that in maternal plasma is about 0.4 for Tegretol and about 0.5 for the epoxide. The estimated doses given to the newborn during breastfeeding are in the range of 2 to 5 mg daily for Tegretol and 1 to 2 mg daily for the epoxide."
         }
       ]
     }

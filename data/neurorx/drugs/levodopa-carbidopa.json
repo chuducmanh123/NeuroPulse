@@ -232,11 +232,22 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No adequate or well-controlled human pregnancy studies; rabbit studies showed visceral and skeletal malformations, so anticipated benefits must be weighed against possible hazards.",
       "refs": [
         {
           "source_id": "fda-levodopa-carbidopa-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+          "locator": "PREGNANCY",
+          "quote": "SINEMET caused both visceral and skeletal malformations in rabbits at all doses and ratios of carbidopa/levodopa tested, which ranged from 10 times/5 times the maximum recommended human dose of carbidopa/levodopa to 20 times/10 times the maximum recommended human dose of carbidopa/levodopa."
+        },
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "PREGNANCY",
+          "quote": "There are no adequate or well-controlled studies in pregnant women."
+        },
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "PREGNANCY",
+          "quote": "Use of SINEMET in women of childbearing potential requires that the anticipated benefits of the drug be weighed against possible hazards to mother and child."
         }
       ]
     },
@@ -246,12 +257,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Levodopa crosses the placenta; limited human pregnancy data suggest low malformation risk, but evaluate maternal motor benefit vs fetal safety.",
+      "value": "Individual cases report that levodopa crosses the human placental barrier, enters the fetus, and is metabolized, while fetal carbidopa concentrations appear minimal.",
       "refs": [
         {
           "source_id": "fda-levodopa-carbidopa-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+          "locator": "PREGNANCY",
+          "quote": "It has been reported from individual cases that levodopa crosses the human placental barrier, enters the fetus, and is metabolized. Carbidopa concentrations in fetal tissue appeared to be minimal."
         }
       ]
     },
@@ -268,12 +279,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Levodopa inhibits prolactin secretion and may suppress lactation; excretion in human milk is documented.",
+      "value": "Levodopa has been detected in human milk; exercise caution when administering to a nursing woman.",
       "refs": [
         {
           "source_id": "fda-levodopa-carbidopa-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+          "locator": "NURSING_MOTHERS",
+          "quote": "Nursing Mothers Levodopa has been detected in human milk. Caution should be exercised when SINEMET is administered to a nursing woman."
         }
       ]
     }

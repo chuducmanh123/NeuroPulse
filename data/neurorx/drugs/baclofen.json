@@ -178,14 +178,9 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "refs": [
-        {
-          "source_id": "fda-baclofen-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
-        }
-      ]
+      "value": null,
+      "note": "Source FDA label contains no pregnancy section or developmental risk data.",
+      "refs": []
     },
     "mcm": [],
     "folic_acid": {
@@ -193,14 +188,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Crosses the placenta; neonatal withdrawal (tremor, hypertonia, seizures) reported after maternal third-trimester use; taper slowly if indicated.",
-      "refs": [
-        {
-          "source_id": "fda-baclofen-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -215,12 +204,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excreted into breast milk in small amounts; monitor infant for drowsiness.",
+      "value": "Unknown if excreted in human milk; as a general rule, nursing should not be undertaken while taking the drug.",
       "refs": [
         {
           "source_id": "fda-baclofen-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
+          "locator": "PRECAUTIONS",
+          "quote": "It is not known whether this drug is excreted in human milk. As a general rule, nursing should not be undertaken while a patient is on a drug since many drugs are excreted in human milk."
         }
       ]
     }

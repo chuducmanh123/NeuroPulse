@@ -246,14 +246,9 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "refs": [
-        {
-          "source_id": "fda-amitriptyline-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "For the relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states."
-        }
-      ]
+      "value": null,
+      "note": "Source FDA label contains no pregnancy section or developmental risk data.",
+      "refs": []
     },
     "mcm": [],
     "folic_acid": {
@@ -261,14 +256,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Crosses placenta; neonates exposed late in pregnancy should be monitored for irritability, tremor, and feeding difficulties.",
-      "refs": [
-        {
-          "source_id": "fda-amitriptyline-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "For the relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -283,12 +272,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excreted into breast milk in low concentrations; monitor infant for excessive sedation.",
+      "value": "Excreted into breast milk (135 to 151 ng/mL in one report; undetected in infant serum); decide whether to discontinue nursing or drug based on maternal clinical need due to potential serious infant adverse reactions.",
       "refs": [
         {
           "source_id": "fda-amitriptyline-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "For the relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states."
+          "locator": "NURSING_MOTHERS",
+          "quote": "Because of the potential for serious adverse reactions in nursing infants from amitriptyline, a decision should be made whether to discontinue nursing or to discontinue the drug, taking into account the importance of the drug to the mother."
         }
       ]
     }

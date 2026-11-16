@@ -177,12 +177,13 @@
   },
   "reproductive": {
     "tier": {
-      "value": "avoid",
+      "value": "caution",
+      "note": "No adequate human pregnancy data; animal studies in mice and rats show embryolethality, reduced fetal body weight, and visceral/skeletal malformations at clinically relevant doses.",
       "refs": [
         {
           "source_id": "fda-amantadine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of dyskinesia in patients with Parkinson's disease receiving levodopa-based therapy, with or without concomitant dopaminergic medications As adjunctive treatment to levod"
+          "locator": "USE IN SPECIFIC POPULATIONS (8.1 Pregnancy)",
+          "quote": "There are no adequate data on the developmental risk associated with use of amantadine in pregnant women. Animal studies suggest a potential risk for fetal harm with amantadine. In mice and rats, adverse developmental effects (embryolethality, increased incidence of malformations, and reduced fetal body weight) were observed"
         }
       ]
     },
@@ -192,14 +193,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Teratogenic in animal studies (cardiovascular and skeletal malformations); avoid during pregnancy unless potential benefit justifies risk.",
-      "refs": [
-        {
-          "source_id": "fda-amantadine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of dyskinesia in patients with Parkinson's disease receiving levodopa-based therapy, with or without concomitant dopaminergic medications As adjunctive treatment to levod"
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -214,12 +209,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excreted into human milk; may cause vomiting, rash, and urinary retention in breastfed infants and suppresses lactation.",
+      "value": "Excreted into human milk (amounts unquantified); infant risk unknown and may alter breast milk production or excretion.",
       "refs": [
         {
           "source_id": "fda-amantadine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of dyskinesia in patients with Parkinson's disease receiving levodopa-based therapy, with or without concomitant dopaminergic medications As adjunctive treatment to levod"
+          "locator": "USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
+          "quote": "Amantadine is excreted into human milk, but amounts have not been quantified. There is no information on the risk to a breastfed infant. Amantadine may alter breast milk production or excretion"
         }
       ]
     }

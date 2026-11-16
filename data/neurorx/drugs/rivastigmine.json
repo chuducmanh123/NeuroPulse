@@ -181,10 +181,11 @@
       "refs": [
         {
           "source_id": "fda-rivastigmine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "dementia of the Alzheimer’s type (AD). ( 1.1 ) • Mild-to-moderate dementia associated with Parkinson’s disease (PD)."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "There are no adequate data on the developmental risks associated with the use of EXELON in pregnant women. In animals, no adverse effects on embryo-fetal development were observed at oral doses 2-4 times the maximum recommended human dose (MRHD) (see Data) ."
         }
-      ]
+      ],
+      "note": "No adequate human pregnancy data to establish safety; animal studies showed no adverse embryo-fetal effects at 2-4x MRHD."
     },
     "mcm": [],
     "folic_acid": {
@@ -192,12 +193,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "No adequate human data; in animal studies, no teratogenicity was observed.",
+      "value": "No adequate human pregnancy data; no adverse effects on embryo-fetal development in pregnant rats and rabbits at oral doses 2-4x MRHD.",
       "refs": [
         {
           "source_id": "fda-rivastigmine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "dementia of the Alzheimer’s type (AD). ( 1.1 ) • Mild-to-moderate dementia associated with Parkinson’s disease (PD)."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "Oral administration of rivastigmine to pregnant rats and rabbits throughout organogenesis produced no adverse effects on embryo-fetal development up to the highest dose tested (2.3 mg/kg/day), which is 2 and 4 times, respectively, the MRHD of 12 mg per day on a body surface area (mg/m 2 ) basis."
         }
       ]
     },
@@ -214,12 +215,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excretion in human milk unknown; weigh clinical benefits against potential infant cholinergic adverse effects.",
+      "value": "No data on presence in human milk or effects on breastfed infants (excreted in rat milk at ~2x maternal plasma); weigh breastfeeding benefits against maternal clinical need and potential infant risk.",
       "refs": [
         {
           "source_id": "fda-rivastigmine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "dementia of the Alzheimer’s type (AD). ( 1.1 ) • Mild-to-moderate dementia associated with Parkinson’s disease (PD)."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "There are no data on the presence of rivastigmine in human milk, the effects on the breastfed infant, or the effects of rivastigmine on milk production. Rivastigmine and its metabolites are excreted in rat milk following oral administration of rivastigmine; levels of rivastigmine plus metabolites in rat milk are approximately 2 times that in maternal plasma."
         }
       ]
     }

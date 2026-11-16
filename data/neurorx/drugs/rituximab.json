@@ -274,14 +274,15 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
+      "value": "avoid",
       "refs": [
         {
           "source_id": "fda-rituximab-label",
-          "locator": "BOXED WARNING",
-          "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+          "locator": "WARNINGS AND PRECAUTIONS - 5.11 Embryo-Fetal Toxicity",
+          "quote": "5.11 Embryo-Fetal Toxicity Based on human data, rituximab-containing products can cause fetal harm due to B-cell lymphocytopenia in infants exposed to rituximab in-utero. Advise pregnant women of the potential risk to a fetus. Advise females of reproductive potential to use effective contraception during treatment with RITUXAN HYCELA and for 12 months after the last dose"
         }
-      ]
+      ],
+      "note": "Human data demonstrate fetal harm (neonatal B-cell lymphocytopenia lasting <6 months) following in-utero exposure; requires baseline pregnancy testing and effective contraception during treatment and for 12 months after the last dose."
     },
     "mcm": [],
     "folic_acid": {
@@ -289,12 +290,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Crosses placenta in 2nd and 3rd trimesters, causing transient neonatal B-cell lymphopenia and hypogammaglobulinemia. Defer live vaccines in neonates exposed in utero for at least 6 months.",
+      "value": "Crosses placenta and is detected postnatally in infant serum; postmarketing human data show in-utero exposure causes neonatal B-cell lymphocytopenia generally lasting < 6 months. Observe newborns for signs of infection.",
       "refs": [
         {
           "source_id": "fda-rituximab-label",
-          "locator": "BOXED WARNING",
-          "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "Postmarketing data indicate that B-cell lymphocytopenia generally lasting less than 6 months can occur in infants exposed to rituximab in-utero. Rituximab was detected postnatally in the serum of infants exposed in-utero."
         }
       ]
     },
@@ -303,12 +304,12 @@
       "refs": []
     },
     "contraception": {
-      "value": "Effective contraception recommended during treatment and for 6 to 12 months after the last infusion.",
+      "value": "Verify pregnancy status prior to initiating therapy; use effective contraception during treatment and for 12 months after the last dose.",
       "refs": [
         {
           "source_id": "fda-rituximab-label",
-          "locator": "BOXED WARNING",
-          "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.3 Females and Males of Reproductive Potential",
+          "quote": "Pregnancy Testing Verify pregnancy status in females of reproductive potential prior to initiating RITUXAN HYCELA. Contraception Females Advise females of reproductive potential to use effective contraception during treatment with RITUXAN HYCELA and for 12 months after the last dose of rituximab-containing products, including RITUXAN HYCELA."
         }
       ]
     },
@@ -317,12 +318,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Large protein molecule excreted in milk in minimal amounts and poorly absorbed orally by mature infant gut; considered generally compatible by consensus guidelines.",
+      "value": "Excreted at low concentrations in human breast milk; advise women not to breastfeed during treatment and for 6 months after the last dose due to potential for serious adverse reactions in breastfed children.",
       "refs": [
         {
           "source_id": "fda-rituximab-label",
-          "locator": "BOXED WARNING",
-          "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "Rituximab has also been reported to be excreted at low concentrations in human breast milk. Given that the clinical significance of this finding for children is not known, advise women not to breastfeed during treatment with RITUXAN HYCELA and for 6 months after the last dose due to the potential for serious adverse reactions in breastfed children."
         }
       ]
     }

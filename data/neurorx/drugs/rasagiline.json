@@ -219,10 +219,11 @@
       "refs": [
         {
           "source_id": "fda-rasagiline-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "AZILECT (rasagiline tablets) is indicated for the treatment of Parkinson’s disease (PD)."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "There are no adequate data on the developmental risks associated with the use of AZILECT in pregnant women. In animal studies, oral administration of rasagiline to rats during gestation and lactation resulted in decreased survival and reduced body weight in the offspring at doses similar to those used clinically."
         }
-      ]
+      ],
+      "note": "No adequate human pregnancy data; animal studies showed decreased pup survival/weight at clinical-range doses and embryofetal toxicity when combined with levodopa/carbidopa."
     },
     "mcm": [],
     "folic_acid": {
@@ -230,12 +231,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Limited human pregnancy data; animal studies showed decreased pup survival and weight at high exposures.",
+      "value": "No adequate human pregnancy data; animal studies showed decreased pup survival and body weight at clinical-range doses, and embryofetal death/cardiovascular abnormalities in rabbits when combined with levodopa/carbidopa.",
       "refs": [
         {
           "source_id": "fda-rasagiline-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "AZILECT (rasagiline tablets) is indicated for the treatment of Parkinson’s disease (PD)."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "When administered to pregnant animals in combination with levodopa/carbidopa, there were increased incidences of fetal skeletal variations in rats and increases in embryofetal death and cardiovascular abnormalities in rabbits [see Data] ."
         }
       ]
     },
@@ -252,12 +253,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excretion in human milk unknown; may inhibit prolactin secretion due to enhanced dopaminergic tone.",
+      "value": "No data on presence in human milk or effects on breastfed infants; inhibits prolactin secretion in rats (human clinical relevance unknown). Weigh breastfeeding benefits against maternal need.",
       "refs": [
         {
           "source_id": "fda-rasagiline-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "AZILECT (rasagiline tablets) is indicated for the treatment of Parkinson’s disease (PD)."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "There are no data on the presence of rasagiline in human milk or the effects on the breastfed infant. In rats, rasagiline was shown to inhibit prolactin secretion. The clinical relevance in humans is unknown, and there are no data on the effects of rasagiline on prolactin secretion or milk production in humans."
         }
       ]
     }

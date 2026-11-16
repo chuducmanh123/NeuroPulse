@@ -237,11 +237,12 @@
   },
   "reproductive": {
     "tier": {
-      "value": "avoid",
+      "value": "caution",
+      "note": "Insufficient human pregnancy data; no animal malformations up to 49x human exposure with embryo-fetal toxicity only at maternally toxic doses (>=20x), while anticoagulation increases fetal/neonatal bleeding and neuraxial hematoma risk at delivery.",
       "refs": [
         {
           "source_id": "fda-edoxaban-label",
-          "locator": "Section 8.1 Pregnancy",
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
           "quote": "Available data about SAVAYSA use in pregnant women are insufficient to determine whether there are drug-associated risks for adverse developmental outcomes."
         }
       ]
@@ -252,8 +253,14 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": null,
-      "refs": []
+      "value": "Increases fetal/neonatal bleeding risk and epidural/spinal hematoma risk with neuraxial anesthesia during labor or delivery; consider a shorter-acting anticoagulant as delivery approaches.",
+      "refs": [
+        {
+          "source_id": "fda-edoxaban-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "SAVAYSA use during labor or delivery in women who are receiving neuraxial anesthesia may result in epidural or spinal hematomas. Consider use of a shorter acting anticoagulant as delivery approaches [see Warnings and Precautions (5.3) ] ."
+        }
+      ]
     },
     "postpartum": {
       "value": null,
@@ -268,12 +275,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Breastfeeding is not recommended due to potential for serious bleeding and hemorrhage in nursing infants.",
+      "value": "Breastfeeding is not recommended during treatment with edoxaban due to potential for serious adverse reactions including hemorrhage in nursing infants.",
       "refs": [
         {
           "source_id": "fda-edoxaban-label",
-          "locator": "Section 8.2 Lactation",
-          "quote": "There are no data on the presence of edoxaban in human milk, or its effects on the breastfeeding infant or on milk production."
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Because of the potential for serious adverse reactions in nursing infants, including hemorrhage, advise patients that breastfeeding is not recommended during treatment with SAVAYSA."
         }
       ]
     }

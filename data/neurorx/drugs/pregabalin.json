@@ -181,10 +181,11 @@
       "refs": [
         {
           "source_id": "fda-pregabalin-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "Management of neuropathic pain associated with diabetic peripheral neuropathy • Management of postherpetic neuralgia • Adjunctive therapy for the treatment of partial-onset seizure"
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "There are no adequate and well-controlled studies with LYRICA in pregnant women. However, in animal reproduction studies, increased incidences of fetal structural abnormalities and other manifestations of developmental toxicity, including skeletal malformations, retarded ossification, and decreased fetal body weight were observed in the offspring of rats and rabbits"
         }
-      ]
+      ],
+      "note": "No adequate human pregnancy studies; animal studies showed fetal structural abnormalities and developmental toxicity at >=16x human exposure (AUC), warranting caution and pregnancy registry enrollment."
     },
     "mcm": [],
     "folic_acid": {
@@ -192,12 +193,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Crosses placenta; registry data indicate possible slight increase in malformation rate; evaluate clinical risk/benefit.",
+      "value": "No adequate human studies; crosses the placenta in rats and caused fetal structural abnormalities and developmental toxicity in animal studies at >=16x human MRD AUC.",
       "refs": [
         {
           "source_id": "fda-pregabalin-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "Management of neuropathic pain associated with diabetic peripheral neuropathy • Management of postherpetic neuralgia • Adjunctive therapy for the treatment of partial-onset seizure"
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "in animal reproduction studies, increased incidences of fetal structural abnormalities and other manifestations of developmental toxicity, including skeletal malformations, retarded ossification, and decreased fetal body weight were observed in the offspring of rats and rabbits given pregabalin orally during organogenesis"
         }
       ]
     },
@@ -210,16 +211,22 @@
       "refs": []
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
-    },
-    "lactation_summary": {
-      "value": "Excreted into human milk at low levels; monitor infant for sedation and developmental milestones.",
+      "value": "~7% of maternal weight-adjusted dose (milk-to-plasma ratio ~0.76)",
       "refs": [
         {
           "source_id": "fda-pregabalin-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "Management of neuropathic pain associated with diabetic peripheral neuropathy • Management of postherpetic neuralgia • Adjunctive therapy for the treatment of partial-onset seizure"
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "A pharmacokinetic study in lactating women detected pregabalin in breast milk at average steady state concentrations approximately 76% of those in maternal plasma. The estimated average daily infant dose of pregabalin from breast milk (assuming mean milk consumption of 150 mL/kg/day) was 0.31 mg/kg/day, which on a mg/kg basis would be approximately 7% of the maternal dose"
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Excreted into human milk (~76% of maternal plasma; ~7% maternal weight-adjusted dose); breastfeeding is not recommended during treatment due to potential risk of tumorigenicity.",
+      "refs": [
+        {
+          "source_id": "fda-pregabalin-label",
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "Available clinical study data in patients greater than 12 years of age do not provide a clear conclusion about the potential risk of tumorigenicity with pregabalin [see Warnings and Precautions (5.9) ] . Because of the potential risk of tumorigenicity, breastfeeding is not recommended during treatment with LYRICA."
         }
       ]
     }

@@ -215,11 +215,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No adequate human pregnancy data are available; rat studies showed decreased fetal skeletal ossification and pup weight at maternally toxic doses (>2x MRHD).",
       "refs": [
         {
           "source_id": "fda-memantine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of moderate to severe dementia of the Alzheimer’s type."
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "There are no adequate data on the developmental risk associated with the use of memantine hydrochloride extended-release capsules in pregnant women. Adverse developmental effects (decreased body weight and skeletal ossification) were observed in the offspring of rats administered memantine during pregnancy at doses associated with minimal maternal toxicity."
         }
       ]
     },
@@ -229,14 +230,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Animal reproduction studies showed adverse embryofetal effects at maternally toxic doses; no adequate human pregnancy data.",
-      "refs": [
-        {
-          "source_id": "fda-memantine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of moderate to severe dementia of the Alzheimer’s type."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -251,12 +246,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excretion in human milk unknown; evaluate maternal benefit vs infant risk.",
+      "value": "No data on presence in human milk, effects on the breastfed infant, or milk production; weigh breastfeeding benefits against maternal clinical need.",
       "refs": [
         {
           "source_id": "fda-memantine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of moderate to severe dementia of the Alzheimer’s type."
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "There are no data on the presence of memantine in human milk, the effects on the breastfed infant, or the effects of memantine hydrochloride extended-release capsules on milk production. The developmental and health benefits of breastfeeding should be considered along with the mother’s clinical need"
         }
       ]
     }

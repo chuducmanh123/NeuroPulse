@@ -394,11 +394,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No animal reproduction studies; limited 2nd/3rd-trimester human study showed cord blood transfer without drug-attributable sensorineural hearing loss or nephrotoxicity, so use only if clearly needed.",
       "refs": [
         {
           "source_id": "fda-vancomycin-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "indicated for the treatment of serious or severe infections caused by susceptible strains of methicillin-resistant (β-lactam-resistant) staphylococci."
+          "locator": "PREGNANCY",
+          "quote": "Because the number of patients treated in this study was limited and vancomycin was administered only in the second and third trimesters, it is not known whether vancomycin causes fetal harm. Vancomycin should be given to a pregnant woman only if clearly needed."
         }
       ]
     },
@@ -408,12 +409,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Crosses the placenta; clinical studies in pregnant women have not demonstrated drug-induced sensorineural hearing loss or nephrotoxicity in newborns; monitor serum levels.",
+      "value": "Found in cord blood (crosses placenta); limited second- and third-trimester study showed no drug-attributable sensorineural hearing loss or nephrotoxicity.",
       "refs": [
         {
           "source_id": "fda-vancomycin-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "indicated for the treatment of serious or severe infections caused by susceptible strains of methicillin-resistant (β-lactam-resistant) staphylococci."
+          "locator": "PREGNANCY",
+          "quote": "Vancomycin was found in cord blood. No sensorineural hearing loss or nephrotoxicity attributable to vancomycin was noted."
         }
       ]
     },
@@ -430,12 +431,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excreted into breast milk; poorly absorbed from infant GI tract; compatible with breastfeeding.",
+      "value": "Excreted in human milk; exercise caution when administering to a nursing woman and decide whether to discontinue nursing or the drug.",
       "refs": [
         {
           "source_id": "fda-vancomycin-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "indicated for the treatment of serious or severe infections caused by susceptible strains of methicillin-resistant (β-lactam-resistant) staphylococci."
+          "locator": "NURSING_MOTHERS",
+          "quote": "Vancomycin hydrochloride for injection is excreted in human milk. Caution should be exercised when vancomycin hydrochloride for injection is administered to a nursing woman. Because of the potential for adverse events, a decision should be made whether to discontinue nursing or to discontinue the drug, taking into account the importance of the drug to the mother."
         }
       ]
     }

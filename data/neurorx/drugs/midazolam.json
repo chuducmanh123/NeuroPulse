@@ -235,12 +235,18 @@
   },
   "reproductive": {
     "tier": {
-      "value": "avoid",
+      "value": "caution",
+      "note": "Published observational studies do not report a clear association between benzodiazepines and major birth defects and animal studies were negative up to 1.85x human dose, but late-pregnancy exposure can cause neonatal sedation, respiratory depression, hypotonia, and withdrawal.",
       "refs": [
         {
           "source_id": "fda-midazolam-label",
-          "locator": "Pregnancy: Risk Summary",
-          "quote": "Neonates born to mothers using benzodiazepines late in pregnancy have been reported to experience symptoms of sedation and/or neonatal withdrawal"
+          "locator": "8 USE IN SPECIFIC POPULATIONS - Pregnancy: Risk Summary",
+          "quote": "Neonates born to mothers using benzodiazepines late in pregnancy have been reported to experience symptoms of sedation and/or neonatal withdrawal (see WARNINGS: Neonatal Sedation and Withdrawal Syndrome, and Clinical Considerations )."
+        },
+        {
+          "source_id": "fda-midazolam-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - Pregnancy: Risk Summary",
+          "quote": "Available data from published observational studies of pregnant women exposed to benzodiazepines do not report a clear association with benzodiazepines and major birth defects (see Data)."
         }
       ]
     },
@@ -266,11 +272,11 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Midazolam is present in human milk in low levels. There are reports of sedation, poor feeding, and poor weight gain in nursing infants.",
+      "value": "Midazolam is present in human milk in low levels. There are reports of sedation, poor feeding, and poor weight gain in nursing infants; breastfeeding is not recommended during treatment (or pump and discard for 4 to 8 hours).",
       "refs": [
         {
           "source_id": "fda-midazolam-label",
-          "locator": "Nursing Mothers: Risk Summary",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - Nursing Mothers: Risk Summary",
           "quote": "There are reports of sedation, poor feeding and poor weight gain in infants exposed to benzodiazepines through breast milk."
         }
       ]

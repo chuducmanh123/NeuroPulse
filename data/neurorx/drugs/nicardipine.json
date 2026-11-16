@@ -273,10 +273,11 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "Published literature over decades of IV use has not identified a drug-associated risk of major birth defects or miscarriage, but use is predominantly after 20 weeks gestation, animal IV studies show embryolethality, and maternal/fetal adverse events require monitoring.",
       "refs": [
         {
           "source_id": "fda-nicardipine-label",
-          "locator": "Section 8.1 Pregnancy",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
           "quote": "Available data from published literature (clinical trials and case series) over decades of use of intravenous nicardipine during pregnancy have not identified a drug-associated risk of major birth defects or miscarriage."
         }
       ]
@@ -307,7 +308,7 @@
       "refs": [
         {
           "source_id": "fda-nicardipine-label",
-          "locator": "Section 8.2 Lactation",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
           "quote": "Nicardipine is present in human milk in low amounts."
         }
       ]

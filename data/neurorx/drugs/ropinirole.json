@@ -224,10 +224,11 @@
       "refs": [
         {
           "source_id": "fda-ropinirole-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "non-ergoline dopamine agonist indicated for the treatment of Parkinson’s disease (PD) and moderate-to-severe primary Restless Legs Syndrome (RLS)."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "There are no adequate data on the developmental risk associated with the use of ropinirole in pregnant women. In animal studies, ropinirole had adverse effects on development when administered to pregnant rats at doses similar to (neurobehavioral impairment) or greater than (teratogenicity and embryolethality at >36 times) the MRHD for Parkinson’s disease."
         }
-      ]
+      ],
+      "note": "No adequate human pregnancy data; animal studies showed neurobehavioral impairment at clinical-range doses, teratogenicity/embryolethality at >36x MRHD with maternal toxicity, and potentiation of L-dopa teratogenicity in rabbits."
     },
     "mcm": [],
     "folic_acid": {
@@ -235,12 +236,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "In animal studies, ropinirole disrupted implantation and caused digit malformations; avoid during pregnancy unless clinical need is compelling.",
+      "value": "No adequate human data; in animal studies, caused neurobehavioral impairment at clinical-range doses, teratogenicity/embryolethality at >36x MRHD (maternally toxic), and potentiated L-dopa teratogenicity in rabbits.",
       "refs": [
         {
           "source_id": "fda-ropinirole-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "non-ergoline dopamine agonist indicated for the treatment of Parkinson’s disease (PD) and moderate-to-severe primary Restless Legs Syndrome (RLS)."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "Ropinirole doses associated with teratogenicity and embryolethality in pregnant rats were associated with maternal toxicity. In pregnant rabbits, ropinirole potentiated the teratogenic effects of L-dopa when these drugs were administered in combination [see Data]."
         }
       ]
     },
@@ -257,12 +258,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Inhibits prolactin secretion and suppresses lactation; contraindicated or avoided during nursing.",
+      "value": "No human milk data; inhibition of lactation is expected because ropinirole inhibits prolactin secretion in humans. Weigh breastfeeding benefits against maternal clinical need and potential infant risk.",
       "refs": [
         {
           "source_id": "fda-ropinirole-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "non-ergoline dopamine agonist indicated for the treatment of Parkinson’s disease (PD) and moderate-to-severe primary Restless Legs Syndrome (RLS)."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "There are no data on the presence of ropinirole in human milk, the effects of ropinirole on the breastfed infant, or the effects of ropinirole on milk production. However, inhibition of lactation is expected because ropinirole inhibits secretion of prolactin in humans."
         }
       ]
     }

@@ -179,11 +179,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "Pregnancy Category C: no adequate and well-controlled human studies and corticosteroids are teratogenic (cleft palate) in animals at human-equivalent doses; use only if potential benefit justifies fetal risk and observe neonates for hypoadrenalism.",
       "refs": [
         {
           "source_id": "fda-dexamethasone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
+          "locator": "PREGNANCY",
+          "quote": "Pregnancy Teratogenic Effects: Pregnancy Category C. Corticosteroids have been shown to be teratogenic in many species when given in doses equivalent to the human dose. Animal studies in which corticosteroids have been given to pregnant mice, rats, and rabbits have yielded an increased incidence of cleft palate in the offspring. There are no adequate and well-controlled studies in pregnant women."
         }
       ]
     },
@@ -193,14 +194,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Dexamethasone readily crosses the human placenta; in maternal neuro-emergencies (meningitis, brain edema), life-saving maternal indication takes priority.",
-      "refs": [
-        {
-          "source_id": "fda-dexamethasone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -215,12 +210,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excreted into breast milk in small amounts; high doses may suppress infant growth; use lowest effective dose.",
+      "value": "Systemically administered corticosteroids appear in human milk and could suppress growth or interfere with endogenous corticosteroid production; decide whether to discontinue nursing or drug.",
       "refs": [
         {
           "source_id": "fda-dexamethasone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
+          "locator": "NURSING_MOTHERS",
+          "quote": "Systemically administered corticosteroids appear in human milk and could suppress growth, interfere with endogenous corticosteroid production, or cause other untoward effects. Because of the potential for serious adverse reactions in nursing infants from corticosteroids, a decision should be made whether to discontinue nursing or to discontinue the drug"
         }
       ]
     }

@@ -265,12 +265,18 @@
   },
   "reproductive": {
     "tier": {
-      "value": "acceptable",
+      "value": "caution",
+      "note": "No controlled human pregnancy data or animal reproduction studies are available in the FDA label; immune globulins cross the placenta increasingly after 30 weeks of gestation and should be given only if clearly needed.",
       "refs": [
         {
           "source_id": "fda-ivig-label",
-          "locator": "DESCRIPTION",
-          "quote": "immune globulin intravenous) PRESCRIBING INFORMATION SET_ID: 7e5649da-75be-4a42-8eeb-4aeba562c401 EFFECTIVE_TIME: 20260504 PUBLISHER: US Food and Drug Administration / DailyMed =="
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "No human data are available to indicate the presence or absence of drug-associated risk. Animal reproduction studies have not been conducted with PRIVIGEN. It is not known whether PRIVIGEN can cause fetal harm when administered to a pregnant woman or can affect reproduction capacity."
+        },
+        {
+          "source_id": "fda-ivig-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "PRIVIGEN should be given to pregnant women only if clearly needed."
         }
       ]
     },
@@ -280,12 +286,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Endogenous human IgG crosses placenta naturally; widely used and considered safe rescue therapy for myasthenia crisis or GBS during pregnancy.",
+      "value": "Immune globulins cross the placenta from maternal circulation increasingly after 30 weeks of gestation.",
       "refs": [
         {
           "source_id": "fda-ivig-label",
-          "locator": "DESCRIPTION",
-          "quote": "immune globulin intravenous) PRESCRIBING INFORMATION SET_ID: 7e5649da-75be-4a42-8eeb-4aeba562c401 EFFECTIVE_TIME: 20260504 PUBLISHER: US Food and Drug Administration / DailyMed =="
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Immune globulins cross the placenta from maternal circulation increasingly after 30 weeks of gestation."
         }
       ]
     },
@@ -302,12 +308,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Natural component of human breast milk; completely compatible with breastfeeding.",
+      "value": "No human data are available on presence in human milk or effects on the breastfed infant; weigh breastfeeding benefits against maternal clinical need.",
       "refs": [
         {
           "source_id": "fda-ivig-label",
-          "locator": "DESCRIPTION",
-          "quote": "immune globulin intravenous) PRESCRIBING INFORMATION SET_ID: 7e5649da-75be-4a42-8eeb-4aeba562c401 EFFECTIVE_TIME: 20260504 PUBLISHER: US Food and Drug Administration / DailyMed =="
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "8.2 Lactation Risk Summary No human data are available to indicate the presence or absence of drug-associated risk. The developmental and health benefits of breastfeeding should be considered along with the mother's clinical need for PRIVIGEN and any potential adverse effects on the breastfed infant from PRIVIGEN or from the underlying maternal condition."
         }
       ]
     }

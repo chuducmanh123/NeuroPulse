@@ -329,11 +329,17 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "Human pregnancy data are insufficient to determine risk, while animal studies showed embryofetal/perinatal mortality and developmental neurotoxicity at clinically relevant exposures.",
       "refs": [
         {
           "source_id": "fda-lacosamide-label",
-          "locator": "Section 8 USE IN SPECIFIC POPULATIONS",
-          "quote": "Pregnancy: Based on animal data, may cause fetal harm"
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Available data from the North American Antiepileptic Drug (NAAED) pregnancy registry, a prospective cohort study, case reports, and a case series with VIMPAT use in pregnant women are insufficient to identify a drug-associated risk of major birth defects, miscarriage or other adverse maternal or fetal outcomes ."
+        },
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Lacosamide produced developmental toxicity (increased embryofetal and perinatal mortality, growth deficit) in rats following administration during pregnancy. Developmental neurotoxicity was observed in rats following administration during a period of postnatal development corresponding to the third trimester of human pregnancy."
         }
       ]
     },
@@ -351,20 +357,31 @@
       "refs": []
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "No influence of lacosamide 400 mg/day on pharmacodynamics or pharmacokinetics of ethinylestradiol/levonorgestrel oral contraceptives (except a 20% increase in ethinylestradiol Cmax).",
+      "refs": [
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "12 CLINICAL PHARMACOLOGY",
+          "quote": "Oral Contraceptives There was no influence of VIMPAT (400 mg/day) on the pharmacodynamics and pharmacokinetics of an oral contraceptive containing 0.03 mg ethinylestradiol and 0.15 mg levonorgestrel in healthy subjects, except that a 20% increase in ethinylestradiol C max was observed."
+        }
+      ]
     },
     "lactation_rid": {
       "value": null,
       "refs": []
     },
     "lactation_summary": {
-      "value": "Lacosamide is present in human milk; reports describe increased sleepiness in breastfed infants. Monitor nursing infants closely.",
+      "value": "Present in human milk with reports of increased sleepiness in breastfed infants; monitor exposed infants for excess sedation.",
       "refs": [
         {
           "source_id": "fda-lacosamide-label",
-          "locator": "Section 8.2 Lactation",
-          "quote": "Data from published literature indicate that lacosamide is present in human milk. There are reports of increased sleepiness in breastfed infants exposed to lacosamide"
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Data from published literature indicate that lacosamide is present in human milk. There are reports of increased sleepiness in breastfed infants exposed to lacosamide (see Clinical Considerations )."
+        },
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Monitor infants exposed to VIMPAT through breastmilk for excess sedation."
         }
       ]
     }

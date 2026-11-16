@@ -314,11 +314,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "Retrospective cohort data (2,532 first-trimester exposures) found no clear increase in major birth defects, but third-trimester exposure may cause poor neonatal adaptation syndrome and delivery-month exposure may increase postpartum hemorrhage (aRR 1.53).",
       "refs": [
         {
           "source_id": "fda-duloxetine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "management of neuropathic pain associated with diabetic peripheral neuropathy [see Clinical Studies (14.4) ] , the mean duration of diabetes was approximately 12 years, the mean ba"
+          "locator": "PREGNANCY",
+          "quote": "Data from published literature and from a postmarketing retrospective cohort study have not identified a clear drug-associated risk of major birth defects or other adverse developmental outcomes (see Data ) . There are risks associated with untreated depression and fibromyalgia in pregnancy, and with exposure to SNRIs and SSRIs, including Duloxetine delayed-release capsules, during pregnancy"
         }
       ]
     },
@@ -328,34 +329,40 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Exposure late in the third trimester may increase the risk for neonatal complications (poor neonatal adaptation syndrome) and postpartum hemorrhage.",
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": "Use in the month before delivery may be associated with an increased risk of postpartum hemorrhage (adjusted RR 1.53, 95% CI 1.08-2.18).",
       "refs": [
         {
           "source_id": "fda-duloxetine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "management of neuropathic pain associated with diabetic peripheral neuropathy [see Clinical Studies (14.4) ] , the mean duration of diabetes was approximately 12 years, the mean ba"
+          "locator": "PREGNANCY",
+          "quote": "Data from a postmarketing retrospective claims-based cohort study found an increased risk for postpartum hemorrhage among 955 pregnant women exposed to duloxetine in the last month of pregnancy compared to 4,128,460 unexposed pregnant women (adjusted relative risk: 1.53; 95% CI: 1.08-2.18)."
         }
       ]
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
     },
     "contraception": {
       "value": null,
       "refs": []
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
-    },
-    "lactation_summary": {
-      "value": "Excreted into human milk at low levels (relative infant dose < 1%); evaluate maternal need.",
+      "value": "< 1% of maternal weight-adjusted dose (estimated daily infant dose ~2 mcg/kg/day)",
       "refs": [
         {
           "source_id": "fda-duloxetine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "management of neuropathic pain associated with diabetic peripheral neuropathy [see Clinical Studies (14.4) ] , the mean duration of diabetes was approximately 12 years, the mean ba"
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "The amount of duloxetine in breast milk was approximately 7 mcg/day while on that dose; the estimated daily infant dose was approximately 2 mcg/kg/day, which is less than 1% of the maternal dose."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Present in human milk with reports of neonatal sedation, poor feeding, and poor weight gain; monitor exposed infants for these signs.",
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Data from published literature report the presence of duloxetine in human milk (see Data ) . There are reports of sedation, poor feeding, and poor weight gain in infants exposed to duloxetine through breast milk (see Clinical Considerations )."
         }
       ]
     }

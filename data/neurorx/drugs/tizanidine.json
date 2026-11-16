@@ -181,11 +181,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No adequate human pregnancy data; animal studies demonstrated embryofetal and postnatal offspring mortality at doses below or similar to the MRHD.",
       "refs": [
         {
           "source_id": "fda-tizanidine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "management of spasticity. Because of the short duration of therapeutic effect, treatment with Zanaflex should be reserved for those daily activities and times when relief of spasti"
+          "locator": "PREGNANCY (8.1 Pregnancy)",
+          "quote": "There are no adequate data on the developmental risk associated with use of Zanaflex in pregnant women. In animal studies, administration of tizanidine during pregnancy resulted in developmental toxicity (embryofetal and postnatal offspring mortality and growth deficits) at doses less than those used clinically, which were not associated with maternal toxicity"
         }
       ]
     },
@@ -195,14 +196,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Limited data in pregnant women; animal studies demonstrate developmental toxicity; evaluate risk/benefit.",
-      "refs": [
-        {
-          "source_id": "fda-tizanidine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "management of spasticity. Because of the short duration of therapeutic effect, treatment with Zanaflex should be reserved for those daily activities and times when relief of spasti"
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -217,12 +212,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excretion in human milk unknown; lipid-soluble; consider potential for infant sedation and hypotension.",
+      "value": "No data on presence in human milk, effects on the breastfed infant, or milk production; present in animal milk.",
       "refs": [
         {
           "source_id": "fda-tizanidine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "management of spasticity. Because of the short duration of therapeutic effect, treatment with Zanaflex should be reserved for those daily activities and times when relief of spasti"
+          "locator": "USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
+          "quote": "There are no data on the presence of tizanidine in human milk, the effects on the breastfed infant, or the effects on human milk production. Animal studies have reported the presence of tizanidine in the milk of lactating animals."
         }
       ]
     }

@@ -191,14 +191,9 @@
   },
   "reproductive": {
     "tier": {
-      "value": "acceptable",
-      "refs": [
-        {
-          "source_id": "fda-prednisolone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "multiple sclerosis 13. Miscellaneous Tuberculous meningitis with subarachnoid block or impending block when used concurrently with appropriate antituberculous chemotherapy Trichinosis with neurologic"
-        }
-      ]
+      "value": null,
+      "note": "Source label (fda-prednisolone-label) contains no pregnancy or lactation sections; insufficient data to assign a reproductive tier.",
+      "refs": []
     },
     "mcm": [],
     "folic_acid": {
@@ -206,14 +201,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Substantial placental 11-beta-HSD2 inactivation protects the fetus; monitor maternal blood pressure and glucose closely.",
-      "refs": [
-        {
-          "source_id": "fda-prednisolone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "multiple sclerosis 13. Miscellaneous Tuberculous meningitis with subarachnoid block or impending block when used concurrently with appropriate antituberculous chemotherapy Trichinosis with neurologic"
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -228,14 +217,8 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Prednisolone transfers into breast milk in low concentrations; wait 3-4 hours after high maternal oral doses before nursing.",
-      "refs": [
-        {
-          "source_id": "fda-prednisolone-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "multiple sclerosis 13. Miscellaneous Tuberculous meningitis with subarachnoid block or impending block when used concurrently with appropriate antituberculous chemotherapy Trichinosis with neurologic"
-        }
-      ]
+      "value": null,
+      "refs": []
     }
   },
   "status": "draft",

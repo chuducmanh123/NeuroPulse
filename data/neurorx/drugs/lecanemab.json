@@ -226,11 +226,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No adequate human pregnancy data and no animal reproductive or developmental toxicity studies have been conducted.",
       "refs": [
         {
           "source_id": "fda-lecanemab-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "There are no adequate data on LEQEMBI use in pregnant women to evaluate for a drug-associated risk of major birth defects, miscarriage, or other adverse maternal or fetal outcomes. No animal studies have been conducted to assess the potential reproductive or developmental toxicity of LEQEMBI."
         }
       ]
     },
@@ -240,14 +241,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Crosses the placenta in late pregnancy; Alzheimer's disease predominantly affects post-reproductive populations.",
-      "refs": [
-        {
-          "source_id": "fda-lecanemab-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -262,12 +257,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excretion in human milk unknown; evaluate clinical necessity.",
+      "value": "No data on presence in human milk, effects on the breastfed infant, or milk production; published data from other monoclonal antibodies generally indicate low passage into human milk.",
       "refs": [
         {
           "source_id": "fda-lecanemab-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "There are no data on the presence of lecanemab-irmb in human milk, the effects on the breastfed infant, or the effects of the drug on milk production. Published data from other monoclonal antibodies generally indicate low passage of monoclonal antibodies into human milk and limited systemic exposure in the breastfed infant."
         }
       ]
     }

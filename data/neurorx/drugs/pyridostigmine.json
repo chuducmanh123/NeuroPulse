@@ -171,14 +171,15 @@
   },
   "reproductive": {
     "tier": {
-      "value": "acceptable",
+      "value": "caution",
       "refs": [
         {
           "source_id": "fda-pyridostigmine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
+          "locator": "PREGNANCY",
+          "quote": "Usage in Pregnancy : The safety of MESTINON during pregnancy or lactation in humans has not been established. Therefore, use of MESTINON in women who may become pregnant requires weighing the drug’s potential benefits against its possible hazards to mother and child."
         }
-      ]
+      ],
+      "note": "Safety during human pregnancy and lactation has not been established; use requires weighing potential maternal benefits against possible fetal/infant hazards."
     },
     "mcm": [],
     "folic_acid": {
@@ -186,24 +187,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Requirements may fluctuate during pregnancy; titrate to clinical symptoms.",
-      "refs": [
-        {
-          "source_id": "fda-pyridostigmine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
-      "value": "Watch for transient neonatal myasthenia gravis in 10-20% of infants born to myasthenic mothers.",
-      "refs": [
-        {
-          "source_id": "fda-pyridostigmine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "contraception": {
       "value": null,
@@ -214,12 +203,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excreted into breast milk in small amounts; generally considered compatible with breastfeeding with infant monitoring for cholinergic signs.",
+      "value": "Safety during lactation in humans has not been established; weigh potential benefits against possible hazards to mother and child.",
       "refs": [
         {
           "source_id": "fda-pyridostigmine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
+          "locator": "PREGNANCY",
+          "quote": "Usage in Pregnancy : The safety of MESTINON during pregnancy or lactation in humans has not been established. Therefore, use of MESTINON in women who may become pregnant requires weighing the drug’s potential benefits against its possible hazards to mother and child."
         }
       ]
     }

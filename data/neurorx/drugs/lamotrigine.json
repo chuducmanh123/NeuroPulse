@@ -187,52 +187,105 @@
   "reproductive": {
     "tier": {
       "value": "preferred",
+      "note": "Three large prospective pregnancy registries (n > 5,600 monotherapy exposures) report 2.0%–2.9% major congenital malformation rates comparable to the general population; requires pregnancy/postpartum dose monitoring.",
       "refs": [
         {
           "source_id": "fda-lamotrigine-label",
           "locator": "USE IN SPECIFIC POPULATIONS",
-          "quote": "Based on animal data may cause fetal harm. ( 8.1 ) • Hepatic impairment: Dosage adjustments required in patients with moderate and severe liver impairment."
+          "quote": "Data from several prospective pregnancy exposure registries and epidemiological studies of pregnant women have not detected an increased frequency of major congenital malformations or a consistent pattern of malformations among women exposed to lamotrigine compared with the general population (see Data) ."
+        },
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Women with epilepsy who become pregnant should not abruptly discontinue antiepileptic drugs, including LAMICTAL XR, due to the risk of status epilepticus or severe seizures, which may be life-threatening"
         }
       ]
     },
-    "mcm": [],
+    "mcm": [
+      {
+        "registry": "International Lamotrigine Pregnancy Registry",
+        "percent": 2.2,
+        "ci95": "1.6%–3.1%",
+        "n_exposed": 1558,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "fda-lamotrigine-label",
+            "locator": "USE IN SPECIFIC POPULATIONS",
+            "quote": "The International Lamotrigine Pregnancy Registry reported major congenital malformations in 2.2% (95% CI: 1.6%, 3.1%) of 1,558 infants exposed to lamotrigine monotherapy in the first trimester of pregnancy."
+          }
+        ]
+      },
+      {
+        "registry": "North American Antiepileptic Drug (NAAED) Pregnancy Registry",
+        "percent": 2,
+        "n_exposed": 1562,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "fda-lamotrigine-label",
+            "locator": "USE IN SPECIFIC POPULATIONS",
+            "quote": "The NAAED Pregnancy Registry reported major congenital malformations among 2.0% of 1,562 infants exposed to lamotrigine monotherapy in the first trimester."
+          }
+        ]
+      },
+      {
+        "registry": "EURAP",
+        "percent": 2.9,
+        "ci95": "2.3%–3.7%",
+        "n_exposed": 2514,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "fda-lamotrigine-label",
+            "locator": "USE IN SPECIFIC POPULATIONS",
+            "quote": "EURAP, a large international pregnancy registry focused outside of North America, reported major birth defects in 2.9% (95% CI: 2.3%, 3.7%) of 2,514 exposures to lamotrigine monotherapy in the first trimester."
+          }
+        ]
+      }
+    ],
     "folic_acid": {
-      "value": "Folic acid supplementation is recommended before conception and throughout pregnancy.",
+      "value": "Lamotrigine inhibits dihydrofolate reductase in vitro and decreased fetal, placental, and maternal folate concentrations in pregnant rats; reduced folate is associated with teratogenesis.",
       "refs": [
         {
           "source_id": "fda-lamotrigine-label",
-          "locator": "USE IN SPECIFIC POPULATIONS",
-          "quote": "Based on animal data may cause fetal harm. ( 8.1 ) • Hepatic impairment: Dosage adjustments required in patients with moderate and severe liver impairment."
+          "locator": "CLINICAL PHARMACOLOGY",
+          "quote": "When oral daily doses of lamotrigine were given to pregnant rats during organogenesis, fetal, placental, and maternal folate concentrations were reduced. Significantly reduced concentrations of folate are associated with teratogenesis"
         }
       ]
     },
     "pregnancy_pk": {
-      "value": "Lamotrigine clearance markedly increases during pregnancy (due to enhanced glucuronidation), often requiring dose increases to maintain baseline serum levels. Monitor levels monthly.",
+      "value": "Physiological changes during pregnancy may decrease lamotrigine concentrations and/or therapeutic effect; dose adjustments may be necessary to maintain clinical response.",
       "refs": [
         {
           "source_id": "fda-lamotrigine-label",
-          "locator": "CLINICAL PHARMACOLOGY",
-          "quote": "Because lamotrigine is metabolized predominantly by glucuronic acid conjugation, drugs that are known to induce or inhibit glucuronidation may affect the apparent clearance of lamotrigine."
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "As with other AEDs, physiological changes during pregnancy may affect lamotrigine concentrations and/or therapeutic effect. There have been reports of decreased lamotrigine concentrations during pregnancy and restoration of pre-pregnancy concentrations after delivery. Dose adjustments may be necessary to maintain clinical response."
         }
       ]
     },
     "postpartum": {
-      "value": "Rapidly decrease lamotrigine dose over 1-2 weeks postpartum to pre-pregnancy baseline to avoid toxicity.",
+      "value": "Pre-pregnancy lamotrigine concentrations are restored after delivery; maternal serum and milk levels can rise to high levels postpartum if dosage was increased during pregnancy and is not reduced after delivery.",
       "refs": [
         {
           "source_id": "fda-lamotrigine-label",
-          "locator": "CLINICAL PHARMACOLOGY",
-          "quote": "Because lamotrigine is metabolized predominantly by glucuronic acid conjugation, drugs that are known to induce or inhibit glucuronidation may affect the apparent clearance of lamotrigine."
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Neonates and young infants are at risk for high serum levels because maternal serum and milk levels can rise to high levels postpartum if lamotrigine dosage has been increased during pregnancy but is not reduced after delivery to the pre-pregnancy dosage."
         }
       ]
     },
     "contraception": {
-      "value": "Combined oral contraceptives containing estrogen lower lamotrigine serum concentrations by ~50%; dose adjustments required.",
+      "value": "Estrogen-containing oral contraceptives decrease lamotrigine concentrations by approximately 50%; dosage adjustments are necessary when starting or stopping them, and plasma levels can double during the pill-free week.",
       "refs": [
         {
           "source_id": "fda-lamotrigine-label",
-          "locator": "CLINICAL PHARMACOLOGY",
-          "quote": "Because lamotrigine is metabolized predominantly by glucuronic acid conjugation, drugs that are known to induce or inhibit glucuronidation may affect the apparent clearance of lamotrigine."
+          "locator": "DRUG INTERACTIONS",
+          "quote": "Estrogen-containing oral contraceptives decrease lamotrigine concentrations by approximately 50%."
+        },
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "WARNINGS AND CAUTIONS",
+          "quote": "During the week of inactive hormone preparation (pill-free week) of oral contraceptive therapy, plasma lamotrigine levels are expected to rise, as much as doubling at the end of the week."
         }
       ]
     },
@@ -241,12 +294,17 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Lamotrigine passes into human milk; monitor infant for sedation, poor feeding, and rash.",
+      "value": "Present in human milk with infant plasma levels up to 50% of maternal concentrations; monitor breastfed infants closely for rash, apnea, drowsiness, poor sucking, and poor weight gain, and discontinue if toxicity occurs.",
       "refs": [
         {
           "source_id": "fda-lamotrigine-label",
           "locator": "USE IN SPECIFIC POPULATIONS",
-          "quote": "Based on animal data may cause fetal harm. ( 8.1 ) • Hepatic impairment: Dosage adjustments required in patients with moderate and severe liver impairment."
+          "quote": "Events including rash, apnea, drowsiness, poor sucking, and poor weight gain (requiring hospitalization in some cases) have been reported in infants who have been human milk-fed by mothers using lamotrigine; whether or not these events were caused by lamotrigine is unknown."
+        },
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Data from multiple small studies indicate that lamotrigine plasma levels in nursing infants have been reported to be as high as 50% of maternal plasma concentrations."
         }
       ]
     }

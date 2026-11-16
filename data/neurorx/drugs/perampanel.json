@@ -257,11 +257,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No adequate human pregnancy data and animal studies show visceral abnormalities and embryolethality at clinically relevant doses.",
       "refs": [
         {
           "source_id": "fda-perampanel-label",
-          "locator": "USE IN SPECIFIC POPULATIONS",
-          "quote": "Pregnancy: Based on animal data, may cause fetal harm ( 8.1 ) 8.1 Pregnancy Pregnancy Exposure Registry There is a pregnancy exposure registry that monitors pre"
+          "locator": "8.1 Pregnancy",
+          "quote": "There are no adequate data on the developmental risk associated with use in pregnant women. In animal studies, perampanel induced developmental toxicity in pregnant rat and rabbit at clinically relevant doses [ see Data ] ."
         }
       ]
     },
@@ -279,12 +280,12 @@
       "refs": []
     },
     "contraception": {
-      "value": "Doses of 12 mg/day decrease levonorgestrel exposure; consider additional non-hormonal contraception.",
+      "value": "Doses of 12 mg/day decrease levonorgestrel exposure by ~40%; use additional non-hormonal contraception during therapy and for 1 month after discontinuation.",
       "refs": [
         {
           "source_id": "fda-perampanel-label",
-          "locator": "DRUG INTERACTIONS",
-          "quote": "CYP3A4 inducers Starting dose: 2 mg once daily orally at bedtime ( 2.1 , 2.2 ) May increase dose based on clinical response and tolerability by increments of 2 mg once daily no mor"
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.3 Females and Males of Reproductive Potential",
+          "quote": "Use of FYCOMPA may reduce the efficacy of hormonal contraceptives containing levonorgestrel. Advise women taking FYCOMPA who are using a levonorgestrel-containing contraceptive to use an additional non-hormonal form of contraception while using FYCOMPA and for a month after discontinuation"
         }
       ]
     },
@@ -293,12 +294,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Perampanel is excreted in animal milk; evaluate developmental and clinical benefits against potential adverse effects.",
+      "value": "No data on presence in human milk; present in rat milk at higher concentrations than maternal plasma. Weigh developmental and health benefits against maternal clinical need.",
       "refs": [
         {
           "source_id": "fda-perampanel-label",
-          "locator": "USE IN SPECIFIC POPULATIONS",
-          "quote": "Pregnancy: Based on animal data, may cause fetal harm ( 8.1 ) 8.1 Pregnancy Pregnancy Exposure Registry There is a pregnancy exposure registry that monitors pre"
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "There are no data on the presence of perampanel in human milk, the effects on the breastfed child, or the effects of the drug on milk production. Perampanel and/or its metabolites are present in rat milk, and are detected at concentrations higher than that in maternal plasma."
         }
       ]
     }

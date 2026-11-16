@@ -319,10 +319,11 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "FDA Pregnancy Category C; animal reproduction studies have not been conducted and fetal harm potential is unknown, so administer to a pregnant woman only if clearly needed.",
       "refs": [
         {
           "source_id": "fda-phytonadione-label",
-          "locator": "PRECAUTIONS - Pregnancy Category C",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - Pregnancy Category C",
           "quote": "Animal reproduction studies have not been conducted with phytonadione injectable emulsion It is also not known whether phytonadione injectable emulsion can cause fetal harm when administered to a pregnant woman or can affect reproduction capacity."
         }
       ]
@@ -353,7 +354,7 @@
       "refs": [
         {
           "source_id": "fda-phytonadione-label",
-          "locator": "PRECAUTIONS - Nursing Mothers",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - Nursing Mothers",
           "quote": "It is not known whether this drug is excreted in human milk. Because many drugs are excreted in human milk, caution should be exercised when phytonadione injectable emulsion is administered to a nursing woman."
         }
       ]

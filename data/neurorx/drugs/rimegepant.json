@@ -178,10 +178,11 @@
       "refs": [
         {
           "source_id": "fda-rimegepant-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "There are no adequate data on the developmental risk associated with the use of NURTEC ODT in pregnant women. In animal studies, oral administration of rimegepant during organogenesis resulted in adverse effects on development in rats (decreased fetal body weight and increased incidence of skeletal variations) at exposures greater than those used clinically"
         }
-      ]
+      ],
+      "note": "No adequate human pregnancy data; animal developmental effects occurred in rats only at maternally toxic exposures (>45x human MRHD AUC)."
     },
     "mcm": [],
     "folic_acid": {
@@ -189,12 +190,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Insufficient human data to evaluate drug-associated risk of major birth defects or miscarriage.",
+      "value": "No adequate human pregnancy data; animal developmental toxicity in rats occurred only at maternally toxic exposures (no-effect dose ~45x human MRHD AUC).",
       "refs": [
         {
           "source_id": "fda-rimegepant-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "Plasma exposures (AUC) at the no-effect dose (60 mg/kg/day) for adverse effects on embryofetal development were approximately 45 times that in humans at the maximum recommended human dose (MRHD) of 75 mg/day."
         }
       ]
     },
@@ -207,16 +208,22 @@
       "refs": []
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
-    },
-    "lactation_summary": {
-      "value": "Excreted into human milk at very low levels (relative infant dose < 1%); consider benefits of breastfeeding alongside maternal need.",
+      "value": "< 1% of maternal weight-adjusted dose (milk-to-plasma ratio 0.20)",
       "refs": [
         {
           "source_id": "fda-rimegepant-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "A lactation study was conducted, and the results have established a relative infant dose of less than 1% of the maternal weight-adjusted dose and the milk-to-plasma ratio of 0.20 (see Data ) . These data support that transfer of rimegepant into breastmilk is low."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Low transfer into human milk (relative infant dose < 1%; milk-to-plasma ratio 0.20); no data on effects on the breastfed infant or milk production. Weigh breastfeeding benefits against maternal clinical need.",
+      "refs": [
+        {
+          "source_id": "fda-rimegepant-label",
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "There are no data on the effects of rimegepant on a breastfed infant or on milk production. The developmental and health benefits of breastfeeding should be considered along with the mother's clinical need for NURTEC ODT and any potential adverse effects on the breastfed infant from NURTEC ODT or from the underlying maternal condition."
         }
       ]
     }

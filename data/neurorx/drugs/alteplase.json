@@ -262,11 +262,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "Published human data are insufficient to inform developmental risk, animal studies show embryocidal effects in rabbits at clinical AMI exposure, and pregnancy may increase maternal bleeding risk.",
       "refs": [
         {
           "source_id": "fda-alteplase-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Published studies and case reports on alteplase use in pregnant women are insufficient to inform a drug associated risk of adverse developmental outcomes."
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.1 Pregnancy)",
+          "quote": "Published studies and case reports on alteplase use in pregnant women are insufficient to inform a drug associated risk of adverse developmental outcomes. Alteplase is embryocidal in rabbits when intravenously administered during organogenesis at the clinical exposure for AMI, but no maternal or fetal toxicity was evident at lower exposure in pregnant rats or rabbits"
         }
       ]
     },
@@ -296,7 +297,7 @@
       "refs": [
         {
           "source_id": "fda-alteplase-label",
-          "locator": "Section 8.2 Lactation",
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
           "quote": "There are no data on the presence of alteplase in human milk, the effects on the breastfed infant, or the effects on milk production."
         }
       ]

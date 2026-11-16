@@ -268,46 +268,47 @@
   "reproductive": {
     "tier": {
       "value": "avoid",
+      "note": "Prenatal exposure is associated with an approximately 2.4-fold increased risk of major congenital malformations (orofacial clefts, cardiac defects), fetal hydantoin syndrome, and neonatal vitamin K-dependent bleeding; avoid in pregnancy if possible.",
       "refs": [
         {
           "source_id": "fda-phenytoin-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Physicians are advised to recommend that pregnant patients taking DILANTIN enroll in the North American Antiepileptic Drug (NAAED) Pregnancy Registry."
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "In humans, prenatal exposure to phenytoin may increase the risks for congenital malformations and other adverse developmental outcomes. Prenatal phenytoin exposure is associated with an increased incidence of major malformations, including orofacial clefts and cardiac defects."
         }
       ]
     },
     "mcm": [],
     "folic_acid": {
-      "value": "Folic acid supplementation is recommended before conception and throughout pregnancy to mitigate neural tube defect risks.",
-      "refs": [
-        {
-          "source_id": "fda-phenytoin-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Physicians are advised to recommend that pregnant patients taking DILANTIN enroll in the North American Antiepileptic Drug (NAAED) Pregnancy Registry."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "pregnancy_pk": {
-      "value": "Phenytoin clearance increases significantly during pregnancy; monitor free (unbound) phenytoin plasma levels frequently.",
+      "value": "Seizure frequency may increase during pregnancy due to altered phenytoin pharmacokinetics; periodically measure serum phenytoin concentrations to guide dosage adjustment.",
       "refs": [
         {
           "source_id": "fda-phenytoin-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Physicians are advised to recommend that pregnant patients taking DILANTIN enroll in the North American Antiepileptic Drug (NAAED) Pregnancy Registry."
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "An increase in seizure frequency may occur during pregnancy because of altered phenytoin pharmacokinetics. Periodic measurement of serum phenytoin concentrations may be valuable in the management of pregnant women as a guide to appropriate adjustment of dosage [see Dosage and Administration (2.3 , 2.7) ] ."
         }
       ]
     },
     "postpartum": {
-      "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": "Strong hepatic enzyme induction significantly reduces efficacy of hormonal contraceptives; use non-hormonal or barrier methods.",
+      "value": "Postpartum restoration of the original phenytoin dosage will probably be indicated.",
       "refs": [
         {
           "source_id": "fda-phenytoin-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Physicians are advised to recommend that pregnant patients taking DILANTIN enroll in the North American Antiepileptic Drug (NAAED) Pregnancy Registry."
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "However, postpartum restoration of the original dosage will probably be indicated [see Clinical Pharmacology (12.3) ] ."
+        }
+      ]
+    },
+    "contraception": {
+      "value": "Potent hepatic enzyme induction impairs the efficacy of oral contraceptives and estrogens.",
+      "refs": [
+        {
+          "source_id": "fda-phenytoin-label",
+          "locator": "7 DRUG INTERACTIONS - 7.2 Drugs Affected by Phenytoin",
+          "quote": "Other Corticosteroids, doxycycline, estrogens, furosemide, oral contraceptives, paroxetine, quinidine, rifampin, sertraline, theophylline, and vitamin D"
         }
       ]
     },
@@ -316,11 +317,11 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Phenytoin is excreted into human breast milk in low concentrations; monitor breastfed infant for poor suckling or sedation.",
+      "value": "Phenytoin is secreted in human milk; weigh developmental and health benefits of breastfeeding against maternal clinical need.",
       "refs": [
         {
           "source_id": "fda-phenytoin-label",
-          "locator": "Section 8.2 Lactation",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
           "quote": "Phenytoin is secreted in human milk."
         }
       ]

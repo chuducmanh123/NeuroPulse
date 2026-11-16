@@ -293,11 +293,17 @@
   "reproductive": {
     "tier": {
       "value": "avoid",
+      "note": "Label states use in pregnancy is not recommended; human developmental data are limited/insufficient and treatment may increase maternal and fetal bleeding risk during pregnancy and delivery.",
       "refs": [
         {
           "source_id": "fda-apixaban-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Treatment may increase the risk of bleeding during pregnancy and delivery."
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.1 Pregnancy)",
+          "quote": "8 USE IN SPECIFIC POPULATIONS Pregnancy: Not recommended. (8.1)"
+        },
+        {
+          "source_id": "fda-apixaban-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.1 Pregnancy)",
+          "quote": "The limited available data on ELIQUIS use in pregnant women are insufficient to inform drug-associated risks of major birth defects, miscarriage, or adverse developmental outcomes. Treatment may increase the risk of bleeding during pregnancy and delivery."
         }
       ]
     },
@@ -307,14 +313,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Increased risk of maternal and fetal hemorrhage; standard anticoagulant monitoring is unavailable. LMWH preferred in pregnancy.",
-      "refs": [
-        {
-          "source_id": "fda-apixaban-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Treatment may increase the risk of bleeding during pregnancy and delivery."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -329,11 +329,11 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Human milk transfer is unknown; because of potential serious bleeding in breastfed infants, breastfeeding is not recommended.",
+      "value": "Human milk transfer is unknown; because human exposure through milk is unknown, breastfeeding is not recommended during treatment.",
       "refs": [
         {
           "source_id": "fda-apixaban-label",
-          "locator": "Section 8.2 Lactation",
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
           "quote": "Because human exposure through milk is unknown, breastfeeding is not recommended during treatment with ELIQUIS."
         }
       ]

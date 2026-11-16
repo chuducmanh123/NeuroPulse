@@ -179,11 +179,17 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "Large observational cohorts show no clear increase in major birth defects, but methodological limitations, animal developmental toxicity at clinical doses, and neonatal withdrawal risk with opioids warrant caution.",
       "refs": [
         {
           "source_id": "fda-gabapentin-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "Management of postherpetic neuralgia in adults • Adjunctive therapy in the treatment of partial onset seizures, with and without secondary generalization, in adults and pediatric p"
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "The totality of available data from published prospective and retrospective cohort studies pertaining to gabapentin use during pregnancy has not indicated an increased risk of major birth defects or miscarriage. There are important methodological limitations hindering interpretation of these studies"
+        },
+        {
+          "source_id": "fda-gabapentin-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "In nonclinical studies in mice, rats, and rabbits, gabapentin was developmentally toxic (increased fetal skeletal and visceral abnormalities, and increased embryofetal mortality) when administered to pregnant animals at doses similar to or lower than those used clinically"
         }
       ]
     },
@@ -193,34 +199,34 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Crosses the human placenta; pregnancy registry data show no distinct pattern of major structural malformations.",
-      "refs": [
-        {
-          "source_id": "fda-gabapentin-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "Management of postherpetic neuralgia in adults • Adjunctive therapy in the treatment of partial onset seizures, with and without secondary generalization, in adults and pediatric p"
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
       "refs": []
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "No clinically significant effect on norethindrone or ethinyl estradiol AUC and half-life when coadministered with gabapentin 400 mg TID.",
+      "refs": [
+        {
+          "source_id": "fda-gabapentin-label",
+          "locator": "DRUG INTERACTIONS",
+          "quote": "Oral Contraceptive Based on AUC and half-life, multiple-dose pharmacokinetic profiles of norethindrone and ethinyl estradiol following administration of tablets containing 2.5 mg of norethindrone acetate and 50 mcg of ethinyl estradiol were similar with and without coadministration of gabapentin (400 mg three times a day; N=13)."
+        }
+      ]
     },
     "lactation_rid": {
       "value": null,
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excreted into human milk; monitor infant for drowsiness and weight gain.",
+      "value": "Secreted in human milk following oral administration; effects on the breastfed infant and milk production are unknown. Weigh breastfeeding benefits against maternal clinical need.",
       "refs": [
         {
           "source_id": "fda-gabapentin-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "Management of postherpetic neuralgia in adults • Adjunctive therapy in the treatment of partial onset seizures, with and without secondary generalization, in adults and pediatric p"
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Gabapentin is secreted in human milk following oral administration. The effects on the breastfed infant and on milk production are unknown. The developmental and health benefits of breastfeeding should be considered along with the mother's clinical need for NEURONTIN"
         }
       ]
     }

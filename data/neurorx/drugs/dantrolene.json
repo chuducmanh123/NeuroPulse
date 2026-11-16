@@ -266,11 +266,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "Pregnancy Category C: no adequate and well-controlled human studies, and animal studies show embryocidal effects/decreased pup survival at 7x human oral dose; use during pregnancy only if potential benefit justifies fetal risk.",
       "refs": [
         {
           "source_id": "fda-dantrolene-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+          "locator": "PREGNANCY",
+          "quote": "Pregnancy: Pregnancy Category C: Dantrium has been shown to be embryocidal in the rabbit and has been shown to decrease pup survival in the rat when given at doses seven times the human oral dose. There are no adequate and well-controlled studies in pregnant women. Dantrium Intravenous should be used during pregnancy only if the potential benefit justifies the potential risk to the fetus."
         }
       ]
     },
@@ -280,12 +281,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Crosses the placenta; in maternal malignant hyperthermia emergency, life-saving maternal resuscitation takes absolute priority.",
+      "value": "Readily crosses the placenta with maternal and fetal whole blood levels approximately equal at delivery; neonatal levels fall ~50% per day for 2 days before declining sharply.",
       "refs": [
         {
           "source_id": "fda-dantrolene-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+          "locator": "PRECAUTIONS",
+          "quote": "Dantrolene readily crossed the placenta, with maternal and fetal whole blood levels approximately equal at delivery; neonatal levels then fell approximately 50% per day for 2 days before declining sharply."
         }
       ]
     },
@@ -302,12 +303,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excreted into human breast milk in small amounts; evaluate maternal clinical necessity.",
+      "value": "Detected in human milk at low concentrations (<2 mcg/mL) during repeat IV administration; decide whether to discontinue nursing or drug based on maternal importance.",
       "refs": [
         {
           "source_id": "fda-dantrolene-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+          "locator": "NURSING_MOTHERS",
+          "quote": "Dantrolene has been detected in human milk at low concentrations (less than 2 micrograms per mL) during repeat intravenous administration over 3 days. Because of the potential for serious adverse reactions in nursing infants from dantrolene, a decision should be made whether to discontinue nursing or to discontinue the drug, taking into account the importance of the drug to the mother."
         }
       ]
     }

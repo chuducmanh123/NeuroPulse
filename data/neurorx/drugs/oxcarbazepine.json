@@ -307,11 +307,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "Published cohort and registry data have not shown increased major congenital malformations, but studies have methodological limitations, animal data show fetal malformations at ~1.2x MRHD, and MHD levels may change during pregnancy requiring careful monitoring.",
       "refs": [
         {
           "source_id": "fda-oxcarbazepine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "1 INDICATIONS AND USAGE TRILEPTAL is indicated for use as monotherapy or adjunctive therapy in the treatment of partial-onset seizures in adults"
+          "locator": "8.1 Pregnancy",
+          "quote": "available human data from published literature and ongoing pregnancy registry studies on use of oxcarbazepine during pregnancy have not demonstrated an increased prevalence of major congenital malformations with first trimester exposure. However, all published studies reviewed have important methodological limitations, including unmeasured confounding and a small number of exposed cases"
         }
       ]
     },
@@ -321,12 +322,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "MHD plasma concentrations may decrease during pregnancy; monitor clinical response and levels.",
+      "value": "An increase in seizure frequency may occur during pregnancy because of altered levels of the active metabolite (MHD); monitor patients carefully during pregnancy and through the postpartum period.",
       "refs": [
         {
           "source_id": "fda-oxcarbazepine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "1 INDICATIONS AND USAGE TRILEPTAL is indicated for use as monotherapy or adjunctive therapy in the treatment of partial-onset seizures in adults"
+          "locator": "8.1 Pregnancy",
+          "quote": "An increase in seizure frequency may occur during pregnancy because of altered levels of the active metabolite of oxcarbazepine. Monitor patients carefully during pregnancy and through the postpartum period [see Warnings and Precautions (5.10)] ."
         }
       ]
     },
@@ -335,12 +336,12 @@
       "refs": []
     },
     "contraception": {
-      "value": "Induction of CYP3A4 can decrease the efficacy of hormonal contraceptives; use additional non-hormonal contraception.",
+      "value": "Decreases plasma concentrations of ethinylestradiol and levonorgestrel, which may render hormonal contraceptives less effective; use additional or alternative non-hormonal birth control.",
       "refs": [
         {
           "source_id": "fda-oxcarbazepine-label",
-          "locator": "DRUG INTERACTIONS",
-          "quote": "The inhibition of CYP2C19 by oxcarbazepine and MHD can cause increased plasma concentrations of drugs that are substrates of CYP2C19, which is clinically relevant."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.3 Females and Males of Reproductive Potential",
+          "quote": "Use of TRILEPTAL with hormonal contraceptives containing ethinylestradiol or levonorgestrel is associated with decreased plasma concentrations of these hormones and may result in a failure of the therapeutic effect of the oral contraceptive drug."
         }
       ]
     },
@@ -349,12 +350,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Oxcarbazepine and its active metabolite (MHD) are excreted in human milk; evaluate developmental and health benefits along with clinical need.",
+      "value": "Oxcarbazepine and its active metabolite (MHD) are present in human milk; evaluate developmental and health benefits along with clinical need.",
       "refs": [
         {
           "source_id": "fda-oxcarbazepine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "1 INDICATIONS AND USAGE TRILEPTAL is indicated for use as monotherapy or adjunctive therapy in the treatment of partial-onset seizures in adults"
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "Oxcarbazepine and its active metabolite (MHD) are present in human milk after TRILEPTAL administration. The effects of oxcarbazepine and its active metabolite (MHD) on the breastfed infant or on milk production are unknown."
         }
       ]
     }

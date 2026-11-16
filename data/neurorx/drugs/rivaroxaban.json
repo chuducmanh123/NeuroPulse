@@ -288,14 +288,15 @@
   },
   "reproductive": {
     "tier": {
-      "value": "avoid",
+      "value": "caution",
       "refs": [
         {
           "source_id": "fda-rivaroxaban-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Use XARELTO with caution in pregnant patients because of the potential for pregnancy related hemorrhage and/or emergent delivery."
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "The limited available data on XARELTO in pregnant women are insufficient to inform a drug-associated risk of adverse developmental outcomes. Use XARELTO with caution in pregnant patients because of the potential for pregnancy related hemorrhage and/or emergent delivery. The anticoagulant effect of XARELTO cannot be reliably monitored with standard laboratory testing."
         }
-      ]
+      ],
+      "note": "Limited human data are insufficient to inform developmental risk; label advises use with caution due to obstetric/fetal hemorrhage risk, inability to monitor with standard tests, and animal fetal toxicity/peripartal death."
     },
     "mcm": [],
     "folic_acid": {
@@ -303,12 +304,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Risk of pregnancy-related obstetric hemorrhage and emergent delivery; anticoagulant activity cannot be monitored with standard lab tests.",
+      "value": "Crosses human placenta in vitro; risk of pregnancy-related obstetric hemorrhage, emergent delivery, and fetal/neonatal bleeding; anticoagulant effect cannot be reliably monitored with standard laboratory testing.",
       "refs": [
         {
           "source_id": "fda-rivaroxaban-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "Use XARELTO with caution in pregnant patients because of the potential for pregnancy related hemorrhage and/or emergent delivery."
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "Use XARELTO with caution in pregnant patients because of the potential for pregnancy related hemorrhage and/or emergent delivery. The anticoagulant effect of XARELTO cannot be reliably monitored with standard laboratory testing."
         }
       ]
     },
@@ -325,12 +326,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Rivaroxaban has been detected in human breast milk; weigh maternal benefit against potential bleeding risk in infant.",
+      "value": "Detected in human milk with insufficient data on breastfed infant effects or milk production; weigh developmental/health benefits of breastfeeding against maternal clinical need and potential infant risk.",
       "refs": [
         {
           "source_id": "fda-rivaroxaban-label",
-          "locator": "Section 8.2 Lactation",
-          "quote": "Rivaroxaban has been detected in human milk."
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "Rivaroxaban has been detected in human milk. There are insufficient data to determine the effects of rivaroxaban on the breastfed child or on milk production."
         }
       ]
     }

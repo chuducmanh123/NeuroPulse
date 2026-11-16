@@ -241,35 +241,34 @@
   },
   "reproductive": {
     "tier": {
-      "value": "acceptable",
+      "value": "avoid",
+      "note": "Contraindicated for treating rheumatoid arthritis in pregnant women; azathioprine/metabolites cross the placenta and patients should be advised of potential risks during pregnancy.",
       "refs": [
         {
           "source_id": "fda-azathioprine-label",
           "locator": "BOXED WARNING",
-          "quote": "WARNING - MALIGNANCY Chronic immunosuppression with IMURAN, a purine antimetabolite increases risk of malignancy in humans."
+          "quote": "Physicians using this drug should be very familiar with this risk as well as with the mutagenic potential to both men and women and with possible hematologic toxicities."
+        },
+        {
+          "source_id": "fda-azathioprine-label",
+          "locator": "PRECAUTIONS",
+          "quote": "Patients should be advised of the potential risks of the use of IMURAN during pregnancy and during the nursing period."
+        },
+        {
+          "source_id": "fda-azathioprine-label",
+          "locator": "NURSING_MOTHERS",
+          "quote": "Azathioprine or its metabolites are transferred at low levels, both transplacentally and in breast milk."
         }
       ]
     },
     "mcm": [],
     "folic_acid": {
-      "value": "Standard folic acid supplementation recommended.",
-      "refs": [
-        {
-          "source_id": "fda-azathioprine-label",
-          "locator": "BOXED WARNING",
-          "quote": "WARNING - MALIGNANCY Chronic immunosuppression with IMURAN, a purine antimetabolite increases risk of malignancy in humans."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "pregnancy_pk": {
-      "value": "Fetal liver lacks inosinate pyrophosphorylase, providing partial protection from active metabolites; widely used in pregnant transplant and autoimmune patients when benefits outweigh risks.",
-      "refs": [
-        {
-          "source_id": "fda-azathioprine-label",
-          "locator": "BOXED WARNING",
-          "quote": "WARNING - MALIGNANCY Chronic immunosuppression with IMURAN, a purine antimetabolite increases risk of malignancy in humans."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -284,12 +283,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Transfers into breast milk in small amounts; consensus guidelines consider compatible with infant CBC monitoring.",
+      "value": "Not recommended in nursing mothers; azathioprine or metabolites transfer at low levels into breast milk, and due to tumorigenicity potential, discontinue nursing or discontinue the drug.",
       "refs": [
         {
           "source_id": "fda-azathioprine-label",
-          "locator": "BOXED WARNING",
-          "quote": "WARNING - MALIGNANCY Chronic immunosuppression with IMURAN, a purine antimetabolite increases risk of malignancy in humans."
+          "locator": "NURSING_MOTHERS",
+          "quote": "The use of IMURAN in nursing mothers is not recommended. Azathioprine or its metabolites are transferred at low levels, both transplacentally and in breast milk. 8, 9, 10 Because of the potential for tumorigenicity shown for azathioprine, a decision should be made whether to discontinue nursing or discontinue the drug, taking into account the importance of the drug to the mother."
         }
       ]
     }

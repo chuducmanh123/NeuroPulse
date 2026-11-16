@@ -167,11 +167,12 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "No adequate human pregnancy data are available; monkey studies at ~20x human exposure showed no adverse offspring effects.",
       "refs": [
         {
           "source_id": "fda-erenumab-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "There are no adequate data on the developmental risk associated with the use of AIMOVIG in pregnant women. No adverse effects on offspring were observed when pregnant monkeys were administered erenumab-aooe throughout gestation"
         }
       ]
     },
@@ -181,14 +182,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Human IgG antibodies cross the placental barrier in the second and third trimesters; developmental toxicity data in humans are limited.",
-      "refs": [
-        {
-          "source_id": "fda-erenumab-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -203,12 +198,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk; large molecular weight biologic antibody with minimal gastrointestinal absorption by infant.",
+      "value": "No data on presence in human milk, effects on the breastfed infant, or milk production; weigh developmental and health benefits of breastfeeding against maternal clinical need.",
       "refs": [
         {
           "source_id": "fda-erenumab-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "There are no data on the presence of erenumab-aooe in human milk, the effects on the breastfed infant, or the effects on milk production. The developmental and health benefits of breastfeeding should be considered along with the mother's clinical need for AIMOVIG"
         }
       ]
     }

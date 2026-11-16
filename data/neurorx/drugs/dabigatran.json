@@ -308,11 +308,12 @@
   "reproductive": {
     "tier": {
       "value": "avoid",
+      "note": "Insufficient human pregnancy data; animal studies show increased dead offspring and uterine bleeding at 2.6x human exposure, and anticoagulation carries maternal, fetal, and neonatal hemorrhage plus neuraxial hematoma risk.",
       "refs": [
         {
           "source_id": "fda-dabigatran-capsules-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "There are risks to the mother associated with untreated venous thromboembolism in pregnancy and a risk of hemorrhage in the mother and fetus associated with the use of anticoagulants"
+          "locator": "8.1 Pregnancy",
+          "quote": "The limited available data on dabigatran etexilate use in pregnant women are insufficient to determine drug-associated risks for adverse developmental outcomes. There are risks to the mother associated with untreated venous thromboembolism in pregnancy and a risk of hemorrhage in the mother and fetus associated with the use of anticoagulants (see Clinical Considerations) ."
         }
       ]
     },
@@ -322,12 +323,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Risk of maternal and fetal hemorrhage during pregnancy and delivery; LMWH is preferred anticoagulant therapy.",
+      "value": "Increases maternal, fetal, and neonatal bleeding risk and epidural/spinal hematoma risk with neuraxial anesthesia during labor or delivery; consider discontinuation or shorter-acting anticoagulant as delivery approaches.",
       "refs": [
         {
           "source_id": "fda-dabigatran-capsules-label",
-          "locator": "Section 8.1 Pregnancy",
-          "quote": "There are risks to the mother associated with untreated venous thromboembolism in pregnancy and a risk of hemorrhage in the mother and fetus associated with the use of anticoagulants"
+          "locator": "8.1 Pregnancy",
+          "quote": "Dabigatran etexilate use during labor or delivery in women who are receiving neuraxial anesthesia may result in epidural or spinal hematomas. Consider discontinuation or use of shorter acting anticoagulant as delivery approaches [see Warnings and Precautions (5.2, 5.3)] ."
         }
       ]
     },
@@ -344,12 +345,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Insufficient data on presence in human milk; breastfeeding is not recommended during dabigatran treatment.",
+      "value": "Breastfeeding is not recommended during treatment with dabigatran etexilate; insufficient human milk data (present in rat milk).",
       "refs": [
         {
           "source_id": "fda-dabigatran-capsules-label",
-          "locator": "Section 8.2 Lactation",
-          "quote": "Breastfeeding is not recommended during treatment with dabigatran etexilate."
+          "locator": "8.2 Lactation",
+          "quote": "There are insufficient data to assess the presence of dabigatran in human milk. There are no data on the effects of dabigatran on the breastfed child or on milk production. Dabigatran and/or its metabolites were present in rat milk. Breastfeeding is not recommended during treatment with dabigatran etexilate."
         }
       ]
     }

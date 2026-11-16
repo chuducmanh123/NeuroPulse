@@ -196,10 +196,11 @@
       "refs": [
         {
           "source_id": "fda-sumatriptan-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "Data from a prospective pregnancy exposure registry and epidemiological studies of pregnant women have not detected an increased frequency of birth defects or a consistent pattern of birth defects among women exposed to sumatriptan compared with the general population (see Data) . In developmental toxicity studies in rats and rabbits, oral administration of sumatriptan to pregnant animals was"
         }
-      ]
+      ],
+      "note": "Prospective registry and large Nordic observational studies have not detected an increased frequency of birth defects, but the label warns of potential fetal harm based on animal embryolethality and vascular/skeletal abnormalities at 2-3x MRHD."
     },
     "mcm": [],
     "folic_acid": {
@@ -207,12 +208,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "No increase in overall major congenital malformations observed in pregnancy registries; use during pregnancy only if potential benefit justifies potential risk.",
+      "value": "Prospective registry (n=626) and Nordic birth registries (Swedish n=2,257, RR 0.99; Norwegian n=415, OR 1.16) showed no increased overall malformation rate, though animal studies showed embryolethality and fetal abnormalities at 2-3x MRHD.",
       "refs": [
         {
           "source_id": "fda-sumatriptan-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "Of the 2,257 births with first-trimester exposure to sumatriptan, 107 infants were born with malformations (relative risk 0.99 [95% CI: 0.91 to 1.21])."
         }
       ]
     },
@@ -229,12 +230,17 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Sumatriptan is excreted into human milk; infant exposure can be minimized by avoiding breastfeeding for 12 hours after treatment.",
+      "value": "Excreted in human milk following subcutaneous administration (no milk data for oral tablets); infant exposure can be minimized by avoiding breastfeeding for 12 hours after treatment.",
       "refs": [
         {
           "source_id": "fda-sumatriptan-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "Sumatriptan is excreted in human milk following subcutaneous administration. There is no information regarding sumatriptan concentrations in milk from lactating women following administration of IMITREX tablets."
+        },
+        {
+          "source_id": "fda-sumatriptan-label",
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "Clinical Considerations Infant exposure to sumatriptan can be minimized by avoiding breastfeeding for 12 hours after treatment with IMITREX tablets."
         }
       ]
     }

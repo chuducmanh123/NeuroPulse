@@ -238,10 +238,11 @@
   "reproductive": {
     "tier": {
       "value": "caution",
+      "note": "Human data are limited to case reports without identified risk, while animal studies showed structural abnormalities and pup mortality at 5 to 10 times the MRHD.",
       "refs": [
         {
           "source_id": "fda-ticagrelor-label",
-          "locator": "Section 8.1 Pregnancy",
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.1 Pregnancy)",
           "quote": "Available data from case reports with BRILINTA use in pregnant women have not identified a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes."
         }
       ]
@@ -268,12 +269,17 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Breastfeeding is not recommended during ticagrelor treatment.",
+      "value": "Breastfeeding is not recommended during ticagrelor treatment; no human milk data, but present in rat milk.",
       "refs": [
         {
           "source_id": "fda-ticagrelor-label",
-          "locator": "Section 8.2 Lactation",
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
           "quote": "There are no data on the presence of ticagrelor or its metabolites in human milk, the effects on the breastfed infant, or the effects on milk production."
+        },
+        {
+          "source_id": "fda-ticagrelor-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
+          "quote": "Ticagrelor and its metabolites were present in rat milk at higher concentrations than in maternal plasma. When a drug is present in animal milk, it is likely that the drug will be present in human milk. Breastfeeding is not recommended during treatment with BRILINTA."
         }
       ]
     }

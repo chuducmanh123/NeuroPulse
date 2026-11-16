@@ -250,12 +250,13 @@
   },
   "reproductive": {
     "tier": {
-      "value": "preferred",
+      "value": "caution",
+      "note": "Animal reproduction studies up to 10x human dose showed no fetal harm, but there are no adequate well-controlled studies in pregnant women; use only if clearly needed.",
       "refs": [
         {
           "source_id": "fda-ampicillin-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below."
+          "locator": "PREGNANCY",
+          "quote": "There are, however, no adequate and well-controlled studies in pregnant women. Because animal reproduction studies are not always predictive of human response, this drug should be used during pregnancy only if clearly needed"
         }
       ]
     },
@@ -265,14 +266,8 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Penicillins cross the placenta; extensive human data confirm fetal safety; drug of choice for Listeria meningitis and Group B Streptococcus in pregnancy.",
-      "refs": [
-        {
-          "source_id": "fda-ampicillin-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below."
-        }
-      ]
+      "value": null,
+      "refs": []
     },
     "postpartum": {
       "value": null,
@@ -287,12 +282,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Excreted into human milk in low amounts; considered compatible with breastfeeding by AAP.",
+      "value": "Low concentrations of ampicillin and sulbactam are excreted in human milk; exercise caution when administering to a nursing woman.",
       "refs": [
         {
           "source_id": "fda-ampicillin-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below."
+          "locator": "NURSING_MOTHERS",
+          "quote": "Low concentrations of ampicillin and sulbactam are excreted in the milk; therefore, caution should be exercised when ampicillin and sulbactam for injection is administered to a nursing woman."
         }
       ]
     }

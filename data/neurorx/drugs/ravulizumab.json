@@ -273,10 +273,11 @@
       "refs": [
         {
           "source_id": "fda-ravulizumab-label",
-          "locator": "BOXED WARNING",
-          "quote": "MENINGOCOCCAL INFECTIONS ULTOMIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "There are no available data on ULTOMIRIS use in pregnant women to inform a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes. There are risks to the mother and fetus associated with untreated PNH, aHUS and IgAN in pregnancy (see Clinical Considerations ) ."
         }
-      ]
+      ],
+      "note": "No available human pregnancy data; mouse anti-C5 analogue caused developmental abnormalities and increased offspring mortality at 0.8-2.2x human dose, and human IgG crosses the placenta."
     },
     "mcm": [],
     "folic_acid": {
@@ -284,12 +285,12 @@
       "refs": []
     },
     "pregnancy_pk": {
-      "value": "Monoclonal antibody crossing placenta; assess maternal disease control vs potential fetal/neonatal complement inhibition.",
+      "value": "Human IgG crosses the placental barrier and may cause terminal complement inhibition in fetal circulation; assess untreated maternal disease risk (PNH, aHUS, IgAN) vs potential fetal risk.",
       "refs": [
         {
           "source_id": "fda-ravulizumab-label",
-          "locator": "BOXED WARNING",
-          "quote": "MENINGOCOCCAL INFECTIONS ULTOMIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "Human IgG are known to cross the human placental barrier, and thus ULTOMIRIS may potentially cause terminal complement inhibition in fetal circulation."
         }
       ]
     },
@@ -306,12 +307,12 @@
       "refs": []
     },
     "lactation_summary": {
-      "value": "Maternal IgG excretion into milk is minimal and degraded in the neonatal GI tract; consider risk/benefit.",
+      "value": "No data on presence in human milk; because immunoglobulins are secreted into human milk and serious adverse reactions may occur in a nursing child, discontinue breastfeeding during treatment and for 8 months after the final dose.",
       "refs": [
         {
           "source_id": "fda-ravulizumab-label",
-          "locator": "BOXED WARNING",
-          "quote": "MENINGOCOCCAL INFECTIONS ULTOMIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
+          "quote": "There are no data on the presence of ravulizumab-cwvz in human milk, the effect on the breastfed child, or the effect on milk production. Since many medicinal products and immunoglobulins are secreted into human milk, and because of the potential for serious adverse reactions in a nursing child, breastfeeding should be discontinued during treatment and for 8 months after the final dose."
         }
       ]
     }
