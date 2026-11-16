@@ -1,5 +1,233 @@
 [
   {
+    "id": "nc-2026-049",
+    "case_code": "NC-2026-049",
+    "title": "Thunderclap Headache and Progressive Encephalopathy Following Upper Respiratory Infection",
+    "subspecialty": "Neuroimmunology",
+    "subspecialties": [
+      "Neuroimmunology",
+      "Stroke & Vascular Neurology",
+      "Neuro-infectious Disease"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-16",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC11373465",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-024-03803-z",
+      "pmcid": "PMC11373465",
+      "pmid": "39232678",
+      "pub_year": "2024"
+    },
+    "presentation": {
+      "demographics": "62-year-old female",
+      "chief_complaint": "Holocranial thunderclap headache and binocular vertical diplopia",
+      "history_of_present_illness": "A 62-year-old woman presented to the emergency department with a sudden-onset holocranial thunderclap headache and subjective binocular vertical diplopia persisting for over 24 hours. She reported a preceding bronchitis 16 days prior, treated with amoxicillin/clavulanic acid. Her clinical course subsequently deteriorated with progressive encephalopathy, intracranial hypertension, and coma requiring mechanical ventilation and external ventricular drainage.",
+      "past_medical_history": "Recent upper respiratory tract infection (bronchitis); no history of travel, recent vaccinations, or recurrent autoimmune disease.",
+      "vitals": {
+        "bp": "135/82 mmHg",
+        "hr": "84 bpm",
+        "rr": "18 /min",
+        "temp": "37.1 °C",
+        "spo2": "97% on room air"
+      },
+      "neuro_exam": "Initially alert with normal cranial nerves and no focal motor deficits, rapidly progressing to lethargy, obtundation, and signs of increased intracranial pressure.",
+      "key_labs_csf": "CSF opening pressure 20 cmH2O; white blood cell count 330/uL (88% segmented neutrophils, 10% lymphocytes, 2% monocytes), protein 81 mg/dL, glucose 62 mg/dL. Oligoclonal bands negative. Gram stain, bacterial and fungal cultures, and broad PCR panels for bacterial/viral pathogens were all negative.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (T2 FLAIR)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC11373465)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC11373465_fig1.jpg",
+          "pmcid": "PMC11373465",
+          "doi_url": "https://doi.org/10.1186/s12883-024-03803-z",
+          "caption": "MRI (T2 FLAIR) showing diffuse white matter hyperintensities with diffuse edema",
+          "findings_summary": "Demonstrates diffuse white matter hyperintensities with extensive cerebral edema."
+        },
+        {
+          "modality": "Brain MRI (T2/FLAIR at 3.5 months)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC11373465)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC11373465_fig2.jpg",
+          "pmcid": "PMC11373465",
+          "doi_url": "https://doi.org/10.1186/s12883-024-03803-z",
+          "caption": "MRI (T2/FLAIR) after 3.5 months showing progressive resolution",
+          "findings_summary": "Shows progressive and near-complete radiological resolution of the white matter lesions."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Atypical bacterial meningoencephalitis",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Although CSF pleocytosis with neutrophil predominance can mimic bacterial meningitis, extensive negative CSF cultures and PCR panels combined with diffuse white matter demyelinating lesions on MRI rule out primary bacterial infection."
+        },
+        {
+          "id": "B",
+          "text": "Acute Disseminated Encephalomyelitis (ADEM)",
+          "peer_percentage": 72,
+          "rationale": "Correct! The patient presents with polyfocal neurological symptoms and encephalopathy following a recent infection, supported by diffuse white matter hyperintensities on MRI and a monophasic demyelinating course, which are classic hallmarks of ADEM."
+        },
+        {
+          "id": "C",
+          "text": "Multiple Sclerosis (Relapsing-Remitting)",
+          "peer_percentage": 9,
+          "rationale": "Incorrect. The acute presentation featuring encephalopathy, a monophasic severe encephalomyelitic course, and uniform-stage perivenous white matter demyelination without oligoclonal bands is characteristic of ADEM rather than multiple sclerosis."
+        },
+        {
+          "id": "D",
+          "text": "Central nervous system vasculitis",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. While thunderclap headache can occur in CNS vasculitis, brain imaging shows diffuse, confluent symmetric white matter demyelinating lesions rather than classic ischemic infarcts across multiple vascular territories."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Acute Disseminated Encephalomyelitis (ADEM)",
+      "clinical_discussion": "Acute Disseminated Encephalomyelitis (ADEM) is an immune-mediated inflammatory demyelinating disease of the central nervous system that typically occurs following a viral infection or vaccination, particularly in children, but can also affect adults. It is characterized by the acute or subacute onset of multifocal neurological deficits accompanied by encephalopathy. While classic presentations involve confusion, seizures, and focal signs, atypical presentations such as thunderclap headache can occasionally mask the underlying demyelinating etiology, leading to initial suspicion of infectious meningoencephalitis or subarachnoid hemorrhage.\n\nDiagnosis relies heavily on neuroimaging, showing large, poorly demarcated white matter hyperintensities on T2/FLAIR sequences, combined with exclusion of infectious causes via CSF and PCR analysis. Although high-dose corticosteroids are the first-line treatment, refractory cases—such as those complicated by severe intracranial hypertension and coma—often require escalation to plasma exchange and intravenous immunosuppressive agents like cyclophosphamide. The prognosis in adults carries higher morbidity and mortality compared to children, but significant recovery can be attained with aggressive immunomodulatory therapy.",
+      "teaching_points": [
+        "ADEM is a monophasic demyelinating disorder characterized by encephalopathy and polyfocal neurological deficits, typically following an infection or vaccination.",
+        "Although most common in children, ADEM can present in adults with atypical manifestations including thunderclap headache and intracranial hypertension.",
+        "CSF analysis in ADEM often shows nonspecific pleocytosis and elevated protein, requiring exclusion of infectious meningoencephalitis via negative cultures and PCR.",
+        "Refractory or severe adult ADEM cases complicated by coma may require escalation beyond corticosteroids to plasma exchange and cyclophosphamide."
+      ],
+      "clinical_pitfalls": [
+        "Mistaking CSF neutrophil predominance in early ADEM for acute bacterial meningitis, leading to delayed immunotherapy.",
+        "Failing to recognize thunderclap headache as a rare initial presentation of acute demyelinating disorders."
+      ],
+      "related_keywords": [
+        "Acute Disseminated Encephalomyelitis",
+        "Thunderclap headache",
+        "Demyelinating disease",
+        "Plasma exchange"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-050",
+    "case_code": "NC-2026-050",
+    "title": "Progressive Painless Unilateral Vision Loss in an Older Man",
+    "subspecialty": "Neuro-ophthalmology",
+    "subspecialties": [
+      "Neuro-ophthalmology",
+      "Infectious Disease",
+      "Stroke & Vascular Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-16",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13750036",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05275-9",
+      "pmcid": "PMC13750036",
+      "pmid": "43004227",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "72-year-old man",
+      "chief_complaint": "Progressive painless visual loss in the left eye",
+      "history_of_present_illness": "The patient presented with a two-year history of progressive, painless visual loss in the left eye, initially detected incidentally during a driving license assessment. Over time, the visual blurring worsened significantly despite initial consideration of non-arteritic anterior ischemic optic neuropathy and subsequent trials of immunotherapy. He denied any associated pain, headache, diplopia, or transient visual obscurations.",
+      "past_medical_history": "Type 2 diabetes mellitus, hypertension, and dyslipidaemia diagnosed two years prior; uncomplicated bilateral cataract surgery ten years ago.",
+      "vitals": {
+        "bp": "135/82 mmHg",
+        "hr": "74 bpm",
+        "rr": "16 /min",
+        "temp": "36.5 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "Visual acuity was hand movement on the left and 6/9 on the right. A left relative afferent pupillary defect was present. Ocular movements were full and painless. Pattern VEP showed a markedly delayed P100 latency in the left eye (176 ms) with reduced amplitude, while the right eye responses were normal.",
+      "key_labs_csf": "Serum VDRL and TPPA were positive. Routine syphilis serology confirmed the diagnosis after exclusion of other chronic optic neuropathies.",
+      "imaging": [
+        {
+          "modality": "Fundus Photography (Left Eye)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13750036)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13750036_fig1.webp",
+          "pmcid": "PMC13750036",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05275-9",
+          "caption": "Left fundal photograph showing optic disc atrophy with cupping of the optic disc and moderate-to-severe non-proliferative diabetic retinopathy",
+          "findings_summary": "Left fundal photograph showing optic disc atrophy with cupping of the optic disc and moderate-to-severe non-proliferative diabetic retinopathy."
+        },
+        {
+          "modality": "Fundus Photography (Right Eye)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13750036)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13750036_fig2.webp",
+          "pmcid": "PMC13750036",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05275-9",
+          "caption": "Right fundal photograph showing moderate-to-severe non-proliferative diabetic retinopathy",
+          "findings_summary": "Right fundal photograph showing moderate-to-severe non-proliferative diabetic retinopathy without overt disc pallor."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Non-arteritic anterior ischemic optic neuropathy (NAION)",
+          "peer_percentage": 22,
+          "rationale": "Incorrect. While NAION can present with painless visual loss, it typically has an acute onset with altitudinal field defects rather than a slow, progressive worsening over two years refractory to immunotherapy."
+        },
+        {
+          "id": "B",
+          "text": "Multiple sclerosis-related optic neuritis",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. MS optic neuritis typically affects younger patients, is usually accompanied by painful eye movements, and brain MRI demonstrated no demyelinating plaques typical of multiple sclerosis."
+        },
+        {
+          "id": "C",
+          "text": "Syphilitic optic neuropathy",
+          "peer_percentage": 64,
+          "rationale": "Correct! The patient's progressive painless visual loss, lack of response to immunotherapy, optic nerve MRI abnormalities, and positive serum VDRL and TPPA tests strongly establish the diagnosis of syphilitic optic neuropathy."
+        },
+        {
+          "id": "D",
+          "text": "Giant cell arteritis",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. Giant cell arteritis presents with acute visual loss, systemic inflammatory symptoms, headache, and jaw claudication, none of which were present in this patient."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Syphilitic optic neuropathy",
+      "clinical_discussion": "Syphilitic optic neuropathy is a rare but critical manifestation of neurosyphilis that can present as an isolated, progressive, and painless visual loss mimicking other more common optic neuropathies such as NAION or chronic optic neuritis. Because its clinical presentation can be insidious and mimic non-inflammatory or vascular causes, it is frequently misdiagnosed, leading to inappropriate treatments like corticosteroids or immunotherapy which fail to halt the progression.\n\nConfirmation relies heavily on specific serological testing, including serum VDRL and Treponema pallidum particle agglutination (TPPA) assays, alongside neuroimaging demonstrating optic nerve enhancement, swelling, or eventual atrophy. Early administration of targeted antibiotic therapy, such as intravenous benzylpenicillin, is essential to arrest further visual decline, although established axonal loss and optic atrophy often limit visual recovery.",
+      "teaching_points": [
+        "Syphilitic optic neuropathy can present as an isolated, slowly progressive, painless visual loss mimicking non-arteritic anterior ischemic optic neuropathy.",
+        "Routine syphilis serology (VDRL and TPPA) should be included in the diagnostic workup for all atypical, progressive, or treatment-refractory optic neuropathies.",
+        "Intravenous penicillin therapy halts disease progression, but pre-existing optic nerve atrophy limits reversal of established visual deficits."
+      ],
+      "clinical_pitfalls": [
+        "Attributing progressive optic neuropathy solely to vascular risk factors like diabetes or hypertension without screening for infectious etiologies.",
+        "Relying on empirical trials of corticosteroids or immunotherapy without ruling out neurosyphilis."
+      ],
+      "related_keywords": [
+        "Syphilitic optic neuropathy",
+        "Neurosyphilis",
+        "Optic atrophy",
+        "Visual evoked potentials",
+        "VDRL and TPPA"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-047",
     "case_code": "NC-2026-047",
     "title": "Progressive Liver Cirrhosis, Tremors, and Bilateral Basal Ganglia Lesions in a Young Female",
