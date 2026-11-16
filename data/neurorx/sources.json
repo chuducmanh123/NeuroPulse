@@ -1137,5 +1137,27 @@
     "url": "https://doi.org/10.1093/europace/euab065",
     "file": "ehra-2021-noac.txt",
     "accessed": "2026-11-16"
+  },
+  {
+    "id": "aan-aes-2024-asm-pregnancy",
+    "type": "guideline",
+    "title": "Teratogenesis, Perinatal, and Neurodevelopmental Outcomes After In Utero Exposure to Antiseizure Medications: Practice Guideline of the AAN, AES, and SMFM (2024) & International Pregnancy Registries",
+    "publisher": "American Academy of Neurology (AAN), American Epilepsy Society (AES), and Society for Maternal-Fetal Medicine (SMFM) / Neurology",
+    "year": 2024,
+    "version": "10.1212/WNL.0000000000209300",
+    "url": "https://doi.org/10.1212/WNL.0000000000209300",
+    "file": "aan-aes-2024-asm-pregnancy.txt",
+    "accessed": "2026-11-16"
+  },
+  {
+    "id": "lactmed-wave1",
+    "type": "lactmed",
+    "title": "Drugs and Lactation Database (LactMed) — NCBI Bookshelf Monograph Extracts for Antiseizure Medications and Acyclovir",
+    "publisher": "National Institute of Child Health and Human Development (NICHD) / U.S. National Library of Medicine",
+    "year": 2026,
+    "version": "NBK501922",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK501922/",
+    "file": "lactmed-wave1.txt",
+    "accessed": "2026-11-16"
   }
 ]

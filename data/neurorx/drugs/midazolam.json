@@ -193,11 +193,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "abf9152e656d86dd17d414067c0dcd8dc04a4d2b8b058357fa1863a35b4411bc"
   },
   "adverse_effects": {
     "most_common": {
@@ -250,30 +250,50 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "CYP3A4 induction modestly increases midazolam clearance during pregnancy; acute IV/IM status epilepticus or procedural bolus dosing uses standard weight-based emergency dosing without chronic TDM.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Midazolam PK & TDM",
+          "quote": "Maternal midazolam clearance increases slightly during pregnancy due to CYP3A4 induction, though acute IV/IM status epilepticus or procedural bolus dosing requires standard weight-based emergency dosing without chronic TDM. Acyclovir PK & TDM: Oral and intravenous acyclovir pharmacokinetics are not significantly altered during pregnancy a"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.1% to 0.6% of the weight-adjusted maternal dosage (single IV dose)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Midazolam — Drug Levels",
+          "quote": "Single intravenous maternal doses of midazolam result in a relative infant dose of 0.1% to 0.6% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Following a single intravenous dose of midazolam for procedures or acute seizure control, milk concentrations are negligible by 4 hours and no interruption of breastfeedin"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Midazolam is present in human milk in low levels. There are reports of sedation, poor feeding, and poor weight gain in nursing infants; breastfeeding is not recommended during treatment (or pump and discard for 4 to 8 hours).",
+      "value": "Very low transfer after a single IV dose (RID 0.1%–0.6%); milk levels are negligible by 4 hours and no interruption of breastfeeding is needed for healthy term infants. Monitor for sedation with repeated ICU infusions.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Midazolam — Summary of Use during Lactation",
+          "quote": "Following a single intravenous dose of midazolam for procedures or acute seizure control, milk concentrations are negligible by 4 hours and no interruption of breastfeeding is required for healthy term infants; with repeated ICU infusions, monitor the infant for sedation. [oxcarbazepine] Relative Infant Dose (RID): Milk transfer of oxcar"
+        },
         {
           "source_id": "fda-midazolam-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS - Nursing Mothers: Risk Summary",

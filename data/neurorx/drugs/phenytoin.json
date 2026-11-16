@@ -188,11 +188,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "04e1b0d275d6400d499f7aa5b6906854ea7a017104e02c0f428e742a4e526261"
   },
   "adverse_effects": {
     "most_common": {
@@ -277,34 +277,24 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": "Seizure frequency may increase during pregnancy due to altered phenytoin pharmacokinetics; periodically measure serum phenytoin concentrations to guide dosage adjustment.",
+      "value": "Folate antagonist; supplement 4 to 5 mg/day preconception through the first trimester (or at least 0.4 mg/day minimum) to reduce neural tube defect risk.",
       "refs": [
         {
-          "source_id": "fda-phenytoin-label",
-          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
-          "quote": "An increase in seizure frequency may occur during pregnancy because of altered phenytoin pharmacokinetics. Periodic measurement of serum phenytoin concentrations may be valuable in the management of pregnant women as a guide to appropriate adjustment of dosage [see Dosage and Administration (2.3 , 2.7) ] ."
-        }
-      ]
-    },
-    "postpartum": {
-      "value": "Postpartum restoration of the original phenytoin dosage will probably be indicated.",
-      "refs": [
-        {
-          "source_id": "fda-phenytoin-label",
-          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
-          "quote": "However, postpartum restoration of the original dosage will probably be indicated [see Clinical Pharmacology (12.3) ] ."
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 1: Folate Antagonist & High-Risk ASM Guidance",
+          "quote": "Because older enzyme-inducing ASMs and valproate impair folate metabolism or carry elevated neural tube defect risk, clinical guidelines commonly supplement 4 to 5 mg/day preconception through the first trimester while balancing against excessive supraphysiologic dosing. Lamotrigine Folic Acid Guidance: Lamotrigine exhibits weak dihydrofo"
         }
       ]
     },
     "contraception": {
-      "value": "Potent hepatic enzyme induction impairs the efficacy of oral contraceptives and estrogens.",
+      "value": "Strong CYP3A4/UGT inducer that markedly reduces hormonal contraceptive efficacy; recommend copper IUD, levonorgestrel IUD, or depot medroxyprogesterone plus barrier contraception.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Strong Enzyme-Inducing ASMs",
+          "quote": "Strong CYP3A4 and UGT induction substantially accelerates metabolism of combined oral contraceptives, progestin-only pills, patches, vaginal rings, and subdermal implants, causing contraceptive failure; recommend copper IUD, levonorgestrel IUD, or depot medroxyprogesterone acetate plus barrier protection. Oxcarbazepine Contraceptive Guida"
+        },
         {
           "source_id": "fda-phenytoin-label",
           "locator": "7 DRUG INTERACTIONS - 7.2 Drugs Affected by Phenytoin",
@@ -312,13 +302,98 @@
         }
       ]
     },
+    "pregnancy_pk": {
+      "value": "Total phenytoin levels fall 50%–60% (unbound phenytoin falls 20%–30%) due to accelerated metabolism and lower albumin; monitor unbound (free) phenytoin concentrations monthly and adjust dose accordingly.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Phenytoin PK & TDM",
+          "quote": "Total phenytoin serum concentrations decline by up to 50%–60% during pregnancy due to accelerated hepatic metabolism and decreased albumin binding, while unbound phenytoin falls by 20%–30%; monitor unbound (free) phenytoin concentrations monthly and adjust dosage accordingly. Phenytoin Postpartum Management: Maternal protein binding and h"
+        },
+        {
+          "source_id": "fda-phenytoin-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "An increase in seizure frequency may occur during pregnancy because of altered phenytoin pharmacokinetics. Periodic measurement of serum phenytoin concentrations may be valuable in the management of pregnant women as a guide to appropriate adjustment of dosage [see Dosage and Administration (2.3 , 2.7) ] ."
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "North American AED (NAAED) Pregnancy Registry",
+        "percent": 2.9,
+        "ci95": "1.5%–5.0%",
+        "n_exposed": 416,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Phenytoin — NAAED Pregnancy Registry",
+            "quote": "The North American AED Pregnancy Registry reported major congenital malformations in 2.9% (95% CI: 1.5%–5.0%) of 416 infants exposed to phenytoin first-trimester monotherapy. Phenytoin — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformations in 6.4% (95% CI: 2.8%–12.2%) of 125 infants exposed to"
+          }
+        ]
+      },
+      {
+        "registry": "EURAP International Pregnancy Registry",
+        "percent": 6.4,
+        "ci95": "2.8%–12.2%",
+        "n_exposed": 125,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Phenytoin — EURAP Registry",
+            "quote": "The EURAP International Pregnancy Registry reported major congenital malformations in 6.4% (95% CI: 2.8%–12.2%) of 125 infants exposed to phenytoin first-trimester monotherapy. Phenytoin — UK & Ireland Register: The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 3.7% (95% CI: 1.3%–10.2%) of 82 in"
+          }
+        ]
+      },
+      {
+        "registry": "UK & Ireland Epilepsy and Pregnancy Register",
+        "percent": 3.7,
+        "ci95": "1.3%–10.2%",
+        "n_exposed": 82,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Phenytoin — UK & Ireland Register",
+            "quote": "The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 3.7% (95% CI: 1.3%–10.2%) of 82 infants exposed to phenytoin first-trimester monotherapy. Phenobarbital — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 5.5% (95% CI: 2.8%–9.7%) of"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Protein binding and hepatic clearance normalize within 1–2 weeks after delivery; taper back to pre-pregnancy dosage over 10–14 days postpartum guided by unbound serum levels to prevent acute phenytoin toxicity.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Phenytoin Postpartum Management",
+          "quote": "Maternal protein binding and hepatic clearance normalize within 1 to 2 weeks after delivery; restore pre-pregnancy phenytoin dosage gradually over 10 to 14 days postpartum guided by unbound serum levels to prevent acute phenytoin toxicity. Carbamazepine PK & TDM: Total carbamazepine concentrations decline modestly (10% to 20%) during pre"
+        },
+        {
+          "source_id": "fda-phenytoin-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "However, postpartum restoration of the original dosage will probably be indicated [see Clinical Pharmacology (12.3) ] ."
+        }
+      ]
+    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.5% to 6% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Phenytoin — Drug Levels",
+          "quote": "Breastfed infants receive 0.5% to 6% of the weight-adjusted maternal phenytoin dosage through breast milk. Summary of Use during Lactation: Phenytoin enters breast milk in low quantities (RID 0.5% to 6%) and rarely causes adverse effects in breastfed infants when maternal serum concentrations are kept within the therapeutic range; monitor"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Phenytoin is secreted in human milk; weigh developmental and health benefits of breastfeeding against maternal clinical need.",
+      "value": "Enters breast milk in low amounts (RID 0.5%–6%) and is compatible with breastfeeding when maternal levels remain in the therapeutic range; monitor newborn for sedation, poor sucking, and rare methemoglobinemia if combined with phenobarbital.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Phenytoin — Summary of Use during Lactation",
+          "quote": "Phenytoin enters breast milk in low quantities (RID 0.5% to 6%) and rarely causes adverse effects in breastfed infants when maternal serum concentrations are kept within the therapeutic range; monitor newborn for sedation, poor sucking, and rare methemoglobinemia if combined with phenobarbital. [pregabalin] Relative Infant Dose (RID): Hu"
+        },
         {
           "source_id": "fda-phenytoin-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS - 8.2 Lactation",

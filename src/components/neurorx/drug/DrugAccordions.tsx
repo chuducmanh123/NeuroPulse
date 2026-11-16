@@ -143,16 +143,16 @@ export function DrugAccordions({
                 : "hover:bg-rose-50/40 text-slate-800"
             }`}
           >
-            <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-rose-500/10 text-rose-500">
+            <div className="flex items-center gap-2.5 min-w-0 flex-1">
+              <div className="p-2 rounded-xl bg-rose-500/10 text-rose-500 shrink-0">
                 <Baby className="w-5 h-5" />
               </div>
-              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base">
-                🤰 Pregnancy &amp; Lactation Guidance
+              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base break-words">
+                Pregnancy &amp; Lactation Guidance
               </span>
               {rep.tier?.value && (
                 <span
-                  className={`px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider ${
+                  className={`px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider shrink-0 ${
                     rep.tier.value === "preferred"
                       ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300"
                       : rep.tier.value === "caution"
@@ -164,7 +164,7 @@ export function DrugAccordions({
                 </span>
               )}
             </div>
-            {openSections.pregnancy ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
+            {openSections.pregnancy ? <ChevronUp className="w-5 h-5 text-slate-400 shrink-0" /> : <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />}
           </button>
 
           {openSections.pregnancy && (
@@ -204,7 +204,7 @@ export function DrugAccordions({
               {/* Stage 2: Pregnancy Safety, PK & Malformations */}
               <div className="py-4 space-y-4">
                 <span className="inline-block text-[11px] font-extrabold uppercase tracking-wider text-rose-600 dark:text-rose-400">
-                  Stage 2 · Pregnancy Safety, PK &amp; Malformations
+                  Stage 2 · Pregnancy Safety, Pharmacokinetics &amp; Malformations
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
                   <div className="space-y-1">
@@ -228,7 +228,7 @@ export function DrugAccordions({
                   <div className="space-y-1">
                     <div className="flex items-center justify-between gap-2">
                       <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
-                        Pregnancy PK &amp; TDM Monitoring
+                        Pregnancy Pharmacokinetics &amp; Therapeutic Drug Monitoring
                       </span>
                       <SourcePopover refs={rep.pregnancy_pk?.refs} sources={sources} darkMode={darkMode} />
                     </div>
@@ -328,15 +328,15 @@ export function DrugAccordions({
                 : "hover:bg-amber-50/40 text-slate-800"
             }`}
           >
-            <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-amber-500/10 text-amber-500">
+            <div className="flex items-center gap-2.5 min-w-0 flex-1">
+              <div className="p-2 rounded-xl bg-amber-500/10 text-amber-500 shrink-0">
                 <AlertTriangle className="w-5 h-5" />
               </div>
-              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base">
-                ⚠️ Neuro Clinical Notes &amp; Pharmacogenomics
+              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base break-words">
+                Neuro Clinical Notes &amp; Pharmacogenomics
               </span>
             </div>
-            {openSections.neuro ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
+            {openSections.neuro ? <ChevronUp className="w-5 h-5 text-slate-400 shrink-0" /> : <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />}
           </button>
 
           {openSections.neuro && (
@@ -453,15 +453,15 @@ export function DrugAccordions({
                 : "hover:bg-sky-50/40 text-slate-800"
             }`}
           >
-            <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-blue-500/10 text-blue-500">
+            <div className="flex items-center gap-2.5 min-w-0 flex-1">
+              <div className="p-2 rounded-xl bg-blue-500/10 text-blue-500 shrink-0">
                 <FlaskConical className="w-5 h-5" />
               </div>
-              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base">
-                🧪 Pharmacokinetics, Renal, Hepatic &amp; Metabolism
+              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base break-words">
+                Pharmacokinetics, Renal, Hepatic &amp; Metabolism
               </span>
             </div>
-            {openSections.pk ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
+            {openSections.pk ? <ChevronUp className="w-5 h-5 text-slate-400 shrink-0" /> : <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />}
           </button>
 
           {openSections.pk && (
@@ -682,21 +682,21 @@ export function DrugAccordions({
                 : "hover:bg-purple-50/40 text-slate-800"
             }`}
           >
-            <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-purple-500/10 text-purple-500">
+            <div className="flex items-center gap-2.5 min-w-0 flex-1 flex-wrap">
+              <div className="p-2 rounded-xl bg-purple-500/10 text-purple-500 shrink-0">
                 <ArrowRightLeft className="w-5 h-5" />
               </div>
-              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base">
-                ⚡ Drug Interactions (FDA Prescribing Information)
+              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base break-words">
+                Drug Interactions (FDA Prescribing Information)
               </span>
-              <span className="px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider bg-purple-500/15 text-purple-700 dark:text-purple-300">
+              <span className="px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider bg-purple-500/15 text-purple-700 dark:text-purple-300 shrink-0">
                 {fdaInteractions.value.length} {fdaInteractions.value.length === 1 ? "Class" : "Classes"}
               </span>
             </div>
             {openSections.interactions ? (
-              <ChevronUp className="w-5 h-5 text-slate-400" />
+              <ChevronUp className="w-5 h-5 text-slate-400 shrink-0" />
             ) : (
-              <ChevronDown className="w-5 h-5 text-slate-400" />
+              <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
             )}
           </button>
 
@@ -786,15 +786,15 @@ export function DrugAccordions({
                 : "hover:bg-indigo-50/40 text-slate-800"
             }`}
           >
-            <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-500">
+            <div className="flex items-center gap-2.5 min-w-0 flex-1">
+              <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-500 shrink-0">
                 <LinkIcon className="w-5 h-5" />
               </div>
-              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base">
-                🔗 NeuroPulse Ecosystem Integration
+              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base break-words">
+                NeuroPulse Ecosystem Integration
               </span>
             </div>
-            {openSections.ecosystem ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
+            {openSections.ecosystem ? <ChevronUp className="w-5 h-5 text-slate-400 shrink-0" /> : <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />}
           </button>
 
           {openSections.ecosystem && (

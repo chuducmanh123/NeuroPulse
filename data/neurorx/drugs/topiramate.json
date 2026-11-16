@@ -196,22 +196,24 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "value": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per AAN/AES/SMFM preconception care (consider alternative ASM before conception whenever possible due to oral cleft and SGA risk).",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 1: Newer ASM Folic Acid Guidance",
+          "quote": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per standard AAN/AES/SMFM preconception care for all patients of childbearing potential receiving antiseizure medications. === SECTION 2: CONTRACEPTIVE INTERACTIONS & FAMILY PLANNING === Strong Enzyme-Inducing ASMs (Carbamazepine, Phenytoin, Phenoba"
+        }
+      ]
     },
     "contraception": {
-      "value": "Women of childbearing potential not planning pregnancy should use effective contraception; topiramate may decrease contraceptive efficacy and increase breakthrough bleeding.",
+      "value": "Dose-dependent CYP3A4 induction lowers ethinylestradiol exposure by 18%–30% at doses >= 200 mg/day; advise non-hormonal/intrauterine contraception or reliable barrier backup, especially at >= 200 mg/day.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Topiramate Contraceptive Guidance",
+          "quote": "Topiramate demonstrates dose-dependent reduction in ethinylestradiol exposure (18% to 30% reduction at doses >= 200 mg/day); patients taking >= 200 mg/day should use a non-hormonal or intrauterine contraceptive method or reliable barrier backup. Perampanel Contraceptive Guidance: Perampanel at 12 mg/day decreases levonorgestrel exposure b"
+        },
         {
           "source_id": "fda-topiramate-label",
           "locator": "USE IN SPECIFIC POPULATIONS (8.3 Females and Males of Reproductive Potential)",
@@ -224,13 +226,88 @@
         }
       ]
     },
+    "pregnancy_pk": {
+      "value": "Renal clearance increases in pregnancy, decreasing dose-normalized serum topiramate concentrations by 30%–40% in the 2nd and 3rd trimesters; monitor serum concentrations monthly or per trimester and adjust for breakthrough seizures.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Topiramate PK & TDM",
+          "quote": "Renal clearance of topiramate increases during pregnancy, reducing dose-normalized serum concentrations by 30% to 40% in the second and third trimesters; monitor serum topiramate concentrations monthly or per trimester and adjust dosage if breakthrough seizures occur. Topiramate Postpartum Management: Postpartum normalization of renal cle"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "North American AED (NAAED) Pregnancy Registry",
+        "percent": 4.2,
+        "ci95": "2.4%–6.8%",
+        "n_exposed": 359,
+        "dose_stratum": "first-trimester monotherapy (oral clefts / SGA risk)",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Topiramate — NAAED Pregnancy Registry",
+            "quote": "The North American AED Pregnancy Registry reported major congenital malformations in 4.2% (95% CI: 2.4%–6.8%) of 359 infants exposed to topiramate first-trimester monotherapy, with elevated risk of oral clefts and small-for-gestational-age infants. Topiramate — EURAP Registry: The EURAP International Pregnancy Registry reported major cong"
+          }
+        ]
+      },
+      {
+        "registry": "EURAP International Pregnancy Registry",
+        "percent": 3.9,
+        "ci95": "1.5%–8.4%",
+        "n_exposed": 152,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Topiramate — EURAP Registry",
+            "quote": "The EURAP International Pregnancy Registry reported major congenital malformations in 3.9% (95% CI: 1.5%–8.4%) of 152 infants exposed to topiramate first-trimester monotherapy. Topiramate — UK & Ireland Register: The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 4.3% (95% CI: 1.7%–10.7%) of 93 i"
+          }
+        ]
+      },
+      {
+        "registry": "UK & Ireland Epilepsy and Pregnancy Register",
+        "percent": 4.3,
+        "ci95": "1.7%–10.7%",
+        "n_exposed": 93,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Topiramate — UK & Ireland Register",
+            "quote": "The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 4.3% (95% CI: 1.7%–10.7%) of 93 infants exposed to topiramate first-trimester monotherapy. Valproate — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 9.3% (95% CI: 6.4%–13.0%) of 32"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Renal clearance normalizes within 1–2 weeks after delivery; if topiramate dose was raised during pregnancy, taper cautiously back toward pre-pregnancy dose over 10–14 days postpartum.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Topiramate Postpartum Management",
+          "quote": "Postpartum normalization of renal clearance occurs within 1 to 2 weeks after delivery; if topiramate dose was raised during pregnancy, taper cautiously toward pre-pregnancy dose over 10 to 14 days postpartum. Phenobarbital PK & TDM: Total and unbound phenobarbital concentrations decrease by up to 30% to 50% during pregnancy due to increa"
+        }
+      ]
+    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "3% to 23% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Topiramate — Drug Levels",
+          "quote": "Breastfed infants receive 3% to 23% of the weight-adjusted maternal topiramate dosage, producing infant plasma concentrations of roughly 10% to 20% of maternal serum levels. Summary of Use during Lactation: Topiramate milk exposure can be variable (RID 3% to 23%), though most breastfed infants tolerate maternal doses up to 200 mg/day with"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Topiramate is excreted in human milk; diarrhea and somnolence have been reported in breastfed infants.",
+      "value": "Variable breast milk transfer (RID 3%–23%; infant plasma levels ~10%–20% of maternal levels), usually tolerated at maternal doses <= 200 mg/day; monitor infant for diarrhea, somnolence, irritability, and weight gain.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Topiramate — Summary of Use during Lactation",
+          "quote": "Topiramate milk exposure can be variable (RID 3% to 23%), though most breastfed infants tolerate maternal doses up to 200 mg/day without adverse effects; monitor the infant for diarrhea, somnolence, irritability, and adequate weight gain. [valproate] Relative Infant Dose (RID): Valproate is >90% protein-bound in maternal plasma, resultin"
+        },
         {
           "source_id": "fda-topiramate-label",
           "locator": "USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
@@ -239,11 +316,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "00380a45dd7d0aae33b97945b1239eb786f7329b16e3c1bbce4cc34dcfcd4967"
   },
   "adverse_effects": {
     "most_common": {

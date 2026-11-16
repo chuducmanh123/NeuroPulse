@@ -1,0 +1,69 @@
+Drugs and Lactation Database (LactMed) — NCBI Bookshelf (NBK501922) Monograph Extracts for Wave 1 Medications
+
+[acyclovir]
+Relative Infant Dose (RID): Maternal doses of 1 to 4 g/day orally or IV produce milk levels resulting in an infant dose of approximately 1% to 2% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Acyclovir passes into human breast milk in low concentrations (RID 1% to 2%) and is widely considered compatible with breastfeeding, with rare isolated case reports of self-limiting infant rash; no special waiting period is required for maternal systemic therapy.
+
+[brivaracetam]
+Relative Infant Dose (RID): Limited data indicate brivaracetam is excreted into human milk in small amounts, with an estimated relative infant dose below 5% based on single case measurements and close structural similarity to levetiracetam.
+Summary of Use during Lactation: Because published experience with brivaracetam during breastfeeding is limited, an alternate drug may be preferred especially while nursing a newborn or preterm infant; if used, monitor the breastfed infant for drowsiness, poor feeding, and adequate weight gain.
+
+[carbamazepine]
+Relative Infant Dose (RID): Breastfed infants receive approximately 3% to 5% of the weight-adjusted maternal carbamazepine dosage through human milk.
+Summary of Use during Lactation: Carbamazepine milk transfer is low (RID 3% to 5%) and serum levels in breastfed infants are usually low or undetectable; it is generally compatible with breastfeeding, though infants should be monitored for drowsiness, poor sucking, adequate weight gain, and rare transient cholestatic hepatitis or jaundice.
+
+[clobazam]
+Relative Infant Dose (RID): Combined milk transfer of clobazam and its active metabolite N-desmethylclobazam yields a relative infant dose of approximately 3% to 7% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Limited data indicate clobazam and N-desmethylclobazam enter breast milk and can accumulate slightly in young infants; monitor breastfed infants closely for sedation, poor feeding, and weight gain, and consider a safer alternative when nursing neonates.
+
+[diazepam]
+Relative Infant Dose (RID): Combined transfer of diazepam and its long-acting active metabolite desmethyldiazepam yields a relative infant dose of approximately 3% to 9% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Repeated maternal doses of diazepam during breastfeeding can cause infant accumulation of desmethyldiazepam, leading to sedation, lethargy, and poor weight gain; a single procedural dose is unlikely to harm older infants, whereas repeated dosing warrants monitoring or choosing a shorter-acting alternative.
+
+[gabapentin]
+Relative Infant Dose (RID): Maternal doses up to 2,100 mg/day yield a relative infant dose of 1.3% to 3.8% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Low concentrations of gabapentin enter breast milk (RID 1.3% to 3.8%) and breastfed infants have low plasma levels with no adverse events reported in small studies; gabapentin is generally acceptable during breastfeeding while monitoring the infant for drowsiness and normal weight gain.
+
+[lacosamide]
+Relative Infant Dose (RID): Published lactation case data report a relative infant dose of 1.8% to 3.3% of the weight-adjusted maternal lacosamide dosage.
+Summary of Use during Lactation: Although lacosamide enters breast milk in low amounts (RID 1.8% to 3.3%), clinical experience in nursing infants remains limited; monitor breastfed infants closely for drowsiness, adequate weight gain, and normal developmental milestones.
+
+[lamotrigine]
+Relative Infant Dose (RID): Weight-adjusted infant exposure ranges from 9% to 18% of the maternal lamotrigine dosage, and infant plasma concentrations can reach 30% to 50% of maternal serum levels due to immature neonatal glucuronidation.
+Summary of Use during Lactation: Lamotrigine passes into breast milk in relatively high amounts (RID 9% to 18%) and requires close infant monitoring for rash, apnea, drowsiness, poor sucking, and poor weight gain; always taper elevated pregnancy doses promptly postpartum to prevent neonatal toxicity.
+
+[levetiracetam-oral]
+Relative Infant Dose (RID): Maternal oral levetiracetam produces a relative infant dose of 3.4% to 7.8% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Despite moderate milk concentrations (RID 3.4% to 7.8%), breastfed infants clear levetiracetam efficiently and maintain low serum levels (~10% to 15% of maternal levels); levetiracetam is compatible with breastfeeding with routine monitoring for somnolence and feeding adequacy.
+
+[midazolam]
+Relative Infant Dose (RID): Single intravenous maternal doses of midazolam result in a relative infant dose of 0.1% to 0.6% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Following a single intravenous dose of midazolam for procedures or acute seizure control, milk concentrations are negligible by 4 hours and no interruption of breastfeeding is required for healthy term infants; with repeated ICU infusions, monitor the infant for sedation.
+
+[oxcarbazepine]
+Relative Infant Dose (RID): Milk transfer of oxcarbazepine and its active MHD metabolite results in a low relative infant dose of 0.5% to 1.5% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Oxcarbazepine and MHD appear in very small quantities in human milk (RID 0.5% to 1.5%) and infant serum concentrations are minimal; monitor breastfed infants for drowsiness and adequate weight gain, especially when initiating therapy or nursing newborns.
+
+[perampanel]
+Relative Infant Dose (RID): Pharmacokinetic modeling based on high maternal plasma protein binding (~95%) estimates a low relative infant dose of approximately 1% to 3% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Clinical data on perampanel in human milk are lacking and its prolonged elimination half-life raises theoretical accumulation risk in neonates; if breastfeeding is continued, monitor the infant closely for somnolence, irritability, and poor feeding.
+
+[phenobarbital]
+Relative Infant Dose (RID): Breastfed infants receive approximately 15% to 30% of the weight-adjusted maternal phenobarbital dosage, and slow neonatal clearance can produce infant serum concentrations reaching 50% to 100% of maternal levels.
+Summary of Use during Lactation: Phenobarbital has a high relative infant dose (15% to 30%) and accumulates significantly in neonates, risking profound sedation, poor sucking, and withdrawal upon abrupt weaning; use caution, monitor infant clinically (and serum levels if symptomatic), or avoid prolonged high-dose exposure when safer options exist.
+
+[phenytoin]
+Relative Infant Dose (RID): Breastfed infants receive 0.5% to 6% of the weight-adjusted maternal phenytoin dosage through breast milk.
+Summary of Use during Lactation: Phenytoin enters breast milk in low quantities (RID 0.5% to 6%) and rarely causes adverse effects in breastfed infants when maternal serum concentrations are kept within the therapeutic range; monitor newborn for sedation, poor sucking, and rare methemoglobinemia if combined with phenobarbital.
+
+[pregabalin]
+Relative Infant Dose (RID): Human milk pharmacokinetic data indicate an average relative infant dose of approximately 7% of the weight-adjusted maternal pregabalin dosage.
+Summary of Use during Lactation: While the FDA label advises against breastfeeding due to animal rodent tumorigenicity signals, human milk exposure is moderate (RID ~7%) and small clinical observations have not reported acute infant toxicity; if maternal therapy is essential, monitor infant for drowsiness and poor weight gain.
+
+[topiramate]
+Relative Infant Dose (RID): Breastfed infants receive 3% to 23% of the weight-adjusted maternal topiramate dosage, producing infant plasma concentrations of roughly 10% to 20% of maternal serum levels.
+Summary of Use during Lactation: Topiramate milk exposure can be variable (RID 3% to 23%), though most breastfed infants tolerate maternal doses up to 200 mg/day without adverse effects; monitor the infant for diarrhea, somnolence, irritability, and adequate weight gain.
+
+[valproate]
+Relative Infant Dose (RID): Valproate is >90% protein-bound in maternal plasma, resulting in a very low relative infant dose of 0.5% to 2.7% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Breast milk levels of valproate are very low (RID 0.5% to 2.7%) and infant serum concentrations are generally low; however, because of rare idiosyncratic hepatotoxicity and thrombocytopenia risk in infants, monitor breastfed babies for jaundice, unusual bruising, and sedation.

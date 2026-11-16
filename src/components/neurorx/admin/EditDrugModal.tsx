@@ -2404,7 +2404,7 @@ export function EditDrugModal({
               <div className="p-4 rounded-2xl border border-rose-200/80 dark:border-rose-900/40 bg-rose-50/30 dark:bg-rose-950/10 space-y-3.5">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-extrabold uppercase tracking-wider text-rose-700 dark:text-rose-400">
-                    Stage 2 · Pregnancy Safety, PK &amp; Malformations
+                    Stage 2 · Pregnancy Safety, Pharmacokinetics &amp; Malformations
                   </span>
                   <span className="text-[11px] text-slate-500 dark:text-slate-400">
                     Core classification &amp; registry data
@@ -2430,7 +2430,7 @@ export function EditDrugModal({
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-1.5">
                     <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
-                      Pregnancy PK Changes &amp; TDM Monitoring
+                      Pregnancy Pharmacokinetics &amp; Therapeutic Drug Monitoring
                     </label>
                     <label className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400 cursor-pointer select-none">
                       <input

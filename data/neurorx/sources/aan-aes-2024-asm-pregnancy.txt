@@ -1,0 +1,103 @@
+Teratogenesis, Perinatal, and Neurodevelopmental Outcomes After In Utero Exposure to Antiseizure Medications: Practice Guideline Update of the AAN, AES, and SMFM (Neurology 2024; doi:10.1212/WNL.0000000000209300) and International Antiseizure Medication Pregnancy Registries
+
+=== SECTION 1: PRECONCEPTION FOLIC ACID SUPPLEMENTATION ===
+Universal ASM Guidance: Clinicians should prescribe at least 0.4 mg of folic acid daily preconception and throughout pregnancy to all people of childbearing potential taking antiseizure medications to reduce the risk of neural tube defects and support neurodevelopment.
+Folate Antagonist & High-Risk ASM Guidance (Valproate, Carbamazepine, Phenytoin, Phenobarbital): Because older enzyme-inducing ASMs and valproate impair folate metabolism or carry elevated neural tube defect risk, clinical guidelines commonly supplement 4 to 5 mg/day preconception through the first trimester while balancing against excessive supraphysiologic dosing.
+Lamotrigine Folic Acid Guidance: Lamotrigine exhibits weak dihydrofolate reductase inhibition in vitro; prescribe at least 0.4 mg/day preconception and during the first trimester (up to 4 mg/day when high neural tube defect risk factors are present).
+Newer ASM Folic Acid Guidance (Levetiracetam, Oxcarbazepine, Lacosamide, Brivaracetam, Gabapentin, Pregabalin, Topiramate, Perampanel, Clobazam): Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per standard AAN/AES/SMFM preconception care for all patients of childbearing potential receiving antiseizure medications.
+
+=== SECTION 2: CONTRACEPTIVE INTERACTIONS & FAMILY PLANNING ===
+Strong Enzyme-Inducing ASMs (Carbamazepine, Phenytoin, Phenobarbital): Strong CYP3A4 and UGT induction substantially accelerates metabolism of combined oral contraceptives, progestin-only pills, patches, vaginal rings, and subdermal implants, causing contraceptive failure; recommend copper IUD, levonorgestrel IUD, or depot medroxyprogesterone acetate plus barrier protection.
+Oxcarbazepine Contraceptive Guidance: Oxcarbazepine induces CYP3A4 and decreases plasma ethinylestradiol and levonorgestrel concentrations by approximately 47%; advise non-hormonal or intrauterine contraception (copper IUD or levonorgestrel IUD) or supplemental barrier methods.
+Topiramate Contraceptive Guidance: Topiramate demonstrates dose-dependent reduction in ethinylestradiol exposure (18% to 30% reduction at doses >= 200 mg/day); patients taking >= 200 mg/day should use a non-hormonal or intrauterine contraceptive method or reliable barrier backup.
+Perampanel Contraceptive Guidance: Perampanel at 12 mg/day decreases levonorgestrel exposure by approximately 40%, reducing efficacy of progestin-containing hormonal contraceptives; advise additional non-hormonal contraception or an IUD at higher doses.
+Clobazam Contraceptive Guidance: Clobazam is a weak CYP3A4 inducer that may reduce serum concentrations of hormonal contraceptives metabolized by CYP3A4; recommend adding a non-hormonal barrier method or using an intrauterine device.
+Brivaracetam Contraceptive Guidance: Brivaracetam at 400 mg/day (twice the maximum recommended daily dose) modestly reduces ethinylestradiol and levonorgestrel AUC by 22% to 27%, though standard doses up to 100 mg/day have minimal clinically significant effect on combined oral contraceptives.
+Lamotrigine Bidirectional Contraceptive Interaction: Estrogen-containing oral contraceptives induce UGT1A4 glucuronidation and reduce serum lamotrigine concentrations by approximately 50%, with rebound doubling during the pill-free week; progestin-only methods or an IUD avoid these fluctuations.
+Non-Enzyme-Inducing ASMs (Levetiracetam, Gabapentin, Pregabalin, Lacosamide): Clinical interaction studies demonstrate no clinically relevant reduction in ethinylestradiol or levonorgestrel plasma concentrations; hormonal and intrauterine contraception remain fully effective.
+Valproate Contraception & Pregnancy Prevention Mandate: Valproate does not reduce hormonal contraceptive efficacy, but strict effective contraception (highly effective user-independent methods such as IUD or implant) is mandatory in individuals of childbearing potential due to severe teratogenicity and neurodevelopmental risk.
+Diazepam & Midazolam Acute Contraception Note: Neither diazepam nor midazolam induces CYP3A4 metabolism of hormonal contraceptives, though chronic high-risk benzodiazepine exposure during planned pregnancy warrants preconception counseling and transition to safer maintenance options.
+
+=== SECTION 3: MAJOR CONGENITAL MALFORMATIONS (MCM) BY REGISTRY ===
+AAN/AES/SMFM Preferred ASMs in Pregnancy: Among antiseizure medications, lamotrigine and levetiracetam are associated with the lowest risk of major congenital malformations (approximately 2% to 3%, comparable to the general population baseline) and are preferred first-line maintenance options during pregnancy when clinically effective.
+Lamotrigine — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 2.0% of 1,562 infants exposed to lamotrigine first-trimester monotherapy.
+Lamotrigine — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformations in 2.9% (95% CI: 2.3%–3.7%) of 2,514 infants exposed to lamotrigine first-trimester monotherapy.
+Lamotrigine — UK & Ireland Register: The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 2.3% (95% CI: 1.8%–3.1%) of 1,949 infants exposed to lamotrigine first-trimester monotherapy.
+
+Levetiracetam — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 2.4% (95% CI: 1.2%–4.3%) of 450 infants exposed to levetiracetam first-trimester monotherapy.
+Levetiracetam — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformations in 2.8% (95% CI: 1.7%–4.5%) of 599 infants exposed to levetiracetam first-trimester monotherapy.
+Levetiracetam — UK & Ireland Register: The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 0.7% (95% CI: 0.2%–2.5%) of 304 infants exposed to levetiracetam first-trimester monotherapy.
+
+Oxcarbazepine — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 2.2% (95% CI: 0.6%–5.5%) of 182 infants exposed to oxcarbazepine first-trimester monotherapy.
+Oxcarbazepine — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformations in 3.0% (95% CI: 1.4%–5.4%) of 333 infants exposed to oxcarbazepine first-trimester monotherapy.
+
+Carbamazepine — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 3.0% (95% CI: 2.1%–4.2%) of 1,033 infants exposed to carbamazepine first-trimester monotherapy.
+Carbamazepine — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformations in 5.5% (95% CI: 4.5%–6.6%) of 1,957 infants exposed to carbamazepine first-trimester monotherapy, with dose-dependent risk above 700 mg/day.
+Carbamazepine — UK & Ireland Register: The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 2.6% (95% CI: 1.9%–3.5%) of 1,657 infants exposed to carbamazepine first-trimester monotherapy.
+
+Phenytoin — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 2.9% (95% CI: 1.5%–5.0%) of 416 infants exposed to phenytoin first-trimester monotherapy.
+Phenytoin — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformations in 6.4% (95% CI: 2.8%–12.2%) of 125 infants exposed to phenytoin first-trimester monotherapy.
+Phenytoin — UK & Ireland Register: The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 3.7% (95% CI: 1.3%–10.2%) of 82 infants exposed to phenytoin first-trimester monotherapy.
+
+Phenobarbital — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 5.5% (95% CI: 2.8%–9.7%) of 199 infants exposed to phenobarbital first-trimester monotherapy, including cardiac and oral cleft defects.
+Phenobarbital — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformations in 6.5% (95% CI: 4.2%–9.9%) of 294 infants exposed to phenobarbital first-trimester monotherapy, with higher risk at doses >= 80 mg/day.
+
+Topiramate — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 4.2% (95% CI: 2.4%–6.8%) of 359 infants exposed to topiramate first-trimester monotherapy, with elevated risk of oral clefts and small-for-gestational-age infants.
+Topiramate — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformations in 3.9% (95% CI: 1.5%–8.4%) of 152 infants exposed to topiramate first-trimester monotherapy.
+Topiramate — UK & Ireland Register: The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 4.3% (95% CI: 1.7%–10.7%) of 93 infants exposed to topiramate first-trimester monotherapy.
+
+Valproate — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 9.3% (95% CI: 6.4%–13.0%) of 323 infants exposed to valproate first-trimester monotherapy, including neural tube, cardiac, and craniofacial defects.
+Valproate — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformations in 10.3% (95% CI: 8.8%–12.0%) of 1,381 infants exposed to valproate first-trimester monotherapy, rising above 24% at doses > 1,450 mg/day.
+Valproate — UK & Ireland Register: The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 6.7% (95% CI: 5.5%–8.3%) of 1,220 infants exposed to valproate first-trimester monotherapy.
+
+Gabapentin — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 0.7% (95% CI: 0.02%–3.8%) of 145 infants exposed to gabapentin first-trimester monotherapy, though overall sample size remains modest.
+Pregabalin — Nordic & International Cohort Registry: Combined population-based pregnancy cohort data from the Nordic registers and international comparative studies reported major congenital malformations in 3.3% (95% CI: 2.1%–5.1%) of 471 infants exposed to pregabalin first-trimester monotherapy.
+Lacosamide — UCB Global & EURAP Cohort: Prospective pregnancy surveillance data reported major congenital malformations in 2.3% (95% CI: 0.5%–6.5%) of 131 infants exposed to lacosamide monotherapy during pregnancy, with continued registry surveillance recommended.
+Acyclovir — Acyclovir Pregnancy Registry (GSK / CDC STI Guidelines): Prospective follow-up in the Acyclovir Pregnancy Registry documented major birth defects in 3.2% (95% CI: 2.0%–5.0%) of 596 first-trimester systemic acyclovir exposures, showing no increase above the 3.2% general population rate.
+
+=== SECTION 4: PREGNANCY PHARMACOKINETICS, TDM MONITORING & POSTPARTUM MANAGEMENT ===
+Lamotrigine PK & TDM: Pregnancy substantially induces UGT1A4 glucuronidation, increasing lamotrigine clearance by 100% to 300% with serum concentrations falling markedly in the second and third trimesters; obtain pre-pregnancy baseline and check monthly serum levels to adjust dosage.
+Lamotrigine Postpartum Management: UGT1A4 activity rapidly normalizes within days after delivery, causing maternal lamotrigine serum and breast milk concentrations to surge; taper dosage back toward pre-pregnancy baseline over 10 to 14 days postpartum to prevent maternal toxicity and neonatal exposure.
+
+Levetiracetam PK & TDM: Enhanced glomerular filtration during pregnancy increases renal clearance of levetiracetam by 40% to 60%, lowering serum concentrations by up to 40%–60% in the third trimester; monitor serum concentrations monthly against pre-pregnancy baseline and increase dose if seizures or significant level drops occur.
+Levetiracetam Postpartum Management: Renal hyperfiltration resolves rapidly after delivery; if the levetiracetam dose was increased during pregnancy, taper back toward the pre-pregnancy baseline dose over 10 to 14 days postpartum while monitoring for somnolence or dizziness.
+
+Oxcarbazepine PK & TDM: Pregnancy accelerates glucuronidation of the active 10-monohydroxy derivative (MHD), decreasing serum MHD concentrations by 30% to 60% during the second and third trimesters; monitor MHD levels monthly and titrate dose as clinically indicated.
+Oxcarbazepine Postpartum Management: Maternal MHD clearance returns toward baseline over the first 2 to 3 weeks after delivery; if doses were escalated during pregnancy, step down gradually toward pre-pregnancy dosing over 10 to 14 days postpartum to avoid hyponatremia and neurotoxicity.
+
+Phenytoin PK & TDM: Total phenytoin serum concentrations decline by up to 50%–60% during pregnancy due to accelerated hepatic metabolism and decreased albumin binding, while unbound phenytoin falls by 20%–30%; monitor unbound (free) phenytoin concentrations monthly and adjust dosage accordingly.
+Phenytoin Postpartum Management: Maternal protein binding and hepatic clearance normalize within 1 to 2 weeks after delivery; restore pre-pregnancy phenytoin dosage gradually over 10 to 14 days postpartum guided by unbound serum levels to prevent acute phenytoin toxicity.
+
+Carbamazepine PK & TDM: Total carbamazepine concentrations decline modestly (10% to 20%) during pregnancy while free (unbound) carbamazepine and carbamazepine-10,11-epoxide levels remain relatively stable; monitor free carbamazepine concentrations each trimester or monthly if seizure frequency changes.
+Carbamazepine Postpartum Management: When carbamazepine dosage was increased during pregnancy, reduce gradually back toward pre-pregnancy maintenance levels over 2 to 3 weeks postpartum while monitoring for diplopia, ataxia, or sedation.
+
+Topiramate PK & TDM: Renal clearance of topiramate increases during pregnancy, reducing dose-normalized serum concentrations by 30% to 40% in the second and third trimesters; monitor serum topiramate concentrations monthly or per trimester and adjust dosage if breakthrough seizures occur.
+Topiramate Postpartum Management: Postpartum normalization of renal clearance occurs within 1 to 2 weeks after delivery; if topiramate dose was raised during pregnancy, taper cautiously toward pre-pregnancy dose over 10 to 14 days postpartum.
+
+Phenobarbital PK & TDM: Total and unbound phenobarbital concentrations decrease by up to 30% to 50% during pregnancy due to increased clearance and volume of distribution; monitor serum phenobarbital concentrations monthly and adjust cautiously, keeping fetal neurodevelopmental risk in mind.
+Phenobarbital Postpartum Management: Maternal clearance decreases after delivery; reduce dose gradually toward pre-pregnancy levels over 2 to 3 weeks postpartum if escalated in pregnancy, and monitor neonates exposed in utero for withdrawal symptoms (irritability, poor feeding) starting days 3 to 7.
+
+Valproate PK & TDM: Total valproate concentrations decrease during pregnancy owing to lower albumin binding and expanded volume of distribution, whereas unbound (free) valproate levels remain relatively stable or rise; if valproate cannot be avoided, monitor unbound serum concentrations and avoid unnecessary dose escalation.
+Valproate Postpartum Management: Serum albumin and protein binding normalize over the first 2 weeks postpartum; review unbound concentrations and maintain the lowest effective postpartum dose while transitioning when clinically feasible.
+
+Lacosamide PK & TDM: Limited MONEAD and pharmacokinetic series show lacosamide dose-normalized concentrations decrease by approximately 30% to 40% during pregnancy due to increased renal clearance; consider monthly or trimester therapeutic drug monitoring and adjust dose based on seizure control.
+Lacosamide Postpartum Management: If lacosamide dosage was increased during pregnancy, taper back toward pre-pregnancy baseline over 10 to 14 days postpartum to reduce risk of PR prolongation, dizziness, or diplopia.
+
+Brivaracetam PK & TDM: Pregnancy-specific clearance data for brivaracetam are limited, though renal excretion of metabolites and hepatic hydrolysis may slightly reduce concentrations; monitor clinical seizure control closely each trimester and check levels if available.
+Brivaracetam Postpartum Management: If brivaracetam dose was escalated during pregnancy for breakthrough seizures, reassess within 2 weeks postpartum and step down toward pre-pregnancy baseline if symptoms of somnolence or dizziness develop.
+
+Gabapentin PK & TDM: Renal clearance of gabapentin increases alongside rising glomerular filtration rate in the second and third trimesters; monitor clinical efficacy closely and adjust dosage as needed for seizure or neuropathic symptom control.
+Gabapentin Postpartum Management: Renal clearance normalizes rapidly postpartum; reduce dosage back to pre-pregnancy baseline within 1 to 2 weeks after delivery if escalated during pregnancy to avoid maternal sedation.
+
+Pregabalin PK & TDM: As pregabalin is eliminated almost exclusively unchanged by the kidneys, pregnancy-related increases in GFR may lower plasma exposure; routine TDM is not widely standardized, so monitor clinical response closely.
+Pregabalin Postpartum Management: If pregabalin dosage was increased during pregnancy, step down to pre-pregnancy dosing within 1 to 2 weeks postpartum as renal clearance returns to baseline.
+
+Perampanel PK & TDM: Pregnancy pharmacokinetic data for perampanel are sparse; because perampanel is metabolized via CYP3A4, monitor seizure frequency closely across trimesters and check serum concentrations where available.
+Perampanel Postpartum Management: Due to perampanel's prolonged half-life (~105 hours), any postpartum dose reduction back toward pre-pregnancy baseline should be performed gradually over 2 to 3 weeks while monitoring for somnolence and behavioral adverse effects.
+
+Clobazam PK & TDM: Limited pregnancy PK data exist for clobazam and its active metabolite N-desmethylclobazam; monitor seizure control closely, and avoid high third-trimester doses near delivery to minimize neonatal sedation, hypotonia, and withdrawal.
+Clobazam Postpartum Management: Reassess maternal sedation and taper any pregnancy-escalated dose gradually over 2 to 3 weeks postpartum (avoiding abrupt discontinuation), while observing the newborn for respiratory depression or withdrawal syndrome.
+
+Diazepam PK & TDM: Maternal diazepam volume of distribution increases and albumin binding decreases during pregnancy, prolonging elimination half-life; acute status epilepticus or procedural dosing requires no routine TDM, while prolonged late-pregnancy exposure risks neonatal floppy infant syndrome and withdrawal.
+Midazolam PK & TDM: Maternal midazolam clearance increases slightly during pregnancy due to CYP3A4 induction, though acute IV/IM status epilepticus or procedural bolus dosing requires standard weight-based emergency dosing without chronic TDM.
+Acyclovir PK & TDM: Oral and intravenous acyclovir pharmacokinetics are not significantly altered during pregnancy and do not require therapeutic drug monitoring; standard renal-adjusted herpes simplex encephalitis or mucocutaneous dosing applies.

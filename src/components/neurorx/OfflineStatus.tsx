@@ -171,6 +171,13 @@ export function OfflineStatus({
               ? "bg-slate-900/90 border-slate-800 text-slate-200"
               : "bg-white border-slate-200 text-slate-700";
 
+    const seqMarker = " · seq #";
+    const seqIndex = view.primaryText.indexOf(seqMarker);
+    const primaryPrefix =
+      seqIndex !== -1 ? view.primaryText.slice(0, seqIndex) : view.primaryText;
+    const primarySeqSuffix =
+      seqIndex !== -1 ? view.primaryText.slice(seqIndex) : null;
+
     return (
       <div
         role="status"
@@ -178,7 +185,7 @@ export function OfflineStatus({
         className="flex flex-wrap items-center gap-1.5"
       >
         <span
-          className={`inline-flex items-center gap-1.5 min-h-[44px] px-3 py-1.5 rounded-lg border text-xs font-semibold ${toneClass}`}
+          className={`inline-flex items-center gap-1.5 min-h-[36px] sm:min-h-[44px] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border text-[11px] sm:text-xs font-semibold whitespace-nowrap ${toneClass}`}
         >
           {view.kind === "updating" && (
             <RefreshCw className="w-3.5 h-3.5 shrink-0 animate-spin" aria-hidden="true" />
@@ -192,12 +199,17 @@ export function OfflineStatus({
           {view.kind === "ready" && (
             <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-emerald-500" aria-hidden="true" />
           )}
-          <span>{view.primaryText}</span>
+          <span>
+            {primaryPrefix}
+            {primarySeqSuffix && (
+              <span className="hidden sm:inline">{primarySeqSuffix}</span>
+            )}
+          </span>
         </span>
 
         {view.updatedBadgeText && (
           <span
-            className={`inline-flex items-center gap-1 min-h-[44px] px-2.5 py-1 rounded-lg border text-xs font-bold ${
+            className={`inline-flex items-center gap-1 min-h-[36px] sm:min-h-[44px] px-2 sm:px-2.5 py-1 rounded-lg border text-[11px] sm:text-xs font-bold whitespace-nowrap ${
               darkMode
                 ? "bg-emerald-950/60 border-emerald-700/60 text-emerald-200"
                 : "bg-emerald-50 border-emerald-200 text-emerald-800"
@@ -215,7 +227,7 @@ export function OfflineStatus({
             disabled={syncStatus === "loading" || syncStatus === "syncing"}
             aria-label="Sync drugs now"
             title="Sync drugs now"
-            className={`min-h-[44px] min-w-[44px] px-2.5 rounded-lg border text-xs font-bold inline-flex items-center justify-center transition-colors disabled:opacity-50 ${
+            className={`min-h-[36px] min-w-[36px] sm:min-h-[44px] sm:min-w-[44px] px-2 sm:px-2.5 rounded-lg border text-xs font-bold inline-flex items-center justify-center transition-colors disabled:opacity-50 ${
               darkMode
                 ? "bg-slate-900 border-slate-700 text-slate-200 hover:bg-slate-800"
                 : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"

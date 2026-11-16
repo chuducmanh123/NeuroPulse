@@ -1,16 +1,199 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Zap,
   Pill,
   CheckCircle2,
   Syringe,
   FileText,
+  ChevronDown,
+  Check,
 } from "lucide-react";
 import type { DrugRecord, Regimen } from "@/types/neurorx";
 import type { PatientParsed, RenalResolutionResult } from "@/lib/neurorx/patient";
 import { resolveRegimen } from "@/lib/neurorx/dosing";
+
+export interface IndicationDropdownProps {
+  regimens: Regimen[];
+  selectedIndex: number;
+  onSelectIndex: (index: number) => void;
+  darkMode?: boolean;
+  variant?: "card" | "compact";
+  ariaLabel?: string;
+}
+
+/**
+ * Accessible custom clinical indication selector replacing native mobile `<select>`
+ * to avoid oversized OS pickers on narrow viewports.
+ */
+export function IndicationDropdown({
+  regimens,
+  selectedIndex,
+  onSelectIndex,
+  darkMode = false,
+  variant = "card",
+  ariaLabel = "Clinical Indication",
+}: IndicationDropdownProps) {
+  const [isIndicationOpen, setIsIndicationOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  const activeIndex =
+    selectedIndex >= 0 && selectedIndex < regimens.length ? selectedIndex : 0;
+  const activeRegimen = regimens[activeIndex] || regimens[0];
+
+  useEffect(() => {
+    if (!isIndicationOpen) return;
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setIsIndicationOpen(false);
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsIndicationOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isIndicationOpen]);
+
+  if (!activeRegimen) return null;
+
+  const isCompact = variant === "compact";
+
+  return (
+    <div
+      ref={dropdownRef}
+      className={
+        isCompact
+          ? "relative w-full sm:w-auto sm:min-w-[240px] sm:max-w-[320px]"
+          : "mt-3 relative"
+      }
+    >
+      {!isCompact && (
+        <div className="flex items-center justify-between gap-2 mb-1.5">
+          <label className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+            Clinical Indication:
+          </label>
+          <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">
+            {activeIndex + 1} / {regimens.length} regimens
+          </span>
+        </div>
+      )}
+
+      <button
+        ref={triggerRef}
+        type="button"
+        aria-label={ariaLabel}
+        aria-haspopup="listbox"
+        aria-expanded={isIndicationOpen}
+        onClick={() => setIsIndicationOpen((prev) => !prev)}
+        className={
+          isCompact
+            ? `w-full text-left py-2 px-3 rounded-lg border text-xs sm:text-sm font-bold transition-all flex items-center justify-between gap-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500/25 ${
+                darkMode
+                  ? "bg-slate-800 border-slate-700 text-white hover:border-slate-600"
+                  : "bg-slate-50 border-slate-300 text-slate-900 hover:border-slate-400"
+              }`
+            : `w-full text-left p-2.5 sm:p-3 rounded-xl border shadow-xs transition-all flex items-start justify-between gap-2.5 cursor-pointer focus:outline-none focus:ring-2 focus:ring-sky-500/25 ${
+                darkMode
+                  ? "bg-slate-800 border-slate-700 text-white hover:border-slate-600"
+                  : "bg-white border-slate-300 text-slate-900 hover:border-slate-400"
+              }`
+        }
+      >
+        {isCompact ? (
+          <span className="truncate min-w-0 flex-1">
+            {activeRegimen.indication}
+            {activeRegimen.route ? ` (${activeRegimen.route})` : ""}
+          </span>
+        ) : (
+          <span className="text-xs sm:text-sm font-bold leading-snug line-clamp-2 min-w-0 flex-1">
+            {activeRegimen.indication}
+          </span>
+        )}
+        <ChevronDown
+          className={`w-4 h-4 shrink-0 text-slate-400 transition-transform duration-150 ${
+            isCompact ? "" : "mt-0.5"
+          } ${isIndicationOpen ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      {isIndicationOpen && (
+        <div
+          role="listbox"
+          aria-label={ariaLabel}
+          className={`absolute z-30 mt-1.5 max-h-64 overflow-y-auto custom-scrollbar rounded-xl border shadow-xl divide-y ${
+            isCompact
+              ? "left-0 right-0 sm:left-auto sm:min-w-[320px]"
+              : "left-0 right-0"
+          } ${
+            darkMode
+              ? "bg-slate-900 border-slate-700 divide-slate-800 shadow-black/60"
+              : "bg-white border-slate-200 divide-slate-100 shadow-slate-300/50"
+          }`}
+        >
+          {regimens.map((reg, idx) => {
+            const isSelected = idx === activeIndex;
+            return (
+              <button
+                key={reg.id || idx}
+                type="button"
+                role="option"
+                aria-selected={isSelected}
+                onClick={() => {
+                  onSelectIndex(idx);
+                  setIsIndicationOpen(false);
+                }}
+                className={`w-full text-left px-3 py-2.5 flex items-start justify-between gap-2.5 text-xs sm:text-sm leading-snug transition-colors cursor-pointer ${
+                  isSelected
+                    ? darkMode
+                      ? "bg-emerald-950/50 text-emerald-200 font-bold"
+                      : "bg-emerald-50/90 text-emerald-900 font-bold"
+                    : darkMode
+                    ? "text-slate-200 hover:bg-slate-800/70 font-medium"
+                    : "text-slate-800 hover:bg-slate-50 font-medium"
+                }`}
+              >
+                <div className="min-w-0 flex-1 space-y-1">
+                  <div className="break-words">{reg.indication}</div>
+                  {reg.route && (
+                    <span
+                      className={`inline-block px-1.5 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wide ${
+                        isSelected
+                          ? darkMode
+                            ? "bg-emerald-500/20 text-emerald-300"
+                            : "bg-emerald-100 text-emerald-800"
+                          : darkMode
+                          ? "bg-slate-800 text-slate-400"
+                          : "bg-slate-100 text-slate-600"
+                      }`}
+                    >
+                      {reg.route}
+                    </span>
+                  )}
+                </div>
+                {isSelected && (
+                  <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                )}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
 
 interface DoseCardProps {
   drug: DrugRecord;
@@ -120,26 +303,13 @@ export function DoseCard({
 
           {/* Indication selector if multiple regimens exist */}
           {regimens.length > 1 ? (
-            <div className="mt-3">
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">
-                Clinical Indication:
-              </label>
-              <select
-                value={activeIndex}
-                onChange={(e) => handleSelectIndex(parseInt(e.target.value, 10))}
-                className={`w-full text-sm sm:text-base font-bold p-2.5 sm:p-3 rounded-xl border border-slate-300 dark:border-slate-700 shadow-xs focus:outline-none focus:ring-2 focus:ring-sky-500/25 truncate ${
-                  darkMode
-                    ? "bg-slate-800 border-slate-700 text-white"
-                    : "bg-white border-slate-300 text-slate-900"
-                }`}
-              >
-                {regimens.map((reg, idx) => (
-                  <option key={reg.id} value={idx}>
-                    {reg.indication}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <IndicationDropdown
+              regimens={regimens}
+              selectedIndex={activeIndex}
+              onSelectIndex={handleSelectIndex}
+              darkMode={darkMode}
+              variant="card"
+            />
           ) : (
             <div className="mt-3">
               <span className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-0.5">

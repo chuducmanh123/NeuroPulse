@@ -287,11 +287,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "15810c8d7703567a056018940e358486f8ed0313628796ecb538a2f3b4100c98"
   },
   "adverse_effects": {
     "most_common": {
@@ -343,22 +343,24 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "value": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per AAN/AES/SMFM preconception care.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 1: Newer ASM Folic Acid Guidance",
+          "quote": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per standard AAN/AES/SMFM preconception care for all patients of childbearing potential receiving antiseizure medications. === SECTION 2: CONTRACEPTIVE INTERACTIONS & FAMILY PLANNING === Strong Enzyme-Inducing ASMs (Carbamazepine, Phenytoin, Phenoba"
+        }
+      ]
     },
     "contraception": {
-      "value": "No influence of lacosamide 400 mg/day on pharmacodynamics or pharmacokinetics of ethinylestradiol/levonorgestrel oral contraceptives (except a 20% increase in ethinylestradiol Cmax).",
+      "value": "Does not alter ethinylestradiol or levonorgestrel plasma concentrations; hormonal and intrauterine contraception remain effective.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Non-Enzyme-Inducing ASMs",
+          "quote": "Clinical interaction studies demonstrate no clinically relevant reduction in ethinylestradiol or levonorgestrel plasma concentrations; hormonal and intrauterine contraception remain fully effective. Valproate Contraception & Pregnancy Prevention Mandate: Valproate does not reduce hormonal contraceptive efficacy, but strict effective contr"
+        },
         {
           "source_id": "fda-lacosamide-label",
           "locator": "12 CLINICAL PHARMACOLOGY",
@@ -366,13 +368,60 @@
         }
       ]
     },
+    "pregnancy_pk": {
+      "value": "Limited MONEAD and PK series show dose-normalized lacosamide levels drop ~30%–40% during pregnancy due to increased renal clearance; consider monthly or trimester TDM and adjust dose based on seizure control.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Lacosamide PK & TDM",
+          "quote": "Limited MONEAD and pharmacokinetic series show lacosamide dose-normalized concentrations decrease by approximately 30% to 40% during pregnancy due to increased renal clearance; consider monthly or trimester therapeutic drug monitoring and adjust dose based on seizure control. Lacosamide Postpartum Management: If lacosamide dosage was incr"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "UCB Global & EURAP Registry Cohort",
+        "percent": 2.3,
+        "ci95": "0.5%–6.5%",
+        "n_exposed": 131,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Lacosamide — UCB Global & EURAP Cohort",
+            "quote": "Prospective pregnancy surveillance data reported major congenital malformations in 2.3% (95% CI: 0.5%–6.5%) of 131 infants exposed to lacosamide monotherapy during pregnancy, with continued registry surveillance recommended. Acyclovir — Acyclovir Pregnancy Registry (GSK / CDC STI Guidelines): Prospective follow-up in the Acyclovir Pregnan"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "If lacosamide dosage was escalated during pregnancy, taper back toward pre-pregnancy baseline over 10–14 days postpartum to reduce risk of PR prolongation, dizziness, or diplopia.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Lacosamide Postpartum Management",
+          "quote": "If lacosamide dosage was increased during pregnancy, taper back toward pre-pregnancy baseline over 10 to 14 days postpartum to reduce risk of PR prolongation, dizziness, or diplopia. Brivaracetam PK & TDM: Pregnancy-specific clearance data for brivaracetam are limited, though renal excretion of metabolites and hepatic hydrolysis may slig"
+        }
+      ]
+    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "1.8% to 3.3% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Lacosamide — Drug Levels",
+          "quote": "Published lactation case data report a relative infant dose of 1.8% to 3.3% of the weight-adjusted maternal lacosamide dosage. Summary of Use during Lactation: Although lacosamide enters breast milk in low amounts (RID 1.8% to 3.3%), clinical experience in nursing infants remains limited; monitor breastfed infants closely for drowsiness,"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Present in human milk with reports of increased sleepiness in breastfed infants; monitor exposed infants for excess sedation.",
+      "value": "Enters breast milk in low amounts (RID 1.8%–3.3%), though clinical nursing data remain limited; monitor breastfed infants closely for drowsiness, adequate weight gain, and developmental milestones.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Lacosamide — Summary of Use during Lactation",
+          "quote": "Although lacosamide enters breast milk in low amounts (RID 1.8% to 3.3%), clinical experience in nursing infants remains limited; monitor breastfed infants closely for drowsiness, adequate weight gain, and normal developmental milestones. [lamotrigine] Relative Infant Dose (RID): Weight-adjusted infant exposure ranges from 9% to 18% of t"
+        },
         {
           "source_id": "fda-lacosamide-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS",

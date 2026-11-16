@@ -126,6 +126,57 @@ export function NeuroRxShell({
   const verifiedCount = activeDrugs.filter((d) => d.effectiveStatus === "verified").length;
   const novelCount = activeDrugs.filter((d) => Boolean(d.drug.novel)).length;
 
+  const navTabs: Array<{
+    id: NeuroRxTab;
+    icon: React.ReactNode;
+    mobileLabel: string;
+    desktopLabel: string;
+    activeClass: string;
+    badge?: number;
+    badgeClass?: string;
+  }> = [
+    {
+      id: "lookup",
+      icon: <Pill className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-500 shrink-0" />,
+      mobileLabel: "Lookup & Dosing",
+      desktopLabel: "Drug Lookup & Dosing",
+      activeClass: darkMode
+        ? "bg-slate-800 text-cyan-300 border border-cyan-500/30 shadow-sm"
+        : "bg-white text-cyan-700 border border-cyan-500/30 shadow-sm",
+      badge: verifiedCount,
+      badgeClass: "bg-cyan-500/15 text-cyan-600 dark:text-cyan-400",
+    },
+    {
+      id: "interactions",
+      icon: <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 shrink-0" />,
+      mobileLabel: "Interactions",
+      desktopLabel: "Interactions",
+      activeClass: darkMode
+        ? "bg-slate-800 text-amber-300 border border-amber-500/30 shadow-sm"
+        : "bg-white text-amber-700 border border-amber-500/30 shadow-sm",
+    },
+    {
+      id: "pregnancy",
+      icon: <Baby className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-500 shrink-0" />,
+      mobileLabel: "Pregnancy & Lact.",
+      desktopLabel: "Pregnancy & Lactation",
+      activeClass: darkMode
+        ? "bg-slate-800 text-rose-300 border border-rose-500/30 shadow-sm"
+        : "bg-white text-rose-700 border border-rose-500/30 shadow-sm",
+    },
+    {
+      id: "novel",
+      icon: <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-500 shrink-0" />,
+      mobileLabel: "Novel Therapies",
+      desktopLabel: "Novel Therapies",
+      activeClass: darkMode
+        ? "bg-slate-800 text-indigo-300 border border-indigo-500/30 shadow-sm"
+        : "bg-white text-indigo-700 border border-indigo-500/30 shadow-sm",
+      badge: novelCount,
+      badgeClass: "bg-indigo-500/15 text-indigo-600 dark:text-indigo-400",
+    },
+  ];
+
   return (
     <div
       className={`min-h-screen transition-colors duration-200 ${
@@ -136,7 +187,7 @@ export function NeuroRxShell({
         {/* =========================================================================
             HEADER: Thiết kế chuẩn đồng bộ với NeuroPulse & NeuroGuide
            ========================================================================= */}
-        <header className="mb-6 pt-1 flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
+        <header className="mb-4 sm:mb-6 pt-1 flex flex-col sm:flex-row sm:items-end justify-between gap-2.5 sm:gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1 sm:mb-2">
               <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3">
@@ -181,7 +232,7 @@ export function NeuroRxShell({
             {/* Night Shift Toggle */}
             <button
               onClick={toggleDarkMode}
-              className={`min-h-[44px] px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 ${
+              className={`min-h-[36px] sm:min-h-[44px] px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 ${
                 darkMode
                   ? "bg-cyan-950/70 text-cyan-300 border-cyan-800 hover:bg-cyan-900/80"
                   : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
@@ -202,100 +253,46 @@ export function NeuroRxShell({
         </header>
 
         {/* =========================================================================
-            NAVIGATION: 4 Clean Clinical Pill Tabs
+            NAVIGATION: 4 Clean Clinical Pill Tabs (2x2 grid on mobile, row on >= sm)
            ========================================================================= */}
-        <nav className="mb-6">
+        <nav className="mb-4 sm:mb-6">
           <div
-            className={`p-1.5 rounded-2xl border transition-all flex items-center justify-start sm:justify-center overflow-x-auto gap-1 sm:gap-2 scrollbar-none ${
+            className={`p-1.5 rounded-2xl border transition-all grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-1.5 sm:gap-2 ${
               darkMode ? "bg-slate-900/90 border-slate-800" : "bg-slate-200/60 border-slate-300/70"
             }`}
             role="tablist"
           >
-            {/* Tab 1: Drug Directory */}
-            <button
-              onClick={() => handleTabChange("lookup")}
-              role="tab"
-              aria-selected={activeTab === "lookup"}
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap min-h-[44px] ${
-                activeTab === "lookup"
-                  ? darkMode
-                    ? "bg-slate-800 text-cyan-300 border border-cyan-500/30 shadow-sm"
-                    : "bg-white text-cyan-700 border border-cyan-500/30 shadow-sm"
-                  : darkMode
-                  ? "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
-              }`}
-            >
-              <Pill className="w-4 h-4 text-cyan-500" />
-              <span>💊 Drug Lookup &amp; Dosing</span>
-              {verifiedCount > 0 && (
-                <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 font-extrabold">
-                  {verifiedCount}
-                </span>
-              )}
-            </button>
-
-            {/* Tab 2: Interactions */}
-            <button
-              onClick={() => handleTabChange("interactions")}
-              role="tab"
-              aria-selected={activeTab === "interactions"}
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap min-h-[44px] ${
-                activeTab === "interactions"
-                  ? darkMode
-                    ? "bg-slate-800 text-amber-300 border border-amber-500/30 shadow-sm"
-                    : "bg-white text-amber-700 border border-amber-500/30 shadow-sm"
-                  : darkMode
-                  ? "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
-              }`}
-            >
-              <Zap className="w-4 h-4 text-amber-500" />
-              <span>⚡ Interactions</span>
-            </button>
-
-            {/* Tab 3: Pregnancy & Lactation */}
-            <button
-              onClick={() => handleTabChange("pregnancy")}
-              role="tab"
-              aria-selected={activeTab === "pregnancy"}
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap min-h-[44px] ${
-                activeTab === "pregnancy"
-                  ? darkMode
-                    ? "bg-slate-800 text-rose-300 border border-rose-500/30 shadow-sm"
-                    : "bg-white text-rose-700 border border-rose-500/30 shadow-sm"
-                  : darkMode
-                  ? "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
-              }`}
-            >
-              <Baby className="w-4 h-4 text-rose-500" />
-              <span>🤰 Pregnancy &amp; Lactation</span>
-            </button>
-
-            {/* Tab 4: Novel Therapies */}
-            <button
-              onClick={() => handleTabChange("novel")}
-              role="tab"
-              aria-selected={activeTab === "novel"}
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap min-h-[44px] ${
-                activeTab === "novel"
-                  ? darkMode
-                    ? "bg-slate-800 text-indigo-300 border border-indigo-500/30 shadow-sm"
-                    : "bg-white text-indigo-700 border border-indigo-500/30 shadow-sm"
-                  : darkMode
-                  ? "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
-              }`}
-            >
-              <Sparkles className="w-4 h-4 text-indigo-500" />
-              <span>🆕 Novel Therapies</span>
-              {novelCount > 0 && (
-                <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-extrabold">
-                  {novelCount}
-                </span>
-              )}
-            </button>
+            {navTabs.map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => handleTabChange(tab.id)}
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all min-h-[42px] sm:min-h-[44px] min-w-0 ${
+                    isActive
+                      ? tab.activeClass
+                      : darkMode
+                      ? "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 border border-transparent"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-white/50 border border-transparent"
+                  }`}
+                >
+                  {tab.icon}
+                  <span className="truncate">
+                    <span className="sm:hidden">{tab.mobileLabel}</span>
+                    <span className="hidden sm:inline">{tab.desktopLabel}</span>
+                  </span>
+                  {tab.badge !== undefined && tab.badge > 0 && (
+                    <span
+                      className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full font-extrabold shrink-0 ${tab.badgeClass}`}
+                    >
+                      {tab.badge}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </nav>
 

@@ -335,30 +335,65 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "Oral and IV acyclovir pharmacokinetics are not significantly altered during pregnancy and do not require therapeutic drug monitoring; use standard renal-adjusted dosing.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Pregnancy Pharmacokinetics — Acyclovir",
+          "quote": "Oral and intravenous acyclovir pharmacokinetics are not significantly altered during pregnancy and do not require therapeutic drug monitoring; standard renal-adjusted herpes simplex encephalitis or mucocutaneous dosing applies."
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Acyclovir Pregnancy Registry (CDC / GSK)",
+        "percent": 3.2,
+        "ci95": "2.0%–5.0%",
+        "n_exposed": 596,
+        "dose_stratum": "first-trimester systemic exposure",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Acyclovir Pregnancy Registry",
+            "quote": "Prospective follow-up in the Acyclovir Pregnancy Registry documented major birth defects in 3.2% (95% CI: 2.0%–5.0%) of 596 first-trimester systemic acyclovir exposures, showing no increase above the 3.2% general population rate. === SECTION 4: PREGNANCY PHARMACOKINETICS, TDM MONITORING & POSTPARTUM MANAGEMENT === Lamotrigine PK & TDM: P"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "1% to 2% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Acyclovir — Drug Levels",
+          "quote": "Maternal doses of 1 to 4 g/day orally or IV produce milk levels resulting in an infant dose of approximately 1% to 2% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Acyclovir passes into human breast milk in low concentrations (RID 1% to 2%) and is widely considered compatible with breastfeeding, with rare isolat"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Excreted in human milk (milk-to-plasma ratio 0.6 to 4.1, potentially exposing infant up to 0.3 mg/kg/day); administer to a nursing mother with caution and only when indicated.",
+      "value": "Passes into human breast milk in low concentrations (RID 1%–2%, milk-to-plasma ratio 0.6–4.1) and is widely considered compatible with breastfeeding; rare self-limiting infant rash reported.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Acyclovir — Summary of Use during Lactation",
+          "quote": "Acyclovir passes into human breast milk in low concentrations (RID 1% to 2%) and is widely considered compatible with breastfeeding, with rare isolated case reports of self-limiting infant rash; no special waiting period is required for maternal systemic therapy. [brivaracetam] Relative Infant Dose (RID): Limited data indicate brivaracet"
+        },
         {
           "source_id": "fda-acyclovir-label",
           "locator": "NURSING_MOTHERS",
@@ -367,11 +402,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "01ce9f31c0861fec5233a66887b8c961de27f09121fa7160011f9d97c5896878"
   },
   "adverse_effects": {
     "most_common": {

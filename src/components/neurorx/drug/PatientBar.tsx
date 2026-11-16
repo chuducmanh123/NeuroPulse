@@ -24,6 +24,7 @@ import { resolveRenalFunction } from "@/lib/neurorx/patient";
 import { resolveRegimen } from "@/lib/neurorx/dosing";
 import { toProductUnits } from "@/lib/neurorx/formulation";
 import { computeInfusion } from "@/lib/neurorx/infusion";
+import { IndicationDropdown } from "./DoseCard";
 
 interface PatientBarProps {
   drug: DrugRecord;
@@ -399,25 +400,18 @@ export function PatientBar({
 
           {/* Indication selector if multiple regimens exist */}
           {regimens.length > 1 && (
-            <div className="flex items-center gap-2 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2 w-full sm:w-auto">
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wide text-slate-700 dark:text-slate-300 whitespace-nowrap shrink-0">
                 Indication:
               </span>
-              <select
-                value={selectedRegimenIndex}
-                onChange={(e) => onSelectRegimenIndex?.(parseInt(e.target.value, 10))}
-                className={`text-xs sm:text-sm font-bold py-1.5 px-3 rounded-lg border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 w-full sm:max-w-[300px] truncate ${
-                  darkMode
-                    ? "bg-slate-800 border-slate-700 text-white"
-                    : "bg-slate-50 border-slate-300 text-slate-900"
-                }`}
-              >
-                {regimens.map((reg, idx) => (
-                  <option key={reg.id || idx} value={idx}>
-                    {reg.indication} ({reg.route})
-                  </option>
-                ))}
-              </select>
+              <IndicationDropdown
+                regimens={regimens}
+                selectedIndex={selectedRegimenIndex}
+                onSelectIndex={(idx) => onSelectRegimenIndex?.(idx)}
+                darkMode={darkMode}
+                variant="compact"
+                ariaLabel="Computed dosage indication"
+              />
             </div>
           )}
         </div>

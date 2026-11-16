@@ -193,22 +193,24 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "value": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per AAN/AES/SMFM preconception care when used for epilepsy.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 1: Newer ASM Folic Acid Guidance",
+          "quote": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per standard AAN/AES/SMFM preconception care for all patients of childbearing potential receiving antiseizure medications. === SECTION 2: CONTRACEPTIVE INTERACTIONS & FAMILY PLANNING === Strong Enzyme-Inducing ASMs (Carbamazepine, Phenytoin, Phenoba"
+        }
+      ]
     },
     "contraception": {
-      "value": "No clinically significant effect on norethindrone or ethinyl estradiol AUC and half-life when coadministered with gabapentin 400 mg TID.",
+      "value": "Does not induce CYP enzymes or alter ethinylestradiol/levonorgestrel plasma concentrations; hormonal and intrauterine contraception remain fully effective.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Non-Enzyme-Inducing ASMs",
+          "quote": "Clinical interaction studies demonstrate no clinically relevant reduction in ethinylestradiol or levonorgestrel plasma concentrations; hormonal and intrauterine contraception remain fully effective. Valproate Contraception & Pregnancy Prevention Mandate: Valproate does not reduce hormonal contraceptive efficacy, but strict effective contr"
+        },
         {
           "source_id": "fda-gabapentin-label",
           "locator": "DRUG INTERACTIONS",
@@ -216,13 +218,60 @@
         }
       ]
     },
+    "pregnancy_pk": {
+      "value": "Renal clearance increases alongside elevated GFR in the 2nd and 3rd trimesters; monitor clinical seizure or symptom control closely and adjust dose as needed.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Gabapentin PK & TDM",
+          "quote": "Renal clearance of gabapentin increases alongside rising glomerular filtration rate in the second and third trimesters; monitor clinical efficacy closely and adjust dosage as needed for seizure or neuropathic symptom control. Gabapentin Postpartum Management: Renal clearance normalizes rapidly postpartum; reduce dosage back to pre-pregnan"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "North American AED (NAAED) Pregnancy Registry",
+        "percent": 0.7,
+        "ci95": "0.02%–3.8%",
+        "n_exposed": 145,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Gabapentin — NAAED Pregnancy Registry",
+            "quote": "The North American AED Pregnancy Registry reported major congenital malformations in 0.7% (95% CI: 0.02%–3.8%) of 145 infants exposed to gabapentin first-trimester monotherapy, though overall sample size remains modest. Pregabalin — Nordic & International Cohort Registry: Combined population-based pregnancy cohort data from the Nordic reg"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Renal clearance normalizes rapidly postpartum; reduce dosage back toward pre-pregnancy baseline within 1–2 weeks after delivery if escalated during pregnancy to avoid maternal sedation.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Gabapentin Postpartum Management",
+          "quote": "Renal clearance normalizes rapidly postpartum; reduce dosage back to pre-pregnancy baseline within 1 to 2 weeks after delivery if escalated during pregnancy to avoid maternal sedation. Pregabalin PK & TDM: As pregabalin is eliminated almost exclusively unchanged by the kidneys, pregnancy-related increases in GFR may lower plasma exposure"
+        }
+      ]
+    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "1.3% to 3.8% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Gabapentin — Drug Levels",
+          "quote": "Maternal doses up to 2,100 mg/day yield a relative infant dose of 1.3% to 3.8% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Low concentrations of gabapentin enter breast milk (RID 1.3% to 3.8%) and breastfed infants have low plasma levels with no adverse events reported in small studies; gabapentin is generally"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Secreted in human milk following oral administration; effects on the breastfed infant and milk production are unknown. Weigh breastfeeding benefits against maternal clinical need.",
+      "value": "Low milk transfer (RID 1.3%–3.8%) with low infant plasma levels and no adverse events in small studies; generally acceptable during breastfeeding while monitoring infant for drowsiness and weight gain.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Gabapentin — Summary of Use during Lactation",
+          "quote": "Low concentrations of gabapentin enter breast milk (RID 1.3% to 3.8%) and breastfed infants have low plasma levels with no adverse events reported in small studies; gabapentin is generally acceptable during breastfeeding while monitoring the infant for drowsiness and normal weight gain. [lacosamide] Relative Infant Dose (RID): Published"
+        },
         {
           "source_id": "fda-gabapentin-label",
           "locator": "USE IN SPECIFIC POPULATIONS",
@@ -231,11 +280,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "9abb0dce73cc73dd6f3ead60b77e6d3e5e1fbd27c527263f1d4be39d4a9e1349"
   },
   "adverse_effects": {
     "most_common": {

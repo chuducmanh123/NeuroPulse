@@ -266,22 +266,24 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "value": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per AAN/AES/SMFM preconception care.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 1: Newer ASM Folic Acid Guidance",
+          "quote": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per standard AAN/AES/SMFM preconception care for all patients of childbearing potential receiving antiseizure medications. === SECTION 2: CONTRACEPTIVE INTERACTIONS & FAMILY PLANNING === Strong Enzyme-Inducing ASMs (Carbamazepine, Phenytoin, Phenoba"
+        }
+      ]
     },
     "contraception": {
-      "value": "Doses of 12 mg/day decrease levonorgestrel exposure by ~40%; use additional non-hormonal contraception during therapy and for 1 month after discontinuation.",
+      "value": "At 12 mg/day, perampanel decreases levonorgestrel exposure by ~40%, reducing progestin-containing contraceptive efficacy; advise additional non-hormonal contraception or an IUD at higher doses.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Perampanel Contraceptive Guidance",
+          "quote": "Perampanel at 12 mg/day decreases levonorgestrel exposure by approximately 40%, reducing efficacy of progestin-containing hormonal contraceptives; advise additional non-hormonal contraception or an IUD at higher doses. Clobazam Contraceptive Guidance: Clobazam is a weak CYP3A4 inducer that may reduce serum concentrations of hormonal contr"
+        },
         {
           "source_id": "fda-perampanel-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.3 Females and Males of Reproductive Potential",
@@ -289,13 +291,45 @@
         }
       ]
     },
+    "pregnancy_pk": {
+      "value": "Pregnancy PK data are sparse; because perampanel undergoes CYP3A4 metabolism, monitor seizure frequency closely across trimesters and check serum levels where available.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Perampanel PK & TDM",
+          "quote": "Pregnancy pharmacokinetic data for perampanel are sparse; because perampanel is metabolized via CYP3A4, monitor seizure frequency closely across trimesters and check serum concentrations where available. Perampanel Postpartum Management: Due to perampanel's prolonged half-life (~105 hours), any postpartum dose reduction back toward pre-pr"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Due to its prolonged half-life (~105 hours), taper any pregnancy-escalated dose back toward pre-pregnancy baseline gradually over 2–3 weeks postpartum while monitoring for somnolence and behavioral adverse effects.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Perampanel Postpartum Management",
+          "quote": "Due to perampanel's prolonged half-life (~105 hours), any postpartum dose reduction back toward pre-pregnancy baseline should be performed gradually over 2 to 3 weeks while monitoring for somnolence and behavioral adverse effects. Clobazam PK & TDM: Limited pregnancy PK data exist for clobazam and its active metabolite N-desmethylclobaza"
+        }
+      ]
+    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Approximately 1% to 3% of the weight-adjusted maternal dosage (estimated)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Perampanel — Drug Levels",
+          "quote": "Pharmacokinetic modeling based on high maternal plasma protein binding (~95%) estimates a low relative infant dose of approximately 1% to 3% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Clinical data on perampanel in human milk are lacking and its prolonged elimination half-life raises theoretical accumulation"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk; present in rat milk at higher concentrations than maternal plasma. Weigh developmental and health benefits against maternal clinical need.",
+      "value": "Clinical human milk data are lacking (estimated RID 1%–3% based on ~95% protein binding), and its long half-life raises theoretical neonatal accumulation risk; monitor infant closely for somnolence, irritability, and poor feeding.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Perampanel — Summary of Use during Lactation",
+          "quote": "Clinical data on perampanel in human milk are lacking and its prolonged elimination half-life raises theoretical accumulation risk in neonates; if breastfeeding is continued, monitor the infant closely for somnolence, irritability, and poor feeding. [phenobarbital] Relative Infant Dose (RID): Breastfed infants receive approximately 15% t"
+        },
         {
           "source_id": "fda-perampanel-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
@@ -304,11 +338,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "ec15a5d9fa924253096b995736c55253787d150b3032e43e1684a4bba99d5ac0"
   },
   "adverse_effects": {
     "most_common": {

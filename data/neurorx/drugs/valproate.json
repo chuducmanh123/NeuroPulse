@@ -209,11 +209,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "f4bc5b9ddd0e5f6d9f93a7d35f176439e17025d91a590e09cb8737a01a25e192"
   },
   "adverse_effects": {
     "most_common": {
@@ -330,10 +330,14 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": "Folic acid supplementation prior to conception and during pregnancy should be routinely recommended, though it is unknown whether it reduces valproate-induced neural tube defects or decreased IQ.",
+      "value": "High-risk teratogen affecting neural tube closure; supplement 4 to 5 mg/day preconception through the first trimester (though high-dose folic acid does not eliminate valproate teratogenicity or neurodevelopmental harm).",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 1: Folate Antagonist & High-Risk ASM Guidance",
+          "quote": "Because older enzyme-inducing ASMs and valproate impair folate metabolism or carry elevated neural tube defect risk, clinical guidelines commonly supplement 4 to 5 mg/day preconception through the first trimester while balancing against excessive supraphysiologic dosing. Lamotrigine Folic Acid Guidance: Lamotrigine exhibits weak dihydrofo"
+        },
         {
           "source_id": "fda-valproate-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS (8.1 Pregnancy)",
@@ -341,17 +345,14 @@
         }
       ]
     },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
-    },
     "contraception": {
-      "value": "Women of childbearing potential should use effective contraception while taking valproate; monitor valproate concentrations when used with estrogen-containing hormonal contraceptives.",
+      "value": "Does not reduce hormonal contraceptive efficacy, but highly effective user-independent contraception (e.g. IUD or implant) is mandatory in individuals of childbearing potential due to severe teratogenicity and neurodevelopmental risk.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Valproate Contraception & Pregnancy Prevention Mandate",
+          "quote": "Valproate does not reduce hormonal contraceptive efficacy, but strict effective contraception (highly effective user-independent methods such as IUD or implant) is mandatory in individuals of childbearing potential due to severe teratogenicity and neurodevelopmental risk. Diazepam & Midazolam Acute Contraception Note: Neither diazepam nor"
+        },
         {
           "source_id": "fda-valproate-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS (8.3 Females and Males of Reproductive Potential)",
@@ -364,9 +365,78 @@
         }
       ]
     },
-    "lactation_rid": {
-      "value": "1% to 10%",
+    "pregnancy_pk": {
+      "value": "Total valproate serum levels decrease due to reduced albumin binding and volume expansion while unbound (free) valproate remains stable or rises; if unavoidable, monitor unbound levels and avoid unnecessary dose escalation.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Valproate PK & TDM",
+          "quote": "Total valproate concentrations decrease during pregnancy owing to lower albumin binding and expanded volume of distribution, whereas unbound (free) valproate levels remain relatively stable or rise; if valproate cannot be avoided, monitor unbound serum concentrations and avoid unnecessary dose escalation. Valproate Postpartum Management:"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "North American AED (NAAED) Pregnancy Registry",
+        "percent": 9.3,
+        "ci95": "6.4%–13.0%",
+        "n_exposed": 323,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Valproate — NAAED Pregnancy Registry",
+            "quote": "The North American AED Pregnancy Registry reported major congenital malformations in 9.3% (95% CI: 6.4%–13.0%) of 323 infants exposed to valproate first-trimester monotherapy, including neural tube, cardiac, and craniofacial defects. Valproate — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformat"
+          }
+        ]
+      },
+      {
+        "registry": "EURAP International Pregnancy Registry",
+        "percent": 10.3,
+        "ci95": "8.8%–12.0%",
+        "n_exposed": 1381,
+        "dose_stratum": "first-trimester monotherapy (>24% if >1,450 mg/day)",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Valproate — EURAP Registry",
+            "quote": "The EURAP International Pregnancy Registry reported major congenital malformations in 10.3% (95% CI: 8.8%–12.0%) of 1,381 infants exposed to valproate first-trimester monotherapy, rising above 24% at doses > 1,450 mg/day. Valproate — UK & Ireland Register: The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malfor"
+          }
+        ]
+      },
+      {
+        "registry": "UK & Ireland Epilepsy and Pregnancy Register",
+        "percent": 6.7,
+        "ci95": "5.5%–8.3%",
+        "n_exposed": 1220,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Valproate — UK & Ireland Register",
+            "quote": "The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 6.7% (95% CI: 5.5%–8.3%) of 1,220 infants exposed to valproate first-trimester monotherapy. Gabapentin — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 0.7% (95% CI: 0.02%–3.8%) of"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Serum albumin and protein binding normalize over the first 2 weeks postpartum; check unbound valproate levels and maintain the lowest effective dose while transitioning to a safer option when clinically feasible.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Valproate Postpartum Management",
+          "quote": "Serum albumin and protein binding normalize over the first 2 weeks postpartum; review unbound concentrations and maintain the lowest effective postpartum dose while transitioning when clinically feasible. Lacosamide PK & TDM: Limited MONEAD and pharmacokinetic series show lacosamide dose-normalized concentrations decrease by approximatel"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "0.5% to 2.7% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Valproate — Drug Levels",
+          "quote": "Valproate is >90% protein-bound in maternal plasma, resulting in a very low relative infant dose of 0.5% to 2.7% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Breast milk levels of valproate are very low (RID 0.5% to 2.7%) and infant serum concentrations are generally low; however, because of rare idiosyncratic"
+        },
         {
           "source_id": "fda-valproate-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
@@ -375,8 +445,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Valproate is excreted in human milk (1% to 10% of maternal serum levels). Monitor breastfed infants for signs of liver damage including jaundice and unusual bruising or bleeding.",
+      "value": "Very low breast milk transfer (RID 0.5%–2.7%) with low infant serum concentrations; monitor breastfed babies for jaundice, unusual bruising/thrombocytopenia, and sedation due to rare idiosyncratic infant hepatotoxicity.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Valproate — Summary of Use during Lactation",
+          "quote": "Breast milk levels of valproate are very low (RID 0.5% to 2.7%) and infant serum concentrations are generally low; however, because of rare idiosyncratic hepatotoxicity and thrombocytopenia risk in infants, monitor breastfed babies for jaundice, unusual bruising, and sedation."
+        },
         {
           "source_id": "fda-valproate-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",

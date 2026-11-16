@@ -347,8 +347,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
+      "value": "preferred",
+      "note": "Recognized by AAN/AES/SMFM 2024 as having one of the lowest major congenital malformation risks (0.7%–2.8% across NAAED, EURAP, and UK registries) and preferred first-line option during pregnancy.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 3: AAN/AES/SMFM Preferred ASMs in Pregnancy",
+          "quote": "Among antiseizure medications, lamotrigine and levetiracetam are associated with the lowest risk of major congenital malformations (approximately 2% to 3%, comparable to the general population baseline) and are preferred first-line maintenance options during pregnancy when clinically effective. Lamotrigine — NAAED Preg"
+        },
         {
           "source_id": "fda-keppra-label",
           "locator": "Section 8.1 Pregnancy",
@@ -356,28 +362,24 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": "Physiological changes during pregnancy may affect levetiracetam concentration. Decrease in levetiracetam plasma concentrations has been observed during pregnancy. This decrease is more pronounced during the third trimester.",
+      "value": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per AAN/AES/SMFM preconception care for all patients on ASMs.",
       "refs": [
         {
-          "source_id": "fda-keppra-label",
-          "locator": "Section 8.1 Pregnancy - Clinical Considerations",
-          "quote": "Physiological changes during pregnancy may affect levetiracetam concentration. Decrease in levetiracetam plasma concentrations has been observed during pregnancy. This decrease is more pronounced during the third trimester."
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 1: Newer ASM Folic Acid Guidance",
+          "quote": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per standard AAN/AES/SMFM preconception care for all patients of childbearing potential receiving antiseizure medications. === SECTION 2: CONTRACEPTIVE INTERACTIONS & FAMILY PLANNING === Strong Enzyme-Inducing ASMs (Carbamazepine, Phenytoin, Phenoba"
         }
       ]
     },
-    "postpartum": {
-      "value": null,
-      "refs": []
-    },
     "contraception": {
-      "value": "Co-administration of KEPPRA (500 mg twice daily) did not influence the pharmacokinetics of oral contraceptives.",
+      "value": "Does not induce hepatic enzymes or reduce ethinylestradiol/levonorgestrel plasma concentrations; hormonal and intrauterine contraceptives remain fully effective.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Non-Enzyme-Inducing ASMs",
+          "quote": "Clinical interaction studies demonstrate no clinically relevant reduction in ethinylestradiol or levonorgestrel plasma concentrations; hormonal and intrauterine contraception remain fully effective. Valproate Contraception & Pregnancy Prevention Mandate: Valproate does not reduce hormonal contraceptive efficacy, but strict effective contr"
+        },
         {
           "source_id": "fda-keppra-label",
           "locator": "Section 12.3 Pharmacokinetics - Drug Interactions",
@@ -385,13 +387,93 @@
         }
       ]
     },
+    "pregnancy_pk": {
+      "value": "Increased glomerular filtration raises renal clearance by 40%–60% during pregnancy, lowering serum concentrations especially in the 3rd trimester; check monthly levels against baseline and increase dose as clinically indicated.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Levetiracetam PK & TDM",
+          "quote": "Enhanced glomerular filtration during pregnancy increases renal clearance of levetiracetam by 40% to 60%, lowering serum concentrations by up to 40%–60% in the third trimester; monitor serum concentrations monthly against pre-pregnancy baseline and increase dose if seizures or significant level drops occur. Levetiracetam Postpartum Manage"
+        },
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 8.1 Pregnancy - Clinical Considerations",
+          "quote": "Physiological changes during pregnancy may affect levetiracetam concentration. Decrease in levetiracetam plasma concentrations has been observed during pregnancy. This decrease is more pronounced during the third trimester."
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "North American AED (NAAED) Pregnancy Registry",
+        "percent": 2.4,
+        "ci95": "1.2%–4.3%",
+        "n_exposed": 450,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Levetiracetam — NAAED Pregnancy Registry",
+            "quote": "The North American AED Pregnancy Registry reported major congenital malformations in 2.4% (95% CI: 1.2%–4.3%) of 450 infants exposed to levetiracetam first-trimester monotherapy. Levetiracetam — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformations in 2.8% (95% CI: 1.7%–4.5%) of 599 infants exp"
+          }
+        ]
+      },
+      {
+        "registry": "EURAP International Pregnancy Registry",
+        "percent": 2.8,
+        "ci95": "1.7%–4.5%",
+        "n_exposed": 599,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Levetiracetam — EURAP Registry",
+            "quote": "The EURAP International Pregnancy Registry reported major congenital malformations in 2.8% (95% CI: 1.7%–4.5%) of 599 infants exposed to levetiracetam first-trimester monotherapy. Levetiracetam — UK & Ireland Register: The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 0.7% (95% CI: 0.2%–2.5%) of"
+          }
+        ]
+      },
+      {
+        "registry": "UK & Ireland Epilepsy and Pregnancy Register",
+        "percent": 0.7,
+        "ci95": "0.2%–2.5%",
+        "n_exposed": 304,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Levetiracetam — UK & Ireland Register",
+            "quote": "The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 0.7% (95% CI: 0.2%–2.5%) of 304 infants exposed to levetiracetam first-trimester monotherapy. Oxcarbazepine — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 2.2% (95% CI: 0.6%–5.5%)"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Renal hyperfiltration resolves rapidly after delivery; if dosage was increased during pregnancy, taper back toward pre-pregnancy baseline over 10–14 days postpartum while monitoring for somnolence or dizziness.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Levetiracetam Postpartum Management",
+          "quote": "Renal hyperfiltration resolves rapidly after delivery; if the levetiracetam dose was increased during pregnancy, taper back toward the pre-pregnancy baseline dose over 10 to 14 days postpartum while monitoring for somnolence or dizziness. Oxcarbazepine PK & TDM: Pregnancy accelerates glucuronidation of the active 10-monohydroxy derivativ"
+        }
+      ]
+    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "3.4% to 7.8% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Levetiracetam — Drug Levels",
+          "quote": "Maternal oral levetiracetam produces a relative infant dose of 3.4% to 7.8% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Despite moderate milk concentrations (RID 3.4% to 7.8%), breastfed infants clear levetiracetam efficiently and maintain low serum levels (~10% to 15% of maternal levels); levetiracetam is com"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Levetiracetam is excreted in human milk. The developmental and health benefits of breastfeeding should be considered along with the mother's clinical need for KEPPRA and any potential adverse effects on the breastfed infant.",
+      "value": "Compatible with breastfeeding; despite moderate milk transfer (RID 3.4%–7.8%), breastfed infants clear levetiracetam efficiently (infant serum ~10%–15% of maternal levels). Monitor routinely for somnolence and feeding adequacy.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Levetiracetam — Summary of Use during Lactation",
+          "quote": "Despite moderate milk concentrations (RID 3.4% to 7.8%), breastfed infants clear levetiracetam efficiently and maintain low serum levels (~10% to 15% of maternal levels); levetiracetam is compatible with breastfeeding with routine monitoring for somnolence and feeding adequacy. [midazolam] Relative Infant Dose (RID): Single intravenous m"
+        },
         {
           "source_id": "fda-keppra-label",
           "locator": "Section 8.2 Lactation",
@@ -410,7 +492,7 @@
   "verification": {
     "verified_by": "Dr. Pham Nguyen Manh (Senior Neurologist, NeuroRx Editor)",
     "verified_at": "2026-11-12",
-    "content_hash": "841eaf772655bdcc16daa15cdb097c98ae0de1469f4ee66257dbc2c694e17066"
+    "content_hash": "f322056ea4044dd7b7c09b96e147d53a873027845da5a364d0774bb4fa38168c"
   },
   "fda_interactions": {
     "value": [

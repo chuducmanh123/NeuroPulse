@@ -182,11 +182,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "6e209d9986a25f6e6ab80998adc7c7b84b129e6b779e0270bf0e4737cf3746a8"
   },
   "adverse_effects": {
     "most_common": {
@@ -234,30 +234,55 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not induce CYP3A4 metabolism of hormonal contraceptives, though chronic benzodiazepine exposure in planned pregnancy warrants preconception transition to safer maintenance options.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Diazepam & Midazolam Acute Contraception Note",
+          "quote": "Neither diazepam nor midazolam induces CYP3A4 metabolism of hormonal contraceptives, though chronic high-risk benzodiazepine exposure during planned pregnancy warrants preconception counseling and transition to safer maintenance options. === SECTION 3: MAJOR CONGENITAL MALFORMATIONS (MCM) BY REGISTRY === AAN/AES/SMFM Preferred ASMs in Pr"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Volume of distribution rises and albumin binding drops in pregnancy, prolonging elimination half-life; acute status epilepticus dosing needs no routine TDM, while prolonged late-pregnancy exposure risks neonatal sedation and withdrawal.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Diazepam PK & TDM",
+          "quote": "Maternal diazepam volume of distribution increases and albumin binding decreases during pregnancy, prolonging elimination half-life; acute status epilepticus or procedural dosing requires no routine TDM, while prolonged late-pregnancy exposure risks neonatal floppy infant syndrome and withdrawal. Midazolam PK & TDM: Maternal midazolam cle"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "3% to 9% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Diazepam — Drug Levels",
+          "quote": "Combined transfer of diazepam and its long-acting active metabolite desmethyldiazepam yields a relative infant dose of approximately 3% to 9% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Repeated maternal doses of diazepam during breastfeeding can cause infant accumulation of desmethyldiazepam, leading to sedat"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Breastfeeding is not recommended during treatment with diazepam due to excretion in breast milk and risk of sedation, poor feeding, and poor weight gain in nursing infants.",
+      "value": "Repeated maternal doses cause infant accumulation of long-acting desmethyldiazepam (RID 3%–9%), risking lethargy, sedation, and poor weight gain; a single emergency dose is unlikely to harm older infants, whereas repeated use warrants monitoring or a shorter-acting alternative.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Diazepam — Summary of Use during Lactation",
+          "quote": "Repeated maternal doses of diazepam during breastfeeding can cause infant accumulation of desmethyldiazepam, leading to sedation, lethargy, and poor weight gain; a single procedural dose is unlikely to harm older infants, whereas repeated dosing warrants monitoring or choosing a shorter-acting alternative. [gabapentin] Relative Infant Do"
+        },
         {
           "source_id": "fda-diazepam-label",
           "locator": "PRECAUTIONS",

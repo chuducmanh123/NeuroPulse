@@ -4,9 +4,11 @@ import React from "react";
 import { CheckCircle2, AlertTriangle, XCircle, Milk, ExternalLink } from "lucide-react";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import type { Source } from "@/types/neurorx";
+import { classifyLactationTier } from "@/lib/neurorx/reproductive";
 import { SourcePopover } from "../drug/SourcePopover";
 
 interface ReproBoardProps {
+  mode?: "pregnancy" | "lactation";
   drugs: DrugWithEffectiveStatus[];
   sources?: Source[];
   onSelectDrug: (drug: DrugWithEffectiveStatus) => void;
@@ -14,24 +16,30 @@ interface ReproBoardProps {
 }
 
 export function ReproBoard({
+  mode = "pregnancy",
   drugs,
   sources = [],
   onSelectDrug,
   darkMode = false,
 }: ReproBoardProps) {
-  // Categorize drugs by reproductive tier
-  const preferredDrugs = drugs.filter(
-    (d) => d.drug.reproductive?.tier?.value === "preferred"
-  );
-  const cautionDrugs = drugs.filter(
-    (d) => d.drug.reproductive?.tier?.value === "caution"
-  );
-  const avoidDrugs = drugs.filter(
-    (d) => d.drug.reproductive?.tier?.value === "avoid"
-  );
-  const unclassifiedDrugs = drugs.filter(
-    (d) => !d.drug.reproductive?.tier?.value
-  );
+  const isLactation = mode === "lactation";
+
+  // Categorize drugs by pregnancy tier or lactation tier
+  const col1Drugs = isLactation
+    ? drugs.filter((d) => classifyLactationTier(d.drug.reproductive) === "compatible")
+    : drugs.filter((d) => d.drug.reproductive?.tier?.value === "preferred");
+
+  const col2Drugs = isLactation
+    ? drugs.filter((d) => classifyLactationTier(d.drug.reproductive) === "caution")
+    : drugs.filter((d) => d.drug.reproductive?.tier?.value === "caution");
+
+  const col3Drugs = isLactation
+    ? drugs.filter((d) => classifyLactationTier(d.drug.reproductive) === "avoid")
+    : drugs.filter((d) => d.drug.reproductive?.tier?.value === "avoid");
+
+  const unclassifiedDrugs = isLactation
+    ? drugs.filter((d) => classifyLactationTier(d.drug.reproductive) === null)
+    : drugs.filter((d) => !d.drug.reproductive?.tier?.value);
 
   const renderDrugCard = (drugItem: DrugWithEffectiveStatus) => {
     const { drug, effectiveStatus } = drugItem;
@@ -60,51 +68,63 @@ export function ReproBoard({
           )}
         </div>
 
-        {/* MCM Entries per registry (strictly separate; never averaged) */}
-        {!isDraft && repro?.mcm && repro.mcm.length > 0 ? (
-          <div className="mt-2 space-y-1.5 border-t border-slate-100 dark:border-slate-800 pt-2">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-              MCM Registries:
-            </span>
-            {repro.mcm.map((entry, idx) => (
-              <div
-                key={idx}
-                className="text-[11px] text-slate-600 dark:text-slate-300 flex items-center justify-between"
-              >
-                <span>
-                  <strong>{entry.registry}:</strong> {entry.percent}%
-                  {entry.n_exposed ? ` (n=${entry.n_exposed})` : ""}
-                  {entry.dose_stratum ? ` [${entry.dose_stratum}]` : ""}
-                </span>
-                {entry.refs && entry.refs.length > 0 && (
-                  <span onClick={(e) => e.stopPropagation()}>
-                    <SourcePopover
-                      refs={entry.refs}
-                      sources={sources}
-                      label=""
-                      darkMode={darkMode}
-                    />
-                  </span>
-                )}
+        {isLactation ? (
+          <div className="space-y-1.5 border-t border-slate-100 dark:border-slate-800 pt-2">
+            {repro?.lactation_rid?.value ? (
+              <div className="text-[11px] text-amber-600 dark:text-amber-400 flex items-center gap-1 font-semibold">
+                <Milk className="w-3 h-3 shrink-0" />
+                <span>RID: {repro.lactation_rid.value}</span>
               </div>
-            ))}
+            ) : (
+              <p className="text-[11px] text-slate-400 italic">
+                No RID percentage reported in sources
+              </p>
+            )}
+            {repro?.lactation_summary?.value && (
+              <p className="text-[11px] text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
+                {repro.lactation_summary.value}
+              </p>
+            )}
           </div>
-        ) : isDraft ? (
-          <p className="text-[11px] text-slate-400 italic mt-1">
-            Registry numbers hidden (draft record)
-          </p>
         ) : (
-          <p className="text-[11px] text-slate-400 italic mt-1">
-            No registry MCM data in sources
-          </p>
-        )}
-
-        {/* Lactation Preview */}
-        {repro?.lactation_rid?.value && (
-          <div className="mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800 text-[11px] text-amber-600 dark:text-amber-400 flex items-center gap-1 font-medium">
-            <Milk className="w-3 h-3 shrink-0" />
-            <span>RID: {repro.lactation_rid.value}</span>
-          </div>
+          /* MCM Entries per registry (strictly separate; never averaged) */
+          !isDraft && repro?.mcm && repro.mcm.length > 0 ? (
+            <div className="mt-2 space-y-1.5 border-t border-slate-100 dark:border-slate-800 pt-2">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
+                MCM Registries:
+              </span>
+              {repro.mcm.map((entry, idx) => (
+                <div
+                  key={idx}
+                  className="text-[11px] text-slate-600 dark:text-slate-300 flex items-center justify-between"
+                >
+                  <span>
+                    <strong>{entry.registry}:</strong> {entry.percent}%
+                    {entry.n_exposed ? ` (n=${entry.n_exposed})` : ""}
+                    {entry.dose_stratum ? ` [${entry.dose_stratum}]` : ""}
+                  </span>
+                  {entry.refs && entry.refs.length > 0 && (
+                    <span onClick={(e) => e.stopPropagation()}>
+                      <SourcePopover
+                        refs={entry.refs}
+                        sources={sources}
+                        label=""
+                        darkMode={darkMode}
+                      />
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : isDraft ? (
+            <p className="text-[11px] text-slate-400 italic mt-1">
+              Registry numbers hidden (draft record)
+            </p>
+          ) : (
+            <p className="text-[11px] text-slate-400 italic mt-1">
+              No registry MCM data in sources
+            </p>
+          )
         )}
       </div>
     );
@@ -125,17 +145,21 @@ export function ReproBoard({
           <div className="flex items-center gap-2 mb-3 pb-2 border-b border-emerald-200/60 dark:border-emerald-900/40">
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
             <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-              🟢 Preferred ({preferredDrugs.length})
+              {isLactation
+                ? `🟢 Compatible (${col1Drugs.length})`
+                : `🟢 Preferred (${col1Drugs.length})`}
             </h3>
           </div>
 
           <div className="space-y-2.5 flex-1">
-            {preferredDrugs.length === 0 ? (
+            {col1Drugs.length === 0 ? (
               <p className="text-xs text-slate-400 italic text-center py-4">
-                No drugs classified as preferred in current sources
+                {isLactation
+                  ? "No drugs classified as compatible in current sources"
+                  : "No drugs classified as preferred in current sources"}
               </p>
             ) : (
-              preferredDrugs.map(renderDrugCard)
+              col1Drugs.map(renderDrugCard)
             )}
           </div>
         </div>
@@ -151,17 +175,17 @@ export function ReproBoard({
           <div className="flex items-center gap-2 mb-3 pb-2 border-b border-amber-200/60 dark:border-amber-900/40">
             <AlertTriangle className="w-4 h-4 text-amber-500" />
             <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-amber-700 dark:text-amber-400">
-              🟡 Caution ({cautionDrugs.length})
+              🟡 Caution ({col2Drugs.length})
             </h3>
           </div>
 
           <div className="space-y-2.5 flex-1">
-            {cautionDrugs.length === 0 ? (
+            {col2Drugs.length === 0 ? (
               <p className="text-xs text-slate-400 italic text-center py-4">
                 No drugs classified as caution in current sources
               </p>
             ) : (
-              cautionDrugs.map(renderDrugCard)
+              col2Drugs.map(renderDrugCard)
             )}
           </div>
         </div>
@@ -177,17 +201,17 @@ export function ReproBoard({
           <div className="flex items-center gap-2 mb-3 pb-2 border-b border-rose-200/60 dark:border-rose-900/40">
             <XCircle className="w-4 h-4 text-rose-500" />
             <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-rose-700 dark:text-rose-400">
-              🔴 Avoid ({avoidDrugs.length})
+              🔴 Avoid ({col3Drugs.length})
             </h3>
           </div>
 
           <div className="space-y-2.5 flex-1">
-            {avoidDrugs.length === 0 ? (
+            {col3Drugs.length === 0 ? (
               <p className="text-xs text-slate-400 italic text-center py-4">
                 No drugs classified as avoid in current sources
               </p>
             ) : (
-              avoidDrugs.map(renderDrugCard)
+              col3Drugs.map(renderDrugCard)
             )}
           </div>
         </div>

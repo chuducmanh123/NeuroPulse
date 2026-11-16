@@ -249,22 +249,24 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "value": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per AAN/AES/SMFM preconception care when used as an adjunctive antiseizure medication.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 1: Newer ASM Folic Acid Guidance",
+          "quote": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per standard AAN/AES/SMFM preconception care for all patients of childbearing potential receiving antiseizure medications. === SECTION 2: CONTRACEPTIVE INTERACTIONS & FAMILY PLANNING === Strong Enzyme-Inducing ASMs (Carbamazepine, Phenytoin, Phenoba"
+        }
+      ]
     },
     "contraception": {
-      "value": "Weak CYP3A4 inducer; effectiveness of hormonal contraceptives metabolized by CYP3A4 may be diminished. Additional non-hormonal forms of contraception are recommended.",
+      "value": "Weak CYP3A4 inducer that may lower serum levels of CYP3A4-metabolized hormonal contraceptives; recommend adding a non-hormonal barrier method or using an intrauterine device.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Clobazam Contraceptive Guidance",
+          "quote": "Clobazam is a weak CYP3A4 inducer that may reduce serum concentrations of hormonal contraceptives metabolized by CYP3A4; recommend adding a non-hormonal barrier method or using an intrauterine device. Brivaracetam Contraceptive Guidance: Brivaracetam at 400 mg/day (twice the maximum recommended daily dose) modestly reduces ethinylestradio"
+        },
         {
           "source_id": "fda-clobazam-label",
           "locator": "7.3 Effect of ONFI on Other Drugs",
@@ -272,13 +274,45 @@
         }
       ]
     },
+    "pregnancy_pk": {
+      "value": "Limited pregnancy PK data exist for clobazam and N-desmethylclobazam; monitor clinical seizure control closely and avoid high 3rd-trimester doses near delivery to minimize neonatal sedation, hypotonia, and withdrawal.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Clobazam PK & TDM",
+          "quote": "Limited pregnancy PK data exist for clobazam and its active metabolite N-desmethylclobazam; monitor seizure control closely, and avoid high third-trimester doses near delivery to minimize neonatal sedation, hypotonia, and withdrawal. Clobazam Postpartum Management: Reassess maternal sedation and taper any pregnancy-escalated dose graduall"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Reassess maternal sedation and taper any pregnancy-escalated dose gradually over 2–3 weeks postpartum (never stop abruptly), while observing the newborn for respiratory depression or withdrawal.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Clobazam Postpartum Management",
+          "quote": "Reassess maternal sedation and taper any pregnancy-escalated dose gradually over 2 to 3 weeks postpartum (avoiding abrupt discontinuation), while observing the newborn for respiratory depression or withdrawal syndrome. Diazepam PK & TDM: Maternal diazepam volume of distribution increases and albumin binding decreases during pregnancy, pr"
+        }
+      ]
+    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Approximately 3% to 7% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Clobazam — Drug Levels",
+          "quote": "Combined milk transfer of clobazam and its active metabolite N-desmethylclobazam yields a relative infant dose of approximately 3% to 7% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Limited data indicate clobazam and N-desmethylclobazam enter breast milk and can accumulate slightly in young infants; monitor bre"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Excreted in human milk; monitor breastfed infants for sedation, poor feeding, and poor weight gain.",
+      "value": "Clobazam and active N-desmethylclobazam enter breast milk (RID ~3%–7%) and can accumulate in young infants; monitor closely for sedation, poor feeding, and weight gain, and consider a safer option for neonates.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Clobazam — Summary of Use during Lactation",
+          "quote": "Limited data indicate clobazam and N-desmethylclobazam enter breast milk and can accumulate slightly in young infants; monitor breastfed infants closely for sedation, poor feeding, and weight gain, and consider a safer alternative when nursing neonates. [diazepam] Relative Infant Dose (RID): Combined transfer of diazepam and its long-act"
+        },
         {
           "source_id": "fda-clobazam-label",
           "locator": "8.2 Lactation",
@@ -287,11 +321,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "83d95f69b92debf37ddf52616d170d4e4996517c2946cfb26c168643c782e721"
   },
   "adverse_effects": {
     "most_common": {

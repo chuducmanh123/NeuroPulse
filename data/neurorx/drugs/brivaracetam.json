@@ -294,30 +294,65 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "value": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per AAN/AES/SMFM preconception care.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 1: Newer ASM Folic Acid Guidance",
+          "quote": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per standard AAN/AES/SMFM preconception care for all patients of childbearing potential receiving antiseizure medications. === SECTION 2: CONTRACEPTIVE INTERACTIONS & FAMILY PLANNING === Strong Enzyme-Inducing ASMs (Carbamazepine, Phenytoin, Phenoba"
+        }
+      ]
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Standard doses up to 100 mg/day have minimal clinically significant effect on combined oral contraceptives (high 400 mg/day dose reduces ethinylestradiol/levonorgestrel AUC by 22%–27%).",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Brivaracetam Contraceptive Guidance",
+          "quote": "Brivaracetam at 400 mg/day (twice the maximum recommended daily dose) modestly reduces ethinylestradiol and levonorgestrel AUC by 22% to 27%, though standard doses up to 100 mg/day have minimal clinically significant effect on combined oral contraceptives. Lamotrigine Bidirectional Contraceptive Interaction: Estrogen-containing oral contr"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Pregnancy-specific clearance data are limited, though renal metabolite excretion and hepatic hydrolysis may slightly lower levels; monitor seizure control closely each trimester and check levels if available.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Brivaracetam PK & TDM",
+          "quote": "Pregnancy-specific clearance data for brivaracetam are limited, though renal excretion of metabolites and hepatic hydrolysis may slightly reduce concentrations; monitor clinical seizure control closely each trimester and check levels if available. Brivaracetam Postpartum Management: If brivaracetam dose was escalated during pregnancy for"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "If dose was escalated during pregnancy for breakthrough seizures, reassess within 2 weeks postpartum and step down toward pre-pregnancy baseline if somnolence or dizziness develops.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Brivaracetam Postpartum Management",
+          "quote": "If brivaracetam dose was escalated during pregnancy for breakthrough seizures, reassess within 2 weeks postpartum and step down toward pre-pregnancy baseline if symptoms of somnolence or dizziness develop. Gabapentin PK & TDM: Renal clearance of gabapentin increases alongside rising glomerular filtration rate in the second and third trim"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Estimated < 5% of the weight-adjusted maternal dosage (limited case data)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Brivaracetam — Drug Levels",
+          "quote": "Limited data indicate brivaracetam is excreted into human milk in small amounts, with an estimated relative infant dose below 5% based on single case measurements and close structural similarity to levetiracetam. Summary of Use during Lactation: Because published experience with brivaracetam during breastfeeding is limited, an alternate d"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Present in human milk; insufficient information on effects on breastfed infant or milk production, so balance breastfeeding benefits against maternal need and potential infant risk.",
+      "value": "Limited published lactation experience (estimated RID < 5%); an alternative such as levetiracetam may be preferred for newborns/preterm infants. If used, monitor infant for drowsiness, poor feeding, and weight gain.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Brivaracetam — Summary of Use during Lactation",
+          "quote": "Because published experience with brivaracetam during breastfeeding is limited, an alternate drug may be preferred especially while nursing a newborn or preterm infant; if used, monitor the breastfed infant for drowsiness, poor feeding, and adequate weight gain. [carbamazepine] Relative Infant Dose (RID): Breastfed infants receive approx"
+        },
         {
           "source_id": "fda-brivaracetam-label",
           "locator": "USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
@@ -326,11 +361,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "89ac1a6acd4224ece64dde3e56524a51c25640dc4e2704daa7da4e711db628ec"
   },
   "adverse_effects": {
     "most_common": {

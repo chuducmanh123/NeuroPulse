@@ -116,7 +116,7 @@ export function DrugDetail({
 
       {/* 2. Tier 1 Header - Medical Blue Identity Block */}
       <div
-        className={`p-4 sm:p-7 rounded-xl sm:rounded-2xl border border-l-4 border-l-blue-500 transition-colors ${
+        className={`p-3.5 sm:p-6 rounded-xl sm:rounded-2xl border border-l-4 border-l-blue-500 transition-colors ${
           darkMode
             ? "bg-gradient-to-br from-blue-950/20 via-slate-900 to-slate-900 border-blue-900/40"
             : "bg-gradient-to-br from-blue-50/40 via-white to-indigo-50/20 border-blue-200/80 shadow-sm"
@@ -125,7 +125,7 @@ export function DrugDetail({
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 sm:gap-4">
           <div className="space-y-2 min-w-0">
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white break-words">
+              <h1 className="text-xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white break-words">
                 {tallManName}
               </h1>
 
@@ -139,13 +139,13 @@ export function DrugDetail({
 
               {/* Verification Status */}
               {isVerified ? (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs sm:text-sm font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shrink-0">
-                  <ShieldCheck className="w-4 h-4" />
+                <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shrink-0">
+                  <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   <span>Verified</span>
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs sm:text-sm font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 shrink-0">
-                  <AlertTriangle className="w-4 h-4" />
+                <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 shrink-0">
+                  <AlertTriangle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   <span>Pending verification</span>
                 </span>
               )}
@@ -155,10 +155,10 @@ export function DrugDetail({
                 <button
                   type="button"
                   onClick={() => setIsEditModalOpen(true)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs sm:text-sm font-bold border border-sky-400/50 hover:border-sky-500 bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 shadow-xs hover:bg-sky-100 dark:hover:bg-sky-900/40 transition-all cursor-pointer shrink-0"
+                  className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold border border-sky-400/50 hover:border-sky-500 bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 shadow-xs hover:bg-sky-100 dark:hover:bg-sky-900/40 transition-all cursor-pointer shrink-0"
                   title="Edit drug details and dosing regimens"
                 >
-                  <Edit className="w-4 h-4" />
+                  <Edit className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   <span>Edit</span>
                 </button>
               )}
@@ -203,7 +203,7 @@ export function DrugDetail({
             {mgSafety && (
               <div className="flex items-center gap-1.5">
                 <span
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-extrabold border ${
+                  className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs sm:text-sm font-extrabold border ${
                     mgSafety === "safe"
                       ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/25"
                       : mgSafety === "caution"
@@ -231,7 +231,7 @@ export function DrugDetail({
             {ngTube && (
               <div className="flex items-center gap-1.5">
                 <span
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-extrabold border ${
+                  className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs sm:text-sm font-extrabold border ${
                     ngTube.crushable
                       ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/25"
                       : "bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/25"
@@ -254,23 +254,23 @@ export function DrugDetail({
 
         {/* Black-Box Warning Banner */}
         {blackBox && blackBox.length > 0 && (
-          <div className="mt-4 p-4 sm:p-5 rounded-xl bg-rose-500/10 border-2 border-rose-500/40 text-rose-950 dark:text-rose-100 flex items-start justify-between gap-3">
-            <div className="flex items-start gap-3 min-w-0">
-              <AlertOctagon className="w-6 h-6 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
-              <div className="min-w-0 break-words">
-                <span className="font-extrabold uppercase tracking-wide block text-sm sm:text-base text-rose-800 dark:text-rose-300 mb-1.5">
+          <div className="mt-4 p-3.5 sm:p-5 rounded-xl bg-rose-500/10 border-2 border-rose-500/40 text-rose-950 dark:text-rose-100">
+            <div className="flex items-center justify-between gap-2 mb-1.5">
+              <div className="flex items-center gap-2 min-w-0">
+                <AlertOctagon className="w-4 h-4 sm:w-5 sm:h-5 text-rose-600 dark:text-rose-400 shrink-0" />
+                <span className="font-extrabold uppercase tracking-wide text-xs sm:text-sm text-rose-800 dark:text-rose-300">
                   FDA Boxed Warning:
                 </span>
-                <p className="whitespace-pre-line leading-relaxed text-sm sm:text-base font-medium">
-                  {blackBox.join("\n")}
-                </p>
               </div>
+              <SourcePopover
+                refs={drug.black_box?.refs}
+                sources={sources}
+                darkMode={darkMode}
+              />
             </div>
-            <SourcePopover
-              refs={drug.black_box?.refs}
-              sources={sources}
-              darkMode={darkMode}
-            />
+            <p className="whitespace-pre-line leading-relaxed text-xs sm:text-sm font-medium break-words">
+              {blackBox.join("\n")}
+            </p>
           </div>
         )}
       </div>

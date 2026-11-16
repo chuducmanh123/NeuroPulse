@@ -316,28 +316,24 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": "An increase in seizure frequency may occur during pregnancy because of altered levels of the active metabolite (MHD); monitor patients carefully during pregnancy and through the postpartum period.",
+      "value": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per AAN/AES/SMFM preconception care.",
       "refs": [
         {
-          "source_id": "fda-oxcarbazepine-label",
-          "locator": "8.1 Pregnancy",
-          "quote": "An increase in seizure frequency may occur during pregnancy because of altered levels of the active metabolite of oxcarbazepine. Monitor patients carefully during pregnancy and through the postpartum period [see Warnings and Precautions (5.10)] ."
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 1: Newer ASM Folic Acid Guidance",
+          "quote": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per standard AAN/AES/SMFM preconception care for all patients of childbearing potential receiving antiseizure medications. === SECTION 2: CONTRACEPTIVE INTERACTIONS & FAMILY PLANNING === Strong Enzyme-Inducing ASMs (Carbamazepine, Phenytoin, Phenoba"
         }
       ]
     },
-    "postpartum": {
-      "value": null,
-      "refs": []
-    },
     "contraception": {
-      "value": "Decreases plasma concentrations of ethinylestradiol and levonorgestrel, which may render hormonal contraceptives less effective; use additional or alternative non-hormonal birth control.",
+      "value": "Induces CYP3A4 and lowers plasma ethinylestradiol and levonorgestrel by ~47%; recommend non-hormonal or intrauterine contraception (copper or levonorgestrel IUD) or supplemental barrier protection.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Oxcarbazepine Contraceptive Guidance",
+          "quote": "Oxcarbazepine induces CYP3A4 and decreases plasma ethinylestradiol and levonorgestrel concentrations by approximately 47%; advise non-hormonal or intrauterine contraception (copper IUD or levonorgestrel IUD) or supplemental barrier methods. Topiramate Contraceptive Guidance: Topiramate demonstrates dose-dependent reduction in ethinylestra"
+        },
         {
           "source_id": "fda-oxcarbazepine-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.3 Females and Males of Reproductive Potential",
@@ -345,13 +341,79 @@
         }
       ]
     },
+    "pregnancy_pk": {
+      "value": "Pregnancy accelerates glucuronidation of active MHD metabolite, lowering serum MHD concentrations by 30%–60% in the 2nd and 3rd trimesters; monitor MHD levels monthly and adjust dose as needed.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Oxcarbazepine PK & TDM",
+          "quote": "Pregnancy accelerates glucuronidation of the active 10-monohydroxy derivative (MHD), decreasing serum MHD concentrations by 30% to 60% during the second and third trimesters; monitor MHD levels monthly and titrate dose as clinically indicated. Oxcarbazepine Postpartum Management: Maternal MHD clearance returns toward baseline over the fir"
+        },
+        {
+          "source_id": "fda-oxcarbazepine-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "An increase in seizure frequency may occur during pregnancy because of altered levels of the active metabolite of oxcarbazepine. Monitor patients carefully during pregnancy and through the postpartum period [see Warnings and Precautions (5.10)] ."
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "North American AED (NAAED) Pregnancy Registry",
+        "percent": 2.2,
+        "ci95": "0.6%–5.5%",
+        "n_exposed": 182,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Oxcarbazepine — NAAED Pregnancy Registry",
+            "quote": "The North American AED Pregnancy Registry reported major congenital malformations in 2.2% (95% CI: 0.6%–5.5%) of 182 infants exposed to oxcarbazepine first-trimester monotherapy. Oxcarbazepine — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformations in 3.0% (95% CI: 1.4%–5.4%) of 333 infants exp"
+          }
+        ]
+      },
+      {
+        "registry": "EURAP International Pregnancy Registry",
+        "percent": 3,
+        "ci95": "1.4%–5.4%",
+        "n_exposed": 333,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Oxcarbazepine — EURAP Registry",
+            "quote": "The EURAP International Pregnancy Registry reported major congenital malformations in 3.0% (95% CI: 1.4%–5.4%) of 333 infants exposed to oxcarbazepine first-trimester monotherapy. Carbamazepine — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 3.0% (95% CI: 2.1%–4.2%) of 1,03"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Maternal MHD clearance normalizes over 2–3 weeks postpartum; step down pregnancy-escalated doses gradually toward pre-pregnancy baseline over 10–14 days postpartum to avoid hyponatremia and neurotoxicity.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Oxcarbazepine Postpartum Management",
+          "quote": "Maternal MHD clearance returns toward baseline over the first 2 to 3 weeks after delivery; if doses were escalated during pregnancy, step down gradually toward pre-pregnancy dosing over 10 to 14 days postpartum to avoid hyponatremia and neurotoxicity. Phenytoin PK & TDM: Total phenytoin serum concentrations decline by up to 50%–60% durin"
+        }
+      ]
+    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.5% to 1.5% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Oxcarbazepine — Drug Levels",
+          "quote": "Milk transfer of oxcarbazepine and its active MHD metabolite results in a low relative infant dose of 0.5% to 1.5% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Oxcarbazepine and MHD appear in very small quantities in human milk (RID 0.5% to 1.5%) and infant serum concentrations are minimal; monitor breastfed in"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Oxcarbazepine and its active metabolite (MHD) are present in human milk; evaluate developmental and health benefits along with clinical need.",
+      "value": "Very low transfer into human milk (RID 0.5%–1.5%) with minimal infant serum concentrations; monitor breastfed infants for drowsiness and adequate weight gain.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Oxcarbazepine — Summary of Use during Lactation",
+          "quote": "Oxcarbazepine and MHD appear in very small quantities in human milk (RID 0.5% to 1.5%) and infant serum concentrations are minimal; monitor breastfed infants for drowsiness and adequate weight gain, especially when initiating therapy or nursing newborns. [perampanel] Relative Infant Dose (RID): Pharmacokinetic modeling based on high mate"
+        },
         {
           "source_id": "fda-oxcarbazepine-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
@@ -360,11 +422,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "997fcf6f3a20cb37be45d6a494aa2c8cb58cf58fd487e9b496196917e10fdf9b"
   },
   "adverse_effects": {
     "most_common": {

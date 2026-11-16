@@ -212,28 +212,24 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": "Rapid transplacental passage (30 to 60 minutes) with accumulation in fetal tissues, higher in liver and kidney than in brain and lung.",
+      "value": "Folate antagonist; high-dose folic acid supplementation (4 to 5 mg/day) is commonly recommended preconception through the first trimester to mitigate elevated neural tube defect risk.",
       "refs": [
         {
-          "source_id": "fda-carbamazepine-label",
-          "locator": "PREGNANCY",
-          "quote": "In humans, transplacental passage of carbamazepine is rapid (30 to 60 minutes), and the drug is accumulated in the fetal tissues, with higher levels found in liver and kidney than in brain and lung."
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 1: Folate Antagonist & High-Risk ASM Guidance",
+          "quote": "Because older enzyme-inducing ASMs and valproate impair folate metabolism or carry elevated neural tube defect risk, clinical guidelines commonly supplement 4 to 5 mg/day preconception through the first trimester while balancing against excessive supraphysiologic dosing. Lamotrigine Folic Acid Guidance: Lamotrigine exhibits weak dihydrofo"
         }
       ]
     },
-    "postpartum": {
-      "value": null,
-      "refs": []
-    },
     "contraception": {
-      "value": "Decreases plasma concentrations of oral and other hormonal contraceptives; breakthrough bleeding and unintended pregnancies reported, so consider alternative or back-up contraception.",
+      "value": "Strong CYP3A4/UGT inducer causing hormonal contraceptive failure (oral pills, patches, rings, implants); recommend copper IUD, levonorgestrel IUD, or depot medroxyprogesterone plus barrier backup.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Strong Enzyme-Inducing ASMs",
+          "quote": "Strong CYP3A4 and UGT induction substantially accelerates metabolism of combined oral contraceptives, progestin-only pills, patches, vaginal rings, and subdermal implants, causing contraceptive failure; recommend copper IUD, levonorgestrel IUD, or depot medroxyprogesterone acetate plus barrier protection. Oxcarbazepine Contraceptive Guida"
+        },
         {
           "source_id": "fda-carbamazepine-label",
           "locator": "DRUG INTERACTIONS",
@@ -241,13 +237,93 @@
         }
       ]
     },
+    "pregnancy_pk": {
+      "value": "Total carbamazepine levels fall modestly (10%–20%) during pregnancy while free carbamazepine and active epoxide levels remain relatively stable; monitor free carbamazepine levels each trimester or monthly if seizures change.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Carbamazepine PK & TDM",
+          "quote": "Total carbamazepine concentrations decline modestly (10% to 20%) during pregnancy while free (unbound) carbamazepine and carbamazepine-10,11-epoxide levels remain relatively stable; monitor free carbamazepine concentrations each trimester or monthly if seizure frequency changes. Carbamazepine Postpartum Management: When carbamazepine dosa"
+        },
+        {
+          "source_id": "fda-carbamazepine-label",
+          "locator": "PREGNANCY",
+          "quote": "In humans, transplacental passage of carbamazepine is rapid (30 to 60 minutes), and the drug is accumulated in the fetal tissues, with higher levels found in liver and kidney than in brain and lung."
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "North American AED (NAAED) Pregnancy Registry",
+        "percent": 3,
+        "ci95": "2.1%–4.2%",
+        "n_exposed": 1033,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Carbamazepine — NAAED Pregnancy Registry",
+            "quote": "The North American AED Pregnancy Registry reported major congenital malformations in 3.0% (95% CI: 2.1%–4.2%) of 1,033 infants exposed to carbamazepine first-trimester monotherapy. Carbamazepine — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformations in 5.5% (95% CI: 4.5%–6.6%) of 1,957 infants"
+          }
+        ]
+      },
+      {
+        "registry": "EURAP International Pregnancy Registry",
+        "percent": 5.5,
+        "ci95": "4.5%–6.6%",
+        "n_exposed": 1957,
+        "dose_stratum": "first-trimester monotherapy (dose-dependent >700 mg/day)",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Carbamazepine — EURAP Registry",
+            "quote": "The EURAP International Pregnancy Registry reported major congenital malformations in 5.5% (95% CI: 4.5%–6.6%) of 1,957 infants exposed to carbamazepine first-trimester monotherapy, with dose-dependent risk above 700 mg/day. Carbamazepine — UK & Ireland Register: The UK and Ireland Epilepsy and Pregnancy Register reported major congenital"
+          }
+        ]
+      },
+      {
+        "registry": "UK & Ireland Epilepsy and Pregnancy Register",
+        "percent": 2.6,
+        "ci95": "1.9%–3.5%",
+        "n_exposed": 1657,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Carbamazepine — UK & Ireland Register",
+            "quote": "The UK and Ireland Epilepsy and Pregnancy Register reported major congenital malformations in 2.6% (95% CI: 1.9%–3.5%) of 1,657 infants exposed to carbamazepine first-trimester monotherapy. Phenytoin — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformations in 2.9% (95% CI: 1.5%–5.0%) o"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "If dosage was increased during pregnancy, taper gradually back toward pre-pregnancy maintenance levels over 2–3 weeks postpartum while monitoring for diplopia, ataxia, or sedation.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Carbamazepine Postpartum Management",
+          "quote": "When carbamazepine dosage was increased during pregnancy, reduce gradually back toward pre-pregnancy maintenance levels over 2 to 3 weeks postpartum while monitoring for diplopia, ataxia, or sedation. Topiramate PK & TDM: Renal clearance of topiramate increases during pregnancy, reducing dose-normalized serum concentrations by 30% to 40%"
+        }
+      ]
+    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "3% to 5% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Carbamazepine — Drug Levels",
+          "quote": "Breastfed infants receive approximately 3% to 5% of the weight-adjusted maternal carbamazepine dosage through human milk. Summary of Use during Lactation: Carbamazepine milk transfer is low (RID 3% to 5%) and serum levels in breastfed infants are usually low or undetectable; it is generally compatible with breastfeeding, though infants sh"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Carbamazepine (milk-to-plasma ratio ~0.4; estimated infant dose 2–5 mg/day) and epoxide metabolite (~0.5; 1–2 mg/day) transfer into breast milk; decide whether to discontinue nursing or drug due to potential serious infant adverse reactions.",
+      "value": "Low milk transfer (RID 3%–5%) and generally compatible with breastfeeding; monitor breastfed infants for drowsiness, poor sucking, adequate weight gain, and rare transient jaundice/cholestatic hepatitis.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Carbamazepine — Summary of Use during Lactation",
+          "quote": "Carbamazepine milk transfer is low (RID 3% to 5%) and serum levels in breastfed infants are usually low or undetectable; it is generally compatible with breastfeeding, though infants should be monitored for drowsiness, poor sucking, adequate weight gain, and rare transient cholestatic hepatitis or jaundice. [clobazam] Relative Infant Dos"
+        },
         {
           "source_id": "fda-carbamazepine-label",
           "locator": "NURSING_MOTHERS",
@@ -256,11 +332,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "1347c1d19a0aa348f6c2dd7a69030bbac15965a77abb8b9758b7a4e09bddff61"
   },
   "adverse_effects": {
     "most_common": {

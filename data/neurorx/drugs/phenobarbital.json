@@ -252,11 +252,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "39c8a182935b9dacd516f072ffab31716a7dfd136dd136a77e665f6084d74f89"
   },
   "adverse_effects": {
     "most_common": {
@@ -304,22 +304,24 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "value": "Folate antagonist; high-dose folic acid supplementation (4 to 5 mg/day) is commonly recommended preconception through the first trimester due to neural tube and cardiac malformation risk.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 1: Folate Antagonist & High-Risk ASM Guidance",
+          "quote": "Because older enzyme-inducing ASMs and valproate impair folate metabolism or carry elevated neural tube defect risk, clinical guidelines commonly supplement 4 to 5 mg/day preconception through the first trimester while balancing against excessive supraphysiologic dosing. Lamotrigine Folic Acid Guidance: Lamotrigine exhibits weak dihydrofo"
+        }
+      ]
     },
     "contraception": {
-      "value": "Phenobarbital induces hepatic enzymes metabolizing estradiol and other steroidal hormones, reducing oral contraceptive efficacy; suggest an alternate contraceptive method.",
+      "value": "Strong CYP3A4/UGT inducer that causes failure of hormonal contraceptives; recommend copper IUD, levonorgestrel IUD, or depot medroxyprogesterone plus barrier method.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Strong Enzyme-Inducing ASMs",
+          "quote": "Strong CYP3A4 and UGT induction substantially accelerates metabolism of combined oral contraceptives, progestin-only pills, patches, vaginal rings, and subdermal implants, causing contraceptive failure; recommend copper IUD, levonorgestrel IUD, or depot medroxyprogesterone acetate plus barrier protection. Oxcarbazepine Contraceptive Guida"
+        },
         {
           "source_id": "fda-phenobarbital-label",
           "locator": "7 DRUG INTERACTIONS",
@@ -327,13 +329,74 @@
         }
       ]
     },
+    "pregnancy_pk": {
+      "value": "Total and unbound phenobarbital levels drop up to 30%–50% during pregnancy due to increased clearance and distribution volume; monitor serum levels monthly and adjust cautiously given fetal neurodevelopmental risk.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Phenobarbital PK & TDM",
+          "quote": "Total and unbound phenobarbital concentrations decrease by up to 30% to 50% during pregnancy due to increased clearance and volume of distribution; monitor serum phenobarbital concentrations monthly and adjust cautiously, keeping fetal neurodevelopmental risk in mind. Phenobarbital Postpartum Management: Maternal clearance decreases after"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "North American AED (NAAED) Pregnancy Registry",
+        "percent": 5.5,
+        "ci95": "2.8%–9.7%",
+        "n_exposed": 199,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Phenobarbital — NAAED Pregnancy Registry",
+            "quote": "The North American AED Pregnancy Registry reported major congenital malformations in 5.5% (95% CI: 2.8%–9.7%) of 199 infants exposed to phenobarbital first-trimester monotherapy, including cardiac and oral cleft defects. Phenobarbital — EURAP Registry: The EURAP International Pregnancy Registry reported major congenital malformations in 6"
+          }
+        ]
+      },
+      {
+        "registry": "EURAP International Pregnancy Registry",
+        "percent": 6.5,
+        "ci95": "4.2%–9.9%",
+        "n_exposed": 294,
+        "dose_stratum": "first-trimester monotherapy (higher risk >=80 mg/day)",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Phenobarbital — EURAP Registry",
+            "quote": "The EURAP International Pregnancy Registry reported major congenital malformations in 6.5% (95% CI: 4.2%–9.9%) of 294 infants exposed to phenobarbital first-trimester monotherapy, with higher risk at doses >= 80 mg/day. Topiramate — NAAED Pregnancy Registry: The North American AED Pregnancy Registry reported major congenital malformation"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Taper any pregnancy-escalated dose gradually toward pre-pregnancy baseline over 2–3 weeks postpartum; monitor neonates exposed in utero for withdrawal (irritability, poor feeding) starting days 3–7.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Phenobarbital Postpartum Management",
+          "quote": "Maternal clearance decreases after delivery; reduce dose gradually toward pre-pregnancy levels over 2 to 3 weeks postpartum if escalated in pregnancy, and monitor neonates exposed in utero for withdrawal symptoms (irritability, poor feeding) starting days 3 to 7. Valproate PK & TDM: Total valproate concentrations decrease during pregnanc"
+        }
+      ]
+    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "15% to 30% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Phenobarbital — Drug Levels",
+          "quote": "Breastfed infants receive approximately 15% to 30% of the weight-adjusted maternal phenobarbital dosage, and slow neonatal clearance can produce infant serum concentrations reaching 50% to 100% of maternal levels. Summary of Use during Lactation: Phenobarbital has a high relative infant dose (15% to 30%) and accumulates significantly in n"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Small amounts of barbiturates are excreted in milk; exercise caution when administered to a nursing woman.",
+      "value": "High relative infant dose (RID 15%–30%) with slow neonatal elimination causing infant serum levels up to 50%–100% of maternal levels; use caution, monitor closely for profound sedation, poor sucking, and weaning withdrawal, or prefer safer alternatives.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Phenobarbital — Summary of Use during Lactation",
+          "quote": "Phenobarbital has a high relative infant dose (15% to 30%) and accumulates significantly in neonates, risking profound sedation, poor sucking, and withdrawal upon abrupt weaning; use caution, monitor infant clinically (and serum levels if symptomatic), or avoid prolonged high-dose exposure when safer options exist. [phenytoin] Relative I"
+        },
         {
           "source_id": "fda-phenobarbital-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS - Nursing Mothers",

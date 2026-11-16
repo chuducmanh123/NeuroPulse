@@ -48,10 +48,31 @@ async function main() {
 
   for (const f of files) {
     const slug = f.replace(/\.json$/, "");
-    const drug = JSON.parse(fs.readFileSync(path.join(DRUGS_DIR, f), "utf-8")) as DrugRecord;
+    const filePath = path.join(DRUGS_DIR, f);
+    const drug = JSON.parse(fs.readFileSync(filePath, "utf-8")) as DrugRecord;
+    const existing = bySlug.get(slug);
+
+    if (existing && existing.data.status === "verified" && drug.status !== "verified") {
+      drug.status = "verified";
+      const nextHash = computeRecordContentHashSync(drug);
+      drug.verification = {
+        verified_by: existing.data.verification?.verified_by ?? null,
+        verified_at: existing.data.verification?.verified_at ?? null,
+        content_hash: nextHash,
+      };
+    } else if (drug.status === "verified") {
+      const nextHash = computeRecordContentHashSync(drug);
+      if (drug.verification?.content_hash !== nextHash) {
+        drug.verification = {
+          verified_by: drug.verification?.verified_by ?? existing?.data.verification?.verified_by ?? null,
+          verified_at: drug.verification?.verified_at ?? existing?.data.verification?.verified_at ?? null,
+          content_hash: nextHash,
+        };
+      }
+    }
+
     const contentHash = computeRecordContentHashSync(drug);
     const sectionHashes = computeSectionHashes(drug);
-    const existing = bySlug.get(slug);
 
     if (!existing) {
       console.log(`  + CREATE ${slug}`);
@@ -68,7 +89,7 @@ async function main() {
     }
 
     const patchDiff = computeJsonPatch(existing.data, drug);
-    console.log(`  ~ UPDATE ${slug} (rev ${existing.rev}, ${patchDiff.length} patch ops)`);
+    console.log(`  ~ UPDATE ${slug} (rev ${existing.rev}, ${patchDiff.length} patch ops, status=${drug.status})`);
     if (apply) {
       await repo.update(
         existing.uid,
@@ -79,6 +100,7 @@ async function main() {
         patchDiff,
         "cli:push_local_to_v2"
       );
+      fs.writeFileSync(filePath, JSON.stringify(drug, null, 2) + "\n", "utf-8");
     }
     updated++;
   }

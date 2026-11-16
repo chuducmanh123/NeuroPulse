@@ -187,14 +187,34 @@
       ],
       "note": "No adequate human pregnancy studies; animal studies showed fetal structural abnormalities and developmental toxicity at >=16x human exposure (AUC), warranting caution and pregnancy registry enrollment."
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
+      "value": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per AAN/AES/SMFM preconception care when used as an antiseizure medication.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 1: Newer ASM Folic Acid Guidance",
+          "quote": "Prescribe at least 0.4 mg/day of folic acid preconception and through the first trimester per standard AAN/AES/SMFM preconception care for all patients of childbearing potential receiving antiseizure medications. === SECTION 2: CONTRACEPTIVE INTERACTIONS & FAMILY PLANNING === Strong Enzyme-Inducing ASMs (Carbamazepine, Phenytoin, Phenoba"
+        }
+      ]
+    },
+    "contraception": {
+      "value": "Does not alter ethinylestradiol or levonorgestrel pharmacokinetics; hormonal and intrauterine contraceptives remain fully effective.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 2: Non-Enzyme-Inducing ASMs",
+          "quote": "Clinical interaction studies demonstrate no clinically relevant reduction in ethinylestradiol or levonorgestrel plasma concentrations; hormonal and intrauterine contraception remain fully effective. Valproate Contraception & Pregnancy Prevention Mandate: Valproate does not reduce hormonal contraceptive efficacy, but strict effective contr"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "No adequate human studies; crosses the placenta in rats and caused fetal structural abnormalities and developmental toxicity in animal studies at >=16x human MRD AUC.",
+      "value": "Eliminated nearly exclusively unchanged by the kidneys; pregnancy-related GFR elevation may reduce plasma exposure, so monitor clinical seizure or neuropathic symptom control closely.",
       "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Pregabalin PK & TDM",
+          "quote": "As pregabalin is eliminated almost exclusively unchanged by the kidneys, pregnancy-related increases in GFR may lower plasma exposure; routine TDM is not widely standardized, so monitor clinical response closely. Pregabalin Postpartum Management: If pregabalin dosage was increased during pregnancy, step down to pre-pregnancy dosing within"
+        },
         {
           "source_id": "fda-pregabalin-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
@@ -202,17 +222,40 @@
         }
       ]
     },
+    "mcm": [
+      {
+        "registry": "Nordic & International Cohort Registry",
+        "percent": 3.3,
+        "ci95": "2.1%–5.1%",
+        "n_exposed": 471,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "aan-aes-2024-asm-pregnancy",
+            "locator": "Section 3: Pregabalin — Nordic & International Cohort Registry",
+            "quote": "Combined population-based pregnancy cohort data from the Nordic registers and international comparative studies reported major congenital malformations in 3.3% (95% CI: 2.1%–5.1%) of 471 infants exposed to pregabalin first-trimester monotherapy. Lacosamide — UCB Global & EURAP Cohort: Prospective pregnancy surveillance data reported major"
+          }
+        ]
+      }
+    ],
     "postpartum": {
-      "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "value": "If dosage was increased during pregnancy, step down toward pre-pregnancy dosing within 1–2 weeks postpartum as renal clearance returns to baseline.",
+      "refs": [
+        {
+          "source_id": "aan-aes-2024-asm-pregnancy",
+          "locator": "Section 4: Pregabalin Postpartum Management",
+          "quote": "If pregabalin dosage was increased during pregnancy, step down to pre-pregnancy dosing within 1 to 2 weeks postpartum as renal clearance returns to baseline. Perampanel PK & TDM: Pregnancy pharmacokinetic data for perampanel are sparse; because perampanel is metabolized via CYP3A4, monitor seizure frequency closely across trimesters and"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": "~7% of maternal weight-adjusted dose (milk-to-plasma ratio ~0.76)",
+      "value": "Approximately 7% of the weight-adjusted maternal dosage",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Pregabalin — Drug Levels",
+          "quote": "Human milk pharmacokinetic data indicate an average relative infant dose of approximately 7% of the weight-adjusted maternal pregabalin dosage. Summary of Use during Lactation: While the FDA label advises against breastfeeding due to animal rodent tumorigenicity signals, human milk exposure is moderate (RID ~7%) and small clinical observa"
+        },
         {
           "source_id": "fda-pregabalin-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
@@ -221,8 +264,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Excreted into human milk (~76% of maternal plasma; ~7% maternal weight-adjusted dose); breastfeeding is not recommended during treatment due to potential risk of tumorigenicity.",
+      "value": "Moderate human milk exposure (RID ~7%); while the FDA label advises against breastfeeding based on rodent tumorigenicity signals, small clinical observations show no acute infant toxicity. Monitor for sedation and poor weight gain if maternal therapy is essential.",
       "refs": [
+        {
+          "source_id": "lactmed-wave1",
+          "locator": "LactMed: Pregabalin — Summary of Use during Lactation",
+          "quote": "While the FDA label advises against breastfeeding due to animal rodent tumorigenicity signals, human milk exposure is moderate (RID ~7%) and small clinical observations have not reported acute infant toxicity; if maternal therapy is essential, monitor infant for drowsiness and poor weight gain. [topiramate] Relative Infant Dose (RID): Br"
+        },
         {
           "source_id": "fda-pregabalin-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
@@ -231,11 +279,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "1d2ba118c1a4eb28579acb07f8d8afba393b3a077c58c6e09b23fb7fc810a9dc"
   },
   "adverse_effects": {
     "most_common": {
