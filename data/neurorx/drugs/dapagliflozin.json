@@ -1,0 +1,407 @@
+{
+  "id": "dapagliflozin",
+  "generic_name": "dapagliflozin",
+  "tall_man": {
+    "value": "dapagliflozin",
+    "refs": [
+      {
+        "source_id": "fda-dapagliflozin-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "FARXIGA (dapagliflozin) is indicated: • To reduce the risk of sustained eGFR decline, end-stage kidney disease, cardiovascular (CV) death, and hospitalization for heart failure in adults with chronic kidney disease at risk of progression."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "sodium-glucose cotransporter 2 (SGLT2) inhibitor",
+    "antidiabetic",
+    "cardiorenal protective agent"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "dapa-t2dm-glycemic-po",
+      "indication": "Type 2 Diabetes Mellitus (Glycemic Control) — Adults and Pediatric Patients Aged 10 Years and Older",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-dapagliflozin-label",
+          "locator": "2.2 Recommended Dosage for Glycemic Control in Adults and Pediatric Patients Aged 10 Years and Older with Type 2 Diabetes Mellitus",
+          "quote": "In adults and pediatric patients aged 10 years and older with type 2 diabetes mellitus, the recommended starting dosage of FARXIGA is 5 mg orally once daily to improve glycemic control. For additional glycemic control, the dosage can be increased to 10 mg orally once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily (may increase to 10 mg once daily)",
+        "max_single": 10,
+        "max_daily": 10
+      },
+      "dose_text": "Starting dosage 5 mg PO once daily; may increase to 10 mg PO once daily for additional glycemic control. Not recommended for glycemic control if eGFR < 45 mL/min/1.73 m2."
+    },
+    {
+      "id": "dapa-ckd-adult-po",
+      "indication": "Chronic Kidney Disease at Risk of Progression — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-dapagliflozin-label",
+          "locator": "2.3 Recommended Dosage for Other Indications in Adults",
+          "quote": "The recommended dosage of FARXIGA is 10 mg orally once daily in adults for the following indications: • To reduce the risk of sustained eGFR decline, end-stage kidney disease (ESKD), CV death, and hospitalization for heart failure (hHF) in patients with chronic kidney disease at risk of progression."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 10,
+        "max_daily": 10
+      },
+      "dose_text": "10 mg PO once daily in adults. Not recommended in polycystic kidney disease or patients requiring/with recent immunosuppressive therapy for kidney disease."
+    },
+    {
+      "id": "dapa-hf-adult-po",
+      "indication": "Heart Failure — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-dapagliflozin-label",
+          "locator": "2.3 Recommended Dosage for Other Indications in Adults",
+          "quote": "The recommended dosage of FARXIGA is 10 mg orally once daily in adults for the following indications:"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 10,
+        "max_daily": 10
+      },
+      "dose_text": "10 mg PO once daily in adults to reduce the risk of CV death, hospitalization for heart failure, and urgent heart failure visit."
+    },
+    {
+      "id": "dapa-t2dm-cv-hhf-adult-po",
+      "indication": "Type 2 Diabetes Mellitus with Established CV Disease or Multiple CV Risk Factors (Reduction of Heart Failure Hospitalization) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-dapagliflozin-label",
+          "locator": "2.3 Recommended Dosage for Other Indications in Adults",
+          "quote": "• To reduce the risk of hHF in patients with type 2 diabetes mellitus and either established CV disease or multiple CV risk factors."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 10,
+        "max_daily": 10
+      },
+      "dose_text": "10 mg PO once daily in adults with T2DM and established CV disease or multiple CV risk factors to reduce risk of hospitalization for heart failure."
+    }
+  ],
+  "renal_basis": {
+    "value": "egfr",
+    "refs": [
+      {
+        "source_id": "fda-dapagliflozin-label",
+        "locator": "2.3 Recommended Dosage for Other Indications in Adults",
+        "quote": "The recommended dosage of FARXIGA in patients with an eGFR greater than or equal to 25 mL/min/1.73 m 2 is the same as the recommended dosage in patients with normal renal function. • Initiation with FARXIGA is not recommended in patients with an eGFR less than 25 mL/min/1.73 m 2 ."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Assess renal function prior to initiation. For glycemic control in T2DM, not recommended if eGFR < 45 mL/min/1.73 m2. For CKD, HF, and hHF risk reduction, no adjustment for eGFR >= 25 mL/min/1.73 m2; initiation not recommended if eGFR < 25 mL/min/1.73 m2 (may continue 10 mg daily if eGFR falls below 25 during treatment).",
+    "renal_basis": {
+      "value": "egfr",
+      "refs": [
+        {
+          "source_id": "fda-dapagliflozin-label",
+          "locator": "2.3 Recommended Dosage for Other Indications in Adults",
+          "quote": "The recommended dosage of FARXIGA in patients with an eGFR greater than or equal to 25 mL/min/1.73 m 2 is the same as the recommended dosage in patients with normal renal function. • Initiation with FARXIGA is not recommended in patients with an eGFR less than 25 mL/min/1.73 m 2 ."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 45,
+        "max": null,
+        "dose_text": "No dose adjustment required for any indication (5 mg or 10 mg once daily).",
+        "refs": [
+          {
+            "source_id": "fda-dapagliflozin-label",
+            "locator": "2.2 Recommended Dosage for Glycemic Control",
+            "quote": "The recommended dosage for FARXIGA in patients with an eGFR greater than or equal to 45 mL/min/1.73 m 2 is the same as the recommended dosage in patients with normal renal function."
+          }
+        ]
+      },
+      {
+        "min": 25,
+        "max": 45,
+        "dose_text": "Not recommended for glycemic control in T2DM (likely ineffective). For CKD, HF, or hHF reduction in T2DM: 10 mg once daily.",
+        "dose": {
+          "kind": "fixed",
+          "amount": 10,
+          "unit": "mg",
+          "frequency": "once daily (for CKD, HF, or hHF reduction only)"
+        },
+        "refs": [
+          {
+            "source_id": "fda-dapagliflozin-label",
+            "locator": "2.2 Recommended Dosage for Glycemic Control",
+            "quote": "FARXIGA is not recommended for use to improve glycemic control in patients with type 2 diabetes mellitus with an eGFR less than 45 mL/min/1.73 m 2 . FARXIGA is likely to be ineffective to improve glycemic control in this setting based upon its mechanism of action."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 25,
+        "dose_text": "Initiation not recommended when eGFR < 25 mL/min/1.73 m2. If eGFR falls below 25 while already on therapy, may continue 10 mg once daily to reduce risk of eGFR decline, ESKD, CV death, and hHF.",
+        "refs": [
+          {
+            "source_id": "fda-dapagliflozin-label",
+            "locator": "2.3 Recommended Dosage for Other Indications in Adults",
+            "quote": "If the eGFR falls below 25 mL/min/1.73 m 2 while receiving treatment with FARXIGA, patients may continue FARXIGA 10 mg orally once daily to reduce the risk of eGFR decline, ESKD, CV death and hHF."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "The impact of hemodialysis on dapagliflozin exposure is not known; removal by hemodialysis has not been studied.",
+      "refs": [
+        {
+          "source_id": "fda-dapagliflozin-label",
+          "locator": "10 OVERDOSAGE",
+          "quote": "The removal of dapagliflozin by hemodialysis has not been studied."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-dapagliflozin-label",
+        "locator": "8.6 Renal Impairment",
+        "quote": "Patients with diabetes and renal impairment using FARXIGA may be more likely to experience hypotension and may be at higher risk for acute kidney injury secondary to volume depletion."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "No dose adjustment is recommended for patients with mild, moderate, or severe hepatic impairment; however, benefit-risk in severe hepatic impairment should be individually assessed since safety and efficacy have not been specifically studied in that population.",
+    "refs": [
+      {
+        "source_id": "fda-dapagliflozin-label",
+        "locator": "8.7 Hepatic Impairment",
+        "quote": "No dose adjustment is recommended for patients with mild, moderate, or severe hepatic impairment. However, the benefit-risk for the use of dapagliflozin in patients with severe hepatic impairment should be individually assessed since the safety and efficacy of dapagliflozin have not been specifically studied in this population [see Clinical Pharmacology (12.3) ] ."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-dapagliflozin-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Dapagliflozin is an inhibitor of SGLT2. By inhibiting SGLT2, dapagliflozin reduces reabsorption of filtered glucose and thereby promotes urinary glucose excretion."
+      }
+    ],
+    "note": "SGLT2 inhibitor; no neuromuscular junction blocking activity."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Film-coated 5 mg and 10 mg oral tablets; no specific enteral tube administration instructions in label."
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Female genital mycotic infections (6.9% at 10 mg; 8.4% at 5 mg)",
+        "Nasopharyngitis (6.3% at 10 mg; 6.6% at 5 mg)",
+        "Urinary tract infections (4.3% at 10 mg; 5.7% at 5 mg)",
+        "Back pain (4.2% at 10 mg)",
+        "Increased urination (3.8% at 10 mg)",
+        "Male genital mycotic infections (2.7% at 10 mg)",
+        "Nausea (2.5% at 10 mg)",
+        "Dyslipidemia (2.5% at 10 mg)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-dapagliflozin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Most common adverse reactions (5% or greater incidence) were female genital mycotic infections, nasopharyngitis, and urinary tract infections. ( 6.1)"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Diabetic ketoacidosis (DKA) and other ketoacidosis (withhold at least 3 days prior to surgery or prolonged fasting)",
+        "Volume depletion, hypotension, and acute kidney injury",
+        "Urosepsis and pyelonephritis",
+        "Necrotizing fasciitis of the perineum (Fournier's gangrene)",
+        "Hypoglycemia when combined with insulin or insulin secretagogues",
+        "Serious hypersensitivity reactions (anaphylaxis, angioedema)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-dapagliflozin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "• Diabetic Ketoacidosis in Patients with Type 1 Diabetes Mellitus and Other Ketoacidosis [see Warnings and Precautions (5.1) ] • Volume Depletion [see Warnings and Precautions (5.2) ] • Genitourinary Infections, including Urosepsis, Pyelonephritis, Necrotizing Fasciitis of the Perineum (Fournier’s Gangrene), and Genital Mycotic Infections [see Warnings and Precautions (5.3) ]"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Selective inhibitor of sodium-glucose cotransporter 2 (SGLT2) in the proximal renal tubules, reducing reabsorption of filtered glucose and promoting urinary glucose excretion. Also reduces sodium reabsorption and increases distal sodium delivery, lowering cardiac preload/afterload and intraglomerular pressure via tubuloglomerular feedback.",
+    "refs": [
+      {
+        "source_id": "fda-dapagliflozin-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "By inhibiting SGLT2, dapagliflozin reduces reabsorption of filtered glucose and thereby promotes urinary glucose excretion. Dapagliflozin also reduces sodium reabsorption and increases the delivery of sodium to the distal tubule."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "ugt": [
+        "UGT1A9"
+      ],
+      "pgp": "substrate",
+      "qt_risk": "none"
+    },
+    "refs": [
+      {
+        "source_id": "fda-dapagliflozin-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "The metabolism of dapagliflozin is primarily mediated by UGT1A9; CYP-mediated metabolism is a minor clearance pathway in humans."
+      },
+      {
+        "source_id": "fda-dapagliflozin-label",
+        "locator": "12.3 Pharmacokinetics - Drug Interactions",
+        "quote": "Dapagliflozin is a weak substrate of the P-glycoprotein (P-gp) active transporter, and dapagliflozin 3-O-glucuronide is a substrate for the OAT3 active transporter."
+      },
+      {
+        "source_id": "fda-dapagliflozin-label",
+        "locator": "12.2 Pharmacodynamics - Cardiac Electrophysiology",
+        "quote": "Dapagliflozin was not associated with clinically meaningful prolongation of QTc interval at daily doses up to 150 mg (15-times the recommended maximum dose) in a study of healthy subjects."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Insulin or Insulin Secretagogues (e.g., sulfonylureas)",
+        "severity": "moderate",
+        "effect": "The risk of hypoglycemia may be increased when FARXIGA is used concomitantly with insulin or insulin secretagogues.",
+        "management": "Concomitant use may require lower doses of insulin or the insulin secretagogue to reduce the risk of hypoglycemia.",
+        "refs": [
+          {
+            "source_id": "fda-dapagliflozin-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "The risk of hypoglycemia may be increased when FARXIGA is used concomitantly with insulin or insulin secretagogues (e.g., sulfonylurea) [see Warnings and Precautions (5.4) ]. Intervention Concomitant use may require lower doses of insulin or the insulin secretagogue to reduce the risk of hypoglycemia."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Lithium",
+        "severity": "moderate",
+        "effect": "Concomitant use of an SGLT2 inhibitor with lithium may decrease serum lithium concentrations.",
+        "management": "Monitor serum lithium concentration more frequently during FARXIGA initiation and dosage changes.",
+        "refs": [
+          {
+            "source_id": "fda-dapagliflozin-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Concomitant use of an SGLT2 inhibitor with lithium may decrease serum lithium concentrations. Intervention Monitor serum lithium concentration more frequently during FARXIGA initiation and dosage changes."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-dapagliflozin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Table 4: Clinically Relevant Interactions with FARXIGA"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "note": "Not recommended during the second and third trimesters of pregnancy based on animal data showing irreversible renal pelvic and tubular dilatations during the period corresponding to human late 2nd/3rd trimester renal development. Limited human pregnancy data are insufficient. Not recommended while breastfeeding due to potential risk to the developing infant kidney.",
+      "refs": [
+        {
+          "source_id": "fda-dapagliflozin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Based on animal data showing adverse renal effects, FARXIGA is not recommended during the second and third trimesters of pregnancy. Limited data with FARXIGA in pregnant women are not sufficient to determine drug-associated risk for major birth defects or miscarriage."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "No human milk data; present in rat milk (milk/plasma ratio 0.49). Not recommended while breastfeeding due to potential risk to the developing human kidney during the first 2 years of life.",
+      "refs": [
+        {
+          "source_id": "fda-dapagliflozin-label",
+          "locator": "8.2 Lactation",
+          "quote": "Since human kidney maturation occurs in utero and during the first 2 years of life when lactational exposure may occur, there may be risk to the developing human kidney. Because of the potential for serious adverse reactions in breastfed infants, advise women that use of FARXIGA is not recommended while breastfeeding."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

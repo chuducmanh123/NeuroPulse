@@ -1062,5 +1062,349 @@
         "quote": "Diazepam Clinical Impact: Increased exposure of diazepam [see Clinical Pharmacology (12.3) ]. Intervention: Monitor patients for increased sedation and reduce the dose of diazepam as needed."
       }
     ]
+  },
+  {
+    "id": "clopidogrel-esomeprazole",
+    "drug_a": "clopidogrel",
+    "drug_b": "esomeprazole",
+    "severity": "major",
+    "mechanism": "Esomeprazole inhibits hepatic CYP2C19-mediated bioactivation of the prodrug clopidogrel to its active thiol metabolite, reducing P2Y12 platelet receptor inhibition.",
+    "clinical_effect": "Reduced antiplatelet efficacy of clopidogrel, increasing the risk of major adverse cardiovascular and cerebrovascular events (stent thrombosis, recurrent ischemic stroke, myocardial infarction).",
+    "management": "Avoid concomitant use of esomeprazole with clopidogrel. Switch to a PPI with minimal CYP2C19 inhibition such as pantoprazole, or use an H2-receptor antagonist if gastroprotection is required.",
+    "alternatives": [
+      {
+        "drug_id": "pantoprazole",
+        "rationale": "Pantoprazole has minimal CYP2C19 inhibition and has less effect on the antiplatelet activity of clopidogrel"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clopidogrel-label",
+        "locator": "Section 7.2 CYP2C19 Inhibitors",
+        "quote": "Avoid concomitant use of Plavix with omeprazole or esomeprazole. In clinical studies, omeprazole was shown to reduce significantly the antiplatelet activity of Plavix when given concomitantly or 12 hours apart. A similar reduction in antiplatelet activity was observed with esomeprazole when given concomitantly with Plavix."
+      },
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "Section 7 DRUG INTERACTIONS - Table 3 (2C19 Substrates: Clopidogrel)",
+        "quote": "Concomitant use of esomeprazole 40 mg resulted in reduced plasma concentrations of the active metabolite of clopidogrel and a reduction in platelet inhibition [see Clinical Pharmacology (12.3) ]."
+      }
+    ]
+  },
+  {
+    "id": "digoxin-amiodarone",
+    "drug_a": "digoxin",
+    "drug_b": "amiodarone",
+    "severity": "major",
+    "mechanism": "Amiodarone inhibits P-glycoprotein (P-gp)-mediated renal and intestinal efflux of digoxin, increasing serum digoxin concentrations by ~40% or more, and exerts additive negative chronotropic and AV nodal depressant effects.",
+    "clinical_effect": "Substantially elevated serum digoxin levels leading to digoxin toxicity (nausea, vomiting, visual disturbances, ventricular arrhythmias) as well as severe bradycardia, sinus arrest, or high-degree AV block.",
+    "management": "Measure serum digoxin concentrations before initiating amiodarone and reduce the digoxin dose by approximately 50% (or 15-30% per digoxin label) or discontinue digoxin. Monitor heart rate, ECG, and serum digoxin levels closely.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 7 DRUG INTERACTIONS - Table 5 (Digoxin)",
+        "quote": "Increased digoxin concentration. Reduce digoxin by half or discontinue. If continued, monitor for evidence of toxicity."
+      },
+      {
+        "source_id": "fda-digoxin-label",
+        "locator": "Section 7.2 Potentially Significant Pharmacokinetic Drug Interactions",
+        "quote": "Measure serum digoxin concentrations before initiating concomitant drugs. Reduce digoxin concentrations by decreasing the dose by approximately 15-30% or by modifying the dosing frequency and continue monitoring."
+      }
+    ]
+  },
+  {
+    "id": "digoxin-spironolactone",
+    "drug_a": "digoxin",
+    "drug_b": "spironolactone",
+    "severity": "moderate",
+    "mechanism": "Spironolactone and its metabolites (canrenone) inhibit renal P-gp/tubular secretion of digoxin (increasing digoxin AUC/concentrations by ~44%) and interfere with certain digoxin radioimmunoassays, causing falsely elevated digoxin readings.",
+    "clinical_effect": "Elevated true digoxin exposure increasing risk of digoxin toxicity, alongside falsely elevated serum digoxin assay results (up to 0.5 ng/mL) that can confound therapeutic drug monitoring.",
+    "management": "Monitor closely for clinical signs and symptoms of digoxin toxicity and use an assay method for serum digoxin that does not cross-react with spironolactone or its metabolites; adjust digoxin dose as clinically indicated.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-spironolactone-label",
+        "locator": "Section 7.4 Digoxin",
+        "quote": "Spironolactone and its metabolites interfere with radioimmunoassays for digoxin and increase the apparent exposure to digoxin. It is unknown to what extent, if any, spironolactone may increase actual digoxin exposure. In patients taking concomitant digoxin, use an assay that does not interact with spironolactone."
+      },
+      {
+        "source_id": "fda-digoxin-label",
+        "locator": "Section 7.4 Drug/Laboratory Test Interactions",
+        "quote": "In some assays, spironolactone, canrenone, and potassium canrenoate may be falsely detected as digoxin, at levels up to 0.5 ng/mL."
+      }
+    ]
+  },
+  {
+    "id": "digoxin-furosemide",
+    "drug_a": "digoxin",
+    "drug_b": "furosemide",
+    "severity": "major",
+    "mechanism": "Furosemide induces renal potassium and magnesium wasting (hypokalemia and hypomagnesemia), which sensitizes the myocardium to digoxin and reduces Na+/K+-ATPase competition, precipitating digitalis toxicity even at therapeutic serum digoxin concentrations.",
+    "clinical_effect": "Increased risk of life-threatening digoxin-induced cardiac arrhythmias (ventricular tachycardia, ventricular fibrillation, AV block) and systemic digitalis toxicity.",
+    "management": "Monitor serum potassium, serum magnesium, renal function, and ECG frequently during concomitant therapy. Correct hypokalemia (maintain serum potassium 4.0-5.5 mmol/L) and hypomagnesemia promptly, and consider potassium supplementation or a potassium-sparing diuretic.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-digoxin-label",
+        "locator": "Section 10 OVERDOSAGE",
+        "quote": "Furthermore, lower potassium levels increases the risk for adverse reactions."
+      },
+      {
+        "source_id": "fda-furosemide-label",
+        "locator": "OVERDOSAGE",
+        "quote": "electrolyte imbalance, hypokalemia and hypochloremic alkalosis, and are extensions of its diuretic action."
+      }
+    ]
+  },
+  {
+    "id": "digoxin-azithromycin",
+    "drug_a": "digoxin",
+    "drug_b": "azithromycin",
+    "severity": "moderate",
+    "mechanism": "Macrolide antibiotics can inhibit intestinal P-glycoprotein efflux and alter gut flora (Eubacterium lentum) that metabolize digoxin, potentially increasing systemic digoxin absorption and serum concentrations.",
+    "clinical_effect": "Potential elevation of serum digoxin levels leading to digoxin toxicity (gastrointestinal symptoms, bradycardia, cardiac arrhythmias), as observed with other macrolide products.",
+    "management": "Monitor patients carefully for clinical signs of digoxin toxicity and check serum digoxin concentrations during and shortly after concomitant azithromycin therapy; adjust digoxin dose if needed.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-azithromycin-label",
+        "locator": "Section 7.3 Potential Drug-Drug Interaction with Macrolides",
+        "quote": "However, drug interactions have been observed with other macrolide products. Until further data are developed regarding drug interactions when digoxin, colchicine or phenytoin are used with azithromycin careful monitoring of patients is advised."
+      }
+    ]
+  },
+  {
+    "id": "valsartan-spironolactone",
+    "drug_a": "valsartan",
+    "drug_b": "spironolactone",
+    "severity": "major",
+    "mechanism": "Additive inhibition of aldosterone-mediated renal potassium excretion: valsartan blocks angiotensin II-stimulated aldosterone release while spironolactone directly antagonizes mineralocorticoid receptors in the collecting duct.",
+    "clinical_effect": "Significantly increased risk of severe, potentially fatal hyperkalemia and worsening renal function (elevated serum creatinine), particularly in patients with heart failure, CKD, or diabetes.",
+    "management": "If concomitant therapy is clinically indicated (e.g., HFrEF), monitor serum potassium and renal function closely at baseline, within 1 week of initiation/titration, and periodically thereafter. Avoid routine potassium supplements.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "Section 7.1 Agents Increasing Serum Potassium",
+        "quote": "Concomitant use of valsartan with other agents that block the renin-angiotensin system, potassium-sparing diuretics (e.g., spironolactone, triamterene, amiloride), potassium supplements, salt substitutes containing potassium or other drugs that may increase potassium levels (e.g., heparin) may lead to increases in serum potassium and in heart failure patients to increases in serum creatinine."
+      }
+    ]
+  },
+  {
+    "id": "valsartan-potassium-chloride",
+    "drug_a": "valsartan",
+    "drug_b": "potassium-chloride",
+    "severity": "major",
+    "mechanism": "Valsartan suppresses angiotensin II-mediated aldosterone secretion, impairing renal potassium excretion; exogenous potassium chloride supplementation compounds potassium retention.",
+    "clinical_effect": "Increased risk of clinically significant hyperkalemia, which can cause life-threatening cardiac conduction abnormalities and arrhythmias.",
+    "management": "Avoid routine potassium supplementation in patients receiving valsartan unless documented hypokalemia exists. If co-administration is necessary, monitor serum potassium closely and adjust potassium chloride dose accordingly.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-potassium-chloride-label",
+        "locator": "Section 7.2 Renin-angiotensin-aldosterone Inhibitors",
+        "quote": "Drugs that inhibit the renin-angiotensin-aldosterone system (RAAS) including angiotensin converting enzyme (ACE) inhibitors, angiotensin receptor blockers (ARBs), spironolactone, eplerenone, or aliskiren produce potassium retention by inhibiting aldosterone production. Closely monitor potassium in patients on concomitant RAAS inhibitors."
+      }
+    ]
+  },
+  {
+    "id": "lisinopril-potassium-chloride",
+    "drug_a": "lisinopril",
+    "drug_b": "potassium-chloride",
+    "severity": "major",
+    "mechanism": "Lisinopril inhibits ACE-mediated angiotensin II formation and downstream aldosterone secretion, reducing renal potassium excretion; concomitant potassium chloride increases total body potassium load.",
+    "clinical_effect": "High risk of hyperkalemia and associated cardiac arrhythmias, especially in patients with renal impairment, diabetes, or heart failure.",
+    "management": "Avoid concomitant potassium chloride supplementation unless hypokalemia is documented. Closely monitor serum potassium and renal function if co-administration is required.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-potassium-chloride-label",
+        "locator": "Section 7.2 Renin-angiotensin-aldosterone Inhibitors",
+        "quote": "Drugs that inhibit the renin-angiotensin-aldosterone system (RAAS) including angiotensin converting enzyme (ACE) inhibitors, angiotensin receptor blockers (ARBs), spironolactone, eplerenone, or aliskiren produce potassium retention by inhibiting aldosterone production. Closely monitor potassium in patients on concomitant RAAS inhibitors."
+      }
+    ]
+  },
+  {
+    "id": "losartan-potassium-chloride",
+    "drug_a": "losartan",
+    "drug_b": "potassium-chloride",
+    "severity": "major",
+    "mechanism": "Losartan blocks AT1 receptors and reduces aldosterone-mediated renal potassium excretion; concurrent potassium chloride supplementation leads to additive potassium retention.",
+    "clinical_effect": "Increased risk of hyperkalemia and potentially fatal cardiac arrhythmias.",
+    "management": "Closely monitor serum potassium if losartan and potassium chloride are co-administered, and discontinue or reduce potassium supplementation when serum potassium normalizes.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 7.1 Agents Increasing Serum Potassium",
+        "quote": "Coadministration of losartan with other drugs that raise serum potassium levels may result in hyperkalemia. Monitor serum potassium in such patients."
+      },
+      {
+        "source_id": "fda-potassium-chloride-label",
+        "locator": "Section 7.2 Renin-angiotensin-aldosterone Inhibitors",
+        "quote": "Drugs that inhibit the renin-angiotensin-aldosterone system (RAAS) including angiotensin converting enzyme (ACE) inhibitors, angiotensin receptor blockers (ARBs), spironolactone, eplerenone, or aliskiren produce potassium retention by inhibiting aldosterone production. Closely monitor potassium in patients on concomitant RAAS inhibitors."
+      }
+    ]
+  },
+  {
+    "id": "spironolactone-potassium-chloride",
+    "drug_a": "spironolactone",
+    "drug_b": "potassium-chloride",
+    "severity": "major",
+    "mechanism": "Spironolactone antagonizes aldosterone receptors in the distal renal tubule, directly inhibiting potassium excretion; concurrent potassium chloride supplementation causes additive potassium accumulation.",
+    "clinical_effect": "Severe, potentially life-threatening hyperkalemia and fatal cardiac arrhythmias.",
+    "management": "Generally discontinue potassium supplementation when initiating spironolactone (particularly in heart failure patients). If concomitant use is unavoidable for refractory hypokalemia, monitor serum potassium and renal function frequently.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-spironolactone-label",
+        "locator": "Section 7.1 Drugs and Supplements Increasing Serum Potassium",
+        "quote": "Concomitant administration of ALDACTONE with potassium supplementation or drugs that can increase potassium may lead to severe hyperkalemia. In general, discontinue potassium supplementation in heart failure patients who start ALDACTONE [see Warnings and Precautions (5.1) and Clinical Pharmacology (12.3) ] ."
+      }
+    ]
+  },
+  {
+    "id": "valsartan-ibuprofen",
+    "drug_a": "valsartan",
+    "drug_b": "ibuprofen",
+    "severity": "moderate",
+    "mechanism": "Ibuprofen inhibits renal prostaglandin synthesis, causing afferent arteriolar vasoconstriction; combined with valsartan-mediated efferent arteriolar dilation, this reduces glomerular filtration rate and attenuates the antihypertensive effect of ARBs.",
+    "clinical_effect": "Deterioration of renal function including possible acute kidney injury (especially in elderly, volume-depleted, or CKD patients), hyperkalemia, and loss of blood pressure control.",
+    "management": "Avoid chronic NSAID use in patients taking valsartan if possible, or use the lowest effective dose for the shortest duration. Monitor blood pressure, serum creatinine, and potassium periodically, or use acetaminophen for analgesia.",
+    "alternatives": [
+      {
+        "drug_id": "acetaminophen",
+        "rationale": "Acetaminophen does not inhibit renal prostaglandins or impair GFR and does not blunt the antihypertensive effect of valsartan"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "Section 7.2 Non-Steroidal Anti-Inflammatory Agents Including Selective Cyclooxygenase-2 Inhibitors (COX-2 Inhibitors)",
+        "quote": "In patients who are elderly, volume-depleted (including those on diuretic therapy), or with compromised renal function, coadministration of NSAIDs, including selective COX-2 inhibitors, with angiotensin II receptor antagonists, including valsartan, may result in deterioration of renal function, including possible acute renal failure."
+      }
+    ]
+  },
+  {
+    "id": "piperacillin-tazobactam-vancomycin",
+    "drug_a": "piperacillin-tazobactam",
+    "drug_b": "vancomycin",
+    "severity": "major",
+    "mechanism": "Additive or synergistic nephrotoxicity (mechanism not fully established, likely involving acute interstitial nephritis or proximal tubular injury) when piperacillin-tazobactam is combined with vancomycin compared with vancomycin alone.",
+    "clinical_effect": "Significantly increased incidence of acute kidney injury (AKI), elevated serum creatinine, and prolonged hospitalization.",
+    "management": "Monitor renal function (serum creatinine, urine output) daily and track vancomycin trough/AUC levels closely during concomitant therapy. Consider alternative beta-lactam coverage (e.g., cefepime or meropenem) when clinically appropriate.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "Section 7.3 Vancomycin",
+        "quote": "Studies have detected an increased incidence of acute kidney injury in patients concomitantly administered piperacillin and tazobactam and vancomycin as compared to vancomycin alone [see Warnings and Precautions (5.6) ] . Monitor kidney function in patients concomitantly administered with piperacillin and tazobactam and vancomycin."
+      }
+    ]
+  },
+  {
+    "id": "piperacillin-tazobactam-warfarin",
+    "drug_a": "piperacillin-tazobactam",
+    "drug_b": "warfarin",
+    "severity": "moderate",
+    "mechanism": "Piperacillin-tazobactam can impair platelet aggregation, alter gut flora vitamin K synthesis, and potentiate the hypoprothrombinemic effect of oral anticoagulants.",
+    "clinical_effect": "Elevated INR/prothrombin time and increased risk of bleeding during concurrent antibiotic and warfarin therapy.",
+    "management": "Monitor coagulation parameters (INR/PT) more frequently during and shortly after concomitant piperacillin-tazobactam and warfarin administration, and adjust warfarin dose if needed.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "Section 7.4 Anticoagulants",
+        "quote": "Coagulation parameters should be tested more frequently and monitored regularly during simultaneous administration of high doses of heparin, oral anticoagulants, or other drugs that may affect the blood coagulation system or the thrombocyte function [see Warnings and Precautions (5.4) ] ."
+      }
+    ]
+  },
+  {
+    "id": "gliclazide-ciprofloxacin",
+    "drug_a": "gliclazide",
+    "drug_b": "ciprofloxacin",
+    "severity": "moderate",
+    "mechanism": "Fluoroquinolones can potentiate the glucose-lowering effect of sulfonylureas by blocking ATP-sensitive potassium channels in pancreatic beta cells (stimulating insulin release) and may also cause dysglycemia.",
+    "clinical_effect": "Increased risk of severe, prolonged hypoglycemia (as well as dysglycemia), particularly in elderly patients or those with renal impairment.",
+    "management": "Use with caution; warn patients of the risk of dysglycemia/hypoglycemia and monitor blood glucose closely during concomitant ciprofloxacin and gliclazide therapy. Consider temporary gliclazide dose reduction.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "Section 4.5 Interaction with other medicinal products and other forms of interaction",
+        "quote": "Fluoroquinolones : in case of a concomitant use of Diamicron 30 mg MR Tablets and a fluoroquinolone, the patient should be warned of the risk of dysglycaemia, and the importance of blood glucose monitoring should be emphasised."
+      },
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "Section 7 DRUG INTERACTIONS - Table 5 (Oral antidiabetic drugs)",
+        "quote": "Hypoglycemia sometimes severe has been reported when CIPRO and oral antidiabetic agents, mainly sulfonylureas (for example, glyburide, glimepiride), were co-administered, presumably by intensifying the action of the oral antidiabetic agent. Fatalities have been reported . Monitor blood glucose when CIPRO is co-administered with oral antidiabetic drugs [see Adverse Reactions ( 6.1 )]."
+      }
+    ]
+  },
+  {
+    "id": "gliclazide-warfarin",
+    "drug_a": "gliclazide",
+    "drug_b": "warfarin",
+    "severity": "moderate",
+    "mechanism": "Sulfonylureas may displace warfarin from plasma protein binding sites and/or compete for hepatic CYP2C9 metabolism, potentiating the anticoagulant effect of warfarin.",
+    "clinical_effect": "Elevated INR and increased risk of bleeding.",
+    "management": "Monitor INR more frequently when initiating, adjusting, or discontinuing gliclazide in patients stabilized on warfarin; adjust warfarin dosage as necessary.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "Section 4.5 Interaction with other medicinal products and other forms of interaction",
+        "quote": "Sulfonylureas may lead to potentiation of anticoagulation during concurrent treatment."
+      }
+    ]
+  },
+  {
+    "id": "phenytoin-esomeprazole",
+    "drug_a": "phenytoin",
+    "drug_b": "esomeprazole",
+    "severity": "moderate",
+    "mechanism": "Esomeprazole is a time-dependent inhibitor of CYP2C19, which can reduce the hepatic clearance of phenytoin (a narrow-therapeutic-index CYP2C9/CYP2C19 substrate), similar to omeprazole.",
+    "clinical_effect": "Potential for elevated serum phenytoin concentrations and dose-dependent neurotoxicity (nystagmus, ataxia, diplopia, lethargy).",
+    "management": "Monitor serum phenytoin concentrations when initiating or discontinuing esomeprazole and adjust phenytoin dose as needed, or switch to a PPI with minimal CYP2C19 inhibition such as pantoprazole.",
+    "alternatives": [
+      {
+        "drug_id": "pantoprazole",
+        "rationale": "Pantoprazole has minimal CYP2C19 inhibition and avoids clinically significant interference with phenytoin clearance"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "Esomeprazole is a time-dependent inhibitor of CYP2C19, resulting in autoinhibition and nonlinear pharmacokinetics."
+      },
+      {
+        "source_id": "fda-phenytoin-label",
+        "locator": "Section 7.1 Drugs That Affect Phenytoin Concentrations",
+        "quote": "Gastric acid reducing agents H 2 antagonists (cimetidine), omeprazole"
+      }
+    ]
+  },
+  {
+    "id": "diazepam-esomeprazole",
+    "drug_a": "diazepam",
+    "drug_b": "esomeprazole",
+    "severity": "moderate",
+    "mechanism": "Esomeprazole inhibits CYP2C19-mediated hepatic metabolism of diazepam, resulting in a 45% decrease in diazepam clearance and increased plasma levels 12 hours after dosing and onwards.",
+    "clinical_effect": "Prolonged diazepam exposure with potential for enhanced sedation, psychomotor impairment, and fall risk, particularly in elderly patients or with repeated dosing.",
+    "management": "Monitor patients for excessive sedation and psychomotor impairment; consider reducing diazepam dose or switching to a PPI with minimal CYP2C19 inhibition such as pantoprazole.",
+    "alternatives": [
+      {
+        "drug_id": "pantoprazole",
+        "rationale": "Pantoprazole does not significantly inhibit CYP2C19 and avoids reducing diazepam clearance"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "Section 12.3 Pharmacokinetics - Drug Interaction Studies (Diazepam)",
+        "quote": "Co-administration of esomeprazole 30 mg and diazepam, a CYP2C19 substrate, resulted in a 45% decrease in clearance of diazepam. Increased plasma levels of diazepam were observed 12 hours after dosing and onwards."
+      }
+    ]
   }
 ]

@@ -1,0 +1,517 @@
+{
+  "id": "digoxin",
+  "generic_name": "digoxin",
+  "tall_man": {
+    "value": "digoxin",
+    "refs": [
+      {
+        "source_id": "fda-digoxin-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "1 INDICATIONS AND USAGE LANOXIN is a cardiac glycoside indicated for: Treatment of mild to moderate heart failure in adults. ( 1.1 ) Increasing myocardial contractility in pediatric patients with heart failure. ( 1.2 ) Control of resting ventricular rate in adults with chronic atrial fibrillation. ( 1.3 )"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "cardiac glycoside",
+    "Na-K ATPase inhibitor",
+    "antiarrhythmic / rate-control agent",
+    "positive inotrope"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "dig-hf-af-adult-iv-load",
+      "indication": "Heart Failure or Chronic Atrial Fibrillation (Loading Dose) — Adults and Pediatric Patients Over 10 Years",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "2.2 Loading Dosing Regimen in Adults and Pediatric Patients",
+          "quote": "Administer half the total loading dose initially, then ¼ the loading dose every 6-8 hours twice"
+        },
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "2.2 Loading Dosing Regimen in Adults and Pediatric Patients",
+          "quote": "Adults and pediatric patients over 10 years 8-12"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 8,
+        "unit": "mcg",
+        "frequency": "total IV loading dose (8-12 mcg/kg: 1/2 initially, then 1/4 every 6-8 hours twice)",
+        "infusion": {
+          "duration_min": 5
+        }
+      },
+      "dose_text": "Total IV loading dose 8-12 mcg/kg: administer half initially, then 1/4 every 6-8 hours twice. Infuse over >= 5 minutes; avoid bolus administration."
+    },
+    {
+      "id": "dig-hf-af-adult-iv-maint",
+      "indication": "Heart Failure or Chronic Atrial Fibrillation (Maintenance) — Adults and Pediatric Patients Over 10 Years",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "2.3 Maintenance Dosing in Adults and Pediatric Patients Over 10 Years Old",
+          "quote": "Age Total Intravenous Maintenance Dose, mcg/kg/day (given once daily) Adults and pediatric patients over 10 years 2.4-3.6"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 2.4,
+        "unit": "mcg",
+        "frequency": "once daily (2.4-3.6 mcg/kg/day based on lean body weight and renal function)"
+      },
+      "dose_text": "2.4-3.6 mcg/kg/day IV once daily (for normal renal function); individualize by lean body weight, renal function, age, and concomitant drugs. Target serum digoxin 0.5-2 ng/mL."
+    },
+    {
+      "id": "dig-hf-peds-under10-iv-load",
+      "indication": "Heart Failure (Loading Dose) — Pediatric Patients Under 10 Years",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "2.2 Loading Dosing Regimen in Adults and Pediatric Patients",
+          "quote": "Premature 15-25 Full-Term 20-30 1-24 Months 30-50 2-5 Years 25-35 5-10 Years 15-30"
+        }
+      ],
+      "dose": null,
+      "dose_text": "Total IV loading dose by age: Premature 15-25 mcg/kg; Full-Term 20-30 mcg/kg; 1-24 Months 30-50 mcg/kg; 2-5 Years 25-35 mcg/kg; 5-10 Years 15-30 mcg/kg. Administer 1/2 initially, then 1/4 every 6-8 hours twice over >= 5 minutes."
+    },
+    {
+      "id": "dig-hf-peds-under10-iv-maint",
+      "indication": "Heart Failure (Maintenance) — Pediatric Patients Under 10 Years",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "2.4 Maintenance Dosing in Pediatric Patients Less Than 10 Years Old",
+          "quote": "Age Dose Regimen, mcg/kg/dose (given TWICE daily) Premature 1.9-3.1 Full-Term 3-4.5 1-24 Months 4.5-7.5 2-5 Years 3.8-5.3 5-10 Years 2.3-4.5"
+        }
+      ],
+      "dose": null,
+      "dose_text": "IV maintenance given TWICE daily (mcg/kg/dose) for normal renal function: Premature 1.9-3.1; Full-Term 3-4.5; 1-24 Months 4.5-7.5; 2-5 Years 3.8-5.3; 5-10 Years 2.3-4.5."
+    },
+    {
+      "id": "dig-hf-af-adult-po-equiv",
+      "indication": "Heart Failure or Chronic Atrial Fibrillation (Oral Maintenance Conversion Reference) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "2.6 Switching from Intravenous Digoxin to Oral Digoxin",
+          "quote": "Table 6. Comparison of the Systemic Availability and Equivalent Doses of Oral and Intravenous LANOXIN Absolute Bioavailability Equivalent Doses (mcg) LANOXIN Tablets 60-80% 62.5 125 250 500 LANOXIN Intravenous Injection 100% 50 100 200 400"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 125,
+        "unit": "mcg",
+        "frequency": "once daily (typical oral equivalent; adjust for 60-80% oral bioavailability vs 100% IV)"
+      },
+      "dose_text": "LANOXIN Tablets have 60-80% bioavailability vs 100% for IV: 62.5, 125, 250, 500 mcg PO correspond to 50, 100, 200, 400 mcg IV."
+    },
+    {
+      "id": "dig-hf-af-im",
+      "indication": "Heart Failure or Chronic Atrial Fibrillation (IM Route — Only When IV/PO Not Feasible)",
+      "setting": "acute_inpatient",
+      "route": "IM",
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "2.1 Important Dosing and Administration Information",
+          "quote": "Intramuscular injection can lead to severe pain at the injection site, thus intravenous administration is preferred. If the drug must be administered by the intramuscular route, it should be injected deep into the muscle followed by massage. For adults, no more than 500 mcg of LANOXIN Injection should be injected into a single site."
+        }
+      ],
+      "dose": null,
+      "dose_text": "IV administration is preferred over IM due to severe injection-site pain. If IM must be used, inject deep into muscle followed by massage; max 500 mcg per site in adults, max 200 mcg per site in pediatrics."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_normalized_1_73",
+    "refs": [
+      {
+        "source_id": "fda-digoxin-label",
+        "locator": "2.3 Maintenance Dosing - Table 3",
+        "quote": "For adults , creatinine clearance was corrected to 70-kg body weight or 1.73 m 2 body surface area."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Digoxin is primarily excreted unchanged by the kidneys (50-70%). Maintenance doses must be reduced based on corrected creatinine clearance and lean body weight (Table 3 for adults/peds >10 yrs; Table 5 for peds <10 yrs). Prolonged half-life (3.5-5 days in anuric patients) delays steady state up to 19 days. Not effectively removed by dialysis.",
+    "renal_basis": {
+      "value": "cg_normalized_1_73",
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "2.3 Maintenance Dosing - Table 3",
+          "quote": "For adults , creatinine clearance was corrected to 70-kg body weight or 1.73 m 2 body surface area."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 60,
+        "max": null,
+        "dose_text": "CrCl 60-100 mL/min (adults/peds >10 yrs): 104-340 mcg IV once daily depending on lean body weight (40-100 kg) and CrCl; steady state in 7-11 days.",
+        "refs": [
+          {
+            "source_id": "fda-digoxin-label",
+            "locator": "2.3 Maintenance Dosing - Table 3",
+            "quote": "60 mL/min 104 130 156 182 208 234 260 11"
+          }
+        ]
+      },
+      {
+        "min": 20,
+        "max": 60,
+        "dose_text": "CrCl 20-50 mL/min (adults/peds >10 yrs): 72-240 mcg IV once daily depending on lean body weight (40-100 kg) and CrCl; steady state in 12-16 days.",
+        "refs": [
+          {
+            "source_id": "fda-digoxin-label",
+            "locator": "2.3 Maintenance Dosing - Table 3",
+            "quote": "20 mL/min 72 90 108 126 144 162 180 16"
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 20,
+        "dose_text": "CrCl 10 mL/min (adults/peds >10 yrs): 64-160 mcg IV once daily depending on lean body weight (40-100 kg); steady state in 19 days. Monitor serum digoxin concentrations.",
+        "refs": [
+          {
+            "source_id": "fda-digoxin-label",
+            "locator": "2.3 Maintenance Dosing - Table 3",
+            "quote": "10 mL/min 64 80 96 112 128 144 160 19"
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Digoxin is not effectively removed from the body by dialysis, exchange transfusion, or during cardiopulmonary bypass because most of the drug is bound to extravascular tissues.",
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "12.3 Pharmacokinetics - Excretion",
+          "quote": "Digoxin is not effectively removed from the body by dialysis, exchange transfusion, or during cardiopulmonary bypass because most of the drug is bound to extravascular tissues."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-digoxin-label",
+        "locator": "8.6 Renal Impairment",
+        "quote": "Digoxin is primarily excreted by the kidneys; therefore, patients with impaired renal function require smaller than usual maintenance doses of digoxin [see Dosage and Administration ( 2.3 )] ."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "No dosage adjustments are recommended for patients with hepatic impairment; however, serum digoxin concentrations should be used, as appropriate, to help guide dosing in these patients.",
+    "refs": [
+      {
+        "source_id": "fda-digoxin-label",
+        "locator": "12.3 Pharmacokinetics - Hepatic Impairment",
+        "quote": "No dosage adjustments are recommended for patients with hepatic impairment; however, serum digoxin concentrations should be used, as appropriate, to help guide dosing in these patients."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-digoxin-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "All of digoxin’s actions are mediated through its effects on Na-K ATPase."
+      }
+    ],
+    "note": "Cardiac glycoside (Na-K ATPase inhibitor); does not directly block neuromuscular junction transmission, though avoid rapid IV calcium or succinylcholine-induced hyperkalemia."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Source label is for LANOXIN Injection; no enteral tube crushing instructions provided."
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "confusion_delirium",
+      "psychiatric_behavioral"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-digoxin-label",
+        "locator": "6.1 Clinical Trials Experience",
+        "quote": "CNS: Digoxin can cause headache, weakness, dizziness, apathy, confusion, and mental disturbances (such as anxiety, depression, delirium, and hallucination)."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Overall incidence of adverse reactions 5-20% (dose-dependent; 15-20% considered serious)",
+        "Cardiac arrhythmias (~50% of adverse events)",
+        "Gastrointestinal disturbances (~25%): nausea, vomiting, anorexia, abdominal pain",
+        "CNS and other toxicity (~25%): headache, weakness, dizziness, apathy, confusion, visual yellow-green color aberrations"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The overall incidence of adverse reactions with digoxin has been reported as 5-20%, with 15-20% of adverse events considered serious. Cardiac toxicity accounts for about one-half, gastrointestinal disturbances for about one-fourth, and CNS and other toxicity for about one-fourth of these adverse events. ( 6.1 )"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Life-threatening cardiac arrhythmias (Mobitz type 1 AV block, accelerated junctional rhythms, non-paroxysmal atrial tachycardia with AV block, bi-directional ventricular tachycardia, ventricular fibrillation, asystole)",
+        "Digoxin toxicity (especially at serum levels > 2 ng/mL or with hypokalemia/hypomagnesemia; treat severe toxicity with Digoxin Immune Fab)",
+        "Intestinal ischemia and hemorrhagic necrosis of the intestines",
+        "Delirium, hallucinations, psychosis",
+        "Severe hyperkalemia in acute massive overdose"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "6.1 Clinical Trials Experience",
+          "quote": "Gastrointestinal: In addition to nausea and vomiting, the use of digoxin has been associated with abdominal pain, intestinal ischemia, and hemorrhagic necrosis of the intestines."
+        },
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "10.1 Signs and Symptoms in Adults and Children",
+          "quote": "Arrhythmias that are considered more characteristic of digoxin toxicity are new-onset Mobitz type 1 A-V block, accelerated junctional rhythms, non-paroxysmal atrial tachycardia with A-V block, and bi-directional ventricular tachycardia. Cardiac arrest from asystole or ventricular fibrillation is usually fatal."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Inhibits Na-K ATPase ('sodium pump'), increasing intracellular calcium in the myocardium and conduction system (positive inotropy, increased automaticity, reduced AV nodal conduction velocity) and indirectly stimulating parasympathetic activity at the SA and AV nodes while deactivating sympathetic and renin-angiotensin tone.",
+    "refs": [
+      {
+        "source_id": "fda-digoxin-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "All of digoxin’s actions are mediated through its effects on Na-K ATPase. This enzyme, the “sodium pump,” is responsible for maintaining the intracellular milieu throughout the body by moving sodium ions out of and potassium ions into cells."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "pgp": "substrate",
+      "qt_risk": "none"
+    },
+    "refs": [
+      {
+        "source_id": "fda-digoxin-label",
+        "locator": "7.1 P-Glycoprotein (PGP) Inducers/Inhibitors",
+        "quote": "Digoxin is a substrate of P-glycoprotein, at the level of intestinal absorption, renal tubular section and biliary-intestinal secretion. Therefore, drugs that induce/ inhibit P-glycoprotein have the potential to alter digoxin pharmacokinetics."
+      },
+      {
+        "source_id": "fda-digoxin-label",
+        "locator": "12.3 Pharmacokinetics - Metabolism",
+        "quote": "The metabolism of digoxin is not dependent upon the cytochrome P-450 system, and digoxin is not known to induce or inhibit the cytochrome P-450 system."
+      }
+    ],
+    "note": "50-70% excreted unchanged in urine; narrow therapeutic index (0.5-2 ng/mL)."
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Strong P-gp Inhibitors (Quinidine, Ritonavir)",
+        "severity": "major",
+        "effect": "Increases digoxin AUC by >50% (quinidine 54-83%, ritonavir 86%), increasing risk of digoxin toxicity.",
+        "management": "Measure serum digoxin concentrations before initiating concomitant drugs; reduce digoxin dose by approximately 30-50% or modify dosing frequency and continue monitoring.",
+        "refs": [
+          {
+            "source_id": "fda-digoxin-label",
+            "locator": "7.2 Pharmacokinetic Drug Interactions",
+            "quote": "Measure serum digoxin concentrations before initiating concomitant drugs. Reduce digoxin concentrations by decreasing dose by approximately 30-50% or by modifying the dosing frequency and continue monitoring."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Moderate P-gp Inhibitors (Amiodarone, Propafenone, Quinine, Spironolactone, Verapamil, Mirabegron)",
+        "severity": "moderate",
+        "effect": "Increases digoxin AUC by <50% (24-44%: amiodarone 40%, propafenone 29%, quinine 34-38%, spironolactone 44%, verapamil 24%, mirabegron 27%).",
+        "management": "Measure serum digoxin concentrations before initiating concomitant drugs; reduce digoxin dose by approximately 15-30% or modify dosing frequency and continue monitoring.",
+        "refs": [
+          {
+            "source_id": "fda-digoxin-label",
+            "locator": "7.2 Pharmacokinetic Drug Interactions",
+            "quote": "Measure serum digoxin concentrations before initiating concomitant drugs. Reduce digoxin concentrations by decreasing the dose by approximately 15-30% or by modifying the dosing frequency and continue monitoring."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Drugs Affecting Renal Function (ACE inhibitors, ARBs, NSAIDs, COX-2 inhibitors)",
+        "severity": "moderate",
+        "effect": "Decline in GFR or tubular secretion may impair renal excretion of digoxin.",
+        "management": "Monitor renal function and serum digoxin concentrations; individualize digoxin dosage.",
+        "refs": [
+          {
+            "source_id": "fda-digoxin-label",
+            "locator": "7.3 Potentially Significant Pharmacodynamic Drug Interactions",
+            "quote": "A decline in GFR or tubular secretion, as from ACE inhibitors, angiotensin receptor blockers, nonsteroidal anti-inflammatory drugs [NSAIDs], COX-2 inhibitors may impair the excretion of digoxin."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Class III Antiarrhythmics (Dofetilide, Sotalol, Dronedarone)",
+        "severity": "major",
+        "effect": "Concomitant dofetilide associated with higher rate of torsades de pointes; sotalol associated with more proarrhythmic events; dronedarone associated with higher sudden death.",
+        "management": "Monitor ECG, electrolytes, and serum digoxin levels closely; exercise extreme caution or avoid.",
+        "refs": [
+          {
+            "source_id": "fda-digoxin-label",
+            "locator": "7.3 Potentially Significant Pharmacodynamic Drug Interactions",
+            "quote": "Dofetilide Concomitant administration with digoxin was associated with a higher rate of torsades de pointes."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Beta-adrenergic blockers, Calcium channel blockers, Ivabradine",
+        "severity": "moderate",
+        "effect": "Additive effects on AV node conduction can result in bradycardia and advanced or complete heart block.",
+        "management": "Monitor heart rate and ECG for bradycardia and AV block.",
+        "refs": [
+          {
+            "source_id": "fda-digoxin-label",
+            "locator": "7.3 Potentially Significant Pharmacodynamic Drug Interactions",
+            "quote": "Beta-adrenergic blockers and calcium channel blockers Additive effects on AV node conduction can result in bradycardia and advanced or complete heart block."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Succinylcholine",
+        "severity": "major",
+        "effect": "May cause sudden extrusion of potassium from muscle cells, causing arrhythmias in patients taking digoxin.",
+        "management": "Use with extreme caution; monitor ECG and serum potassium.",
+        "refs": [
+          {
+            "source_id": "fda-digoxin-label",
+            "locator": "7.3 Potentially Significant Pharmacodynamic Drug Interactions",
+            "quote": "Neuromuscular Blocking Agents Succinylcholine May cause sudden extrusion of potassium from muscle cells, causing arrhythmias in patients taking digoxin."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Intravenous Calcium Supplements",
+        "severity": "major",
+        "effect": "If administered rapidly by intravenous route, can produce serious arrhythmias in digitalized patients.",
+        "management": "Avoid rapid IV calcium administration in digitalized patients.",
+        "refs": [
+          {
+            "source_id": "fda-digoxin-label",
+            "locator": "7.3 Potentially Significant Pharmacodynamic Drug Interactions",
+            "quote": "Supplements Calcium If administered rapidly by intravenous route, can produce serious arrhythmias in digitalized patients."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-digoxin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Digoxin has a narrow therapeutic index, increased monitoring of serum digoxin concentrations and for potential signs and symptoms of clinical toxicity is necessary when initiating, adjusting, or discontinuing drugs that may interact with digoxin."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Decades of retrospective clinical studies and case reports have not identified a drug-associated risk of major birth defects or miscarriage, and untreated maternal heart failure or AFib carries significant risk. However, animal reproduction studies have not been conducted, digoxin crosses the placenta, dose requirements may increase in pregnancy and decrease postpartum, and arrhythmia risk may increase during labor and delivery.",
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Experience with digoxin in pregnant women over several decades, based on published retrospective clinical studies and case reports, has not led to the identification of a drug associated risk of major birth defects, miscarriage or adverse maternal and fetal outcomes."
+        },
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Digoxin has been shown to cross the placenta and is found in amniotic fluid. Monitor neonates for signs and symptoms of digoxin toxicity, including vomiting, and cardiac arrhythmias [see Warnings and Precautions (5.3)] ."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "LANOXIN requirements may increase during pregnancy and decrease in the postpartum period. Monitor serum digoxin levels during pregnancy and the postpartum period.",
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "LANOXIN requirements may increase during pregnancy and decrease in the postpartum period. Monitor serum digoxin levels during pregnancy and the postpartum period [see Dosage and Administration (2.5)] ."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "LANOXIN requirements decrease in the postpartum period; monitor serum digoxin levels postpartum and adjust dose to avoid toxicity.",
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "LANOXIN requirements may increase during pregnancy and decrease in the postpartum period. Monitor serum digoxin levels during pregnancy and the postpartum period [see Dosage and Administration (2.5)] ."
+        }
+      ]
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": "1 to 7% of maternal weight-adjusted dose (0.2 to 4% of neonatal maintenance dose)",
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "8.2 Lactation",
+          "quote": "This translates to a relative infant dose of digoxin between 1 to 7% of the maternal weight-adjusted dose and about 0.2 to 4% of the neonatal maintenance dose."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Breast milk concentrations 0.4-1.0 ng/mL following 0.25 mg once daily; estimated infant intake 0.03-0.16 mcg/kg/day (up to 4% of neonatal maintenance dose), which is unlikely to be clinically relevant.",
+      "refs": [
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "8.2 Lactation",
+          "quote": "The digoxin dose received through breastfeeding is up to 4% of the neonatal maintenance dosage, which is unlikely to be clinically relevant. There are no data on the effects of digoxin on the breastfed infant or the effects on milk production."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

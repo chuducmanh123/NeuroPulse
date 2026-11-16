@@ -1,0 +1,288 @@
+{
+  "id": "potassium-chloride",
+  "generic_name": "potassium chloride",
+  "tall_man": {
+    "value": "potassium chloride",
+    "refs": [
+      {
+        "source_id": "fda-potassium-chloride-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "KLOR-CON is a potassium salt, indicated for the treatment and prophylaxis of hypokalemia with or without metabolic alkalosis in patients for whom dietary management with potassium-rich foods or diuretic dose reduction is insufficient."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "electrolyte replenisher",
+    "potassium salt"
+  ],
+  "subspecialties": [
+    "neurocritical_care",
+    "stroke"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "kcl-hypokalemia-tx-po",
+      "indication": "Treatment of Hypokalemia (with or without metabolic alkalosis) — Adults (Serum K >= 2.5 mEq/L)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-potassium-chloride-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "Klor-Con is indicated for the treatment and prophylaxis of hypokalemia with or without metabolic alkalosis, in patients for whom dietary management with potassium-rich foods or diuretic dose reduction is insufficient."
+        },
+        {
+          "source_id": "fda-potassium-chloride-label",
+          "locator": "2.2 Dosing",
+          "quote": "Dosages greater than 40 mEq per day should be divided such that no more than 40 mEq is given in a single dose. Treatment of Hypokalemia: Typical dose range is 40 to 100 mEq per day."
+        }
+      ],
+      "dose": null,
+      "dose_text": "40 to 100 mEq per day orally in divided doses (limit to no more than 40 mEq per single dose). Take with meals and a glass of water or other liquid; swallow tablets whole without crushing, chewing, or sucking. If serum potassium is < 2.5 mEq/L, use intravenous potassium instead of oral supplementation."
+    },
+    {
+      "id": "kcl-hypokalemia-prophylaxis-po",
+      "indication": "Prevention / Maintenance of Hypokalemia (with or without metabolic alkalosis) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-potassium-chloride-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "Prevention of hypokalemia: Typical dose is 20 mEq per day. ( 2.2 )"
+        }
+      ],
+      "dose": null,
+      "dose_text": "Typical dose is 20 mEq per day orally, taken with meals and a glass of water or other liquid. Swallow tablets whole without crushing, chewing, or sucking."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": []
+  },
+  "renal_impairment": {
+    "description": "Patients with renal impairment have reduced urinary excretion of potassium and are at substantially increased risk of hyperkalemia. Usually initiate at the low end of the dosing range and monitor serum potassium frequently and renal function periodically.",
+    "renal_basis": {
+      "value": null,
+      "refs": []
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-potassium-chloride-label",
+        "locator": "8.7 Renal Impairment",
+        "quote": "Patients with renal impairment have reduced urinary excretion of potassium and are at substantially increased risk of hyperkalemia. Patients with impaired renal function, particularly if the patient is on RAAS inhibitors or NSAIDs, should usually be started at the low end of the dosing range because of the potential for development of hyperkalemia"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Cirrhosis: baseline-corrected serum potassium over 3 hours after an oral potassium load rose to approximately twice that of normal subjects. Patients with cirrhosis should usually be started at the low end of the dosing range, and serum potassium should be monitored frequently.",
+    "refs": [
+      {
+        "source_id": "fda-potassium-chloride-label",
+        "locator": "8.6 Cirrhotics",
+        "quote": "the baseline corrected serum concentrations of potassium measured over 3 hours after administration in cirrhotic subjects who received an oral potassium load rose to approximately twice that of normal subjects who received the same load. Patients with cirrhosis should usually be started at the low end of the dosing range, and the serum potassium level should be monitored frequently"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-potassium-chloride-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "The potassium ion is the principal intracellular cation of most body tissues. Potassium ions participate in a number of essential physiological processes including the maintenance of intracellular tonicity, the transmission of nerve impulses, the contraction of cardiac, skeletal and smooth muscle and the maintenance of normal renal function."
+      }
+    ],
+    "note": "Electrolyte replenisher; no neuromuscular junction blocking properties."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Swallow extended-release wax-matrix tablets whole without crushing, chewing, or sucking. Take with meals and a glass of water or other liquid."
+    },
+    "refs": [
+      {
+        "source_id": "fda-potassium-chloride-label",
+        "locator": "2.1 Administration and Monitoring",
+        "quote": "Take Klor-Con with meals and with a glass of water or other liquid. Do not take Klor-Con on an empty stomach because of its potential for gastric irritation [see Warnings and Precautions (5.1) ] . Swallow tablets whole without crushing, chewing or sucking."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Electrolyte replenisher. Potassium ion is the principal intracellular cation of most body tissues and participates in maintaining intracellular tonicity, nerve impulse transmission, cardiac/skeletal/smooth muscle contraction, and normal renal function.",
+    "refs": [
+      {
+        "source_id": "fda-potassium-chloride-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "The potassium ion is the principal intracellular cation of most body tissues. Potassium ions participate in a number of essential physiological processes including the maintenance of intracellular tonicity, the transmission of nerve impulses, the contraction of cardiac, skeletal and smooth muscle and the maintenance of normal renal function."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none"
+    },
+    "refs": [
+      {
+        "source_id": "fda-potassium-chloride-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Potassium is a normal dietary constituent and under steady state conditions the amount of potassium absorbed from the gastrointestinal tract is equal to the amount excreted in the urine."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea",
+        "Vomiting",
+        "Flatulence",
+        "Abdominal pain/discomfort",
+        "Diarrhea"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-potassium-chloride-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The most common adverse reactions to oral potassium salts are nausea, vomiting, flatulence, abdominal pain/discomfort, and diarrhea."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Hyperkalemia (potentially fatal in impaired excretion; ECG changes, muscle paralysis, cardiac arrest)",
+        "Upper and lower gastrointestinal obstruction, bleeding, ulceration, and perforation"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-potassium-chloride-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "There have been reports hyperkalemia and of upper and lower gastrointestinal condition including obstruction, bleeding, ulceration, perforation."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Triamterene or Amiloride",
+        "severity": "contraindicated",
+        "effect": "Concomitant use can produce severe hyperkalemia.",
+        "management": "Concomitant use is contraindicated.",
+        "refs": [
+          {
+            "source_id": "fda-potassium-chloride-label",
+            "locator": "7.1 Triamterene or amiloride",
+            "quote": "Use with triamterene or amiloride can produce severe hyperkalemia. Concomitant use is contraindicated [see Contraindications (4) ] ."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Renin-Angiotensin-Aldosterone System (RAAS) Inhibitors (ACE inhibitors, ARBs, spironolactone, eplerenone, aliskiren)",
+        "severity": "major",
+        "effect": "Produce potassium retention by inhibiting aldosterone production, increasing hyperkalemia risk.",
+        "management": "Closely monitor serum potassium in patients on concomitant RAAS inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-potassium-chloride-label",
+            "locator": "7.2 Renin-angiotensin-aldosterone Inhibitors",
+            "quote": "Drugs that inhibit the renin-angiotensin-aldosterone system (RAAS) including angiotensin converting enzyme (ACE) inhibitors, angiotensin receptor blockers (ARBs), spironolactone, eplerenone, or aliskiren produce potassium retention by inhibiting aldosterone production. Closely monitor potassium in patients on concomitant RAAS inhibitors."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Nonsteroidal Anti-inflammatory Drugs (NSAIDs)",
+        "severity": "major",
+        "effect": "May produce potassium retention by reducing renal synthesis of prostaglandin E and impairing the renin-angiotensin system.",
+        "management": "Closely monitor serum potassium in patients on concomitant NSAIDs.",
+        "refs": [
+          {
+            "source_id": "fda-potassium-chloride-label",
+            "locator": "7.3 Nonsteroidal Anti-inflammatory Drugs (NSAIDs)",
+            "quote": "NSAIDs may produce potassium retention by reducing renal synthesis of prostaglandin E and impairing the renin-angiotensin system. Closely monitor potassium in patients on concomitant NSAIDs."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-potassium-chloride-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Triamterene and amiloride: Concomitant use is contraindicated ( 7.1 ) Renin-angiotensin-aldosterone inhibitors: Monitor for hyperkalemia ( 7.2 ) Nonsteroidal anti-inflammatory drugs: Monitor for hyperkalemia ( 7.3 )"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "5-axis synthesis: (1) No Boxed Warning or pregnancy contraindication. (2) No human data related to Klor-Con use during pregnancy. (3) No animal reproduction studies conducted. (4) Label states potassium supplementation that does not lead to hyperkalemia is not expected to cause fetal harm. (5) PLLR label; due to absence of formal human/animal studies, assigned caution per EXTRACTION.md.",
+      "refs": [
+        {
+          "source_id": "fda-potassium-chloride-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "There are no human data related to use of Klor-Con during pregnancy, and animal reproduction studies have not been conducted. Potassium supplementation that does not lead to hyperkalemia is not expected to cause fetal harm."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Normal potassium ion content of human milk is about 13 mEq/L. Since oral potassium becomes part of the body potassium pool, so long as body potassium is not excessive, potassium chloride supplementation should have little or no effect on human milk levels.",
+      "refs": [
+        {
+          "source_id": "fda-potassium-chloride-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "The normal potassium ion content of human milk is about 13 mEq per liter. Since oral potassium becomes part of the body potassium pool, so long as body potassium is not excessive, the contribution of potassium chloride supplementation should have little or no effect on the level in human milk."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

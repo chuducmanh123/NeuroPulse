@@ -1,0 +1,442 @@
+{
+  "id": "nebivolol",
+  "generic_name": "nebivolol",
+  "tall_man": {
+    "value": "nebivolol",
+    "refs": [
+      {
+        "source_id": "fda-nebivolol-label",
+        "locator": "1. INDICATIONS AND USAGE",
+        "quote": "BYSTOLIC is a beta-adrenergic blocking agent indicated for the treatment of hypertension, to lower blood pressure."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "beta-adrenergic blocking agent",
+    "beta1-selective blocker",
+    "antihypertensive"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "neb-htn-po",
+      "indication": "Hypertension — Adults (Standard Starting and Maintenance)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-nebivolol-label",
+          "locator": "1.1 Hypertension",
+          "quote": "BYSTOLIC is indicated for the treatment of hypertension, to lower blood pressure"
+        },
+        {
+          "source_id": "fda-nebivolol-label",
+          "locator": "2.1 Hypertension",
+          "quote": "For most patients, the recommended starting dose is 5 mg once daily, with or without food, as monotherapy or in combination with other agents. For patients requiring further reduction in blood pressure, the dose can be increased at 2-week intervals up to 40 mg."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily; may increase at 2-week intervals up to 40 mg once daily",
+        "max_daily": 40
+      },
+      "dose_text": "Starting dose 5 mg orally once daily, with or without food, as monotherapy or in combination. May increase at 2-week intervals up to 40 mg once daily. A more frequent dosing regimen is unlikely to be beneficial."
+    },
+    {
+      "id": "neb-htn-renal-severe-po",
+      "indication": "Hypertension — Adults with Severe Renal Impairment (CrCl < 30 mL/min)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-nebivolol-label",
+          "locator": "2.1 Hypertension — Renal Impairment",
+          "quote": "In patients with severe renal impairment (ClCr less than 30 mL/min) the recommended initial dose is 2.5 mg once daily; titrate up slowly if needed."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2.5,
+        "unit": "mg",
+        "frequency": "once daily initial dose; titrate up slowly if needed",
+        "max_daily": 40
+      },
+      "dose_text": "2.5 mg orally once daily initial dose in severe renal impairment (ClCr < 30 mL/min); titrate up slowly if needed."
+    },
+    {
+      "id": "neb-htn-hepatic-mod-po",
+      "indication": "Hypertension — Adults with Moderate Hepatic Impairment (Child-Pugh Class B)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-nebivolol-label",
+          "locator": "2.1 Hypertension — Hepatic Impairment",
+          "quote": "In patients with moderate hepatic impairment, the recommended initial dose is 2.5 mg once daily; titrate up slowly if needed. BYSTOLIC has not been studied in patients with severe hepatic impairment and therefore it is not recommended in that population"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2.5,
+        "unit": "mg",
+        "frequency": "once daily initial dose; titrate up slowly if needed"
+      },
+      "dose_text": "2.5 mg orally once daily initial dose in moderate hepatic impairment; titrate up slowly if needed. Contraindicated in severe hepatic impairment (Child-Pugh >B)."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-nebivolol-label",
+        "locator": "2.1 Hypertension — Renal Impairment",
+        "quote": "In patients with severe renal impairment (ClCr less than 30 mL/min) the recommended initial dose is 2.5 mg once daily; titrate up slowly if needed. BYSTOLIC has not been studied in patients receiving dialysis"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No initial dose adjustment is required for mild or moderate renal impairment (ClCr 30 to 80 mL/min). In severe renal impairment (ClCr < 30 mL/min), reduce initial dose to 2.5 mg once daily and titrate slowly. Not studied in dialysis patients.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-nebivolol-label",
+          "locator": "12.4 Pharmacokinetics in Special Populations — Renal Disease",
+          "quote": "The apparent clearance of nebivolol was unchanged following a single 5 mg dose of BYSTOLIC in patients with mild renal impairment (ClCr 50 to 80 mL/min, n=7), and it was reduced negligibly in patients with moderate (ClCr 30 to 50 mL/min, n=9), but clearance was reduced by 53% in patients with severe renal impairment (ClCr <30 mL/min, n=5)."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 30,
+        "max": null,
+        "dose_text": "Standard starting dose 5 mg once daily; apparent clearance unchanged in mild (ClCr 50-80 mL/min) and negligibly reduced in moderate (ClCr 30-50 mL/min) renal impairment.",
+        "refs": [
+          {
+            "source_id": "fda-nebivolol-label",
+            "locator": "12.4 Pharmacokinetics in Special Populations — Renal Disease",
+            "quote": "The apparent clearance of nebivolol was unchanged following a single 5 mg dose of BYSTOLIC in patients with mild renal impairment (ClCr 50 to 80 mL/min, n=7), and it was reduced negligibly in patients with moderate (ClCr 30 to 50 mL/min, n=9)"
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 30,
+        "dose_text": "Initial dose 2.5 mg once daily; titrate up slowly if needed (apparent clearance reduced by 53% in ClCr < 30 mL/min).",
+        "dose": {
+          "kind": "fixed",
+          "amount": 2.5,
+          "unit": "mg",
+          "frequency": "once daily initial dose; titrate up slowly if needed"
+        },
+        "refs": [
+          {
+            "source_id": "fda-nebivolol-label",
+            "locator": "2.1 Hypertension — Renal Impairment",
+            "quote": "In patients with severe renal impairment (ClCr less than 30 mL/min) the recommended initial dose is 2.5 mg once daily; titrate up slowly if needed."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "BYSTOLIC has not been studied in patients receiving dialysis; due to extensive plasma protein binding (~98%), hemodialysis is not expected to enhance nebivolol clearance.",
+      "refs": [
+        {
+          "source_id": "fda-nebivolol-label",
+          "locator": "10. OVERDOSAGE",
+          "quote": "Because of extensive drug binding to plasma proteins, hemodialysis is not expected to enhance nebivolol clearance."
+        },
+        {
+          "source_id": "fda-nebivolol-label",
+          "locator": "2.1 Hypertension — Renal Impairment",
+          "quote": "BYSTOLIC has not been studied in patients receiving dialysis"
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-nebivolol-label",
+        "locator": "2.1 Hypertension — Renal Impairment",
+        "quote": "In patients with severe renal impairment (ClCr less than 30 mL/min) the recommended initial dose is 2.5 mg once daily; titrate up slowly if needed. BYSTOLIC has not been studied in patients receiving dialysis"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Moderate hepatic impairment (Child-Pugh Class B): reduce initial dose to 2.5 mg once daily and titrate slowly (d-nebivolol Cmax increased 3-fold, AUC increased 10-fold, apparent clearance decreased 86%). Severe hepatic impairment (Child-Pugh >B): contraindicated.",
+    "refs": [
+      {
+        "source_id": "fda-nebivolol-label",
+        "locator": "4. CONTRAINDICATIONS",
+        "quote": "Patients with severe hepatic impairment (Child-Pugh >B)"
+      },
+      {
+        "source_id": "fda-nebivolol-label",
+        "locator": "12.4 Pharmacokinetics in Special Populations — Hepatic Disease",
+        "quote": "d-Nebivolol peak plasma concentration increased 3-fold, exposure (AUC) increased 10-fold, and the apparent clearance decreased by 86% in patients with moderate hepatic impairment (Child-Pugh Class B)."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-nebivolol-label",
+        "locator": "12. CLINICAL PHARMACOLOGY",
+        "quote": "Nebivolol is a β-adrenergic receptor blocking agent. In extensive metabolizers (most of the population) and at doses less than or equal to 10 mg, nebivolol is preferentially β 1 selective. In poor metabolizers and at higher doses, nebivolol inhibits both β 1 - and β 2 - adrenergic receptors."
+      }
+    ],
+    "note": "Beta-adrenergic blockers carry class caution in myasthenia gravis; no specific MG warning appears in the nebivolol label."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": []
+  },
+  "pgx": {
+    "value": "Metabolized via CYP2D6 hydroxylation. CYP2D6 poor metabolizers (PMs) attain 5-fold higher Cmax and 10-fold higher AUC of d-nebivolol (half-life 19 h vs 12 h in extensive metabolizers) and lose beta1-selectivity. However, no dose adjustments are necessary for CYP2D6 PMs because active hydroxyl and glucuronide metabolites contribute to beta-blocking activity.",
+    "refs": [
+      {
+        "source_id": "fda-nebivolol-label",
+        "locator": "2.2 Subpopulations — CYP2D6 Polymorphism",
+        "quote": "No dose adjustments are necessary for patients who are CYP2D6 poor metabolizers. The clinical effect and safety profile observed in poor metabolizers were similar to those of extensive metabolizers"
+      },
+      {
+        "source_id": "fda-nebivolol-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "For the same dose, PMs attain a 5-fold higher Cmax and 10-fold higher AUC of d-nebivolol than do EMs."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nebivolol-label",
+        "locator": "6.3 Postmarketing Experience",
+        "quote": "somnolence, syncope, thrombocytopenia, various rashes and skin disorders, vertigo, and vomiting."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Beta-adrenergic receptor blocking agent (preferentially beta1-selective at <=10 mg in extensive metabolizers; inhibits both beta1 and beta2 receptors in poor metabolizers and at higher doses), lacking intrinsic sympathomimetic and membrane-stabilizing activity. Possible antihypertensive mechanisms include decreased heart rate, decreased myocardial contractility, diminution of tonic sympathetic outflow, suppression of renin activity, and vasodilation.",
+    "refs": [
+      {
+        "source_id": "fda-nebivolol-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Possible factors that may be involved include: (1) decreased heart rate, (2) decreased myocardial contractility, (3) diminution of tonic sympathetic outflow to the periphery from cerebral vasomotor centers, (4) suppression of renin activity and (5) vasodilation and decreased peripheral vascular resistance."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2d6": "substrate",
+      "ugt": [
+        "direct glucuronidation"
+      ],
+      "qt_risk": "none"
+    },
+    "refs": [
+      {
+        "source_id": "fda-nebivolol-label",
+        "locator": "12.3 Pharmacokinetics — Metabolism",
+        "quote": "Nebivolol is predominantly metabolized via direct glucuronidation of parent and to a lesser extent via N-dealkylation and oxidation via cytochrome P450 2D6."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Headache (6% to 9%)",
+        "Fatigue (2% to 5%)",
+        "Dizziness (2% to 4%)",
+        "Diarrhea (2% to 3%)",
+        "Nausea (1% to 3%)",
+        "Insomnia (1%)",
+        "Bradycardia (1% at 20-40 mg)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-nebivolol-label",
+          "locator": "6. ADVERSE REACTIONS",
+          "quote": "Most common adverse reactions ( 6.1 ): Headache, fatigue"
+        },
+        {
+          "source_id": "fda-nebivolol-label",
+          "locator": "6.1 Clinical Studies Experience — Table 1",
+          "quote": "Bradycardia 0 0 0 1 Gastrointestinal Disorders Diarrhea 2 2 2 3 Nausea 0 1 3 2 General Disorders Fatigue 1 2 2 5 Chest pain 0 0 1 1 Peripheral edema 0 1 1 1 Nervous System Disorders Headache 6 9 6 7 Dizziness 2 2 3 4"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe bradycardia and second- or third-degree atrioventricular block",
+        "Decompensated cardiac failure and acute pulmonary edema",
+        "Cardiogenic shock and severe hypotension",
+        "Bronchospasm",
+        "Abnormal hepatic function (increased AST, ALT, and bilirubin)",
+        "Acute renal failure",
+        "Hypersensitivity reactions (urticaria, allergic vasculitis, rare angioedema)",
+        "Thrombocytopenia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-nebivolol-label",
+          "locator": "6.3 Postmarketing Experience",
+          "quote": "abnormal hepatic function (including increased AST, ALT and bilirubin), acute pulmonary edema, acute renal failure, atrioventricular block (both second and third degree), bronchospasm, erectile dysfunction, hypersensitivity (including urticaria, allergic vasculitis and rare reports of angioedema), hypotension, myocardial infarction"
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "CYP2D6 Inhibitors (quinidine, propafenone, fluoxetine, paroxetine)",
+        "severity": "moderate",
+        "effect": "CYP2D6 inhibition increases nebivolol plasma levels (fluoxetine increased d-nebivolol AUC 8-fold and Cmax 3-fold).",
+        "management": "Use caution; monitor patients closely and adjust nebivolol dose according to blood pressure response.",
+        "refs": [
+          {
+            "source_id": "fda-nebivolol-label",
+            "locator": "7.1 CYP2D6 Inhibitors",
+            "quote": "Use caution when BYSTOLIC is co-administered with CYP2D6 inhibitors (quinidine, propafenone, fluoxetine, paroxetine, etc.)"
+          },
+          {
+            "source_id": "fda-nebivolol-label",
+            "locator": "12.5 Drug-Drug Interactions",
+            "quote": "Fluoxetine, a CYP2D6 inhibitor, administered at 20 mg per day for 21 days prior to a single 10 mg dose of nebivolol to 10 healthy adults, led to an 8-fold increase in the AUC and 3-fold increase in C max for d-nebivolol"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Other Beta-Blockers",
+        "severity": "contraindicated",
+        "effect": "Additive beta-adrenergic blockade.",
+        "management": "Do not use BYSTOLIC with other beta-blockers.",
+        "refs": [
+          {
+            "source_id": "fda-nebivolol-label",
+            "locator": "7.2 Hypotensive Agents",
+            "quote": "Do not use BYSTOLIC with other β-blockers."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Catecholamine-Depleting Drugs (reserpine, guanethidine) and Clonidine",
+        "severity": "major",
+        "effect": "Excessive reduction of sympathetic activity; rebound hypertension risk with clonidine withdrawal.",
+        "management": "Closely monitor patients receiving catecholamine-depleting drugs. In patients receiving BYSTOLIC and clonidine, discontinue BYSTOLIC for several days before gradual tapering of clonidine.",
+        "refs": [
+          {
+            "source_id": "fda-nebivolol-label",
+            "locator": "7.2 Hypotensive Agents",
+            "quote": "Closely monitor patients receiving catecholamine-depleting drugs, such as reserpine or guanethidine, because the added β-blocking action of BYSTOLIC may produce excessive reduction of sympathetic activity. In patients who are receiving BYSTOLIC and clonidine, discontinue BYSTOLIC for several days before the gradual tapering of clonidine."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Digitalis Glycosides",
+        "severity": "moderate",
+        "effect": "Both digitalis glycosides and beta-blockers slow AV conduction and decrease heart rate, increasing risk of bradycardia.",
+        "management": "Monitor heart rate and AV conduction.",
+        "refs": [
+          {
+            "source_id": "fda-nebivolol-label",
+            "locator": "7.3 Digitalis Glycosides",
+            "quote": "Both digitalis glycosides and β-blockers slow atrioventricular conduction and decrease heart rate. Concomitant use can increase the risk of bradycardia."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Calcium Channel Blockers (verapamil, diltiazem) and Antiarrhythmics (disopyramide)",
+        "severity": "major",
+        "effect": "Exacerbates myocardial depression and AV conduction inhibition, causing excessive reductions in heart rate, blood pressure, and cardiac contractility.",
+        "management": "Monitor heart rate, blood pressure, and cardiac function closely when co-administering.",
+        "refs": [
+          {
+            "source_id": "fda-nebivolol-label",
+            "locator": "7.4 Calcium Channel Blockers",
+            "quote": "BYSTOLIC can exacerbate the effects of myocardial depressants or inhibitors of AV conduction, such as certain calcium antagonists (particularly of the phenylalkylamine [verapamil] and benzothiazepine [diltiazem] classes), or antiarrhythmic agents, such as disopyramide."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nebivolol-label",
+        "locator": "7. DRUG INTERACTIONS",
+        "quote": "CYP2D6 enzyme inhibitors may increase nebivolol levels. ( 7.1 ) Reserpine or clonidine may produce excessive reduction of sympathetic activity. ( 7.2 )"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "5-axis synthesis: (1) No Boxed Warning or pregnancy contraindication. (2) Human data insufficient to determine drug-associated developmental risks; third-trimester beta-blocker exposure increases neonatal risk of hypotension, bradycardia, hypoglycemia, and respiratory depression. (3) Rat studies showed embryofetal/perinatal lethality at ~1.2x MRHD (40 mg/day), though rabbit studies up to 10x MRHD were negative. (4) Uncontrolled maternal hypertension increases preeclampsia, IUGR, and intrauterine death risks. (5) PLLR label. Assigned caution.",
+      "refs": [
+        {
+          "source_id": "fda-nebivolol-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Available data regarding use of BYSTOLIC in pregnant women are insufficient to determine whether there are drug-associated risks of adverse developmental outcomes. There are risks to the mother and fetus associated with poorly controlled hypertension in pregnancy. The use of beta blockers during the third trimester of pregnancy may increase the risk of hypotension, bradycardia, hypoglycemia"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "No information on presence in human milk, effects on the breastfed infant, or effects on milk production. Present in rat milk. Because of the potential for beta-blockers to produce serious adverse reactions in nursing infants (especially bradycardia), breastfeeding is not recommended during BYSTOLIC therapy.",
+      "refs": [
+        {
+          "source_id": "fda-nebivolol-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "There is no information regarding the presence of nebivolol in human milk, the effects on the breastfed infant, or the effects on milk production. Nebivolol is present in rat milk [see Data]. Because of the potential for β-blockers to produce serious adverse reactions in nursing infants, especially bradycardia, BYSTOLIC is not recommended during nursing."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

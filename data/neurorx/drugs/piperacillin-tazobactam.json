@@ -1,0 +1,534 @@
+{
+  "id": "piperacillin-tazobactam",
+  "generic_name": "piperacillin/tazobactam",
+  "tall_man": {
+    "value": "piperacillin/tazobactam",
+    "refs": [
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "ZOSYN is a combination of piperacillin, a penicillin-class antibacterial and tazobactam, a beta-lactamase inhibitor"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "penicillin-class antibacterial",
+    "beta-lactam / beta-lactamase inhibitor combination"
+  ],
+  "subspecialties": [
+    "neurocritical_care",
+    "neuro_infectious"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "piptazo-adult-non-np-iv",
+      "indication": "Intra-abdominal Infections, Skin and Skin Structure Infections, Female Pelvic Infections, and Community-Acquired Pneumonia — Adults (and Pediatric Patients > 40 kg, Normal Renal Function)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "Intra-abdominal infections in adult and pediatric patients 2 months of age and older ( 1.1 ) • Nosocomial pneumonia in adult and pediatric patients 2 months of age and older ( 1.2 ) • Skin and skin structure infections in adults ( 1.3 ) • Female pelvic infections in adults ( 1.4 ) • Community-acquired pneumonia in adults ( 1.5 )"
+        },
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "2.2 Dosage in Adult Patients With Indications Other Than Nosocomial Pneumonia",
+          "quote": "The usual total daily dosage of ZOSYN for adult patients with indications other than nosocomial pneumonia is 3.375 g every six hours [totaling 13.5 g (12.0 g piperacillin and 1.5 g tazobactam)], to be administered by intravenous infusion over 30 minutes. The usual duration of ZOSYN treatment is from 7 to 10 days."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 3.375,
+        "unit": "g",
+        "frequency": "every 6 hours over 30 minutes for 7 to 10 days",
+        "max_daily": 13.5,
+        "infusion": {
+          "duration_min": 30
+        }
+      },
+      "dose_text": "3.375 g IV every 6 hours infused over 30 minutes (total 13.5 g/day: 12.0 g piperacillin and 1.5 g tazobactam); usual duration 7 to 10 days. Pediatric patients > 40 kg with normal renal function receive the adult dose."
+    },
+    {
+      "id": "piptazo-adult-nosocomial-pna-iv",
+      "indication": "Nosocomial Pneumonia — Adults (and Pediatric Patients > 40 kg, Normal Renal Function)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "2.3 Dosage in Adult Patients With Nosocomial Pneumonia",
+          "quote": "Initial presumptive treatment of adult patients with nosocomial pneumonia should start with ZOSYN at a dosage of 4.5 g every six hours plus an aminoglycoside, [totaling 18.0 g (16.0 g piperacillin and 2.0 g tazobactam)], administered by intravenous infusion over 30 minutes. The recommended duration of ZOSYN treatment for nosocomial pneumonia is 7 to 14 days."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 4.5,
+        "unit": "g",
+        "frequency": "every 6 hours over 30 minutes plus an aminoglycoside for 7 to 14 days",
+        "max_daily": 18,
+        "infusion": {
+          "duration_min": 30
+        }
+      },
+      "dose_text": "4.5 g IV every 6 hours infused over 30 minutes plus an aminoglycoside (total 18.0 g/day: 16.0 g piperacillin and 2.0 g tazobactam); recommended duration 7 to 14 days. Continue aminoglycoside if P. aeruginosa is isolated."
+    },
+    {
+      "id": "piptazo-peds-2to9mo-iaa-iv",
+      "indication": "Appendicitis and/or Peritonitis — Pediatric Patients 2 to 9 Months of Age (<= 40 kg, Normal Renal Function)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "2.5 Dosage in Pediatric Patients — Table 2",
+          "quote": "2 months to 9 months 90 mg/kg (80 mg piperacillin and 10 mg tazobactam) every 8 ( eight ) hours 90 mg/kg (80 mg piperacillin and 10 mg tazobactam) every 6 ( six ) hours"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 90,
+        "unit": "mg",
+        "frequency": "every 8 hours over 30 minutes",
+        "infusion": {
+          "duration_min": 30
+        }
+      },
+      "dose_text": "90 mg/kg (80 mg piperacillin and 10 mg tazobactam) IV every 8 hours infused over 30 minutes. Note: GALAXY Containers are not recommended if dose does not equal 2.25 g, 3.375 g, or 4.5 g; use alternative formulation."
+    },
+    {
+      "id": "piptazo-peds-gt9mo-iaa-iv",
+      "indication": "Appendicitis and/or Peritonitis — Pediatric Patients Older than 9 Months (<= 40 kg, Normal Renal Function)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "2.5 Dosage in Pediatric Patients — Table 2",
+          "quote": "Older than 9 months of age 112.5 mg/kg (100 mg piperacillin and 12.5 mg tazobactam) every 8 ( eight ) hours 112.5 mg/kg (100 mg piperacillin and 12.5 mg tazobactam) every 6 ( six ) hours"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 112.5,
+        "unit": "mg",
+        "frequency": "every 8 hours over 30 minutes",
+        "infusion": {
+          "duration_min": 30
+        }
+      },
+      "dose_text": "112.5 mg/kg (100 mg piperacillin and 12.5 mg tazobactam) IV every 8 hours infused over 30 minutes. Pediatric patients > 40 kg receive the adult dose."
+    },
+    {
+      "id": "piptazo-peds-2to9mo-np-iv",
+      "indication": "Nosocomial Pneumonia — Pediatric Patients 2 to 9 Months of Age (<= 40 kg, Normal Renal Function)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "2.5 Dosage in Pediatric Patients — Table 2",
+          "quote": "2 months to 9 months 90 mg/kg (80 mg piperacillin and 10 mg tazobactam) every 8 ( eight ) hours 90 mg/kg (80 mg piperacillin and 10 mg tazobactam) every 6 ( six ) hours"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 90,
+        "unit": "mg",
+        "frequency": "every 6 hours over 30 minutes",
+        "infusion": {
+          "duration_min": 30
+        }
+      },
+      "dose_text": "90 mg/kg (80 mg piperacillin and 10 mg tazobactam) IV every 6 hours infused over 30 minutes."
+    },
+    {
+      "id": "piptazo-peds-gt9mo-np-iv",
+      "indication": "Nosocomial Pneumonia — Pediatric Patients Older than 9 Months (<= 40 kg, Normal Renal Function)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "2.5 Dosage in Pediatric Patients — Table 2",
+          "quote": "Older than 9 months of age 112.5 mg/kg (100 mg piperacillin and 12.5 mg tazobactam) every 8 ( eight ) hours 112.5 mg/kg (100 mg piperacillin and 12.5 mg tazobactam) every 6 ( six ) hours"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 112.5,
+        "unit": "mg",
+        "frequency": "every 6 hours over 30 minutes",
+        "infusion": {
+          "duration_min": 30
+        }
+      },
+      "dose_text": "112.5 mg/kg (100 mg piperacillin and 12.5 mg tazobactam) IV every 6 hours infused over 30 minutes. Pediatric patients > 40 kg receive the adult dose."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "2.4 Dosage in Adult Patients With Renal Impairment",
+        "quote": "In adult patients with renal impairment (creatinine clearance ≤ 40 mL/min) and dialysis patients (hemodialysis and CAPD), the intravenous dose of ZOSYN should be reduced based on the degree of renal impairment."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Reduce intravenous dose in adult patients with CrCl <= 40 mL/min and dialysis patients (hemodialysis and CAPD) based on degree of renal impairment and indication. Dosage in pediatric patients with renal impairment has not been determined.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "2.4 Dosage in Adult Patients With Renal Impairment",
+          "quote": "In adult patients with renal impairment (creatinine clearance ≤ 40 mL/min) and dialysis patients (hemodialysis and CAPD), the intravenous dose of ZOSYN should be reduced based on the degree of renal impairment."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 40,
+        "max": null,
+        "dose_text": "All indications except nosocomial pneumonia: 3.375 g IV every 6 hours; Nosocomial pneumonia: 4.5 g IV every 6 hours (infused over 30 minutes).",
+        "refs": [
+          {
+            "source_id": "fda-piperacillin-tazobactam-label",
+            "locator": "2.4 Table 1",
+            "quote": "Greater than 40 mL/min 3.375 every 6 hours 4.5 every 6 hours"
+          }
+        ]
+      },
+      {
+        "min": 20,
+        "max": 40,
+        "dose_text": "All indications except nosocomial pneumonia: 2.25 g IV every 6 hours; Nosocomial pneumonia: 3.375 g IV every 6 hours (infused over 30 minutes).",
+        "refs": [
+          {
+            "source_id": "fda-piperacillin-tazobactam-label",
+            "locator": "2.4 Table 1",
+            "quote": "20 to 40 mL/min Creatinine clearance for patients not receiving hemodialysis 2.25 every 6 hours 3.375 every 6 hours"
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 20,
+        "dose_text": "All indications except nosocomial pneumonia: 2.25 g IV every 8 hours; Nosocomial pneumonia: 2.25 g IV every 6 hours (infused over 30 minutes).",
+        "refs": [
+          {
+            "source_id": "fda-piperacillin-tazobactam-label",
+            "locator": "2.4 Table 1",
+            "quote": "Less than 20 mL/min 2.25 every 8 hours 2.25 every 6 hours"
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Hemodialysis: 2.25 g IV every 12 hours (all indications except nosocomial pneumonia) or 2.25 g IV every 8 hours (nosocomial pneumonia), plus an additional 0.75 g (0.67 g piperacillin / 0.08 g tazobactam) after each dialysis session on hemodialysis days (HD removes 30-40% of dose). CAPD: 2.25 g IV every 12 hours (non-NP) or 2.25 g IV every 8 hours (NP); no additional dose needed.",
+      "refs": [
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "2.4 Dosage in Adult Patients With Renal Impairment",
+          "quote": "For patients on hemodialysis, the maximum dose is 2.25 g every twelve hours for all indications other than nosocomial pneumonia and 2.25 g every eight hours for nosocomial pneumonia. Since hemodialysis removes 30% to 40% of the administered dose, an additional dose of 0.75 g ZOSYN (0.67 g piperacillin and 0.08 g tazobactam) should be administered following each dialysis period"
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "2.4 Dosage in Adult Patients With Renal Impairment",
+        "quote": "In adult patients with renal impairment (creatinine clearance ≤ 40 mL/min) and dialysis patients (hemodialysis and CAPD), the intravenous dose of ZOSYN should be reduced based on the degree of renal impairment."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Dosage adjustment of ZOSYN is not warranted in patients with hepatic cirrhosis (half-life of piperacillin and tazobactam increases by approximately 25% and 18%, respectively).",
+    "refs": [
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "8.7 Hepatic Impairment",
+        "quote": "Dosage adjustment of ZOSYN is not warranted in patients with hepatic cirrhosis"
+      },
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "12.3 Specific Populations — Hepatic Impairment",
+        "quote": "The half-life of piperacillin and of tazobactam increases by approximately 25% and 18%, respectively, in patients with hepatic cirrhosis compared to healthy subjects. However, this difference does not warrant dosage adjustment of ZOSYN due to hepatic cirrhosis."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "6.3 Additional Experience with Piperacillin",
+        "quote": "Skeletal —prolonged neuromuscular blockade [see Drug Interactions (7.5) ]."
+      }
+    ],
+    "note": "Piperacillin has been implicated in prolonged neuromuscular blockade (especially with non-depolarizing neuromuscular blockers); use with caution and monitor neuromuscular status."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Intravenous formulation only (frozen premixed solution in GALAXY Containers); not for oral or enteral tube administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "3 DOSAGE FORMS AND STRENGTHS",
+        "quote": "ZOSYN ® (piperacillin and tazobactam) Injection is supplied in GALAXY Containers as a frozen, iso-osmotic, sterile, non-pyrogenic solution in single-dose plastic containers"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "confusion_delirium",
+      "rash_sjs_ten",
+      "hepatotoxicity"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Hepatobiliary —hepatitis, jaundice Hematologic —hemolytic anemia, agranulocytosis, pancytopenia Immune —hypersensitivity reactions, anaphylactic/anaphylactoid reactions (including shock), hemophagocytic lymphohistiocytosis (HLH) Renal —interstitial nephritis Nervous system disorders —seizures Psychiatric disorders— delirium"
+      },
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Skin and Appendages —erythema multiforme, Stevens-Johnson syndrome, toxic epidermal necrolysis, drug reaction with eosinophilia and systemic symptoms, (DRESS), acute generalized exanthematous pustulosis (AGEP), dermatitis exfoliative"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Piperacillin is a semisynthetic penicillin that exerts bactericidal activity by inhibiting septum formation and cell wall synthesis of susceptible bacteria. Tazobactam is a penicillanic acid sulfone beta-lactamase inhibitor of Molecular class A enzymes (Richmond-Sykes class III / Bush class 2b and 2b' penicillinases and cephalosporinases) that protects piperacillin from beta-lactamase hydrolysis.",
+    "refs": [
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "12.4 Microbiology — Mechanism of Action",
+        "quote": "Piperacillin sodium exerts bactericidal activity by inhibiting septum formation and cell wall synthesis of susceptible bacteria."
+      },
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "12.4 Microbiology — Mechanism of Action",
+        "quote": "It is, however, a beta-lactamase inhibitor of the Molecular class A enzymes, including Richmond-Sykes class III (Bush class 2b & 2b') penicillinases and cephalosporinases."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none"
+    },
+    "refs": [
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "12.3 Pharmacokinetics — Metabolism & Excretion",
+        "quote": "Piperacillin is metabolized to a minor microbiologically active desethyl metabolite. Tazobactam is metabolized to a single metabolite that lacks pharmacological and antibacterial activities. Excretion Following single or multiple ZOSYN doses to healthy subjects, the plasma half-life of piperacillin and of tazobactam ranged from 0.7 to 1.2 hours"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Diarrhea (11.3% monotherapy; 20% with aminoglycoside)",
+        "Constipation (7.7% to 8.4%)",
+        "Nausea (5.8% to 6.9%)",
+        "Headache (4.5% to 7.7%)",
+        "Insomnia (4.5% to 6.6%)",
+        "Rash (3.9% to 4.2%)",
+        "Pruritus (3.1% to 3.2%)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The most common adverse reactions (incidence >5%) are diarrhea, constipation, nausea, headache, and insomnia. ( 6.1 )"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Hypersensitivity and anaphylactic/anaphylactoid reactions (including shock)",
+        "Severe cutaneous adverse reactions (SJS, TEN, DRESS, AGEP, exfoliative dermatitis)",
+        "Hemophagocytic lymphohistiocytosis (HLH)",
+        "Hematologic toxicity (hemolytic anemia, agranulocytosis, pancytopenia, thrombocytopenia, neutropenia)",
+        "Central nervous system toxicity (seizures, delirium, neuromuscular excitability, especially in renal failure)",
+        "Nephrotoxicity / acute kidney injury (odds ratio 1.7 in critically ill patients; increased with vancomycin) and interstitial nephritis",
+        "Clostridioides difficile-associated diarrhea / pseudomembranous colitis",
+        "Hepatitis and jaundice"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "6.2 Postmarketing Experience",
+          "quote": "Hepatobiliary —hepatitis, jaundice Hematologic —hemolytic anemia, agranulocytosis, pancytopenia Immune —hypersensitivity reactions, anaphylactic/anaphylactoid reactions (including shock), hemophagocytic lymphohistiocytosis (HLH) Renal —interstitial nephritis Nervous system disorders —seizures Psychiatric disorders— delirium"
+        },
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "6.1 Other Trials: Nephrotoxicity",
+          "quote": "In a randomized, multicenter, controlled trial in 1200 adult critically ill patients, piperacillin and tazobactam was found to be a risk factor for renal failure (odds ratio 1.7, 95% CI 1.18 to 2.43), and associated with delayed recovery of renal function as compared to other beta-lactam antibacterial drugs"
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Aminoglycosides (especially tobramycin)",
+        "severity": "moderate",
+        "effect": "Piperacillin may inactivate aminoglycosides in vivo in ESRD/hemodialysis patients (significantly reducing tobramycin concentrations) and in vitro if mixed.",
+        "management": "Monitor aminoglycoside concentrations in hemodialysis patients. Reconstitute, dilute, and administer separately; Y-site co-administration is only compatible with amikacin or gentamicin at specific concentrations/diluents and is NOT compatible with tobramycin.",
+        "refs": [
+          {
+            "source_id": "fda-piperacillin-tazobactam-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "ZOSYN administration can significantly reduce tobramycin concentrations in hemodialysis patients. Monitor tobramycin concentrations in these patients. ( 7.1 )"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Probenecid",
+        "severity": "major",
+        "effect": "Prolongs half-life of piperacillin by 21% and tazobactam by 71% by inhibiting renal tubular secretion.",
+        "management": "Should not be co-administered with ZOSYN unless the benefit outweighs the risk.",
+        "refs": [
+          {
+            "source_id": "fda-piperacillin-tazobactam-label",
+            "locator": "7.2 Probenecid",
+            "quote": "Probenecid administered concomitantly with ZOSYN prolongs the half-life of piperacillin by 21% and that of tazobactam by 71% because probenecid inhibits tubular renal secretion of both piperacillin and tazobactam. Probenecid should not be co-administered with ZOSYN unless the benefit outweighs the risk."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Vancomycin",
+        "severity": "major",
+        "effect": "Increased incidence of acute kidney injury in patients concomitantly administered piperacillin/tazobactam and vancomycin compared to vancomycin alone.",
+        "management": "Monitor kidney function closely in patients receiving concomitant piperacillin/tazobactam and vancomycin.",
+        "refs": [
+          {
+            "source_id": "fda-piperacillin-tazobactam-label",
+            "locator": "7.3 Vancomycin",
+            "quote": "Studies have detected an increased incidence of acute kidney injury in patients concomitantly administered piperacillin and tazobactam and vancomycin as compared to vancomycin alone [see Warnings and Precautions (5.6) ] . Monitor kidney function in patients concomitantly administered with piperacillin and tazobactam and vancomycin."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Anticoagulants (high-dose heparin, oral anticoagulants)",
+        "severity": "moderate",
+        "effect": "Potential interference with blood coagulation system or thrombocyte function.",
+        "management": "Test coagulation parameters more frequently and monitor regularly during simultaneous administration.",
+        "refs": [
+          {
+            "source_id": "fda-piperacillin-tazobactam-label",
+            "locator": "7.4 Anticoagulants",
+            "quote": "Coagulation parameters should be tested more frequently and monitored regularly during simultaneous administration of high doses of heparin, oral anticoagulants, or other drugs that may affect the blood coagulation system or the thrombocyte function"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Vecuronium and Other Non-Depolarizing Neuromuscular Blockers",
+        "severity": "major",
+        "effect": "Piperacillin may prolong neuromuscular blockade produced by vecuronium and other non-depolarizing neuromuscular blockers.",
+        "management": "Monitor for adverse reactions related to prolonged neuromuscular blockade.",
+        "refs": [
+          {
+            "source_id": "fda-piperacillin-tazobactam-label",
+            "locator": "7.5 Vecuronium",
+            "quote": "Due to their similar mechanism of action, it is expected that the neuromuscular blockade produced by any of the non-depolarizing neuromuscular blockers could be prolonged in the presence of piperacillin. Monitor for adverse reactions related to neuromuscular blockade (see package insert for vecuronium bromide)."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Methotrexate",
+        "severity": "moderate",
+        "effect": "Co-administration with piperacillin may reduce methotrexate clearance due to competition for renal secretion.",
+        "management": "If concurrent therapy is necessary, frequently monitor serum methotrexate concentrations and signs/symptoms of methotrexate toxicity.",
+        "refs": [
+          {
+            "source_id": "fda-piperacillin-tazobactam-label",
+            "locator": "7.6 Methotrexate",
+            "quote": "Limited data suggests that co-administration of methotrexate and piperacillin may reduce the clearance of methotrexate due to competition for renal secretion. The impact of tazobactam on the elimination of methotrexate has not been evaluated. If concurrent therapy is necessary, serum concentrations of methotrexate as well as the signs and symptoms of methotrexate toxicity should be frequently"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-piperacillin-tazobactam-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "• ZOSYN administration can significantly reduce tobramycin concentrations in hemodialysis patients. Monitor tobramycin concentrations in these patients. ( 7.1 ) • Probenecid prolongs the half-lives of piperacillin and tazobactam and should not be co-administered with ZOSYN unless the benefit outweighs the risk. ( 7.2 )"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "5-axis synthesis: (1) No Boxed Warning or pregnancy contraindication. (2) Crosses human placenta; insufficient data in pregnant women to inform drug-associated risk of major birth defects or miscarriage. (3) No teratogenicity in IV mouse/rat organogenesis studies up to 1-3x human dose, though IP rat peri/postnatal studies showed fetotoxicity at maternally toxic doses (< MRHD by BSA). (4) Serious maternal bacterial infections require prompt treatment. (5) PLLR label. Assigned caution.",
+      "refs": [
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Piperacillin and tazobactam cross the placenta in humans. However, there are insufficient data with piperacillin and/or tazobactam in pregnant women to inform a drug-associated risk for major birth defects and miscarriage."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Piperacillin is excreted in human milk; tazobactam concentrations in human milk have not been studied. No information is available on effects on the breastfed child or milk production. Weigh developmental and health benefits of breastfeeding against mother's clinical need and potential adverse effects.",
+      "refs": [
+        {
+          "source_id": "fda-piperacillin-tazobactam-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "Piperacillin is excreted in human milk; tazobactam concentrations in human milk have not been studied. No information is available on the effects of piperacillin and tazobactam on the breast-fed child or on milk production."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

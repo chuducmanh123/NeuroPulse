@@ -1,0 +1,466 @@
+{
+  "id": "valsartan",
+  "generic_name": "valsartan",
+  "tall_man": {
+    "value": "valsartan",
+    "refs": [
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "Diovan is an angiotensin II receptor blocker (ARB) indicated for: Hypertension , to lower blood pressure in adults and children 1 year and older."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "angiotensin II receptor blocker (ARB)",
+    "AT1 receptor antagonist",
+    "antihypertensive",
+    "heart failure therapy"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "val-htn-adult-po",
+      "indication": "Hypertension — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "1.1 Hypertension",
+          "quote": "Diovan ® is indicated for the treatment of hypertension, to lower blood pressure in adults and pediatric patients one year of age and older. Lowering blood pressure reduces the risk of fatal and nonfatal cardiovascular events, primarily strokes and myocardial infarctions."
+        },
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "2.2 Adult Hypertension",
+          "quote": "The recommended starting dose of Diovan is 80 mg or 160 mg once daily when used as monotherapy in patients who are not volume-depleted. Patients requiring greater reductions may be started at the higher dose. Diovan may be used over a dose range of 80 mg to 320 mg daily, administered once a day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 80,
+        "unit": "mg",
+        "frequency": "once daily (starting 80-160 mg once daily; range 80-320 mg once daily)",
+        "max_single": 320,
+        "max_daily": 320
+      },
+      "dose_text": "Starting dose 80 mg or 160 mg PO once daily; dose range 80 mg to 320 mg once daily. May add a diuretic or increase up to 320 mg once daily."
+    },
+    {
+      "id": "val-htn-peds-po",
+      "indication": "Hypertension — Pediatric Patients (1 to 16 years of age)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "2.3 Pediatric Hypertension",
+          "quote": "1 to 16 Years of Age The usual recommended starting dose is 1 mg/kg once daily (up to 40 mg total). A higher starting dose of 2 mg/kg may be considered in selected cases when a greater reduction of blood pressure is needed. The dosage should be adjusted according to blood pressure response and tolerability, up to a maximum dose of 4 mg/kg once daily (maximum daily dose 160 mg)."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "once daily (range 1 to 4 mg/kg once daily)",
+        "max_single": 160,
+        "max_daily": 160
+      },
+      "dose_text": "Starting dose 1 mg/kg PO once daily (up to 40 mg total; 2 mg/kg may be considered if greater BP reduction needed); adjust up to maximum 4 mg/kg once daily (max 160 mg/day). Not recommended in children < 1 year. Note: oral suspension has 60% higher AUC than tablets."
+    },
+    {
+      "id": "val-hf-adult-po",
+      "indication": "Heart Failure (NYHA class II-IV) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "1.2 Heart Failure",
+          "quote": "Diovan is indicated to reduce the risk of hospitalization for heart failure in adult patients with heart failure (NYHA class II-IV)."
+        },
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "2.4 Heart Failure",
+          "quote": "The recommended starting dose of Diovan is 40 mg twice daily. Uptitrate to 80 mg and 160 mg twice daily or to the highest dose tolerated by the patient. Consider reducing the dose of concomitant diuretics. The maximum daily dose administered in clinical trials is 320 mg in divided doses."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 40,
+        "unit": "mg",
+        "frequency": "twice daily (uptitrate to 80-160 mg twice daily as tolerated)",
+        "max_single": 160,
+        "max_daily": 320
+      },
+      "dose_text": "Starting dose 40 mg PO twice daily; uptitrate to 80 mg and 160 mg twice daily or highest tolerated dose (max 320 mg/day in divided doses)."
+    },
+    {
+      "id": "val-post-mi-adult-po",
+      "indication": "Post-Myocardial Infarction (Clinically Stable Adults with LV Failure or LV Dysfunction)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "1.3 Post-Myocardial Infarction",
+          "quote": "In clinically stable adult patients with left ventricular failure or left ventricular dysfunction following myocardial infarction, Diovan is indicated to reduce the risk of cardiovascular mortality [see Clinical Studies (14.3)] ."
+        },
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "2.5 Post-Myocardial Infarction",
+          "quote": "Diovan may be initiated as early as 12 hours after a myocardial infarction. The recommended starting dose of Diovan is 20 mg twice daily. Patients may be uptitrated within 7 days to 40 mg twice daily, with subsequent titrations to a target maintenance dose of 160 mg twice daily, as tolerated by the patient."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "twice daily (uptitrate within 7 days to 40 mg BID, target 160 mg BID)",
+        "max_single": 160,
+        "max_daily": 320
+      },
+      "dose_text": "Initiate as early as 12 hours post-MI at 20 mg PO twice daily; uptitrate within 7 days to 40 mg twice daily, then to target maintenance dose of 160 mg twice daily as tolerated."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_normalized_1_73",
+    "refs": [
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "8.6 Renal Impairment",
+        "quote": "Safety and effectiveness of Diovan in patients with severe renal impairment (glomerular filtration rate less than 30 mL/min/1.73 m 2 ) have not been established. No dose adjustment is required in patients with mild (glomerular filtration rate 60 to 90 mL/min/1.73 m 2 ) or moderate (glomerular filtration rate 30 to 60 mL/min/1.73 m 2 ) renal impairment."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dose adjustment required for mild (GFR 60-90 mL/min/1.73 m2) or moderate (GFR 30-60 mL/min/1.73 m2) renal impairment. Safety and effectiveness not established in severe renal impairment (GFR < 30 mL/min/1.73 m2). Not removed by hemodialysis.",
+    "renal_basis": {
+      "value": "cg_normalized_1_73",
+      "refs": [
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "8.6 Renal Impairment",
+          "quote": "Safety and effectiveness of Diovan in patients with severe renal impairment (glomerular filtration rate less than 30 mL/min/1.73 m 2 ) have not been established. No dose adjustment is required in patients with mild (glomerular filtration rate 60 to 90 mL/min/1.73 m 2 ) or moderate (glomerular filtration rate 30 to 60 mL/min/1.73 m 2 ) renal impairment."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 30,
+        "max": 90,
+        "dose_text": "No dose adjustment required in mild (GFR 60-90 mL/min/1.73 m2) or moderate (GFR 30-60 mL/min/1.73 m2) renal impairment.",
+        "refs": [
+          {
+            "source_id": "fda-valsartan-label",
+            "locator": "8.6 Renal Impairment",
+            "quote": "No dose adjustment is required in patients with mild (glomerular filtration rate 60 to 90 mL/min/1.73 m 2 ) or moderate (glomerular filtration rate 30 to 60 mL/min/1.73 m 2 ) renal impairment."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 30,
+        "dose_text": "Safety and effectiveness not established in severe renal impairment (GFR < 30 mL/min/1.73 m2); no data in pediatric patients with GFR < 30 mL/min/1.73 m2 or on dialysis.",
+        "refs": [
+          {
+            "source_id": "fda-valsartan-label",
+            "locator": "8.6 Renal Impairment",
+            "quote": "Safety and effectiveness of Diovan in patients with severe renal impairment (glomerular filtration rate less than 30 mL/min/1.73 m 2 ) have not been established."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Valsartan is not removed from the plasma by hemodialysis.",
+      "refs": [
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "10 OVERDOSAGE",
+          "quote": "Diovan (valsartan) is not removed from the plasma by hemodialysis."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "8.6 Renal Impairment",
+        "quote": "Safety and effectiveness of Diovan in patients with severe renal impairment (glomerular filtration rate less than 30 mL/min/1.73 m 2 ) have not been established. No dose adjustment is required in patients with mild (glomerular filtration rate 60 to 90 mL/min/1.73 m 2 ) or moderate (glomerular filtration rate 30 to 60 mL/min/1.73 m 2 ) renal impairment."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "No dose adjustment is necessary for patients with mild-to-moderate liver disease (despite ~2-fold higher AUC). No dosing recommendations can be provided for patients with severe liver disease.",
+    "refs": [
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "8.7 Hepatic Impairment",
+        "quote": "No dose adjustment is necessary for patients with mild-to-moderate liver disease. No dosing recommendations can be provided for patients with severe liver disease."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: FETAL TOXICITY — When pregnancy is detected, discontinue Diovan as soon as possible. Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: FETAL TOXICITY When pregnancy is detected, discontinue Diovan as soon as possible. (5.1) Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus. (5.1)"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Diovan (valsartan) blocks the vasoconstrictor and aldosterone-secreting effects of angiotensin II by selectively blocking the binding of angiotensin II to the AT 1 receptor in many tissues, such as vascular smooth muscle and the adrenal gland."
+      }
+    ],
+    "note": "Selective AT1 angiotensin II receptor blocker; no neuromuscular junction blocking activity."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Can be extemporaneously compounded into a 4 mg/mL oral suspension using 8 x 80 mg Diovan tablets with Ora-Plus and Ora-Sweet SF (note: suspension AUC is 60% higher than tablets; dose adjustment may be needed when switching)."
+    },
+    "refs": [
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "2.1 Important Dosage and Preparation Information",
+        "quote": "The systemic exposure to valsartan (AUC) is 60% higher with the suspension compared to tablets [see Clinical Pharmacology (12.3)] ."
+      },
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "2.1 Important Dosage and Preparation Information",
+        "quote": "Add 80 mL of Ora-Plus ®* oral suspending vehicle to an amber glass bottle containing 8 Diovan 80 mg tablets and shake for a minimum of 2 minutes."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "hepatotoxicity"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Digestive: Elevated liver enzymes and very rare reports of hepatitis"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Hypertension: headache, dizziness (8% at 320 mg), viral infection (3%), fatigue (2%), abdominal pain (2%)",
+        "Heart failure: dizziness (17%), hypotension (7%), diarrhea (5%), arthralgia (3%), fatigue (3%), back pain (3%), hyperkalemia (2%)",
+        "Post-MI (discontinuation reasons): hypotension (1.4%), cough (0.6%), blood creatinine increased (0.6%)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Hypertension: Most common adverse reactions are headache, dizziness, viral infection, fatigue and abdominal pain ( 6.1 ) Heart Failure: Most common adverse reactions are dizziness, hypotension, diarrhea, arthralgia, back pain, fatigue and hyperkalemia ( 6.1 )"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Fetal toxicity (oligohydramnios, fetal renal failure, skull hypoplasia, fetal/neonatal death)",
+        "Hypotension and syncope (especially in volume-depleted, heart failure, or post-MI patients)",
+        "Impaired renal function / acute renal failure (elevated creatinine/BUN)",
+        "Hyperkalemia",
+        "Angioedema (postmarketing; do not re-administer)",
+        "Elevated liver enzymes, hepatitis (very rare), rhabdomyolysis, thrombocytopenia, vasculitis (postmarketing)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "6.2 Postmarketing Experience",
+          "quote": "Hypersensitivity: Angioedema has been reported. Some of these patients previously experienced angioedema with other drugs, including ACE inhibitors. Diovan should not be re-administered to patients who have had angioedema."
+        },
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "6.1 Clinical Trials Experience",
+          "quote": "Creatinine: In heart failure trials, greater than 50% increases in creatinine were observed in 3.9% of Diovan-treated patients compared to 0.9% of placebo-treated patients."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Nonpeptide, orally active angiotensin II receptor blocker (ARB) that selectively blocks binding of angiotensin II to the AT1 receptor (~20,000-fold greater affinity for AT1 than AT2) in vascular smooth muscle and the adrenal gland, inhibiting vasoconstriction and aldosterone secretion without inhibiting ACE (kininase II).",
+    "refs": [
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Diovan (valsartan) blocks the vasoconstrictor and aldosterone-secreting effects of angiotensin II by selectively blocking the binding of angiotensin II to the AT 1 receptor in many tissues, such as vascular smooth muscle and the adrenal gland."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c9": "substrate",
+      "qt_risk": "none"
+    },
+    "refs": [
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "In vitro metabolism studies involving recombinant CYP 450 enzymes indicated that the CYP 2C9 isoenzyme is responsible for the formation of valeryl-4-hydroxy valsartan. Valsartan does not inhibit CYP 450 isozymes at clinically relevant concentrations."
+      }
+    ],
+    "note": "Primary metabolite (~9% of dose) formed via CYP2C9; ~83% recovered in feces and ~13% in urine mainly as unchanged drug. Substrate of hepatic transporters OATP1B1 and MRP2."
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Aliskiren / Dual RAS Blockade (ACE Inhibitors, ARBs)",
+        "severity": "contraindicated",
+        "effect": "Dual blockade of the RAS is associated with increased risks of hypotension, hyperkalemia, and changes in renal function (including acute renal failure) compared to monotherapy.",
+        "management": "Do not coadminister aliskiren with Diovan in patients with diabetes. Avoid use of aliskiren in patients with GFR < 60 mL/min, and in general avoid combined use of RAS inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-valsartan-label",
+            "locator": "7.3 Dual Blockade of the Renin-Angiotensin System (RAS)",
+            "quote": "In general, avoid combined use of RAS inhibitors. Closely monitor blood pressure, renal function and electrolytes in patients on Diovan and other agents that affect the RAS. Do not coadminister aliskiren with Diovan in patients with diabetes. Avoid use of aliskiren with Diovan in patients with renal impairment (GFR < 60 mL/min)."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Potassium-sparing diuretics, potassium supplements, salt substitutes, heparin",
+        "severity": "moderate",
+        "effect": "May lead to increases in serum potassium, and in heart failure patients, increases in serum creatinine.",
+        "management": "If co-medication is considered necessary, monitoring of serum potassium is advisable.",
+        "refs": [
+          {
+            "source_id": "fda-valsartan-label",
+            "locator": "7.1 Agents Increasing Serum Potassium",
+            "quote": "Concomitant use of valsartan with other agents that block the renin-angiotensin system, potassium-sparing diuretics (e.g., spironolactone, triamterene, amiloride), potassium supplements, salt substitutes containing potassium or other drugs that may increase potassium levels (e.g., heparin) may lead to increases in serum potassium and in heart failure patients to increases in serum creatinine."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "NSAIDs including selective COX-2 inhibitors",
+        "severity": "moderate",
+        "effect": "May result in deterioration of renal function (including possible acute renal failure) in elderly, volume-depleted, or renally impaired patients; antihypertensive effect may be attenuated.",
+        "management": "Monitor renal function periodically in patients receiving valsartan and NSAID therapy.",
+        "refs": [
+          {
+            "source_id": "fda-valsartan-label",
+            "locator": "7.2 Non-Steroidal Anti-Inflammatory Agents Including Selective Cyclooxygenase-2 Inhibitors (COX-2 Inhibitors)",
+            "quote": "coadministration of NSAIDs, including selective COX-2 inhibitors, with angiotensin II receptor antagonists, including valsartan, may result in deterioration of renal function, including possible acute renal failure. These effects are usually reversible. Monitor renal function periodically in patients receiving valsartan and NSAID therapy."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Lithium",
+        "severity": "major",
+        "effect": "Increases in serum lithium concentrations and lithium toxicity have been reported during concomitant administration.",
+        "management": "Monitor serum lithium levels during concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-valsartan-label",
+            "locator": "7.4 Lithium",
+            "quote": "Increases in serum lithium concentrations and lithium toxicity have been reported during concomitant administration of lithium with angiotensin II receptor antagonists. Monitor serum lithium levels during concomitant use."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "OATP1B1 or MRP2 Inhibitors (e.g., rifampin, cyclosporine, ritonavir)",
+        "severity": "moderate",
+        "effect": "Valsartan is a substrate of OATP1B1 and MRP2; coadministration of inhibitors may increase systemic exposure to valsartan.",
+        "management": "Monitor blood pressure and clinical response if coadministered with potent OATP1B1 or MRP2 inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-valsartan-label",
+            "locator": "12.3 Pharmacokinetics - Drug Interaction Studies",
+            "quote": "The results from an in vitro study with human liver tissue indicate that valsartan is a substrate of the hepatic uptake transporter OATP1B1 and the hepatic efflux transporter MRP2. Coadministration of inhibitors of the uptake transporter (rifampin, cyclosporine) or efflux transporter (ritonavir) may increase the systemic exposure to valsartan."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-valsartan-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Dual inhibition of the Renin-Angiotensin System (RAS): Increased risk of renal impairment, hypotension, and hyperkalemia ( 7.3 ) Lithium: Increases in serum lithium level and lithium toxicity ( 7.4 )"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "note": "Boxed Warning for Fetal Toxicity: drugs acting on the renin-angiotensin system can cause fetal injury and death (oligohydramnios, anuria, renal failure, lung hypoplasia, skull hypoplasia, neonatal hypotension). Discontinue Diovan as soon as pregnancy is detected. Breastfeeding is not recommended.",
+      "refs": [
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "BOXED WARNING",
+          "quote": "WARNING: FETAL TOXICITY When pregnancy is detected, discontinue Diovan as soon as possible. (5.1) Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus. (5.1)"
+        },
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Published reports include cases of anhydramnios and oligohydramnios in pregnant women treated with valsartan (see Clinical Considerations) . When pregnancy is detected, consider alternative drug treatment and discontinue Diovan as soon as possible."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "No human milk data; present in rat milk. Breastfeeding is not recommended during treatment with Diovan due to potential for serious adverse reactions in breastfed infants.",
+      "refs": [
+        {
+          "source_id": "fda-valsartan-label",
+          "locator": "8.2 Lactation",
+          "quote": "There is no information regarding the presence of Diovan in human milk, the effects on the breastfed infant, or the effects on milk production. Diovan is present in rat milk. Because of the potential for serious adverse reactions in breastfed infants from exposure to valsartan, advise a nursing woman that breastfeeding is not recommended during treatment with Diovan."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

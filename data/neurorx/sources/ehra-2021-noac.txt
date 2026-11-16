@@ -1,0 +1,72 @@
+2021 European Heart Rhythm Association Practical Guide on the Use of Non-Vitamin K Antagonist Oral Anticoagulants in Patients with Atrial Fibrillation
+Jan Steffel, Ronan Collins, Matthias Antz, Pieter Cornu, Lien Desteghe, Karl Georg Haeusler, Jonas Oldgren, Holger Reinecke, Vanessa Roldan-Schilling, Nigel Rowell, Peter Sinnaeve, Thomas Vanassche, Tatjana Potpara, A. John Camm, and Hein Heidbuchel.
+Europace (2021) 23, 1612-1676 doi:10.1093/europace/euab065
+
+--- Dosing & Missed Dose / Double Dose / Uncertainty ---
+Table 2 OACs and approved/studied doses across indications (Stroke prevention in atrial fibrillation - SPAF):
+- Apixaban: Standard dose 5 mg BID. 2.5 mg BID if two out of three fulfilled: weight <= 60 kg, age >= 80 years, serum creatinine >= 133 umol/L (1.5 mg/dL) (or single criterion: if CrCl 15-29 mL/min).
+- Dabigatran: Standard dose 150 mg BID / 110 mg BID. SmPC: 110 mg BID if age >= 80 years, concomitant verapamil, increased risk of GI bleeding.
+- Edoxaban: Standard dose 60 mg QD. 30 mg QD if: weight <= 60 kg or CrCl 15-49 mL/min or concomitant therapy with strong P-Gp inhibitor (dronedarone, ciclosporin, erythromycin, ketoconazole).
+- Rivaroxaban: Standard dose 20 mg QD. 15 mg QD if CrCl 15-49 mL/min.
+
+Missed dose:
+A forgotten dose may be taken until half of the dosing interval has passed. Hence, for NOACs with a twice daily (BID) dosing regimen (i.e., intake every 12h), a forgotten full dose can be taken up until 6 h after the scheduled intake. For NOACs with a once daily (QD) dosing regimen, a forgotten dose can be taken up until 12h after the scheduled intake. After these time points, the dose should be skipped, and the next scheduled dose should be taken.
+
+Double dose:
+For NOACs with a BID dosing regimen, the next planned dose (i.e. after 12 h) may be skipped, with the regular BID dosing regimen restarted 24h after the double dose intake.
+For NOACs with a QD dosing regimen, the patient should continue the normal dosing regimen, i.e. without skipping the next daily dose.
+
+Uncertainty about dose intake:
+For NOACs with a BID dosing regimen, it is generally advisable to not take another tablet/capsule, but to continue with the regular dose regimen, i.e. starting with the next dose at the 12h interval.
+For NOACs with a QD dosing regimen, when thromboembolic risk is high (CHA2DS2-VASc >= 3), it may generally be advisable to take another tablet 6-8h after the original (uncertain) intake and then continue the planned dose regimen. In case the thromboembolic risk is low (CHA2DS2-VASc <= 2) we advise to wait until the next scheduled dose.
+
+--- Practical considerations for initiation and follow-up ---
+When starting a NOAC, knowledge of current kidney and liver function is required as all NOACs are eliminated to some extent via the kidneys, and renal function affects NOAC dosing. Importantly, kidney function should be assessed using the Cockcroft-Gault formula as it was used in the four pivotal phase III trial.
+Table 3 Checklist during follow-up contacts of AF patients on anticoagulation:
+Blood sampling (including haemoglobin, renal, and liver function): Yearly in all patients except those below; 4-monthly if >= 75 years (especially if on dabigatran), or frail; Variable if renal function CrCl <= 60 mL/min: CrCl/10 = minimum recheck interval (in months).
+
+Covid-19 vaccines are usually administered by intramuscular (i.m.) injection. In patients on NOACs it is advisable to follow the scheme for 'minor risk' interventions:
+- Leave out the morning dose of the NOAC prior to i.m. injection;
+- Use a fine-gauge needle for injection;
+- Apply firm pressure for 2-5 min after the injection;
+- In QD NOACs: take the left-out morning dose 3 h after the injection (esp. in case of high stroke risk and QD NOAC); and
+- In BID NOACs: re-start NOAC with the next scheduled dose.
+
+--- Food intake, antacids, and nasogastric tube administration ---
+Rivaroxaban for stroke prevention in AF (20 mg/15 mg QD) needs to be taken with food since the area under the curve (AUC) of the plasma concentration increases by 39% to a very high bioavailability of almost 100%. There is no relevant food interaction with the other NOACs.
+Data have shown that administration in crushed form, e.g. via a nasogastric tube, does not alter the bioavailability for apixaban, rivaroxaban, and edoxaban. In contrast, dabigatran capsules must not be opened as this results in a substantial increase in drug bioavailability (+75% per SmPC).
+
+--- Management of bleeding under NOAC therapy ---
+Idarucizumab:
+Idarucizumab is a humanized antibody fragment that specifically binds dabigatran. A total of 5 g idarucizumab is administered intravenously in two ready-to-use doses of 2.5 g i.v., administered as two consecutive infusions over 5-10 min each or as a bolus injection. Continued clinical and laboratory monitoring is strongly advised, since a 5 g dose of idarucizumab may not completely neutralize an exceptionally high level of dabigatran (e.g. in case of overdose or CKD). Also, low levels of dabigatran may reappear after 12-24 h. After 24 h, dabigatran can be re-started if clinically indicated and feasible, with normal kinetics. If idarucizumab is not available, dialysis may be used to partially eliminate dabigatran from the circulation.
+
+Direct reversal of apixaban, edoxaban, or rivaroxaban (FXa-inhibitors):
+Andexanet alfa is a recombinant, inactive human FXa analogue that non-specifically binds FXa inhibitors thereby preventing all FXa inhibitors (including low-molecular weight- and UFHs) from inhibiting FXa. It is administered as a bolus over 15-30min, followed by a 2-h infusion depending on the NOAC and on the timing since last intake. In the EU Andexanet alpha is only approved for the reversal of life-threatening or uncontrollable bleeding in patients taking apixaban or rivaroxaban. In view of the very similar mode of action and preliminary subanalyses from the ANNEXA-4 trial it can be assumed that it will have a similar effect in patients on edoxaban.
+
+Coagulation factors:
+The administration of PCCs or aPCCs can hence be considered in a patient with a life-threatening bleed if immediate haemostatic support is required, especially in situations where a specific reversal agent is not available or too costly. PCC and aPCC are preferred over recombinant activated factor VIIa (90 mg/kg) given the absence of any outcome data and the latter's pronounced pro-coagulant effect. Fresh frozen plasma (FFP) is no longer considered a useful reversal strategy.
+
+Overdose without bleeding:
+In the case of recent acute ingestion of an overdose (especially when <= 2h ago), the use of activated charcoal to reduce absorption may be considered for any NOAC (with a standard dosing scheme for adults of 30-50g) although clinical data on its effectiveness are lacking.
+
+--- Patients undergoing a planned invasive procedure, surgery, or ablation ---
+Pre-operative bridging with low-molecular weight heparin (LMWH) or UFH is not recommended in NOAC-treated patients since the predictable waning of the anticoagulation effect allows for properly timed short-term cessation of NOAC therapy before surgery.
+Timing of last NOAC intake before an elective intervention:
+- Minor risk interventions (e.g. dental extractions 1-3 teeth, cataract/glaucoma, endoscopy without biopsy, superficial surgery, pacemaker/ICD, i.m. injection): perform at trough level (12-24h after last intake; skip morning dose and restart 6h later / next scheduled dose).
+- Low-risk interventions (e.g. complex dental, endoscopy with simple biopsy, small orthopaedic surgery):
+  - Apixaban, Edoxaban, Rivaroxaban: last intake >= 24h before (CrCl >= 30 mL/min), or >= 36h before (CrCl 15-29 mL/min).
+  - Dabigatran: last intake >= 24h before (CrCl >= 80 mL/min), >= 36h before (CrCl 50-79 mL/min), >= 48h before (CrCl 30-49 mL/min).
+- High-risk interventions (e.g. neurosurgery, spinal/epidural anaesthesia, lumbar diagnostic puncture, cardiac surgery, major abdominal/thoracic/urologic/orthopaedic surgery, complex endoscopy):
+  - Apixaban, Edoxaban, Rivaroxaban: last intake >= 48h before (CrCl >= 15 mL/min).
+  - Dabigatran: last intake >= 48h before (CrCl >= 80 mL/min), >= 72h before (CrCl 50-79 mL/min), >= 96h before (CrCl 30-49 mL/min).
+Consider +24 h of interruption in situations likely resulting in increased plasma levels (e.g. body weight < 50 kg, significant interactions).
+
+Restarting NOAC therapy after an invasive procedure:
+After a procedure with immediate and complete haemostasis, NOACs can generally be resumed 6-8h after the end of the intervention. However, in some surgical interventions resuming full dose anticoagulation within the first 48-72h after the procedure may carry a bleeding risk which outweighs the risk of AF-related embolism. In such cases, postoperative thromboprophylaxis using LMWH in prophylactic dose 6-8 h after surgery and delay of therapeutic anticoagulation by deferring restart of the NOAC >= 48-72 h can be considered.
+
+--- Post-acute stroke (Re-)initiation of anticoagulation ---
+- TIA: NOAC may be continued or started the next day (Day 1) after exclusion of ICB/secondary haemorrhagic transformation by imaging.
+- Mild stroke: OAC may be initiated >= 3 days after AIS if infarct size is not expected to substantially increase the risk of haemorrhagic transformation.
+- Moderate stroke: anticoagulation may be started >= 6-8 days after AIS, after excluding secondary haemorrhagic transformation by repeating brain imaging (CT or MRI).
+- Severe stroke: anticoagulation may be started >= 12-14 days after AIS, after excluding secondary haemorrhagic transformation by repeating brain imaging (CT or MRI).
+- Post-ICB: NOACs may be re-started 4-8 weeks after ICB, if the individual risk of cardio-embolic stroke is high and the risk of recurrent ICB is estimated to be lower.

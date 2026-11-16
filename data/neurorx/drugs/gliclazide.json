@@ -1,0 +1,545 @@
+{
+  "id": "gliclazide",
+  "generic_name": "gliclazide",
+  "tall_man": {
+    "value": "gliclazide",
+    "refs": [
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "Title",
+        "quote": "DIAMICRON 30 mg MR Tablets (gliclazide) Summary of Product Characteristics (SmPC)"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "sulfonylurea",
+    "oral antidiabetic agent",
+    "insulin secretagogue"
+  ],
+  "subspecialties": [
+    "stroke"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "gliclazide-t2dm-initial-po",
+      "indication": "Non-insulin-dependent diabetes (Type 2) in adults — Initial dose (including elderly >= 65 years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.1 Therapeutic indications",
+          "quote": "Non insulin-dependent diabetes (type 2) in adults when dietary measures, physical exercise and weight loss alone are not sufficient to control blood glucose."
+        },
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.2 Posology and method of administration",
+          "quote": "The recommended starting dose is 30 mg daily."
+        },
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.2 Posology and method of administration — Elderly",
+          "quote": "Diamicron 30 mg MR Tablets should be prescribed using the same dosing regimen recommended for patients under 65 years of age."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 30,
+        "unit": "mg",
+        "frequency": "once daily at breakfast time",
+        "max_daily": 120
+      },
+      "dose_text": "30 mg (1 tablet) orally once daily in a single intake at breakfast time; swallow tablet(s) whole. If blood glucose is effectively controlled, this dose may be used for maintenance treatment. Same dosing regimen is recommended for elderly patients."
+    },
+    {
+      "id": "gliclazide-t2dm-maintenance-po",
+      "indication": "Non-insulin-dependent diabetes (Type 2) in adults — Maintenance & stepwise titration",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.1 Therapeutic indications",
+          "quote": "Non insulin-dependent diabetes (type 2) in adults when dietary measures, physical exercise and weight loss alone are not sufficient to control blood glucose."
+        },
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.2 Posology and method of administration",
+          "quote": "If blood glucose is not adequately controlled, the dose may be increased to 60, 90 or 120 mg daily, in successive steps. The interval between each dose increment should be at least 1 month except in patients whose blood glucose has not reduced after two weeks of treatment. In such cases, the dose may be increased at the end of the second week of treatment."
+        },
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.2 Posology and method of administration",
+          "quote": "The maximum recommended daily dose is 120 mg."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 30,
+        "unit": "mg",
+        "frequency": "once daily at breakfast time (titrate in 30 mg steps to 60, 90, or 120 mg/day)",
+        "max_single": 120,
+        "max_daily": 120
+      },
+      "dose_text": "30 to 120 mg (1 to 4 tablets) orally once daily in a single intake at breakfast time; swallow whole. Increase in successive steps (60, 90, or 120 mg daily) at intervals of at least 1 month (or after 2 weeks if blood glucose has not reduced). Maximum recommended daily dose is 120 mg."
+    },
+    {
+      "id": "gliclazide-t2dm-high-risk-hypo-po",
+      "indication": "Non-insulin-dependent diabetes (Type 2) in adults — Patients at risk of hypoglycaemia",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.2 Posology and method of administration — Patients at risk of hypoglycaemia",
+          "quote": "It is recommended that the minimum daily starting dose of 30 mg is used."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 30,
+        "unit": "mg",
+        "frequency": "once daily at breakfast time (minimum starting dose)",
+        "max_daily": 120
+      },
+      "dose_text": "Minimum daily starting dose of 30 mg orally once daily at breakfast time is recommended in patients who are undernourished or malnourished, have severe or poorly compensated endocrine disorders, are withdrawing from prolonged and/or high-dose corticosteroid therapy, or have severe vascular disease."
+    },
+    {
+      "id": "gliclazide-t2dm-switch-po",
+      "indication": "Non-insulin-dependent diabetes (Type 2) in adults — Switching from Diamicron 80 mg or other oral antidiabetic agents",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.2 Posology and method of administration — Switching",
+          "quote": "1 tablet of Diamicron 80 mg is comparable to 1 tablet of Diamicron 30 mg MR Tablets. Consequently the switch can be performed provided a careful blood monitoring."
+        },
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.2 Posology and method of administration — Switching",
+          "quote": "A transitional period is not generally necessary. A starting dose of 30 mg should be used and this should be adjusted to suit the patient's blood glucose response, as described above."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 30,
+        "unit": "mg",
+        "frequency": "once daily at breakfast time",
+        "max_daily": 120
+      },
+      "dose_text": "1 tablet of Diamicron 80 mg is comparable to 1 tablet of Diamicron 30 mg MR Tablets (perform with careful blood monitoring). When replacing another oral antidiabetic agent, start at 30 mg daily and adjust to blood glucose response; a treatment-free period of a few days may be necessary when switching from a sulfonylurea with a prolonged half-life."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": [],
+    "note": "SmPC classifies renal impairment qualitatively (mild to moderate vs severe) without specifying CrCl or eGFR calculation basis."
+  },
+  "renal_impairment": {
+    "description": "In mild to moderate renal insufficiency, the same dosing regimen can be used as in normal renal function with careful patient monitoring. Contraindicated in severe renal insufficiency (use of insulin is recommended).",
+    "renal_basis": {
+      "value": null,
+      "refs": []
+    },
+    "bands": [],
+    "hemodialysis": {
+      "value": "Dialysis is of no benefit in overdose due to the strong binding of gliclazide to plasma proteins.",
+      "refs": [
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.9 Overdose",
+          "quote": "Dialysis is of no benefit to patients due to the strong binding of gliclazide to proteins."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "4.2 Posology and method of administration — Renal impairment",
+        "quote": "In patients with mild to moderate renal insufficiency the same dosing regimen can be used as in patients with normal renal function with careful patient monitoring. These data have been confirmed in clinical trials."
+      },
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "4.3 Contraindications",
+        "quote": "Severe renal or hepatic insufficiency: in these cases the use of insulin is recommended,"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Contraindicated in severe hepatic insufficiency (use of insulin is recommended). In hepatic insufficiency, pharmacokinetics and/or pharmacodynamics of gliclazide may be altered and hypoglycaemic episodes may be prolonged; appropriate management should be initiated.",
+    "refs": [
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "4.3 Contraindications",
+        "quote": "Severe renal or hepatic insufficiency: in these cases the use of insulin is recommended,"
+      },
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "4.4 Special warnings and precautions for use",
+        "quote": "Renal and hepatic insufficiency: the pharmacokinetics and/or pharmacodynamics of gliclazide may be altered in patients with hepatic insufficiency or severe renal failure. A hypoglycaemic episode occurring in these patients may be prolonged, so appropriate management should be initiated."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": null,
+    "refs": [],
+    "note": "Not mentioned in SmPC; no neuromuscular junction blocking warnings."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Modified-release tablet; SmPC recommends that the tablet(s) be swallowed whole. Do not crush or split."
+    },
+    "refs": [
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "4.2 Posology and method of administration",
+        "quote": "It is recommended that the tablet(s) be swallowed whole."
+      }
+    ]
+  },
+  "pgx": {
+    "value": "G6PD-deficiency: treatment with sulfonylurea agents can lead to haemolytic anaemia; use with caution and consider a non-sulfonylurea alternative.",
+    "refs": [
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "4.4 Special warnings and precautions for use",
+        "quote": "Treatment of patients with G6PD-deficiency with sulfonylurea agents can lead to haemolytic anaemia. Since gliclazide belongs to the chemical class of sulfonylurea drugs, caution should be used in patients with G6PD-deficiency and a non-sulfonylurea alternative should be considered."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "confusion_delirium",
+      "sedation_somnolence",
+      "psychiatric_behavioral",
+      "rash_sjs_ten",
+      "hyponatremia",
+      "hepatotoxicity"
+    ],
+    "refs": [
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "4.8 Undesirable effects",
+        "quote": "Possible symptoms of hypoglycaemia are: headache, intense hunger, nausea, vomiting, lassitude, sleep disorders, agitation, aggression, poor concentration, reduced awareness and slowed reactions, depression, confusion, visual and speech disorders, aphasia, tremor, paresis, sensory disorders, dizziness, feeling of powerlessness, loss of self-control, delirium, convulsions, shallow respiration"
+      },
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "4.8 Undesirable effects",
+        "quote": "Skin and subcutaneous tissue disorders: rash, pruritus, urticaria, angioedema, erythema, maculopapular rashes, bullous reactions (such as Stevens-Johnson syndrome and toxic epidermal necrolysis and autoimmune bullous disorders), and exceptionally, drug rash with eosinophilia and systemic symptoms (DRESS)."
+      },
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "4.8 Undesirable effects — Class attribution effects",
+        "quote": "cases of erythrocytopenia, agranulocytosis, haemolytic anaemia, pancytopenia, allergic vasculitis, hyponatremia, elevated liver enzyme levels and even impairment of liver function (e.g. with cholestasis and jaundice) and hepatitis which regressed after withdrawal of the sulfonylurea or led to life-threatening liver failure in isolated cases."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Hypoglycaemic sulfonylurea oral antidiabetic agent that reduces blood glucose by stimulating insulin secretion from pancreatic islet beta-cells (restoring the first peak and increasing the second phase of insulin secretion), and also exhibits haemovascular properties (partial inhibition of platelet aggregation/adhesion and increased endothelial tPA fibrinolytic activity).",
+    "refs": [
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "5.1 Pharmacodynamic properties",
+        "quote": "In type 2 diabetics, gliclazide restores the first peak of insulin secretion in response to glucose and increases the second phase of insulin secretion. A significant increase in insulin response is seen in response to stimulation induced by a meal or glucose."
+      },
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "5.1 Pharmacodynamic properties",
+        "quote": "In addition to these metabolic properties, gliclazide has haemovascular properties."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": null,
+    "refs": [],
+    "note": "SmPC states gliclazide is mainly metabolised in the liver (<1% excreted unchanged in urine; no active metabolites detected), without specifying individual CYP isoenzymes, UGT, P-gp, QT risk, or ACB score."
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Hypoglycaemia (most frequent adverse reaction; symptoms include headache, intense hunger, nausea, vomiting, lassitude, sleep disorders, agitation, aggression, poor concentration, depression, confusion, tremor, dizziness, sweating, tachycardia, palpitations)",
+        "Gastrointestinal disturbances: abdominal pain, nausea, vomiting, dyspepsia, diarrhoea, constipation (can be avoided or minimised if taken with breakfast)",
+        "Transient visual disturbances (especially on initiation of treatment due to changes in blood glucose levels)"
+      ],
+      "refs": [
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.8 Undesirable effects",
+          "quote": "The most frequent adverse reaction with gliclazide is hypoglycaemia."
+        },
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.8 Undesirable effects",
+          "quote": "Gastrointestinal disturbances, including abdominal pain, nausea, vomiting dyspepsia, diarrhoea, and constipation have been reported: if these should occur they can be avoided or minimised if gliclazide is taken with breakfast."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe or prolonged hypoglycaemia (drowsiness, loss of consciousness, convulsions, coma, and possible lethal outcome; requires immediate medical treatment or hospitalisation)",
+        "Severe cutaneous adverse reactions: Stevens-Johnson syndrome (SJS), toxic epidermal necrolysis (TEN), autoimmune bullous disorders, angioedema, and exceptionally DRESS",
+        "Haematological disorders: anaemia, leucopenia, thrombocytopenia, granulocytopenia, and class-attributed agranulocytosis, haemolytic anaemia, pancytopenia",
+        "Hepato-biliary disorders: raised hepatic enzymes (AST, ALT, alkaline phosphatase), hepatitis, cholestatic jaundice, and isolated cases of life-threatening liver failure (class effect)",
+        "Allergic vasculitis and hyponatraemia (class attribution effects)"
+      ],
+      "refs": [
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.8 Undesirable effects",
+          "quote": "If a hypoglycaemic episode is severe or prolonged, and even if it is temporarily controlled by intake of sugar, immediate medical treatment or even hospitalisation are required."
+        },
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.8 Undesirable effects",
+          "quote": "Skin and subcutaneous tissue disorders: rash, pruritus, urticaria, angioedema, erythema, maculopapular rashes, bullous reactions (such as Stevens-Johnson syndrome and toxic epidermal necrolysis and autoimmune bullous disorders), and exceptionally, drug rash with eosinophilia and systemic symptoms (DRESS)."
+        },
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.8 Undesirable effects",
+          "quote": "Changes in haematology are rare. They may include anaemia, leucopenia, thrombocytopenia, granulocytopenia. These are in general reversible upon discontinuation of medication."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Miconazole (systemic route, oromucosal gel)",
+        "severity": "contraindicated",
+        "effect": "Increases the hypoglycaemic effect with possible onset of hypoglycaemic symptoms, or even coma.",
+        "management": "Concomitant use is contraindicated (see Sections 4.3 and 4.5).",
+        "refs": [
+          {
+            "source_id": "smpc-gliclazide",
+            "locator": "4.5 Interaction with other medicinal products — Contra-indicated combination",
+            "quote": "Miconazole (systemic route, oromucosal gel): increases the hypoglycaemic effect with possible onset of hypoglycaemic symptoms, or even coma."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Phenylbutazone (systemic route)",
+        "severity": "major",
+        "effect": "Increases the hypoglycaemic effect of sulfonylureas (displaces binding to plasma proteins and/or reduces elimination).",
+        "management": "Combination not recommended. Preferable to use a different anti-inflammatory agent, or warn patient, emphasise self-monitoring, and adjust dose during and after treatment.",
+        "refs": [
+          {
+            "source_id": "smpc-gliclazide",
+            "locator": "4.5 Interaction with other medicinal products — Combinations which are not recommended",
+            "quote": "Phenylbutazone (systemic route): increases the hypoglycaemic effect of sulfonylureas (displaces their binding to plasma proteins and/or reduces their elimination)."
+          },
+          {
+            "source_id": "smpc-gliclazide",
+            "locator": "4.5 Interaction with other medicinal products — Combinations which are not recommended",
+            "quote": "It is preferable to use a different anti-inflammatory agent, or else to warn the patient and emphasise the importance of self-monitoring. Where necessary, adjust the dose during and after treatment with the anti-inflammatory agent."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Alcohol (and medicines containing alcohol)",
+        "severity": "major",
+        "effect": "Increases the hypoglycaemic reaction by inhibiting compensatory reactions, which can lead to the onset of hypoglycaemic coma.",
+        "management": "Combination not recommended; avoid alcohol or medicines containing alcohol.",
+        "refs": [
+          {
+            "source_id": "smpc-gliclazide",
+            "locator": "4.5 Interaction with other medicinal products — Combinations which are not recommended",
+            "quote": "Alcohol : increases the hypoglycaemic reaction (by inhibiting compensatory reactions) that can lead to the onset of hypoglycaemic coma. Avoid alcohol or medicines containing alcohol."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Hypoglycaemia-potentiating agents (other anti-diabetic agents, beta-blockers, fluconazole, ACE inhibitors, H2-receptor antagonists, MAOIs, sulfonamides, clarithromycin, NSAIDs)",
+        "severity": "moderate",
+        "effect": "Potentiation of the blood glucose lowering effect and, in some instances, hypoglycaemia.",
+        "management": "Combinations requiring precautions for use; monitor blood glucose closely.",
+        "refs": [
+          {
+            "source_id": "smpc-gliclazide",
+            "locator": "4.5 Interaction with other medicinal products — Combinations requiring precautions for use",
+            "quote": "Potentiation of the blood glucose lowering effect and thus, in some instances, hypoglycaemia may occur when one of the following drugs is taken: other anti-diabetic agents (insulins, acarbose, metformin, thiazolidinediones, dipeptidyl peptidase-4 inhibitors, GLP-1 receptor agonists), beta-blockers, fluconazole, angiotensin converting enzyme inhibitors (captopril, enalapril),"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Danazol",
+        "severity": "major",
+        "effect": "Diabetogenic effect of danazol causing an increase in blood glucose levels.",
+        "management": "Combination not recommended. If unavoidable, warn patient, emphasise urine and blood glucose monitoring, and adjust antidiabetic dose during and after danazol.",
+        "refs": [
+          {
+            "source_id": "smpc-gliclazide",
+            "locator": "4.5 Interaction with other medicinal products — Combination which is not recommended",
+            "quote": "If the use of this active substance cannot be avoided, warn the patient and emphasise the importance of urine and blood glucose monitoring. It may be necessary to adjust the dose of the antidiabetic agent during and after treatment with danazol."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Chlorpromazine (high doses >100 mg/day)",
+        "severity": "moderate",
+        "effect": "High doses (>100 mg/day) increase blood glucose levels via reduced insulin release.",
+        "management": "Warn the patient and emphasise blood glucose monitoring; dose adjustment of gliclazide may be necessary during and after neuroleptic treatment.",
+        "refs": [
+          {
+            "source_id": "smpc-gliclazide",
+            "locator": "4.5 Interaction with other medicinal products — Combinations requiring precautions during use",
+            "quote": "Chlorpromazine (neuroleptic agent): high doses (>100 mg per day of chlorpromazine) increase blood glucose levels (reduced insulin release)."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Glucocorticoids (systemic and local) and tetracosactrin",
+        "severity": "moderate",
+        "effect": "Increase in blood glucose levels with possible ketosis due to reduced carbohydrate tolerance.",
+        "management": "Warn patient, emphasise blood glucose monitoring (particularly at start of treatment), and adjust antidiabetic dose during and after glucocorticoid treatment.",
+        "refs": [
+          {
+            "source_id": "smpc-gliclazide",
+            "locator": "4.5 Interaction with other medicinal products — Combinations requiring precautions during use",
+            "quote": "Glucocorticoids (systemic and local route: intra-articular, cutaneous and rectal preparations) and tetracosactrin: increase in blood glucose levels with possible ketosis (reduced tolerance to carbohydrates due to glucocorticoids)."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Beta-2 agonists (ritodrine, salbutamol, terbutaline — I.V.)",
+        "severity": "moderate",
+        "effect": "Increased blood glucose levels due to beta-2 agonist effects.",
+        "management": "Emphasise blood glucose monitoring; if necessary, switch to insulin.",
+        "refs": [
+          {
+            "source_id": "smpc-gliclazide",
+            "locator": "4.5 Interaction with other medicinal products — Combinations requiring precautions during use",
+            "quote": "Increased blood glucose levels due to beta-2 agonist effects. Emphasise the importance of monitoring blood glucose levels. If necessary, switch to insulin."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "St. John's Wort (Hypericum perforatum) preparations",
+        "severity": "moderate",
+        "effect": "Gliclazide exposure is decreased by St. John's Wort, potentially worsening blood glucose control.",
+        "management": "Emphasise the importance of blood glucose level monitoring.",
+        "refs": [
+          {
+            "source_id": "smpc-gliclazide",
+            "locator": "4.5 Interaction with other medicinal products — Combinations requiring precautions during use",
+            "quote": "Gliclazide exposure is decreased by Saint John's Wort- Hypericum perforatum . Emphasise the importance of blood glucose levels monitoring."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Fluoroquinolones",
+        "severity": "moderate",
+        "effect": "Risk of dysglycaemia (both hypoglycaemia and hyperglycaemia), especially in elderly patients.",
+        "management": "Warn patient of the risk of dysglycaemia and emphasise careful blood glucose monitoring.",
+        "refs": [
+          {
+            "source_id": "smpc-gliclazide",
+            "locator": "4.5 Interaction with other medicinal products — Combinations requiring precautions during use",
+            "quote": "Fluoroquinolones : in case of a concomitant use of Diamicron 30 mg MR Tablets and a fluoroquinolone, the patient should be warned of the risk of dysglycaemia, and the importance of blood glucose monitoring should be emphasised."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Anticoagulant therapy (e.g., Warfarin)",
+        "severity": "moderate",
+        "effect": "Sulfonylureas may lead to potentiation of anticoagulation during concurrent treatment.",
+        "management": "Adjustment of the anticoagulant dose may be necessary.",
+        "refs": [
+          {
+            "source_id": "smpc-gliclazide",
+            "locator": "4.5 Interaction with other medicinal products — Combination which must be taken into account",
+            "quote": "Sulfonylureas may lead to potentiation of anticoagulation during concurrent treatment. Adjustment of the anticoagulant may be necessary."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "smpc-gliclazide",
+        "locator": "4.5 Interaction with other medicinal products",
+        "quote": "Miconazole (systemic route, oromucosal gel): increases the hypoglycaemic effect with possible onset of hypoglycaemic symptoms, or even coma."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "note": "SmPC states limited human pregnancy data (<300 outcomes), advises avoiding gliclazide during pregnancy as a precautionary measure, declares oral hypoglycaemic agents unsuitable, and recommends switching to insulin (first-choice) before conception or as soon as pregnancy is discovered.",
+      "refs": [
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.6 Fertility, pregnancy and lactation — Pregnancy",
+          "quote": "There is no or limited amount of data (less than 300 pregnancy outcomes) from the use of gliclazide in pregnant women, even though there are few data with other sulfonylureas."
+        },
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.6 Fertility, pregnancy and lactation — Pregnancy",
+          "quote": "As a precautionary measure, it is preferable to avoid the use of Gliclazide during pregnancy."
+        },
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.6 Fertility, pregnancy and lactation — Pregnancy",
+          "quote": "Oral hypoglycaemic agents are not suitable, insulin is the drug of first choice for treatment of diabetes during pregnancy. It is recommended that oral hypoglycaemic therapy is changed to insulin before a pregnancy is attempted, or as soon as pregnancy is discovered."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Contraindicated in breast-feeding mothers. Excretion into human milk is unknown; given the risk of neonatal hypoglycaemia, a risk to newborns/infants cannot be excluded.",
+      "refs": [
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.3 Contraindications",
+          "quote": "Lactation (see section 4.6)."
+        },
+        {
+          "source_id": "smpc-gliclazide",
+          "locator": "4.6 Fertility, pregnancy and lactation — Breast-feeding",
+          "quote": "It is unknown whether gliclazide or its metabolites are excreted in human milk. Given the risk of neonatal hypoglycaemia, the product is therefore contra-indicated in breast-feeding mothers. A risk to the newborns/infants cannot be excluded."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

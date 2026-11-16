@@ -1,0 +1,338 @@
+{
+  "id": "bisoprolol",
+  "generic_name": "bisoprolol",
+  "tall_man": {
+    "value": "bisoprolol",
+    "refs": [
+      {
+        "source_id": "fda-bisoprolol-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "INDICATIONS AND USAGE Bisoprolol fumarate tablets are indicated in the management of hypertension. It may be used alone or in combination with other antihypertensive agents."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "beta-1 selective adrenergic receptor blocker",
+    "cardioselective beta-blocker",
+    "antihypertensive"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "bis-htn-adult-po",
+      "indication": "Hypertension — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-bisoprolol-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "INDICATIONS AND USAGE Bisoprolol fumarate tablets are indicated in the management of hypertension. It may be used alone or in combination with other antihypertensive agents."
+        },
+        {
+          "source_id": "fda-bisoprolol-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "The usual starting dose is 5 mg once daily. In some patients, 2.5 mg may be an appropriate starting dose (see Bronchospastic Disease in WARNINGS ). If the antihypertensive effect of 5 mg is inadequate, the dose may be increased to 10 mg and then, if necessary, to 20 mg once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily (2.5 mg initial in some patients; titrate to 10-20 mg once daily)",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "Usual starting dose 5 mg PO once daily (2.5 mg may be appropriate in some patients). If inadequate, may increase to 10 mg and then, if necessary, to 20 mg once daily."
+    },
+    {
+      "id": "bis-htn-renal-hepatic-po",
+      "indication": "Hypertension — Adults with Renal Dysfunction (CrCl < 40 mL/min) or Hepatic Impairment",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-bisoprolol-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "In patients with hepatic impairment (hepatitis or cirrhosis) or renal dysfunction (creatinine clearance less than 40 mL/min), the initial daily dose should be 2.5 mg and caution should be used in dose-titration."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2.5,
+        "unit": "mg",
+        "frequency": "once daily (initial dose; titrate with caution)"
+      },
+      "dose_text": "Initial daily dose 2.5 mg PO once daily in patients with hepatic impairment (hepatitis or cirrhosis) or renal dysfunction (CrCl < 40 mL/min); use caution in dose-titration."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-bisoprolol-label",
+        "locator": "2 DOSAGE AND ADMINISTRATION",
+        "quote": "In patients with hepatic impairment (hepatitis or cirrhosis) or renal dysfunction (creatinine clearance less than 40 mL/min), the initial daily dose should be 2.5 mg and caution should be used in dose-titration."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "In patients with creatinine clearance < 40 mL/min, plasma half-life is increased approximately threefold; initiate at 2.5 mg once daily and titrate with caution. Not dialyzable.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-bisoprolol-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "In patients with hepatic impairment (hepatitis or cirrhosis) or renal dysfunction (creatinine clearance less than 40 mL/min), the initial daily dose should be 2.5 mg and caution should be used in dose-titration."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": null,
+        "max": 40,
+        "dose_text": "Initial daily dose 2.5 mg once daily; use caution in dose-titration (plasma half-life increased ~3-fold).",
+        "dose": {
+          "kind": "fixed",
+          "amount": 2.5,
+          "unit": "mg",
+          "frequency": "once daily (initial dose)"
+        },
+        "refs": [
+          {
+            "source_id": "fda-bisoprolol-label",
+            "locator": "2 DOSAGE AND ADMINISTRATION",
+            "quote": "In patients with hepatic impairment (hepatitis or cirrhosis) or renal dysfunction (creatinine clearance less than 40 mL/min), the initial daily dose should be 2.5 mg and caution should be used in dose-titration."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Bisoprolol fumarate is not dialyzable; drug replacement is not necessary in patients undergoing dialysis.",
+      "refs": [
+        {
+          "source_id": "fda-bisoprolol-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "Since limited data suggest that bisoprolol fumarate is not dialyzable, drug replacement is not necessary in patients undergoing dialysis."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-bisoprolol-label",
+        "locator": "12 CLINICAL PHARMACOLOGY",
+        "quote": "In subjects with creatinine clearance less than 40 mL/min, the plasma half-life is increased approximately threefold compared to healthy subjects."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "In patients with hepatic impairment (hepatitis or cirrhosis), the initial daily dose should be 2.5 mg and caution should be used in dose-titration; elimination is significantly slower in cirrhosis (half-life 8.3 to 21.7 hours).",
+    "refs": [
+      {
+        "source_id": "fda-bisoprolol-label",
+        "locator": "2 DOSAGE AND ADMINISTRATION",
+        "quote": "In patients with hepatic impairment (hepatitis or cirrhosis) or renal dysfunction (creatinine clearance less than 40 mL/min), the initial daily dose should be 2.5 mg and caution should be used in dose-titration."
+      },
+      {
+        "source_id": "fda-bisoprolol-label",
+        "locator": "12 CLINICAL PHARMACOLOGY",
+        "quote": "In patients with cirrhosis of the liver, the elimination of bisoprolol fumarate tablets is more variable in rate and significantly slower than that in healthy subjects, with plasma half-life ranging from 8.3 to 21.7 hours."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-bisoprolol-label",
+        "locator": "12 CLINICAL PHARMACOLOGY",
+        "quote": "Bisoprolol fumarate tablets are a beta 1 -selective (cardioselective) adrenoceptor blocking agent without significant membrane stabilizing activity or intrinsic sympathomimetic activity in its therapeutic dosage range."
+      }
+    ],
+    "note": "Beta-blockers can rarely unmask or exacerbate muscle weakness in myasthenia gravis; monitor neuromuscular and respiratory status."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Film-coated 5 mg and 10 mg oral tablets; no specific enteral tube administration instructions in label."
+  },
+  "pgx": {
+    "value": "Bisoprolol fumarate is not metabolized by cytochrome P450 IID6 (CYP2D6).",
+    "refs": [
+      {
+        "source_id": "fda-bisoprolol-label",
+        "locator": "12 CLINICAL PHARMACOLOGY",
+        "quote": "Bisoprolol fumarate is not metabolized by cytochrome P450 II D6 (debrisoquin hydroxylase)."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "psychiatric_behavioral",
+      "weight_gain"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-bisoprolol-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Central Nervous System Dizziness, unsteadiness, vertigo, syncope, headache, paresthesia, hypoesthesia, hyperesthesia, somnolence, sleep disturbances, anxiety/restlessness, decreased concentration/memory."
+      },
+      {
+        "source_id": "fda-bisoprolol-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "General Fatigue, asthenia, chest pain, malaise, edema, weight gain, angioedema."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Headache (8.8% at 5-20 mg; 10.9% at 2.5-40 mg)",
+        "Fatigue (6.6% at 5-20 mg; 8.2% at 2.5-40 mg)",
+        "Upper respiratory infection (4.8% at 5-20 mg)",
+        "Peripheral edema (3.7% at 5-20 mg)",
+        "Dizziness (2.9% at 5-20 mg)",
+        "Rhinitis (2.9% at 5-20 mg)",
+        "Diarrhea (2.6% at 5-20 mg)",
+        "Cough (2.6% at 5-20 mg)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-bisoprolol-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "headache 11.4 8.8 10.9"
+        },
+        {
+          "source_id": "fda-bisoprolol-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "fatigue 1.5 6.6 8.2"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Marked sinus bradycardia and second- or third-degree AV block",
+        "Cardiogenic shock and overt congestive heart failure",
+        "Bronchospasm (especially at higher doses >= 20 mg where beta-1 selectivity is reduced)",
+        "Hypotension and syncope",
+        "Angioedema and exfoliative dermatitis",
+        "Agranulocytosis, thrombocytopenia, thrombocytopenic purpura (beta-blocker class)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-bisoprolol-label",
+          "locator": "4 CONTRAINDICATIONS",
+          "quote": "CONTRAINDICATIONS Bisoprolol fumarate tablets are contraindicated in patients with cardiogenic shock, overt cardiac failure, second or third degree AV block, and marked sinus bradycardia."
+        },
+        {
+          "source_id": "fda-bisoprolol-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Cardiovascular Bradycardia, palpitations and other rhythm disturbances, cold extremities, claudication, hypotension, orthostatic hypotension, chest pain, congestive heart failure, dyspnea on exertion."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Synthetic, beta-1 selective (cardioselective) adrenoceptor blocking agent without significant membrane stabilizing activity or intrinsic sympathomimetic activity in its therapeutic dosage range; at higher doses (>= 20 mg) it also inhibits beta-2 adrenoceptors. Antihypertensive mechanisms may include decreased cardiac output, inhibition of renal renin release, and diminution of tonic sympathetic outflow.",
+    "refs": [
+      {
+        "source_id": "fda-bisoprolol-label",
+        "locator": "12 CLINICAL PHARMACOLOGY",
+        "quote": "Bisoprolol fumarate tablets are a beta 1 -selective (cardioselective) adrenoceptor blocking agent without significant membrane stabilizing activity or intrinsic sympathomimetic activity in its therapeutic dosage range. Cardioselectivity is not absolute, however, and at higher doses (≥ 20 mg) bisoprolol fumarate also inhibits beta 2 -adrenoceptors"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none"
+    },
+    "refs": [
+      {
+        "source_id": "fda-bisoprolol-label",
+        "locator": "12 CLINICAL PHARMACOLOGY",
+        "quote": "Bisoprolol fumarate is eliminated equally by renal and non-renal pathways with about 50% of the dose appearing unchanged in the urine and the remainder appearing in the form of inactive metabolites."
+      }
+    ],
+    "note": "Eliminated equally by renal (50% unchanged) and non-renal hepatic pathways; not metabolized by CYP2D6."
+  },
+  "fda_interactions": {
+    "value": null,
+    "refs": [],
+    "note": "Source label excerpt does not include a Section 7 DRUG INTERACTIONS section."
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "No adequate and well-controlled studies in pregnant women. Animal studies showed no teratogenicity up to high multiples of MRHD, but fetotoxicity (increased late resorptions in rats at 50 mg/kg/day) and embryolethality (increased early resorptions in rabbits at 12.5 mg/kg/day) occurred. Label advises use during pregnancy only if potential benefit justifies potential risk to the fetus.",
+      "refs": [
+        {
+          "source_id": "fda-bisoprolol-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - Pregnancy",
+          "quote": "There are no adequate and well-controlled studies in pregnant women. Bisoprolol fumarate tablets should be used during pregnancy only if the potential benefit justifies the potential risk to the fetus."
+        },
+        {
+          "source_id": "fda-bisoprolol-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - Pregnancy",
+          "quote": "Bisoprolol fumarate was fetotoxic (increased late resorptions) at 50 mg/kg/day and maternotoxic (decreased food intake and body weight gain) at 150 mg/kg/day."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "It is not known whether bisoprolol is excreted in human milk (small amounts < 2% of dose detected in lactating rat milk); exercise caution when administered to nursing women.",
+      "refs": [
+        {
+          "source_id": "fda-bisoprolol-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS - Nursing Mothers",
+          "quote": "Small amounts of bisoprolol fumarate (< 2% of the dose) have been detected in the milk of lactating rats. It is not known whether this drug is excreted in human milk. Because many drugs are excreted in human milk caution should be exercised when bisoprolol fumarate is administered to nursing women."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -1,0 +1,578 @@
+{
+  "id": "esomeprazole",
+  "generic_name": "esomeprazole",
+  "tall_man": {
+    "value": "esomeprazole",
+    "refs": [
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "Esomeprazole magnesium delayed-release capsules are a proton pump inhibitor (PPI)."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "proton pump inhibitor (PPI)",
+    "substituted benzimidazole",
+    "gastric H+/K+ ATPase inhibitor"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "eso-ee-healing-adult-po",
+      "indication": "Healing of Erosive Esophagitis (EE) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-esomeprazole-label",
+          "locator": "2.1 Recommended Dosage in Adults by Indication",
+          "quote": "Healing of EE 20 mg or 40 mg 1 once daily 4 to 8 weeks 2"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily for 4 to 8 weeks (20 mg or 40 mg once daily)",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "20 mg or 40 mg PO once daily for 4 to 8 weeks (may consider additional 4 to 8 weeks if not healed). Max 20 mg once daily in severe hepatic impairment (Child-Pugh Class C)."
+    },
+    {
+      "id": "eso-ee-healing-peds-po",
+      "indication": "Healing of Erosive Esophagitis (EE) — Pediatric Patients (12 to 17 years of age)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-esomeprazole-label",
+          "locator": "2.2 Recommended Dosage in Pediatric Patients by Indication",
+          "quote": "Healing of EE 12 years to 17 years Esomeprazole magnesium delayed-release capsules: 20 mg or 40 mg once daily 4 to 8 Weeks"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily for 4 to 8 weeks (20 mg or 40 mg once daily)",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "20 mg or 40 mg PO once daily for 4 to 8 weeks in pediatric patients 12 to 17 years of age."
+    },
+    {
+      "id": "eso-ee-maint-adult-po",
+      "indication": "Maintenance of Healing of Erosive Esophagitis (EE) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-esomeprazole-label",
+          "locator": "2.1 Recommended Dosage in Adults by Indication",
+          "quote": "Maintenance of Healing of EE 20 mg once daily Controlled studies do not extend beyond 6 months"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily (controlled studies up to 6 months)",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "20 mg PO once daily (controlled studies do not extend beyond 6 months)."
+    },
+    {
+      "id": "eso-gerd-adult-po",
+      "indication": "Treatment of Symptomatic GERD — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-esomeprazole-label",
+          "locator": "2.1 Recommended Dosage in Adults by Indication",
+          "quote": "Treatment of Symptomatic GERD 20 mg once daily 4 weeks; if symptoms do not resolve completely, consider an additional 4 weeks"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily for 4 weeks (consider additional 4 weeks if needed)",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "20 mg PO once daily for 4 weeks; if symptoms do not resolve completely, consider an additional 4 weeks."
+    },
+    {
+      "id": "eso-gerd-peds-po",
+      "indication": "Treatment of Symptomatic GERD — Pediatric Patients (12 to 17 years of age)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-esomeprazole-label",
+          "locator": "2.2 Recommended Dosage in Pediatric Patients by Indication",
+          "quote": "Treatment of Symptomatic GERD 12 years to 17 years Esomeprazole magnesium delayed-release capsules: 20 mg once daily 4 weeks"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily for 4 weeks",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "20 mg PO once daily for 4 weeks in pediatric patients 12 to 17 years of age."
+    },
+    {
+      "id": "eso-nsaid-ulcer-adult-po",
+      "indication": "Risk Reduction of NSAID-Associated Gastric Ulcer — Adults at Risk (Age >= 60 or History of Gastric Ulcers)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-esomeprazole-label",
+          "locator": "2.1 Recommended Dosage in Adults by Indication",
+          "quote": "Risk Reduction of NSAID-Associated Gastric Ulcer 20 mg or 40 mg 1 once daily Controlled studies do not extend beyond 6 months"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily for up to 6 months (20 mg or 40 mg once daily)",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "20 mg or 40 mg PO once daily (controlled studies up to 6 months). Max 20 mg once daily in severe hepatic impairment (Child-Pugh Class C)."
+    },
+    {
+      "id": "eso-hpylori-adult-po",
+      "indication": "Helicobacter pylori Eradication (Triple Therapy with Amoxicillin and Clarithromycin) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-esomeprazole-label",
+          "locator": "2.1 Recommended Dosage in Adults by Indication",
+          "quote": "H. pylori Eradication to Reduce the Risk of Duodenal Ulcer Recurrence (Triple Therapy) Esomeprazole magnesium delayed-release capsules 40 mg once daily 1 Amoxicillin 1000 mg twice daily 3 Clarithromycin 500 mg twice daily 3 10 days 10 days 10 days"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 40,
+        "unit": "mg",
+        "frequency": "once daily for 10 days (with amoxicillin 1000 mg BID + clarithromycin 500 mg BID)",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "Esomeprazole 40 mg PO once daily + amoxicillin 1000 mg twice daily + clarithromycin 500 mg twice daily for 10 days. Max 20 mg once daily in Child-Pugh Class C."
+    },
+    {
+      "id": "eso-zollinger-ellison-adult-po",
+      "indication": "Pathological Hypersecretory Conditions (Including Zollinger-Ellison Syndrome) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-esomeprazole-label",
+          "locator": "2.1 Recommended Dosage in Adults by Indication",
+          "quote": "Pathological Hypersecretory Conditions Including Zollinger-Ellison Syndrome Starting dosage is 40 mg twice daily 4 ; individualize the regimen to patient needs. Dosages of up to 240 mg/day have been administered [see Clinical Studies (14.7) ]. As long as clinically indicated"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 40,
+        "unit": "mg",
+        "frequency": "twice daily (starting; individualize up to 240 mg/day)",
+        "max_daily": 240
+      },
+      "dose_text": "Starting dosage 40 mg PO twice daily; individualize to patient needs (up to 240 mg/day administered). Starting dosage 20 mg twice daily in Child-Pugh Class C."
+    },
+    {
+      "id": "eso-ng-tube-admin",
+      "indication": "Enteral / Nasogastric Tube Administration (All Approved Indications)",
+      "setting": "acute_inpatient",
+      "route": "NG",
+      "refs": [
+        {
+          "source_id": "fda-esomeprazole-label",
+          "locator": "2.3 Preparation and Administration Instructions",
+          "quote": "Open the esomeprazole magnesium delayed-release capsule and empty the granules into a 60 mL catheter-tipped syringe. Mix the granules with 50 mL of water. Replace the plunger and shake the catheter-tipped syringe vigorously for 15 seconds."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Open capsule (20 mg or 40 mg per indication) and empty enteric-coated granules into a 60 mL catheter-tipped syringe with 50 mL water; shake vigorously 15 sec, deliver immediately via NG tube, and flush with additional water. Do not crush granules."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": [],
+    "note": "Less than 1% of esomeprazole is excreted unchanged in urine; pharmacokinetics are not expected to be altered in renal impairment."
+  },
+  "hepatic": {
+    "value": "No dosage adjustment necessary in mild to moderate hepatic impairment (Child-Pugh Classes A and B). In severe hepatic impairment (Child-Pugh Class C), AUC is 2-3 times higher: maximum dosage 20 mg once daily (or starting dosage 20 mg twice daily for pathological hypersecretory conditions).",
+    "refs": [
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "8.6 Hepatic Impairment",
+        "quote": "Dosage modification of esomeprazole magnesium delayed-release capsules is recommended for patients with severe hepatic impairment for the healing of EE, risk reduction of NSAID-associated gastric ulcer, H. pylori eradication to reduce the risk of duodenal ulcer recurrence, and pathological hypersecretory conditions including Zollinger-Ellison Syndrome"
+      },
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "8.6 Hepatic Impairment",
+        "quote": "In patients with mild to moderate liver impairment (Child-Pugh Classes A and B), no dosage adjustment is necessary."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Esomeprazole belongs to a class of antisecretory compounds, the substituted benzimidazoles, that suppress gastric acid secretion by specific inhibition of the H+/K+ ATPase enzyme system at the secretory surface of the gastric parietal cell."
+      }
+    ],
+    "note": "Proton pump inhibitor; no neuromuscular junction blocking activity (monitor for hypomagnesemia with prolonged therapy)."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Do NOT chew or crush capsules or granules. Open capsule and empty granules into a 60 mL catheter-tipped syringe with 50 mL water; shake vigorously for 15 seconds, administer immediately through the nasogastric tube, and flush with additional water. Do not administer if granules have dissolved or disintegrated."
+    },
+    "refs": [
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "2.3 Preparation and Administration Instructions",
+        "quote": "Attach the catheter-tipped syringe to a nasogastric tube and deliver the contents of the syringe through the nasogastric tube into the stomach. After administering the granules, flush the nasogastric tube with additional water. Use the mixture immediately after preparation. Do not administer the granules if they have dissolved or disintegrated."
+      }
+    ]
+  },
+  "pgx": {
+    "value": "Metabolized predominantly by CYP2C19 (polymorphic: ~3% of Caucasians and 15-20% of Asians are CYP2C19 poor metabolizers). At steady state with 40 mg once daily, AUC ratio in poor vs extensive metabolizers is ~1.5, which is not considered clinically meaningful.",
+    "refs": [
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "12.5 Pharmacogenomics",
+        "quote": "Approximately 3% of Caucasians and 15 to 20% of Asians are CYP2C19 poor metabolizers."
+      },
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "12.5 Pharmacogenomics",
+        "quote": "At steady state following once daily administration of esomeprazole 40 mg, the ratio of AUC in poor metabolizers to AUC in the rest of the population (EMs) is approximately 1.5. This change in exposure is not considered clinically meaningful."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "hyponatremia",
+      "confusion_delirium",
+      "sedation_somnolence",
+      "rash_sjs_ten",
+      "hepatotoxicity",
+      "pancreatitis",
+      "weight_gain",
+      "weight_loss"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "6.1 Clinical Trials Experience",
+        "quote": "Metabolic/Nutritional: glycosuria, hyperuricemia, hyponatremia, increased alkaline phosphatase, thirst, vitamin B12 deficiency, weight increase, weight decrease;"
+      },
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Skin and Subcutaneous Tissue: alopecia, erythema multiforme, hyperhidrosis, photosensitivity, Stevens-Johnson syndrome, toxic epidermal necrolysis (some fatal), drug reaction with eosinophilia and systemic symptoms (DRESS), and acute generalized exanthematous pustulosis (AGEP), cutaneous lupus erythematosus."
+      },
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Gastrointestinal: pancreatitis; stomatitis; microscopic colitis; fundic gland polyps; Hepatobiliary: hepatic failure, hepatitis with or without jaundice;"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Adults (>=1%): headache (5-5.5%), diarrhea (4%), nausea, flatulence, abdominal pain (4%), constipation, dry mouth",
+        "Pediatrics 12-17 years (>=2%): headache (8%), abdominal pain (3%), diarrhea (2%), nausea (2%)",
+        "Triple therapy with amoxicillin + clarithromycin: diarrhea (9%), taste perversion (4%), abdominal pain (4%)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-esomeprazole-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Adults (≥ 18 years) (≥1%) are: headache, diarrhea, nausea, flatulence, abdominal pain, constipation, and dry mouth. Pediatrics (1 to 17 years) (≥2%) are: headache, diarrhea, abdominal pain, nausea, and somnolence."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Acute tubulointerstitial nephritis",
+        "Clostridium difficile-associated diarrhea",
+        "Osteoporosis-related bone fracture (long-term/high-dose)",
+        "Severe cutaneous adverse reactions (Stevens-Johnson syndrome, toxic epidermal necrolysis, DRESS, AGEP)",
+        "Cutaneous and systemic lupus erythematosus",
+        "Hypomagnesemia (may lead to hypocalcemia and/or hypokalemia) and vitamin B12 deficiency",
+        "Fundic gland polyps; hepatic failure/hepatitis; pancreatitis; anaphylactic shock"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-esomeprazole-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Acute Tubulointerstitial Nephritis [see Warnings and Precautions (5.2) ] Clostridium difficile -Associated Diarrhea [see Warnings and Precautions (5.3) ] Bone Fracture [see Warnings and Precautions (5.4) ] Severe Cutaneous Adverse Reactions [see Warnings and Precautions (5.5) ]"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Substituted benzimidazole proton pump inhibitor (S-isomer of omeprazole) that is protonated in the acidic compartment of gastric parietal cells to form the active achiral sulphenamide inhibitor, specifically inhibiting the H+/K+ ATPase enzyme system ('acid pump') to block the final step of basal and stimulated gastric acid secretion.",
+    "refs": [
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Esomeprazole belongs to a class of antisecretory compounds, the substituted benzimidazoles, that suppress gastric acid secretion by specific inhibition of the H+/K+ ATPase enzyme system at the secretory surface of the gastric parietal cell."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c19": "inhibitor_weak",
+      "cyp3a4": "substrate",
+      "qt_risk": "none"
+    },
+    "refs": [
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "Esomeprazole is a time-dependent inhibitor of CYP2C19, resulting in autoinhibition and nonlinear pharmacokinetics."
+      },
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "12.3 Pharmacokinetics - Elimination",
+        "quote": "The major part of esomeprazole’s metabolism is dependent upon the CYP2C19 isoenzyme, which forms the hydroxy and desmethyl metabolites. The remaining amount is dependent on CYP3A4 which forms the sulphone metabolite."
+      }
+    ],
+    "note": "Major substrate and time-dependent inhibitor of CYP2C19; minor substrate of CYP3A4."
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Rilpivirine-containing products",
+        "severity": "contraindicated",
+        "effect": "Decreased exposure of rilpivirine (AUC -40%, Cmax -40%) may reduce antiviral effect and promote drug resistance.",
+        "management": "Concomitant use with esomeprazole magnesium delayed-release capsules is contraindicated.",
+        "refs": [
+          {
+            "source_id": "fda-esomeprazole-label",
+            "locator": "7 DRUG INTERACTIONS - Table 3",
+            "quote": "Rilpivirine-containing products: Concomitant use with esomeprazole magnesium delayed-release capsules are contraindicated [see Contraindications (4) ] ."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Clopidogrel",
+        "severity": "major",
+        "effect": "Concomitant use of esomeprazole 40 mg reduced plasma concentrations of clopidogrel's active metabolite by 35-40% and reduced platelet inhibition.",
+        "management": "Avoid concomitant use with esomeprazole magnesium delayed-release capsules; consider use of alternative antiplatelet therapy.",
+        "refs": [
+          {
+            "source_id": "fda-esomeprazole-label",
+            "locator": "7 DRUG INTERACTIONS - Table 3",
+            "quote": "Concomitant use of esomeprazole 40 mg resulted in reduced plasma concentrations of the active metabolite of clopidogrel and a reduction in platelet inhibition [see Clinical Pharmacology (12.3) ]."
+          },
+          {
+            "source_id": "fda-esomeprazole-label",
+            "locator": "7 DRUG INTERACTIONS - Table 3",
+            "quote": "Intervention: Avoid concomitant use with esomeprazole magnesium delayed-release capsules Consider use of alternative anti-platelet therapy [see Warnings and Precautions (5.7) ]."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Citalopram",
+        "severity": "major",
+        "effect": "Increased exposure of citalopram via CYP2C19 inhibition, leading to an increased risk of QT prolongation.",
+        "management": "Limit the dose of citalopram to a maximum of 20 mg per day.",
+        "refs": [
+          {
+            "source_id": "fda-esomeprazole-label",
+            "locator": "7 DRUG INTERACTIONS - Table 3",
+            "quote": "Citalopram Clinical Impact: Increased exposure of citalopram leading to an increased risk of QT prolongation [see Clinical Pharmacology (12.3) ]. Intervention: Limit the dose of citalopram to a maximum of 20 mg per day."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Cilostazol",
+        "severity": "moderate",
+        "effect": "Increased exposure of cilostazol and its active metabolite (3,4-dihydro-cilostazol AUC +69%).",
+        "management": "Consider reducing the dose of cilostazol to 50 mg twice daily.",
+        "refs": [
+          {
+            "source_id": "fda-esomeprazole-label",
+            "locator": "7 DRUG INTERACTIONS - Table 3",
+            "quote": "Cilostazol Clinical Impact: Increased exposure of cilostazol and one of its active metabolites (3,4-dihydro-cilostazol) [see Clinical Pharmacology (12.3) ]. Intervention: Consider reducing the dose of cilostazol to 50 mg twice daily."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Warfarin",
+        "severity": "major",
+        "effect": "Increased INR and prothrombin time in patients receiving PPIs and warfarin concomitantly, which may lead to abnormal bleeding and death.",
+        "management": "Monitor INR and prothrombin time and adjust the dose of warfarin if needed to maintain the target INR range.",
+        "refs": [
+          {
+            "source_id": "fda-esomeprazole-label",
+            "locator": "7 DRUG INTERACTIONS - Table 3",
+            "quote": "Warfarin Clinical Impact: Increased INR and prothrombin time in patients receiving PPIs, including esomeprazole, and warfarin concomitantly. Increases in INR and prothrombin time may lead to abnormal bleeding and even death."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Methotrexate (primarily high-dose)",
+        "severity": "major",
+        "effect": "May elevate and prolong serum concentrations of methotrexate and/or hydroxymethotrexate, possibly leading to methotrexate toxicities.",
+        "management": "A temporary withdrawal of esomeprazole may be considered in some patients receiving high-dose methotrexate.",
+        "refs": [
+          {
+            "source_id": "fda-esomeprazole-label",
+            "locator": "7 DRUG INTERACTIONS - Table 3",
+            "quote": "Concomitant use of esomeprazole with methotrexate (primarily at high dose) may elevate and prolong serum concentrations of methotrexate and/or its metabolite hydroxymethotrexate, possibly leading to methotrexate toxicities."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Digoxin",
+        "severity": "moderate",
+        "effect": "Potential for increased exposure of digoxin (omeprazole increased digoxin bioavailability by 10%, up to 30% in two subjects).",
+        "management": "Monitor digoxin concentrations and adjust the dose if needed to maintain therapeutic drug concentrations.",
+        "refs": [
+          {
+            "source_id": "fda-esomeprazole-label",
+            "locator": "7 DRUG INTERACTIONS - Table 3",
+            "quote": "Digoxin Clinical Impact: Potential for increased exposure of digoxin [see Clinical Pharmacology (12.3) ]. Intervention: Monitor digoxin concentrations and adjust the dose, if needed, to maintain therapeutic drug concentrations."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Atazanavir / Nelfinavir",
+        "severity": "major",
+        "effect": "Markedly decreased exposure of atazanavir (AUC -94%) and nelfinavir (AUC -36% to -92%), reducing antiviral effect and promoting resistance.",
+        "management": "Avoid concomitant use with nelfinavir; see atazanavir prescribing information for dosing.",
+        "refs": [
+          {
+            "source_id": "fda-esomeprazole-label",
+            "locator": "7 DRUG INTERACTIONS - Table 3",
+            "quote": "Decreased exposure of some antiretroviral drugs (e.g., rilpivirine atazanavir, and nelfinavir) when used concomitantly with esomeprazole may reduce antiviral effect and promote the development of drug resistance"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Tacrolimus",
+        "severity": "moderate",
+        "effect": "Potentially increased exposure of tacrolimus, especially in transplant patients who are CYP2C19 intermediate or poor metabolizers.",
+        "management": "Monitor tacrolimus whole blood concentrations and consider reducing the dose if needed.",
+        "refs": [
+          {
+            "source_id": "fda-esomeprazole-label",
+            "locator": "7 DRUG INTERACTIONS - Table 3",
+            "quote": "Tacrolimus Clinical Impact: Potentially increased exposure of tacrolimus, especially in transplant patients who are intermediate or poor metabolizers of CYP2C19 . Intervention: Monitor tacrolimus whole blood concentrations and consider reducing the dose, if needed"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Strong CYP2C19 or CYP3A4 Inducers (St. John's Wort, Rifampin)",
+        "severity": "moderate",
+        "effect": "Decreased exposure of esomeprazole when used concomitantly with strong inducers.",
+        "management": "Avoid concomitant use with St. John's Wort or rifampin.",
+        "refs": [
+          {
+            "source_id": "fda-esomeprazole-label",
+            "locator": "7 DRUG INTERACTIONS - Table 4",
+            "quote": "CYP2C19 or CYP3A4 Inducers Clinical Impact: Decreased exposure of esomeprazole when used concomitantly with strong inducers [see Clinical Pharmacology (12.3) ]. Intervention: St. John’s Wort, rifampin: Avoid concomitant use"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-esomeprazole-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Tables 3 and 4 include drugs with clinically important drug interactions and interaction with diagnostics when administered concomitantly with esomeprazole and instructions for preventing or managing them."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "No adequate well-controlled studies with esomeprazole in pregnant women, though large epidemiologic studies with omeprazole (S/R-isomer; e.g., 1,800 Danish first-trimester exposures showing 2.9% vs 2.6% birth defects; 955 Swedish registry infants) did not demonstrate increased overall major congenital malformations. Animal studies showed no teratogenicity with esomeprazole, though pre/postnatal rat bone changes occurred when dosed through lactation.",
+      "refs": [
+        {
+          "source_id": "fda-esomeprazole-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "There are no adequate and well-controlled studies with esomeprazole in pregnant women. Esomeprazole is the S-isomer of omeprazole. Available epidemiologic data fail to demonstrate an increased risk of major congenital malformations or other adverse pregnancy outcomes with first trimester omeprazole use (see Data) ."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Limited data suggest omeprazole may be present in human milk; no clinical data on effects of esomeprazole on the breastfed infant or milk production. Weigh developmental and health benefits of breastfeeding against the mother's clinical need.",
+      "refs": [
+        {
+          "source_id": "fda-esomeprazole-label",
+          "locator": "8.2 Lactation",
+          "quote": "Esomeprazole is the S-isomer of omeprazole and limited data suggest that omeprazole may be present in human milk. There are no clinical data on the effects of esomeprazole on the breastfed infant or on milk production."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

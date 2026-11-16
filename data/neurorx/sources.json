@@ -1036,5 +1036,106 @@
     "version": "8f55d5de-5a4f-4a39-8c84-c53976dd6af9",
     "file": "fda-simvastatin-label.txt",
     "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-valsartan-label",
+    "type": "fda_label",
+    "title": "Diovan (valsartan) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Novartis Pharmaceuticals Corporation",
+    "year": 2026,
+    "version": "5ddba454-f3e6-43c2-a7a6-58365d297213",
+    "file": "fda-valsartan-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-dapagliflozin-label",
+    "type": "fda_label",
+    "title": "FARXIGA (dapagliflozin) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / A-S Medication Solutions",
+    "year": 2026,
+    "version": "01f90c94-71cb-4a1f-81ff-8004b850529b",
+    "file": "fda-dapagliflozin-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-digoxin-label",
+    "type": "fda_label",
+    "title": "LANOXIN (digoxin) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Covis Pharma US, Inc",
+    "year": 2026,
+    "version": "9ec84cac-6ecc-43dc-8006-6ccc029e2707",
+    "file": "fda-digoxin-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-esomeprazole-label",
+    "type": "fda_label",
+    "title": "Esomeprazole Magnesium (esomeprazole) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Bryant Ranch Prepack",
+    "year": 2026,
+    "version": "009794ae-8199-4176-9dc6-4c5e752d845c",
+    "file": "fda-esomeprazole-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-bisoprolol-label",
+    "type": "fda_label",
+    "title": "Bisoprolol fumarate (bisoprolol) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Solco Healthcare US, LLC",
+    "year": 2026,
+    "version": "084308e4-3b8b-40d6-acbf-d775772a8a73",
+    "file": "fda-bisoprolol-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-nebivolol-label",
+    "type": "fda_label",
+    "title": "Bystolic (nebivolol) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Allergan, Inc.",
+    "year": 2026,
+    "version": "8b8ad213-1dc8-454e-a524-075685c0e1a8",
+    "file": "fda-nebivolol-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-potassium-chloride-label",
+    "type": "fda_label",
+    "title": "KLOR-CON (potassium chloride) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Upsher-Smith Laboratories, LLC",
+    "year": 2026,
+    "version": "1ff53330-065c-4213-9c0c-ac498621d09d",
+    "file": "fda-potassium-chloride-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-piperacillin-tazobactam-label",
+    "type": "fda_label",
+    "title": "Zosyn in Galaxy Containers (piperacillin and tazobactam) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Wyeth Pharmaceuticals LLC, a subsidiary of Pfizer Inc.",
+    "year": 2026,
+    "version": "8ab9d90d-2f7f-4599-a44f-3d0a8f8ab623",
+    "file": "fda-piperacillin-tazobactam-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "smpc-gliclazide",
+    "type": "smpc",
+    "title": "Diamicron 30 mg MR Tablets (gliclazide) Summary of Product Characteristics",
+    "publisher": "UK electronic Medicines Compendium (eMC) / Servier Laboratories Ltd",
+    "year": 2026,
+    "url": "https://www.medicines.org.uk/emc/product/1321/smpc",
+    "file": "smpc-gliclazide.txt",
+    "accessed": "2026-11-16"
+  },
+  {
+    "id": "ehra-2021-noac",
+    "type": "guideline",
+    "title": "2021 European Heart Rhythm Association Practical Guide on the Use of Non-Vitamin K Antagonist Oral Anticoagulants in Patients with Atrial Fibrillation",
+    "publisher": "European Heart Rhythm Association (EHRA) / Europace",
+    "year": 2021,
+    "version": "euab065 (Europace 2021;23:1612-1676)",
+    "url": "https://doi.org/10.1093/europace/euab065",
+    "file": "ehra-2021-noac.txt",
+    "accessed": "2026-11-16"
   }
 ]

@@ -170,12 +170,32 @@
   },
   "tools": {
     "missed_dose": {
-      "value": "If a dose of ELIQUIS is not taken at the scheduled time, the dose should be taken as soon as possible on the same day and twice-daily administration should be resumed. The dose should not be doubled to make up for a missed dose.",
+      "value": "FDA Label (ELIQUIS): If a dose is not taken at the scheduled time, take it as soon as possible on the same day and resume twice-daily administration. Do not double the dose to make up for a missed dose.\n\nEHRA 2021 Practical Guide (BID Regimen):\n• Missed dose: Take the forgotten full dose up until 6 hours after the scheduled intake (half of the 12-hour dosing interval). After 6 hours, skip the missed dose and take the next scheduled dose.\n• Double dose: Skip the next planned dose (after 12 hours) and restart the regular BID dosing regimen 24 hours after the double dose intake.\n• Uncertainty about dose intake: Do not take another tablet; continue with the regular BID regimen starting with the next dose at the 12-hour interval.\n• Acute overdose (≤ 2 hours, no bleeding): Consider activated charcoal (30–50 g in adults) to reduce absorption.",
       "refs": [
         {
           "source_id": "fda-apixaban-label",
           "locator": "Section 2.2 Missed Dose",
           "quote": "If a dose of ELIQUIS is not taken at the scheduled time, the dose should be taken as soon as possible on the same day and twice-daily administration should be resumed. The dose should not be doubled to make up for a missed dose."
+        },
+        {
+          "source_id": "ehra-2021-noac",
+          "locator": "Dosing - Missed dose / Double dose / Uncertainty",
+          "quote": "for NOACs with a twice daily (BID) dosing regimen (i.e., intake every 12h), a forgotten full dose can be taken up until 6 h after the scheduled intake."
+        },
+        {
+          "source_id": "ehra-2021-noac",
+          "locator": "Dosing - Double dose",
+          "quote": "For NOACs with a BID dosing regimen, the next planned dose (i.e. after 12 h) may be skipped, with the regular BID dosing regimen restarted 24h after the double dose intake."
+        },
+        {
+          "source_id": "ehra-2021-noac",
+          "locator": "Dosing - Uncertainty about dose intake",
+          "quote": "For NOACs with a BID dosing regimen, it is generally advisable to not take another tablet/capsule, but to continue with the regular dose regimen, i.e. starting with the next dose at the 12h interval."
+        },
+        {
+          "source_id": "ehra-2021-noac",
+          "locator": "Overdose without bleeding",
+          "quote": "In the case of recent acute ingestion of an overdose (especially when <= 2h ago), the use of activated charcoal to reduce absorption may be considered for any NOAC (with a standard dosing scheme for adults of 30-50g)"
         }
       ]
     },
@@ -183,13 +203,28 @@
       "value": [
         {
           "procedure": "Elective surgery / invasive procedure with moderate or high risk of clinically significant bleeding",
-          "hold_hours": "At least 48 hours",
-          "restart_timing": "Restart after procedure as soon as adequate hemostasis has been established"
+          "hold_hours": "At least 48 hours (consider +24h if body weight < 50 kg or significant DDIs)",
+          "restart_timing": "Resume 6–8h after immediate/complete hemostasis; for high bleeding-risk surgery, defer therapeutic NOAC >= 48–72h and consider prophylactic LMWH 6–8h post-op"
         },
         {
-          "procedure": "Elective surgery / invasive procedure with low risk of bleeding",
+          "procedure": "Elective surgery / invasive procedure with low risk of bleeding (CrCl >= 30 mL/min)",
           "hold_hours": "At least 24 hours",
-          "restart_timing": "Restart after procedure as soon as adequate hemostasis has been established"
+          "restart_timing": "Restart 6–8h after procedure as soon as adequate hemostasis has been established"
+        },
+        {
+          "procedure": "Elective low-risk procedure with severe renal impairment (CrCl 15–29 mL/min)",
+          "hold_hours": "At least 36 hours (EHRA 2021)",
+          "restart_timing": "Restart 6–8h after procedure as soon as adequate hemostasis has been established"
+        },
+        {
+          "procedure": "Minor-risk intervention / IM injection (e.g. vaccination, dental 1–3 teeth, cataract)",
+          "hold_hours": "Perform at trough (12–24h after last intake; skip morning dose)",
+          "restart_timing": "Restart with the next scheduled BID dose (or 6h post-procedure)"
+        },
+        {
+          "procedure": "Post-acute ischemic stroke / TIA / intracranial bleeding (EHRA 2021)",
+          "hold_hours": "Hold acutely; exclude ICB/hemorrhagic transformation on CT/MRI",
+          "restart_timing": "TIA: Day 1; Mild stroke: >= 3 days; Moderate stroke: >= 6–8 days; Severe stroke: >= 12–14 days (repeat imaging); Post-ICB: 4–8 weeks if high cardioembolic risk"
         }
       ],
       "refs": [
@@ -197,6 +232,47 @@
           "source_id": "fda-apixaban-label",
           "locator": "Section 2.3 Temporary Interruption for Surgery and Other Interventions",
           "quote": "ELIQUIS should be discontinued at least 48 hours prior to elective surgery or invasive procedures with a moderate or high risk of unacceptable or clinically significant bleeding [see Warnings and Precautions (5.2) ] . ELIQUIS should be discontinued at least 24 hours prior to elective surgery or invasive procedures with a low risk of bleeding"
+        },
+        {
+          "source_id": "ehra-2021-noac",
+          "locator": "Planned invasive procedure - Interruption times",
+          "quote": "Apixaban, Edoxaban, Rivaroxaban: last intake >= 24h before (CrCl >= 30 mL/min), or >= 36h before (CrCl 15-29 mL/min)."
+        },
+        {
+          "source_id": "ehra-2021-noac",
+          "locator": "Restarting NOAC therapy after an invasive procedure",
+          "quote": "After a procedure with immediate and complete haemostasis, NOACs can generally be resumed 6-8h after the end of the intervention."
+        },
+        {
+          "source_id": "ehra-2021-noac",
+          "locator": "Post-acute stroke (Re-)initiation",
+          "quote": "Mild stroke: OAC may be initiated >= 3 days after AIS if infarct size is not expected to substantially increase the risk of haemorrhagic transformation."
+        }
+      ]
+    },
+    "reversal": {
+      "value": [
+        {
+          "agent": "andexanet alfa",
+          "dose_rule": "Bolus over 15–30 min followed by 2-hour infusion depending on apixaban dose and timing since last intake (EU-approved for life-threatening or uncontrollable bleeding)",
+          "vn_available": false
+        },
+        {
+          "agent": "4-factor PCC or aPCC (prothrombin complex concentrate)",
+          "dose_rule": "Consider in life-threatening bleeding if immediate haemostatic support is required and andexanet alfa is unavailable or too costly (preferred over rFVIIa; FFP is not recommended)",
+          "vn_available": true
+        }
+      ],
+      "refs": [
+        {
+          "source_id": "ehra-2021-noac",
+          "locator": "Management of bleeding - Direct reversal of FXa-inhibitors",
+          "quote": "It is administered as a bolus over 15-30min, followed by a 2-h infusion depending on the NOAC and on the timing since last intake. In the EU Andexanet alpha is only approved for the reversal of life-threatening or uncontrollable bleeding in patients taking apixaban or rivaroxaban."
+        },
+        {
+          "source_id": "ehra-2021-noac",
+          "locator": "Management of bleeding - Coagulation factors",
+          "quote": "The administration of PCCs or aPCCs can hence be considered in a patient with a life-threatening bleed if immediate haemostatic support is required, especially in situations where a specific reversal agent is not available or too costly."
         }
       ]
     }
