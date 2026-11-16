@@ -224,30 +224,50 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "Lacks adequate human pregnancy data (primarily prescribed in older postmenopausal populations); reserve only if clear maternal benefit outweighs unknown fetal risk.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 6: Dementia Therapies",
+          "quote": "lack adequate human pregnancy data (`caution` — largely indicated in older postmenopausal populations); anti-amyloid IgG1 antibodies cross the placenta in late pregnancy via FcRn and carry prolonged washout considerations if ever used in reproductive-age carriers."
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: memantine — Drug Levels",
+          "quote": "No human breast milk concentration data exist for memantine. Summary of Use during Lactation: Because memantine milk excretion and infant neurodevelopmental effects are completely unstudied, exercise caution or avoid breastfeeding if ever administered to a nursing mother. [metformin] Relative Infant Dose (RID): Breastfed infants receive"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk, effects on the breastfed infant, or milk production; weigh breastfeeding benefits against maternal clinical need.",
+      "value": "Milk excretion and infant neurodevelopmental effects are unstudied; exercise caution or avoid breastfeeding if ever administered to a nursing mother.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: memantine — Summary of Use during Lactation",
+          "quote": "Because memantine milk excretion and infant neurodevelopmental effects are completely unstudied, exercise caution or avoid breastfeeding if ever administered to a nursing mother. [metformin] Relative Infant Dose (RID): Breastfed infants receive approximately 0.1% to 1.1% (mean ~0.3%–0.7%) of the weight-adjusted maternal metformin dosage"
+        },
         {
           "source_id": "fda-memantine-label",
           "locator": "USE IN SPECIFIC POPULATIONS",
@@ -256,11 +276,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "c5ab250c5dc14481f8361cc8bbcd849daf4d330a95762229b1d38e54037a4aee"
   },
   "adverse_effects": {
     "most_common": {

@@ -546,26 +546,45 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not alter hormonal contraceptive efficacy, though chronic periconceptional COX-2 inhibition may reversibly delay ovulation; discontinue if difficulty conceiving.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: NSAIDs Periconceptional Contraception & Ovulation",
+          "quote": "Nonsteroidal anti-inflammatory drugs do not interact with hormonal contraceptives, though chronic periconceptional COX inhibition can reversibly delay ovulation and impair implantation; discontinue in patients experiencing difficulty conceiving. Analgesics & Preventive Agents Without Contraceptive Interactions (Acetaminophen, Sumatriptan,"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Avoid from 20 weeks gestation onward (fetal renal dysfunction/oligohydramnios) and strictly contraindicated at >= 30 weeks (premature closure of fetal ductus arteriosus).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Ibuprofen & Celecoxib Pregnancy Warning",
+          "quote": "Both ibuprofen and celecoxib must be avoided from 20 weeks gestation onward due to fetal renal dysfunction and oligohydramnios, and are strictly contraindicated at 30 weeks and later because of premature closure of the fetal ductus arteriosus. Tramadol Registry & Peripartum Risk: The Swedish Medical Birth Register reported major congenita"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": "less than 1% of the weight-based therapeutic dose for a two-year old-child (10 to 40 mcg/kg/day)",
+      "value": "0.2% to 0.4% of the weight-adjusted maternal dosage",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Celecoxib — Drug Levels",
+          "quote": "Maternal celecoxib doses of 200 mg/day yield a very low relative infant dose of 0.2% to 0.4% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Celecoxib passes into breast milk in tiny quantities (RID < 0.5%) due to high maternal protein binding (~97%) and causes no reported adverse effects in breastfed infants; acc"
+        },
         {
           "source_id": "fda-celecoxib-label",
           "locator": "8.2 Lactation",
@@ -574,8 +593,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Low levels in breast milk (10 to 40 mcg/kg/day, <1% of weight-based therapeutic dose for a 2-year-old child) across 12 breastfeeding women; no adverse events reported in two breastfed infants (17 and 22 months); exercise caution.",
+      "value": "Passes into breast milk in tiny quantities (RID < 0.5%) due to ~97% protein binding with no reported adverse effects in breastfed infants; acceptable for short-term postpartum analgesia.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Celecoxib — Summary of Use during Lactation",
+          "quote": "Celecoxib passes into breast milk in tiny quantities (RID < 0.5%) due to high maternal protein binding (~97%) and causes no reported adverse effects in breastfed infants; acceptable for short-term postpartum analgesia. [dantrolene] Relative Infant Dose (RID): Limited case measurements following intravenous maternal dantrolene report a re"
+        },
         {
           "source_id": "fda-celecoxib-label",
           "locator": "8.2 Lactation",
@@ -584,10 +608,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "841a95e2ef50fe6d93936c6b4a992dd79a02f5135717d003d3df460a36ed9d74"
   }
 }

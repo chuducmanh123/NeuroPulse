@@ -231,11 +231,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "fb6296848640cfc326ce73acbbaca24384b32b343ca1b4ff2dfd768a2da7d8cf"
   },
   "adverse_effects": {
     "most_common": {
@@ -282,30 +282,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not reduce hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "IV nicardipine is used for refractory hypertensive emergencies or acute ischemic stroke BP control in pregnancy; avoid abrupt hypotension to preserve uteroplacental perfusion.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Calcium Channel Blockers",
+          "quote": "IV nicardipine is used for refractory hypertensive emergencies; nimodipine is reserved for aneurysmal SAH vasospasm during pregnancy (`caution`), monitoring maternal blood pressure and uteroplacental perfusion, with postpartum titration as BP stabilizes. Beta-Blockers (Bisoprolol & Nebivolol): Bisoprolol and nebivolol have smaller human p"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Transition from IV infusion to oral postpartum antihypertensives (e.g. labetalol or nifedipine) once acute blood pressure control stabilizes.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Calcium Channel Blockers",
+          "quote": "with postpartum titration as BP stabilizes. Beta-Blockers (Bisoprolol & Nebivolol): Bisoprolol and nebivolol have smaller human pregnancy datasets than labetalol or metoprolol (`caution`); maternal CYP2D6/renal clearance changes may alter exposure, third-trimester use warrants fetal growth and neonatal bradycardia/hypoglycemia monitoring,"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.04% to 0.14% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Nicardipine — Drug Levels",
+          "quote": "Intravenous and oral maternal nicardipine yield a very low relative infant dose of 0.04% to 0.14% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Nicardipine excretion into human milk is minimal (RID < 0.2%) with no reported adverse effects in breastfed infants; compatible with breastfeeding following postpartum h"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Nicardipine is present in human milk in low amounts; no adverse effects reported in exposed infants.",
+      "value": "Minimal excretion into human milk (RID < 0.2%) with no reported adverse effects in breastfed infants; compatible with breastfeeding.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Nicardipine — Summary of Use during Lactation",
+          "quote": "Nicardipine excretion into human milk is minimal (RID < 0.2%) with no reported adverse effects in breastfed infants; compatible with breastfeeding following postpartum hypertensive management. [nimodipine] Relative Infant Dose (RID): Maternal oral or IV nimodipine produces a very low relative infant dose of 0.06% to 0.3% of the weight-ad"
+        },
         {
           "source_id": "fda-nicardipine-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS - 8.2 Lactation",

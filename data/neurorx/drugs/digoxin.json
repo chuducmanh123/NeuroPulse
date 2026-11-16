@@ -458,38 +458,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": "LANOXIN requirements may increase during pregnancy and decrease in the postpartum period. Monitor serum digoxin levels during pregnancy and the postpartum period.",
-      "refs": [
-        {
-          "source_id": "fda-digoxin-label",
-          "locator": "8.1 Pregnancy",
-          "quote": "LANOXIN requirements may increase during pregnancy and decrease in the postpartum period. Monitor serum digoxin levels during pregnancy and the postpartum period [see Dosage and Administration (2.5)] ."
-        }
-      ]
-    },
-    "postpartum": {
-      "value": "LANOXIN requirements decrease in the postpartum period; monitor serum digoxin levels postpartum and adjust dose to avoid toxicity.",
-      "refs": [
-        {
-          "source_id": "fda-digoxin-label",
-          "locator": "8.1 Pregnancy",
-          "quote": "LANOXIN requirements may increase during pregnancy and decrease in the postpartum period. Monitor serum digoxin levels during pregnancy and the postpartum period [see Dosage and Administration (2.5)] ."
-        }
-      ]
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not impair hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Crosses the placenta without teratogenicity; renal clearance and P-gp activity rise 20%–50% during pregnancy (lowering serum digoxin), requiring TDM and occasional dose escalation.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Digoxin Pregnancy PK & Postpartum",
+          "quote": "Digoxin crosses the placenta without teratogenicity (`caution`); renal clearance and CYP/P-gp activity increase 20%–50% during pregnancy (lowering serum digoxin levels), requiring therapeutic drug monitoring and occasional dose escalation, followed by postpartum dose reduction over 1 to 2 weeks to avoid digoxin toxicity. Amiodarone Pregna"
+        },
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "LANOXIN requirements may increase during pregnancy and decrease in the postpartum period. Monitor serum digoxin levels during pregnancy and the postpartum period [see Dosage and Administration (2.5)] ."
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Reduce pregnancy-escalated digoxin dosage over 1 to 2 weeks postpartum guided by serum concentrations to prevent postpartum digoxin toxicity.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Digoxin Pregnancy PK & Postpartum",
+          "quote": "followed by postpartum dose reduction over 1 to 2 weeks to avoid digoxin toxicity. Amiodarone Pregnancy Contraindication: Amiodarone crosses the placenta with high iodine content and prolonged half-life (~40–55 days), causing fetal/neonatal hypothyroidism (up to 9%–20%), goiter, bradycardia, and neurodevelopmental delay (`avoid`); reserve"
+        },
+        {
+          "source_id": "fda-digoxin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "LANOXIN requirements may increase during pregnancy and decrease in the postpartum period. Monitor serum digoxin levels during pregnancy and the postpartum period [see Dosage and Administration (2.5)] ."
+        }
+      ]
     },
     "lactation_rid": {
-      "value": "1 to 7% of maternal weight-adjusted dose (0.2 to 4% of neonatal maintenance dose)",
+      "value": "1.9% to 4.1% of the weight-adjusted maternal dosage",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Digoxin — Drug Levels",
+          "quote": "Breastfed infants receive approximately 1.9% to 4.1% of the weight-adjusted maternal digoxin dosage through human milk. Summary of Use during Lactation: Digoxin milk concentrations are low (RID <= 4.1%) and produce undetectable or subtherapeutic serum levels in breastfed infants; compatible with breastfeeding without special waiting perio"
+        },
         {
           "source_id": "fda-digoxin-label",
           "locator": "8.2 Lactation",
@@ -498,8 +520,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Breast milk concentrations 0.4-1.0 ng/mL following 0.25 mg once daily; estimated infant intake 0.03-0.16 mcg/kg/day (up to 4% of neonatal maintenance dose), which is unlikely to be clinically relevant.",
+      "value": "Low breast milk concentrations (RID <= 4.1%) with undetectable or subtherapeutic infant serum levels; compatible with breastfeeding without special waiting periods.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Digoxin — Summary of Use during Lactation",
+          "quote": "Digoxin milk concentrations are low (RID <= 4.1%) and produce undetectable or subtherapeutic serum levels in breastfed infants; compatible with breastfeeding without special waiting periods. [donanemab] Relative Infant Dose (RID): Large IgG1 monoclonal antibody (~148 kDa) with no human milk measurements (estimated RID < 0.1% and minimal"
+        },
         {
           "source_id": "fda-digoxin-label",
           "locator": "8.2 Lactation",
@@ -508,10 +535,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "f1defddb90c265b0e742a7fbbb5f07f395cbc279c41f748a53e4d7d8cc6177b9"
   }
 }

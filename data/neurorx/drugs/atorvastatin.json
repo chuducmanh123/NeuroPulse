@@ -178,11 +178,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "c34bc97806bfcea9c62c2b9aede666a6b4c13c23c6eaec3a7f1c19830026f660"
   },
   "adverse_effects": {
     "most_common": {
@@ -230,30 +230,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not impair hormonal contraceptives; use effective contraception to discontinue statins before planned conception unless high-risk ASCVD/FH cardiology exceptions apply.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
+          "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Avoided in routine pregnancy due to animal developmental toxicity and theoretical disruption of fetal cholesterol synthesis; discontinue upon pregnancy recognition (rare extreme-risk ASCVD/FH exceptions per cardiology).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Statins",
+          "quote": "statins remain avoided in routine pregnancy (`avoid`) due to animal developmental toxicity and theoretical disruption of fetal cholesterol synthesis; discontinue when pregnancy is recognized and resume only after breastfeeding or per cardiology guidance. Levothyroxine Preferred & Pregnancy PK/Postpartum: Levothyroxine is preferred and ess"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Resume statin therapy only after breastfeeding completion or per specialist cardiovascular risk assessment.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Statins",
+          "quote": "discontinue when pregnancy is recognized and resume only after breastfeeding or per cardiology guidance. Levothyroxine Preferred & Pregnancy PK/Postpartum: Levothyroxine is preferred and essential in pregnancy (`preferred`); maternal thyroid hormone demand rises 25%–50% by weeks 4–8 of gestation due to TBG elevation and placental deiodina"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: atorvastatin — Drug Levels",
+          "quote": "Quantitative human breast milk levels of atorvastatin have not been directly measured (animal milk studies show transfer, though low oral bioavailability limits uptake). Summary of Use during Lactation: Because human milk transfer data are lacking and statins theoretically disrupt infant lipid and cholesterol synthesis, breastfeeding is g"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Breastfeeding is not recommended during atorvastatin treatment; no information on presence in human milk or effects on breastfed infant or milk production.",
+      "value": "Human milk data are lacking and statins theoretically disrupt infant cholesterol synthesis; breastfeeding is generally not recommended during atorvastatin therapy.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: atorvastatin — Summary of Use during Lactation",
+          "quote": "Because human milk transfer data are lacking and statins theoretically disrupt infant lipid and cholesterol synthesis, breastfeeding is generally not recommended during atorvastatin therapy (though some cardiovascular experts note minimal expected infant absorption). [azithromycin] Relative Infant Dose (RID): Maternal azithromycin yields"
+        },
         {
           "source_id": "fda-atorvastatin-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",

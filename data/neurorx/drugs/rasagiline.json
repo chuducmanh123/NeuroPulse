@@ -225,14 +225,29 @@
       ],
       "note": "No adequate human pregnancy data; animal studies showed decreased pup survival/weight at clinical-range doses and embryofetal toxicity when combined with levodopa/carbidopa."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not reduce hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "No adequate human pregnancy data; animal studies showed decreased pup survival and body weight at clinical-range doses, and embryofetal death/cardiovascular abnormalities in rabbits when combined with levodopa/carbidopa.",
+      "value": "Insufficient human pregnancy safety data; transition to levodopa monotherapy if symptom control is required during pregnancy.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 6: Dopamine Agonists & Adjuncts",
+          "quote": "have insufficient human pregnancy safety data (`caution`); dopamine agonists suppress maternal prolactin and inhibit postpartum lactation, so transition to levodopa monotherapy if breastfeeding is planned. Amantadine Teratogenicity: Amantadine is teratogenic in animals and has case reports of complex congenital heart defects (including si"
+        },
         {
           "source_id": "fda-rasagiline-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
@@ -240,21 +255,35 @@
         }
       ]
     },
+    "mcm": [],
     "postpartum": {
-      "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Dopamine agonists suppress maternal prolactin and inhibit postpartum lactation; switch or maintain levodopa monotherapy if breastfeeding is planned.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 6: Dopamine Agonists & Adjuncts",
+          "quote": "dopamine agonists suppress maternal prolactin and inhibit postpartum lactation, so transition to levodopa monotherapy if breastfeeding is planned. Amantadine Teratogenicity: Amantadine is teratogenic in animals and has case reports of complex congenital heart defects (including single ventricle and truncus arteriosus) in humans (`avoid`);"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: rasagiline — Drug Levels",
+          "quote": "Quantitative human breast milk measurements for rasagiline are lacking, though high doses in animals suppressed prolactin and milk production. Summary of Use during Lactation: Because rasagiline has no human lactation data and MAO-B inhibitors may reduce prolactin secretion, avoid during breastfeeding or monitor infant and milk supply clo"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk or effects on breastfed infants; inhibits prolactin secretion in rats (human clinical relevance unknown). Weigh breastfeeding benefits against maternal need.",
+      "value": "No human lactation data exist and MAO-B inhibitors may suppress prolactin; avoid during breastfeeding or monitor infant and milk supply closely.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: rasagiline — Summary of Use during Lactation",
+          "quote": "Because rasagiline has no human lactation data and MAO-B inhibitors may reduce prolactin secretion, avoid during breastfeeding or monitor infant and milk supply closely if no alternative exists. [rivaroxaban] Relative Infant Dose (RID): Maternal oral rivaroxaban yields a relative infant dose of 1.3% to 2.2% (up to ~3% in case reports) of"
+        },
         {
           "source_id": "fda-rasagiline-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
@@ -263,11 +292,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "1d322b5ecde119a9c1b0fb5f8e4bf5b774ed02e7559b6d26d9df2bc5f97ec98b"
   },
   "adverse_effects": {
     "most_common": {

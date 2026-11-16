@@ -284,28 +284,19 @@
       ],
       "note": "Human data demonstrate fetal harm (neonatal B-cell lymphocytopenia lasting <6 months) following in-utero exposure; requires baseline pregnancy testing and effective contraception during treatment and for 12 months after the last dose."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": "Crosses placenta and is detected postnatally in infant serum; postmarketing human data show in-utero exposure causes neonatal B-cell lymphocytopenia generally lasting < 6 months. Observe newborns for signs of infection.",
-      "refs": [
-        {
-          "source_id": "fda-rituximab-label",
-          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
-          "quote": "Postmarketing data indicate that B-cell lymphocytopenia generally lasting less than 6 months can occur in infants exposed to rituximab in-utero. Rituximab was detected postnatally in the serum of infants exposed in-utero."
-        }
-      ]
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": "Verify pregnancy status prior to initiating therapy; use effective contraception during treatment and for 12 months after the last dose.",
+      "value": "FDA label advises effective contraception during and for 12 months after last infusion; ECTRIMS/EAN consensus allows planned conception 1–3 months post-infusion in active MS/NMOSD when relapse risk is high.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Rituximab Contraception & Washout",
+          "quote": "FDA labeling advises effective contraception during rituximab therapy and for 12 months after the last infusion, whereas ECTRIMS/EAN consensus guidelines allow planned conception 1 to 3 months post-infusion in active MS or NMOSD when maternal relapse risk outweighs theoretical fetal depletion. Azathioprine Folic Acid & Contraception: Azat"
+        },
         {
           "source_id": "fda-rituximab-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.3 Females and Males of Reproductive Potential",
@@ -313,13 +304,65 @@
         }
       ]
     },
+    "pregnancy_pk": {
+      "value": "IgG1 monoclonal antibody crosses placenta minimally in 1st trimester but actively via FcRn in 2nd/3rd trimesters, causing transient neonatal B-cell depletion; check neonatal B-cells at birth and delay live vaccines.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Rituximab Registry, Placental Transfer & Postpartum",
+          "quote": "because IgG1 crosses the placenta actively in the 2nd/3rd trimesters via FcRn, third-trimester exposure causes transient neonatal B-cell depletion—check neonatal B-cell counts at birth, delay live vaccines until B-cell recovery, and resume maternal dosing postpartum when clinically indicated to prevent NMOSD/MS rebound. IVIG Preferred Imm"
+        },
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
+          "quote": "Postmarketing data indicate that B-cell lymphocytopenia generally lasting less than 6 months can occur in infants exposed to rituximab in-utero. Rituximab was detected postnatally in the serum of infants exposed in-utero."
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Rituximab Global Drug Safety Pregnancy Database",
+        "percent": 2.6,
+        "ci95": "1.0%–5.6%",
+        "n_exposed": 231,
+        "dose_stratum": "pre-conception / first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave2-guidelines",
+            "locator": "Section 2: Rituximab Registry, Placental Transfer & Postpartum",
+            "quote": "The Rituximab Global Drug Safety Pregnancy Database reported major congenital malformations in 2.6% (95% CI: 1.0%–5.6%) of 231 pre-conception or first-trimester exposures; because IgG1 crosses the placenta actively in the 2nd/3rd trimesters via FcRn, third-trimester exposure causes transient neonatal B-cell depletion—check neonatal B-cell"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Check neonatal lymphocyte/B-cell counts if exposed in 2nd/3rd trimester, delay live infant vaccines until B-cell recovery, and resume maternal rituximab postpartum to prevent NMOSD/MS rebound relapses.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Rituximab Registry, Placental Transfer & Postpartum",
+          "quote": "check neonatal B-cell counts at birth, delay live vaccines until B-cell recovery, and resume maternal dosing postpartum when clinically indicated to prevent NMOSD/MS rebound. IVIG Preferred Immunomodulation & PK: Intravenous immunoglobulin (IVIG) is a preferred immunomodulatory therapy for myasthenia gravis crisis, CIDP, and NMOSD relapse"
+        }
+      ]
+    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.01% to 0.1% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Rituximab — Drug Levels",
+          "quote": "Large IgG1 monoclonal antibody (~145 kDa) with very low milk excretion (relative infant dose 0.01% to 0.1% of the weight-adjusted maternal dosage) and negligible infant oral absorption. Summary of Use during Lactation: Rituximab concentrations in breast milk are extremely low (RID <= 0.1%) and breastfed infants show normal peripheral B-ce"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Excreted at low concentrations in human breast milk; advise women not to breastfeed during treatment and for 6 months after the last dose due to potential for serious adverse reactions in breastfed children.",
+      "value": "Extremely low breast milk excretion (RID <= 0.1%) and negligible oral infant absorption; breastfed infants show normal B-cell counts and development, making it compatible with breastfeeding per ECTRIMS/EAN and ACR guidelines.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Rituximab — Summary of Use during Lactation",
+          "quote": "Rituximab concentrations in breast milk are extremely low (RID <= 0.1%) and breastfed infants show normal peripheral B-cell counts and development; compatible with breastfeeding per ECTRIMS/EAN and ACR reproductive guidelines. [sumatriptan] Relative Infant Dose (RID): Subcutaneous or oral maternal sumatriptan produces a low relative infa"
+        },
         {
           "source_id": "fda-rituximab-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
@@ -328,11 +371,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "63cc812b9d8805a70546645f7cb8bbca7e4baa511f6d1883487a0d8f08a7e154"
   },
   "adverse_effects": {
     "most_common": {

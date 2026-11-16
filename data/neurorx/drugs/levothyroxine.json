@@ -495,34 +495,19 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": "Pregnancy may increase SYNTHROID requirements. Measure serum TSH and free-T4 as soon as pregnancy is confirmed and at minimum each trimester; increase dosage by 12.5 to 25 mcg/day if TSH is above the trimester-specific range and monitor TSH every 4 weeks.",
-      "refs": [
-        {
-          "source_id": "fda-levothyroxine-label",
-          "locator": "8.1 Pregnancy - Dose Adjustments During Pregnancy and the Postpartum Period",
-          "quote": "Pregnancy may increase SYNTHROID requirements. Serum TSH levels should be monitored and the SYNTHROID dosage adjusted during pregnancy."
-        }
-      ]
-    },
-    "postpartum": {
-      "value": "Since postpartum TSH levels are similar to preconception values, the SYNTHROID dosage should return to the pre-pregnancy dose immediately after delivery; monitor serum TSH 4 to 8 weeks postpartum.",
-      "refs": [
-        {
-          "source_id": "fda-levothyroxine-label",
-          "locator": "8.1 Pregnancy - Dose Adjustments During Pregnancy and the Postpartum Period",
-          "quote": "Since postpartum TSH levels are similar to preconception values, the SYNTHROID dosage should return to the pre-pregnancy dose immediately after delivery [see Dosage and Administration ( 2.3 ) ]."
-        }
-      ]
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": "Estrogens and estrogen-containing oral contraceptives increase thyroxine-binding globulin (TBG) concentration; measure unbound (free) T4 and/or FT4I when interpreting thyroid labs.",
+      "value": "Does not reduce hormonal contraceptive efficacy (estrogen increases TBG, requiring TSH monitoring).",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        },
         {
           "source_id": "fda-levothyroxine-label",
           "locator": "7.10 Drug-Laboratory Test Interactions",
@@ -530,13 +515,55 @@
         }
       ]
     },
+    "pregnancy_pk": {
+      "value": "Maternal demand increases 25%–50% by weeks 4–8 due to elevated TBG and placental deiodinase; increase dose 20%–30% immediately upon positive pregnancy test and monitor TSH every 4 weeks.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Levothyroxine Preferred & Pregnancy PK/Postpartum",
+          "quote": "maternal thyroid hormone demand rises 25%–50% by weeks 4–8 of gestation due to TBG elevation and placental deiodinase activity, requiring immediate 20%–30% dose increase upon positive pregnancy test, TSH monitoring every 4 weeks, and prompt reduction back to pre-pregnancy dose immediately postpartum. Insulin Glargine Preferred & Postpartu"
+        },
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "8.1 Pregnancy - Dose Adjustments During Pregnancy and the Postpartum Period",
+          "quote": "Pregnancy may increase SYNTHROID requirements. Serum TSH levels should be monitored and the SYNTHROID dosage adjusted during pregnancy."
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Reduce levothyroxine immediately back to the pre-pregnancy maintenance dose postpartum and recheck TSH at 6 weeks.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Levothyroxine Preferred & Pregnancy PK/Postpartum",
+          "quote": "prompt reduction back to pre-pregnancy dose immediately postpartum. Insulin Glargine Preferred & Postpartum: Insulin is the preferred gold-standard therapy for diabetes in pregnancy (`preferred`) because it does not cross the placenta; insulin requirements rise steeply in the 2nd and 3rd trimesters due to placental lactogen resistance, th"
+        },
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "8.1 Pregnancy - Dose Adjustments During Pregnancy and the Postpartum Period",
+          "quote": "Since postpartum TSH levels are similar to preconception values, the SYNTHROID dosage should return to the pre-pregnancy dose immediately after delivery [see Dosage and Administration ( 2.3 ) ]."
+        }
+      ]
+    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "< 0.1% (physiological hormone replacement)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Levothyroxine — Drug Levels",
+          "quote": "Exogenous levothyroxine yields physiological replacement milk transfer (estimated RID < 0.1% of therapeutic maternal dose), insufficient to mask neonatal hypothyroidism. Summary of Use during Lactation: Levothyroxine is a normal endogenous hormone compatible with breastfeeding; maintaining maternal euthyroidism actually supports adequate"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Present in human milk following oral administration; no adverse effects on the breastfed infant have been reported, and adequate levothyroxine treatment during lactation may normalize milk production in hypothyroid lactating mothers with low milk supply.",
+      "value": "Endogenous hormone completely compatible with breastfeeding (RID < 0.1%); maintaining maternal euthyroidism supports normal lactation without masking neonatal thyroid screening.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Levothyroxine — Summary of Use during Lactation",
+          "quote": "Levothyroxine is a normal endogenous hormone compatible with breastfeeding; maintaining maternal euthyroidism actually supports adequate milk supply without affecting infant thyroid screening. [lisinopril] Relative Infant Dose (RID): No quantitative human breast milk data are available for lisinopril (enalapril and captopril show RID < 0"
+        },
         {
           "source_id": "fda-levothyroxine-label",
           "locator": "8.2 Lactation",
@@ -545,10 +572,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "ebe1eb72f777b24b7903dd2f30248be5ef29e70913e261178881ead4bcf9cc53"
   }
 }

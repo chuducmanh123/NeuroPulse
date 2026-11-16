@@ -278,11 +278,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "358ddf92861f7602c9170e8beb9f3a269a1b6a3d4fc37942a1399315944ef85a"
   },
   "adverse_effects": {
     "most_common": {
@@ -318,9 +318,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "note": "FDA Pregnancy Category C; animal reproduction studies have not been conducted and fetal harm potential is unknown, so administer to a pregnant woman only if clearly needed.",
+      "value": "preferred",
+      "note": "Phytonadione (vitamin K1) is essential physiological replacement therapy safe throughout pregnancy to reverse maternal or neonatal coagulopathy.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Reversal Agents",
+          "quote": "Phytonadione (vitamin K1) is preferred and essential to reverse maternal/neonatal coagulopathy (`preferred`); protamine sulfate reverses UFH/LMWH without placental transfer; 4F-PCC and idarucizumab (~48 kDa) are life-saving emergency reversal agents for refractory maternal hemorrhage and should never be withheld in pregnancy (`caution`)."
+        },
         {
           "source_id": "fda-phytonadione-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS - Pregnancy Category C",
@@ -328,30 +333,50 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "Crosses the placenta slowly in small physiological amounts; standard maternal reversal dosing applies without special pregnancy PK escalation.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Reversal Agents",
+          "quote": "Phytonadione (vitamin K1) is preferred and essential to reverse maternal/neonatal coagulopathy (`preferred`); protamine sulfate reverses UFH/LMWH without placental transfer; 4F-PCC and idarucizumab (~48 kDa) are life-saving emergency reversal agents for refractory maternal hemorrhage and should never be withheld in pregnancy (`caution`)."
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "< 2% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Phytonadione — Drug Levels",
+          "quote": "Standard oral or parenteral maternal vitamin K1 supplementation produces a low relative infant dose of < 2% (high maternal doses up to 5 mg/day raise milk vitamin K safely). Summary of Use during Lactation: Phytonadione (vitamin K1) is a normal nutrient compatible with breastfeeding and helps prevent vitamin K deficiency bleeding in infan"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Unknown whether phytonadione is excreted in human milk; exercise caution when administered to a nursing woman.",
+      "value": "Normal physiological nutrient compatible with breastfeeding (RID < 2%); newborns still require standard neonatal vitamin K prophylaxis at birth.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Phytonadione — Summary of Use during Lactation",
+          "quote": "Phytonadione (vitamin K1) is a normal nutrient compatible with breastfeeding and helps prevent vitamin K deficiency bleeding in infants (though newborns still require standard neonatal vitamin K prophylaxis at birth). [piperacillin-tazobactam] Relative Infant Dose (RID): Intravenous maternal piperacillin produces a very low relative infa"
+        },
         {
           "source_id": "fda-phytonadione-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS - Nursing Mothers",

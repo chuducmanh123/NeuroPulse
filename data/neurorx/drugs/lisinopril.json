@@ -482,30 +482,75 @@
       ],
       "note": "5-axis synthesis: Boxed Warning for fetal toxicity instructing immediate discontinuation when pregnancy is detected; 2nd/3rd trimester RAS blockade causes oligohydramnios, fetal renal failure, skull/lung hypoplasia, and neonatal death."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not impair hormonal contraceptives; effective contraception is advised so RAAS inhibitors can be switched to labetalol or nifedipine before conception.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
+          "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Strictly contraindicated in pregnancy (especially 2nd/3rd trimesters): causes fetal renal tubular dysgenesis, oligohydramnios, pulmonary/skull hypoplasia, and fetal death; switch immediately upon pregnancy recognition.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: ACEi & ARBs Fetotoxicity",
+          "quote": "Lisinopril, losartan, and valsartan are strictly contraindicated in pregnancy (`avoid`), especially during the 2nd and 3rd trimesters when RAAS blockade causes fetal renal tubular dysgenesis, oligohydramnios, pulmonary hypoplasia, skull hypoplasia, and fetal death; National Registry cohorts reported 5.6% (95% CI: 4.1%–7.6%, n=745) adverse"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "National Registry RAAS Cohort (class)",
+        "percent": 5.6,
+        "ci95": "4.1%–7.6%",
+        "n_exposed": 745,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 3: ACEi & ARBs Fetotoxicity",
+            "quote": "National Registry cohorts reported 5.6% (95% CI: 4.1%–7.6%, n=745) adverse fetal/malformation outcomes with first-trimester exposure; switch to labetalol or nifedipine preconception and monitor postpartum BP before any restart. Spironolactone & Furosemide: Spironolactone exhibits anti-androgenic activity in animal models and must be avoid"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Monitor postpartum blood pressure before restarting antihypertensives, and select lactation-preferred alternatives (labetalol, nifedipine, or enalapril) if breastfeeding.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: ACEi & ARBs Fetotoxicity",
+          "quote": "switch to labetalol or nifedipine preconception and monitor postpartum BP before any restart. Spironolactone & Furosemide: Spironolactone exhibits anti-androgenic activity in animal models and must be avoided in pregnancy (`avoid`); furosemide is reserved for maternal pulmonary edema or heart failure (`caution`) because diuretic-induced i"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available (enalapril/captopril < 0.2%)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: lisinopril — Drug Levels",
+          "quote": "No quantitative human breast milk data are available for lisinopril (enalapril and captopril show RID < 0.2%). Summary of Use during Lactation: While lisinopril lacks direct milk measurements, ACE inhibitors as a class generally exhibit very low milk transfer; enalapril or captopril is preferred in nursing mothers of premature or newborn"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No data are available regarding presence in human milk, effects on breastfed infant, or milk production; lisinopril is present in rat milk. Advise women not to breastfeed during treatment due to potential for severe adverse reactions in the breastfed infant.",
+      "value": "Direct milk data are lacking; prefer better-studied ACE inhibitors (enalapril or captopril) or labetalol/nifedipine when nursing newborns or preterm infants.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: lisinopril — Summary of Use during Lactation",
+          "quote": "While lisinopril lacks direct milk measurements, ACE inhibitors as a class generally exhibit very low milk transfer; enalapril or captopril is preferred in nursing mothers of premature or newborn infants due to better-characterized safety data. [losartan] Relative Infant Dose (RID): Human milk levels of losartan and its active carboxylic"
+        },
         {
           "source_id": "fda-lisinopril-label",
           "locator": "Section 8.2 Lactation",
@@ -514,10 +559,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "3c9c189d0671f64da947a8e9b3983830b005a97452c8d27310a14aab1649c3f3"
   }
 }

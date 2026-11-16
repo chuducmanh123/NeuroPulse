@@ -360,22 +360,24 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "value": "Standard preconception folic acid (0.4 mg/day; up to 4–5 mg/day considered in pre-existing diabetes) alongside vitamin B12 monitoring on chronic metformin.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Folic Acid Preconception Baseline",
+          "quote": "higher preconception folate (up to 4–5 mg/day) may be considered in pre-existing diabetes mellitus due to elevated baseline neural tube defect risk; metformin does not require routine high-dose folate beyond B12 monitoring. === SECTION 2: ANTICOAGULANTS, ANTIPLATELETS, THROMBOLYTICS & REVERSAL === Warfarin Registry, PK & Postpartum: Warf"
+        }
+      ]
     },
     "contraception": {
-      "value": "Discuss the potential for unintended pregnancy with premenopausal women as therapy with GLUMETZA may result in ovulation in some anovulatory women.",
+      "value": "Does not reduce hormonal contraceptive efficacy (can restore ovulation in PCOS).",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        },
         {
           "source_id": "fda-metformin-label",
           "locator": "8.3 Females and Males of Reproductive Potential",
@@ -383,9 +385,50 @@
         }
       ]
     },
-    "lactation_rid": {
-      "value": "0.11% to 1% of maternal weight-adjusted dosage",
+    "pregnancy_pk": {
+      "value": "Crosses the placenta freely without teratogenicity; maternal renal clearance rises during pregnancy (insulin remains preferred first-line for pre-existing diabetes).",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Metformin Registry, PK & Postpartum",
+          "quote": "Metformin crosses the placenta freely without teratogenicity (`caution`); Nordic & UK Teratology Cohorts reported major congenital malformations in 3.2% (95% CI: 2.5%–4.1%, n=1,840, first-trimester exposure); renal clearance rises in pregnancy, and postpartum insulin sensitivity returns rapidly so discontinue or halve gestational doses af"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Nordic & UK Teratology Cohorts",
+        "percent": 3.2,
+        "ci95": "2.5%–4.1%",
+        "n_exposed": 1840,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 4: Metformin Registry, PK & Postpartum",
+            "quote": "Nordic & UK Teratology Cohorts reported major congenital malformations in 3.2% (95% CI: 2.5%–4.1%, n=1,840, first-trimester exposure); renal clearance rises in pregnancy, and postpartum insulin sensitivity returns rapidly so discontinue or halve gestational doses after delivery while monitoring glycemia. Sulfonylureas & Newer Antidiabetic"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Postpartum insulin sensitivity improves rapidly; discontinue or halve gestational metformin doses after delivery while monitoring maternal glycemia.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Metformin Registry, PK & Postpartum",
+          "quote": "postpartum insulin sensitivity returns rapidly so discontinue or halve gestational doses after delivery while monitoring glycemia. Sulfonylureas & Newer Antidiabetics (Gliclazide, Glimepiride, Sitagliptin, Dapagliflozin, Empagliflozin): Gliclazide and glimepiride cross the placenta and risk severe prolonged neonatal hypoglycemia (`avoid`"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "0.1% to 1.1% (mean ~0.3%–0.7%) of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Metformin — Drug Levels",
+          "quote": "Breastfed infants receive approximately 0.1% to 1.1% (mean ~0.3%–0.7%) of the weight-adjusted maternal metformin dosage through human milk. Summary of Use during Lactation: Metformin enters human milk in very small quantities (RID <= 1.1%) with undetectable infant serum levels and no neonatal hypoglycemia or adverse growth effects; widely"
+        },
         {
           "source_id": "fda-metformin-label",
           "locator": "8.2 Lactation",
@@ -394,8 +437,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Present in human milk (infant dose ~0.11% to 1% of maternal weight-adjusted dosage; milk/plasma ratio 0.13 to 1); insufficient information on effects on breastfed infant or milk production. Consider developmental/health benefits of breastfeeding alongside mother's clinical need.",
+      "value": "Minimal transfer into human milk (RID <= 1.1%) with undetectable infant serum levels and no neonatal hypoglycemia; widely considered compatible with breastfeeding.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Metformin — Summary of Use during Lactation",
+          "quote": "Metformin enters human milk in very small quantities (RID <= 1.1%) with undetectable infant serum levels and no neonatal hypoglycemia or adverse growth effects; widely considered compatible with breastfeeding. [nebivolol] Relative Infant Dose (RID): Quantitative human breast milk concentrations of nebivolol are unavailable. Summary of Us"
+        },
         {
           "source_id": "fda-metformin-label",
           "locator": "8.2 Lactation",
@@ -404,10 +452,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "1834d41cb8985b4e05b4974705e77dcb227ec1a377c28c67e938d077086a9316"
   }
 }

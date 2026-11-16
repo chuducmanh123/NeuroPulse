@@ -216,11 +216,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "0a0c32ed0cd9abc74984fac20cc67648d92c9f4df3d2b6972ce60ce18ad9cbee"
   },
   "adverse_effects": {
     "most_common": {
@@ -267,30 +267,50 @@
       ],
       "note": "No human pregnancy data or animal reproduction studies available; prescribe during pregnancy only if clearly needed."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "Human plasma coagulation factors II, VII, IX, and X (~50–70 kDa) do not cross the placenta intact; never withhold in life-threatening maternal warfarin hemorrhage.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Reversal Agents",
+          "quote": "4F-PCC and idarucizumab (~48 kDa) are life-saving emergency reversal agents for refractory maternal hemorrhage and should never be withheld in pregnancy (`caution`). === SECTION 3: ANTIHYPERTENSIVES, ANTIARRHYTHMICS, DIURETICS & ELECTROLYTES === Labetalol Preferred First-Line & Registry: Labetalol is a preferred first-line oral and IV an"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Effective RID ~0% (endogenous plasma factors)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: prothrombin-complex-concentrate — Drug Levels",
+          "quote": "Endogenous human coagulation factors II, VII, IX, and X (~50–70 kDa) that do not cross into breast milk intact and are destroyed by GI digestion (effective RID ~0%). Summary of Use during Lactation: 4-factor prothrombin complex concentrate consists of human plasma coagulation factors that pose no risk to a breastfed infant; nursing may re"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No information regarding excretion in human milk or effects on breastfed infants; use only if clearly needed when treating a nursing woman.",
+      "value": "Consists of endogenous human plasma coagulation factors destroyed by GI digestion; pose no risk to a breastfed infant once mother recovers from acute hemorrhage.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: prothrombin-complex-concentrate — Summary of Use during Lactation",
+          "quote": "4-factor prothrombin complex concentrate consists of human plasma coagulation factors that pose no risk to a breastfed infant; nursing may resume as soon as the mother recovers from acute hemorrhage. [rasagiline] Relative Infant Dose (RID): Quantitative human breast milk measurements for rasagiline are lacking, though high doses in anima"
+        },
         {
           "source_id": "fda-4fpcc-kcentra-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS - 8.2 Lactation",

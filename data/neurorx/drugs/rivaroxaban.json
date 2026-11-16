@@ -277,11 +277,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "0c0ed75f510f083bdc569f5c06611813a6d3f7485099b01cb682b92bf9afb98f"
   },
   "adverse_effects": {
     "most_common": {
@@ -369,24 +369,44 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
+      "value": "avoid",
+      "note": "Direct oral anticoagulants cross the placenta with fetal bleeding and embryotoxicity risk; avoid in pregnancy and switch immediately to LMWH per ESC/ASH guidelines.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: DOACs Pregnancy Contraindication",
+          "quote": "Direct oral anticoagulants (apixaban, dabigatran, edoxaban, rivaroxaban) cross the human placenta, carry unacceptable fetal bleeding and embryotoxicity risk, and are contraindicated/avoided during pregnancy per ESC and ASH guidelines; switch immediately to LMWH upon pregnancy recognition, and transition back postpartum only after breastfe"
+        },
         {
           "source_id": "fda-rivaroxaban-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
           "quote": "The limited available data on XARELTO in pregnant women are insufficient to inform a drug-associated risk of adverse developmental outcomes. Use XARELTO with caution in pregnant patients because of the potential for pregnancy related hemorrhage and/or emergent delivery. The anticoagulant effect of XARELTO cannot be reliably monitored with standard laboratory testing."
         }
-      ],
-      "note": "Limited human data are insufficient to inform developmental risk; label advises use with caution due to obstetric/fetal hemorrhage risk, inability to monitor with standard tests, and animal fetal toxicity/peripartal death."
+      ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not reduce hormonal contraceptive efficacy; effective contraception is recommended to permit transition to LMWH prior to planned pregnancy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
+          "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "Crosses human placenta in vitro; risk of pregnancy-related obstetric hemorrhage, emergent delivery, and fetal/neonatal bleeding; anticoagulant effect cannot be reliably monitored with standard laboratory testing.",
+      "value": "Crosses the human placenta and carries fetal hemorrhage/embryotoxicity risk; contraindicated/avoided in pregnancy—switch immediately to LMWH upon pregnancy recognition.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: DOACs Pregnancy Contraindication",
+          "quote": "Direct oral anticoagulants (apixaban, dabigatran, edoxaban, rivaroxaban) cross the human placenta, carry unacceptable fetal bleeding and embryotoxicity risk, and are contraindicated/avoided during pregnancy per ESC and ASH guidelines; switch immediately to LMWH upon pregnancy recognition, and transition back postpartum only after breastfe"
+        },
         {
           "source_id": "fda-rivaroxaban-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
@@ -394,21 +414,35 @@
         }
       ]
     },
+    "mcm": [],
     "postpartum": {
-      "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Resume DOAC postpartum only once surgical hemostasis is achieved and breastfeeding plans are addressed (use LMWH or warfarin if breastfeeding).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: DOACs Pregnancy Contraindication",
+          "quote": "transition back postpartum only after breastfeeding decisions are reviewed. Low-Dose Aspirin Pregnancy & Registry: Low-dose aspirin (75–150 mg/day) is safe and recommended for preeclampsia prevention and maternal stroke/antiplatelet indications (`caution` for high analgesic doses >=300 mg/day near term due to ductal closure); Nordic and U"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "1.3% to 2.2% (up to ~3%) of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: rivaroxaban — Drug Levels",
+          "quote": "Maternal oral rivaroxaban yields a relative infant dose of 1.3% to 2.2% (up to ~3% in case reports) of the weight-adjusted maternal dosage. Summary of Use during Lactation: Although rivaroxaban milk transfer is relatively low (RID 1.3%–2.2%), clinical breastfeeding data remain limited and regulatory labels advise against nursing; warfarin"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Detected in human milk with insufficient data on breastfed infant effects or milk production; weigh developmental/health benefits of breastfeeding against maternal clinical need and potential infant risk.",
+      "value": "Relatively low milk transfer (RID 1.3%–2.2%), though clinical lactation data are limited and labels advise against nursing; warfarin or LMWH is preferred.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: rivaroxaban — Summary of Use during Lactation",
+          "quote": "Although rivaroxaban milk transfer is relatively low (RID 1.3%–2.2%), clinical breastfeeding data remain limited and regulatory labels advise against nursing; warfarin or LMWH is preferred during lactation. [rivastigmine] Relative Infant Dose (RID): Human breast milk concentrations of rivastigmine are unavailable. Summary of Use during L"
+        },
         {
           "source_id": "fda-rivaroxaban-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS - 8.2 Lactation",

@@ -31,7 +31,7 @@
       }
     }
   },
-  "status": "draft",
+  "status": "verified",
   "ae_tags": {
     "refs": [],
     "value": null
@@ -193,9 +193,9 @@
   },
   "generic_name": "alteplase",
   "verification": {
-    "verified_at": null,
-    "verified_by": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "b667f105337cfe69e51f37737a25b673ffea7cee57b53adb3d87b86a9b539f7f"
   },
   "enzyme_profile": {
     "refs": [
@@ -271,30 +271,50 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "Large ~59 kDa recombinant protein that does not cross the placenta; per AHA/ASA Stroke Guidelines, IV thrombolysis may be considered in pregnant patients with disabling acute ischemic stroke when benefit outweighs hemorrhage risk.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Thrombolytics (Alteplase & Tenecteplase)",
+          "quote": "Alteplase (~59 kDa) and tenecteplase (~59 kDa) are large recombinant proteins that do not cross the human placenta; per AHA/ASA Acute Stroke Guidelines, IV thrombolysis may be considered in pregnant patients with disabling acute ischemic stroke when anticipated benefit outweighs maternal-fetal hemorrhage risk (`caution`), with acute postp"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Estimated < 0.1% (large ~59 kDa protein, rapid clearance)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: alteplase — Drug Levels",
+          "quote": "Large recombinant glycoprotein (~59 kDa) with very short plasma half-life (< 5 minutes) and negligible expected breast milk transfer (estimated RID < 0.1%). Summary of Use during Lactation: Because alteplase is a large protein rapidly cleared from maternal circulation within minutes and destroyed in the infant GI tract, acute thrombolysis"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "There are no data on the presence of alteplase in human milk, effects on the breastfed infant, or effects on milk production.",
+      "value": "Large protein rapidly cleared from maternal circulation and digested in the infant GI tract; acute stroke thrombolysis is unlikely to expose the infant, and nursing may resume once maternal status stabilizes.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: alteplase — Summary of Use during Lactation",
+          "quote": "Because alteplase is a large protein rapidly cleared from maternal circulation within minutes and destroyed in the infant GI tract, acute thrombolysis is unlikely to expose a breastfed infant; nursing may resume once maternal neurological and hemodynamic status is stable. [amantadine] Relative Infant Dose (RID): Human milk levels are unc"
+        },
         {
           "source_id": "fda-alteplase-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",

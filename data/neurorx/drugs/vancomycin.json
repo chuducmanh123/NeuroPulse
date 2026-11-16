@@ -403,14 +403,29 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not reduce hormonal contraceptive levels.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Broad-Spectrum Antibiotics Contraception Note",
+          "quote": "Unlike rifamycins, non-rifamycin beta-lactams, macrolides, glycopeptides, and fluoroquinolones do not reduce systemic ethinylestradiol or progestin levels; extra backup contraception is only required if severe antibiotic-associated vomiting or diarrhea impairs pill absorption. Folic Acid Preconception Baseline (Warfarin, Metformin, Diabet"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "Found in cord blood (crosses placenta); limited second- and third-trimester study showed no drug-attributable sensorineural hearing loss or nephrotoxicity.",
+      "value": "Crosses the placenta without recognized teratogenicity; expanded volume of distribution and augmented renal clearance increase clearance, requiring AUC-guided or trough TDM during MRSA CNS infection.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Vancomycin Pregnancy PK & TDM",
+          "quote": "elevated maternal volume of distribution and augmented renal clearance in pregnancy increase vancomycin clearance, requiring AUC-guided or trough therapeutic drug monitoring and postpartum reassessment if therapy continues. Fluoroquinolones (Ciprofloxacin & Levofloxacin): Fluoroquinolones are avoided as first-line agents in pregnancy (`ca"
+        },
         {
           "source_id": "fda-vancomycin-label",
           "locator": "PREGNANCY",
@@ -418,21 +433,35 @@
         }
       ]
     },
+    "mcm": [],
     "postpartum": {
-      "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Reassess renal clearance and AUC/trough vancomycin levels postpartum if prolonged IV therapy continues after delivery.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Vancomycin Pregnancy PK & TDM",
+          "quote": "requiring AUC-guided or trough therapeutic drug monitoring and postpartum reassessment if therapy continues. Fluoroquinolones (Ciprofloxacin & Levofloxacin): Fluoroquinolones are avoided as first-line agents in pregnancy (`caution`) due to arthropathy in juvenile animal cartilage, though ENTIS Prospective Cohort data (2.8% MCM, 95% CI: 1."
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Estimated < 2% (virtually zero infant oral absorption)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Vancomycin — Drug Levels",
+          "quote": "Intravenous maternal vancomycin produces low milk concentrations (estimated RID < 2%) with virtually zero oral absorption in the infant GI tract. Summary of Use during Lactation: Vancomycin is poorly absorbed orally and appears in minimal amounts in human milk, making it compatible with breastfeeding; observe the infant occasionally for l"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Excreted in human milk; exercise caution when administering to a nursing woman and decide whether to discontinue nursing or the drug.",
+      "value": "Poorly absorbed orally with minimal milk transfer (RID < 2%); compatible with breastfeeding while observing occasionally for loose stools or diaper thrush.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Vancomycin — Summary of Use during Lactation",
+          "quote": "Vancomycin is poorly absorbed orally and appears in minimal amounts in human milk, making it compatible with breastfeeding; observe the infant occasionally for loose stools or diaper thrush. [warfarin] Relative Infant Dose (RID): Warfarin is >99% plasma protein-bound and undetectable in human breast milk and breastfed infant plasma (RID"
+        },
         {
           "source_id": "fda-vancomycin-label",
           "locator": "NURSING_MOTHERS",
@@ -441,11 +470,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "d6597e3bc0b42f5a1553f0abf52d6ba890969aa6a4d6322ce3fea8df0c00a4e3"
   },
   "adverse_effects": {
     "most_common": {

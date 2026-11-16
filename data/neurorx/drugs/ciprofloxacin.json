@@ -632,30 +632,70 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not reduce systemic hormonal contraceptive levels; use barrier backup only if severe antibiotic-associated vomiting or diarrhea impairs absorption.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Broad-Spectrum Antibiotics Contraception Note",
+          "quote": "Unlike rifamycins, non-rifamycin beta-lactams, macrolides, glycopeptides, and fluoroquinolones do not reduce systemic ethinylestradiol or progestin levels; extra backup contraception is only required if severe antibiotic-associated vomiting or diarrhea impairs pill absorption. Folic Acid Preconception Baseline (Warfarin, Metformin, Diabet"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Avoided as first-line therapy in pregnancy due to juvenile animal arthropathy, though ENTIS prospective data (2.8% MCM, n=949) showed no clear human teratogenic increase; reserve for resistant CNS infections.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Fluoroquinolones",
+          "quote": "Fluoroquinolones are avoided as first-line agents in pregnancy (`caution`) due to arthropathy in juvenile animal cartilage, though ENTIS Prospective Cohort data (2.8% MCM, 95% CI: 1.9%–4.1%, n=949) showed no clear human teratogenic increase; reserve for severe resistant CNS or life-threatening infections when safer beta-lactams cannot be"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "ENTIS Prospective Fluoroquinolone Cohort (class)",
+        "percent": 2.8,
+        "ci95": "1.9%–4.1%",
+        "n_exposed": 949,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 5: Fluoroquinolones",
+            "quote": "ENTIS Prospective Cohort data (2.8% MCM, 95% CI: 1.9%–4.1%, n=949) showed no clear human teratogenic increase; reserve for severe resistant CNS or life-threatening infections when safer beta-lactams cannot be used. === SECTION 6: MOVEMENT DISORDERS & DEMENTIA === Levodopa-Carbidopa Pregnancy & Registry: Levodopa-carbidopa is the preferre"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.5% to 2.1% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: ciprofloxacin — Drug Levels",
+          "quote": "Oral or IV ciprofloxacin produces a low relative infant dose of 0.5% to 2.1% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Ciprofloxacin levels in breast milk are low (RID <= 2.1%) and milk calcium markedly reduces infant GI absorption, with no cartilage toxicity reported in breastfed infants; acceptable when cl"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Present in human milk; breastfeeding is not recommended during treatment and for an additional 2 days (5 half-lives) after the last dose (may pump and discard breast milk) due to potential risk of serious adverse reactions including arthropathy; exception for inhalational anthrax post-exposure.",
+      "value": "Low milk transfer (RID <= 2.1%) and milk calcium limits infant GI absorption; acceptable when indicated, optionally waiting 3–4 h post-dose and monitoring for diarrhea or thrush.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: ciprofloxacin — Summary of Use during Lactation",
+          "quote": "Ciprofloxacin levels in breast milk are low (RID <= 2.1%) and milk calcium markedly reduces infant GI absorption, with no cartilage toxicity reported in breastfed infants; acceptable when clinically indicated, optionally waiting 3–4 hours after a dose and monitoring for diarrhea or thrush. [clopidogrel] Relative Infant Dose (RID): Quanti"
+        },
         {
           "source_id": "fda-ciprofloxacin-label",
           "locator": "8.2 Lactation",
@@ -664,10 +704,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "5ed2230f92d446f8072f35ea8e449ee6ee7835cf9042f502f4824b08cd939b7c"
   }
 }

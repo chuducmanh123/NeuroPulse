@@ -352,8 +352,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
+      "value": "preferred",
+      "note": "Preferred beta-blocker during pregnancy when beta-blockade is clinically indicated for migraine prophylaxis or cardiovascular control; large Nordic/Medicaid cohort (n=4,890) found no teratogenic signal.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Metoprolol Preferred Beta-Blocker & Registry",
+          "quote": "Metoprolol is a preferred beta-blocker for migraine prophylaxis or maternal cardiovascular indications during pregnancy when therapy is required; Nordic and Medicaid Beta-Blocker Cohort data reported major congenital malformations in 3.2% (95% CI: 2.7%–3.8%) of 4,890 first-trimester exposures. Metoprolol Pregnancy PK & Postpartum: CYP2D6-"
+        },
         {
           "source_id": "fda-metoprolol-label",
           "locator": "Section 8.1 Pregnancy",
@@ -364,29 +370,67 @@
           "locator": "Section 8.1 Pregnancy",
           "quote": "Metoprolol crosses the placenta. Neonates born to mothers who are receiving metoprolol during pregnancy, may be at risk for hypotension, hypoglycemia, bradycardia, and respiratory depression. Observe neonates and manage accordingly."
         }
-      ],
-      "note": "5-axis synthesis: No boxed warning or contraindication; observational studies have not shown major congenital malformations, though methodological limitations prevent excluding risk (inconsistent IUGR/preterm birth findings); crosses placenta with neonatal risk of hypotension, hypoglycemia, bradycardia, and respiratory depression; animal post-implantation loss at 11x MRHD."
+      ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not alter hormonal contraceptive efficacy; standard family planning applies.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Analgesics Without Contraceptive Interactions",
+          "quote": "These medications do not induce CYP3A4 or UGT metabolism of hormonal contraceptives and require no extra contraceptive backup beyond standard family planning. Myasthenia & Spasticity Agents Contraception Note (Pyridostigmine, Prednisolone, Methylprednisolone, Dexamethasone, IVIG, Baclofen, Tizanidine, Dantrolene): Systemic corticosteroids"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "CYP2D6-mediated clearance increases 2- to 4-fold during the 2nd and 3rd trimesters (often requiring higher divided doses); monitor 3rd-trimester fetal growth and neonatal bradycardia/hypoglycemia.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Metoprolol Pregnancy PK & Postpartum",
+          "quote": "CYP2D6-mediated metoprolol clearance increases markedly (2- to 4-fold) during the second and third trimesters, sometimes requiring higher divided doses; monitor third-trimester fetal growth and neonatal bradycardia/hypoglycemia, and reduce pregnancy-escalated doses promptly postpartum to prevent maternal bradycardia and hypotension. Pyri"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Nordic & Medicaid Beta-Blocker Cohort",
+        "percent": 3.2,
+        "ci95": "2.7%–3.8%",
+        "n_exposed": 4890,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave2-guidelines",
+            "locator": "Section 2: Metoprolol Preferred Beta-Blocker & Registry",
+            "quote": "Nordic and Medicaid Beta-Blocker Cohort data reported major congenital malformations in 3.2% (95% CI: 2.7%–3.8%) of 4,890 first-trimester exposures. Metoprolol Pregnancy PK & Postpartum: CYP2D6-mediated metoprolol clearance increases markedly (2- to 4-fold) during the second and third trimesters, sometimes requiring higher divided doses;"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "CYP2D6 activity normalizes quickly after delivery; reduce pregnancy-escalated doses promptly postpartum to prevent maternal bradycardia and hypotension.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Metoprolol Pregnancy PK & Postpartum",
+          "quote": "reduce pregnancy-escalated doses promptly postpartum to prevent maternal bradycardia and hypotension. Pyridostigmine Preferred MG Therapy & PK: Pyridostigmine is the preferred first-line symptomatic treatment for myasthenia gravis throughout pregnancy; expanded maternal blood volume, increased renal clearance, and delayed gastric emptyin"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": "0.5% to 2%",
+      "value": "0.5% to 2.1% of the weight-adjusted maternal dosage",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Metoprolol — Drug Levels",
+          "quote": "Breastfed infants receive approximately 0.5% to 2.1% of the weight-adjusted maternal metoprolol dosage through human milk. Summary of Use during Lactation: Metoprolol passes into breast milk in small amounts (RID < 2.5%) and rarely causes adverse events in healthy term infants; monitor nursing newborns for rare beta-blockade signs such as"
+        },
         {
           "source_id": "fda-metoprolol-label",
           "locator": "Section 8.2 Lactation",
@@ -395,8 +439,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Metoprolol is present in human milk (estimated daily infant dose 0.05 to <1 mg; RID 0.5% to 2%); no adverse reactions on breastfed infants have been identified, though infants of slow metabolizer mothers should be monitored for bradycardia and beta-blockade.",
+      "value": "Low milk transfer (RID 0.5%–2.1%) and rarely causes adverse events in healthy term infants; monitor nursing newborns for rare beta-blockade signs (bradycardia, lethargy, poor feeding).",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Metoprolol — Summary of Use during Lactation",
+          "quote": "Metoprolol passes into breast milk in small amounts (RID < 2.5%) and rarely causes adverse events in healthy term infants; monitor nursing newborns for rare beta-blockade signs such as bradycardia, lethargy, or poor feeding. [mycophenolate] Relative Infant Dose (RID): Clinical human milk transfer measurements for mycophenolate mofetil ar"
+        },
         {
           "source_id": "fda-metoprolol-label",
           "locator": "Section 8.2 Lactation",
@@ -405,10 +454,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "7463058884a6f2c1073b859d26666419fe61bdad079b37598203e9aa782ff0ff"
   }
 }

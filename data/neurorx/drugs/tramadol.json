@@ -522,18 +522,55 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not induce hepatic metabolism of hormonal contraceptives; standard family planning applies.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Analgesics Without Contraceptive Interactions",
+          "quote": "These medications do not induce CYP3A4 or UGT metabolism of hormonal contraceptives and require no extra contraceptive backup beyond standard family planning. Myasthenia & Spasticity Agents Contraception Note (Pyridostigmine, Prednisolone, Methylprednisolone, Dexamethasone, IVIG, Baclofen, Tizanidine, Dantrolene): Systemic corticosteroids"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": "Tramadol hydrochloride extended-release tablets are not recommended for obstetrical preoperative medication or for post-delivery analgesia in nursing mothers.",
+      "value": "Avoid chronic or peripartum tramadol use due to risk of life-threatening neonatal opioid withdrawal syndrome (NOWS) and neonatal respiratory depression.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Tramadol Registry & Peripartum Risk",
+          "quote": "chronic or peripartum tramadol use should be avoided due to neonatal opioid withdrawal syndrome and neonatal respiratory depression. Tramadol Postpartum: Avoid prolonged postpartum tramadol use while breastfeeding, especially in CYP2D6 ultrarapid metabolizers, and taper maternal dose promptly after acute post-delivery pain resolves. Metop"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Swedish Medical Birth Register",
+        "percent": 3.5,
+        "ci95": "2.6%–4.5%",
+        "n_exposed": 1751,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave2-guidelines",
+            "locator": "Section 2: Tramadol Registry & Peripartum Risk",
+            "quote": "The Swedish Medical Birth Register reported major congenital malformations in 3.5% (95% CI: 2.6%–4.5%) of 1,751 first-trimester exposures; chronic or peripartum tramadol use should be avoided due to neonatal opioid withdrawal syndrome and neonatal respiratory depression. Tramadol Postpartum: Avoid prolonged postpartum tramadol use while b"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Avoid prolonged postpartum tramadol while breastfeeding (especially in CYP2D6 ultrarapid metabolizers) and taper maternal dose promptly once acute post-delivery pain resolves.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Tramadol Postpartum",
+          "quote": "Avoid prolonged postpartum tramadol use while breastfeeding, especially in CYP2D6 ultrarapid metabolizers, and taper maternal dose promptly after acute post-delivery pain resolves. Metoprolol Preferred Beta-Blocker & Registry: Metoprolol is a preferred beta-blocker for migraine prophylaxis or maternal cardiovascular indications during pre"
+        },
         {
           "source_id": "fda-tramadol-label",
           "locator": "8.2 Lactation",
@@ -541,13 +578,14 @@
         }
       ]
     },
-    "contraception": {
-      "value": null,
-      "refs": []
-    },
     "lactation_rid": {
-      "value": "0.1% of the maternal dose (100 mcg tramadol and 27 mcg M1 within 16 hours after 100 mg IV)",
+      "value": "2.2% to 2.9% of the weight-adjusted maternal dosage",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Tramadol — Drug Levels",
+          "quote": "Combined transfer of tramadol and its active O-desmethyltramadol metabolite yields a relative infant dose of 2.2% to 2.9% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Due to CYP2D6 ultrarapid metabolizer variability risking fatal neonatal respiratory depression from O-desmethyltramadol, the FDA and LactMed warn"
+        },
         {
           "source_id": "fda-tramadol-label",
           "locator": "8.2 Lactation",
@@ -556,8 +594,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Breastfeeding is NOT recommended during treatment. Tramadol and its more potent M1 metabolite pass into human milk (and CYP2D6 ultra-rapid metabolizers can produce dangerously high M1 levels in breast milk), risking excess sedation, respiratory depression, and withdrawal in breastfed infants.",
+      "value": "Not recommended during breastfeeding (FDA/LactMed warning) due to CYP2D6 ultrarapid metabolizer variability risking fatal neonatal respiratory depression from O-desmethyltramadol; prefer ibuprofen or acetaminophen.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Tramadol — Summary of Use during Lactation",
+          "quote": "Due to CYP2D6 ultrarapid metabolizer variability risking fatal neonatal respiratory depression from O-desmethyltramadol, the FDA and LactMed warn that tramadol is not recommended during breastfeeding; choose non-opioid analgesics such as ibuprofen or acetaminophen."
+        },
         {
           "source_id": "fda-tramadol-label",
           "locator": "8.2 Lactation",
@@ -566,10 +609,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "36a62903f953a267cb19dccd12b637dafd631467d88414dfc7d6f6cb19ccd9ba"
   }
 }

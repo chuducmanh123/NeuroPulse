@@ -499,30 +499,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not alter hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Crosses the placenta and risks severe, prolonged neonatal hypoglycemia; transition to insulin before or upon pregnancy recognition.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Sulfonylureas & Newer Antidiabetics",
+          "quote": "Gliclazide and glimepiride cross the placenta and risk severe prolonged neonatal hypoglycemia (`avoid` for gliclazide, `caution` for glimepiride); sitagliptin has limited human data; dapagliflozin and empagliflozin must be avoided in 2nd/3rd trimesters (`avoid`) due to renal tubular developmental toxicity in animal kidneys—transition to i"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Reassess maternal postpartum glycemic control before resuming non-insulin oral agents, selecting lactation-compatible options (insulin or metformin) if breastfeeding.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Sulfonylureas & Newer Antidiabetics",
+          "quote": "transition to insulin during pregnancy and reassess postpartum. Proton Pump Inhibitors (Omeprazole, Esomeprazole, Pantoprazole): PPIs are widely used for severe GERD or stress ulcer prophylaxis in pregnancy (`caution`); Danish National Birth Cohort data for omeprazole reported major congenital malformations in 2.6% (95% CI: 2.2%–3.1%, n=1"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: gliclazide — Drug Levels",
+          "quote": "No quantitative human breast milk measurements are available for gliclazide. Summary of Use during Lactation: Because human milk data are lacking and sulfonylureas theoretically carry a risk of infant hypoglycemia, metformin or insulin is preferred during breastfeeding; monitor infant for lethargy or poor feeding if used. [glimepiride] R"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Contraindicated in breast-feeding mothers. Excretion into human milk is unknown; given the risk of neonatal hypoglycaemia, a risk to newborns/infants cannot be excluded.",
+      "value": "Human milk data are lacking and sulfonylureas pose theoretical neonatal hypoglycemia risk; insulin or metformin is preferred during breastfeeding.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: gliclazide — Summary of Use during Lactation",
+          "quote": "Because human milk data are lacking and sulfonylureas theoretically carry a risk of infant hypoglycemia, metformin or insulin is preferred during breastfeeding; monitor infant for lethargy or poor feeding if used. [glimepiride] Relative Infant Dose (RID): Human milk levels are uncharacterized (high protein binding > 99% suggests minimal"
+        },
         {
           "source_id": "smpc-gliclazide",
           "locator": "4.3 Contraindications",
@@ -536,10 +566,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "2b26ba5fe45785c543c21814e96a5abac4d732a46e6cf079ce26071deed21753"
   }
 }

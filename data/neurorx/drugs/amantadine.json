@@ -177,9 +177,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "note": "No adequate human pregnancy data; animal studies in mice and rats show embryolethality, reduced fetal body weight, and visceral/skeletal malformations at clinically relevant doses.",
+      "value": "avoid",
+      "note": "Teratogenic in animals with human case reports of complex congenital heart defects (single ventricle, truncus arteriosus); avoid in pregnancy.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 6: Amantadine Teratogenicity",
+          "quote": "Amantadine is teratogenic in animals and has case reports of complex congenital heart defects (including single ventricle and truncus arteriosus) in humans (`avoid`); avoid during pregnancy and switch to safer alternatives before conception. Dementia Therapies (Donepezil, Rivastigmine, Memantine, Lecanemab, Donanemab): Acetylcholinesteras"
+        },
         {
           "source_id": "fda-amantadine-label",
           "locator": "USE IN SPECIFIC POPULATIONS (8.1 Pregnancy)",
@@ -187,30 +192,55 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not reduce hormonal contraceptive efficacy; use effective contraception to switch to safer alternatives before pregnancy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
+          "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Teratogenic in animal studies with human reports of complex cardiac malformations; avoid during pregnancy and switch to safer alternatives prior to conception.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 6: Amantadine Teratogenicity",
+          "quote": "Amantadine is teratogenic in animals and has case reports of complex congenital heart defects (including single ventricle and truncus arteriosus) in humans (`avoid`); avoid during pregnancy and switch to safer alternatives before conception. Dementia Therapies (Donepezil, Rivastigmine, Memantine, Lecanemab, Donanemab): Acetylcholinesteras"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Uncharacterized (moderate transfer predicted; suppresses prolactin)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Amantadine — Drug Levels",
+          "quote": "Human milk levels are uncharacterized, though low molecular weight predicts moderate transfer; amantadine also suppresses maternal prolactin secretion. Summary of Use during Lactation: Amantadine is excreted into breast milk in unknown amounts, may cause infant urinary retention, vomiting, or rash, and inhibits lactation by suppressing pr"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Excreted into human milk (amounts unquantified); infant risk unknown and may alter breast milk production or excretion.",
+      "value": "Excreted into human milk in unknown amounts, may cause infant urinary retention, vomiting, or rash, and suppresses maternal prolactin; avoid during breastfeeding.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Amantadine — Summary of Use during Lactation",
+          "quote": "Amantadine is excreted into breast milk in unknown amounts, may cause infant urinary retention, vomiting, or rash, and inhibits lactation by suppressing prolactin; avoid during breastfeeding and choose an alternative agent. [amiodarone] Relative Infant Dose (RID): Combined transfer of amiodarone and its active metabolite desethylamiodaro"
+        },
         {
           "source_id": "fda-amantadine-label",
           "locator": "USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
@@ -219,11 +249,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "f463727f892339fb92910bc5df49d2ce7ba13a439c3b5dbaf68302fb1a1bc4d9"
   },
   "adverse_effects": {
     "most_common": {

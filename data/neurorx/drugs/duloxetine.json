@@ -323,18 +323,55 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not alter hormonal contraceptive metabolism or efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Analgesics Without Contraceptive Interactions",
+          "quote": "These medications do not induce CYP3A4 or UGT metabolism of hormonal contraceptives and require no extra contraceptive backup beyond standard family planning. Myasthenia & Spasticity Agents Contraception Note (Pyridostigmine, Prednisolone, Methylprednisolone, Dexamethasone, IVIG, Baclofen, Tizanidine, Dantrolene): Systemic corticosteroids"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": "Use in the month before delivery may be associated with an increased risk of postpartum hemorrhage (adjusted RR 1.53, 95% CI 1.08-2.18).",
+      "value": "Pregnancy clearance increases modestly; late-pregnancy exposure carries a small risk of postpartum hemorrhage and transient neonatal adaptation syndrome.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Duloxetine Registry & PK",
+          "quote": "late-pregnancy exposure carries a small risk of postpartum hemorrhage and transient neonatal adaptation syndrome, while pregnancy clearance increases modestly. Duloxetine Postpartum: Monitor newborns exposed in the third trimester for transient neonatal adaptation signs (jitteriness, poor feeding, tachypnea) for 48 hours and return any pr"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Lilly & Nordic National Pregnancy Cohort",
+        "percent": 2.8,
+        "ci95": "2.1%–3.7%",
+        "n_exposed": 2132,
+        "dose_stratum": "first-trimester monotherapy",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave2-guidelines",
+            "locator": "Section 2: Duloxetine Registry & PK",
+            "quote": "Lilly surveillance and Nordic National Pregnancy Cohort data reported major congenital malformations in 2.8% (95% CI: 2.1%–3.7%) of 2,132 first-trimester monotherapy exposures; late-pregnancy exposure carries a small risk of postpartum hemorrhage and transient neonatal adaptation syndrome, while pregnancy clearance increases modestly. Dul"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Monitor newborns exposed in the 3rd trimester for transient neonatal adaptation signs (jitteriness, poor feeding, tachypnea) for 48 hours and return any escalated maternal dose to baseline.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Duloxetine Postpartum",
+          "quote": "Monitor newborns exposed in the third trimester for transient neonatal adaptation signs (jitteriness, poor feeding, tachypnea) for 48 hours and return any pregnancy-escalated maternal dose to baseline postpartum. Ibuprofen & Celecoxib Pregnancy Warning: Both ibuprofen and celecoxib must be avoided from 20 weeks gestation onward due to fet"
+        },
         {
           "source_id": "fda-duloxetine-label",
           "locator": "PREGNANCY",
@@ -342,13 +379,14 @@
         }
       ]
     },
-    "contraception": {
-      "value": null,
-      "refs": []
-    },
     "lactation_rid": {
-      "value": "< 1% of maternal weight-adjusted dose (estimated daily infant dose ~2 mcg/kg/day)",
+      "value": "0.1% to 1.1% of the weight-adjusted maternal dosage",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Duloxetine — Drug Levels",
+          "quote": "Breastfed infants receive approximately 0.1% to 1.1% of the weight-adjusted maternal duloxetine dosage through human milk. Summary of Use during Lactation: Duloxetine excretion into breast milk is very low (RID <= 1.1%) with low or undetectable infant serum levels; generally compatible with breastfeeding, though monitor infants for drowsi"
+        },
         {
           "source_id": "fda-duloxetine-label",
           "locator": "USE IN SPECIFIC POPULATIONS",
@@ -357,8 +395,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Present in human milk with reports of neonatal sedation, poor feeding, and poor weight gain; monitor exposed infants for these signs.",
+      "value": "Very low breast milk excretion (RID <= 1.1%) with low or undetectable infant serum levels; generally compatible with breastfeeding while monitoring for drowsiness, irritability, and weight gain.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Duloxetine — Summary of Use during Lactation",
+          "quote": "Duloxetine excretion into breast milk is very low (RID <= 1.1%) with low or undetectable infant serum levels; generally compatible with breastfeeding, though monitor infants for drowsiness, irritability, poor feeding, and adequate weight gain. [eculizumab] Relative Infant Dose (RID): Large IgG2/4 monoclonal antibody (~148 kDa) with undet"
+        },
         {
           "source_id": "fda-duloxetine-label",
           "locator": "USE IN SPECIFIC POPULATIONS",
@@ -367,11 +410,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "03802b911c490a0078892e552b3689f28c29cb1440e1d2f810a4de1e1e8c2d07"
   },
   "adverse_effects": {
     "most_common": {

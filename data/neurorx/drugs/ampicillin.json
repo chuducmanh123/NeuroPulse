@@ -250,9 +250,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "note": "Animal reproduction studies up to 10x human dose showed no fetal harm, but there are no adequate well-controlled studies in pregnant women; use only if clearly needed.",
+      "value": "preferred",
+      "note": "Preferred first-line beta-lactam antibiotic in pregnancy (2.7% penicillin cohort MCM in n=12,500) and essential for Listeria CNS meningitis.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Penicillins & Cephalosporins",
+          "quote": "Beta-lactams are preferred first-line antibiotics in pregnancy (`preferred` for ampicillin, amoxicillin-clavulanate, ceftriaxone; `caution` for piperacillin-tazobactam due to smaller human cohorts); Danish/OTIS Cohorts reported 2.7% MCM (95% CI: 2.4%–3.1%, n=12,500) for penicillins and 2.8% (95% CI: 2.1%–3.7%, n=1,740) for cephalosporins;"
+        },
         {
           "source_id": "fda-ampicillin-label",
           "locator": "PREGNANCY",
@@ -260,30 +265,70 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not reduce systemic hormonal contraceptive levels; use barrier backup only if severe antibiotic-associated vomiting or diarrhea occurs.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Broad-Spectrum Antibiotics Contraception Note",
+          "quote": "Unlike rifamycins, non-rifamycin beta-lactams, macrolides, glycopeptides, and fluoroquinolones do not reduce systemic ethinylestradiol or progestin levels; extra backup contraception is only required if severe antibiotic-associated vomiting or diarrhea impairs pill absorption. Folic Acid Preconception Baseline (Warfarin, Metformin, Diabet"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Elevated maternal GFR and expanded volume of distribution in pregnancy increase beta-lactam clearance; use standard-to-high-end dosing for serious CNS infections.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Penicillins & Cephalosporins",
+          "quote": "increased maternal GFR and volume of distribution in pregnancy may warrant standard-to-high end dosing for CNS meningitis. Azithromycin Preferred Macrolide: Azithromycin is a preferred macrolide in pregnancy (`preferred`) with lower risk than clarithromycin; OTIS and Nordic Pregnancy Cohorts reported major congenital malformations in 3.0%"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Danish & OTIS Penicillin Cohort (class)",
+        "percent": 2.7,
+        "ci95": "2.4%–3.1%",
+        "n_exposed": 12500,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 5: Penicillins & Cephalosporins",
+            "quote": "Danish/OTIS Cohorts reported 2.7% MCM (95% CI: 2.4%–3.1%, n=12,500) for penicillins and 2.8% (95% CI: 2.1%–3.7%, n=1,740) for cephalosporins; increased maternal GFR and volume of distribution in pregnancy may warrant standard-to-high end dosing for CNS meningitis. Azithromycin Preferred Macrolide: Azithromycin is a preferred macrolide in"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.1% to 0.5% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: ampicillin — Drug Levels",
+          "quote": "Breastfed infants receive approximately 0.1% to 0.5% of the weight-adjusted maternal ampicillin dosage through human milk. Summary of Use during Lactation: Ampicillin enters breast milk in tiny quantities (RID <= 0.5%) and is widely compatible with breastfeeding; observe the infant occasionally for mild diarrhea or oral/diaper thrush. [a"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Low concentrations of ampicillin and sulbactam are excreted in human milk; exercise caution when administering to a nursing woman.",
+      "value": "Enters breast milk in tiny quantities (RID <= 0.5%) and is widely compatible with breastfeeding; observe infant occasionally for mild diarrhea or thrush.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: ampicillin — Summary of Use during Lactation",
+          "quote": "Ampicillin enters breast milk in tiny quantities (RID <= 0.5%) and is widely compatible with breastfeeding; observe the infant occasionally for mild diarrhea or oral/diaper thrush. [apixaban] Relative Infant Dose (RID): Human breast milk pharmacokinetic measurements indicate a high relative infant dose of approximately 12% to 20% of the"
+        },
         {
           "source_id": "fda-ampicillin-label",
           "locator": "NURSING_MOTHERS",
@@ -292,11 +337,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "2efcb5fb61f63d534283d6f5c20e6ea86dcafcbffdb525ce94185a902d049d7b"
   },
   "adverse_effects": {
     "most_common": {

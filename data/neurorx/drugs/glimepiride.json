@@ -361,18 +361,40 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not alter hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": "Discontinue glimepiride tablets at least two weeks before expected delivery due to reports of prolonged severe neonatal hypoglycemia (lasting 4 to 10 days); observe newborns for symptoms of hypoglycemia and respiratory distress and manage accordingly.",
+      "value": "Crosses the placenta and risks severe, prolonged neonatal hypoglycemia; transition to insulin during pregnancy (discontinue at least 2 weeks before expected delivery if ever used).",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Sulfonylureas & Newer Antidiabetics",
+          "quote": "Gliclazide and glimepiride cross the placenta and risk severe prolonged neonatal hypoglycemia (`avoid` for gliclazide, `caution` for glimepiride); sitagliptin has limited human data; dapagliflozin and empagliflozin must be avoided in 2nd/3rd trimesters (`avoid`) due to renal tubular developmental toxicity in animal kidneys—transition to i"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Reassess maternal postpartum glycemic control before resuming non-insulin oral agents, selecting lactation-compatible options (insulin or metformin) if breastfeeding.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Sulfonylureas & Newer Antidiabetics",
+          "quote": "transition to insulin during pregnancy and reassess postpartum. Proton Pump Inhibitors (Omeprazole, Esomeprazole, Pantoprazole): PPIs are widely used for severe GERD or stress ulcer prophylaxis in pregnancy (`caution`); Danish National Birth Cohort data for omeprazole reported major congenital malformations in 2.6% (95% CI: 2.2%–3.1%, n=1"
+        },
         {
           "source_id": "fda-glimepiride-label",
           "locator": "8.1 Pregnancy - Dose adjustments during pregnancy and the postpartum period",
@@ -380,17 +402,24 @@
         }
       ]
     },
-    "contraception": {
-      "value": null,
-      "refs": []
-    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human milk data available (estimated < 1%)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: glimepiride — Drug Levels",
+          "quote": "Human milk levels are uncharacterized (high protein binding > 99% suggests minimal milk transfer, estimated < 1%). Summary of Use during Lactation: Although glimepiride's >99% protein binding limits theoretical milk transfer, human data are lacking and neonatal hypoglycemia risk warrants caution; insulin or metformin is preferred during l"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Not known whether glimepiride is excreted in human milk; present in rat milk (causing skeletal deformities in nursing rat pups at high maternal doses). Monitor breastfed infants for signs of hypoglycemia (jitters, cyanosis, apnea, hypothermia, excessive sleepiness, poor feeding, seizures).",
+      "value": "Human milk data are lacking and neonatal hypoglycemia risk warrants caution; prefer insulin or metformin during lactation or monitor infant glucose closely.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: glimepiride — Summary of Use during Lactation",
+          "quote": "Although glimepiride's >99% protein binding limits theoretical milk transfer, human data are lacking and neonatal hypoglycemia risk warrants caution; insulin or metformin is preferred during lactation, or monitor infant blood glucose and feeding closely. [idarucizumab] Relative Infant Dose (RID): Humanized monoclonal antibody fragment (~"
+        },
         {
           "source_id": "fda-glimepiride-label",
           "locator": "8.2 Lactation",
@@ -399,10 +428,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "3a957b8d2117a6789a182495434474d09f35a9f3b9bb556e583ea91b90ffe622"
   }
 }

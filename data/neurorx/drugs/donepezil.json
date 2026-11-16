@@ -187,30 +187,50 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "Lacks adequate human pregnancy data (primarily prescribed in older postmenopausal populations); reserve only if clear maternal benefit outweighs unknown fetal risk.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 6: Dementia Therapies",
+          "quote": "lack adequate human pregnancy data (`caution` — largely indicated in older postmenopausal populations); anti-amyloid IgG1 antibodies cross the placenta in late pregnancy via FcRn and carry prolonged washout considerations if ever used in reproductive-age carriers."
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: donepezil — Drug Levels",
+          "quote": "Human breast milk concentrations and relative infant dose data for donepezil are not available. Summary of Use during Lactation: Because no information is available on donepezil in human milk and cholinergic toxicity could occur in an infant, avoid breastfeeding or use caution if ever prescribed to a lactating patient. [edoxaban] Relativ"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk, effects on breastfed infant, or milk production; weigh developmental/health benefits of breastfeeding against maternal clinical need.",
+      "value": "No human milk data exist and cholinergic toxicity could occur in an infant; avoid breastfeeding or use caution if ever prescribed to a lactating patient.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: donepezil — Summary of Use during Lactation",
+          "quote": "Because no information is available on donepezil in human milk and cholinergic toxicity could occur in an infant, avoid breastfeeding or use caution if ever prescribed to a lactating patient. [edoxaban] Relative Infant Dose (RID): No quantitative human breast milk data are available for edoxaban (moderate protein binding ~55% suggests mi"
+        },
         {
           "source_id": "fda-donepezil-label",
           "locator": "USE IN SPECIFIC POPULATIONS",
@@ -219,11 +239,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "4fcec02156706a55c67ab4668525a04d8bf091ddf504bcce851fe884f386198e"
   },
   "adverse_effects": {
     "most_common": {

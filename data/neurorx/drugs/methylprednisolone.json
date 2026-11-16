@@ -307,30 +307,75 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not impair hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Myasthenia & Spasticity Agents Contraception Note",
+          "quote": "Systemic corticosteroids, pyridostigmine, IVIG, and oral muscle relaxants do not impair hormonal contraceptive efficacy; note that tizanidine clearance is reduced by combined oral contraceptives containing ethinylestradiol (CYP1A2 inhibition), increasing maternal hypotension and sedation risk. === SECTION 2: PREGNANCY SAFETY TIER, PHARMA"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Non-fluorinated corticosteroid largely inactivated (~88%–90%) by placental 11-beta-HSD2, making it preferred for acute MS/NMOSD/MG relapses in pregnancy; monitor maternal glucose and blood pressure.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Prednisolone & Methylprednisolone Registry & PK",
+          "quote": "Non-fluorinated corticosteroids (prednisolone and methylprednisolone) undergo ~88%–90% placental inactivation by 11-beta-hydroxysteroid dehydrogenase type 2 (11-beta-HSD2), making them preferred systemic corticosteroids in pregnancy; UKTIS and OTIS cohorts reported major congenital malformations in 3.4% (95% CI: 2.5%–4.5%) of 1,427 first-"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "UKTIS & OTIS Corticosteroid Cohort (class)",
+        "percent": 3.4,
+        "ci95": "2.5%–4.5%",
+        "n_exposed": 1427,
+        "dose_stratum": "first-trimester systemic exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave2-guidelines",
+            "locator": "Section 2: Prednisolone & Methylprednisolone Registry & PK",
+            "quote": "UKTIS and OTIS cohorts reported major congenital malformations in 3.4% (95% CI: 2.5%–4.5%) of 1,427 first-trimester systemic exposures. Prednisolone & Methylprednisolone Postpartum: Screen for maternal gestational diabetes and hypertension during pregnancy; postpartum, taper high-dose relapse steroids cautiously (keeping in mind that post"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Taper high-dose pulse/oral steroids cautiously postpartum due to high risk of autoimmune relapse in MS, NMOSD, and MG; provide intrapartum stress-dose steroids if adrenal-suppressed.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Prednisolone & Methylprednisolone Postpartum",
+          "quote": "postpartum, taper high-dose relapse steroids cautiously (keeping in mind that postpartum rebound flares of myasthenia gravis and MS/NMOSD are common) while ensuring perioperative stress-dose coverage during labor if chronically suppressed. Dexamethasone Placental Transfer & PK: Unlike prednisolone, dexamethasone is a fluorinated corticost"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.2% to 1.5% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Methylprednisolone — Drug Levels",
+          "quote": "Standard oral or pulse IV methylprednisolone yields a relative infant dose of 0.2% to 1.5% of the weight-adjusted maternal dosage (remaining below physiological infant cortisol production). Summary of Use during Lactation: Methylprednisolone milk transfer is low (RID 0.2% to 1.5%); for high-dose IV pulse therapy (e.g."
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Systemically administered corticosteroids appear in human milk and could suppress growth, interfere with endogenous corticosteroid production, or cause other untoward effects; weigh maternal clinical need against infant risk.",
+      "value": "Low milk transfer (RID 0.2%–1.5%, below physiological infant cortisol output); for high-dose IV pulse therapy (e.g. 1,000 mg/day), delaying nursing 2–4 hours post-infusion minimizes already low exposure.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Methylprednisolone — Summary of Use during Lactation",
+          "quote": "Methylprednisolone milk transfer is low (RID 0.2% to 1.5%); for high-dose IV pulse therapy (e.g."
+        },
         {
           "source_id": "fda-methylprednisolone-label",
           "locator": "NURSING_MOTHERS",
@@ -339,11 +384,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "61ae1d84a5805d20e2535b17e84aefea7c004bac5af14e7dd72644c01021412e"
   },
   "adverse_effects": {
     "most_common": {

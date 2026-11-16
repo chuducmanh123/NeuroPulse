@@ -297,9 +297,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "note": "Published studies with insulin glargine during pregnancy have not reported a clear association with adverse developmental outcomes, but methodological limitations (small sample size, some lacking comparator groups) prevent definitively establishing absence of risk. Animal reproduction studies (50x rat, 10x rabbit) were generally similar to regular human insulin; poorly controlled diabetes in pregnancy carries substantial maternal/fetal risk.",
+      "value": "preferred",
+      "note": "Insulin is the gold-standard preferred therapy for diabetes during pregnancy because it does not cross the placenta.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Insulin Glargine Preferred & Postpartum",
+          "quote": "Insulin is the preferred gold-standard therapy for diabetes in pregnancy (`preferred`) because it does not cross the placenta; insulin requirements rise steeply in the 2nd and 3rd trimesters due to placental lactogen resistance, then drop precipitously by 30%–50% immediately after placental delivery—reduce postpartum basal insulin promptl"
+        },
         {
           "source_id": "fda-insulin-glargine-label",
           "locator": "8.1 Pregnancy",
@@ -307,30 +312,65 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "value": "Preconception glycemic optimization plus 0.4 mg/day (up to 4–5 mg/day considered in pre-existing diabetes) reduces diabetes-associated neural tube defect risk.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Folic Acid Preconception Baseline",
+          "quote": "higher preconception folate (up to 4–5 mg/day) may be considered in pre-existing diabetes mellitus due to elevated baseline neural tube defect risk; metformin does not require routine high-dose folate beyond B12 monitoring. === SECTION 2: ANTICOAGULANTS, ANTIPLATELETS, THROMBOLYTICS & REVERSAL === Warfarin Registry, PK & Postpartum: Warf"
+        }
+      ]
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not interact with hormonal contraceptives.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Does not cross the placenta; insulin requirements rise steeply during the 2nd and 3rd trimesters due to placental lactogen resistance, requiring frequent glucose-guided titration.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Insulin Glargine Preferred & Postpartum",
+          "quote": "insulin requirements rise steeply in the 2nd and 3rd trimesters due to placental lactogen resistance, then drop precipitously by 30%–50% immediately after placental delivery—reduce postpartum basal insulin promptly to avoid severe maternal hypoglycemia. Metformin Registry, PK & Postpartum: Metformin crosses the placenta freely without ter"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Insulin demand plunges 30%–50% immediately after placental delivery; reduce basal insulin promptly postpartum to prevent severe maternal hypoglycemia.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Insulin Glargine Preferred & Postpartum",
+          "quote": "drop precipitously by 30%–50% immediately after placental delivery—reduce postpartum basal insulin promptly to avoid severe maternal hypoglycemia. Metformin Registry, PK & Postpartum: Metformin crosses the placenta freely without teratogenicity (`caution`); Nordic & UK Teratology Cohorts reported major congenital malformations in 3.2% (95"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Effective RID ~0% (destroyed in infant GI tract)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Insulin Glargine — Drug Levels",
+          "quote": "Large peptide hormone (~6 kDa) minimally excreted into human milk and completely digested in the infant GI tract (effective RID ~0%). Summary of Use during Lactation: Exogenous insulins including insulin glargine are normal physiological polypeptides destroyed by infant gastrointestinal proteases and do not raise infant blood glucose or i"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "There are either no or only limited data on the presence of insulin glargine in human milk, effects on the breastfed infant, or effects on milk production; endogenous insulin is present in human milk. Consider developmental and health benefits of breastfeeding along with the mother's clinical need.",
+      "value": "Exogenous insulins are physiological polypeptides digested by infant GI proteases and do not lower infant blood glucose; fully compatible with breastfeeding.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Insulin Glargine — Summary of Use during Lactation",
+          "quote": "Exogenous insulins including insulin glargine are normal physiological polypeptides destroyed by infant gastrointestinal proteases and do not raise infant blood glucose or insulin; fully compatible with breastfeeding. [labetalol] Relative Infant Dose (RID): Maternal oral labetalol yields a very low relative infant dose of 0.04% to 0.6% o"
+        },
         {
           "source_id": "fda-insulin-glargine-label",
           "locator": "8.2 Lactation",
@@ -339,10 +379,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "8560193826dc468dfdb8b1e83127a742193561e93603034ae601b7ebe905a0a7"
   }
 }

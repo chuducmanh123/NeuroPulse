@@ -202,14 +202,29 @@
       ],
       "note": "Prospective registry and large Nordic observational studies have not detected an increased frequency of birth defects, but the label warns of potential fetal harm based on animal embryolethality and vascular/skeletal abnormalities at 2-3x MRHD."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not alter hormonal contraceptive efficacy; standard family planning applies.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Analgesics Without Contraceptive Interactions",
+          "quote": "These medications do not induce CYP3A4 or UGT metabolism of hormonal contraceptives and require no extra contraceptive backup beyond standard family planning. Myasthenia & Spasticity Agents Contraception Note (Pyridostigmine, Prednisolone, Methylprednisolone, Dexamethasone, IVIG, Baclofen, Tizanidine, Dantrolene): Systemic corticosteroids"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "Prospective registry (n=626) and Nordic birth registries (Swedish n=2,257, RR 0.99; Norwegian n=415, OR 1.16) showed no increased overall malformation rate, though animal studies showed embryolethality and fetal abnormalities at 2-3x MRHD.",
+      "value": "Oral sumatriptan absorption may be delayed during migraine-associated gastroparesis; standard acute migraine dosing applies without routine TDM.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Sumatriptan Registry & PK",
+          "quote": "oral absorption may be delayed by migraine-associated gastroparesis, and standard acute dosing requires no TDM. Erenumab Pregnancy Safety & PK: Erenumab is an IgG2 monoclonal antibody that crosses the placenta increasingly via FcRn during the second and third trimesters; human pregnancy registry data remain limited and theoretical CGRP bl"
+        },
         {
           "source_id": "fda-sumatriptan-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
@@ -217,21 +232,45 @@
         }
       ]
     },
+    "mcm": [
+      {
+        "registry": "Sumatriptan, Naratriptan & Treximet Pregnancy Registry",
+        "percent": 4.2,
+        "ci95": "2.6%–6.5%",
+        "n_exposed": 528,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave2-guidelines",
+            "locator": "Section 2: Sumatriptan Registry & PK",
+            "quote": "The Sumatriptan, Naratriptan, and Treximet Pregnancy Registry recorded major congenital malformations in 4.2% (95% CI: 2.6%–6.5%) of 528 first-trimester exposures without a specific teratogenic pattern; oral absorption may be delayed by migraine-associated gastroparesis, and standard acute dosing requires no TDM. Erenumab Pregnancy Safety"
+          }
+        ]
+      }
+    ],
     "postpartum": {
       "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.5% to 3.5% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Sumatriptan — Drug Levels",
+          "quote": "Subcutaneous or oral maternal sumatriptan produces a low relative infant dose of 0.5% to 3.5% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Sumatriptan milk transfer is low (RID <= 3.5%) with poor oral bioavailability (~15%) in the infant; generally compatible with breastfeeding for acute migraine, and an option"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Excreted in human milk following subcutaneous administration (no milk data for oral tablets); infant exposure can be minimized by avoiding breastfeeding for 12 hours after treatment.",
+      "value": "Low breast milk transfer (RID 0.5%–3.5%) with poor infant oral bioavailability (~15%); generally compatible with breastfeeding for acute migraine (optional 8–12 h wait in neonates).",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Sumatriptan — Summary of Use during Lactation",
+          "quote": "Sumatriptan milk transfer is low (RID <= 3.5%) with poor oral bioavailability (~15%) in the infant; generally compatible with breastfeeding for acute migraine, and an optional 8 to 12 hour wait after dosing eliminates virtually all exposure in neonates. [tizanidine] Relative Infant Dose (RID): Quantitative human breast milk concentration"
+        },
         {
           "source_id": "fda-sumatriptan-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
@@ -245,11 +284,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "007a1e3dcf04b9b66f15e050215eb0cbfceb975d197f4996d11127ac1d9f7c88"
   },
   "adverse_effects": {
     "most_common": {

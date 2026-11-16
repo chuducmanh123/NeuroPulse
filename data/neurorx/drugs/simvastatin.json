@@ -414,30 +414,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not impair hormonal contraceptives; use effective contraception to discontinue statins before planned conception unless high-risk ASCVD/FH cardiology exceptions apply.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
+          "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Avoided in routine pregnancy due to animal developmental toxicity and theoretical disruption of fetal cholesterol synthesis; discontinue upon pregnancy recognition (rare extreme-risk ASCVD/FH exceptions per cardiology).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Statins",
+          "quote": "statins remain avoided in routine pregnancy (`avoid`) due to animal developmental toxicity and theoretical disruption of fetal cholesterol synthesis; discontinue when pregnancy is recognized and resume only after breastfeeding or per cardiology guidance. Levothyroxine Preferred & Pregnancy PK/Postpartum: Levothyroxine is preferred and ess"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Resume statin therapy only after breastfeeding completion or per specialist cardiovascular risk assessment.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Statins",
+          "quote": "discontinue when pregnancy is recognized and resume only after breastfeeding or per cardiology guidance. Levothyroxine Preferred & Pregnancy PK/Postpartum: Levothyroxine is preferred and essential in pregnancy (`preferred`); maternal thyroid hormone demand rises 25%–50% by weeks 4–8 of gestation due to TBG elevation and placental deiodina"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: simvastatin — Drug Levels",
+          "quote": "Quantitative human breast milk concentrations of simvastatin and simvastatin acid have not been measured. Summary of Use during Lactation: Because human milk transfer is uncharacterized and statins could theoretically interfere with infant cholesterol and steroid synthesis, breastfeeding is not recommended during simvastatin therapy. [si"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk, though another statin passes into human milk; because of potential for serious adverse reactions in a breastfed infant from decreased cholesterol synthesis, breastfeeding is not recommended during treatment.",
+      "value": "Human milk transfer is uncharacterized and statins may interfere with infant cholesterol and steroid synthesis; breastfeeding is not recommended during therapy.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: simvastatin — Summary of Use during Lactation",
+          "quote": "Because human milk transfer is uncharacterized and statins could theoretically interfere with infant cholesterol and steroid synthesis, breastfeeding is not recommended during simvastatin therapy. [sitagliptin] Relative Infant Dose (RID): Human breast milk concentrations of sitagliptin have not been measured in clinical studies. Summary"
+        },
         {
           "source_id": "fda-simvastatin-label",
           "locator": "8.2 Lactation",
@@ -446,10 +476,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "752f2cdcddb9fd7fb37c24e3a3d90f47a13f89fb0028cc28a8a5381594065b6b"
   }
 }

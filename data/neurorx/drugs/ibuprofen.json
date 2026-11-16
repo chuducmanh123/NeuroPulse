@@ -438,26 +438,45 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not interact with hormonal contraceptives, though chronic periconceptional COX inhibition can reversibly delay ovulation and impair implantation.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: NSAIDs Periconceptional Contraception & Ovulation",
+          "quote": "Nonsteroidal anti-inflammatory drugs do not interact with hormonal contraceptives, though chronic periconceptional COX inhibition can reversibly delay ovulation and impair implantation; discontinue in patients experiencing difficulty conceiving. Analgesics & Preventive Agents Without Contraceptive Interactions (Acetaminophen, Sumatriptan,"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Avoid at >= 20 weeks gestation (fetal renal dysfunction/oligohydramnios) and strictly contraindicated at >= 30 weeks (premature closure of fetal ductus arteriosus).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Ibuprofen & Celecoxib Pregnancy Warning",
+          "quote": "Both ibuprofen and celecoxib must be avoided from 20 weeks gestation onward due to fetal renal dysfunction and oligohydramnios, and are strictly contraindicated at 30 weeks and later because of premature closure of the fetal ductus arteriosus. Tramadol Registry & Peripartum Risk: The Swedish Medical Birth Register reported major congenita"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": "0.06% to 0.6% of the maternal weight-adjusted daily dose",
+      "value": "0.1% to 0.7% of the weight-adjusted maternal dosage",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Ibuprofen — Drug Levels",
+          "quote": "Maternal ibuprofen doses up to 1,600 to 2,400 mg/day result in an extremely low relative infant dose of 0.1% to 0.7% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Ibuprofen is a preferred short-acting NSAID during breastfeeding because of its extremely low milk transfer (RID < 1%), lack of active metabolites, an"
+        },
         {
           "source_id": "fda-ibuprofen-label",
           "locator": "8.2 Lactation",
@@ -466,8 +485,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Present in human milk at relative infant doses of 0.06% to 0.6% of maternal weight-adjusted daily dose after oral administration; no reports of adverse effects on breastfed infants or milk production.",
+      "value": "Preferred short-acting NSAID during breastfeeding due to extremely low milk transfer (RID < 1%), short half-life, and no active metabolites; no waiting period needed.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Ibuprofen — Summary of Use during Lactation",
+          "quote": "Ibuprofen is a preferred short-acting NSAID during breastfeeding because of its extremely low milk transfer (RID < 1%), lack of active metabolites, and short half-life; no waiting period is required. [ivig] Relative Infant Dose (RID): Endogenous IgG is a normal component of human colostrum and mature breast milk; exogenous IVIG produces"
+        },
         {
           "source_id": "fda-ibuprofen-label",
           "locator": "8.2 Lactation",
@@ -476,10 +500,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "62a27fb2c578ab7ed211adb7525e28925d28c4f7143ac232cf926028d9d42708"
   }
 }

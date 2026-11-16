@@ -297,30 +297,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not alter hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Smaller human pregnancy dataset than labetalol or metoprolol; maternal CYP2D6/renal clearance changes may alter exposure, and 3rd-trimester use requires monitoring fetal growth and neonatal bradycardia/hypoglycemia.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Beta-Blockers (Bisoprolol & Nebivolol)",
+          "quote": "Bisoprolol and nebivolol have smaller human pregnancy datasets than labetalol or metoprolol (`caution`); maternal CYP2D6/renal clearance changes may alter exposure, third-trimester use warrants fetal growth and neonatal bradycardia/hypoglycemia monitoring, and pregnancy-escalated doses should be reduced postpartum. Digoxin Pregnancy PK &"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Reduce pregnancy-escalated doses postpartum as maternal clearance normalizes and monitor newborns exposed in late pregnancy for bradycardia or hypoglycemia.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Beta-Blockers (Bisoprolol & Nebivolol)",
+          "quote": "pregnancy-escalated doses should be reduced postpartum. Digoxin Pregnancy PK & Postpartum: Digoxin crosses the placenta without teratogenicity (`caution`); renal clearance and CYP/P-gp activity increase 20%–50% during pregnancy (lowering serum digoxin levels), requiring therapeutic drug monitoring and occasional dose escalation, followed"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "< 2% (estimated 0.4% to 2%)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: bisoprolol — Drug Levels",
+          "quote": "Limited maternal milk data indicate a low relative infant dose of < 2% (estimated 0.4% to 2%) of the weight-adjusted maternal bisoprolol dosage. Summary of Use during Lactation: Bisoprolol enters breast milk in low amounts (< 2% RID) and was well tolerated without adverse effects in limited infant reports; monitor newborns for rare beta-b"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "It is not known whether bisoprolol is excreted in human milk (small amounts < 2% of dose detected in lactating rat milk); exercise caution when administered to nursing women.",
+      "value": "Enters breast milk in low amounts (< 2% RID) and was well tolerated in limited infant reports; monitor newborns for rare bradycardia, lethargy, or poor feeding.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: bisoprolol — Summary of Use during Lactation",
+          "quote": "Bisoprolol enters breast milk in low amounts (< 2% RID) and was well tolerated without adverse effects in limited infant reports; monitor newborns for rare beta-blockade signs (bradycardia, lethargy, poor feeding). [ceftriaxone] Relative Infant Dose (RID): Parenteral ceftriaxone passes into breast milk in very small amounts, yielding a r"
+        },
         {
           "source_id": "fda-bisoprolol-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS - Nursing Mothers",
@@ -329,10 +359,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "e83167f8543bbb74c41b731de0fae5fc19f3e55181f80b24503505457a464627"
   }
 }

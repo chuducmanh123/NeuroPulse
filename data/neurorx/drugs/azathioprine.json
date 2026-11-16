@@ -241,9 +241,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "avoid",
-      "note": "Contraindicated for treating rheumatoid arthritis in pregnant women; azathioprine/metabolites cross the placenta and patients should be advised of potential risks during pregnancy.",
+      "value": "caution",
+      "note": "FDA label notes contraindication in rheumatoid arthritis, whereas MGFA/ECTRIMS/Autoimmune Pregnancy Registry data (3.6% MCM, n=1,148) support cautious continuation when required for maternal MG or NMOSD control.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Azathioprine Registry & PK",
+          "quote": "Azathioprine is an acceptable steroid-sparing maintenance immunosuppressant during pregnancy in severe myasthenia gravis or NMOSD because the fetal liver lacks inosinate pyrophosphorylase to form active 6-thioguanine nucleotides; Transplant and Autoimmune Pregnancy Registry data reported major congenital malformations in 3.6% (95% CI: 2.6"
+        },
         {
           "source_id": "fda-azathioprine-label",
           "locator": "BOXED WARNING",
@@ -261,30 +266,80 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "value": "Standard preconception folic acid supplementation (0.4 to 1 mg/day) is recommended for women of childbearing potential with autoimmune neurological disease.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Azathioprine Folic Acid & Contraception",
+          "quote": "Azathioprine does not reduce hormonal contraceptive efficacy, and standard preconception folic acid supplementation (0.4 to 1 mg/day) is recommended for women of childbearing potential with autoimmune neuromuscular or demyelinating disorders. Eculizumab Contraception & Washout: Eculizumab does not interact with hormonal contraceptives; ef"
+        }
+      ]
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not reduce hormonal contraceptive efficacy; maintain reliable contraception if pregnancy is not planned.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Azathioprine Folic Acid & Contraception",
+          "quote": "Azathioprine does not reduce hormonal contraceptive efficacy, and standard preconception folic acid supplementation (0.4 to 1 mg/day) is recommended for women of childbearing potential with autoimmune neuromuscular or demyelinating disorders. Eculizumab Contraception & Washout: Eculizumab does not interact with hormonal contraceptives; ef"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Fetal liver lacks inosinate pyrophosphorylase to generate active 6-TG; maternal 6-TGN may decline while 6-MMP rises slightly, so monitor maternal CBC and transaminases regularly.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Azathioprine Pregnancy Monitoring & Postpartum",
+          "quote": "Monitor maternal CBC and liver transaminases regularly during pregnancy (6-TGN levels may decrease while 6-MMP increases slightly); continue stable maintenance dosing postpartum to prevent autoimmune relapse while checking neonatal blood counts if late-pregnancy maternal cytopenia occurred. Mycophenolate Registries & PK: Mycophenolate mof"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Transplant & Autoimmune Pregnancy Registry",
+        "percent": 3.6,
+        "ci95": "2.6%–4.9%",
+        "n_exposed": 1148,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave2-guidelines",
+            "locator": "Section 2: Azathioprine Registry & PK",
+            "quote": "Transplant and Autoimmune Pregnancy Registry data reported major congenital malformations in 3.6% (95% CI: 2.6%–4.9%) of 1,148 first-trimester exposures. Azathioprine Pregnancy Monitoring & Postpartum: Monitor maternal CBC and liver transaminases regularly during pregnancy (6-TGN levels may decrease while 6-MMP increases slightly); contin"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Continue stable maintenance dosing postpartum to prevent autoimmune relapse; check neonatal blood counts if late-pregnancy maternal cytopenia occurred.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Azathioprine Pregnancy Monitoring & Postpartum",
+          "quote": "continue stable maintenance dosing postpartum to prevent autoimmune relapse while checking neonatal blood counts if late-pregnancy maternal cytopenia occurred. Mycophenolate Registries & PK: Mycophenolate mofetil is contraindicated in pregnancy due to severe embryopathy (microtia, cleft lip/palate, congenital heart and esophageal defects)"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.1% to 0.9% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Azathioprine — Drug Levels",
+          "quote": "Measurement of active mercaptopurine metabolites in breast milk indicates a very low relative infant dose of 0.1% to 0.9% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Azathioprine milk transfer is minimal (RID < 1%) and breastfed infants have undetectable metabolite levels without clinically significant immunos"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Not recommended in nursing mothers; azathioprine or metabolites transfer at low levels into breast milk, and due to tumorigenicity potential, discontinue nursing or discontinue the drug.",
+      "value": "Minimal milk transfer of active metabolites (RID < 1%) with undetectable infant blood levels and no clinical immunosuppression; compatible with breastfeeding (optionally check infant CBC on high maternal doses).",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Azathioprine — Summary of Use during Lactation",
+          "quote": "Azathioprine milk transfer is minimal (RID < 1%) and breastfed infants have undetectable metabolite levels without clinically significant immunosuppression or infection increases; considered compatible with breastfeeding when clinically indicated, optionally monitoring infant CBC if high maternal doses are used. [baclofen] Relative Infan"
+        },
         {
           "source_id": "fda-azathioprine-label",
           "locator": "NURSING_MOTHERS",
@@ -293,11 +348,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "177d5dc1626651288ad3e7f2cb4318ace78e337e205231b16a485b27aa148113"
   },
   "adverse_effects": {
     "most_common": {

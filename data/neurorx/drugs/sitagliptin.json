@@ -321,30 +321,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not alter hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Limited human pregnancy safety data; transition to pregnancy-preferred insulin during gestation and reassess glycemic therapy postpartum.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Sulfonylureas & Newer Antidiabetics",
+          "quote": "sitagliptin has limited human data; dapagliflozin and empagliflozin must be avoided in 2nd/3rd trimesters (`avoid`) due to renal tubular developmental toxicity in animal kidneys—transition to insulin during pregnancy and reassess postpartum. Proton Pump Inhibitors (Omeprazole, Esomeprazole, Pantoprazole): PPIs are widely used for severe G"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Reassess maternal postpartum glycemic control before resuming non-insulin oral agents, selecting lactation-compatible options (insulin or metformin) if breastfeeding.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Sulfonylureas & Newer Antidiabetics",
+          "quote": "transition to insulin during pregnancy and reassess postpartum. Proton Pump Inhibitors (Omeprazole, Esomeprazole, Pantoprazole): PPIs are widely used for severe GERD or stress ulcer prophylaxis in pregnancy (`caution`); Danish National Birth Cohort data for omeprazole reported major congenital malformations in 2.6% (95% CI: 2.2%–3.1%, n=1"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: sitagliptin — Drug Levels",
+          "quote": "Human breast milk concentrations of sitagliptin have not been measured in clinical studies. Summary of Use during Lactation: Because no human lactation data exist for sitagliptin, better-studied agents such as insulin or metformin are preferred in breastfeeding mothers with diabetes. [spironolactone] Relative Infant Dose (RID): Combined"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No information regarding presence in human milk, effects on the breastfed infant, or milk production; secreted in rat milk at a 4:1 milk-to-plasma ratio. Consider developmental and health benefits of breastfeeding along with the mother's clinical need.",
+      "value": "No human lactation data exist for sitagliptin; prefer insulin or metformin in breastfeeding mothers with diabetes.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: sitagliptin — Summary of Use during Lactation",
+          "quote": "Because no human lactation data exist for sitagliptin, better-studied agents such as insulin or metformin are preferred in breastfeeding mothers with diabetes. [spironolactone] Relative Infant Dose (RID): Combined transfer of spironolactone's active metabolite canrenone yields a low relative infant dose of 0.2% to 1.2% of the weight-adju"
+        },
         {
           "source_id": "fda-sitagliptin-label",
           "locator": "8.2 Lactation",
@@ -353,10 +383,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "51da326939260eee1f2296bfe64f3b6db1b6552bd6868a9b577456dbbb9264a8"
   }
 }

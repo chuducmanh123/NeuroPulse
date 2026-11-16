@@ -279,14 +279,29 @@
       ],
       "note": "No available human pregnancy data; mouse anti-C5 analogue caused developmental abnormalities and increased offspring mortality at 0.8-2.2x human dose, and human IgG crosses the placenta."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Long terminal half-life (~50 days) without hormonal contraceptive PK interactions; advise effective contraception during therapy and for 8 months after final infusion unless required for severe NMOSD/gMG.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Ravulizumab Contraception & Washout",
+          "quote": "Ravulizumab has an extended terminal half-life (~50 days) and does not alter hormonal contraceptive PK; effective contraception is advised during therapy and for 8 months after the final infusion unless continued treatment is required for severe NMOSD or generalized myasthenia gravis. Efgartigimod Contraception & Washout: Efgartigimod is"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "Human IgG crosses the placental barrier and may cause terminal complement inhibition in fetal circulation; assess untreated maternal disease risk (PNH, aHUS, IgAN) vs potential fetal risk.",
+      "value": "Engineered IgG2/4 monoclonal antibody crossing the placenta via FcRn in late pregnancy; human registry data are sparse compared with eculizumab—reserve for severe NMOSD or gMG where benefit justifies risk.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Ravulizumab Pregnancy Safety & PK",
+          "quote": "Ravulizumab is an engineered long-acting IgG2/4 monoclonal antibody that crosses the placenta via FcRn in late pregnancy; human registry data remain sparse compared with eculizumab, so reserve use during pregnancy for severe NMOSD or gMG where maternal benefit justifies fetal complement blockade and return to standard 8-weekly maintenance"
+        },
         {
           "source_id": "fda-ravulizumab-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
@@ -294,21 +309,35 @@
         }
       ]
     },
+    "mcm": [],
     "postpartum": {
-      "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Maintain standard 8-weekly maintenance schedule postpartum and monitor newborn closely if exposed in the third trimester.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Ravulizumab Pregnancy Safety & PK",
+          "quote": "return to standard 8-weekly maintenance postpartum. Efgartigimod Pregnancy Safety & PK: Efgartigimod blocks neonatal FcRn, reducing both maternal pathogenic IgG and transplacental transfer of protective maternal IgG antibodies to the fetus; human pregnancy data are lacking, so evaluate neonatal serum IgG levels and delay live infant vacci"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Expected < 0.5% (no quantitative human milk measurements)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Ravulizumab — Drug Levels",
+          "quote": "Human breast milk data for ravulizumab are lacking; as a large IgG2/4 monoclonal antibody (~148 kDa), milk excretion is expected to be minimal (< 0.5%) with negligible oral absorption. Summary of Use during Lactation: While ravulizumab milk transfer is theoretically negligible, clinical lactation data are not yet established; evaluate mat"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk; because immunoglobulins are secreted into human milk and serious adverse reactions may occur in a nursing child, discontinue breastfeeding during treatment and for 8 months after the final dose.",
+      "value": "Milk transfer is theoretically negligible (< 0.5%) with minimal infant GI absorption, though clinical lactation data are not yet established; monitor breastfed infants for feeding and infections.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Ravulizumab — Summary of Use during Lactation",
+          "quote": "While ravulizumab milk transfer is theoretically negligible, clinical lactation data are not yet established; evaluate maternal benefit versus potential infant risk and monitor breastfed infants for feeding and infections, particularly in the neonatal period. [rimegepant] Relative Infant Dose (RID): Single-dose pharmacokinetic studies in"
+        },
         {
           "source_id": "fda-ravulizumab-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
@@ -317,11 +346,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "e770834b4964092b1f922efd170e4cba6460623070d45864b05e39599bd9cc1d"
   },
   "adverse_effects": {
     "most_common": {

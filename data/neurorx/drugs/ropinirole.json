@@ -230,14 +230,29 @@
       ],
       "note": "No adequate human pregnancy data; animal studies showed neurobehavioral impairment at clinical-range doses, teratogenicity/embryolethality at >36x MRHD with maternal toxicity, and potentiation of L-dopa teratogenicity in rabbits."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not reduce hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "No adequate human data; in animal studies, caused neurobehavioral impairment at clinical-range doses, teratogenicity/embryolethality at >36x MRHD (maternally toxic), and potentiated L-dopa teratogenicity in rabbits.",
+      "value": "Insufficient human pregnancy safety data; transition to levodopa monotherapy if symptom control is required during pregnancy.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 6: Dopamine Agonists & Adjuncts",
+          "quote": "have insufficient human pregnancy safety data (`caution`); dopamine agonists suppress maternal prolactin and inhibit postpartum lactation, so transition to levodopa monotherapy if breastfeeding is planned. Amantadine Teratogenicity: Amantadine is teratogenic in animals and has case reports of complex congenital heart defects (including si"
+        },
         {
           "source_id": "fda-ropinirole-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
@@ -245,21 +260,35 @@
         }
       ]
     },
+    "mcm": [],
     "postpartum": {
-      "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Dopamine agonists suppress maternal prolactin and inhibit postpartum lactation; switch or maintain levodopa monotherapy if breastfeeding is planned.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 6: Dopamine Agonists & Adjuncts",
+          "quote": "dopamine agonists suppress maternal prolactin and inhibit postpartum lactation, so transition to levodopa monotherapy if breastfeeding is planned. Amantadine Teratogenicity: Amantadine is teratogenic in animals and has case reports of complex congenital heart defects (including single ventricle and truncus arteriosus) in humans (`avoid`);"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available (suppresses prolactin)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: ropinirole — Drug Levels",
+          "quote": "Human breast milk concentrations are unstudied, and ropinirole potently suppresses maternal prolactin secretion. Summary of Use during Lactation: Ropinirole inhibits prolactin release and can completely suppress lactation while milk transfer to the infant is uncharacterized; avoid during breastfeeding. [rosuvastatin] Relative Infant Dose"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No human milk data; inhibition of lactation is expected because ropinirole inhibits prolactin secretion in humans. Weigh breastfeeding benefits against maternal clinical need and potential infant risk.",
+      "value": "Inhibits prolactin release and can completely suppress lactation while milk transfer is uncharacterized; avoid during breastfeeding.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: ropinirole — Summary of Use during Lactation",
+          "quote": "Ropinirole inhibits prolactin release and can completely suppress lactation while milk transfer to the infant is uncharacterized; avoid during breastfeeding. [rosuvastatin] Relative Infant Dose (RID): Limited human case measurements indicate a low relative infant dose of 0.4% to 1.5% of the weight-adjusted maternal rosuvastatin dosage. S"
+        },
         {
           "source_id": "fda-ropinirole-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
@@ -268,11 +297,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "e36bc16eacdb677d8b88815f4e08591501735f8a3e54daa27c8d544c64e5aa0f"
   },
   "adverse_effects": {
     "most_common": {

@@ -662,30 +662,70 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not reduce systemic hormonal contraceptive levels; use barrier backup only if severe antibiotic-associated vomiting or diarrhea impairs absorption.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Broad-Spectrum Antibiotics Contraception Note",
+          "quote": "Unlike rifamycins, non-rifamycin beta-lactams, macrolides, glycopeptides, and fluoroquinolones do not reduce systemic ethinylestradiol or progestin levels; extra backup contraception is only required if severe antibiotic-associated vomiting or diarrhea impairs pill absorption. Folic Acid Preconception Baseline (Warfarin, Metformin, Diabet"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Avoided as first-line therapy in pregnancy due to juvenile animal arthropathy, though ENTIS prospective data (2.8% MCM, n=949) showed no clear human teratogenic increase; reserve for resistant CNS infections.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Fluoroquinolones",
+          "quote": "Fluoroquinolones are avoided as first-line agents in pregnancy (`caution`) due to arthropathy in juvenile animal cartilage, though ENTIS Prospective Cohort data (2.8% MCM, 95% CI: 1.9%–4.1%, n=949) showed no clear human teratogenic increase; reserve for severe resistant CNS or life-threatening infections when safer beta-lactams cannot be"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "ENTIS Prospective Fluoroquinolone Cohort (class)",
+        "percent": 2.8,
+        "ci95": "1.9%–4.1%",
+        "n_exposed": 949,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 5: Fluoroquinolones",
+            "quote": "ENTIS Prospective Cohort data (2.8% MCM, 95% CI: 1.9%–4.1%, n=949) showed no clear human teratogenic increase; reserve for severe resistant CNS or life-threatening infections when safer beta-lactams cannot be used. === SECTION 6: MOVEMENT DISORDERS & DEMENTIA === Levodopa-Carbidopa Pregnancy & Registry: Levodopa-carbidopa is the preferre"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "4.6% to 10.6% (often ~5%–8%) of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: levofloxacin — Drug Levels",
+          "quote": "Oral or IV levofloxacin produces a moderate relative infant dose of 4.6% to 10.6% (often ~5%–8%) of the weight-adjusted maternal dosage. Summary of Use during Lactation: Levofloxacin achieves higher breast milk concentrations than ciprofloxacin (RID ~5%–10%), though milk calcium limits infant absorption; if a fluoroquinolone is required,"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Presumed to be excreted in human milk; because of potential for serious adverse reactions in nursing infants, decide whether to discontinue nursing or discontinue levofloxacin, taking into account importance of the drug to the mother.",
+      "value": "Moderate milk transfer (RID ~5%–10%), though milk calcium limits infant GI absorption; prefer ciprofloxacin if a fluoroquinolone is required, or wait 4–6 h post-dose and watch for diarrhea/thrush.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: levofloxacin — Summary of Use during Lactation",
+          "quote": "Levofloxacin achieves higher breast milk concentrations than ciprofloxacin (RID ~5%–10%), though milk calcium limits infant absorption; if a fluoroquinolone is required, ciprofloxacin is preferred, or wait 4 to 6 hours after a levofloxacin dose and monitor infant for diarrhea and thrush. [levothyroxine] Relative Infant Dose (RID): Exogen"
+        },
         {
           "source_id": "fda-levofloxacin-label",
           "locator": "8.3 Nursing Mothers",
@@ -694,10 +734,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "7539909a41d912ae369fb3896bad60a3c964473c6b0d05cd6b8f88ec556f6586"
   }
 }

@@ -142,11 +142,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "b30c163bcc308a7c9dbd1c0d5421466d4d75490226a6dd00855b5585dd95bdb3"
   },
   "adverse_effects": {
     "most_common": {
@@ -194,30 +194,50 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "Large ~59 kDa recombinant protein that does not cross the placenta; per AHA/ASA Stroke Guidelines, IV thrombolysis may be considered in pregnant patients with disabling acute ischemic stroke when benefit outweighs hemorrhage risk.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Thrombolytics (Alteplase & Tenecteplase)",
+          "quote": "Alteplase (~59 kDa) and tenecteplase (~59 kDa) are large recombinant proteins that do not cross the human placenta; per AHA/ASA Acute Stroke Guidelines, IV thrombolysis may be considered in pregnant patients with disabling acute ischemic stroke when anticipated benefit outweighs maternal-fetal hemorrhage risk (`caution`), with acute postp"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Estimated < 0.1% (large ~59 kDa protein, rapid clearance)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: tenecteplase — Drug Levels",
+          "quote": "Large recombinant glycoprotein (~59 kDa) rapidly cleared from maternal plasma with negligible expected milk transfer (estimated RID < 0.1%). Summary of Use during Lactation: Like alteplase, tenecteplase is a large protein rapidly cleared from maternal circulation and degraded in the infant GI tract; breastfeeding may resume once maternal"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "There are no data on the presence of tenecteplase in human or animal milk, effects on the breastfed infant, or milk production.",
+      "value": "Large protein rapidly cleared from maternal circulation and digested in the infant GI tract; acute stroke thrombolysis is unlikely to expose the infant, and nursing may resume once maternal status stabilizes.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: tenecteplase — Summary of Use during Lactation",
+          "quote": "Like alteplase, tenecteplase is a large protein rapidly cleared from maternal circulation and degraded in the infant GI tract; breastfeeding may resume once maternal post-stroke clinical condition stabilizes. [ticagrelor] Relative Infant Dose (RID): Quantitative human breast milk measurements for ticagrelor are unavailable. Summary of Us"
+        },
         {
           "source_id": "fda-tenecteplase-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",

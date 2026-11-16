@@ -176,30 +176,55 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "No interaction with combined oral contraceptives; discontinue erenumab (~28-day half-life) at least 5 to 6 months prior to planned conception per AHS headache guidelines.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Erenumab Contraception & Washout",
+          "quote": "Erenumab is an IgG2 anti-CGRP receptor monoclonal antibody (~28-day half-life) with no interaction with combined oral contraceptives; AHS headache guidelines recommend discontinuing erenumab at least 5 to 6 months prior to planned conception. Rimegepant Contraception & Washout: Rimegepant does not reduce ethinylestradiol or norelgestromin"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "IgG2 monoclonal antibody with increasing transplacental transfer via FcRn during the 2nd and 3rd trimesters; human data are limited and CGRP blockade raises theoretical concern for gestational hypertension.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Erenumab Pregnancy Safety & PK",
+          "quote": "Erenumab is an IgG2 monoclonal antibody that crosses the placenta increasingly via FcRn during the second and third trimesters; human pregnancy registry data remain limited and theoretical CGRP blockade raises concern for gestational hypertension or impaired uteroplacental vasodilation. Rimegepant Pregnancy Safety & PK: Human pregnancy ou"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Estimated < 0.5% of the weight-adjusted maternal dosage (IgG2 mAb)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Erenumab — Drug Levels",
+          "quote": "Large IgG2 monoclonal antibody (~150 kDa) with estimated relative infant dose below 0.5% based on minimal milk transfer of maternal IgG antibodies and proteolytic digestion in the infant gut. Summary of Use during Lactation: Although clinical milk data for erenumab are limited, large monoclonal antibodies transfer poorly into mature breas"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk, effects on the breastfed infant, or milk production; weigh developmental and health benefits of breastfeeding against maternal clinical need.",
+      "value": "Large IgG2 monoclonal antibody with minimal expected transfer into mature breast milk (estimated RID < 0.5%) and GI proteolytic degradation; use caution in newborns/preterm infants while monitoring feeding and growth.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Erenumab — Summary of Use during Lactation",
+          "quote": "Although clinical milk data for erenumab are limited, large monoclonal antibodies transfer poorly into mature breast milk and undergo gastrointestinal degradation; use caution while nursing newborns or preterm infants and monitor feeding and growth. [ibuprofen] Relative Infant Dose (RID): Maternal ibuprofen doses up to 1,600 to 2,400 mg/"
+        },
         {
           "source_id": "fda-erenumab-label",
           "locator": "USE IN SPECIFIC POPULATIONS",
@@ -208,11 +233,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "a7ad12c2ca0b246f10990b2121ad4c961f9373aefe6e0378b0985f4c32d5371c"
   },
   "adverse_effects": {
     "most_common": {

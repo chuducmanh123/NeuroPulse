@@ -484,8 +484,13 @@
   "reproductive": {
     "tier": {
       "value": "caution",
-      "note": "5-axis synthesis: (1) No Boxed Warning or pregnancy contraindication. (2) Crosses human placenta; insufficient data in pregnant women to inform drug-associated risk of major birth defects or miscarriage. (3) No teratogenicity in IV mouse/rat organogenesis studies up to 1-3x human dose, though IP rat peri/postnatal studies showed fetotoxicity at maternally toxic doses (< MRHD by BSA). (4) Serious maternal bacterial infections require prompt treatment. (5) PLLR label. Assigned caution.",
+      "note": "Beta-lactam antibiotic considered acceptable in pregnancy when broad Gram-negative/anaerobic coverage is required, though specific first-trimester human cohorts are smaller.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Penicillins & Cephalosporins",
+          "quote": "Beta-lactams are preferred first-line antibiotics in pregnancy (`preferred` for ampicillin, amoxicillin-clavulanate, ceftriaxone; `caution` for piperacillin-tazobactam due to smaller human cohorts); Danish/OTIS Cohorts reported 2.7% MCM (95% CI: 2.4%–3.1%, n=12,500) for penicillins and 2.8% (95% CI: 2.1%–3.7%, n=1,740) for cephalosporins;"
+        },
         {
           "source_id": "fda-piperacillin-tazobactam-label",
           "locator": "8.1 Pregnancy — Risk Summary",
@@ -493,30 +498,70 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not reduce systemic hormonal contraceptive levels; use barrier backup only if severe antibiotic-associated vomiting or diarrhea occurs.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Broad-Spectrum Antibiotics Contraception Note",
+          "quote": "Unlike rifamycins, non-rifamycin beta-lactams, macrolides, glycopeptides, and fluoroquinolones do not reduce systemic ethinylestradiol or progestin levels; extra backup contraception is only required if severe antibiotic-associated vomiting or diarrhea impairs pill absorption. Folic Acid Preconception Baseline (Warfarin, Metformin, Diabet"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Elevated maternal GFR and expanded volume of distribution in pregnancy increase beta-lactam clearance; use standard-to-high-end dosing for serious CNS infections.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Penicillins & Cephalosporins",
+          "quote": "increased maternal GFR and volume of distribution in pregnancy may warrant standard-to-high end dosing for CNS meningitis. Azithromycin Preferred Macrolide: Azithromycin is a preferred macrolide in pregnancy (`preferred`) with lower risk than clarithromycin; OTIS and Nordic Pregnancy Cohorts reported major congenital malformations in 3.0%"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Danish & OTIS Penicillin Cohort (class)",
+        "percent": 2.7,
+        "ci95": "2.4%–3.1%",
+        "n_exposed": 12500,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 5: Penicillins & Cephalosporins",
+            "quote": "Danish/OTIS Cohorts reported 2.7% MCM (95% CI: 2.4%–3.1%, n=12,500) for penicillins and 2.8% (95% CI: 2.1%–3.7%, n=1,740) for cephalosporins; increased maternal GFR and volume of distribution in pregnancy may warrant standard-to-high end dosing for CNS meningitis. Azithromycin Preferred Macrolide: Azithromycin is a preferred macrolide in"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.2% to 1.0% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: piperacillin-tazobactam — Drug Levels",
+          "quote": "Intravenous maternal piperacillin produces a very low relative infant dose of 0.2% to 1.0% of the weight-adjusted maternal dosage, with minimal tazobactam transfer. Summary of Use during Lactation: Piperacillin-tazobactam milk transfer is low (RID <= 1%) and oral absorption in the infant GI tract is poor; compatible with breastfeeding whi"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Piperacillin is excreted in human milk; tazobactam concentrations in human milk have not been studied. No information is available on effects on the breastfed child or milk production. Weigh developmental and health benefits of breastfeeding against mother's clinical need and potential adverse effects.",
+      "value": "Low milk transfer (RID <= 1%) with poor infant oral GI absorption; compatible with breastfeeding while observing for mild diarrhea or thrush.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: piperacillin-tazobactam — Summary of Use during Lactation",
+          "quote": "Piperacillin-tazobactam milk transfer is low (RID <= 1%) and oral absorption in the infant GI tract is poor; compatible with breastfeeding while observing the infant for mild diarrhea or thrush. [potassium-chloride] Relative Infant Dose (RID): Physiological electrolyte essential in human milk; exogenous maternal potassium chloride replac"
+        },
         {
           "source_id": "fda-piperacillin-tazobactam-label",
           "locator": "8.2 Lactation — Risk Summary",
@@ -525,10 +570,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "eee7ab693e5ff6077ccfd1296095c6a34d59c0200f950c3d91000146ce1a822e"
   }
 }

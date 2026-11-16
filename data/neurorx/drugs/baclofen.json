@@ -178,34 +178,70 @@
   },
   "reproductive": {
     "tier": {
-      "value": null,
-      "note": "Source FDA label contains no pregnancy section or developmental risk data.",
-      "refs": []
+      "value": "caution",
+      "note": "Limited human pregnancy data; crosses the placenta with risk of neonatal baclofen withdrawal after chronic late-pregnancy oral exposure (intrathecal route minimizes systemic fetal exposure).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Baclofen Pregnancy Safety & Postpartum",
+          "quote": "Oral baclofen has limited human teratogenicity data and crosses the placenta, whereas intrathecal baclofen minimizes systemic fetal exposure; abrupt cessation risks severe withdrawal, and newborns exposed chronically in late pregnancy must be monitored for neonatal baclofen withdrawal (hypertonia, irritability, seizures) during the first"
+        }
+      ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not impair hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Myasthenia & Spasticity Agents Contraception Note",
+          "quote": "Systemic corticosteroids, pyridostigmine, IVIG, and oral muscle relaxants do not impair hormonal contraceptive efficacy; note that tizanidine clearance is reduced by combined oral contraceptives containing ethinylestradiol (CYP1A2 inhibition), increasing maternal hypotension and sedation risk. === SECTION 2: PREGNANCY SAFETY TIER, PHARMA"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Crosses the placenta after oral dosing (intrathecal pump minimizes systemic fetal exposure); do not discontinue abruptly during pregnancy due to severe maternal/fetal withdrawal risk.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Baclofen Pregnancy Safety & Postpartum",
+          "quote": "Oral baclofen has limited human teratogenicity data and crosses the placenta, whereas intrathecal baclofen minimizes systemic fetal exposure; abrupt cessation risks severe withdrawal, and newborns exposed chronically in late pregnancy must be monitored for neonatal baclofen withdrawal (hypertonia, irritability, seizures) during the first"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Monitor newborns exposed chronically to oral baclofen in late pregnancy for neonatal withdrawal (hypertonia, irritability, tremors, seizures) during the first week postpartum.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Baclofen Pregnancy Safety & Postpartum",
+          "quote": "newborns exposed chronically in late pregnancy must be monitored for neonatal baclofen withdrawal (hypertonia, irritability, seizures) during the first week postpartum. Tizanidine Pregnancy Safety & PK: Human pregnancy data for tizanidine are insufficient to define malformation risk, while animal studies showed embryo-fetal toxicity and p"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.1% to 6.9% oral (undetectable intrathecal)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Baclofen — Drug Levels",
+          "quote": "Oral maternal baclofen produces a relative infant dose of approximately 0.1% to 6.9% of the weight-adjusted maternal dosage, while intrathecal baclofen results in undetectable milk levels. Summary of Use during Lactation: Oral baclofen enters breast milk in low to moderate amounts (RID up to ~6.9%) with rare case reports of infant sedatio"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Unknown if excreted in human milk; as a general rule, nursing should not be undertaken while taking the drug.",
+      "value": "Oral baclofen transfers in low-to-moderate amounts (RID up to ~6.9%) with rare sedation at maternal initiation; intrathecal therapy yields undetectable milk levels. Monitor infant for drowsiness or hypotonia.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Baclofen — Summary of Use during Lactation",
+          "quote": "Oral baclofen enters breast milk in low to moderate amounts (RID up to ~6.9%) with rare case reports of infant sedation at maternal initiation; intrathecal therapy yields negligible transfer, and breastfed infants should be monitored for drowsiness or hypotonia. [celecoxib] Relative Infant Dose (RID): Maternal celecoxib doses of 200 mg/d"
+        },
         {
           "source_id": "fda-baclofen-label",
           "locator": "PRECAUTIONS",
@@ -214,11 +250,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "5c5249de098167eb2cfcd67be269f693fcfb93894479e4ac45f1aff392fddaca"
   },
   "adverse_effects": {
     "most_common": {

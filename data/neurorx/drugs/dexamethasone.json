@@ -188,30 +188,55 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not impair hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Myasthenia & Spasticity Agents Contraception Note",
+          "quote": "Systemic corticosteroids, pyridostigmine, IVIG, and oral muscle relaxants do not impair hormonal contraceptive efficacy; note that tizanidine clearance is reduced by combined oral contraceptives containing ethinylestradiol (CYP1A2 inhibition), increasing maternal hypotension and sedation risk. === SECTION 2: PREGNANCY SAFETY TIER, PHARMA"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Fluorinated corticosteroid minimally inactivated by placental 11-beta-HSD2, crossing freely to the fetus; reserve systemic maternal use for acute CNS edema or fetal lung maturation for shortest duration.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Dexamethasone Placental Transfer & PK",
+          "quote": "Unlike prednisolone, dexamethasone is a fluorinated corticosteroid that is minimally metabolized by placental 11-beta-HSD2 and crosses freely to the fetus; reserve systemic maternal dexamethasone for acute CNS edema or specific fetal lung maturation indications, using the lowest effective duration. Azathioprine Registry & PK: Azathioprine"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Estimated < 2% of the weight-adjusted maternal dosage (short courses)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Dexamethasone — Drug Levels",
+          "quote": "High maternal plasma protein binding and moderate dose regimens result in minimal breast milk transfer (estimated RID < 2% for short courses), though specific quantitative human milk studies are limited. Summary of Use during Lactation: Short courses or single maternal doses of dexamethasone are unlikely to affect breastfed infants; for p"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Systemically administered corticosteroids appear in human milk and could suppress growth or interfere with endogenous corticosteroid production; decide whether to discontinue nursing or drug.",
+      "value": "Short courses or single doses are unlikely to affect breastfed infants; for prolonged high-dose maternal therapy, prednisolone is preferred, or wait 4 hours after an IV bolus.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Dexamethasone — Summary of Use during Lactation",
+          "quote": "Short courses or single maternal doses of dexamethasone are unlikely to affect breastfed infants; for prolonged high-dose therapy, prednisolone is generally preferred, or consider waiting 4 hours after an IV bolus if high doses are used. [duloxetine] Relative Infant Dose (RID): Breastfed infants receive approximately 0.1% to 1.1% of the"
+        },
         {
           "source_id": "fda-dexamethasone-label",
           "locator": "NURSING_MOTHERS",
@@ -220,11 +245,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "6af492312ea6e60c43d17d94167246e7337977d9cf6ac15940e3c75115d3e8fd"
   },
   "adverse_effects": {
     "most_common": {

@@ -293,11 +293,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "da64bb97ea466531d6819206bc24bfb862d1d8eb92b88a0e04ceb5170766d0f8"
   },
   "adverse_effects": {
     "most_common": {
@@ -385,8 +385,13 @@
   "reproductive": {
     "tier": {
       "value": "avoid",
-      "note": "Insufficient human pregnancy data; animal studies show increased dead offspring and uterine bleeding at 2.6x human exposure, and anticoagulation carries maternal, fetal, and neonatal hemorrhage plus neuraxial hematoma risk.",
+      "note": "Direct oral anticoagulants cross the placenta with fetal bleeding and embryotoxicity risk; avoid in pregnancy and switch immediately to LMWH per ESC/ASH guidelines.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: DOACs Pregnancy Contraindication",
+          "quote": "Direct oral anticoagulants (apixaban, dabigatran, edoxaban, rivaroxaban) cross the human placenta, carry unacceptable fetal bleeding and embryotoxicity risk, and are contraindicated/avoided during pregnancy per ESC and ASH guidelines; switch immediately to LMWH upon pregnancy recognition, and transition back postpartum only after breastfe"
+        },
         {
           "source_id": "fda-dabigatran-capsules-label",
           "locator": "8.1 Pregnancy",
@@ -394,14 +399,29 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not reduce hormonal contraceptive efficacy; effective contraception is recommended to permit transition to LMWH prior to planned pregnancy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
+          "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "Increases maternal, fetal, and neonatal bleeding risk and epidural/spinal hematoma risk with neuraxial anesthesia during labor or delivery; consider discontinuation or shorter-acting anticoagulant as delivery approaches.",
+      "value": "Crosses the human placenta and carries fetal hemorrhage/embryotoxicity risk; contraindicated/avoided in pregnancy—switch immediately to LMWH upon pregnancy recognition.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: DOACs Pregnancy Contraindication",
+          "quote": "Direct oral anticoagulants (apixaban, dabigatran, edoxaban, rivaroxaban) cross the human placenta, carry unacceptable fetal bleeding and embryotoxicity risk, and are contraindicated/avoided during pregnancy per ESC and ASH guidelines; switch immediately to LMWH upon pregnancy recognition, and transition back postpartum only after breastfe"
+        },
         {
           "source_id": "fda-dabigatran-capsules-label",
           "locator": "8.1 Pregnancy",
@@ -409,21 +429,35 @@
         }
       ]
     },
+    "mcm": [],
     "postpartum": {
-      "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Resume DOAC postpartum only once surgical hemostasis is achieved and breastfeeding plans are addressed (use LMWH or warfarin if breastfeeding).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: DOACs Pregnancy Contraindication",
+          "quote": "transition back postpartum only after breastfeeding decisions are reviewed. Low-Dose Aspirin Pregnancy & Registry: Low-dose aspirin (75–150 mg/day) is safe and recommended for preeclampsia prevention and maternal stroke/antiplatelet indications (`caution` for high analgesic doses >=300 mg/day near term due to ductal closure); Nordic and U"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.02% to 0.07% of the weight-adjusted maternal dosage (single dose)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: dabigatran — Drug Levels",
+          "quote": "Single-dose maternal dabigatran etexilate yielded a very low relative infant dose of 0.02% to 0.07% of active dabigatran in breast milk with poor infant oral bioavailability. Summary of Use during Lactation: Although a small study showed minimal milk transfer (RID < 0.1%), clinical breastfeeding experience with chronic dabigatran remains"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Breastfeeding is not recommended during treatment with dabigatran etexilate; insufficient human milk data (present in rat milk).",
+      "value": "Minimal transfer after single dose (RID < 0.1%), but chronic breastfeeding data are insufficient; warfarin or LMWH is preferred in nursing mothers.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: dabigatran — Summary of Use during Lactation",
+          "quote": "Although a small study showed minimal milk transfer (RID < 0.1%), clinical breastfeeding experience with chronic dabigatran remains too limited to confirm safety; warfarin or LMWH is preferred in nursing mothers. [dapagliflozin] Relative Infant Dose (RID): No quantitative human breast milk data are available for dapagliflozin. Summary of"
+        },
         {
           "source_id": "fda-dabigatran-capsules-label",
           "locator": "8.2 Lactation",

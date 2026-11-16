@@ -277,11 +277,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "1ceffeccf51d27ee9285ea33a172a42d64b805d5629d34bba46246ee65894258"
   },
   "adverse_effects": {
     "most_common": {
@@ -318,9 +318,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "note": "Insufficient human pregnancy data; no animal malformations up to 49x human exposure with embryo-fetal toxicity only at maternally toxic doses (>=20x), while anticoagulation increases fetal/neonatal bleeding and neuraxial hematoma risk at delivery.",
+      "value": "avoid",
+      "note": "Direct oral anticoagulants cross the placenta with fetal bleeding and embryotoxicity risk; avoid in pregnancy and switch immediately to LMWH per ESC/ASH guidelines.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: DOACs Pregnancy Contraindication",
+          "quote": "Direct oral anticoagulants (apixaban, dabigatran, edoxaban, rivaroxaban) cross the human placenta, carry unacceptable fetal bleeding and embryotoxicity risk, and are contraindicated/avoided during pregnancy per ESC and ASH guidelines; switch immediately to LMWH upon pregnancy recognition, and transition back postpartum only after breastfe"
+        },
         {
           "source_id": "fda-edoxaban-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS",
@@ -328,14 +333,29 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not reduce hormonal contraceptive efficacy; effective contraception is recommended to permit transition to LMWH prior to planned pregnancy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
+          "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "Increases fetal/neonatal bleeding risk and epidural/spinal hematoma risk with neuraxial anesthesia during labor or delivery; consider a shorter-acting anticoagulant as delivery approaches.",
+      "value": "Crosses the human placenta and carries fetal hemorrhage/embryotoxicity risk; contraindicated/avoided in pregnancy—switch immediately to LMWH upon pregnancy recognition.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: DOACs Pregnancy Contraindication",
+          "quote": "Direct oral anticoagulants (apixaban, dabigatran, edoxaban, rivaroxaban) cross the human placenta, carry unacceptable fetal bleeding and embryotoxicity risk, and are contraindicated/avoided during pregnancy per ESC and ASH guidelines; switch immediately to LMWH upon pregnancy recognition, and transition back postpartum only after breastfe"
+        },
         {
           "source_id": "fda-edoxaban-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS",
@@ -343,21 +363,35 @@
         }
       ]
     },
+    "mcm": [],
     "postpartum": {
-      "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Resume DOAC postpartum only once surgical hemostasis is achieved and breastfeeding plans are addressed (use LMWH or warfarin if breastfeeding).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: DOACs Pregnancy Contraindication",
+          "quote": "transition back postpartum only after breastfeeding decisions are reviewed. Low-Dose Aspirin Pregnancy & Registry: Low-dose aspirin (75–150 mg/day) is safe and recommended for preeclampsia prevention and maternal stroke/antiplatelet indications (`caution` for high analgesic doses >=300 mg/day near term due to ductal closure); Nordic and U"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: edoxaban — Drug Levels",
+          "quote": "No quantitative human breast milk data are available for edoxaban (moderate protein binding ~55% suggests milk passage). Summary of Use during Lactation: Because human milk transfer and infant bleeding risk are uncharacterized, breastfeeding is not recommended during edoxaban therapy; transition to warfarin or low-molecular-weight heparin"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Breastfeeding is not recommended during treatment with edoxaban due to potential for serious adverse reactions including hemorrhage in nursing infants.",
+      "value": "Human milk transfer and infant bleeding risk are uncharacterized; breastfeeding is not recommended (prefer warfarin or LMWH).",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: edoxaban — Summary of Use during Lactation",
+          "quote": "Because human milk transfer and infant bleeding risk are uncharacterized, breastfeeding is not recommended during edoxaban therapy; transition to warfarin or low-molecular-weight heparin when anticoagulation is required during lactation. [empagliflozin] Relative Infant Dose (RID): No quantitative human breast milk data are available for"
+        },
         {
           "source_id": "fda-edoxaban-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS",

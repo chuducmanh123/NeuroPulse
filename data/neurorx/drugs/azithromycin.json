@@ -354,9 +354,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "note": "PLLR Pregnancy section: published observational studies, case series, and case reports over several decades have not identified drug-associated risks for major birth defects, miscarriage, or adverse maternal/fetal outcomes, and animal organogenesis studies showed no malformations up to 2-4x human BSA dose; however, label notes observational data lack randomization and cannot control for confounders, and pre/postnatal rat toxicity occurred at 4x human dose.",
+      "value": "preferred",
+      "note": "Preferred macrolide antibiotic during pregnancy with lower risk than clarithromycin (3.0% MCM across n=4,200 first-trimester exposures in OTIS/Nordic cohorts).",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Azithromycin Preferred Macrolide",
+          "quote": "Azithromycin is a preferred macrolide in pregnancy (`preferred`) with lower risk than clarithromycin; OTIS and Nordic Pregnancy Cohorts reported major congenital malformations in 3.0% (95% CI: 2.5%–3.6%, n=4,200, first-trimester exposure). Vancomycin Pregnancy PK & TDM: Vancomycin crosses the placenta without recognized teratogenicity (`c"
+        },
         {
           "source_id": "fda-azithromycin-label",
           "locator": "8.1 Pregnancy",
@@ -369,30 +374,70 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not reduce systemic hormonal contraceptive levels; backup contraception needed only if severe GI upset impairs pill absorption.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Broad-Spectrum Antibiotics Contraception Note",
+          "quote": "Unlike rifamycins, non-rifamycin beta-lactams, macrolides, glycopeptides, and fluoroquinolones do not reduce systemic ethinylestradiol or progestin levels; extra backup contraception is only required if severe antibiotic-associated vomiting or diarrhea impairs pill absorption. Folic Acid Preconception Baseline (Warfarin, Metformin, Diabet"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Large distribution volume with slow tissue clearance; standard maternal dosing applies during pregnancy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Azithromycin Preferred Macrolide",
+          "quote": "Azithromycin is a preferred macrolide in pregnancy (`preferred`) with lower risk than clarithromycin; OTIS and Nordic Pregnancy Cohorts reported major congenital malformations in 3.0% (95% CI: 2.5%–3.6%, n=4,200, first-trimester exposure). Vancomycin Pregnancy PK & TDM: Vancomycin crosses the placenta without recognized teratogenicity (`c"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "OTIS & Nordic Pregnancy Cohorts",
+        "percent": 3,
+        "ci95": "2.5%–3.6%",
+        "n_exposed": 4200,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 5: Azithromycin Preferred Macrolide",
+            "quote": "OTIS and Nordic Pregnancy Cohorts reported major congenital malformations in 3.0% (95% CI: 2.5%–3.6%, n=4,200, first-trimester exposure). Vancomycin Pregnancy PK & TDM: Vancomycin crosses the placenta without recognized teratogenicity (`caution`) and is essential for MRSA CNS infections; elevated maternal volume of distribution and augmen"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "1.3% to 5.9% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Azithromycin — Drug Levels",
+          "quote": "Maternal azithromycin yields a relative infant dose of 1.3% to 5.9% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Azithromycin milk transfer is low to moderate (RID <= 6%) and generally compatible with breastfeeding; observe nursing infants for mild GI symptoms (diarrhea, vomiting, thrush) and rare infantile hyp"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Azithromycin is present in human milk (persisting up to 48 hours after 500 mg IV and up to 4 weeks after 2 g PO). Non-serious adverse reactions (diarrhea, vomiting, rash) have been reported in breastfed infants; monitor breastfed infants for diarrhea, vomiting, or rash.",
+      "value": "Low-to-moderate milk transfer (RID <= 6%) and generally compatible with breastfeeding; observe infants for mild GI symptoms/thrush and rare infantile pyloric stenosis in the first month.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Azithromycin — Summary of Use during Lactation",
+          "quote": "Azithromycin milk transfer is low to moderate (RID <= 6%) and generally compatible with breastfeeding; observe nursing infants for mild GI symptoms (diarrhea, vomiting, thrush) and rare infantile hypertrophic pyloric stenosis during the first month of life. [bisoprolol] Relative Infant Dose (RID): Limited maternal milk data indicate a lo"
+        },
         {
           "source_id": "fda-azithromycin-label",
           "locator": "8.2 Lactation",
@@ -406,10 +451,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "d65c2d0dd95006b5f2c5ad93e086cf1ee56e906cfd7cf17c475544c6f90631e1"
   }
 }

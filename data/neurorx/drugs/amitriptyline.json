@@ -246,34 +246,85 @@
   },
   "reproductive": {
     "tier": {
-      "value": null,
-      "note": "Source FDA label contains no pregnancy section or developmental risk data.",
-      "refs": []
+      "value": "caution",
+      "note": "Observational cohort data (n=1,662, 2.6% MCM) show no major teratogenic signal; reserve for clear maternal indication and monitor neonates if used in the third trimester.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Amitriptyline Registry & PK",
+          "quote": "The Swedish Medical Birth Register and OTIS Tricyclic Cohort reported major congenital malformations in 2.6% (95% CI: 1.9%–3.5%) of 1,662 first-trimester exposures; CYP2D6 induction during pregnancy may modestly lower plasma levels, and third-trimester exposure requires monitoring neonates for transient anticholinergic or withdrawal sympt"
+        }
+      ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not induce CYP3A4 or reduce hormonal contraceptive efficacy; standard family planning applies.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Analgesics Without Contraceptive Interactions",
+          "quote": "These medications do not induce CYP3A4 or UGT metabolism of hormonal contraceptives and require no extra contraceptive backup beyond standard family planning. Myasthenia & Spasticity Agents Contraception Note (Pyridostigmine, Prednisolone, Methylprednisolone, Dexamethasone, IVIG, Baclofen, Tizanidine, Dantrolene): Systemic corticosteroids"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "CYP2D6 induction during pregnancy may modestly lower plasma levels; 3rd-trimester exposure requires monitoring newborns for transient anticholinergic or withdrawal symptoms.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Amitriptyline Registry & PK",
+          "quote": "CYP2D6 induction during pregnancy may modestly lower plasma levels, and third-trimester exposure requires monitoring neonates for transient anticholinergic or withdrawal symptoms. Amitriptyline Postpartum: If amitriptyline dosage was increased in late pregnancy, taper back toward pre-pregnancy maintenance levels over 1 to 2 weeks postpart"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Swedish Medical Birth Register & OTIS Cohort",
+        "percent": 2.6,
+        "ci95": "1.9%–3.5%",
+        "n_exposed": 1662,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave2-guidelines",
+            "locator": "Section 2: Amitriptyline Registry & PK",
+            "quote": "The Swedish Medical Birth Register and OTIS Tricyclic Cohort reported major congenital malformations in 2.6% (95% CI: 1.9%–3.5%) of 1,662 first-trimester exposures; CYP2D6 induction during pregnancy may modestly lower plasma levels, and third-trimester exposure requires monitoring neonates for transient anticholinergic or withdrawal sympt"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "If dosage was increased in late pregnancy, taper back toward pre-pregnancy maintenance levels over 1 to 2 weeks postpartum as CYP2D6 normalizes to minimize maternal sedation.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Amitriptyline Postpartum",
+          "quote": "If amitriptyline dosage was increased in late pregnancy, taper back toward pre-pregnancy maintenance levels over 1 to 2 weeks postpartum as CYP2D6 activity normalizes to minimize maternal sedation. Duloxetine Registry & PK: Lilly surveillance and Nordic National Pregnancy Cohort data reported major congenital malformations in 2.8% (95% CI"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "1% to 2.8% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Amitriptyline — Drug Levels",
+          "quote": "Breastfed infants receive approximately 1% to 2.8% of the weight-adjusted maternal amitriptyline plus nortriptyline dosage through human milk. Summary of Use during Lactation: Amitriptyline milk transfer is low (RID 1% to 2.8%) and infant serum concentrations are usually undetectable or very low; generally compatible with breastfeeding, t"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Excreted into breast milk (135 to 151 ng/mL in one report; undetected in infant serum); decide whether to discontinue nursing or drug based on maternal clinical need due to potential serious infant adverse reactions.",
+      "value": "Low milk transfer (RID 1%–2.8%) with usually undetectable infant serum levels; generally compatible with breastfeeding while monitoring newborns for drowsiness, poor feeding, or anticholinergic signs.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Amitriptyline — Summary of Use during Lactation",
+          "quote": "Amitriptyline milk transfer is low (RID 1% to 2.8%) and infant serum concentrations are usually undetectable or very low; generally compatible with breastfeeding, though monitor newborns for occasional drowsiness, poor feeding, or anticholinergic signs. [azathioprine] Relative Infant Dose (RID): Measurement of active mercaptopurine metab"
+        },
         {
           "source_id": "fda-amitriptyline-label",
           "locator": "NURSING_MOTHERS",
@@ -282,11 +333,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "4a6783b92044535cb5025582efdef3d1601e7ce78d4438103b9282a4edeeabcf"
   },
   "adverse_effects": {
     "most_common": {

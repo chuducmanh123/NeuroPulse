@@ -537,30 +537,70 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not reduce hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "S-isomer of omeprazole; large Danish birth cohort data for omeprazole/PPIs show no elevated risk of major congenital malformations (2.6%, n=1,800). Standard dosing applies.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Proton Pump Inhibitors",
+          "quote": "PPIs are widely used for severe GERD or stress ulcer prophylaxis in pregnancy (`caution`); Danish National Birth Cohort data for omeprazole reported major congenital malformations in 2.6% (95% CI: 2.2%–3.1%, n=1,800) and pantoprazole 2.9% (95% CI: 1.9%–4.3%, n=549) with no elevated birth defect risk. === SECTION 5: CNS INFECTIONS — ANTIM"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Danish National Birth Cohort (omeprazole racemate)",
+        "percent": 2.6,
+        "ci95": "2.2%–3.1%",
+        "n_exposed": 1800,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 4: Proton Pump Inhibitors",
+            "quote": "Danish National Birth Cohort data for omeprazole reported major congenital malformations in 2.6% (95% CI: 2.2%–3.1%, n=1,800) and pantoprazole 2.9% (95% CI: 1.9%–4.3%, n=549) with no elevated birth defect risk. === SECTION 5: CNS INFECTIONS — ANTIMICROBIALS === Penicillins & Cephalosporins (Ampicillin, Amoxicillin-Clavulanate, Ceftriaxon"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.1% to 0.7% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Esomeprazole — Drug Levels",
+          "quote": "Maternal esomeprazole produces a very low relative infant dose of 0.1% to 0.7% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Esomeprazole (the S-isomer of omeprazole) enters breast milk in tiny amounts (RID < 1%) and is rapidly degraded by infant gastric acid; compatible with breastfeeding. [furosemide] Relativ"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Limited data suggest omeprazole may be present in human milk; no clinical data on effects of esomeprazole on the breastfed infant or milk production. Weigh developmental and health benefits of breastfeeding against the mother's clinical need.",
+      "value": "Enters breast milk in tiny amounts (RID < 1%) and is rapidly degraded by infant gastric acid; compatible with breastfeeding.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Esomeprazole — Summary of Use during Lactation",
+          "quote": "Esomeprazole (the S-isomer of omeprazole) enters breast milk in tiny amounts (RID < 1%) and is rapidly degraded by infant gastric acid; compatible with breastfeeding. [furosemide] Relative Infant Dose (RID): Breastfed infants receive approximately 0.1% to 1.0% of the weight-adjusted maternal furosemide dosage, though higher maternal dose"
+        },
         {
           "source_id": "fda-esomeprazole-label",
           "locator": "8.2 Lactation",
@@ -569,10 +609,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "8cf41f6b80c58b1d9466cb60937fc367ffb8ede2da80f3307e4ad972ee5af57b"
   }
 }

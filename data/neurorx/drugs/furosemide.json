@@ -256,7 +256,9 @@
   },
   "enzyme_profile": {
     "value": {
-      "ugt": ["glucuronidation"],
+      "ugt": [
+        "glucuronidation"
+      ],
       "qt_risk": "none",
       "serotonergic": false
     },
@@ -395,30 +397,60 @@
       ],
       "note": "5-axis synthesis: No adequate and well-controlled human studies; label advises use only if potential benefit justifies potential risk to fetus and requires monitoring of fetal growth; rabbit studies showed unexplained maternal deaths and abortions at 2x-8x MRHD and hydronephrosis in mice/rabbits."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not reduce hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Reserved for maternal pulmonary edema or heart failure because diuretic-induced intravascular volume depletion can impair uteroplacental perfusion.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Spironolactone & Furosemide",
+          "quote": "furosemide is reserved for maternal pulmonary edema or heart failure (`caution`) because diuretic-induced intravascular volume depletion can impair uteroplacental perfusion, requiring postpartum volume reassessment. Potassium Chloride: Oral and IV potassium chloride is physiological replacement therapy (`preferred`) safe throughout all tr"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Reassess maternal volume status and electrolytes postpartum; avoid unnecessary chronic high-dose diuresis if breastfeeding.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Spironolactone & Furosemide",
+          "quote": "requiring postpartum volume reassessment. Potassium Chloride: Oral and IV potassium chloride is physiological replacement therapy (`preferred`) safe throughout all trimesters when indicated for hypokalemia; monitor maternal serum potassium and renal function. === SECTION 4: STATINS, ENDOCRINE/METABOLIC & GASTROINTESTINAL === Statins (Ato"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.1% to 1.0% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Furosemide — Drug Levels",
+          "quote": "Breastfed infants receive approximately 0.1% to 1.0% of the weight-adjusted maternal furosemide dosage, though higher maternal doses can suppress lactation volume. Summary of Use during Lactation: Furosemide milk transfer is minimal (RID <= 1%) and safe for the infant, though high or chronic loop diuretic doses can cause intense diuresis"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Furosemide appears in breast milk and may inhibit lactation; exercise caution when administering to a nursing mother.",
+      "value": "Minimal milk transfer (RID <= 1%) and safe for the infant, though intense maternal diuresis at high doses can suppress breast milk supply.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Furosemide — Summary of Use during Lactation",
+          "quote": "Furosemide milk transfer is minimal (RID <= 1%) and safe for the infant, though high or chronic loop diuretic doses can cause intense diuresis that reduces maternal milk production. [gliclazide] Relative Infant Dose (RID): No quantitative human breast milk measurements are available for gliclazide. Summary of Use during Lactation: Becaus"
+        },
         {
           "source_id": "fda-furosemide-label",
           "locator": "Nursing Mothers",
@@ -427,10 +459,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "947581ff280f1846436042b708be5a5ddb84f40396632f4cac4a892e087ef104"
   }
 }

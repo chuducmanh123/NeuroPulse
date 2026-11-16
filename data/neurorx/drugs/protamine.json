@@ -157,11 +157,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "b32fec55af060b6c79f9fb9512b35247d655a13f1af72a32a2681d20c5568dc6"
   },
   "adverse_effects": {
     "most_common": {
@@ -208,30 +208,50 @@
       ],
       "note": "Pregnancy Category C with no human or animal reproduction studies; administer during pregnancy only if clearly needed."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "Poly-cationic peptide that reverses UFH/LMWH without significant placental transfer; administer standard heparin-neutralizing dosing for maternal hemorrhage.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Reversal Agents",
+          "quote": "protamine sulfate reverses UFH/LMWH without placental transfer; 4F-PCC and idarucizumab (~48 kDa) are life-saving emergency reversal agents for refractory maternal hemorrhage and should never be withheld in pregnancy (`caution`). === SECTION 3: ANTIHYPERTENSIVES, ANTIARRHYTHMICS, DIURETICS & ELECTROLYTES === Labetalol Preferred First-Lin"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Not applicable (acute IV reversal peptide)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: protamine — Drug Levels",
+          "quote": "Low-molecular-weight polycationic peptide rapidly neutralized in maternal plasma with negligible expected milk transfer (RID not applicable; single emergency dose). Summary of Use during Lactation: Protamine sulfate is given as an acute intravenous heparin reversal agent and is digested by GI proteases if trace amounts enter milk; no wait"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Unknown whether protamine sulfate is excreted in human milk; exercise caution when administering to a nursing woman.",
+      "value": "Acute IV heparin reversal peptide digested by infant GI proteases if trace amounts enter milk; no waiting period needed once maternal hemostasis stabilizes.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: protamine — Summary of Use during Lactation",
+          "quote": "Protamine sulfate is given as an acute intravenous heparin reversal agent and is digested by GI proteases if trace amounts enter milk; no waiting period is required once maternal hemostasis stabilizes. [prothrombin-complex-concentrate] Relative Infant Dose (RID): Endogenous human coagulation factors II, VII, IX, and X (~50–70 kDa) that d"
+        },
         {
           "source_id": "fda-protamine-label",
           "locator": "PRECAUTIONS - Nursing Mothers",

@@ -190,30 +190,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not reduce contraceptive efficacy, BUT combined oral contraceptives containing ethinylestradiol strongly inhibit CYP1A2 and markedly increase tizanidine levels (risk of severe hypotension and sedation).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Myasthenia & Spasticity Agents Contraception Note",
+          "quote": "note that tizanidine clearance is reduced by combined oral contraceptives containing ethinylestradiol (CYP1A2 inhibition), increasing maternal hypotension and sedation risk. === SECTION 2: PREGNANCY SAFETY TIER, PHARMACOKINETICS & MALFORMATION REGISTRIES === Acetaminophen Preferred First-Line & Registry: Acetaminophen is the preferred fi"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Human pregnancy data are insufficient and animal studies showed embryo-fetal toxicity and prolonged gestation at high doses; reserve only if maternal spasticity benefit outweighs potential fetal risk.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Tizanidine Pregnancy Safety & PK",
+          "quote": "Human pregnancy data for tizanidine are insufficient to define malformation risk, while animal studies showed embryo-fetal toxicity and prolonged gestation at supratherapeutic doses; reserve only if maternal spasticity benefit outweighs risk, and monitor CYP1A2-mediated interaction with estrogen postpartum if combined oral contraceptives"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "If starting or resuming combined estrogen-containing oral contraceptives postpartum, avoid concomitant tizanidine or monitor closely for severe CYP1A2-mediated hypotension and sedation.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Tizanidine Pregnancy Safety & PK",
+          "quote": "monitor CYP1A2-mediated interaction with estrogen postpartum if combined oral contraceptives are resumed. Dantrolene Pregnancy Safety & PK: Dantrolene crosses the placenta (fetal-to-maternal ratio ~0.4); while chronic oral pregnancy data are limited, emergency intravenous dantrolene is life-saving and must never be withheld in pregnant pa"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Tizanidine — Drug Levels",
+          "quote": "Quantitative human breast milk concentrations and relative infant dose data for tizanidine are currently unavailable. Summary of Use during Lactation: Because tizanidine milk levels are unstudied and its high lipid solubility suggests possible milk transfer with risk of infant sedation or hypotension, an alternate agent is preferred espec"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk, effects on the breastfed infant, or milk production; present in animal milk.",
+      "value": "Human milk levels are unstudied and high lipid solubility suggests likely milk transfer with potential infant sedation or hypotension; prefer an alternate muscle relaxant while nursing newborns or preterm infants.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Tizanidine — Summary of Use during Lactation",
+          "quote": "Because tizanidine milk levels are unstudied and its high lipid solubility suggests possible milk transfer with risk of infant sedation or hypotension, an alternate agent is preferred especially while nursing newborns or preterm infants. [tramadol] Relative Infant Dose (RID): Combined transfer of tramadol and its active O-desmethyltramad"
+        },
         {
           "source_id": "fda-tizanidine-label",
           "locator": "USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
@@ -222,11 +252,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "7e4db8d126edf9db7cdadf362eb4bd137628a6e4f898446b4a1a6c222cf01f19"
   },
   "adverse_effects": {
     "most_common": {

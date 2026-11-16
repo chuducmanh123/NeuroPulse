@@ -1,0 +1,97 @@
+Drugs and Lactation Database (LactMed) — NCBI Bookshelf (NBK501922) Monograph Extracts for Wave 2 Medications
+
+[acetaminophen]
+Relative Infant Dose (RID): Maternal doses of 1,000 to 1,300 mg yield a relative infant dose of 1% to 4% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Acetaminophen is a preferred first-line analgesic and antipyretic during breastfeeding (RID 1% to 4%) with negligible infant serum levels and rare isolated case reports of maculopapular rash; maternal therapeutic dosing requires no breastfeeding interruption.
+
+[amitriptyline]
+Relative Infant Dose (RID): Breastfed infants receive approximately 1% to 2.8% of the weight-adjusted maternal amitriptyline plus nortriptyline dosage through human milk.
+Summary of Use during Lactation: Amitriptyline milk transfer is low (RID 1% to 2.8%) and infant serum concentrations are usually undetectable or very low; generally compatible with breastfeeding, though monitor newborns for occasional drowsiness, poor feeding, or anticholinergic signs.
+
+[azathioprine]
+Relative Infant Dose (RID): Measurement of active mercaptopurine metabolites in breast milk indicates a very low relative infant dose of 0.1% to 0.9% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Azathioprine milk transfer is minimal (RID < 1%) and breastfed infants have undetectable metabolite levels without clinically significant immunosuppression or infection increases; considered compatible with breastfeeding when clinically indicated, optionally monitoring infant CBC if high maternal doses are used.
+
+[baclofen]
+Relative Infant Dose (RID): Oral maternal baclofen produces a relative infant dose of approximately 0.1% to 6.9% of the weight-adjusted maternal dosage, while intrathecal baclofen results in undetectable milk levels.
+Summary of Use during Lactation: Oral baclofen enters breast milk in low to moderate amounts (RID up to ~6.9%) with rare case reports of infant sedation at maternal initiation; intrathecal therapy yields negligible transfer, and breastfed infants should be monitored for drowsiness or hypotonia.
+
+[celecoxib]
+Relative Infant Dose (RID): Maternal celecoxib doses of 200 mg/day yield a very low relative infant dose of 0.2% to 0.4% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Celecoxib passes into breast milk in tiny quantities (RID < 0.5%) due to high maternal protein binding (~97%) and causes no reported adverse effects in breastfed infants; acceptable for short-term postpartum analgesia.
+
+[dantrolene]
+Relative Infant Dose (RID): Limited case measurements following intravenous maternal dantrolene report a relative infant dose of approximately 0.8% to 2% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: After emergency intravenous dantrolene administration, milk concentrations decline rapidly (half-life ~9 hours); temporary breastfeeding interruption for 24 to 48 hours after an acute IV course is prudent while observing for hypotonia, whereas chronic oral lactation data are lacking.
+
+[dexamethasone]
+Relative Infant Dose (RID): High maternal plasma protein binding and moderate dose regimens result in minimal breast milk transfer (estimated RID < 2% for short courses), though specific quantitative human milk studies are limited.
+Summary of Use during Lactation: Short courses or single maternal doses of dexamethasone are unlikely to affect breastfed infants; for prolonged high-dose therapy, prednisolone is generally preferred, or consider waiting 4 hours after an IV bolus if high doses are used.
+
+[duloxetine]
+Relative Infant Dose (RID): Breastfed infants receive approximately 0.1% to 1.1% of the weight-adjusted maternal duloxetine dosage through human milk.
+Summary of Use during Lactation: Duloxetine excretion into breast milk is very low (RID <= 1.1%) with low or undetectable infant serum levels; generally compatible with breastfeeding, though monitor infants for drowsiness, irritability, poor feeding, and adequate weight gain.
+
+[eculizumab]
+Relative Infant Dose (RID): Large IgG2/4 monoclonal antibody (~148 kDa) with undetectable breast milk concentrations in published maternal samples (estimated RID < 0.1%) and negligible oral infant GI absorption.
+Summary of Use during Lactation: Eculizumab is undetectable in human milk and poorly absorbed intact by the infant gut; available evidence indicates it is compatible with breastfeeding without special waiting periods.
+
+[efgartigimod]
+Relative Infant Dose (RID): Human breast milk transfer data for efgartigimod are currently unavailable (large Fc fragment ~54 kDa; theoretical oral degradation in infant GI tract limits systemic uptake, though FcRn in neonatal gut exists).
+Summary of Use during Lactation: Because no clinical data exist on efgartigimod in human milk or potential neonatal IgG reduction, exercise caution during breastfeeding—weigh maternal disease control against unknown infant risk, especially in preterm or newborn infants.
+
+[erenumab]
+Relative Infant Dose (RID): Large IgG2 monoclonal antibody (~150 kDa) with estimated relative infant dose below 0.5% based on minimal milk transfer of maternal IgG antibodies and proteolytic digestion in the infant gut.
+Summary of Use during Lactation: Although clinical milk data for erenumab are limited, large monoclonal antibodies transfer poorly into mature breast milk and undergo gastrointestinal degradation; use caution while nursing newborns or preterm infants and monitor feeding and growth.
+
+[ibuprofen]
+Relative Infant Dose (RID): Maternal ibuprofen doses up to 1,600 to 2,400 mg/day result in an extremely low relative infant dose of 0.1% to 0.7% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Ibuprofen is a preferred short-acting NSAID during breastfeeding because of its extremely low milk transfer (RID < 1%), lack of active metabolites, and short half-life; no waiting period is required.
+
+[ivig]
+Relative Infant Dose (RID): Endogenous IgG is a normal component of human colostrum and mature breast milk; exogenous IVIG produces physiological milk IgG transfer with no quantitative drug-toxicity RID threshold applicable.
+Summary of Use during Lactation: Intravenous immunoglobulin (IVIG) is compatible with breastfeeding and requires no interruption of nursing, as IgG antibodies naturally present in breast milk are safe and beneficial to the infant.
+
+[methylprednisolone]
+Relative Infant Dose (RID): Standard oral or pulse IV methylprednisolone yields a relative infant dose of 0.2% to 1.5% of the weight-adjusted maternal dosage (remaining below physiological infant cortisol production).
+Summary of Use during Lactation: Methylprednisolone milk transfer is low (RID 0.2% to 1.5%); for high-dose IV pulse therapy (e.g. 1,000 mg/day for MS or NMOSD relapse), delaying breastfeeding for 2 to 4 hours after infusion minimizes already low infant exposure.
+
+[metoprolol]
+Relative Infant Dose (RID): Breastfed infants receive approximately 0.5% to 2.1% of the weight-adjusted maternal metoprolol dosage through human milk.
+Summary of Use during Lactation: Metoprolol passes into breast milk in small amounts (RID < 2.5%) and rarely causes adverse events in healthy term infants; monitor nursing newborns for rare beta-blockade signs such as bradycardia, lethargy, or poor feeding.
+
+[mycophenolate]
+Relative Infant Dose (RID): Clinical human milk transfer measurements for mycophenolate mofetil are lacking (not quantified in human milk).
+Summary of Use during Lactation: Because mycophenolate carries potential risks of severe immunosuppression, neutropenia, and GI toxicity in nursing infants and human milk levels are uncharacterized, breastfeeding is generally not recommended or requires extreme caution with close infant monitoring when safer alternatives exist.
+
+[prednisolone]
+Relative Infant Dose (RID): Maternal oral prednisolone doses up to 80 mg/day result in a low relative infant dose of 0.5% to 2.6% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Prednisolone is the preferred systemic corticosteroid during lactation due to low milk levels (RID 0.5% to 2.6%); maternal doses <= 20 mg/day require no waiting period, and waiting 4 hours after higher doses further minimizes infant exposure.
+
+[pyridostigmine]
+Relative Infant Dose (RID): Maternal oral pyridostigmine doses of 180 to 300 mg/day produce a low relative infant dose of 0.04% to 0.1% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Pyridostigmine transfer into human milk is minimal (RID <= 0.1%) and breastfed infants have undetectable plasma levels; compatible with breastfeeding in mothers with myasthenia gravis while observing infants for rare gastrointestinal upset.
+
+[ravulizumab]
+Relative Infant Dose (RID): Human breast milk data for ravulizumab are lacking; as a large IgG2/4 monoclonal antibody (~148 kDa), milk excretion is expected to be minimal (< 0.5%) with negligible oral absorption.
+Summary of Use during Lactation: While ravulizumab milk transfer is theoretically negligible, clinical lactation data are not yet established; evaluate maternal benefit versus potential infant risk and monitor breastfed infants for feeding and infections, particularly in the neonatal period.
+
+[rimegepant]
+Relative Infant Dose (RID): Single-dose pharmacokinetic studies in lactating women demonstrate a low relative infant dose of 0.5% to 0.8% of the weight-adjusted maternal rimegepant dosage.
+Summary of Use during Lactation: Rimegepant enters breast milk in very low quantities (RID < 1%) after single 75 mg doses; clinical experience in repeated nursing exposure remains limited, so monitor the breastfed infant for feeding adequacy or consider pumping and discarding for 12–24 hours in young neonates if preferred.
+
+[rituximab]
+Relative Infant Dose (RID): Large IgG1 monoclonal antibody (~145 kDa) with very low milk excretion (relative infant dose 0.01% to 0.1% of the weight-adjusted maternal dosage) and negligible infant oral absorption.
+Summary of Use during Lactation: Rituximab concentrations in breast milk are extremely low (RID <= 0.1%) and breastfed infants show normal peripheral B-cell counts and development; compatible with breastfeeding per ECTRIMS/EAN and ACR reproductive guidelines.
+
+[sumatriptan]
+Relative Infant Dose (RID): Subcutaneous or oral maternal sumatriptan produces a low relative infant dose of 0.5% to 3.5% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Sumatriptan milk transfer is low (RID <= 3.5%) with poor oral bioavailability (~15%) in the infant; generally compatible with breastfeeding for acute migraine, and an optional 8 to 12 hour wait after dosing eliminates virtually all exposure in neonates.
+
+[tizanidine]
+Relative Infant Dose (RID): Quantitative human breast milk concentrations and relative infant dose data for tizanidine are currently unavailable.
+Summary of Use during Lactation: Because tizanidine milk levels are unstudied and its high lipid solubility suggests possible milk transfer with risk of infant sedation or hypotension, an alternate agent is preferred especially while nursing newborns or preterm infants.
+
+[tramadol]
+Relative Infant Dose (RID): Combined transfer of tramadol and its active O-desmethyltramadol metabolite yields a relative infant dose of 2.2% to 2.9% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Due to CYP2D6 ultrarapid metabolizer variability risking fatal neonatal respiratory depression from O-desmethyltramadol, the FDA and LactMed warn that tramadol is not recommended during breastfeeding; choose non-opioid analgesics such as ibuprofen or acetaminophen.

@@ -446,9 +446,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "note": "Pregnancy Category B: animal reproduction studies up to 1200 mg/kg/day (2-4x human amoxicillin BSA dose) showed no fetal harm, but there are no adequate and well-controlled studies in pregnant women; label states 'should be used during pregnancy only if clearly needed.'",
+      "value": "preferred",
+      "note": "Preferred first-line beta-lactam antibiotic in pregnancy (2.7% penicillin cohort MCM in n=12,500); standard dosing applies.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Penicillins & Cephalosporins",
+          "quote": "Beta-lactams are preferred first-line antibiotics in pregnancy (`preferred` for ampicillin, amoxicillin-clavulanate, ceftriaxone; `caution` for piperacillin-tazobactam due to smaller human cohorts); Danish/OTIS Cohorts reported 2.7% MCM (95% CI: 2.4%–3.1%, n=12,500) for penicillins and 2.8% (95% CI: 2.1%–3.7%, n=1,740) for cephalosporins;"
+        },
         {
           "source_id": "fda-amoxicillin-clavulanate-label",
           "locator": "8.1 Pregnancy",
@@ -461,22 +466,19 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": "May reduce efficacy of combined oral estrogen/progesterone contraceptives due to effects on intestinal flora and lower estrogen reabsorption.",
+      "value": "Does not reduce systemic hormonal contraceptive levels; use barrier backup only if severe antibiotic-associated vomiting or diarrhea occurs.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Broad-Spectrum Antibiotics Contraception Note",
+          "quote": "Unlike rifamycins, non-rifamycin beta-lactams, macrolides, glycopeptides, and fluoroquinolones do not reduce systemic ethinylestradiol or progestin levels; extra backup contraception is only required if severe antibiotic-associated vomiting or diarrhea impairs pill absorption. Folic Acid Preconception Baseline (Warfarin, Metformin, Diabet"
+        },
         {
           "source_id": "fda-amoxicillin-clavulanate-label",
           "locator": "7.4 Oral Contraceptives",
@@ -484,13 +486,55 @@
         }
       ]
     },
-    "lactation_rid": {
+    "pregnancy_pk": {
+      "value": "Elevated maternal GFR and expanded volume of distribution in pregnancy increase beta-lactam clearance; use standard-to-high-end dosing for serious CNS infections.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Penicillins & Cephalosporins",
+          "quote": "increased maternal GFR and volume of distribution in pregnancy may warrant standard-to-high end dosing for CNS meningitis. Azithromycin Preferred Macrolide: Azithromycin is a preferred macrolide in pregnancy (`preferred`) with lower risk than clarithromycin; OTIS and Nordic Pregnancy Cohorts reported major congenital malformations in 3.0%"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Danish & OTIS Penicillin Cohort (class)",
+        "percent": 2.7,
+        "ci95": "2.4%–3.1%",
+        "n_exposed": 12500,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 5: Penicillins & Cephalosporins",
+            "quote": "Danish/OTIS Cohorts reported 2.7% MCM (95% CI: 2.4%–3.1%, n=12,500) for penicillins and 2.8% (95% CI: 2.1%–3.7%, n=1,740) for cephalosporins; increased maternal GFR and volume of distribution in pregnancy may warrant standard-to-high end dosing for CNS meningitis. Azithromycin Preferred Macrolide: Azithromycin is a preferred macrolide in"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "lactation_rid": {
+      "value": "0.4% to 1.0% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: amoxicillin-clavulanate — Drug Levels",
+          "quote": "Maternal oral amoxicillin produces a very low relative infant dose of 0.4% to 1.0% of the weight-adjusted maternal dosage, with minimal clavulanate transfer. Summary of Use during Lactation: Amoxicillin-clavulanate is compatible with breastfeeding (RID <= 1%); monitor breastfed infants occasionally for mild diarrhea, candidiasis (thrush),"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Amoxicillin is excreted in human milk; use by nursing mothers may lead to sensitization of infants; exercise caution when administering to a nursing woman.",
+      "value": "Compatible with breastfeeding (RID <= 1%) with minimal clavulanate transfer; monitor infant occasionally for mild diarrhea, thrush, or rash.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: amoxicillin-clavulanate — Summary of Use during Lactation",
+          "quote": "Amoxicillin-clavulanate is compatible with breastfeeding (RID <= 1%); monitor breastfed infants occasionally for mild diarrhea, candidiasis (thrush), or rare rash due to disruption of gastrointestinal flora. [ampicillin] Relative Infant Dose (RID): Breastfed infants receive approximately 0.1% to 0.5% of the weight-adjusted maternal ampic"
+        },
         {
           "source_id": "fda-amoxicillin-clavulanate-label",
           "locator": "8.3 Nursing Mothers",
@@ -499,10 +543,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "9e4838b5b11fcc4f9b06a2d7661989214d5e68305db8e12b9ac7b7b4336c0bdf"
   }
 }

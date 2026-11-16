@@ -198,30 +198,75 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not interact with hormonal contraceptives; effective contraception advised during treatment and for 3 months post-dose unless continued for life-threatening NMOSD or gMG.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Eculizumab Contraception & Washout",
+          "quote": "Eculizumab does not interact with hormonal contraceptives; effective contraception is recommended during treatment and for 3 months after the last dose when clinically feasible, though therapy should be continued through pregnancy in life-threatening NMOSD or gMG when indicated. Ravulizumab Contraception & Washout: Ravulizumab has an exte"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Terminal complement activity and volume of distribution rise in the 3rd trimester, occasionally requiring shortened dosing intervals or supplemental doses to maintain C5 blockade.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Eculizumab Registry, PK & Postpartum",
+          "quote": "terminal complement activity and volume of distribution rise in the third trimester, occasionally requiring shortened dosing intervals or supplemental doses, followed by return to standard biweekly maintenance postpartum. Ravulizumab Pregnancy Safety & PK: Ravulizumab is an engineered long-acting IgG2/4 monoclonal antibody that crosses th"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "International PNH & aHUS/NMOSD Pregnancy Registry",
+        "percent": 2,
+        "ci95": "0.4%–5.8%",
+        "n_exposed": 148,
+        "dose_stratum": "pregnancy exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave2-guidelines",
+            "locator": "Section 2: Eculizumab Registry, PK & Postpartum",
+            "quote": "The International PNH and aHUS/NMOSD Pregnancy Registry reported major congenital malformations in 2.0% (95% CI: 0.4%–5.8%) of 148 pregnancy exposures; terminal complement activity and volume of distribution rise in the third trimester, occasionally requiring shortened dosing intervals or supplemental doses, followed by return to standard"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Return to standard biweekly maintenance dosing schedule postpartum if dosing intervals were shortened or supplemented in late pregnancy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Eculizumab Registry, PK & Postpartum",
+          "quote": "followed by return to standard biweekly maintenance postpartum. Ravulizumab Pregnancy Safety & PK: Ravulizumab is an engineered long-acting IgG2/4 monoclonal antibody that crosses the placenta via FcRn in late pregnancy; human registry data remain sparse compared with eculizumab, so reserve use during pregnancy for severe NMOSD or gMG whe"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Undetectable in breast milk (estimated < 0.1%)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Eculizumab — Drug Levels",
+          "quote": "Large IgG2/4 monoclonal antibody (~148 kDa) with undetectable breast milk concentrations in published maternal samples (estimated RID < 0.1%) and negligible oral infant GI absorption. Summary of Use during Lactation: Eculizumab is undetectable in human milk and poorly absorbed intact by the infant gut; available evidence indicates it is c"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Limited published data do not report detectable levels in human milk, though maternal IgG is present in human milk; information is insufficient to inform infant effects.",
+      "value": "Undetectable in human milk (estimated RID < 0.1%) and poorly absorbed intact by the infant gut; compatible with breastfeeding without waiting periods.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Eculizumab — Summary of Use during Lactation",
+          "quote": "Eculizumab is undetectable in human milk and poorly absorbed intact by the infant gut; available evidence indicates it is compatible with breastfeeding without special waiting periods. [efgartigimod] Relative Infant Dose (RID): Human breast milk transfer data for efgartigimod are currently unavailable (large Fc fragment ~54 kDa; theoreti"
+        },
         {
           "source_id": "fda-eculizumab-label",
           "locator": "USE IN SPECIFIC POPULATIONS",
@@ -230,11 +275,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "7aaab45211a6b9d5f2591b4ce5327ab101bf51ef991518bf8e1092fdd73b5bff"
   },
   "adverse_effects": {
     "most_common": {

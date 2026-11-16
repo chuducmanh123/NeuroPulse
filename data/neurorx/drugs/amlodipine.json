@@ -392,26 +392,65 @@
       ],
       "note": "5-axis synthesis: No boxed warning or pregnancy contraindication; limited post-marketing human data are insufficient to inform risk; animal studies showed no teratogenicity at 10-20x MRHD, though rats had decreased litter size (~50%), 5-fold increase in intrauterine deaths, and prolonged gestation/labor at 10x MRHD; untreated hypertension carries maternal/fetal risks."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not impair hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Acceptable second-line dihydropyridine CCB in pregnancy (extended-release nifedipine is preferred first-line CCB); monitor maternal blood pressure and uteroplacental perfusion.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Calcium Channel Blockers",
+          "quote": "Extended-release nifedipine and amlodipine are acceptable options for gestational hypertension (`caution`; Nordic/Medicaid cohort for amlodipine/CCBs: 3.1% MCM, 95% CI: 2.1%–4.5%, n=912); IV nicardipine is used for refractory hypertensive emergencies; nimodipine is reserved for aneurysmal SAH vasospasm during pregnancy (`caution`), monito"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Nordic & Medicaid CCB Cohort",
+        "percent": 3.1,
+        "ci95": "2.1%–4.5%",
+        "n_exposed": 912,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 3: Calcium Channel Blockers",
+            "quote": "Nordic/Medicaid cohort for amlodipine/CCBs: 3.1% MCM, 95% CI: 2.1%–4.5%, n=912); IV nicardipine is used for refractory hypertensive emergencies; nimodipine is reserved for aneurysmal SAH vasospasm during pregnancy (`caution`), monitoring maternal blood pressure and uteroplacental perfusion, with postpartum titration as BP stabilizes. Beta"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Titrate postpartum antihypertensive regimen as maternal blood pressure peaks (days 3–6) and subsequently stabilizes over weeks postpartum.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Calcium Channel Blockers",
+          "quote": "with postpartum titration as BP stabilizes. Beta-Blockers (Bisoprolol & Nebivolol): Bisoprolol and nebivolol have smaller human pregnancy datasets than labetalol or metoprolol (`caution`); maternal CYP2D6/renal clearance changes may alter exposure, third-trimester use warrants fetal growth and neonatal bradycardia/hypoglycemia monitoring,"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": "4.2%",
+      "value": "1.7% to 4.2% (median ~4.2%) of the weight-adjusted maternal dosage",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Amlodipine — Drug Levels",
+          "quote": "Breastfed infants receive approximately 1.7% to 4.2% (median ~4.2%) of the weight-adjusted maternal amlodipine dosage through human milk. Summary of Use during Lactation: Amlodipine passes into human milk in small amounts (RID < 5%) with undetectable infant plasma levels and no reported adverse effects in breastfed infants; compatible wit"
+        },
         {
           "source_id": "fda-amlodipine-label",
           "locator": "Section 8.2 Lactation",
@@ -420,8 +459,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Amlodipine is present in human milk at an estimated median relative infant dose of 4.2%; no adverse effects on the breastfed infant have been observed, and no information is available on effects on milk production.",
+      "value": "Passes into human milk in small amounts (RID < 5%) with undetectable infant plasma levels and no reported adverse effects; compatible with breastfeeding.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Amlodipine — Summary of Use during Lactation",
+          "quote": "Amlodipine passes into human milk in small amounts (RID < 5%) with undetectable infant plasma levels and no reported adverse effects in breastfed infants; compatible with breastfeeding with routine monitoring for rare hypotension or lethargy. [amoxicillin-clavulanate] Relative Infant Dose (RID): Maternal oral amoxicillin produces a very"
+        },
         {
           "source_id": "fda-amlodipine-label",
           "locator": "Section 8.2 Lactation",
@@ -430,10 +474,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "1ccfa101da40fd648436a639c48a38d977f4203f49f7203ba3f04e054858590d"
   }
 }

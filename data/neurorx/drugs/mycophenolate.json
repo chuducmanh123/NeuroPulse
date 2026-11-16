@@ -371,28 +371,24 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
-      "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": "Pregnancy registry data show 45-49% first-trimester pregnancy loss and 23-27% congenital malformations; consider alternative immunosuppressants with less embryofetal toxicity.",
+      "value": "Major human teratogen requiring two negative pregnancy tests prior to start; supplement high-dose folic acid (4–5 mg/day) if inadvertent exposure occurs (does not eliminate mycophenolate embryopathy).",
       "refs": [
         {
-          "source_id": "fda-mycophenolate-label",
-          "locator": "8.1 Pregnancy",
-          "quote": "A spectrum of congenital malformations (including multiple malformations in individual newborns) has been reported in 23 to 27% of live births in MMF exposed pregnancies, based on published data from pregnancy registries."
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Mycophenolate REMS & Folic Acid",
+          "quote": "Mycophenolate mofetil is a major human teratogen requiring two negative pregnancy tests prior to initiation and high-dose folic acid supplementation (4 to 5 mg/day) if inadvertent first-trimester exposure occurs, though folate does not eliminate mycophenolate embryopathy. Mycophenolate Contraception & Washout: Per REMS mandates, females o"
         }
       ]
     },
-    "postpartum": {
-      "value": null,
-      "refs": []
-    },
     "contraception": {
-      "value": "Females of reproductive potential must use acceptable contraception during therapy and for 6 weeks after stopping; reduces levonorgestrel levels (use additional barrier method). Sexually active males should use effective contraception during therapy and for 90 days after.",
+      "value": "REMS mandate: use 1 highly effective method (IUD/implant) or 2 complementary methods during therapy and for 6 weeks after cessation in females; male partners avoid fathering children for 90 days post-cessation.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Mycophenolate Contraception & Washout",
+          "quote": "Per REMS mandates, females of reproductive potential must use one highly effective contraceptive method (e.g."
+        },
         {
           "source_id": "fda-mycophenolate-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.3 Females and Males of Reproductive Potential",
@@ -400,13 +396,74 @@
         }
       ]
     },
-    "lactation_rid": {
+    "pregnancy_pk": {
+      "value": "Contraindicated in pregnancy due to severe mycophenolate embryopathy (microtia, clefts, cardiac/esophageal anomalies) and ~45%–49% miscarriage rate; switch to safer alternative (e.g. azathioprine) prior to conception.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Mycophenolate Registries & PK",
+          "quote": "Mycophenolate mofetil is contraindicated in pregnancy due to severe embryopathy (microtia, cleft lip/palate, congenital heart and esophageal defects) and ~45%–49% miscarriage rate; National Transplant Pregnancy Registry (NTPR) data showed major malformations in 23.0% (95% CI: 16.0%–31.5%) of 130 first-trimester exposures, and the ENTIS co"
+        },
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "A spectrum of congenital malformations (including multiple malformations in individual newborns) has been reported in 23 to 27% of live births in MMF exposed pregnancies, based on published data from pregnancy registries."
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "National Transplant Pregnancy Registry (NTPR)",
+        "percent": 23,
+        "ci95": "16.0%–31.5%",
+        "n_exposed": 130,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave2-guidelines",
+            "locator": "Section 2: Mycophenolate Registries & PK",
+            "quote": "National Transplant Pregnancy Registry (NTPR) data showed major malformations in 23.0% (95% CI: 16.0%–31.5%) of 130 first-trimester exposures, and the ENTIS cohort reported 26.7% (95% CI: 15.6%–40.3%) of 56 exposures. Rituximab Registry, Placental Transfer & Postpartum: The Rituximab Global Drug Safety Pregnancy Database reported major co"
+          }
+        ]
+      },
+      {
+        "registry": "ENTIS Prospective Cohort",
+        "percent": 26.7,
+        "ci95": "15.6%–40.3%",
+        "n_exposed": 56,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave2-guidelines",
+            "locator": "Section 2: Mycophenolate Registries & PK",
+            "quote": "and the ENTIS cohort reported 26.7% (95% CI: 15.6%–40.3%) of 56 exposures. Rituximab Registry, Placental Transfer & Postpartum: The Rituximab Global Drug Safety Pregnancy Database reported major congenital malformations in 2.6% (95% CI: 1.0%–5.6%) of 231 pre-conception or first-trimester exposures; because IgG1 crosses the placenta active"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "lactation_rid": {
+      "value": "Not quantified in human milk",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Mycophenolate — Drug Levels",
+          "quote": "Clinical human milk transfer measurements for mycophenolate mofetil are lacking (not quantified in human milk). Summary of Use during Lactation: Because mycophenolate carries potential risks of severe immunosuppression, neutropenia, and GI toxicity in nursing infants and human milk levels are uncharacterized, breastfeeding is generally no"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk; animal studies show MPA in rat milk. Limited registry data (7 infants) reported no adverse events, but potential risks to a breastfeeding infant cannot be excluded.",
+      "value": "Human milk transfer is uncharacterized with potential risks of infant immunosuppression, neutropenia, and GI toxicity; breastfeeding is generally not recommended when safer alternatives exist.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Mycophenolate — Summary of Use during Lactation",
+          "quote": "Because mycophenolate carries potential risks of severe immunosuppression, neutropenia, and GI toxicity in nursing infants and human milk levels are uncharacterized, breastfeeding is generally not recommended or requires extreme caution with close infant monitoring when safer alternatives exist. [prednisolone] Relative Infant Dose (RID):"
+        },
         {
           "source_id": "fda-mycophenolate-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
@@ -415,11 +472,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "d00d56eb24f6d3a105bc5dac70dd2f8d6af0bc5f5978f9a07774c03fe90db5e7"
   },
   "adverse_effects": {
     "most_common": {

@@ -372,9 +372,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "note": "Negative animal teratogenicity at 3-20x human dose, but FDA label notes no adequate and well-controlled studies in pregnant women and recommends use during pregnancy only if clearly needed.",
+      "value": "preferred",
+      "note": "Preferred first-line third-generation cephalosporin in pregnancy (2.8% cephalosporin cohort MCM in n=1,740) and essential for bacterial meningitis.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Penicillins & Cephalosporins",
+          "quote": "Beta-lactams are preferred first-line antibiotics in pregnancy (`preferred` for ampicillin, amoxicillin-clavulanate, ceftriaxone; `caution` for piperacillin-tazobactam due to smaller human cohorts); Danish/OTIS Cohorts reported 2.7% MCM (95% CI: 2.4%–3.1%, n=12,500) for penicillins and 2.8% (95% CI: 2.1%–3.7%, n=1,740) for cephalosporins;"
+        },
         {
           "source_id": "fda-ceftriaxone-label",
           "locator": "PREGNANCY",
@@ -382,14 +387,29 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not reduce systemic hormonal contraceptive levels; use barrier backup only if severe antibiotic-associated vomiting or diarrhea occurs.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Broad-Spectrum Antibiotics Contraception Note",
+          "quote": "Unlike rifamycins, non-rifamycin beta-lactams, macrolides, glycopeptides, and fluoroquinolones do not reduce systemic ethinylestradiol or progestin levels; extra backup contraception is only required if severe antibiotic-associated vomiting or diarrhea impairs pill absorption. Folic Acid Preconception Baseline (Warfarin, Metformin, Diabet"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "Ceftriaxone crosses the blood-placenta barrier.",
+      "value": "Elevated maternal GFR and expanded volume of distribution in pregnancy increase beta-lactam clearance; use standard-to-high-end dosing for serious CNS infections.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 5: Penicillins & Cephalosporins",
+          "quote": "increased maternal GFR and volume of distribution in pregnancy may warrant standard-to-high end dosing for CNS meningitis. Azithromycin Preferred Macrolide: Azithromycin is a preferred macrolide in pregnancy (`preferred`) with lower risk than clarithromycin; OTIS and Nordic Pregnancy Cohorts reported major congenital malformations in 3.0%"
+        },
         {
           "source_id": "fda-ceftriaxone-label",
           "locator": "CLINICAL PHARMACOLOGY",
@@ -397,21 +417,45 @@
         }
       ]
     },
+    "mcm": [
+      {
+        "registry": "Danish & OTIS Cephalosporin Cohort (class)",
+        "percent": 2.8,
+        "ci95": "2.1%–3.7%",
+        "n_exposed": 1740,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 5: Penicillins & Cephalosporins",
+            "quote": "and 2.8% (95% CI: 2.1%–3.7%, n=1,740) for cephalosporins; increased maternal GFR and volume of distribution in pregnancy may warrant standard-to-high end dosing for CNS meningitis. Azithromycin Preferred Macrolide: Azithromycin is a preferred macrolide in pregnancy (`preferred`) with lower risk than clarithromycin; OTIS and Nordic Pregnan"
+          }
+        ]
+      }
+    ],
     "postpartum": {
       "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.3% to 4.4% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: ceftriaxone — Drug Levels",
+          "quote": "Parenteral ceftriaxone passes into breast milk in very small amounts, yielding a relative infant dose of 0.3% to 4.4% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Ceftriaxone has poor oral absorption in the infant gut and low milk transfer (RID < 4.5%), making it compatible with breastfeeding; observe the infan"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Low concentrations of ceftriaxone are excreted in human milk; exercise caution when administered to a nursing woman.",
+      "value": "Low milk transfer (RID < 4.5%) and poor oral absorption in the infant gut; compatible with breastfeeding (watch for mild loose stools or thrush).",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: ceftriaxone — Summary of Use during Lactation",
+          "quote": "Ceftriaxone has poor oral absorption in the infant gut and low milk transfer (RID < 4.5%), making it compatible with breastfeeding; observe the infant for mild loose stools or thrush. [ciprofloxacin] Relative Infant Dose (RID): Oral or IV ciprofloxacin produces a low relative infant dose of 0.5% to 2.1% of the weight-adjusted maternal do"
+        },
         {
           "source_id": "fda-ceftriaxone-label",
           "locator": "NURSING_MOTHERS",
@@ -420,11 +464,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "f84a3145b8ed392bbf8db0911739d4126394d3d894d337733ede07f5159c8f3e"
   },
   "adverse_effects": {
     "most_common": {

@@ -265,9 +265,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "note": "No controlled human pregnancy data or animal reproduction studies are available in the FDA label; immune globulins cross the placenta increasingly after 30 weeks of gestation and should be given only if clearly needed.",
+      "value": "preferred",
+      "note": "Preferred immunomodulatory therapy for myasthenia gravis crisis, CIDP, and NMOSD relapses during pregnancy per MGFA/EAN consensus.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: IVIG Preferred Immunomodulation & PK",
+          "quote": "Intravenous immunoglobulin (IVIG) is a preferred immunomodulatory therapy for myasthenia gravis crisis, CIDP, and NMOSD relapses during pregnancy; endogenous IgG crosses the placenta via FcRn after 30–32 weeks without teratogenicity, and pregnancy management requires monitoring maternal hydration and venous thromboembolism prophylaxis. Ec"
+        },
         {
           "source_id": "fda-ivig-label",
           "locator": "USE IN SPECIFIC POPULATIONS",
@@ -280,14 +285,29 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not alter hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Myasthenia & Spasticity Agents Contraception Note",
+          "quote": "Systemic corticosteroids, pyridostigmine, IVIG, and oral muscle relaxants do not impair hormonal contraceptive efficacy; note that tizanidine clearance is reduced by combined oral contraceptives containing ethinylestradiol (CYP1A2 inhibition), increasing maternal hypotension and sedation risk. === SECTION 2: PREGNANCY SAFETY TIER, PHARMA"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "Immune globulins cross the placenta from maternal circulation increasingly after 30 weeks of gestation.",
+      "value": "Endogenous IgG crosses the placenta via FcRn after 30–32 weeks without teratogenicity; monitor maternal hydration and venous thromboembolism prophylaxis during pregnancy infusions.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: IVIG Preferred Immunomodulation & PK",
+          "quote": "endogenous IgG crosses the placenta via FcRn after 30–32 weeks without teratogenicity, and pregnancy management requires monitoring maternal hydration and venous thromboembolism prophylaxis. Eculizumab Registry, PK & Postpartum: The International PNH and aHUS/NMOSD Pregnancy Registry reported major congenital malformations in 2.0% (95% CI"
+        },
         {
           "source_id": "fda-ivig-label",
           "locator": "USE IN SPECIFIC POPULATIONS",
@@ -295,21 +315,30 @@
         }
       ]
     },
+    "mcm": [],
     "postpartum": {
       "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Physiological endogenous IgG transfer (no drug-toxicity RID threshold)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: IVIG — Drug Levels",
+          "quote": "Endogenous IgG is a normal component of human colostrum and mature breast milk; exogenous IVIG produces physiological milk IgG transfer with no quantitative drug-toxicity RID threshold applicable. Summary of Use during Lactation: Intravenous immunoglobulin (IVIG) is compatible with breastfeeding and requires no interruption of nursing, as"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No human data are available on presence in human milk or effects on the breastfed infant; weigh breastfeeding benefits against maternal clinical need.",
+      "value": "Compatible with breastfeeding without interruption; IgG antibodies naturally present in colostrum and human milk are safe and beneficial to the infant.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: IVIG — Summary of Use during Lactation",
+          "quote": "Intravenous immunoglobulin (IVIG) is compatible with breastfeeding and requires no interruption of nursing, as IgG antibodies naturally present in breast milk are safe and beneficial to the infant. [methylprednisolone] Relative Infant Dose (RID): Standard oral or pulse IV methylprednisolone yields a relative infant dose of 0.2% to 1.5% o"
+        },
         {
           "source_id": "fda-ivig-label",
           "locator": "USE IN SPECIFIC POPULATIONS",
@@ -318,11 +347,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "a1545f3e43e21e7c46617a91b65763660e5055d14fd4ceb5bbf0de951d7ac3e0"
   },
   "adverse_effects": {
     "most_common": {

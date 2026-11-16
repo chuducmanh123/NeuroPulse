@@ -366,30 +366,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not alter hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Avoid in 2nd and 3rd trimesters due to renal tubular developmental toxicity in animal kidneys during maturation; transition to insulin in pregnancy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Sulfonylureas & Newer Antidiabetics",
+          "quote": "dapagliflozin and empagliflozin must be avoided in 2nd/3rd trimesters (`avoid`) due to renal tubular developmental toxicity in animal kidneys—transition to insulin during pregnancy and reassess postpartum. Proton Pump Inhibitors (Omeprazole, Esomeprazole, Pantoprazole): PPIs are widely used for severe GERD or stress ulcer prophylaxis in p"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Reassess maternal postpartum glycemic control before resuming non-insulin oral agents, selecting lactation-compatible options (insulin or metformin) if breastfeeding.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Sulfonylureas & Newer Antidiabetics",
+          "quote": "transition to insulin during pregnancy and reassess postpartum. Proton Pump Inhibitors (Omeprazole, Esomeprazole, Pantoprazole): PPIs are widely used for severe GERD or stress ulcer prophylaxis in pregnancy (`caution`); Danish National Birth Cohort data for omeprazole reported major congenital malformations in 2.6% (95% CI: 2.2%–3.1%, n=1"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: dapagliflozin — Drug Levels",
+          "quote": "No quantitative human breast milk data are available for dapagliflozin. Summary of Use during Lactation: Because dapagliflozin passes into rat milk and causes renal tubular dilation during rodent kidney maturation (corresponding to human infancy), breastfeeding is not recommended during dapagliflozin therapy; prefer insulin or metformin."
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No human milk data; present in rat milk (milk/plasma ratio 0.49). Not recommended while breastfeeding due to potential risk to the developing human kidney during the first 2 years of life.",
+      "value": "Transfers into animal milk with potential adverse effects on developing infant renal tubules; breastfeeding is not recommended (prefer insulin or metformin).",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: dapagliflozin — Summary of Use during Lactation",
+          "quote": "Because dapagliflozin passes into rat milk and causes renal tubular dilation during rodent kidney maturation (corresponding to human infancy), breastfeeding is not recommended during dapagliflozin therapy; prefer insulin or metformin. [digoxin] Relative Infant Dose (RID): Breastfed infants receive approximately 1.9% to 4.1% of the weight"
+        },
         {
           "source_id": "fda-dapagliflozin-label",
           "locator": "8.2 Lactation",
@@ -398,10 +428,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "28530a0096113e3bab467c914cae58173aa4cb81caeb2b5136e662a8ecb6e686"
   }
 }

@@ -237,9 +237,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "note": "5-axis synthesis: (1) No Boxed Warning or pregnancy contraindication. (2) No human data related to Klor-Con use during pregnancy. (3) No animal reproduction studies conducted. (4) Label states potassium supplementation that does not lead to hyperkalemia is not expected to cause fetal harm. (5) PLLR label; due to absence of formal human/animal studies, assigned caution per EXTRACTION.md.",
+      "value": "preferred",
+      "note": "Physiological electrolyte replacement safe and compatible throughout all trimesters when clinically indicated for hypokalemia.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Potassium Chloride",
+          "quote": "Oral and IV potassium chloride is physiological replacement therapy (`preferred`) safe throughout all trimesters when indicated for hypokalemia; monitor maternal serum potassium and renal function. === SECTION 4: STATINS, ENDOCRINE/METABOLIC & GASTROINTESTINAL === Statins (Atorvastatin, Rosuvastatin, Simvastatin): Although recent FDA lab"
+        },
         {
           "source_id": "fda-potassium-chloride-label",
           "locator": "8.1 Pregnancy — Risk Summary",
@@ -247,30 +252,50 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "Physiological electrolyte replacement safe throughout all trimesters; monitor maternal serum potassium and renal function.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Potassium Chloride",
+          "quote": "Oral and IV potassium chloride is physiological replacement therapy (`preferred`) safe throughout all trimesters when indicated for hypokalemia; monitor maternal serum potassium and renal function. === SECTION 4: STATINS, ENDOCRINE/METABOLIC & GASTROINTESTINAL === Statins (Atorvastatin, Rosuvastatin, Simvastatin): Although recent FDA lab"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Not applicable (physiological electrolyte)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Potassium Chloride — Drug Levels",
+          "quote": "Physiological electrolyte essential in human milk; exogenous maternal potassium chloride replacement does not alter physiological breast milk potassium levels (RID not applicable). Summary of Use during Lactation: Oral or IV potassium chloride replacement to normalize maternal serum potassium is completely compatible with breastfeeding an"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Normal potassium ion content of human milk is about 13 mEq/L. Since oral potassium becomes part of the body potassium pool, so long as body potassium is not excessive, potassium chloride supplementation should have little or no effect on human milk levels.",
+      "value": "Normalizing maternal serum potassium with oral or IV potassium chloride is completely compatible with breastfeeding and poses no infant risk.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Potassium Chloride — Summary of Use during Lactation",
+          "quote": "Oral or IV potassium chloride replacement to normalize maternal serum potassium is completely compatible with breastfeeding and poses no risk to the nursing infant. [pramipexole] Relative Infant Dose (RID): Human milk levels of pramipexole are unmeasured, and its potent D2/D3 agonism strongly suppresses maternal prolactin secretion. Summ"
+        },
         {
           "source_id": "fda-potassium-chloride-label",
           "locator": "8.2 Lactation — Risk Summary",
@@ -279,10 +304,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "06e2b42bc5bc3ac8e0be845e5e98e02bcd170b407656f6016000b181045eb14c"
   }
 }

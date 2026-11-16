@@ -171,40 +171,75 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
+      "value": "preferred",
+      "note": "Preferred first-line symptomatic therapy for myasthenia gravis throughout pregnancy per MGFA international consensus guidelines.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Pyridostigmine Preferred MG Therapy & PK",
+          "quote": "Pyridostigmine is the preferred first-line symptomatic treatment for myasthenia gravis throughout pregnancy; expanded maternal blood volume, increased renal clearance, and delayed gastric emptying in the second and third trimesters frequently require dose escalation or shortened dosing intervals, while IV cholinesterase inhibitors near te"
+        },
         {
           "source_id": "fda-pyridostigmine-label",
           "locator": "PREGNANCY",
           "quote": "Usage in Pregnancy : The safety of MESTINON during pregnancy or lactation in humans has not been established. Therefore, use of MESTINON in women who may become pregnant requires weighing the drug’s potential benefits against its possible hazards to mother and child."
         }
-      ],
-      "note": "Safety during human pregnancy and lactation has not been established; use requires weighing potential maternal benefits against possible fetal/infant hazards."
+      ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not impair hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Myasthenia & Spasticity Agents Contraception Note",
+          "quote": "Systemic corticosteroids, pyridostigmine, IVIG, and oral muscle relaxants do not impair hormonal contraceptive efficacy; note that tizanidine clearance is reduced by combined oral contraceptives containing ethinylestradiol (CYP1A2 inhibition), increasing maternal hypotension and sedation risk. === SECTION 2: PREGNANCY SAFETY TIER, PHARMA"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Expanded blood volume, increased renal clearance, and delayed gastric emptying in the 2nd/3rd trimesters often require dose escalation or shorter intervals; avoid IV cholinesterase inhibitors near term (uterine contractions).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Pyridostigmine Preferred MG Therapy & PK",
+          "quote": "expanded maternal blood volume, increased renal clearance, and delayed gastric emptying in the second and third trimesters frequently require dose escalation or shortened dosing intervals, while IV cholinesterase inhibitors near term should be avoided to prevent premature uterine contractions. Pyridostigmine Postpartum: Maternal pyridosti"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Requirements often fluctuate sharply immediately postpartum; monitor myasthenic strength closely, adjust back toward pre-pregnancy oral dosing, and watch newborns for transient neonatal myasthenia gravis.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Pyridostigmine Postpartum",
+          "quote": "Maternal pyridostigmine requirements often fluctuate sharply in the immediate postpartum period; closely monitor myasthenic strength and adjust back toward pre-pregnancy oral dosing within days to weeks after delivery while watching newborns for transient neonatal myasthenia gravis. Prednisolone & Methylprednisolone Registry & PK: Non-flu"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.04% to 0.1% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Pyridostigmine — Drug Levels",
+          "quote": "Maternal oral pyridostigmine doses of 180 to 300 mg/day produce a low relative infant dose of 0.04% to 0.1% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Pyridostigmine transfer into human milk is minimal (RID <= 0.1%) and breastfed infants have undetectable plasma levels; compatible with breastfeeding in mother"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Safety during lactation in humans has not been established; weigh potential benefits against possible hazards to mother and child.",
+      "value": "Minimal transfer into human milk (RID <= 0.1%) with undetectable infant plasma levels; compatible with breastfeeding in myasthenia gravis while observing infants for rare GI upset.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Pyridostigmine — Summary of Use during Lactation",
+          "quote": "Pyridostigmine transfer into human milk is minimal (RID <= 0.1%) and breastfed infants have undetectable plasma levels; compatible with breastfeeding in mothers with myasthenia gravis while observing infants for rare gastrointestinal upset. [ravulizumab] Relative Infant Dose (RID): Human breast milk data for ravulizumab are lacking; as a"
+        },
         {
           "source_id": "fda-pyridostigmine-label",
           "locator": "PREGNANCY",
@@ -213,11 +248,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "1b125fdc7a0e53c4cccaf23ab782a2b230c8d319e5d58c890a74fbc3665492bd"
   },
   "adverse_effects": {
     "most_common": {

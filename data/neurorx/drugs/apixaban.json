@@ -277,11 +277,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "7fa36911cfd47ab7235d6b797b9ba02df6537391d7beef012cc4c69c075b433d"
   },
   "adverse_effects": {
     "most_common": {
@@ -369,8 +369,13 @@
   "reproductive": {
     "tier": {
       "value": "avoid",
-      "note": "Label states use in pregnancy is not recommended; human developmental data are limited/insufficient and treatment may increase maternal and fetal bleeding risk during pregnancy and delivery.",
+      "note": "Direct oral anticoagulants cross the placenta with fetal bleeding and embryotoxicity risk; avoid in pregnancy and switch immediately to LMWH per ESC/ASH guidelines.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: DOACs Pregnancy Contraindication",
+          "quote": "Direct oral anticoagulants (apixaban, dabigatran, edoxaban, rivaroxaban) cross the human placenta, carry unacceptable fetal bleeding and embryotoxicity risk, and are contraindicated/avoided during pregnancy per ESC and ASH guidelines; switch immediately to LMWH upon pregnancy recognition, and transition back postpartum only after breastfe"
+        },
         {
           "source_id": "fda-apixaban-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS (8.1 Pregnancy)",
@@ -383,30 +388,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not reduce hormonal contraceptive efficacy; effective contraception is recommended to permit transition to LMWH prior to planned pregnancy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
+          "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Crosses the human placenta and carries fetal hemorrhage/embryotoxicity risk; contraindicated/avoided in pregnancy—switch immediately to LMWH upon pregnancy recognition.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: DOACs Pregnancy Contraindication",
+          "quote": "Direct oral anticoagulants (apixaban, dabigatran, edoxaban, rivaroxaban) cross the human placenta, carry unacceptable fetal bleeding and embryotoxicity risk, and are contraindicated/avoided during pregnancy per ESC and ASH guidelines; switch immediately to LMWH upon pregnancy recognition, and transition back postpartum only after breastfe"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Resume DOAC postpartum only once surgical hemostasis is achieved and breastfeeding plans are addressed (use LMWH or warfarin if breastfeeding).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: DOACs Pregnancy Contraindication",
+          "quote": "transition back postpartum only after breastfeeding decisions are reviewed. Low-Dose Aspirin Pregnancy & Registry: Low-dose aspirin (75–150 mg/day) is safe and recommended for preeclampsia prevention and maternal stroke/antiplatelet indications (`caution` for high analgesic doses >=300 mg/day near term due to ductal closure); Nordic and U"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "12% to 20% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: apixaban — Drug Levels",
+          "quote": "Human breast milk pharmacokinetic measurements indicate a high relative infant dose of approximately 12% to 20% of the weight-adjusted maternal apixaban dosage. Summary of Use during Lactation: Because apixaban concentrates in human milk (RID 12%–20%) and poses a theoretical bleeding risk in the nursing infant, breastfeeding is not recomm"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Human milk transfer is unknown; because human exposure through milk is unknown, breastfeeding is not recommended during treatment.",
+      "value": "Concentrates in human milk (RID 12%–20%) with theoretical infant bleeding risk; breastfeeding is not recommended (prefer warfarin or LMWH).",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: apixaban — Summary of Use during Lactation",
+          "quote": "Because apixaban concentrates in human milk (RID 12%–20%) and poses a theoretical bleeding risk in the nursing infant, breastfeeding is not recommended during apixaban therapy; warfarin or low-molecular-weight heparin is preferred. [aspirin] Relative Infant Dose (RID): Low-dose aspirin (75–100 mg/day) produces negligible milk salicylate"
+        },
         {
           "source_id": "fda-apixaban-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",

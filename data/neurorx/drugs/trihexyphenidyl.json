@@ -226,30 +226,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not reduce hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Insufficient human pregnancy safety data; transition to levodopa monotherapy if symptom control is required during pregnancy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 6: Dopamine Agonists & Adjuncts",
+          "quote": "have insufficient human pregnancy safety data (`caution`); dopamine agonists suppress maternal prolactin and inhibit postpartum lactation, so transition to levodopa monotherapy if breastfeeding is planned. Amantadine Teratogenicity: Amantadine is teratogenic in animals and has case reports of complex congenital heart defects (including si"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Dopamine agonists suppress maternal prolactin and inhibit postpartum lactation; switch or maintain levodopa monotherapy if breastfeeding is planned.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 6: Dopamine Agonists & Adjuncts",
+          "quote": "dopamine agonists suppress maternal prolactin and inhibit postpartum lactation, so transition to levodopa monotherapy if breastfeeding is planned. Amantadine Teratogenicity: Amantadine is teratogenic in animals and has case reports of complex congenital heart defects (including single ventricle and truncus arteriosus) in humans (`avoid`);"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: trihexyphenidyl — Drug Levels",
+          "quote": "Human breast milk concentrations of trihexyphenidyl are unavailable, though systemic anticholinergics can suppress lactation. Summary of Use during Lactation: Trihexyphenidyl lacks human milk data, may decrease maternal milk supply via anticholinergic action, and could cause infant tachycardia, flushing, or sedation; use caution or prefer"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Excretion in human milk is unknown; exercise caution and use only if expected maternal benefit outweighs potential infant risk, as anticholinergics may suppress lactation.",
+      "value": "Lacks human milk data, may decrease milk supply via anticholinergic action, and could cause infant tachycardia, flushing, or sedation; use caution or prefer an alternative.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: trihexyphenidyl — Summary of Use during Lactation",
+          "quote": "Trihexyphenidyl lacks human milk data, may decrease maternal milk supply via anticholinergic action, and could cause infant tachycardia, flushing, or sedation; use caution or prefer an alternative while monitoring milk volume and infant symptoms. [valsartan] Relative Infant Dose (RID): Human breast milk concentrations of valsartan are un"
+        },
         {
           "source_id": "fda-trihexyphenidyl-label",
           "locator": "NURSING_MOTHERS",
@@ -263,11 +293,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "fc78f5b5560abc45d45b8fe1b3ba44aea635a069bbf47c338164c5f14cda8bb3"
   },
   "adverse_effects": {
     "most_common": {

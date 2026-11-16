@@ -447,26 +447,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not reduce hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Danish National Birth Cohort data showed no elevated malformation risk (2.9%, n=549); standard oral or IV dosing applies in pregnancy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Proton Pump Inhibitors",
+          "quote": "pantoprazole 2.9% (95% CI: 1.9%–4.3%, n=549) with no elevated birth defect risk. === SECTION 5: CNS INFECTIONS — ANTIMICROBIALS === Penicillins & Cephalosporins (Ampicillin, Amoxicillin-Clavulanate, Ceftriaxone, Piperacillin-Tazobactam): Beta-lactams are preferred first-line antibiotics in pregnancy (`preferred` for ampicillin, amoxicill"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Danish National Birth Cohort",
+        "percent": 2.9,
+        "ci95": "1.9%–4.3%",
+        "n_exposed": 549,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 4: Proton Pump Inhibitors",
+            "quote": "pantoprazole 2.9% (95% CI: 1.9%–4.3%, n=549) with no elevated birth defect risk. === SECTION 5: CNS INFECTIONS — ANTIMICROBIALS === Penicillins & Cephalosporins (Ampicillin, Amoxicillin-Clavulanate, Ceftriaxone, Piperacillin-Tazobactam): Beta-lactams are preferred first-line antibiotics in pregnancy (`preferred` for ampicillin, amoxicill"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": "0.14% of the weight-adjusted maternal dose",
+      "value": "0.02% to 0.14% of the weight-adjusted maternal dosage",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Pantoprazole — Drug Levels",
+          "quote": "Single oral or IV pantoprazole produces an extremely low relative infant dose of 0.02% to 0.14% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Pantoprazole milk concentrations are minimal (RID < 0.2%) and rapid acid degradation in the infant stomach limits absorption; compatible with breastfeeding. [phytonadione"
+        },
         {
           "source_id": "fda-pantoprazole-label",
           "locator": "8.2 Lactation",
@@ -475,8 +509,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Detected in breast milk at low levels after a single 40 mg oral dose (milk-to-plasma ratio 0.022 at 2 hours; estimated infant dose 7.3 mcg or 0.14% of weight-adjusted maternal dose; undetectable <10 mcg/L by 6 hours); no infant adverse events reported.",
+      "value": "Minimal milk concentrations (RID < 0.2%) with rapid gastric acid degradation in the infant stomach; compatible with breastfeeding.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Pantoprazole — Summary of Use during Lactation",
+          "quote": "Pantoprazole milk concentrations are minimal (RID < 0.2%) and rapid acid degradation in the infant stomach limits absorption; compatible with breastfeeding. [phytonadione] Relative Infant Dose (RID): Standard oral or parenteral maternal vitamin K1 supplementation produces a low relative infant dose of < 2% (high maternal doses up to 5 mg"
+        },
         {
           "source_id": "fda-pantoprazole-label",
           "locator": "8.2 Lactation",
@@ -485,10 +524,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "2e454f70508496c5c605c5c8dae0f5586491fb58689ef14ee776e7fdc99b7d44"
   }
 }

@@ -682,30 +682,70 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not reduce hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Widely used for severe GERD or ulcer prophylaxis in pregnancy without teratogenic signal in Danish National Birth Cohort (2.6% MCM, n=1,800); standard dosing applies.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Proton Pump Inhibitors",
+          "quote": "PPIs are widely used for severe GERD or stress ulcer prophylaxis in pregnancy (`caution`); Danish National Birth Cohort data for omeprazole reported major congenital malformations in 2.6% (95% CI: 2.2%–3.1%, n=1,800) and pantoprazole 2.9% (95% CI: 1.9%–4.3%, n=549) with no elevated birth defect risk. === SECTION 5: CNS INFECTIONS — ANTIM"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Danish National Birth Cohort",
+        "percent": 2.6,
+        "ci95": "2.2%–3.1%",
+        "n_exposed": 1800,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 4: Proton Pump Inhibitors",
+            "quote": "Danish National Birth Cohort data for omeprazole reported major congenital malformations in 2.6% (95% CI: 2.2%–3.1%, n=1,800) and pantoprazole 2.9% (95% CI: 1.9%–4.3%, n=549) with no elevated birth defect risk. === SECTION 5: CNS INFECTIONS — ANTIMICROBIALS === Penicillins & Cephalosporins (Ampicillin, Amoxicillin-Clavulanate, Ceftriaxon"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.3% to 1.1% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Omeprazole — Drug Levels",
+          "quote": "Maternal oral omeprazole yields a very low relative infant dose of 0.3% to 1.1% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Omeprazole enters breast milk in tiny amounts (RID <= 1.1%) and is largely destroyed by infant gastric acid; compatible with breastfeeding without interruption. [pantoprazole] Relative I"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Limited data suggest omeprazole may be present in human milk; no clinical data on effects on the breastfed infant or milk production; weigh developmental and health benefits of breastfeeding against maternal clinical need.",
+      "value": "Enters breast milk in tiny amounts (RID <= 1.1%) and is largely destroyed by infant gastric acid; compatible with breastfeeding without interruption.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Omeprazole — Summary of Use during Lactation",
+          "quote": "Omeprazole enters breast milk in tiny amounts (RID <= 1.1%) and is largely destroyed by infant gastric acid; compatible with breastfeeding without interruption. [pantoprazole] Relative Infant Dose (RID): Single oral or IV pantoprazole produces an extremely low relative infant dose of 0.02% to 0.14% of the weight-adjusted maternal dosage."
+        },
         {
           "source_id": "fda-omeprazole-label",
           "locator": "8.2 Lactation",
@@ -714,10 +754,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "9a64e1c4c84c47e31f39fb377730f9789c35091565d5ef6670985bfd460f8614"
   }
 }

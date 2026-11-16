@@ -111,30 +111,13 @@ const GROUPS: DiseaseGroupConfig[] = [
     id: "neuroimmunology",
     label: "Neuroimmunology",
     icon: <Shield className="w-3.5 h-3.5" />,
-    match: (item) =>
-      item.drug.subspecialties.includes("neuroimmunology") ||
-      item.drug.classes.some((c) => {
-        const lower = c.toLowerCase();
-        return (
-          lower.includes("immunosuppressive") ||
-          lower.includes("monoclonal antibody") ||
-          lower.includes("dmt")
-        );
-      }),
+    match: (item) => item.drug.subspecialties.includes("neuroimmunology"),
   },
   {
     id: "neuromuscular",
     label: "Neuromuscular",
     icon: <HeartPulse className="w-3.5 h-3.5" />,
-    match: (item) =>
-      item.drug.subspecialties.includes("neuromuscular") ||
-      item.drug.classes.some((c) => {
-        const lower = c.toLowerCase();
-        return (
-          lower.includes("cholinesterase inhibitor") ||
-          lower.includes("neuromuscular")
-        );
-      }),
+    match: (item) => item.drug.subspecialties.includes("neuromuscular"),
   },
   {
     id: "movement_disorders",

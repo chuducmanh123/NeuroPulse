@@ -275,14 +275,29 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not impair hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Myasthenia & Spasticity Agents Contraception Note",
+          "quote": "Systemic corticosteroids, pyridostigmine, IVIG, and oral muscle relaxants do not impair hormonal contraceptive efficacy; note that tizanidine clearance is reduced by combined oral contraceptives containing ethinylestradiol (CYP1A2 inhibition), increasing maternal hypotension and sedation risk. === SECTION 2: PREGNANCY SAFETY TIER, PHARMA"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "Readily crosses the placenta with maternal and fetal whole blood levels approximately equal at delivery; neonatal levels fall ~50% per day for 2 days before declining sharply.",
+      "value": "Crosses the placenta (fetal-to-maternal ratio ~0.4); while chronic oral pregnancy data are limited, emergency IV dantrolene is life-saving and must never be withheld in malignant hyperthermia or NMS.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Dantrolene Pregnancy Safety & PK",
+          "quote": "Dantrolene crosses the placenta (fetal-to-maternal ratio ~0.4); while chronic oral pregnancy data are limited, emergency intravenous dantrolene is life-saving and must never be withheld in pregnant patients with malignant hyperthermia or neuroleptic malignant syndrome, watching the newborn briefly for transient hypotonia postpartum."
+        },
         {
           "source_id": "fda-dantrolene-label",
           "locator": "PRECAUTIONS",
@@ -290,21 +305,35 @@
         }
       ]
     },
+    "mcm": [],
     "postpartum": {
-      "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Observe the newborn briefly for transient neonatal hypotonia if emergency intravenous or late-pregnancy dantrolene was administered around delivery.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Dantrolene Pregnancy Safety & PK",
+          "quote": "watching the newborn briefly for transient hypotonia postpartum."
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.8% to 2% of the weight-adjusted maternal dosage (IV)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Dantrolene — Drug Levels",
+          "quote": "Limited case measurements following intravenous maternal dantrolene report a relative infant dose of approximately 0.8% to 2% of the weight-adjusted maternal dosage. Summary of Use during Lactation: After emergency intravenous dantrolene administration, milk concentrations decline rapidly (half-life ~9 hours); temporary breastfeeding inte"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Detected in human milk at low concentrations (<2 mcg/mL) during repeat IV administration; decide whether to discontinue nursing or drug based on maternal importance.",
+      "value": "Milk levels decline rapidly after emergency IV dantrolene (half-life ~9 h, RID 0.8%–2%); temporary 24–48 hour breastfeeding interruption after acute IV therapy is prudent while monitoring for hypotonia.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Dantrolene — Summary of Use during Lactation",
+          "quote": "After emergency intravenous dantrolene administration, milk concentrations decline rapidly (half-life ~9 hours); temporary breastfeeding interruption for 24 to 48 hours after an acute IV course is prudent while observing for hypotonia, whereas chronic oral lactation data are lacking. [dexamethasone] Relative Infant Dose (RID): High mater"
+        },
         {
           "source_id": "fda-dantrolene-label",
           "locator": "NURSING_MOTHERS",
@@ -313,11 +342,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "4cbc1cc1f2765e95e125771d774c54edda3854fb6ea68926d0c44fef449e9020"
   },
   "adverse_effects": {
     "most_common": {

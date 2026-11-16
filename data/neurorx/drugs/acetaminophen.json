@@ -377,9 +377,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "note": "Large human epidemiological cohorts (n=26,424 prospective; n=11,610 case-control) with oral acetaminophen showed no increased risk of major birth defects, but methodological limitations prevent definitely ruling out risk, no animal reproduction studies exist for IV acetaminophen, and published oral animal studies at 0.85-1.2x MHDD showed fetotoxicity, fetal liver/kidney necrosis, and reduced fertility.",
+      "value": "preferred",
+      "note": "Preferred first-line acute analgesic and antipyretic throughout all trimesters of pregnancy; large Nordic cohort (n=26,424) confirmed no elevation in major congenital malformations.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Acetaminophen Preferred First-Line & Registry",
+          "quote": "Acetaminophen is the preferred first-line acute analgesic and antipyretic throughout all trimesters of pregnancy at the lowest effective dose for the shortest duration; Danish and Norwegian National Birth Cohort data reported major congenital malformations in 3.1% (95% CI: 2.9%–3.3%) of 26,424 first-trimester exposures. Acetaminophen Preg"
+        },
         {
           "source_id": "fda-acetaminophen-label",
           "locator": "8.1 Pregnancy",
@@ -392,26 +397,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "No CYP-mediated interaction with hormonal contraceptives; standard family planning applies.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Analgesics Without Contraceptive Interactions",
+          "quote": "These medications do not induce CYP3A4 or UGT metabolism of hormonal contraceptives and require no extra contraceptive backup beyond standard family planning. Myasthenia & Spasticity Agents Contraception Note (Pyridostigmine, Prednisolone, Methylprednisolone, Dexamethasone, IVIG, Baclofen, Tizanidine, Dantrolene): Systemic corticosteroids"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Pregnancy modestly increases glucuronidation clearance, though standard therapeutic dosing (max 3,000–4,000 mg/day) applies without routine TDM.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Acetaminophen Pregnancy PK",
+          "quote": "Pregnancy slightly increases acetaminophen glucuronidation clearance, though standard therapeutic dosing (maximum 3,000–4,000 mg/day) applies without routine serum monitoring. Sumatriptan Registry & PK: The Sumatriptan, Naratriptan, and Treximet Pregnancy Registry recorded major congenital malformations in 4.2% (95% CI: 2.6%–6.5%) of 528"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Danish & Norwegian National Birth Cohort Registry",
+        "percent": 3.1,
+        "ci95": "2.9%–3.3%",
+        "n_exposed": 26424,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave2-guidelines",
+            "locator": "Section 2: Acetaminophen Preferred First-Line & Registry",
+            "quote": "Danish and Norwegian National Birth Cohort data reported major congenital malformations in 3.1% (95% CI: 2.9%–3.3%) of 26,424 first-trimester exposures. Acetaminophen Pregnancy PK: Pregnancy slightly increases acetaminophen glucuronidation clearance, though standard therapeutic dosing (maximum 3,000–4,000 mg/day) applies without routine s"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": "1% to 2% of the weight-adjusted maternal dose",
+      "value": "1% to 4% of the weight-adjusted maternal dosage",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Acetaminophen — Drug Levels",
+          "quote": "Maternal doses of 1,000 to 1,300 mg yield a relative infant dose of 1% to 4% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Acetaminophen is a preferred first-line analgesic and antipyretic during breastfeeding (RID 1% to 4%) with negligible infant serum levels and rare isolated case reports of maculopapular rash"
+        },
         {
           "source_id": "fda-acetaminophen-label",
           "locator": "8.2 Lactation",
@@ -420,8 +459,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Passes rapidly into human milk with similar milk and plasma levels (1% average, 2% maximum weight-adjusted maternal dose after 1 g oral); one documented case of rash in a breastfed infant that resolved upon discontinuation and recurred on rechallenge.",
+      "value": "Preferred first-line analgesic/antipyretic during breastfeeding (RID 1%–4%) with negligible infant serum levels; no interruption of nursing is required.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Acetaminophen — Summary of Use during Lactation",
+          "quote": "Acetaminophen is a preferred first-line analgesic and antipyretic during breastfeeding (RID 1% to 4%) with negligible infant serum levels and rare isolated case reports of maculopapular rash; maternal therapeutic dosing requires no breastfeeding interruption. [amitriptyline] Relative Infant Dose (RID): Breastfed infants receive approxima"
+        },
         {
           "source_id": "fda-acetaminophen-label",
           "locator": "8.2 Lactation",
@@ -435,10 +479,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "6672db212d193c40a9ad1740ffbe08cd3a7ab18b82d8106f0127f417811de4eb"
   }
 }

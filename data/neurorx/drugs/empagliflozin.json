@@ -361,30 +361,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not alter hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Avoid in 2nd and 3rd trimesters due to renal tubular developmental toxicity in animal kidneys during maturation; transition to insulin in pregnancy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Sulfonylureas & Newer Antidiabetics",
+          "quote": "dapagliflozin and empagliflozin must be avoided in 2nd/3rd trimesters (`avoid`) due to renal tubular developmental toxicity in animal kidneys—transition to insulin during pregnancy and reassess postpartum. Proton Pump Inhibitors (Omeprazole, Esomeprazole, Pantoprazole): PPIs are widely used for severe GERD or stress ulcer prophylaxis in p"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Reassess maternal postpartum glycemic control before resuming non-insulin oral agents, selecting lactation-compatible options (insulin or metformin) if breastfeeding.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Sulfonylureas & Newer Antidiabetics",
+          "quote": "transition to insulin during pregnancy and reassess postpartum. Proton Pump Inhibitors (Omeprazole, Esomeprazole, Pantoprazole): PPIs are widely used for severe GERD or stress ulcer prophylaxis in pregnancy (`caution`); Danish National Birth Cohort data for omeprazole reported major congenital malformations in 2.6% (95% CI: 2.2%–3.1%, n=1"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: empagliflozin — Drug Levels",
+          "quote": "No quantitative human breast milk data are available for empagliflozin. Summary of Use during Lactation: Because empagliflozin enters animal milk and animal studies indicate potential adverse effects on developing infant renal tubules, breastfeeding is not recommended; insulin or metformin is preferred. [entacapone] Relative Infant Dose"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Not recommended while breastfeeding. Limited human milk data; present in rat milk (milk-to-plasma ratio 0.634 to 5) and juvenile rat exposure caused renal pelvic and tubular dilatations, posing a potential risk to the developing human kidney during the first 2 years of life.",
+      "value": "Transfers into animal milk with potential adverse effects on developing infant renal tubules; breastfeeding is not recommended (prefer insulin or metformin).",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: empagliflozin — Summary of Use during Lactation",
+          "quote": "Because empagliflozin enters animal milk and animal studies indicate potential adverse effects on developing infant renal tubules, breastfeeding is not recommended; insulin or metformin is preferred. [entacapone] Relative Infant Dose (RID): No human breast milk measurements exist for entacapone (~98% protein-bound with poor oral bioavail"
+        },
         {
           "source_id": "fda-empagliflozin-label",
           "locator": "8.2 Lactation",
@@ -393,10 +423,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "09d82c4eef30993f91b178d23ad0726450e72fd689b4a5cc53ad23182f3e786c"
   }
 }

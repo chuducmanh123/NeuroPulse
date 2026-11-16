@@ -184,14 +184,29 @@
       ],
       "note": "No adequate human pregnancy data; animal developmental effects occurred in rats only at maternally toxic exposures (>45x human MRHD AUC)."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not alter ethinylestradiol or norelgestromin exposure from oral contraceptives; a short washout of 5 to 7 days (~11-hour half-life) prior to planned conception is reasonable.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 1: Rimegepant Contraception & Washout",
+          "quote": "Rimegepant does not reduce ethinylestradiol or norelgestromin exposure from oral contraceptives; due to its ~11-hour elimination half-life, a washout period of 5 to 7 days prior to planned conception is reasonable for migraine prophylaxis. NSAIDs Periconceptional Contraception & Ovulation (Ibuprofen, Celecoxib): Nonsteroidal anti-inflamma"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "No adequate human pregnancy data; animal developmental toxicity in rats occurred only at maternally toxic exposures (no-effect dose ~45x human MRHD AUC).",
+      "value": "Human pregnancy data are insufficient to exclude fetal risk; because CGRP regulates uteroplacental blood flow, discontinue during pregnancy unless maternal benefit justifies potential risk.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave2-guidelines",
+          "locator": "Section 2: Rimegepant Pregnancy Safety & PK",
+          "quote": "Human pregnancy outcome data for rimegepant are insufficient to exclude fetal risk; because CGRP signaling regulates uteroplacental blood flow, discontinue during pregnancy unless maternal benefit clearly outweighs potential risk. Amitriptyline Registry & PK: The Swedish Medical Birth Register and OTIS Tricyclic Cohort reported major cong"
+        },
         {
           "source_id": "fda-rimegepant-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
@@ -199,17 +214,20 @@
         }
       ]
     },
+    "mcm": [],
     "postpartum": {
       "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": "< 1% of maternal weight-adjusted dose (milk-to-plasma ratio 0.20)",
+      "value": "0.5% to 0.8% of the weight-adjusted maternal dosage",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Rimegepant — Drug Levels",
+          "quote": "Single-dose pharmacokinetic studies in lactating women demonstrate a low relative infant dose of 0.5% to 0.8% of the weight-adjusted maternal rimegepant dosage. Summary of Use during Lactation: Rimegepant enters breast milk in very low quantities (RID < 1%) after single 75 mg doses; clinical experience in repeated nursing exposure remains"
+        },
         {
           "source_id": "fda-rimegepant-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
@@ -218,8 +236,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Low transfer into human milk (relative infant dose < 1%; milk-to-plasma ratio 0.20); no data on effects on the breastfed infant or milk production. Weigh breastfeeding benefits against maternal clinical need.",
+      "value": "Enters human milk in very low concentrations (RID 0.5%–0.8%) after a single 75 mg dose; monitor infant feeding adequacy or optionally discard milk for 12–24 hours in young neonates.",
       "refs": [
+        {
+          "source_id": "lactmed-wave2",
+          "locator": "LactMed: Rimegepant — Summary of Use during Lactation",
+          "quote": "Rimegepant enters breast milk in very low quantities (RID < 1%) after single 75 mg doses; clinical experience in repeated nursing exposure remains limited, so monitor the breastfed infant for feeding adequacy or consider pumping and discarding for 12–24 hours in young neonates if preferred. [rituximab] Relative Infant Dose (RID): Large I"
+        },
         {
           "source_id": "fda-rimegepant-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
@@ -228,11 +251,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "1a6c18da0c92c0004ed07a5341d3d5a617c2cb33d05265b496daf9b07b96c3d6"
   },
   "adverse_effects": {
     "most_common": {

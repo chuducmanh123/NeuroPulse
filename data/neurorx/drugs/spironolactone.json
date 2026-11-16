@@ -463,30 +463,60 @@
       ],
       "note": "5-axis synthesis: Label explicitly recommends avoiding spironolactone in pregnant women due to anti-androgenic properties; rat embryofetal studies demonstrated feminization of male fetuses and persistent endocrine dysfunction in offspring."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not reduce hormonal contraceptive efficacy; use effective contraception to avoid unintended pregnancy exposure.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
+          "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Exhibits anti-androgenic activity in animal models with potential feminization of male fetuses; avoid in routine pregnancy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Spironolactone & Furosemide",
+          "quote": "Spironolactone exhibits anti-androgenic activity in animal models and must be avoided in pregnancy (`avoid`); furosemide is reserved for maternal pulmonary edema or heart failure (`caution`) because diuretic-induced intravascular volume depletion can impair uteroplacental perfusion, requiring postpartum volume reassessment. Potassium Chlo"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Reassess maternal volume status and serum potassium postpartum before resuming therapy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Spironolactone & Furosemide",
+          "quote": "requiring postpartum volume reassessment. Potassium Chloride: Oral and IV potassium chloride is physiological replacement therapy (`preferred`) safe throughout all trimesters when indicated for hypokalemia; monitor maternal serum potassium and renal function. === SECTION 4: STATINS, ENDOCRINE/METABOLIC & GASTROINTESTINAL === Statins (Ato"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.2% to 1.2% (as active metabolite canrenone)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Spironolactone — Drug Levels",
+          "quote": "Combined transfer of spironolactone's active metabolite canrenone yields a low relative infant dose of 0.2% to 1.2% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Milk levels of active canrenone are low (RID <= 1.2%) and considered compatible with breastfeeding; monitor maternal milk supply only if combined with"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Spironolactone is not present in breastmilk; limited data report the active metabolite canrenone in human breastmilk in low amounts expected to be clinically inconsequential, with no adverse effects reported after short-term exposure.",
+      "value": "Milk transfer of active canrenone is low (RID <= 1.2%) and compatible with breastfeeding; monitor milk volume only if combined with aggressive diuresis.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Spironolactone — Summary of Use during Lactation",
+          "quote": "Milk levels of active canrenone are low (RID <= 1.2%) and considered compatible with breastfeeding; monitor maternal milk supply only if combined with aggressive diuresis. [tenecteplase] Relative Infant Dose (RID): Large recombinant glycoprotein (~59 kDa) rapidly cleared from maternal plasma with negligible expected milk transfer (estima"
+        },
         {
           "source_id": "fda-spironolactone-label",
           "locator": "Section 8.2 Lactation",
@@ -495,10 +525,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "ffb526502f91e0d936da3165bcf0d7b434c81d2aae09406f4406a207c4d285c0"
   }
 }

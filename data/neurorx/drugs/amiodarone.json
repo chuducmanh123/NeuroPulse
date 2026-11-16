@@ -411,14 +411,29 @@
       ],
       "note": "5-axis synthesis: Post-marketing reports and case series show significant fetal toxicity (neonatal hypo/hyperthyroidism, bradycardia, QT prolongation, neurodevelopmental abnormalities, IUGR, preterm birth); animal studies show >90% abortions in rabbits at 2.7x MRHD and fetal toxicity in mice/rats below MRHD; reserve only for refractory life-threatening maternal arrhythmias."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not impair hormonal contraceptives; effective contraception is strongly advised given its ~40–55 day half-life and fetal thyroid/cardiac toxicity.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
+          "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "Breakthrough arrhythmias may occur during pregnancy as therapeutic treatment levels may be difficult to maintain due to increased volume of distribution and increased drug metabolism.",
+      "value": "Crosses the placenta with high iodine load and ~40–55 day half-life, causing fetal/neonatal hypothyroidism (9%–20%), goiter, and bradycardia; reserve only for life-threatening refractory arrhythmias.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Amiodarone Pregnancy Contraindication",
+          "quote": "Amiodarone crosses the placenta with high iodine content and prolonged half-life (~40–55 days), causing fetal/neonatal hypothyroidism (up to 9%–20%), goiter, bradycardia, and neurodevelopmental delay (`avoid`); reserve strictly for life-threatening maternal refractory arrhythmias and check neonatal thyroid function postpartum. ACEi & ARBs"
+        },
         {
           "source_id": "fda-amiodarone-label",
           "locator": "Section 8.1 Pregnancy",
@@ -426,17 +441,25 @@
         }
       ]
     },
+    "mcm": [],
     "postpartum": {
-      "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Check neonatal thyroid function (TSH/free T4), heart rate, and QTc after delivery if exposed in utero.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Amiodarone Pregnancy Contraindication",
+          "quote": "check neonatal thyroid function postpartum. ACEi & ARBs Fetotoxicity (Lisinopril, Losartan, Valsartan): Lisinopril, losartan, and valsartan are strictly contraindicated in pregnancy (`avoid`), especially during the 2nd and 3rd trimesters when RAAS blockade causes fetal renal tubular dysgenesis, oligohydramnios, pulmonary hypoplasia, skull"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": "3.5% to 45%",
+      "value": "3.5% to 45% (frequently > 10%) of the weight-adjusted maternal dosage",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Amiodarone — Drug Levels",
+          "quote": "Combined transfer of amiodarone and its active metabolite desethylamiodarone yields a very high relative infant dose of 3.5% to 45% (frequently > 10%) of the weight-adjusted maternal dosage. Summary of Use during Lactation: Amiodarone and desethylamiodarone accumulate extensively in human milk and infant tissues with a massive iodine load"
+        },
         {
           "source_id": "fda-amiodarone-label",
           "locator": "Section 8.2 Lactation",
@@ -445,8 +468,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Amiodarone and DEA are present in breastmilk at 3.5% to 45% of the maternal weight-adjusted dose; cases of hypothyroidism and bradycardia in breastfed infants have been reported. Breastfeeding is not recommended during treatment.",
+      "value": "Accumulates extensively in human milk and infant tissues (RID up to 45%) with heavy iodine load risking infant hypothyroidism, bradycardia, and QT prolongation; breastfeeding is generally not recommended.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Amiodarone — Summary of Use during Lactation",
+          "quote": "Amiodarone and desethylamiodarone accumulate extensively in human milk and infant tissues with a massive iodine load risking infant hypothyroidism, bradycardia, and prolonged QT; breastfeeding is generally not recommended during chronic amiodarone therapy. [amlodipine] Relative Infant Dose (RID): Breastfed infants receive approximately 1"
+        },
         {
           "source_id": "fda-amiodarone-label",
           "locator": "Section 8.2 Lactation",
@@ -455,10 +483,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "eddf6fc1e13e550e0bc0b88d585480de2d5251f14cc6f7b909dade9d3e54c779"
   }
 }

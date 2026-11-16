@@ -196,11 +196,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "ae61fd8f68ba0b9dbdb36240702aef54442061c8e93215f847bff797cee7229e"
   },
   "adverse_effects": {
     "most_common": {
@@ -238,9 +238,14 @@
   },
   "reproductive": {
     "tier": {
-      "value": "caution",
-      "note": "No adequate and well-controlled studies in pregnant women; label advises use only if potential benefit justifies potential fetal risk and notes neonatal hypotension, bradycardia, hypoglycemia, and respiratory depression.",
+      "value": "preferred",
+      "note": "Preferred first-line oral and IV antihypertensive for chronic hypertension, gestational hypertension, and preeclampsia per ACOG and ESC guidelines (2.9% MCM in n=3,842).",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Labetalol Preferred First-Line & Registry",
+          "quote": "Labetalol is a preferred first-line oral and IV antihypertensive for chronic hypertension and preeclampsia in pregnancy per ACOG and ESC guidelines; Nordic and Medicaid Birth Cohorts reported major congenital malformations in 2.9% (95% CI: 2.4%–3.5%, n=3,842, first-trimester exposure); monitor newborns for transient hypoglycemia/bradycard"
+        },
         {
           "source_id": "fda-labetalol-label",
           "locator": "12 CLINICAL PHARMACOLOGY",
@@ -253,26 +258,65 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not reduce hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "UGT-mediated clearance increases during pregnancy, often requiring divided dosing (2–3 times daily); monitor fetal growth and observe newborns for transient hypoglycemia or bradycardia.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Labetalol Preferred First-Line & Registry",
+          "quote": "monitor newborns for transient hypoglycemia/bradycardia and adjust postpartum blood pressure therapy over days 3–6 when postpartum hypertension peaks. Calcium Channel Blockers (Amlodipine, Nicardipine, Nimodipine): Extended-release nifedipine and amlodipine are acceptable options for gestational hypertension (`caution`; Nordic/Medicaid co"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Nordic & Medicaid Birth Cohorts",
+        "percent": 2.9,
+        "ci95": "2.4%–3.5%",
+        "n_exposed": 3842,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 3: Labetalol Preferred First-Line & Registry",
+            "quote": "Nordic and Medicaid Birth Cohorts reported major congenital malformations in 2.9% (95% CI: 2.4%–3.5%, n=3,842, first-trimester exposure); monitor newborns for transient hypoglycemia/bradycardia and adjust postpartum blood pressure therapy over days 3–6 when postpartum hypertension peaks. Calcium Channel Blockers (Amlodipine, Nicardipine,"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Adjust oral antihypertensive dosing carefully postpartum, especially over days 3–6 when postpartum hypertension typically peaks, and taper downward if blood pressure normalizes.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Labetalol Preferred First-Line & Registry",
+          "quote": "adjust postpartum blood pressure therapy over days 3–6 when postpartum hypertension peaks. Calcium Channel Blockers (Amlodipine, Nicardipine, Nimodipine): Extended-release nifedipine and amlodipine are acceptable options for gestational hypertension (`caution`; Nordic/Medicaid cohort for amlodipine/CCBs: 3.1% MCM, 95% CI: 2.1%–4.5%, n=912"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": "0.004%",
+      "value": "0.04% to 0.6% of the weight-adjusted maternal dosage",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Labetalol — Drug Levels",
+          "quote": "Maternal oral labetalol yields a very low relative infant dose of 0.04% to 0.6% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Labetalol passes into human milk in minimal quantities (RID < 1%) and is a preferred first-line beta-blocker during breastfeeding for postpartum hypertension; monitor premature or newborn"
+        },
         {
           "source_id": "fda-labetalol-label",
           "locator": "12 CLINICAL PHARMACOLOGY",
@@ -281,8 +325,13 @@
       ]
     },
     "lactation_summary": {
-      "value": "Small amounts of labetalol (approximately 0.004% of the maternal dose) are excreted in human milk; exercise caution when administering to a nursing woman.",
+      "value": "Preferred first-line beta-blocker during breastfeeding for postpartum hypertension (RID < 1%); monitor premature or newborn infants for rare bradycardia or lethargy.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Labetalol — Summary of Use during Lactation",
+          "quote": "Labetalol passes into human milk in minimal quantities (RID < 1%) and is a preferred first-line beta-blocker during breastfeeding for postpartum hypertension; monitor premature or newborn infants for rare bradycardia or lethargy. [lecanemab] Relative Infant Dose (RID): Large IgG1 monoclonal antibody (~150 kDa) with no human milk measurem"
+        },
         {
           "source_id": "fda-labetalol-label",
           "locator": "12 CLINICAL PHARMACOLOGY",

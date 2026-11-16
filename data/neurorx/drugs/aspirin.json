@@ -205,11 +205,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "066877b383444c9a3968303598cbdf45e01bb082a7a3f4d18e37ada79854052f"
   },
   "adverse_effects": {
     "most_common": {
@@ -257,30 +257,70 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
+      "value": "Does not alter hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Low-dose aspirin (75–150 mg/day) is safe and recommended for preeclampsia prevention and maternal stroke/antiplatelet indications; avoid high analgesic doses >= 300 mg/day near term (ductal closure).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Low-Dose Aspirin Pregnancy & Registry",
+          "quote": "Low-dose aspirin (75–150 mg/day) is safe and recommended for preeclampsia prevention and maternal stroke/antiplatelet indications (`caution` for high analgesic doses >=300 mg/day near term due to ductal closure); Nordic and US Collaborative Cohorts reported major congenital malformations in 3.0% (95% CI: 2.6%–3.4%, n=6,102) of low-dose ex"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "Nordic & US Collaborative Cohorts",
+        "percent": 3,
+        "ci95": "2.6%–3.4%",
+        "n_exposed": 6102,
+        "dose_stratum": "low-dose first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 2: Low-Dose Aspirin Pregnancy & Registry",
+            "quote": "Nordic and US Collaborative Cohorts reported major congenital malformations in 3.0% (95% CI: 2.6%–3.4%, n=6,102) of low-dose exposures. Clopidogrel & Ticagrelor Pregnancy & Peripartum: Clopidogrel (and ticagrelor) have limited human pregnancy data; clopidogrel is reserved for essential coronary or carotid/intracranial stent indications (`"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "< 1% (low-dose 75–100 mg/day); 2.5%–10% (high dose)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Aspirin — Drug Levels",
+          "quote": "Low-dose aspirin (75–100 mg/day) produces negligible milk salicylate levels (RID < 1%), whereas high anti-inflammatory doses (>= 1,000 mg/day) yield an RID of 2.5% to 10%. Summary of Use during Lactation: Low-dose aspirin (75–100 mg/day) for stroke prevention is compatible with breastfeeding with virtually undetectable infant exposure; av"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Salicylate is excreted in breast milk; nursing mothers should avoid aspirin as high doses may cause rashes, platelet abnormalities, and bleeding in nursing infants.",
+      "value": "Low-dose aspirin (75–100 mg/day) for stroke prevention is compatible with breastfeeding (RID < 1%, undetectable infant exposure); avoid high analgesic doses due to theoretical Reye syndrome risk.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Aspirin — Summary of Use during Lactation",
+          "quote": "Low-dose aspirin (75–100 mg/day) for stroke prevention is compatible with breastfeeding with virtually undetectable infant exposure; avoid high analgesic doses during lactation due to theoretical Reye syndrome and metabolic acidosis risk. [atorvastatin] Relative Infant Dose (RID): Quantitative human breast milk levels of atorvastatin hav"
+        },
         {
           "source_id": "fda-aspirin-label",
           "locator": "PRECAUTIONS (Nursing Mothers)",

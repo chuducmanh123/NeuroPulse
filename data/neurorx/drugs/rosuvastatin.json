@@ -457,30 +457,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not impair hormonal contraceptives; use effective contraception to discontinue statins before planned conception unless high-risk ASCVD/FH cardiology exceptions apply.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
+          "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Avoided in routine pregnancy due to animal developmental toxicity and theoretical disruption of fetal cholesterol synthesis; discontinue upon pregnancy recognition (rare extreme-risk ASCVD/FH exceptions per cardiology).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Statins",
+          "quote": "statins remain avoided in routine pregnancy (`avoid`) due to animal developmental toxicity and theoretical disruption of fetal cholesterol synthesis; discontinue when pregnancy is recognized and resume only after breastfeeding or per cardiology guidance. Levothyroxine Preferred & Pregnancy PK/Postpartum: Levothyroxine is preferred and ess"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Resume statin therapy only after breastfeeding completion or per specialist cardiovascular risk assessment.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 4: Statins",
+          "quote": "discontinue when pregnancy is recognized and resume only after breastfeeding or per cardiology guidance. Levothyroxine Preferred & Pregnancy PK/Postpartum: Levothyroxine is preferred and essential in pregnancy (`preferred`); maternal thyroid hormone demand rises 25%–50% by weeks 4–8 of gestation due to TBG elevation and placental deiodina"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "0.4% to 1.5% of the weight-adjusted maternal dosage",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: rosuvastatin — Drug Levels",
+          "quote": "Limited human case measurements indicate a low relative infant dose of 0.4% to 1.5% of the weight-adjusted maternal rosuvastatin dosage. Summary of Use during Lactation: Although limited measurements show low milk transfer (RID <= 1.5%), FDA labeling advises against breastfeeding during rosuvastatin therapy due to potential disruption of"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Present in human milk based on limited case reports; because of potential for serious adverse reactions in a breastfed infant due to decreased cholesterol synthesis, breastfeeding is not recommended during treatment.",
+      "value": "Limited case data show low milk transfer (RID <= 1.5%), yet regulatory labels advise against breastfeeding due to potential infant lipid disruption; temporary hold during nursing is usually feasible.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: rosuvastatin — Summary of Use during Lactation",
+          "quote": "Although limited measurements show low milk transfer (RID <= 1.5%), FDA labeling advises against breastfeeding during rosuvastatin therapy due to potential disruption of infant lipid synthesis; temporary discontinuation during nursing is usually feasible. [simvastatin] Relative Infant Dose (RID): Quantitative human breast milk concentrat"
+        },
         {
           "source_id": "fda-rosuvastatin-label",
           "locator": "8.2 Lactation",
@@ -494,10 +524,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "6cb35ca97cbc7a2839f17192fab381109c77500c5e19d94d107e2295e7979032"
   }
 }

@@ -235,30 +235,50 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "Anti-amyloid IgG1 monoclonal antibody lacking adequate human pregnancy data (indicated in older adults); crosses the placenta via FcRn in late pregnancy with prolonged washout considerations.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 6: Dementia Therapies",
+          "quote": "lack adequate human pregnancy data (`caution` — largely indicated in older postmenopausal populations); anti-amyloid IgG1 antibodies cross the placenta in late pregnancy via FcRn and carry prolonged washout considerations if ever used in reproductive-age carriers."
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Estimated < 0.1% (large IgG1 monoclonal antibody)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: lecanemab — Drug Levels",
+          "quote": "Large IgG1 monoclonal antibody (~150 kDa) with no human milk measurements (estimated RID < 0.1% and negligible oral infant absorption). Summary of Use during Lactation: Clinical lactation data are unavailable for lecanemab (indicated in Alzheimer's disease); minimal milk transfer and gastrointestinal degradation are expected as with other"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk, effects on the breastfed infant, or milk production; published data from other monoclonal antibodies generally indicate low passage into human milk.",
+      "value": "Clinical lactation data are unavailable (indicated in Alzheimer's disease); minimal milk transfer and infant GI degradation are expected.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: lecanemab — Summary of Use during Lactation",
+          "quote": "Clinical lactation data are unavailable for lecanemab (indicated in Alzheimer's disease); minimal milk transfer and gastrointestinal degradation are expected as with other IgG1 monoclonal antibodies. [levodopa-carbidopa] Relative Infant Dose (RID): Oral levodopa yields a very low relative infant dose of < 0.5% (carbidopa transfer is negl"
+        },
         {
           "source_id": "fda-lecanemab-label",
           "locator": "USE IN SPECIFIC POPULATIONS",
@@ -267,11 +287,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "54b2ab58883e3499451fa428ace566d74276178232447bd2aaed04bce5fc8e31"
   },
   "adverse_effects": {
     "most_common": {

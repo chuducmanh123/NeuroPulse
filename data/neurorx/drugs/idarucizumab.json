@@ -175,11 +175,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "1f9dcfba51d046c8825e8cf71102bc915a4bcb43d372b8c70eca580e8c22f238"
   },
   "adverse_effects": {
     "most_common": {
@@ -230,30 +230,50 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "Humanized Fab antibody fragment (~48 kDa) cleared rapidly renally; life-saving emergency reversal for dabigatran-associated hemorrhage and should never be withheld in pregnancy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Reversal Agents",
+          "quote": "4F-PCC and idarucizumab (~48 kDa) are life-saving emergency reversal agents for refractory maternal hemorrhage and should never be withheld in pregnancy (`caution`). === SECTION 3: ANTIHYPERTENSIVES, ANTIARRHYTHMICS, DIURETICS & ELECTROLYTES === Labetalol Preferred First-Line & Registry: Labetalol is a preferred first-line oral and IV an"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Estimated < 0.1% (Fab antibody fragment)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: idarucizumab — Drug Levels",
+          "quote": "Humanized monoclonal antibody fragment (~48 kDa) with rapid renal clearance and no human milk data (estimated RID < 0.1%). Summary of Use during Lactation: Idarucizumab is a protein antibody fragment rapidly cleared after single emergency IV reversal of dabigatran and digested in the infant GI tract; nursing may resume once acute maternal"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Unknown whether idarucizumab is excreted in human milk; no data on effects on the breastfed child or milk production. Exercise caution when administering to a nursing woman.",
+      "value": "Rapidly cleared antibody fragment digested in the infant GI tract; breastfeeding may resume once acute maternal hemorrhage resolves.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: idarucizumab — Summary of Use during Lactation",
+          "quote": "Idarucizumab is a protein antibody fragment rapidly cleared after single emergency IV reversal of dabigatran and digested in the infant GI tract; nursing may resume once acute maternal hemorrhage resolves. [insulin-glargine] Relative Infant Dose (RID): Large peptide hormone (~6 kDa) minimally excreted into human milk and completely diges"
+        },
         {
           "source_id": "fda-idarucizumab-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS",

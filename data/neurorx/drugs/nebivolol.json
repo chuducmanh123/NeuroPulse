@@ -401,30 +401,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not alter hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Smaller human pregnancy dataset than labetalol or metoprolol; maternal CYP2D6/renal clearance changes may alter exposure, and 3rd-trimester use requires monitoring fetal growth and neonatal bradycardia/hypoglycemia.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Beta-Blockers (Bisoprolol & Nebivolol)",
+          "quote": "Bisoprolol and nebivolol have smaller human pregnancy datasets than labetalol or metoprolol (`caution`); maternal CYP2D6/renal clearance changes may alter exposure, third-trimester use warrants fetal growth and neonatal bradycardia/hypoglycemia monitoring, and pregnancy-escalated doses should be reduced postpartum. Digoxin Pregnancy PK &"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Reduce pregnancy-escalated doses postpartum as maternal clearance normalizes and monitor newborns exposed in late pregnancy for bradycardia or hypoglycemia.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: Beta-Blockers (Bisoprolol & Nebivolol)",
+          "quote": "pregnancy-escalated doses should be reduced postpartum. Digoxin Pregnancy PK & Postpartum: Digoxin crosses the placenta without teratogenicity (`caution`); renal clearance and CYP/P-gp activity increase 20%–50% during pregnancy (lowering serum digoxin levels), requiring therapeutic drug monitoring and occasional dose escalation, followed"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: nebivolol — Drug Levels",
+          "quote": "Quantitative human breast milk concentrations of nebivolol are unavailable. Summary of Use during Lactation: Because nebivolol has no human milk data and accumulates more in lipid-rich compartments than labetalol or metoprolol, prefer labetalol or metoprolol during breastfeeding, especially with newborn or preterm infants. [nicardipine]"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No information on presence in human milk, effects on the breastfed infant, or effects on milk production. Present in rat milk. Because of the potential for beta-blockers to produce serious adverse reactions in nursing infants (especially bradycardia), breastfeeding is not recommended during BYSTOLIC therapy.",
+      "value": "No human milk data exist and higher lipophilicity increases theoretical accumulation; prefer labetalol or metoprolol during breastfeeding, especially in neonates.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: nebivolol — Summary of Use during Lactation",
+          "quote": "Because nebivolol has no human milk data and accumulates more in lipid-rich compartments than labetalol or metoprolol, prefer labetalol or metoprolol during breastfeeding, especially with newborn or preterm infants. [nicardipine] Relative Infant Dose (RID): Intravenous and oral maternal nicardipine yield a very low relative infant dose o"
+        },
         {
           "source_id": "fda-nebivolol-label",
           "locator": "8.2 Lactation — Risk Summary",
@@ -433,10 +463,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "d4086379bd7863070c9e6070e1dfa4dcee795b41e28484bfe0995ccdfaf85670"
   }
 }

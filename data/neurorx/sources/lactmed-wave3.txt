@@ -1,0 +1,249 @@
+Drugs and Lactation Database (LactMed) — NCBI Bookshelf (NBK501922) Monograph Extracts for Wave 3 Medications
+
+[alteplase]
+Relative Infant Dose (RID): Large recombinant glycoprotein (~59 kDa) with very short plasma half-life (< 5 minutes) and negligible expected breast milk transfer (estimated RID < 0.1%).
+Summary of Use during Lactation: Because alteplase is a large protein rapidly cleared from maternal circulation within minutes and destroyed in the infant GI tract, acute thrombolysis is unlikely to expose a breastfed infant; nursing may resume once maternal neurological and hemodynamic status is stable.
+
+[amantadine]
+Relative Infant Dose (RID): Human milk levels are uncharacterized, though low molecular weight predicts moderate transfer; amantadine also suppresses maternal prolactin secretion.
+Summary of Use during Lactation: Amantadine is excreted into breast milk in unknown amounts, may cause infant urinary retention, vomiting, or rash, and inhibits lactation by suppressing prolactin; avoid during breastfeeding and choose an alternative agent.
+
+[amiodarone]
+Relative Infant Dose (RID): Combined transfer of amiodarone and its active metabolite desethylamiodarone yields a very high relative infant dose of 3.5% to 45% (frequently > 10%) of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Amiodarone and desethylamiodarone accumulate extensively in human milk and infant tissues with a massive iodine load risking infant hypothyroidism, bradycardia, and prolonged QT; breastfeeding is generally not recommended during chronic amiodarone therapy.
+
+[amlodipine]
+Relative Infant Dose (RID): Breastfed infants receive approximately 1.7% to 4.2% (median ~4.2%) of the weight-adjusted maternal amlodipine dosage through human milk.
+Summary of Use during Lactation: Amlodipine passes into human milk in small amounts (RID < 5%) with undetectable infant plasma levels and no reported adverse effects in breastfed infants; compatible with breastfeeding with routine monitoring for rare hypotension or lethargy.
+
+[amoxicillin-clavulanate]
+Relative Infant Dose (RID): Maternal oral amoxicillin produces a very low relative infant dose of 0.4% to 1.0% of the weight-adjusted maternal dosage, with minimal clavulanate transfer.
+Summary of Use during Lactation: Amoxicillin-clavulanate is compatible with breastfeeding (RID <= 1%); monitor breastfed infants occasionally for mild diarrhea, candidiasis (thrush), or rare rash due to disruption of gastrointestinal flora.
+
+[ampicillin]
+Relative Infant Dose (RID): Breastfed infants receive approximately 0.1% to 0.5% of the weight-adjusted maternal ampicillin dosage through human milk.
+Summary of Use during Lactation: Ampicillin enters breast milk in tiny quantities (RID <= 0.5%) and is widely compatible with breastfeeding; observe the infant occasionally for mild diarrhea or oral/diaper thrush.
+
+[apixaban]
+Relative Infant Dose (RID): Human breast milk pharmacokinetic measurements indicate a high relative infant dose of approximately 12% to 20% of the weight-adjusted maternal apixaban dosage.
+Summary of Use during Lactation: Because apixaban concentrates in human milk (RID 12%–20%) and poses a theoretical bleeding risk in the nursing infant, breastfeeding is not recommended during apixaban therapy; warfarin or low-molecular-weight heparin is preferred.
+
+[aspirin]
+Relative Infant Dose (RID): Low-dose aspirin (75–100 mg/day) produces negligible milk salicylate levels (RID < 1%), whereas high anti-inflammatory doses (>= 1,000 mg/day) yield an RID of 2.5% to 10%.
+Summary of Use during Lactation: Low-dose aspirin (75–100 mg/day) for stroke prevention is compatible with breastfeeding with virtually undetectable infant exposure; avoid high analgesic doses during lactation due to theoretical Reye syndrome and metabolic acidosis risk.
+
+[atorvastatin]
+Relative Infant Dose (RID): Quantitative human breast milk levels of atorvastatin have not been directly measured (animal milk studies show transfer, though low oral bioavailability limits uptake).
+Summary of Use during Lactation: Because human milk transfer data are lacking and statins theoretically disrupt infant lipid and cholesterol synthesis, breastfeeding is generally not recommended during atorvastatin therapy (though some cardiovascular experts note minimal expected infant absorption).
+
+[azithromycin]
+Relative Infant Dose (RID): Maternal azithromycin yields a relative infant dose of 1.3% to 5.9% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Azithromycin milk transfer is low to moderate (RID <= 6%) and generally compatible with breastfeeding; observe nursing infants for mild GI symptoms (diarrhea, vomiting, thrush) and rare infantile hypertrophic pyloric stenosis during the first month of life.
+
+[bisoprolol]
+Relative Infant Dose (RID): Limited maternal milk data indicate a low relative infant dose of < 2% (estimated 0.4% to 2%) of the weight-adjusted maternal bisoprolol dosage.
+Summary of Use during Lactation: Bisoprolol enters breast milk in low amounts (< 2% RID) and was well tolerated without adverse effects in limited infant reports; monitor newborns for rare beta-blockade signs (bradycardia, lethargy, poor feeding).
+
+[ceftriaxone]
+Relative Infant Dose (RID): Parenteral ceftriaxone passes into breast milk in very small amounts, yielding a relative infant dose of 0.3% to 4.4% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Ceftriaxone has poor oral absorption in the infant gut and low milk transfer (RID < 4.5%), making it compatible with breastfeeding; observe the infant for mild loose stools or thrush.
+
+[ciprofloxacin]
+Relative Infant Dose (RID): Oral or IV ciprofloxacin produces a low relative infant dose of 0.5% to 2.1% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Ciprofloxacin levels in breast milk are low (RID <= 2.1%) and milk calcium markedly reduces infant GI absorption, with no cartilage toxicity reported in breastfed infants; acceptable when clinically indicated, optionally waiting 3–4 hours after a dose and monitoring for diarrhea or thrush.
+
+[clopidogrel]
+Relative Infant Dose (RID): Quantitative human milk measurements for clopidogrel and its active thiol metabolite are lacking (estimated RID < 1% from high protein binding and short half-life).
+Summary of Use during Lactation: Although clopidogrel lacks direct human milk measurements, small observational cohorts reported no infant bleeding or adverse effects; use with caution while monitoring the breastfed infant for unusual bruising or bleeding.
+
+[dabigatran]
+Relative Infant Dose (RID): Single-dose maternal dabigatran etexilate yielded a very low relative infant dose of 0.02% to 0.07% of active dabigatran in breast milk with poor infant oral bioavailability.
+Summary of Use during Lactation: Although a small study showed minimal milk transfer (RID < 0.1%), clinical breastfeeding experience with chronic dabigatran remains too limited to confirm safety; warfarin or LMWH is preferred in nursing mothers.
+
+[dapagliflozin]
+Relative Infant Dose (RID): No quantitative human breast milk data are available for dapagliflozin.
+Summary of Use during Lactation: Because dapagliflozin passes into rat milk and causes renal tubular dilation during rodent kidney maturation (corresponding to human infancy), breastfeeding is not recommended during dapagliflozin therapy; prefer insulin or metformin.
+
+[digoxin]
+Relative Infant Dose (RID): Breastfed infants receive approximately 1.9% to 4.1% of the weight-adjusted maternal digoxin dosage through human milk.
+Summary of Use during Lactation: Digoxin milk concentrations are low (RID <= 4.1%) and produce undetectable or subtherapeutic serum levels in breastfed infants; compatible with breastfeeding without special waiting periods.
+
+[donanemab]
+Relative Infant Dose (RID): Large IgG1 monoclonal antibody (~148 kDa) with no human milk measurements (estimated RID < 0.1% and minimal infant GI absorption).
+Summary of Use during Lactation: No clinical lactation data exist for donanemab (used almost exclusively in older adults); as a large IgG1 antibody, milk excretion and oral infant absorption are expected to be minimal.
+
+[donepezil]
+Relative Infant Dose (RID): Human breast milk concentrations and relative infant dose data for donepezil are not available.
+Summary of Use during Lactation: Because no information is available on donepezil in human milk and cholinergic toxicity could occur in an infant, avoid breastfeeding or use caution if ever prescribed to a lactating patient.
+
+[edoxaban]
+Relative Infant Dose (RID): No quantitative human breast milk data are available for edoxaban (moderate protein binding ~55% suggests milk passage).
+Summary of Use during Lactation: Because human milk transfer and infant bleeding risk are uncharacterized, breastfeeding is not recommended during edoxaban therapy; transition to warfarin or low-molecular-weight heparin when anticoagulation is required during lactation.
+
+[empagliflozin]
+Relative Infant Dose (RID): No quantitative human breast milk data are available for empagliflozin.
+Summary of Use during Lactation: Because empagliflozin enters animal milk and animal studies indicate potential adverse effects on developing infant renal tubules, breastfeeding is not recommended; insulin or metformin is preferred.
+
+[entacapone]
+Relative Infant Dose (RID): No human breast milk measurements exist for entacapone (~98% protein-bound with poor oral bioavailability).
+Summary of Use during Lactation: Entacapone has high maternal protein binding (~98%) and negligible expected milk transfer, though no human lactation studies exist; monitor breastfed infants for GI upset or dark-colored urine if used.
+
+[esomeprazole]
+Relative Infant Dose (RID): Maternal esomeprazole produces a very low relative infant dose of 0.1% to 0.7% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Esomeprazole (the S-isomer of omeprazole) enters breast milk in tiny amounts (RID < 1%) and is rapidly degraded by infant gastric acid; compatible with breastfeeding.
+
+[furosemide]
+Relative Infant Dose (RID): Breastfed infants receive approximately 0.1% to 1.0% of the weight-adjusted maternal furosemide dosage, though higher maternal doses can suppress lactation volume.
+Summary of Use during Lactation: Furosemide milk transfer is minimal (RID <= 1%) and safe for the infant, though high or chronic loop diuretic doses can cause intense diuresis that reduces maternal milk production.
+
+[gliclazide]
+Relative Infant Dose (RID): No quantitative human breast milk measurements are available for gliclazide.
+Summary of Use during Lactation: Because human milk data are lacking and sulfonylureas theoretically carry a risk of infant hypoglycemia, metformin or insulin is preferred during breastfeeding; monitor infant for lethargy or poor feeding if used.
+
+[glimepiride]
+Relative Infant Dose (RID): Human milk levels are uncharacterized (high protein binding > 99% suggests minimal milk transfer, estimated < 1%).
+Summary of Use during Lactation: Although glimepiride's >99% protein binding limits theoretical milk transfer, human data are lacking and neonatal hypoglycemia risk warrants caution; insulin or metformin is preferred during lactation, or monitor infant blood glucose and feeding closely.
+
+[idarucizumab]
+Relative Infant Dose (RID): Humanized monoclonal antibody fragment (~48 kDa) with rapid renal clearance and no human milk data (estimated RID < 0.1%).
+Summary of Use during Lactation: Idarucizumab is a protein antibody fragment rapidly cleared after single emergency IV reversal of dabigatran and digested in the infant GI tract; nursing may resume once acute maternal hemorrhage resolves.
+
+[insulin-glargine]
+Relative Infant Dose (RID): Large peptide hormone (~6 kDa) minimally excreted into human milk and completely digested in the infant GI tract (effective RID ~0%).
+Summary of Use during Lactation: Exogenous insulins including insulin glargine are normal physiological polypeptides destroyed by infant gastrointestinal proteases and do not raise infant blood glucose or insulin; fully compatible with breastfeeding.
+
+[labetalol]
+Relative Infant Dose (RID): Maternal oral labetalol yields a very low relative infant dose of 0.04% to 0.6% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Labetalol passes into human milk in minimal quantities (RID < 1%) and is a preferred first-line beta-blocker during breastfeeding for postpartum hypertension; monitor premature or newborn infants for rare bradycardia or lethargy.
+
+[lecanemab]
+Relative Infant Dose (RID): Large IgG1 monoclonal antibody (~150 kDa) with no human milk measurements (estimated RID < 0.1% and negligible oral infant absorption).
+Summary of Use during Lactation: Clinical lactation data are unavailable for lecanemab (indicated in Alzheimer's disease); minimal milk transfer and gastrointestinal degradation are expected as with other IgG1 monoclonal antibodies.
+
+[levodopa-carbidopa]
+Relative Infant Dose (RID): Oral levodopa yields a very low relative infant dose of < 0.5% (carbidopa transfer is negligible), though levodopa suppresses maternal prolactin.
+Summary of Use during Lactation: Although infant milk exposure to levodopa is minimal (RID < 0.5%), levodopa suppresses prolactin and can markedly reduce or inhibit maternal milk production; use the lowest effective dose and monitor infant growth and milk supply.
+
+[levofloxacin]
+Relative Infant Dose (RID): Oral or IV levofloxacin produces a moderate relative infant dose of 4.6% to 10.6% (often ~5%–8%) of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Levofloxacin achieves higher breast milk concentrations than ciprofloxacin (RID ~5%–10%), though milk calcium limits infant absorption; if a fluoroquinolone is required, ciprofloxacin is preferred, or wait 4 to 6 hours after a levofloxacin dose and monitor infant for diarrhea and thrush.
+
+[levothyroxine]
+Relative Infant Dose (RID): Exogenous levothyroxine yields physiological replacement milk transfer (estimated RID < 0.1% of therapeutic maternal dose), insufficient to mask neonatal hypothyroidism.
+Summary of Use during Lactation: Levothyroxine is a normal endogenous hormone compatible with breastfeeding; maintaining maternal euthyroidism actually supports adequate milk supply without affecting infant thyroid screening.
+
+[lisinopril]
+Relative Infant Dose (RID): No quantitative human breast milk data are available for lisinopril (enalapril and captopril show RID < 0.2%).
+Summary of Use during Lactation: While lisinopril lacks direct milk measurements, ACE inhibitors as a class generally exhibit very low milk transfer; enalapril or captopril is preferred in nursing mothers of premature or newborn infants due to better-characterized safety data.
+
+[losartan]
+Relative Infant Dose (RID): Human milk levels of losartan and its active carboxylic acid metabolite are unmeasured (estimated minimal transfer due to >98% protein binding).
+Summary of Use during Lactation: Because no human lactation data exist for losartan and AT1 blockade could theoretically impair immature neonatal renal function, prefer better-studied antihypertensives such as labetalol, nifedipine, or enalapril while breastfeeding.
+
+[memantine]
+Relative Infant Dose (RID): No human breast milk concentration data exist for memantine.
+Summary of Use during Lactation: Because memantine milk excretion and infant neurodevelopmental effects are completely unstudied, exercise caution or avoid breastfeeding if ever administered to a nursing mother.
+
+[metformin]
+Relative Infant Dose (RID): Breastfed infants receive approximately 0.1% to 1.1% (mean ~0.3%–0.7%) of the weight-adjusted maternal metformin dosage through human milk.
+Summary of Use during Lactation: Metformin enters human milk in very small quantities (RID <= 1.1%) with undetectable infant serum levels and no neonatal hypoglycemia or adverse growth effects; widely considered compatible with breastfeeding.
+
+[nebivolol]
+Relative Infant Dose (RID): Quantitative human breast milk concentrations of nebivolol are unavailable.
+Summary of Use during Lactation: Because nebivolol has no human milk data and accumulates more in lipid-rich compartments than labetalol or metoprolol, prefer labetalol or metoprolol during breastfeeding, especially with newborn or preterm infants.
+
+[nicardipine]
+Relative Infant Dose (RID): Intravenous and oral maternal nicardipine yield a very low relative infant dose of 0.04% to 0.14% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Nicardipine excretion into human milk is minimal (RID < 0.2%) with no reported adverse effects in breastfed infants; compatible with breastfeeding following postpartum hypertensive management.
+
+[nimodipine]
+Relative Infant Dose (RID): Maternal oral or IV nimodipine produces a very low relative infant dose of 0.06% to 0.3% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Nimodipine milk transfer is extremely low (RID < 0.5%) with rapid elimination; compatible with breastfeeding in mothers recovering from subarachnoid hemorrhage, monitoring infant casually for lethargy or feeding changes.
+
+[omeprazole]
+Relative Infant Dose (RID): Maternal oral omeprazole yields a very low relative infant dose of 0.3% to 1.1% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Omeprazole enters breast milk in tiny amounts (RID <= 1.1%) and is largely destroyed by infant gastric acid; compatible with breastfeeding without interruption.
+
+[pantoprazole]
+Relative Infant Dose (RID): Single oral or IV pantoprazole produces an extremely low relative infant dose of 0.02% to 0.14% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Pantoprazole milk concentrations are minimal (RID < 0.2%) and rapid acid degradation in the infant stomach limits absorption; compatible with breastfeeding.
+
+[phytonadione]
+Relative Infant Dose (RID): Standard oral or parenteral maternal vitamin K1 supplementation produces a low relative infant dose of < 2% (high maternal doses up to 5 mg/day raise milk vitamin K safely).
+Summary of Use during Lactation: Phytonadione (vitamin K1) is a normal nutrient compatible with breastfeeding and helps prevent vitamin K deficiency bleeding in infants (though newborns still require standard neonatal vitamin K prophylaxis at birth).
+
+[piperacillin-tazobactam]
+Relative Infant Dose (RID): Intravenous maternal piperacillin produces a very low relative infant dose of 0.2% to 1.0% of the weight-adjusted maternal dosage, with minimal tazobactam transfer.
+Summary of Use during Lactation: Piperacillin-tazobactam milk transfer is low (RID <= 1%) and oral absorption in the infant GI tract is poor; compatible with breastfeeding while observing the infant for mild diarrhea or thrush.
+
+[potassium-chloride]
+Relative Infant Dose (RID): Physiological electrolyte essential in human milk; exogenous maternal potassium chloride replacement does not alter physiological breast milk potassium levels (RID not applicable).
+Summary of Use during Lactation: Oral or IV potassium chloride replacement to normalize maternal serum potassium is completely compatible with breastfeeding and poses no risk to the nursing infant.
+
+[pramipexole]
+Relative Infant Dose (RID): Human milk levels of pramipexole are unmeasured, and its potent D2/D3 agonism strongly suppresses maternal prolactin secretion.
+Summary of Use during Lactation: Pramipexole suppresses prolactin and inhibits lactation while human milk transfer and infant dopaminergic effects are unknown; avoid during breastfeeding.
+
+[protamine]
+Relative Infant Dose (RID): Low-molecular-weight polycationic peptide rapidly neutralized in maternal plasma with negligible expected milk transfer (RID not applicable; single emergency dose).
+Summary of Use during Lactation: Protamine sulfate is given as an acute intravenous heparin reversal agent and is digested by GI proteases if trace amounts enter milk; no waiting period is required once maternal hemostasis stabilizes.
+
+[prothrombin-complex-concentrate]
+Relative Infant Dose (RID): Endogenous human coagulation factors II, VII, IX, and X (~50–70 kDa) that do not cross into breast milk intact and are destroyed by GI digestion (effective RID ~0%).
+Summary of Use during Lactation: 4-factor prothrombin complex concentrate consists of human plasma coagulation factors that pose no risk to a breastfed infant; nursing may resume as soon as the mother recovers from acute hemorrhage.
+
+[rasagiline]
+Relative Infant Dose (RID): Quantitative human breast milk measurements for rasagiline are lacking, though high doses in animals suppressed prolactin and milk production.
+Summary of Use during Lactation: Because rasagiline has no human lactation data and MAO-B inhibitors may reduce prolactin secretion, avoid during breastfeeding or monitor infant and milk supply closely if no alternative exists.
+
+[rivaroxaban]
+Relative Infant Dose (RID): Maternal oral rivaroxaban yields a relative infant dose of 1.3% to 2.2% (up to ~3% in case reports) of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Although rivaroxaban milk transfer is relatively low (RID 1.3%–2.2%), clinical breastfeeding data remain limited and regulatory labels advise against nursing; warfarin or LMWH is preferred during lactation.
+
+[rivastigmine]
+Relative Infant Dose (RID): Human breast milk concentrations of rivastigmine are unavailable.
+Summary of Use during Lactation: No human lactation data exist for rivastigmine; because cholinergic stimulation could cause infant GI or autonomic effects, avoid breastfeeding if ever used in a nursing patient.
+
+[ropinirole]
+Relative Infant Dose (RID): Human breast milk concentrations are unstudied, and ropinirole potently suppresses maternal prolactin secretion.
+Summary of Use during Lactation: Ropinirole inhibits prolactin release and can completely suppress lactation while milk transfer to the infant is uncharacterized; avoid during breastfeeding.
+
+[rosuvastatin]
+Relative Infant Dose (RID): Limited human case measurements indicate a low relative infant dose of 0.4% to 1.5% of the weight-adjusted maternal rosuvastatin dosage.
+Summary of Use during Lactation: Although limited measurements show low milk transfer (RID <= 1.5%), FDA labeling advises against breastfeeding during rosuvastatin therapy due to potential disruption of infant lipid synthesis; temporary discontinuation during nursing is usually feasible.
+
+[simvastatin]
+Relative Infant Dose (RID): Quantitative human breast milk concentrations of simvastatin and simvastatin acid have not been measured.
+Summary of Use during Lactation: Because human milk transfer is uncharacterized and statins could theoretically interfere with infant cholesterol and steroid synthesis, breastfeeding is not recommended during simvastatin therapy.
+
+[sitagliptin]
+Relative Infant Dose (RID): Human breast milk concentrations of sitagliptin have not been measured in clinical studies.
+Summary of Use during Lactation: Because no human lactation data exist for sitagliptin, better-studied agents such as insulin or metformin are preferred in breastfeeding mothers with diabetes.
+
+[spironolactone]
+Relative Infant Dose (RID): Combined transfer of spironolactone's active metabolite canrenone yields a low relative infant dose of 0.2% to 1.2% of the weight-adjusted maternal dosage.
+Summary of Use during Lactation: Milk levels of active canrenone are low (RID <= 1.2%) and considered compatible with breastfeeding; monitor maternal milk supply only if combined with aggressive diuresis.
+
+[tenecteplase]
+Relative Infant Dose (RID): Large recombinant glycoprotein (~59 kDa) rapidly cleared from maternal plasma with negligible expected milk transfer (estimated RID < 0.1%).
+Summary of Use during Lactation: Like alteplase, tenecteplase is a large protein rapidly cleared from maternal circulation and degraded in the infant GI tract; breastfeeding may resume once maternal post-stroke clinical condition stabilizes.
+
+[ticagrelor]
+Relative Infant Dose (RID): Quantitative human breast milk measurements for ticagrelor are unavailable.
+Summary of Use during Lactation: Because ticagrelor and its active metabolite lack human milk transfer data and carry theoretical antiplatelet bleeding risk in the infant, low-dose aspirin or clopidogrel with infant monitoring is preferred when antiplatelet therapy is needed during lactation.
+
+[trihexyphenidyl]
+Relative Infant Dose (RID): Human breast milk concentrations of trihexyphenidyl are unavailable, though systemic anticholinergics can suppress lactation.
+Summary of Use during Lactation: Trihexyphenidyl lacks human milk data, may decrease maternal milk supply via anticholinergic action, and could cause infant tachycardia, flushing, or sedation; use caution or prefer an alternative while monitoring milk volume and infant symptoms.
+
+[valsartan]
+Relative Infant Dose (RID): Human breast milk concentrations of valsartan are unmeasured (high protein binding ~95% predicts minimal milk transfer).
+Summary of Use during Lactation: Because no human lactation data exist for valsartan and AT1 blockade poses theoretical risk to immature neonatal kidneys, prefer well-studied postpartum antihypertensives such as labetalol, nifedipine, or enalapril.
+
+[vancomycin]
+Relative Infant Dose (RID): Intravenous maternal vancomycin produces low milk concentrations (estimated RID < 2%) with virtually zero oral absorption in the infant GI tract.
+Summary of Use during Lactation: Vancomycin is poorly absorbed orally and appears in minimal amounts in human milk, making it compatible with breastfeeding; observe the infant occasionally for loose stools or diaper thrush.
+
+[warfarin]
+Relative Infant Dose (RID): Warfarin is >99% plasma protein-bound and undetectable in human breast milk and breastfed infant plasma (RID < 0.1% / essentially 0%).
+Summary of Use during Lactation: Warfarin is completely compatible with breastfeeding and does not enter breast milk in clinically measurable amounts; no waiting period or infant INR monitoring is needed for healthy term infants.

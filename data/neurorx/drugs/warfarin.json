@@ -237,11 +237,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "5dcebfeea585f4b438cde2eacc5cecef56158ebb075c06b26a277f7770f49640"
   },
   "adverse_effects": {
     "most_common": {
@@ -344,28 +344,19 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": "Crosses the placenta with fetal plasma concentrations approaching maternal values; first-trimester exposure causes warfarin embryopathy (~5%) and CNS/fetal hemorrhage risks.",
-      "refs": [
-        {
-          "source_id": "fda-warfarin-label",
-          "locator": "8 USE IN SPECIFIC POPULATIONS",
-          "quote": "In humans, warfarin crosses the placenta, and concentrations in fetal plasma approach the maternal values. Exposure to warfarin during the first trimester of pregnancy caused a pattern of congenital malformations in about 5% of exposed offspring."
-        }
-      ]
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": "Verify pregnancy status prior to initiation; advise females of reproductive potential to use effective contraception during treatment and for at least 1 month after the final dose.",
+      "value": "Does not impair hormonal contraceptive efficacy; effective contraception is essential prior to conception so warfarin can be switched to LMWH before pregnancy.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
+          "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        },
         {
           "source_id": "fda-warfarin-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS",
@@ -378,13 +369,65 @@
         }
       ]
     },
+    "pregnancy_pk": {
+      "value": "Crosses the placenta causing warfarin embryopathy (weeks 6–12) and late fetal CNS hemorrhage; switch to LMWH during weeks 6–12 or throughout pregnancy per ESC/ASH guidelines.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Warfarin Registry, PK & Postpartum",
+          "quote": "Warfarin crosses the placenta causing warfarin embryopathy (nasal hypoplasia, stippled epiphyses) in weeks 6–12 and fetal CNS hemorrhage later; ENTIS Prospective Cohort reported major congenital malformations in 7.4% (95% CI: 4.5%–11.8%, n=229) of first-trimester exposures; switch to LMWH during weeks 6–12 or throughout pregnancy, and war"
+        },
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "In humans, warfarin crosses the placenta, and concentrations in fetal plasma approach the maternal values. Exposure to warfarin during the first trimester of pregnancy caused a pattern of congenital malformations in about 5% of exposed offspring."
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "ENTIS Prospective Cohort",
+        "percent": 7.4,
+        "ci95": "4.5%–11.8%",
+        "n_exposed": 229,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 2: Warfarin Registry, PK & Postpartum",
+            "quote": "ENTIS Prospective Cohort reported major congenital malformations in 7.4% (95% CI: 4.5%–11.8%, n=229) of first-trimester exposures; switch to LMWH during weeks 6–12 or throughout pregnancy, and warfarin may be safely resumed immediately postpartum as it does not pass into breast milk. DOACs Pregnancy Contraindication (Apixaban, Dabigatran,"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Warfarin may be safely resumed immediately postpartum once surgical hemostasis is secure, as it does not pass into breast milk.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Warfarin Registry, PK & Postpartum",
+          "quote": "warfarin may be safely resumed immediately postpartum as it does not pass into breast milk. DOACs Pregnancy Contraindication (Apixaban, Dabigatran, Edoxaban, Rivaroxaban): Direct oral anticoagulants (apixaban, dabigatran, edoxaban, rivaroxaban) cross the human placenta, carry unacceptable fetal bleeding and embryotoxicity risk, and are co"
+        }
+      ]
+    },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "< 0.1% (undetectable in human milk)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Warfarin — Drug Levels",
+          "quote": "Warfarin is >99% plasma protein-bound and undetectable in human breast milk and breastfed infant plasma (RID < 0.1% / essentially 0%). Summary of Use during Lactation: Warfarin is completely compatible with breastfeeding and does not enter breast milk in clinically measurable amounts; no waiting period or infant INR monitoring is needed f"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Warfarin was not detected in human milk in a limited published study (15 nursing mothers); monitor breastfeeding infants for bruising or bleeding.",
+      "value": "Completely compatible with breastfeeding (RID < 0.1%, undetectable in breast milk and infant plasma); no waiting period or infant INR monitoring required for healthy term infants.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Warfarin — Summary of Use during Lactation",
+          "quote": "Warfarin is completely compatible with breastfeeding and does not enter breast milk in clinically measurable amounts; no waiting period or infant INR monitoring is needed for healthy term infants."
+        },
         {
           "source_id": "fda-warfarin-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS",

@@ -187,14 +187,24 @@
       ],
       "note": "No adequate human pregnancy data to establish safety; animal studies showed no adverse embryo-fetal effects at 2-4x MRHD."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "pregnancy_pk": {
-      "value": "No adequate human pregnancy data; no adverse effects on embryo-fetal development in pregnant rats and rabbits at oral doses 2-4x MRHD.",
+      "value": "Lacks adequate human pregnancy data (primarily prescribed in older postmenopausal populations); reserve only if clear maternal benefit outweighs unknown fetal risk.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 6: Dementia Therapies",
+          "quote": "lack adequate human pregnancy data (`caution` — largely indicated in older postmenopausal populations); anti-amyloid IgG1 antibodies cross the placenta in late pregnancy via FcRn and carry prolonged washout considerations if ever used in reproductive-age carriers."
+        },
         {
           "source_id": "fda-rivastigmine-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.1 Pregnancy",
@@ -202,21 +212,30 @@
         }
       ]
     },
+    "mcm": [],
     "postpartum": {
       "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: rivastigmine — Drug Levels",
+          "quote": "Human breast milk concentrations of rivastigmine are unavailable. Summary of Use during Lactation: No human lactation data exist for rivastigmine; because cholinergic stimulation could cause infant GI or autonomic effects, avoid breastfeeding if ever used in a nursing patient. [ropinirole] Relative Infant Dose (RID): Human breast milk co"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk or effects on breastfed infants (excreted in rat milk at ~2x maternal plasma); weigh breastfeeding benefits against maternal clinical need and potential infant risk.",
+      "value": "No human lactation data exist and cholinergic stimulation could cause infant GI or autonomic effects; avoid breastfeeding if ever used.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: rivastigmine — Summary of Use during Lactation",
+          "quote": "No human lactation data exist for rivastigmine; because cholinergic stimulation could cause infant GI or autonomic effects, avoid breastfeeding if ever used in a nursing patient. [ropinirole] Relative Infant Dose (RID): Human breast milk concentrations are unstudied, and ropinirole potently suppresses maternal prolactin secretion. Summar"
+        },
         {
           "source_id": "fda-rivastigmine-label",
           "locator": "USE IN SPECIFIC POPULATIONS - 8.2 Lactation",
@@ -225,11 +244,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "77cdb172f5ced35daaf465017860acf8026e67fcf1a1a1c133a654716394e33c"
   },
   "adverse_effects": {
     "most_common": {

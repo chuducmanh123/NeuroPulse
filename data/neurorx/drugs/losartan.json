@@ -396,30 +396,75 @@
       ],
       "note": "5-axis synthesis: Boxed Warning for fetal toxicity requiring immediate discontinuation upon pregnancy detection; 2nd/3rd trimester RAS blockade causes oligohydramnios, fetal renal failure, skull/lung hypoplasia, and neonatal death."
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not impair hormonal contraceptives; effective contraception is advised so RAAS inhibitors can be switched to labetalol or nifedipine before conception.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
+          "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Strictly contraindicated in pregnancy (especially 2nd/3rd trimesters): causes fetal renal tubular dysgenesis, oligohydramnios, pulmonary/skull hypoplasia, and fetal death; switch immediately upon pregnancy recognition.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: ACEi & ARBs Fetotoxicity",
+          "quote": "Lisinopril, losartan, and valsartan are strictly contraindicated in pregnancy (`avoid`), especially during the 2nd and 3rd trimesters when RAAS blockade causes fetal renal tubular dysgenesis, oligohydramnios, pulmonary hypoplasia, skull hypoplasia, and fetal death; National Registry cohorts reported 5.6% (95% CI: 4.1%–7.6%, n=745) adverse"
+        }
+      ]
+    },
+    "mcm": [
+      {
+        "registry": "National Registry RAAS Cohort (class)",
+        "percent": 5.6,
+        "ci95": "4.1%–7.6%",
+        "n_exposed": 745,
+        "dose_stratum": "first-trimester exposure",
+        "refs": [
+          {
+            "source_id": "neuro-repro-wave3-guidelines",
+            "locator": "Section 3: ACEi & ARBs Fetotoxicity",
+            "quote": "National Registry cohorts reported 5.6% (95% CI: 4.1%–7.6%, n=745) adverse fetal/malformation outcomes with first-trimester exposure; switch to labetalol or nifedipine preconception and monitor postpartum BP before any restart. Spironolactone & Furosemide: Spironolactone exhibits anti-androgenic activity in animal models and must be avoid"
+          }
+        ]
+      }
+    ],
+    "postpartum": {
+      "value": "Monitor postpartum blood pressure before restarting antihypertensives, and select lactation-preferred alternatives (labetalol, nifedipine, or enalapril) if breastfeeding.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 3: ACEi & ARBs Fetotoxicity",
+          "quote": "switch to labetalol or nifedipine preconception and monitor postpartum BP before any restart. Spironolactone & Furosemide: Spironolactone exhibits anti-androgenic activity in animal models and must be avoided in pregnancy (`avoid`); furosemide is reserved for maternal pulmonary edema or heart failure (`caution`) because diuretic-induced i"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human breast milk data available (estimated minimal)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: losartan — Drug Levels",
+          "quote": "Human milk levels of losartan and its active carboxylic acid metabolite are unmeasured (estimated minimal transfer due to >98% protein binding). Summary of Use during Lactation: Because no human lactation data exist for losartan and AT1 blockade could theoretically impair immature neonatal renal function, prefer better-studied antihyperte"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "It is not known whether losartan is excreted in human milk, but significant levels of losartan and its active metabolite are present in rat milk. Decide whether to discontinue nursing or discontinue the drug due to potential for adverse effects on the nursing infant.",
+      "value": "No human lactation data exist and AT1 blockade poses theoretical risk to immature neonatal kidneys; prefer labetalol, nifedipine, or enalapril while breastfeeding.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: losartan — Summary of Use during Lactation",
+          "quote": "Because no human lactation data exist for losartan and AT1 blockade could theoretically impair immature neonatal renal function, prefer better-studied antihypertensives such as labetalol, nifedipine, or enalapril while breastfeeding. [memantine] Relative Infant Dose (RID): No human breast milk concentration data exist for memantine. Summ"
+        },
         {
           "source_id": "fda-losartan-label",
           "locator": "Section 8.2 Lactation",
@@ -428,10 +473,10 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "5989d0d09088a3b2c7c8e1a77ff2007d83064b921af8d6d47f43666733c57bd5"
   }
 }

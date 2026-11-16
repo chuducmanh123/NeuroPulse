@@ -196,11 +196,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "a2295a5fa748e541607b2d9924d5de0fbbec86f49b7fdbb5d0d019508d2e576d"
   },
   "adverse_effects": {
     "most_common": {
@@ -247,30 +247,60 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
-    },
-    "pregnancy_pk": {
-      "value": null,
-      "refs": []
-    },
-    "postpartum": {
-      "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Does not reduce hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Human pregnancy data are limited; reserve for critical stenting where safer alternatives fail, and hold 5 to 7 days prior to neuraxial anesthesia or delivery to prevent hemorrhage.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Clopidogrel & Ticagrelor Pregnancy & Peripartum",
+          "quote": "Clopidogrel (and ticagrelor) have limited human pregnancy data; clopidogrel is reserved for essential coronary or carotid/intracranial stent indications (`caution`) and must be held 5 to 7 days before neuraxial anesthesia or delivery to prevent maternal/neonatal hemorrhage, then resumed postpartum once hemostasis is secure. Thrombolytics"
+        }
+      ]
+    },
+    "mcm": [],
+    "postpartum": {
+      "value": "Resume antiplatelet therapy postpartum only after hemostasis is secure, considering transition to low-dose aspirin or clopidogrel if breastfeeding.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Clopidogrel & Ticagrelor Pregnancy & Peripartum",
+          "quote": "must be held 5 to 7 days before neuraxial anesthesia or delivery to prevent maternal/neonatal hemorrhage, then resumed postpartum once hemostasis is secure. Thrombolytics (Alteplase & Tenecteplase): Alteplase (~59 kDa) and tenecteplase (~59 kDa) are large recombinant proteins that do not cross the human placenta; per AHA/ASA Acute Stroke"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "No human milk data available",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Ticagrelor — Drug Levels",
+          "quote": "Quantitative human breast milk measurements for ticagrelor are unavailable. Summary of Use during Lactation: Because ticagrelor and its active metabolite lack human milk transfer data and carry theoretical antiplatelet bleeding risk in the infant, low-dose aspirin or clopidogrel with infant monitoring is preferred when antiplatelet therap"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "Breastfeeding is not recommended during ticagrelor treatment; no human milk data, but present in rat milk.",
+      "value": "Lacks human milk transfer data and carries theoretical infant bleeding risk; low-dose aspirin or clopidogrel with infant monitoring is preferred during lactation.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Ticagrelor — Summary of Use during Lactation",
+          "quote": "Because ticagrelor and its active metabolite lack human milk transfer data and carry theoretical antiplatelet bleeding risk in the infant, low-dose aspirin or clopidogrel with infant monitoring is preferred when antiplatelet therapy is needed during lactation. [trihexyphenidyl] Relative Infant Dose (RID): Human breast milk concentrations"
+        },
         {
           "source_id": "fda-ticagrelor-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",

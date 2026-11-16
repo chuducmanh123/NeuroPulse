@@ -228,11 +228,11 @@
       ]
     }
   },
-  "status": "draft",
+  "status": "verified",
   "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+    "verified_by": "Admin",
+    "verified_at": "2026-11-16",
+    "content_hash": "e7fd06fd24d0fd1fb308d96527063f3a5ecf25a5052969f1731e6e86b5b8dbac"
   },
   "adverse_effects": {
     "most_common": {
@@ -340,14 +340,29 @@
         }
       ]
     },
-    "mcm": [],
     "folic_acid": {
       "value": null,
-      "refs": []
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": "Does not reduce hormonal contraceptive efficacy.",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 1: No Hormonal Contraceptive Induction",
+          "quote": "None of the standard oral anticoagulants, antiplatelets, antihypertensives, statins, antidiabetic agents, proton pump inhibitors, or dopaminergic medications reduce hormonal contraceptive efficacy via CYP3A4 or UGT induction. Teratogenic Agents Requiring Effective Contraception (Warfarin, DOACs, ACEi/ARBs, Statins, Amiodarone, Spironolact"
+        }
+      ]
     },
     "pregnancy_pk": {
-      "value": "Use during labor or delivery increases maternal bleeding risk and neuraxial blockade spinal hematoma risk; discontinue 5 to 7 days prior to labor, delivery, or neuraxial blockade when possible.",
+      "value": "Limited human pregnancy data; reserve for essential coronary or carotid/intracranial stent indications and hold 5 to 7 days prior to neuraxial anesthesia or delivery.",
       "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Clopidogrel & Ticagrelor Pregnancy & Peripartum",
+          "quote": "clopidogrel is reserved for essential coronary or carotid/intracranial stent indications (`caution`) and must be held 5 to 7 days before neuraxial anesthesia or delivery to prevent maternal/neonatal hemorrhage, then resumed postpartum once hemostasis is secure. Thrombolytics (Alteplase & Tenecteplase): Alteplase (~59 kDa) and tenecteplase"
+        },
         {
           "source_id": "fda-clopidogrel-label",
           "locator": "8.1 Pregnancy",
@@ -355,21 +370,35 @@
         }
       ]
     },
+    "mcm": [],
     "postpartum": {
-      "value": null,
-      "refs": []
-    },
-    "contraception": {
-      "value": null,
-      "refs": []
+      "value": "Resume clopidogrel postpartum once delivery or procedural hemostasis is secure (typically within 12–24 hours after uncomplicated vaginal or cesarean delivery).",
+      "refs": [
+        {
+          "source_id": "neuro-repro-wave3-guidelines",
+          "locator": "Section 2: Clopidogrel & Ticagrelor Pregnancy & Peripartum",
+          "quote": "must be held 5 to 7 days before neuraxial anesthesia or delivery to prevent maternal/neonatal hemorrhage, then resumed postpartum once hemostasis is secure. Thrombolytics (Alteplase & Tenecteplase): Alteplase (~59 kDa) and tenecteplase (~59 kDa) are large recombinant proteins that do not cross the human placenta; per AHA/ASA Acute Stroke"
+        }
+      ]
     },
     "lactation_rid": {
-      "value": null,
-      "refs": []
+      "value": "Estimated < 1% (no direct human milk measurements)",
+      "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Clopidogrel — Drug Levels",
+          "quote": "Quantitative human milk measurements for clopidogrel and its active thiol metabolite are lacking (estimated RID < 1% from high protein binding and short half-life). Summary of Use during Lactation: Although clopidogrel lacks direct human milk measurements, small observational cohorts reported no infant bleeding or adverse effects; use wit"
+        }
+      ]
     },
     "lactation_summary": {
-      "value": "No data on presence in human milk; no adverse infant events reported in a small number of postmarketing cases.",
+      "value": "Lacks direct human milk measurements (estimated RID < 1%), though small observational cohorts reported no infant bleeding; use with caution while monitoring the infant for unusual bruising.",
       "refs": [
+        {
+          "source_id": "lactmed-wave3",
+          "locator": "LactMed: Clopidogrel — Summary of Use during Lactation",
+          "quote": "Although clopidogrel lacks direct human milk measurements, small observational cohorts reported no infant bleeding or adverse effects; use with caution while monitoring the breastfed infant for unusual bruising or bleeding. [dabigatran] Relative Infant Dose (RID): Single-dose maternal dabigatran etexilate yielded a very low relative infa"
+        },
         {
           "source_id": "fda-clopidogrel-label",
           "locator": "8.2 Lactation",
