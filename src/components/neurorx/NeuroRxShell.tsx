@@ -138,8 +138,8 @@ export function NeuroRxShell({
     {
       id: "lookup",
       icon: <Pill className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-500 shrink-0" />,
-      mobileLabel: "Lookup & Dosing",
-      desktopLabel: "Drug Lookup & Dosing",
+      mobileLabel: "Drug Lookup",
+      desktopLabel: "Drug Lookup",
       activeClass: darkMode
         ? "bg-slate-800 text-cyan-300 border border-cyan-500/30 shadow-sm"
         : "bg-white text-cyan-700 border border-cyan-500/30 shadow-sm",

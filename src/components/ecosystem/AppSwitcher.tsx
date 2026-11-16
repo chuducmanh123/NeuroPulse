@@ -37,7 +37,9 @@ export function AppSwitcher({
   };
 
   useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
+    if (!open) return;
+
+    function handleClickOutside(e: PointerEvent) {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         setOpen(false);
       }
@@ -45,13 +47,19 @@ export function AppSwitcher({
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
     }
-    document.addEventListener("mousedown", handleClickOutside);
+
+    // Defer attaching pointerdown until after the opening tap finishes
+    const rafId = window.requestAnimationFrame(() => {
+      document.addEventListener("pointerdown", handleClickOutside);
+    });
     document.addEventListener("keydown", handleKeyDown);
+
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      window.cancelAnimationFrame(rafId);
+      document.removeEventListener("pointerdown", handleClickOutside);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -165,7 +173,7 @@ export function AppSwitcher({
         aria-haspopup="true"
         aria-expanded={open}
         title="Neuro Ecosystem Apps"
-        className={`p-2 rounded-lg border transition-all flex items-center justify-center ${
+        className={`p-2 rounded-lg border transition-colors flex items-center justify-center touch-manipulation cursor-pointer select-none ${
           open
             ? darkMode
               ? "bg-slate-800 border-indigo-500 text-white ring-2 ring-indigo-500/40"
@@ -194,7 +202,7 @@ export function AppSwitcher({
           style={{ top: `${mobileTop}px` }}
           className={`fixed left-3 right-3 mx-auto max-w-[356px] sm:absolute sm:!top-full sm:mt-2 sm:w-[356px] sm:max-w-none sm:mx-0 ${
             alignLeftOnDesktop ? "sm:left-0 sm:right-auto" : "sm:right-0 sm:left-auto"
-          } rounded-2xl border shadow-2xl z-50 overflow-hidden transition-all ${
+          } rounded-2xl border shadow-2xl z-50 overflow-hidden ${
             darkMode
               ? "bg-slate-900 border-slate-700 text-slate-100 shadow-black/70"
               : "bg-white border-slate-200 text-slate-900 shadow-slate-400/30"

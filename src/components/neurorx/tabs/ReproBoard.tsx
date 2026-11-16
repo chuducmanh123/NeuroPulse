@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import { CheckCircle2, AlertTriangle, XCircle, Milk, ExternalLink } from "lucide-react";
+import { CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import type { Source } from "@/types/neurorx";
 import { classifyLactationTier } from "@/lib/neurorx/reproductive";
-import { SourcePopover } from "../drug/SourcePopover";
 
 interface ReproBoardProps {
   mode?: "pregnancy" | "lactation";
@@ -18,7 +17,6 @@ interface ReproBoardProps {
 export function ReproBoard({
   mode = "pregnancy",
   drugs,
-  sources = [],
   onSelectDrug,
   darkMode = false,
 }: ReproBoardProps) {
@@ -45,88 +43,27 @@ export function ReproBoard({
     const { drug, effectiveStatus } = drugItem;
     const isDraft = effectiveStatus === "draft";
     const displayName = drug.tall_man?.value || drug.generic_name;
-    const repro = drug.reproductive;
 
     return (
-      <div
+      <button
         key={drug.id}
+        type="button"
         onClick={() => onSelectDrug(drugItem)}
-        className={`p-3.5 rounded-xl border text-left cursor-pointer transition-all hover:scale-[1.01] hover:shadow-md ${
+        className={`w-full px-3.5 py-2.5 rounded-xl border text-left cursor-pointer transition-all hover:scale-[1.01] hover:shadow-md flex items-center justify-between gap-2 ${
           darkMode
             ? "bg-slate-900/80 border-slate-700/80 hover:border-slate-600"
             : "bg-white border-slate-200/90 hover:border-slate-300 shadow-sm"
         }`}
       >
-        <div className="flex items-start justify-between gap-2 mb-1.5">
-          <div className="font-bold text-xs sm:text-sm text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
-            <span>{displayName}</span>
-          </div>
-          {isDraft && (
-            <span className="text-[10px] px-1.5 py-0.2 rounded font-normal bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
-              Pending verification
-            </span>
-          )}
-        </div>
-
-        {isLactation ? (
-          <div className="space-y-1.5 border-t border-slate-100 dark:border-slate-800 pt-2">
-            {repro?.lactation_rid?.value ? (
-              <div className="text-[11px] text-amber-600 dark:text-amber-400 flex items-center gap-1 font-semibold">
-                <Milk className="w-3 h-3 shrink-0" />
-                <span>RID: {repro.lactation_rid.value}</span>
-              </div>
-            ) : (
-              <p className="text-[11px] text-slate-400 italic">
-                No RID percentage reported in sources
-              </p>
-            )}
-            {repro?.lactation_summary?.value && (
-              <p className="text-[11px] text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
-                {repro.lactation_summary.value}
-              </p>
-            )}
-          </div>
-        ) : (
-          /* MCM Entries per registry (strictly separate; never averaged) */
-          !isDraft && repro?.mcm && repro.mcm.length > 0 ? (
-            <div className="mt-2 space-y-1.5 border-t border-slate-100 dark:border-slate-800 pt-2">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-                MCM Registries:
-              </span>
-              {repro.mcm.map((entry, idx) => (
-                <div
-                  key={idx}
-                  className="text-[11px] text-slate-600 dark:text-slate-300 flex items-center justify-between"
-                >
-                  <span>
-                    <strong>{entry.registry}:</strong> {entry.percent}%
-                    {entry.n_exposed ? ` (n=${entry.n_exposed})` : ""}
-                    {entry.dose_stratum ? ` [${entry.dose_stratum}]` : ""}
-                  </span>
-                  {entry.refs && entry.refs.length > 0 && (
-                    <span onClick={(e) => e.stopPropagation()}>
-                      <SourcePopover
-                        refs={entry.refs}
-                        sources={sources}
-                        label=""
-                        darkMode={darkMode}
-                      />
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
-          ) : isDraft ? (
-            <p className="text-[11px] text-slate-400 italic mt-1">
-              Registry numbers hidden (draft record)
-            </p>
-          ) : (
-            <p className="text-[11px] text-slate-400 italic mt-1">
-              No registry MCM data in sources
-            </p>
-          )
+        <span className="font-bold text-xs sm:text-sm text-slate-900 dark:text-slate-100">
+          {displayName}
+        </span>
+        {isDraft && (
+          <span className="text-[10px] px-1.5 py-0.5 rounded font-normal bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 shrink-0">
+            Pending verification
+          </span>
         )}
-      </div>
+      </button>
     );
   };
 
