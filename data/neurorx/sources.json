@@ -1225,5 +1225,25 @@
     "url": "https://doi.org/10.1097/AOG.0000000000002706",
     "file": "acog-pb196-vte-pregnancy.txt",
     "accessed": "2026-11-17"
+  },
+  {
+    "id": "fda-enoxaparin-label",
+    "type": "fda_label",
+    "title": "Lovenox (enoxaparin) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Cardinal Health 107, LLC",
+    "year": 2026,
+    "version": "3d263380-4f44-4fd8-aa2a-e69702ab258f",
+    "file": "fda-enoxaparin-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-heparin-label",
+    "type": "fda_label",
+    "title": "Heparin Sodium (heparin) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Meitheal Pharmaceuticals Inc.",
+    "year": 2026,
+    "version": "02fb700d-a28c-4d45-b78d-382dc0d5986c",
+    "file": "fda-heparin-label.txt",
+    "accessed": "2026-11-11"
   }
 ]

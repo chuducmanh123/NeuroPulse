@@ -21,6 +21,7 @@ import {
   isReproNotApplicable,
 } from "@/lib/neurorx/reproductive";
 import { SourcePopover } from "./SourcePopover";
+import { PregnancyFlowchartPanel } from "./PregnancyFlowchartPanel";
 
 interface DrugAccordionsProps {
   drug: DrugRecord;
@@ -236,6 +237,8 @@ export function DrugAccordions({
                       {renderReproFieldValue(rep.pregnancy_pk)}
                     </p>
                   </div>
+
+                  <PregnancyFlowchartPanel drugId={drug.id} darkMode={darkMode} />
 
                   {rep.mcm && rep.mcm.length > 0 && (
                     <div className="space-y-1.5 pt-1">

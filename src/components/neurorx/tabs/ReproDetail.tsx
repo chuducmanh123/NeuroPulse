@@ -12,6 +12,7 @@ import {
   isReproNotApplicable,
 } from "@/lib/neurorx/reproductive";
 import { SourcePopover } from "../drug/SourcePopover";
+import { PregnancyFlowchartPanel } from "../drug/PregnancyFlowchartPanel";
 
 interface ReproDetailProps {
   mode?: "pregnancy" | "lactation";
@@ -216,6 +217,8 @@ export function ReproDetail({
                     "Pregnancy Pharmacokinetics & Therapeutic Drug Monitoring",
                     repro?.pregnancy_pk
                   )}
+
+                  <PregnancyFlowchartPanel drugId={drug.id} darkMode={darkMode} />
 
                   {/* MCM Registries breakdown */}
                   <div>
