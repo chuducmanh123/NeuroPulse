@@ -17,8 +17,7 @@
     "antihypertensive"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -524,12 +523,17 @@
       }
     ],
     "postpartum": {
-      "value": "Monitor postpartum blood pressure before restarting antihypertensives, and select lactation-preferred alternatives (labetalol, nifedipine, or enalapril) if breastfeeding.",
+      "value": "Contraindicated in pregnancy; postpartum alternative agent (AHA/ACOG 2026: 2.5–40 mg/day, titrate every 5–7 days) with limited lactation safety data—prefer labetalol, nifedipine, or enalapril if breastfeeding.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 3: ACEi & ARBs Fetotoxicity",
           "quote": "switch to labetalol or nifedipine preconception and monitor postpartum BP before any restart. Spironolactone & Furosemide: Spironolactone exhibits anti-androgenic activity in animal models and must be avoided in pregnancy (`avoid`); furosemide is reserved for maternal pulmonary edema or heart failure (`caution`) because diuretic-induced i"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Postpartum treatment of hypertension",
+          "quote": "Postpartum alternative agents Lisinopril (2.5–40 mg/d), Losartan (25–100 mg/d), and Valsartan (20–320 mg/d), titrated every 5–7 d, have limited safety data during lactation. === TABLE 2: ANTITHROMBOTIC AGENTS & STATINS IN PREGNANCY AND LACTATION (p. e5–e9) === Aspirin Preeclampsia & Secondary Stroke Prevention (p."
         }
       ]
     },
@@ -563,6 +567,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "3c9c189d0671f64da947a8e9b3983830b005a97452c8d27310a14aab1649c3f3"
+    "content_hash": "c85512468c68b2c269cfa127abec03cf474c6c6fe7c981709a40ba535f310b76"
   }
 }

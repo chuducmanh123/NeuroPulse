@@ -18,8 +18,7 @@
     "antihypertensive"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -479,33 +478,48 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "Exhibits anti-androgenic activity in animal models with potential feminization of male fetuses; avoid in routine pregnancy.",
+      "value": "Contraindicated in pregnancy (AHA/ACOG 2026 Table 2: mineralocorticoid receptor antagonists carry potential for fetal harm and anti-androgenic effects in animal models).",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 3: Spironolactone & Furosemide",
           "quote": "Spironolactone exhibits anti-androgenic activity in animal models and must be avoided in pregnancy (`avoid`); furosemide is reserved for maternal pulmonary edema or heart failure (`caution`) because diuretic-induced intravascular volume depletion can impair uteroplacental perfusion, requiring postpartum volume reassessment. Potassium Chlo"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Antihypertensive medications in pregnant individuals",
+          "quote": "Angiotensin-converting enzyme inhibitors, angiotensin receptor blockers, direct renin inhibitors, and mineralocorticoid receptor antagonists are contraindicated in pregnancy because of the potential for fetal harm. Lisinopril, Losartan, Valsartan Postpartum (Table 2): Postpartum alternative agents Lisinopril (2.5–40 mg/d), Losartan (25–10"
         }
       ]
     },
     "mcm": [],
     "postpartum": {
-      "value": "Reassess maternal volume status and serum potassium postpartum before resuming therapy.",
+      "value": "Alternative postpartum agent (AHA/ACOG 2026: start 12.5 mg daily, titrate every 14–30 days). Reassess maternal volume status and serum potassium postpartum.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 3: Spironolactone & Furosemide",
           "quote": "requiring postpartum volume reassessment. Potassium Chloride: Oral and IV potassium chloride is physiological replacement therapy (`preferred`) safe throughout all trimesters when indicated for hypokalemia; monitor maternal serum potassium and renal function. === SECTION 4: STATINS, ENDOCRINE/METABOLIC & GASTROINTESTINAL === Statins (Ato"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Postpartum treatment of hypertension",
+          "quote": "Postpartum alternative agent Spironolactone: starting dose 12.5 mg daily, titration every 14–30 d; Lactation safety: Safe RID 2%–4.3%. Metoprolol Tartrate Postpartum & Lactation (Table 2): Postpartum alternative agent Metoprolol tartrate: starting dose 12.5 mg twice daily, maximum dose 200 mg twice daily, titration every 2–3 d; Lactation"
         }
       ]
     },
     "lactation_rid": {
-      "value": "0.2% to 1.2% (as active metabolite canrenone)",
+      "value": "0.2% to 1.2% (LactMed); 2% to 4.3% (AHA/ACOG 2026 Table 2)",
       "refs": [
         {
           "source_id": "lactmed-wave3",
           "locator": "LactMed: Spironolactone — Drug Levels",
           "quote": "Combined transfer of spironolactone's active metabolite canrenone yields a low relative infant dose of 0.2% to 1.2% of the weight-adjusted maternal dosage. Summary of Use during Lactation: Milk levels of active canrenone are low (RID <= 1.2%) and considered compatible with breastfeeding; monitor maternal milk supply only if combined with"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Postpartum treatment of hypertension",
+          "quote": "Postpartum alternative agent Spironolactone: starting dose 12.5 mg daily, titration every 14–30 d; Lactation safety: Safe RID 2%–4.3%. Metoprolol Tartrate Postpartum & Lactation (Table 2): Postpartum alternative agent Metoprolol tartrate: starting dose 12.5 mg twice daily, maximum dose 200 mg twice daily, titration every 2–3 d; Lactation"
         }
       ]
     },
@@ -529,6 +543,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "ffb526502f91e0d936da3165bcf0d7b434c81d2aae09406f4406a207c4d285c0"
+    "content_hash": "abe20f7905294fcf72239358cf09a7e4cee332cf64af7159d535b7e042e73ffe"
   }
 }

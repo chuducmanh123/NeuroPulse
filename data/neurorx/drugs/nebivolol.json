@@ -18,8 +18,7 @@
     "antihypertensive"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -467,6 +466,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "d4086379bd7863070c9e6070e1dfa4dcee795b41e28484bfe0995ccdfaf85670"
+    "content_hash": "f985633b8277df5a38fb565aaffd2f823972a95178d00c1058d4990ba0c8e0ea"
   }
 }

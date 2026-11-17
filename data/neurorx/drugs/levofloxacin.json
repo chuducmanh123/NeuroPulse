@@ -17,9 +17,7 @@
     "DNA gyrase / topoisomerase IV inhibitor"
   ],
   "subspecialties": [
-    "neuro_infectious",
-    "neurocritical_care",
-    "neuromuscular"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -738,6 +736,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "7539909a41d912ae369fb3896bad60a3c964473c6b0d05cd6b8f88ec556f6586"
+    "content_hash": "9ac566e0d38e603c28dfc968ad17b3d229f03f1522de1dd10fc9c35412a4cf28"
   }
 }

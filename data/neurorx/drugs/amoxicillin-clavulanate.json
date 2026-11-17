@@ -17,8 +17,7 @@
     "beta-lactam/beta-lactamase inhibitor combination"
   ],
   "subspecialties": [
-    "neuro_infectious",
-    "neurocritical_care"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -547,6 +546,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "9e4838b5b11fcc4f9b06a2d7661989214d5e68305db8e12b9ac7b7b4336c0bdf"
+    "content_hash": "523207f876a680a419c35f47e606db2eadcc2e861ca9b1b877e994cd5ef766b7"
   }
 }

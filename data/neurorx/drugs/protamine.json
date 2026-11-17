@@ -161,7 +161,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "b32fec55af060b6c79f9fb9512b35247d655a13f1af72a32a2681d20c5568dc6"
+    "content_hash": "7b38ab26aa7bf2981ecc4b9bb7853e9f93b27d5fea3b5d161b573811ade1be41"
   },
   "adverse_effects": {
     "most_common": {
@@ -219,12 +219,17 @@
       "note": "Not clinically applicable"
     },
     "pregnancy_pk": {
-      "value": "Poly-cationic peptide that reverses UFH/LMWH without significant placental transfer; administer standard heparin-neutralizing dosing for maternal hemorrhage.",
+      "value": "Poly-cationic peptide without significant placental transfer; per ACOG PB 196, reverses UFH (or, less predictably, LMWH) with dosing based on heparin type and route. Rarely required in obstetrics and not indicated for prophylactic heparin doses.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 2: Reversal Agents",
           "quote": "protamine sulfate reverses UFH/LMWH without placental transfer; 4F-PCC and idarucizumab (~48 kDa) are life-saving emergency reversal agents for refractory maternal hemorrhage and should never be withheld in pregnancy (`caution`). === SECTION 3: ANTIHYPERTENSIVES, ANTIARRHYTHMICS, DIURETICS & ELECTROLYTES === Labetalol Preferred First-Lin"
+        },
+        {
+          "source_id": "acog-pb196-vte-pregnancy",
+          "locator": "ACOG PB 196: Peripartum Anticoagulation Reversal (p. e9)",
+          "quote": "Protamine sulfate can be used to reverse unfractionated heparin or, less predictably, low-molecular-weight heparin; reversal of heparin, however, is rarely required and is not indicated with a prophylactic dose of heparin."
         }
       ]
     },

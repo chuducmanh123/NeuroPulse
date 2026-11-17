@@ -18,8 +18,7 @@
     "antithrombotic"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "stroke"
   ],
   "vn_products": {
     "value": null,
@@ -241,7 +240,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "5dcebfeea585f4b438cde2eacc5cecef56158ebb075c06b26a277f7770f49640"
+    "content_hash": "9d671fd76f2dd713c39c7e6e184cc23562e8bab24c834c6ef85c60b40da80b0d"
   },
   "adverse_effects": {
     "most_common": {
@@ -370,7 +369,7 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "Crosses the placenta causing warfarin embryopathy (weeks 6–12) and late fetal CNS hemorrhage; switch to LMWH during weeks 6–12 or throughout pregnancy per ESC/ASH guidelines.",
+      "value": "Teratogenic in 1st trimester (weeks 6–12 embryopathy; ENTIS 7.4% MCM, n=229); ACOG PB 196 recommends switching to LMWH for most pregnant patients. For mechanical heart valves, regimens use adjusted-dose LMWH/UFH throughout pregnancy OR LMWH/UFH during weeks 6–13 with VKA substitution until close to delivery, then resuming LMWH/UFH (stop prophylactic LMWH 12 h / therapeutic LMWH 24 h before scheduled delivery; stop warfarin 5 d before planned procedures and remove neuraxial catheter when INR <1.5). If unexpected delivery occurs on warfarin, cesarean delivery and neonatal vitamin K + FFP may be required.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -381,6 +380,16 @@
           "source_id": "fda-warfarin-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS",
           "quote": "In humans, warfarin crosses the placenta, and concentrations in fetal plasma approach the maternal values. Exposure to warfarin during the first trimester of pregnancy caused a pattern of congenital malformations in about 5% of exposed offspring."
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Antithrombotic agents in pregnant and lactating individuals",
+          "quote": "Stop 5 d before planned procedures and ensure INR is in normal range before neuraxial anesthesia; remove neuraxial catheters when INR <1.5."
+        },
+        {
+          "source_id": "acog-pb196-vte-pregnancy",
+          "locator": "ACOG PB 196: Warfarin & Peripartum Management (p. e4, e8)",
+          "quote": "Regimens include adjusted-dose low-molecular-weight heparin or unfractionated heparin throughout pregnancy or from the 6th week until the 13th week with substitution by vitamin K antagonists until close to delivery when low-molecular-weight heparin or unfractionated heparin is resumed. Warfarin Unexpected Delivery & Neonatal Reversal (p."
         }
       ]
     },
@@ -401,12 +410,17 @@
       }
     ],
     "postpartum": {
-      "value": "Warfarin may be safely resumed immediately postpartum once surgical hemostasis is secure, as it does not pass into breast milk.",
+      "value": "ACOG PB 196 postpartum bridging: start warfarin (5 mg daily for 2 days, then INR-guided) concurrently with overlapping adjusted-dose LMWH or UFH until INR is 2.0–3.0 for 2 consecutive days (prevents paradoxical thrombosis/skin necrosis). Resume 24 h post-delivery for mechanical heart valves, or at 1–2 weeks once bleeding risk subsides for non-valve indications >6 weeks (for 6-week-only regimens, LMWH is often preferred). Compatible with breastfeeding.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 2: Warfarin Registry, PK & Postpartum",
           "quote": "warfarin may be safely resumed immediately postpartum as it does not pass into breast milk. DOACs Pregnancy Contraindication (Apixaban, Dabigatran, Edoxaban, Rivaroxaban): Direct oral anticoagulants (apixaban, dabigatran, edoxaban, rivaroxaban) cross the human placenta, carry unacceptable fetal bleeding and embryotoxicity risk, and are co"
+        },
+        {
+          "source_id": "acog-pb196-vte-pregnancy",
+          "locator": "ACOG PB 196: Postpartum Anticoagulation (p. e10)",
+          "quote": "Women who will be treated with warfarin should be bridged with adjusted-dose low-molecular-weight heparin or unfractionated heparin until an international normalized ratio in the therapeutic range (2.0–3.0) is achieved for 2 consecutive days; the initial dose of warfarin is 5 mg daily for 2 days, with subsequent doses determined by monito"
         }
       ]
     },
@@ -421,7 +435,7 @@
       ]
     },
     "lactation_summary": {
-      "value": "Completely compatible with breastfeeding (RID < 0.1%, undetectable in breast milk and infant plasma); no waiting period or infant INR monitoring required for healthy term infants.",
+      "value": "Completely compatible with breastfeeding (RID < 0.1%, undetectable in breast milk and infant plasma; ACOG PB 196 confirms warfarin does not accumulate in breast milk or induce an anticoagulant effect in the infant).",
       "refs": [
         {
           "source_id": "lactmed-wave3",
@@ -437,6 +451,11 @@
           "source_id": "fda-warfarin-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS",
           "quote": "Monitor breastfeeding infants for bruising or bleeding."
+        },
+        {
+          "source_id": "acog-pb196-vte-pregnancy",
+          "locator": "ACOG PB 196: Summary of Recommendations (p. e10–e11)",
+          "quote": "Because warfarin, low-molecular-weight heparin, and unfractionated heparin do not accumulate in breast milk and do not induce an anticoagulant effect in the infant, these anticoagulants are compatible with breastfeeding. === DOACs (DABIGATRAN, RIVAROXABAN, APIXABAN, EDOXABAN): PREGNANCY & POSTPARTUM (p."
         }
       ]
     }

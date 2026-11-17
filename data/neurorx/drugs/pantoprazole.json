@@ -18,8 +18,7 @@
     "gastric acid-pump inhibitor"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -528,6 +527,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "2e454f70508496c5c605c5c8dae0f5586491fb58689ef14ee776e7fdc99b7d44"
+    "content_hash": "e2345823aa06dca858fea19e09038749f68ba7b2517ff2488293d203dcebc85b"
   }
 }

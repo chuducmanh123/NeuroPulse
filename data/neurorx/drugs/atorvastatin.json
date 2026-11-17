@@ -18,8 +18,7 @@
     "lipid-lowering agent"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -182,7 +181,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "c34bc97806bfcea9c62c2b9aede666a6b4c13c23c6eaec3a7f1c19830026f660"
+    "content_hash": "b154148c678fc982655d5c5915873fd678fcca64c092c88397b69adef42b5a9b"
   },
   "adverse_effects": {
     "most_common": {
@@ -246,12 +245,17 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "Avoided in routine pregnancy due to animal developmental toxicity and theoretical disruption of fetal cholesterol synthesis; discontinue upon pregnancy recognition (rare extreme-risk ASCVD/FH exceptions per cardiology).",
+      "value": "AHA/ACOG 2026 Table 2 advises individualized risk/benefit assessment (observational cohorts found no clear evidence of teratogenicity or increased major birth defects), though statins remain generally avoided in routine pregnancy unless high-risk ASCVD/FH cardiology exceptions apply.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 4: Statins",
           "quote": "statins remain avoided in routine pregnancy (`avoid`) due to animal developmental toxicity and theoretical disruption of fetal cholesterol synthesis; discontinue when pregnancy is recognized and resume only after breastfeeding or per cardiology guidance. Levothyroxine Preferred & Pregnancy PK/Postpartum: Levothyroxine is preferred and ess"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Other stroke prevention medications — Statins",
+          "quote": "Statins (atorvastatin, rosuvastatin, simvastatin): Pregnancy safety: Assess risk/benefit; no evidence of teratogenicity or increased major birth defects. Lactation safety: Not recommended due to concern about disruption of infant lipid metabolism. === THROMBOLYSIS, CONTRACEPTION & POSTPARTUM MANAGEMENT (p."
         }
       ]
     },
@@ -277,7 +281,7 @@
       ]
     },
     "lactation_summary": {
-      "value": "Human milk data are lacking and statins theoretically disrupt infant cholesterol synthesis; breastfeeding is generally not recommended during atorvastatin therapy.",
+      "value": "Not recommended during lactation due to concern about disruption of infant lipid metabolism (AHA/ACOG 2026 Table 2); temporary discontinuation while nursing is usually feasible.",
       "refs": [
         {
           "source_id": "lactmed-wave3",
@@ -288,6 +292,11 @@
           "source_id": "fda-atorvastatin-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
           "quote": "There is no information about the presence of atorvastatin in human milk, the effects of the drug on the breastfed infant or the effects of the drug on milk production."
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Other stroke prevention medications — Statins",
+          "quote": "Lactation safety: Not recommended due to concern about disruption of infant lipid metabolism. === THROMBOLYSIS, CONTRACEPTION & POSTPARTUM MANAGEMENT (p. e10, e12, e14) === Alteplase & Tenecteplase in Pregnancy (p."
         }
       ]
     }

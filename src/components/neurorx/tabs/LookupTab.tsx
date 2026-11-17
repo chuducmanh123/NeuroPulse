@@ -20,6 +20,11 @@ import type { SyncRow } from "@/lib/neurorx/sync/types";
 import { useNeuroRxStore } from "@/store/useNeuroRxStore";
 import { Omnibar } from "@/components/neurorx/Omnibar";
 import { DrugDetail } from "@/components/neurorx/drug/DrugDetail";
+import {
+  SubspecialtySelect,
+  matchesSubspecialty,
+  type SubspecialtyFilter,
+} from "./SubspecialtySelect";
 
 export { buildDrugSelectionSearchParams };
 
@@ -43,6 +48,7 @@ export function LookupTab({
 
   // Search input state
   const [query, setQuery] = useState("");
+  const [selectedSubspecialty, setSelectedSubspecialty] = useState<SubspecialtyFilter>("all");
 
   // Parse omnibar query in real time
   const parsed = useMemo(() => parseQuery(query), [query]);
@@ -95,6 +101,10 @@ export function LookupTab({
   const searchResults = useMemo(() => {
     return searchDrugs(parsed.terms, drugs);
   }, [drugs, parsed.terms]);
+
+  const filteredResults = useMemo(() => {
+    return searchResults.filter((d) => matchesSubspecialty(d, selectedSubspecialty));
+  }, [searchResults, selectedSubspecialty]);
 
   // Handle selecting a drug from Omnibar or Card click
   const handleSelectDrug = (drugId: string, patientParams?: ParsedPatientParams) => {
@@ -155,13 +165,20 @@ export function LookupTab({
 
       {/* 2. Drug Cards Grid */}
       <div className="space-y-3">
-        <div className="flex items-center justify-between px-1">
+        <div className="flex flex-wrap items-center justify-between gap-3 px-1">
           <span className="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400">
-            Available Drugs ({searchResults.length})
+            Available Drugs ({filteredResults.length})
           </span>
+          <SubspecialtySelect
+            value={selectedSubspecialty}
+            onChange={setSelectedSubspecialty}
+            drugs={searchResults}
+            darkMode={darkMode}
+            className="w-full sm:w-auto"
+          />
         </div>
 
-        {searchResults.length === 0 ? (
+        {filteredResults.length === 0 ? (
           <div
             className={`p-10 rounded-2xl border text-center ${
               darkMode ? "bg-slate-900/40 border-slate-800" : "bg-white border-slate-200 shadow-sm"
@@ -177,7 +194,7 @@ export function LookupTab({
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-            {searchResults.map((res) => {
+            {filteredResults.map((res) => {
               const drug = res.drug;
               const isVerified = res.effectiveStatus === "verified";
               const tallManName = drug.tall_man?.value || drug.generic_name;
@@ -215,9 +232,12 @@ export function LookupTab({
 
                       {/* Verification Badge */}
                       {isVerified ? (
-                        <span className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/20">
-                          <ShieldCheck className="w-3.5 h-3.5" />
-                          <span>Verified</span>
+                        <span
+                          className="inline-flex items-center text-emerald-600 dark:text-emerald-400 shrink-0"
+                          title="Verified"
+                          aria-label="Verified"
+                        >
+                          <ShieldCheck className="w-4 h-4" />
                         </span>
                       ) : (
                         <span className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold border border-amber-500/20">

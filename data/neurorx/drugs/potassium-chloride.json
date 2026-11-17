@@ -17,8 +17,7 @@
     "potassium salt"
   ],
   "subspecialties": [
-    "neurocritical_care",
-    "stroke"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -308,6 +307,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "06e2b42bc5bc3ac8e0be845e5e98e02bcd170b407656f6016000b181045eb14c"
+    "content_hash": "71b0cffbf5a4b1a6bcb4ea65fe880c6008ea92917fb2ada24eabb1905e487b47"
   }
 }

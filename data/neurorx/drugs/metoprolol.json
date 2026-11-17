@@ -18,9 +18,7 @@
     "antianginal"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care",
-    "headache"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -414,12 +412,17 @@
       }
     ],
     "postpartum": {
-      "value": "CYP2D6 activity normalizes quickly after delivery; reduce pregnancy-escalated doses promptly postpartum to prevent maternal bradycardia and hypotension.",
+      "value": "Alternative postpartum agent (AHA/ACOG 2026: metoprolol tartrate start 12.5 mg twice daily, max 200 mg twice daily, titrate every 2–3 days). Reduce pregnancy-escalated doses promptly postpartum as CYP2D6 normalizes.",
       "refs": [
         {
           "source_id": "neuro-repro-wave2-guidelines",
           "locator": "Section 2: Metoprolol Pregnancy PK & Postpartum",
           "quote": "reduce pregnancy-escalated doses promptly postpartum to prevent maternal bradycardia and hypotension. Pyridostigmine Preferred MG Therapy & PK: Pyridostigmine is the preferred first-line symptomatic treatment for myasthenia gravis throughout pregnancy; expanded maternal blood volume, increased renal clearance, and delayed gastric emptyin"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Postpartum treatment of hypertension",
+          "quote": "Postpartum alternative agent Metoprolol tartrate: starting dose 12.5 mg twice daily, maximum dose 200 mg twice daily, titration every 2–3 d; Lactation safety: Limited safety data, likely low risk. Bisoprolol Postpartum & Lactation (Table 2): Postpartum alternative agent Bisoprolol: starting dose 2.5 mg daily, maximum dose 20 mg/d, titrati"
         }
       ]
     },
@@ -458,6 +461,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "7463058884a6f2c1073b859d26666419fe61bdad079b37598203e9aa782ff0ff"
+    "content_hash": "9b3b4eed7a6da28dc58c8df169ca385dfdfea710758a61035783313fb51d4993"
   }
 }

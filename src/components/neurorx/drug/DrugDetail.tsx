@@ -196,60 +196,6 @@ export function DrugDetail({
               {drug.classes.join(" • ")}
             </p>
           </div>
-
-          {/* Clinical Alert Badges (MG-safety & NG-tube) */}
-          <div className="flex flex-wrap md:flex-col gap-2 items-start md:items-end shrink-0">
-            {/* Myasthenia Gravis Safety Badge */}
-            {mgSafety && (
-              <div className="flex items-center gap-1.5">
-                <span
-                  className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs sm:text-sm font-extrabold border ${
-                    mgSafety === "safe"
-                      ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/25"
-                      : mgSafety === "caution"
-                      ? "bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/25"
-                      : "bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/25"
-                  }`}
-                >
-                  <span>
-                    {mgSafety === "safe"
-                      ? "🛡️ MG: Safe"
-                      : mgSafety === "caution"
-                      ? "⚠️ MG: Caution"
-                      : "🛑 MG: Avoid/May Worsen"}
-                  </span>
-                </span>
-                <SourcePopover
-                  refs={drug.mg_safety?.refs}
-                  sources={sources}
-                  darkMode={darkMode}
-                />
-              </div>
-            )}
-
-            {/* NG-Tube Guidance Badge */}
-            {ngTube && (
-              <div className="flex items-center gap-1.5">
-                <span
-                  className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs sm:text-sm font-extrabold border ${
-                    ngTube.crushable
-                      ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/25"
-                      : "bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/25"
-                  }`}
-                  title={ngTube.instructions}
-                >
-                  <span>
-                    {ngTube.crushable ? "✓ NG-Tube: Crushable" : "🚫 NG-Tube: Do Not Crush"}
-                  </span>
-                </span>
-                <SourcePopover
-                  refs={drug.ng_tube?.refs}
-                  sources={sources}
-                  darkMode={darkMode}
-                />
-              </div>
-            )}
-          </div>
         </div>
 
         {/* Black-Box Warning Banner */}
@@ -298,6 +244,96 @@ export function DrugDetail({
           onSelectIndex={setSelectedRegimenIndex}
           darkMode={darkMode}
         />
+
+        {/* Myasthenia Gravis Safety & Nasogastric Tube Administration */}
+        {(mgSafety || ngTube) && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+            {mgSafety && (
+              <div
+                className={`p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border transition-colors flex items-start justify-between gap-3 ${
+                  mgSafety === "safe"
+                    ? darkMode
+                      ? "bg-emerald-950/20 border-emerald-800/50 text-emerald-200"
+                      : "bg-emerald-50/60 border-emerald-200/80 text-emerald-900"
+                    : mgSafety === "caution"
+                    ? darkMode
+                      ? "bg-amber-950/20 border-amber-800/50 text-amber-200"
+                      : "bg-amber-50/60 border-amber-200/80 text-amber-900"
+                    : darkMode
+                    ? "bg-rose-950/20 border-rose-800/50 text-rose-200"
+                    : "bg-rose-50/60 border-rose-200/80 text-rose-900"
+                }`}
+              >
+                <div className="flex items-start gap-2.5 min-w-0">
+                  {mgSafety === "safe" ? (
+                    <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                  ) : mgSafety === "caution" ? (
+                    <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                  ) : (
+                    <ShieldAlert className="w-5 h-5 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
+                  )}
+                  <div className="min-w-0 space-y-0.5">
+                    <div className="text-xs sm:text-sm font-extrabold uppercase tracking-wide">
+                      Myasthenia Gravis Safety
+                    </div>
+                    <p className="text-xs sm:text-sm font-semibold">
+                      {mgSafety === "safe"
+                        ? "Safe"
+                        : mgSafety === "caution"
+                        ? "Caution"
+                        : "Avoid / May Worsen"}
+                    </p>
+                  </div>
+                </div>
+                <SourcePopover
+                  refs={drug.mg_safety?.refs}
+                  sources={sources}
+                  darkMode={darkMode}
+                />
+              </div>
+            )}
+
+            {ngTube && (
+              <div
+                className={`p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border transition-colors flex items-start justify-between gap-3 ${
+                  ngTube.crushable
+                    ? darkMode
+                      ? "bg-emerald-950/20 border-emerald-800/50 text-emerald-200"
+                      : "bg-emerald-50/60 border-emerald-200/80 text-emerald-900"
+                    : darkMode
+                    ? "bg-amber-950/20 border-amber-800/50 text-amber-200"
+                    : "bg-amber-50/60 border-amber-200/80 text-amber-900"
+                }`}
+              >
+                <div className="flex items-start gap-2.5 min-w-0">
+                  {ngTube.crushable ? (
+                    <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                  ) : (
+                    <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                  )}
+                  <div className="min-w-0 space-y-0.5">
+                    <div className="text-xs sm:text-sm font-extrabold uppercase tracking-wide">
+                      Nasogastric Tube Administration
+                    </div>
+                    <p className="text-xs sm:text-sm font-semibold">
+                      {ngTube.crushable ? "Crushable" : "Do Not Crush"}
+                    </p>
+                    {ngTube.instructions && (
+                      <p className="text-xs sm:text-sm opacity-90 break-words leading-relaxed">
+                        {ngTube.instructions}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <SourcePopover
+                  refs={drug.ng_tube?.refs}
+                  sources={sources}
+                  darkMode={darkMode}
+                />
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* 4. Bedside Patient Variables & Computed Dosage (Thông số bệnh nhân & Liều tính toán tại giường) */}

@@ -282,7 +282,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "358ddf92861f7602c9170e8beb9f3a269a1b6a3d4fc37942a1399315944ef85a"
+    "content_hash": "2b2680c4736b8049920b1705dc602b85f39bf822b5a1d1fd41b7aed4d5647301"
   },
   "adverse_effects": {
     "most_common": {
@@ -344,12 +344,17 @@
       "note": "Not clinically applicable"
     },
     "pregnancy_pk": {
-      "value": "Crosses the placenta slowly in small physiological amounts; standard maternal reversal dosing applies without special pregnancy PK escalation.",
+      "value": "Crosses the placenta slowly in small physiological amounts; per ACOG PB 196, if delivery unexpectedly occurs while a mother is receiving warfarin, cesarean delivery and neonatal administration of vitamin K (phytonadione) plus fresh frozen plasma may be required.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 2: Reversal Agents",
           "quote": "Phytonadione (vitamin K1) is preferred and essential to reverse maternal/neonatal coagulopathy (`preferred`); protamine sulfate reverses UFH/LMWH without placental transfer; 4F-PCC and idarucizumab (~48 kDa) are life-saving emergency reversal agents for refractory maternal hemorrhage and should never be withheld in pregnancy (`caution`)."
+        },
+        {
+          "source_id": "acog-pb196-vte-pregnancy",
+          "locator": "ACOG PB 196: Warfarin Unexpected Delivery (p. e4)",
+          "quote": "if delivery unexpectedly occurs while a woman is receiving a vitamin K antagonist, cesarean delivery may be required and the neonate may require administration of vitamin K and fresh frozen plasma. Warfarin Postpartum Bridging & Dosing (p."
         }
       ]
     },

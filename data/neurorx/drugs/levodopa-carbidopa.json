@@ -17,8 +17,7 @@
     "antiparkinson agent"
   ],
   "subspecialties": [
-    "movement_disorders",
-    "neurocritical_care"
+    "movement_disorders"
   ],
   "vn_products": {
     "value": null,
@@ -322,7 +321,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "35dd02ec6b3a86d27abf00838a75a1bdf2fc5a16ca5df6758e76b05bdc31e98b"
+    "content_hash": "89da77daa8ce4fd944e9adb8ff4b3d8454e75ba90aa7e35a3096632cf1c89cfc"
   },
   "adverse_effects": {
     "most_common": {

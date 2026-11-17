@@ -19,8 +19,7 @@
     "antithrombotic"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "stroke"
   ],
   "vn_products": {
     "value": null,
@@ -232,7 +231,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "e7fd06fd24d0fd1fb308d96527063f3a5ecf25a5052969f1731e6e86b5b8dbac"
+    "content_hash": "74a259a2ce18f57455fbb27a6236f80084b4d761068ce7df7e04b0b0543d3016"
   },
   "adverse_effects": {
     "most_common": {
@@ -356,7 +355,7 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "Limited human pregnancy data; reserve for essential coronary or carotid/intracranial stent indications and hold 5 to 7 days prior to neuraxial anesthesia or delivery.",
+      "value": "Use 75 mg daily for shortest duration necessary when stenting requires dual/single antiplatelet therapy (AHA/ACOG 2026: limited human data; stop 5–7 days before regional/neuraxial anesthesia).",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -367,17 +366,27 @@
           "source_id": "fda-clopidogrel-label",
           "locator": "8.1 Pregnancy",
           "quote": "Clopidogrel use during labor or delivery will increase the risk of maternal bleeding and hemorrhage. Avoid neuraxial blockade during clopidogrel use because of the risk of spinal hematoma. When possible, discontinue clopidogrel 5 to 7 days prior to labor, delivery, or neuraxial blockade."
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Antithrombotic agents in pregnant and lactating individuals",
+          "quote": "Clopidogrel 75 mg daily: Use for shortest duration necessary. Animal studies show no adverse effects; limited human data. Stop 5–7 d before regional anesthesia; may be resumed immediately after (no loading dose) unless high bleeding risk."
         }
       ]
     },
     "mcm": [],
     "postpartum": {
-      "value": "Resume clopidogrel postpartum once delivery or procedural hemostasis is secure (typically within 12–24 hours after uncomplicated vaginal or cesarean delivery).",
+      "value": "May be resumed immediately after delivery/regional anesthesia (no loading dose) unless high bleeding risk (AHA/ACOG 2026 Table 2).",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 2: Clopidogrel & Ticagrelor Pregnancy & Peripartum",
           "quote": "must be held 5 to 7 days before neuraxial anesthesia or delivery to prevent maternal/neonatal hemorrhage, then resumed postpartum once hemostasis is secure. Thrombolytics (Alteplase & Tenecteplase): Alteplase (~59 kDa) and tenecteplase (~59 kDa) are large recombinant proteins that do not cross the human placenta; per AHA/ASA Acute Stroke"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Antithrombotic agents in pregnant and lactating individuals",
+          "quote": "Stop 5–7 d before regional anesthesia; may be resumed immediately after (no loading dose) unless high bleeding risk."
         }
       ]
     },

@@ -18,8 +18,7 @@
     "antithrombotic"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "stroke"
   ],
   "vn_products": {
     "value": null,
@@ -281,7 +280,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "1ceffeccf51d27ee9285ea33a172a42d64b805d5629d34bba46246ee65894258"
+    "content_hash": "a182af2b85aaf7d0cfb0c12d3a211015d48a3cc3e3bd19d083bb1ffd18381be3"
   },
   "adverse_effects": {
     "most_common": {
@@ -339,17 +338,22 @@
       "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": "Does not reduce hormonal contraceptive efficacy; effective contraception is recommended to permit transition to LMWH prior to planned pregnancy.",
+      "value": "Does not reduce hormonal contraceptive efficacy; ACOG PB 196 recommends transitioning from DOACs to LMWH prepregnancy or as soon as possible during pregnancy.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 1: Teratogenic Agents Requiring Effective Contraception",
           "quote": "Effective contraception is essential prior to conception when prescribing warfarin, direct oral anticoagulants, lisinopril, losartan, valsartan, statins, amiodarone, spironolactone, or amantadine so therapy can be switched to pregnancy-safe alternatives before pregnancy occurs. Broad-Spectrum Antibiotics Contraception Note (Ampicillin, Am"
+        },
+        {
+          "source_id": "acog-pb196-vte-pregnancy",
+          "locator": "ACOG PB 196: Oral Direct Thrombin & Anti-Xa Inhibitors (p. e4)",
+          "quote": "Until more data are available, women should be transitioned to low-molecular-weight heparin prepregnancy or as soon as possible during pregnancy. DOACs Postpartum Non-Breastfeeding Option (p."
         }
       ]
     },
     "pregnancy_pk": {
-      "value": "Crosses the human placenta and carries fetal hemorrhage/embryotoxicity risk; contraindicated/avoided in pregnancy—switch immediately to LMWH upon pregnancy recognition.",
+      "value": "Ex vivo human placenta studies demonstrate transplacental transfer with concern for fetal coagulation; ACOG PB 196 advises avoiding DOACs in pregnancy and switching to LMWH prepregnancy or as soon as pregnancy is recognized (hold prophylactic LMWH >=12 h and therapeutic LMWH >=24 h before scheduled delivery/neuraxial anesthesia).",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -360,17 +364,27 @@
           "source_id": "fda-edoxaban-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS",
           "quote": "SAVAYSA use during labor or delivery in women who are receiving neuraxial anesthesia may result in epidural or spinal hematomas. Consider use of a shorter acting anticoagulant as delivery approaches [see Warnings and Precautions (5.3) ] ."
+        },
+        {
+          "source_id": "acog-pb196-vte-pregnancy",
+          "locator": "ACOG PB 196: Oral Direct Thrombin & Anti-Xa Inhibitors (p. e4, e8)",
+          "quote": "Oral direct thrombin inhibitors (dabigatran) and anti-Xa inhibitors (rivaroxaban, apixaban, edoxaban, betrixaban) should be avoided in pregnancy and lactation because there are insufficient data to evaluate safety for the woman, fetus, and breastfeeding neonate; ex vivo studies demonstrate transfer across the placenta and detectable level"
         }
       ]
     },
     "mcm": [],
     "postpartum": {
-      "value": "Resume DOAC postpartum only once surgical hemostasis is achieved and breastfeeding plans are addressed (use LMWH or warfarin if breastfeeding).",
+      "value": "Per ACOG PB 196, DOACs may be considered for >6 weeks postpartum anticoagulation ONLY if not breastfeeding (restart no sooner than 4–6 h after vaginal delivery or 6–12 h after cesarean delivery once hemostasis is secure); use LMWH or warfarin if breastfeeding.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 2: DOACs Pregnancy Contraindication",
           "quote": "transition back postpartum only after breastfeeding decisions are reviewed. Low-Dose Aspirin Pregnancy & Registry: Low-dose aspirin (75–150 mg/day) is safe and recommended for preeclampsia prevention and maternal stroke/antiplatelet indications (`caution` for high analgesic doses >=300 mg/day near term due to ductal closure); Nordic and U"
+        },
+        {
+          "source_id": "acog-pb196-vte-pregnancy",
+          "locator": "ACOG PB 196: Postpartum Anticoagulation (p. e10)",
+          "quote": "Women who require more than 6 weeks of postpartum anticoagulation therapy may be bridged to warfarin or a direct oral anticoagulant if not breastfeeding. === DELIVERY & NEURAXIAL ANESTHESIA BRIDGE TIMING FOR HEPARIN / LMWH (p. e8–e10, Table 4) === LMWH / UFH Pre-Delivery & Conversion Timing (p."
         }
       ]
     },
@@ -385,7 +399,7 @@
       ]
     },
     "lactation_summary": {
-      "value": "Human milk transfer and infant bleeding risk are uncharacterized; breastfeeding is not recommended (prefer warfarin or LMWH).",
+      "value": "Human milk transfer is uncharacterized and ACOG PB 196 advises avoiding anti-Xa inhibitors during lactation (warfarin, LMWH, or UFH is preferred).",
       "refs": [
         {
           "source_id": "lactmed-wave3",
@@ -396,6 +410,11 @@
           "source_id": "fda-edoxaban-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS",
           "quote": "Because of the potential for serious adverse reactions in nursing infants, including hemorrhage, advise patients that breastfeeding is not recommended during treatment with SAVAYSA."
+        },
+        {
+          "source_id": "acog-pb196-vte-pregnancy",
+          "locator": "ACOG PB 196: Oral Direct Thrombin & Anti-Xa Inhibitors (p. e4)",
+          "quote": "Oral direct thrombin inhibitors (dabigatran) and anti-Xa inhibitors (rivaroxaban, apixaban, edoxaban, betrixaban) should be avoided in pregnancy and lactation because there are insufficient data to evaluate safety for the woman, fetus, and breastfeeding neonate; ex vivo studies demonstrate transfer across the placenta and detectable level"
         }
       ]
     }

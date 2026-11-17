@@ -19,8 +19,7 @@
   ],
   "subspecialties": [
     "neuromuscular",
-    "epilepsy",
-    "headache"
+    "epilepsy"
   ],
   "vn_products": {
     "value": null,
@@ -284,7 +283,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "9abb0dce73cc73dd6f3ead60b77e6d3e5e1fbd27c527263f1d4be39d4a9e1349"
+    "content_hash": "87ec192525080e429edb2cdc0def01a4bf3023fb1c539d6586b0fd8e360fc28d"
   },
   "adverse_effects": {
     "most_common": {

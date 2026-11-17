@@ -17,8 +17,7 @@
     "antiarrhythmic"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -487,6 +486,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "eddf6fc1e13e550e0bc0b88d585480de2d5251f14cc6f7b909dade9d3e54c779"
+    "content_hash": "f47d6043a23c0eb59d79baee98b3e75ad94854d449a574806b07877f65383010"
   }
 }

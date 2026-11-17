@@ -71,6 +71,7 @@ const ALL_SUBSPECIALTIES: { id: Subspecialty; label: string }[] = [
   { id: "dementia", label: "Dementia / Cognitive" },
   { id: "neuroimmunology", label: "Neuroimmunology" },
   { id: "neuro_infectious", label: "Neuro-infectious" },
+  { id: "other", label: "Other (Non-Neurology)" },
 ];
 
 export function EditDrugModal({

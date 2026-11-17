@@ -47,7 +47,8 @@ export type Subspecialty =
   | "neuromuscular"
   | "dementia"
   | "neurocritical_care"
-  | "neuro_infectious";
+  | "neuro_infectious"
+  | "other";
 
 export type AdverseEffectTag =
   | "hyponatremia"

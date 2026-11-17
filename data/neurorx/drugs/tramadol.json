@@ -18,8 +18,7 @@
     "extended-release analgesic"
   ],
   "subspecialties": [
-    "headache",
-    "neuromuscular"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -613,6 +612,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "36a62903f953a267cb19dccd12b637dafd631467d88414dfc7d6f6cb19ccd9ba"
+    "content_hash": "37d1c5c0c9a6c811c3e678fbd3b832711381ec843622ae5cf2f2f18210e6869d"
   }
 }

@@ -17,9 +17,7 @@
     "non-opioid analgesic"
   ],
   "subspecialties": [
-    "headache",
-    "neurocritical_care",
-    "stroke"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -483,6 +481,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "6672db212d193c40a9ad1740ffbe08cd3a7ab18b82d8106f0127f417811de4eb"
+    "content_hash": "8a7498e06c3e94cadb374b6af27e1b3cdfbc30836cc59539bd93b432c5f0589e"
   }
 }

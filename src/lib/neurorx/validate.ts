@@ -27,6 +27,7 @@ const VALID_SUBSPECIALTIES: Set<Subspecialty> = new Set([
   "dementia",
   "neurocritical_care",
   "neuro_infectious",
+  "other",
 ]);
 
 const VALID_AE_TAGS: Set<AdverseEffectTag> = new Set([

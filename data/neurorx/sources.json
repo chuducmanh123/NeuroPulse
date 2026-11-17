@@ -1203,5 +1203,27 @@
     "url": "https://www.ncbi.nlm.nih.gov/books/NBK501922/",
     "file": "lactmed-wave3.txt",
     "accessed": "2026-11-16"
+  },
+  {
+    "id": "aha-acog-2026-maternal-stroke",
+    "type": "guideline",
+    "title": "Prevention and Treatment of Maternal Stroke in Pregnancy and Postpartum: A Scientific Statement From the American Heart Association (Endorsed by ACOG)",
+    "publisher": "American Heart Association (AHA) / American College of Obstetricians and Gynecologists (ACOG) / Stroke",
+    "year": 2026,
+    "version": "10.1161/STR.0000000000000514",
+    "url": "https://doi.org/10.1161/STR.0000000000000514",
+    "file": "aha-acog-2026-maternal-stroke.txt",
+    "accessed": "2026-11-17"
+  },
+  {
+    "id": "acog-pb196-vte-pregnancy",
+    "type": "guideline",
+    "title": "ACOG Practice Bulletin No. 196: Thromboembolism in Pregnancy",
+    "publisher": "American College of Obstetricians and Gynecologists (ACOG) / Obstetrics & Gynecology",
+    "year": 2018,
+    "version": "10.1097/AOG.0000000000002706 (Obstet Gynecol 2018;132:e1–17)",
+    "url": "https://doi.org/10.1097/AOG.0000000000002706",
+    "file": "acog-pb196-vte-pregnancy.txt",
+    "accessed": "2026-11-17"
   }
 ]

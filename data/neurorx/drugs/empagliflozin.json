@@ -18,8 +18,7 @@
     "cardioprotective agent"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -427,6 +426,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "09d82c4eef30993f91b178d23ad0726450e72fd689b4a5cc53ad23182f3e786c"
+    "content_hash": "4e4b515163343aea12c1dc19f2198c8271d5300c35ce3852457507edcda7e1c9"
   }
 }

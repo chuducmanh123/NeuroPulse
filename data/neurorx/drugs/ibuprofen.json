@@ -19,8 +19,7 @@
     "antipyretic"
   ],
   "subspecialties": [
-    "headache",
-    "neurocritical_care"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -504,6 +503,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "62a27fb2c578ab7ed211adb7525e28925d28c4f7143ac232cf926028d9d42708"
+    "content_hash": "c03f0f15c1c7d4310fff022dabf5ba948b35aa3bc28d7c10f246b63db0ba5222"
   }
 }

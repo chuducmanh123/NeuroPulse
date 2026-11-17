@@ -200,7 +200,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "ae61fd8f68ba0b9dbdb36240702aef54442061c8e93215f847bff797cee7229e"
+    "content_hash": "12357c34e37bf53ca006de61a1c942b0eec1b954229f83d0723556b198ff1815"
   },
   "adverse_effects": {
     "most_common": {
@@ -274,12 +274,17 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "UGT-mediated clearance increases during pregnancy, often requiring divided dosing (2–3 times daily); monitor fetal growth and observe newborns for transient hypoglycemia or bradycardia.",
+      "value": "First-line oral and IV antihypertensive in pregnancy (AHA/ACOG 2026: start 200 mg 2–3 times daily, max 2,400 mg/day, titrate every 2–3 days toward goal <140/90 mmHg). UGT-mediated clearance increases during pregnancy; monitor fetal growth and newborns for transient hypoglycemia or bradycardia.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 3: Labetalol Preferred First-Line & Registry",
           "quote": "monitor newborns for transient hypoglycemia/bradycardia and adjust postpartum blood pressure therapy over days 3–6 when postpartum hypertension peaks. Calcium Channel Blockers (Amlodipine, Nicardipine, Nimodipine): Extended-release nifedipine and amlodipine are acceptable options for gestational hypertension (`caution`; Nordic/Medicaid co"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Antihypertensive medications in pregnant individuals",
+          "quote": "First-line agent Labetalol: starting dose 200 mg 2–3 times a day, maximum daily dose 2400 mg/d, titration interval every 2–3 d. Labetalol Postpartum & Lactation (Table 2): Postpartum first-line agent Labetalol: starting dose 200 mg 2–3 times a day, maximum dose 2400 mg/d, titration every 2–3 d; Lactation safety: Safe RID 3.6%. Amlodipine"
         }
       ]
     },
@@ -300,17 +305,22 @@
       }
     ],
     "postpartum": {
-      "value": "Adjust oral antihypertensive dosing carefully postpartum, especially over days 3–6 when postpartum hypertension typically peaks, and taper downward if blood pressure normalizes.",
+      "value": "First-line postpartum antihypertensive (AHA/ACOG 2026: start 200 mg 2–3 times daily, max 2,400 mg/day, titrate every 2–3 days). Adjust carefully over days 3–6 when postpartum hypertension typically peaks, and taper downward as blood pressure stabilizes.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 3: Labetalol Preferred First-Line & Registry",
           "quote": "adjust postpartum blood pressure therapy over days 3–6 when postpartum hypertension peaks. Calcium Channel Blockers (Amlodipine, Nicardipine, Nimodipine): Extended-release nifedipine and amlodipine are acceptable options for gestational hypertension (`caution`; Nordic/Medicaid cohort for amlodipine/CCBs: 3.1% MCM, 95% CI: 2.1%–4.5%, n=912"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Postpartum treatment of hypertension",
+          "quote": "Postpartum first-line agent Labetalol: starting dose 200 mg 2–3 times a day, maximum dose 2400 mg/d, titration every 2–3 d; Lactation safety: Safe RID 3.6%. Amlodipine Postpartum & Lactation (Table 2): Postpartum first-line agent Amlodipine: starting dose 5 mg daily, maximum dose 10 mg/d, titration every 5–7 d; Lactation safety: Safe RID"
         }
       ]
     },
     "lactation_rid": {
-      "value": "0.04% to 0.6% of the weight-adjusted maternal dosage",
+      "value": "0.04% to 0.6% (LactMed); 3.6% (AHA/ACOG 2026 Table 2)",
       "refs": [
         {
           "source_id": "lactmed-wave3",
@@ -321,6 +331,11 @@
           "source_id": "fda-labetalol-label",
           "locator": "12 CLINICAL PHARMACOLOGY",
           "quote": "Nursing Mothers Small amounts of labetalol (approximately 0.004% of the maternal dose) are excreted in human milk."
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Postpartum treatment of hypertension",
+          "quote": "Postpartum first-line agent Labetalol: starting dose 200 mg 2–3 times a day, maximum dose 2400 mg/d, titration every 2–3 d; Lactation safety: Safe RID 3.6%. Amlodipine Postpartum & Lactation (Table 2): Postpartum first-line agent Amlodipine: starting dose 5 mg daily, maximum dose 10 mg/d, titration every 5–7 d; Lactation safety: Safe RID"
         }
       ]
     },

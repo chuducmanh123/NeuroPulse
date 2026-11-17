@@ -146,7 +146,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "b30c163bcc308a7c9dbd1c0d5421466d4d75490226a6dd00855b5585dd95bdb3"
+    "content_hash": "a688a0ecb4ea29dc95d809a97a0a8fdca09e2a830c07ae1f61fb60a06a1de07b"
   },
   "adverse_effects": {
     "most_common": {
@@ -205,20 +205,30 @@
       "note": "Not clinically applicable"
     },
     "pregnancy_pk": {
-      "value": "Large ~59 kDa recombinant protein that does not cross the placenta; per AHA/ASA Stroke Guidelines, IV thrombolysis may be considered in pregnant patients with disabling acute ischemic stroke when benefit outweighs hemorrhage risk.",
+      "value": "Alteplase and tenecteplase do not cross the placenta (AHA/ACOG 2026: US guidelines support IV alteplase in pregnancy when benefits outweigh uterine bleeding risks; tenecteplase pregnancy data remain limited).",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 2: Thrombolytics (Alteplase & Tenecteplase)",
           "quote": "Alteplase (~59 kDa) and tenecteplase (~59 kDa) are large recombinant proteins that do not cross the human placenta; per AHA/ASA Acute Stroke Guidelines, IV thrombolysis may be considered in pregnant patients with disabling acute ischemic stroke when anticipated benefit outweighs maternal-fetal hemorrhage risk (`caution`), with acute postp"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Section: Thrombolysis and Mechanical Thrombectomy (p. e10)",
+          "quote": "Alteplase and tenecteplase do not cross the placenta, and case reports suggest good fetal outcomes after treatment; however, data on tenecteplase use in pregnancy remain limited. Thrombolysis Early Postpartum (p."
         }
       ]
     },
     "mcm": [],
     "postpartum": {
-      "value": null,
-      "refs": [],
-      "note": "Not clinically applicable"
+      "value": "Early postpartum thrombolysis decisions must be individualized, especially after recent cesarean delivery or neuraxial anesthesia due to hemorrhage risk (AHA/ACOG 2026).",
+      "refs": [
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Section: Thrombolysis and Mechanical Thrombectomy (p. e10)",
+          "quote": "Decisions during the early postpartum period should be individualized, especially in patients with recent cesarean delivery or neuraxial anesthesia due to bleeding risk. Postpartum Vasospasm Avoidance (p."
+        }
+      ]
     },
     "lactation_rid": {
       "value": "Estimated < 0.1% (large ~59 kDa protein, rapid clearance)",

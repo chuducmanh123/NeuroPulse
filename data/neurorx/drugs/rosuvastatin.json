@@ -17,8 +17,7 @@
     "lipid-lowering agent"
   ],
   "subspecialties": [
-    "stroke",
-    "neuromuscular"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -473,12 +472,17 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "Avoided in routine pregnancy due to animal developmental toxicity and theoretical disruption of fetal cholesterol synthesis; discontinue upon pregnancy recognition (rare extreme-risk ASCVD/FH exceptions per cardiology).",
+      "value": "AHA/ACOG 2026 Table 2 advises individualized risk/benefit assessment (observational cohorts found no clear evidence of teratogenicity or increased major birth defects), though statins remain generally avoided in routine pregnancy unless high-risk ASCVD/FH cardiology exceptions apply.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 4: Statins",
           "quote": "statins remain avoided in routine pregnancy (`avoid`) due to animal developmental toxicity and theoretical disruption of fetal cholesterol synthesis; discontinue when pregnancy is recognized and resume only after breastfeeding or per cardiology guidance. Levothyroxine Preferred & Pregnancy PK/Postpartum: Levothyroxine is preferred and ess"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Other stroke prevention medications — Statins",
+          "quote": "Statins (atorvastatin, rosuvastatin, simvastatin): Pregnancy safety: Assess risk/benefit; no evidence of teratogenicity or increased major birth defects. Lactation safety: Not recommended due to concern about disruption of infant lipid metabolism. === THROMBOLYSIS, CONTRACEPTION & POSTPARTUM MANAGEMENT (p."
         }
       ]
     },
@@ -504,7 +508,7 @@
       ]
     },
     "lactation_summary": {
-      "value": "Limited case data show low milk transfer (RID <= 1.5%), yet regulatory labels advise against breastfeeding due to potential infant lipid disruption; temporary hold during nursing is usually feasible.",
+      "value": "Not recommended during lactation due to concern about disruption of infant lipid metabolism (AHA/ACOG 2026 Table 2); temporary discontinuation while nursing is usually feasible.",
       "refs": [
         {
           "source_id": "lactmed-wave3",
@@ -520,6 +524,11 @@
           "source_id": "fda-rosuvastatin-label",
           "locator": "8.2 Lactation",
           "quote": "Because of the potential for serious adverse reactions in a breastfed infant, based on the mechanism of action, advise patients that breastfeeding is not recommended during treatment with CRESTOR"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Other stroke prevention medications — Statins",
+          "quote": "Lactation safety: Not recommended due to concern about disruption of infant lipid metabolism. === THROMBOLYSIS, CONTRACEPTION & POSTPARTUM MANAGEMENT (p. e10, e12, e14) === Alteplase & Tenecteplase in Pregnancy (p."
         }
       ]
     }
@@ -528,6 +537,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "6cb35ca97cbc7a2839f17192fab381109c77500c5e19d94d107e2295e7979032"
+    "content_hash": "21c2e5bdbd038e774cadc2200383260e509f6225c01d2517675985f459f63736"
   }
 }

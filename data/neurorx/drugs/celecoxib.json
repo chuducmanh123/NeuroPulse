@@ -19,7 +19,7 @@
     "anti-inflammatory"
   ],
   "subspecialties": [
-    "headache"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -612,6 +612,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "841a95e2ef50fe6d93936c6b4a992dd79a02f5135717d003d3df460a36ed9d74"
+    "content_hash": "278c164f18936909d3d3f5117e7486cb07e79adeacc7016b535fb8ae2190c901"
   }
 }

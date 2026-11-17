@@ -18,8 +18,7 @@
     "gastric H+/K+ ATPase inhibitor"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -613,6 +612,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "8cf41f6b80c58b1d9466cb60937fc367ffb8ede2da80f3307e4ad972ee5af57b"
+    "content_hash": "f7bf8ca115faf19cee577edebf20d0bbcd4410540d8481616727c748cf4c38ff"
   }
 }

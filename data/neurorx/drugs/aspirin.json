@@ -19,9 +19,7 @@
     "antithrombotic"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care",
-    "headache"
+    "stroke"
   ],
   "vn_products": {
     "value": null,
@@ -209,7 +207,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "066877b383444c9a3968303598cbdf45e01bb082a7a3f4d18e37ada79854052f"
+    "content_hash": "8812689f163818269087b6b0e87a7be61720576ee99adb0eb58b2ad75d7a72b9"
   },
   "adverse_effects": {
     "most_common": {
@@ -273,12 +271,17 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "Low-dose aspirin (75–150 mg/day) is safe and recommended for preeclampsia prevention and maternal stroke/antiplatelet indications; avoid high analgesic doses >= 300 mg/day near term (ductal closure).",
+      "value": "Low-dose aspirin (<100 mg/day) is the first-choice antiplatelet agent in pregnancy (AHA/ACOG 2026: safe for prior ischemic stroke/TIA, antiphospholipid syndrome, moyamoya, and preeclampsia reduction [RR 0.85]; no need to discontinue before regional anesthesia). Avoid high analgesic doses >=300 mg/day near term.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 2: Low-Dose Aspirin Pregnancy & Registry",
           "quote": "Low-dose aspirin (75–150 mg/day) is safe and recommended for preeclampsia prevention and maternal stroke/antiplatelet indications (`caution` for high analgesic doses >=300 mg/day near term due to ductal closure); Nordic and US Collaborative Cohorts reported major congenital malformations in 3.0% (95% CI: 2.6%–3.4%, n=6,102) of low-dose ex"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Antithrombotic agents & Maternal Stroke Prevention",
+          "quote": "Aspirin <100 mg daily: Safe; first choice antiplatelet agent. No need to discontinue before regional anesthesia. Lactation safety: May be used for cardiovascular indications; subclinical amounts in breastmilk. Clopidogrel Pregnancy & Lactation (Table 2): Clopidogrel 75 mg daily: Use for shortest duration necessary."
         }
       ]
     },
@@ -314,7 +317,7 @@
       ]
     },
     "lactation_summary": {
-      "value": "Low-dose aspirin (75–100 mg/day) for stroke prevention is compatible with breastfeeding (RID < 1%, undetectable infant exposure); avoid high analgesic doses due to theoretical Reye syndrome risk.",
+      "value": "Low-dose aspirin (<100 mg/day) may be used for cardiovascular/stroke indications during lactation with subclinical amounts in breastmilk (RID < 1%); avoid high analgesic doses due to theoretical Reye syndrome risk.",
       "refs": [
         {
           "source_id": "lactmed-wave3",
@@ -325,6 +328,11 @@
           "source_id": "fda-aspirin-label",
           "locator": "PRECAUTIONS (Nursing Mothers)",
           "quote": "Nursing mothers should avoid using aspirin because salicylate is excreted in breast milk. Use of high doses may lead to rashes, platelet abnormalities, and bleeding in nursing infants."
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Antithrombotic agents in pregnant and lactating individuals",
+          "quote": "May be used for cardiovascular indications; subclinical amounts in breastmilk. Clopidogrel Pregnancy & Lactation (Table 2): Clopidogrel 75 mg daily: Use for shortest duration necessary. Animal studies show no adverse effects; limited human data."
         }
       ]
     }

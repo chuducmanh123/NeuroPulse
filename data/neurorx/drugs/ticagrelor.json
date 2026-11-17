@@ -19,8 +19,7 @@
     "antithrombotic"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "stroke"
   ],
   "vn_products": {
     "value": null,
@@ -200,7 +199,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "a2295a5fa748e541607b2d9924d5de0fbbec86f49b7fdbb5d0d019508d2e576d"
+    "content_hash": "f23316d842dca74dcbd5699cff2b8bdff79a6323502acdae14708246be5ae678"
   },
   "adverse_effects": {
     "most_common": {
@@ -263,23 +262,33 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "Human pregnancy data are limited; reserve for critical stenting where safer alternatives fail, and hold 5 to 7 days prior to neuraxial anesthesia or delivery to prevent hemorrhage.",
+      "value": "Ticagrelor 90 mg twice daily crosses the placenta with minimal human data (AHA/ACOG 2026); stop 5 days before regional anesthesia and do not maintain neuraxial catheters due to rapid onset.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 2: Clopidogrel & Ticagrelor Pregnancy & Peripartum",
           "quote": "Clopidogrel (and ticagrelor) have limited human pregnancy data; clopidogrel is reserved for essential coronary or carotid/intracranial stent indications (`caution`) and must be held 5 to 7 days before neuraxial anesthesia or delivery to prevent maternal/neonatal hemorrhage, then resumed postpartum once hemostasis is secure. Thrombolytics"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Antithrombotic agents in pregnant and lactating individuals",
+          "quote": "Ticagrelor 90 mg twice daily: Minimal data; ticagrelor does cross placenta."
         }
       ]
     },
     "mcm": [],
     "postpartum": {
-      "value": "Resume antiplatelet therapy postpartum only after hemostasis is secure, considering transition to low-dose aspirin or clopidogrel if breastfeeding.",
+      "value": "May be resumed immediately after regional anesthesia/delivery (no loading dose) unless high bleeding risk; consider low-dose aspirin or clopidogrel if breastfeeding.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 2: Clopidogrel & Ticagrelor Pregnancy & Peripartum",
           "quote": "must be held 5 to 7 days before neuraxial anesthesia or delivery to prevent maternal/neonatal hemorrhage, then resumed postpartum once hemostasis is secure. Thrombolytics (Alteplase & Tenecteplase): Alteplase (~59 kDa) and tenecteplase (~59 kDa) are large recombinant proteins that do not cross the human placenta; per AHA/ASA Acute Stroke"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Antithrombotic agents in pregnant and lactating individuals",
+          "quote": "neuraxial catheters should not be maintained with ticagrelor because of the rapid onset; may be resumed immediately after (no loading dose) unless high bleeding risk. Ticagrelor Lactation (Table 2): No published information is available on the use of ticagrelor during breastfeeding."
         }
       ]
     },
@@ -294,7 +303,7 @@
       ]
     },
     "lactation_summary": {
-      "value": "Lacks human milk transfer data and carries theoretical infant bleeding risk; low-dose aspirin or clopidogrel with infant monitoring is preferred during lactation.",
+      "value": "No published breastfeeding studies, though >99% plasma protein binding predicts low milk transfer (AHA/ACOG 2026); low-dose aspirin or clopidogrel is preferred when feasible.",
       "refs": [
         {
           "source_id": "lactmed-wave3",
@@ -310,6 +319,11 @@
           "source_id": "fda-ticagrelor-label",
           "locator": "8 USE IN SPECIFIC POPULATIONS (8.2 Lactation)",
           "quote": "Ticagrelor and its metabolites were present in rat milk at higher concentrations than in maternal plasma. When a drug is present in animal milk, it is likely that the drug will be present in human milk. Breastfeeding is not recommended during treatment with BRILINTA."
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Antithrombotic agents in pregnant and lactating individuals",
+          "quote": "Because ticagrelor and its active metabolite are >99% bound to plasma proteins, the amount in milk is likely to be low. Warfarin Pregnancy & Neuraxial Anesthesia (Table 2): Warfarin <5 mg in pregnancy; variable in lactation: Teratogenic in first trimester; may be considered after first trimester for select patients (mechanical valve)."
         }
       ]
     }

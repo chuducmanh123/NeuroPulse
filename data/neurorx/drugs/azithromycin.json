@@ -17,9 +17,7 @@
     "azalide"
   ],
   "subspecialties": [
-    "neuro_infectious",
-    "neurocritical_care",
-    "neuromuscular"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -455,6 +453,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "d65c2d0dd95006b5f2c5ad93e086cf1ee56e906cfd7cf17c475544c6f90631e1"
+    "content_hash": "1872c93dcb2d0b40a81d059508311cab50351bfebb5d5c55f0fe9a6bec153d59"
   }
 }

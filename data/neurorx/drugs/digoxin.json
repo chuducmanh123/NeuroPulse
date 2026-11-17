@@ -19,8 +19,7 @@
     "positive inotrope"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -539,6 +538,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "f1defddb90c265b0e742a7fbbb5f07f395cbc279c41f748a53e4d7d8cc6177b9"
+    "content_hash": "346e41d866d855239a172b3246f8ab75d88320735444e4d3b08a5b345d5b2ca0"
   }
 }

@@ -18,8 +18,7 @@
     "GABA-A positive allosteric modulator"
   ],
   "subspecialties": [
-    "epilepsy",
-    "neurocritical_care"
+    "epilepsy"
   ],
   "vn_products": {
     "value": null,
@@ -325,7 +324,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "83d95f69b92debf37ddf52616d170d4e4996517c2946cfb26c168643c782e721"
+    "content_hash": "dd6a437572ec65662850dabdb44657f2f1dc3f8097cba442172e72d025c28852"
   },
   "adverse_effects": {
     "most_common": {

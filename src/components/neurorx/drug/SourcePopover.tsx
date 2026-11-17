@@ -60,12 +60,11 @@ export function SourcePopover({
         ref={triggerRef}
         type="button"
         onClick={() => setIsOpen(true)}
-        className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-bold text-sky-600 dark:text-sky-400 bg-sky-500/10 hover:bg-sky-500/20 transition-colors cursor-pointer"
-        title="View verbatim clinical source quote"
-        aria-label="View verbatim clinical source quote"
+        className="inline-flex items-center justify-center p-1 rounded-full text-sky-600 dark:text-sky-400 bg-sky-500/10 hover:bg-sky-500/20 transition-colors cursor-pointer shrink-0"
+        title={label && label.toLowerCase() !== "source" ? `View ${label} clinical source quote` : "View verbatim clinical source quote"}
+        aria-label={label && label.toLowerCase() !== "source" ? `View ${label} clinical source quote` : "View verbatim clinical source quote"}
       >
         <Info className="w-3.5 h-3.5" />
-        {label ? <span>{label}</span> : <span>Source</span>}
       </button>
 
       {/* 2. Accessible Modal Dialog */}

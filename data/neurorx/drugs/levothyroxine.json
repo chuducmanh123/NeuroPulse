@@ -17,9 +17,7 @@
     "L-thyroxine (T4) replacement"
   ],
   "subspecialties": [
-    "dementia",
-    "stroke",
-    "neuromuscular"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -576,6 +574,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "ebe1eb72f777b24b7903dd2f30248be5ef29e70913e261178881ead4bcf9cc53"
+    "content_hash": "08c65cfef8a978406e69a7e9f388fecb9b29d5f9c7d0eaedc23aa42ba8ca0213"
   }
 }

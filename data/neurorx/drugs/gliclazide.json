@@ -18,7 +18,7 @@
     "insulin secretagogue"
   ],
   "subspecialties": [
-    "stroke"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -570,6 +570,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "2b26ba5fe45785c543c21814e96a5abac4d732a46e6cf079ce26071deed21753"
+    "content_hash": "ada61ca60d2fb0c86798a577e9f3b5c5ee621740efa5a2a1dd41108c4b0c67d3"
   }
 }

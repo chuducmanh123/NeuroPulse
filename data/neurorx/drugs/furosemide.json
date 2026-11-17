@@ -17,8 +17,7 @@
     "antihypertensive"
   ],
   "subspecialties": [
-    "neurocritical_care",
-    "stroke"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -424,12 +423,17 @@
     },
     "mcm": [],
     "postpartum": {
-      "value": "Reassess maternal volume status and electrolytes postpartum; avoid unnecessary chronic high-dose diuresis if breastfeeding.",
+      "value": "Alternative postpartum antihypertensive/diuretic (AHA/ACOG 2026: start 10 mg daily, max 160 mg/day in 2–3 divided doses, titrate every 3–5 days). Reassess volume status and electrolytes postpartum.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
           "locator": "Section 3: Spironolactone & Furosemide",
           "quote": "requiring postpartum volume reassessment. Potassium Chloride: Oral and IV potassium chloride is physiological replacement therapy (`preferred`) safe throughout all trimesters when indicated for hypokalemia; monitor maternal serum potassium and renal function. === SECTION 4: STATINS, ENDOCRINE/METABOLIC & GASTROINTESTINAL === Statins (Ato"
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Postpartum treatment of hypertension",
+          "quote": "Postpartum alternative agent Furosemide: starting dose 10 mg daily, maximum dose 160 mg/d (2- or 3-times-a-day dosing), titration every 3–5 d; Lactation safety: Safe RID; may decrease breastmilk production (dose >20 mg/d). Spironolactone Postpartum & Lactation (Table 2): Postpartum alternative agent Spironolactone: starting dose 12.5 mg d"
         }
       ]
     },
@@ -444,7 +448,7 @@
       ]
     },
     "lactation_summary": {
-      "value": "Minimal milk transfer (RID <= 1%) and safe for the infant, though intense maternal diuresis at high doses can suppress breast milk supply.",
+      "value": "Minimal milk transfer (RID <= 1%) and safe for the infant (AHA/ACOG 2026), though loop diuretic doses >20 mg/day may decrease maternal breastmilk production.",
       "refs": [
         {
           "source_id": "lactmed-wave3",
@@ -455,6 +459,11 @@
           "source_id": "fda-furosemide-label",
           "locator": "Nursing Mothers",
           "quote": "Because it appears in breast milk, caution should be exercised when LASIX is administered to a nursing mother. LASIX may inhibit lactation."
+        },
+        {
+          "source_id": "aha-acog-2026-maternal-stroke",
+          "locator": "Table 2: Postpartum treatment of hypertension",
+          "quote": "may decrease breastmilk production (dose >20 mg/d). Spironolactone Postpartum & Lactation (Table 2): Postpartum alternative agent Spironolactone: starting dose 12.5 mg daily, titration every 14–30 d; Lactation safety: Safe RID 2%–4.3%. Metoprolol Tartrate Postpartum & Lactation (Table 2): Postpartum alternative agent Metoprolol tartrate:"
         }
       ]
     }
@@ -463,6 +472,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "947581ff280f1846436042b708be5a5ddb84f40396632f4cac4a892e087ef104"
+    "content_hash": "7c3f42d9fdbc65792e4342aaa3e73cae88a5d4ff313ae0c8344d05b24472c689"
   }
 }

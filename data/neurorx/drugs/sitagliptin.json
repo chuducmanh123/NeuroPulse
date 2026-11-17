@@ -18,8 +18,7 @@
     "antihyperglycemic agent"
   ],
   "subspecialties": [
-    "stroke",
-    "neurocritical_care"
+    "other"
   ],
   "vn_products": {
     "value": null,
@@ -387,6 +386,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "51da326939260eee1f2296bfe64f3b6db1b6552bd6868a9b577456dbbb9264a8"
+    "content_hash": "3d1fbb2cec4a7cc6ed065b0e5ede4c87a2a6837988c8ebeb79b4fb80e000aac4"
   }
 }
