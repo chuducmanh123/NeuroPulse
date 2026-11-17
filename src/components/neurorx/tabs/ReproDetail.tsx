@@ -55,7 +55,7 @@ export function ReproDetail({
     return (
       <div className="space-y-1">
         <div className="flex items-center justify-between gap-2">
-          <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
+          <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">
             {label}
           </span>
           {field?.refs && field.refs.length > 0 && (
@@ -68,11 +68,11 @@ export function ReproDetail({
           )}
         </div>
         {isNa ? (
-          <p className="text-xs text-slate-400 dark:text-slate-500 italic">
+          <p className="text-sm text-slate-400 dark:text-slate-500 italic">
             Not clinically applicable
           </p>
         ) : (
-          <p className={`text-xs leading-relaxed whitespace-pre-line ${text ? "text-slate-600 dark:text-slate-300" : "text-slate-400 italic"}`}>
+          <p className={`text-sm leading-relaxed whitespace-pre-line ${text ? "text-slate-700 dark:text-slate-300" : "text-slate-400 italic"}`}>
             {text || fallbackText}
           </p>
         )}
@@ -84,14 +84,14 @@ export function ReproDetail({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-150">
       <div
         ref={modalRef}
-        className={`w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border p-5 sm:p-6 shadow-2xl transition-all ${
+        className={`w-full max-w-2xl min-h-[540px] max-h-[90vh] flex flex-col overflow-hidden rounded-2xl border shadow-2xl transition-all ${
           darkMode ? "bg-slate-900 border-slate-700 text-slate-100" : "bg-white border-slate-200 text-slate-900"
         }`}
         role="dialog"
         aria-modal="true"
       >
         {/* Header */}
-        <div className="flex items-start justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-4 mb-4">
+        <div className="flex items-start justify-between gap-3 border-b border-slate-200 dark:border-slate-800 px-5 sm:px-6 pt-5 sm:pt-6 pb-4 shrink-0">
           <div>
             <div className="flex items-center gap-2">
               <span
@@ -140,7 +140,7 @@ export function ReproDetail({
                 </span>
               )}
             </div>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
               {isLactation
                 ? "Postpartum management and lactation infant exposure guidance"
                 : "Preconception planning, pregnancy safety, and pharmacokinetics guidance"}
@@ -156,9 +156,10 @@ export function ReproDetail({
           </button>
         </div>
 
+        <div className="flex-1 overflow-y-auto px-5 sm:px-6 py-4">
         {/* Draft Notice if draft */}
         {isDraft && (
-          <div className="mb-4 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-800 dark:text-amber-300 flex items-center gap-2">
+          <div className="mb-4 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs sm:text-sm text-amber-800 dark:text-amber-300 flex items-center gap-2">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>
               This drug is currently in <strong>draft</strong> status. Quantitative registry risk figures are suppressed until clinical review is verified.
@@ -167,12 +168,12 @@ export function ReproDetail({
         )}
 
         {/* Content by active sub-tab */}
-        <div className="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm">
+        <div className="divide-y divide-slate-200 dark:divide-slate-800 text-sm">
           {!isLactation ? (
             <>
               {/* Preconception Planning */}
               <div className="pb-4 space-y-2.5">
-                <div className="flex items-center gap-2 font-bold text-indigo-600 dark:text-indigo-400 text-xs uppercase tracking-wider">
+                <div className="flex items-center gap-2 font-semibold text-indigo-600 dark:text-indigo-400 text-xs uppercase tracking-wider">
                   <HeartHandshake className="w-4 h-4" />
                   <span>Preconception Planning</span>
                 </div>
@@ -184,7 +185,7 @@ export function ReproDetail({
 
               {/* Pregnancy Safety, Pharmacokinetics & Malformations */}
               <div className="pt-4 space-y-2.5">
-                <div className="flex items-center gap-2 font-bold text-rose-600 dark:text-rose-400 text-xs uppercase tracking-wider">
+                <div className="flex items-center gap-2 font-semibold text-rose-600 dark:text-rose-400 text-xs uppercase tracking-wider">
                   <Baby className="w-4 h-4" />
                   <span>Pregnancy Safety, Pharmacokinetics &amp; Malformations</span>
                 </div>
@@ -192,7 +193,7 @@ export function ReproDetail({
                   {/* Pregnancy Safety Tier */}
                   <div className="space-y-1">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                      <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">
                         Pregnancy Safety Tier
                       </span>
                       {repro?.tier?.refs && repro.tier.refs.length > 0 && (
@@ -204,7 +205,7 @@ export function ReproDetail({
                         />
                       )}
                     </div>
-                    <p className={`text-xs leading-relaxed ${repro?.tier?.value ? "text-slate-600 dark:text-slate-300" : "text-slate-400 italic"}`}>
+                    <p className={`text-sm leading-relaxed ${repro?.tier?.value ? "text-slate-700 dark:text-slate-300" : "text-slate-400 italic"}`}>
                       {repro?.tier?.value
                         ? REPRO_TIER_LABELS[repro.tier.value]
                         : "Not specified in sources"}
@@ -218,7 +219,7 @@ export function ReproDetail({
 
                   {/* MCM Registries breakdown */}
                   <div>
-                    <span className="text-xs font-bold text-slate-800 dark:text-slate-200 block mb-1">
+                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-200 block mb-1">
                       Major Congenital Malformations (MCM per Registry)
                     </span>
                     {!isDraft && repro?.mcm && repro.mcm.length > 0 ? (
@@ -226,14 +227,14 @@ export function ReproDetail({
                         {repro.mcm.map((entry, idx) => (
                           <div
                             key={idx}
-                            className="py-2 flex items-center justify-between text-xs"
+                            className="py-2 flex items-center justify-between text-sm"
                           >
                             <div>
-                              <div className="font-bold text-slate-900 dark:text-slate-100">
+                              <div className="font-semibold text-slate-900 dark:text-slate-100">
                                 {entry.registry}: {entry.percent}%
                                 {entry.ci95 ? ` (95% CI: ${entry.ci95})` : ""}
                               </div>
-                              <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                              <div className="text-xs text-slate-500 dark:text-slate-400">
                                 {entry.n_exposed ? `n = ${entry.n_exposed}` : ""}
                                 {entry.dose_stratum ? ` • ${entry.dose_stratum}` : ""}
                               </div>
@@ -250,7 +251,7 @@ export function ReproDetail({
                         ))}
                       </div>
                     ) : (
-                      <p className="text-xs text-slate-400 italic">
+                      <p className="text-sm text-slate-400 italic">
                         {isDraft
                           ? "Pending verification (registry data hidden in draft mode)"
                           : "No registry MCM figures in sources"}
@@ -264,7 +265,7 @@ export function ReproDetail({
             <>
               {/* Postpartum */}
               <div className="pb-4 space-y-2.5">
-                <div className="flex items-center gap-2 font-bold text-emerald-600 dark:text-emerald-400 text-xs uppercase tracking-wider">
+                <div className="flex items-center gap-2 font-semibold text-emerald-600 dark:text-emerald-400 text-xs uppercase tracking-wider">
                   <Sparkles className="w-4 h-4" />
                   <span>Postpartum</span>
                 </div>
@@ -277,11 +278,11 @@ export function ReproDetail({
 
               {/* Lactation & Infant Exposure */}
               <div className="pt-4 space-y-2.5">
-                <div className="flex items-center gap-2 font-bold text-amber-600 dark:text-amber-400 text-xs uppercase tracking-wider">
+                <div className="flex items-center gap-2 font-semibold text-amber-600 dark:text-amber-400 text-xs uppercase tracking-wider">
                   <Milk className="w-4 h-4" />
                   <span>Lactation &amp; Infant Exposure</span>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {renderSourcedField(
                     "Relative Infant Dose (RID)",
                     repro?.lactation_rid,
@@ -297,9 +298,10 @@ export function ReproDetail({
             </>
           )}
         </div>
+        </div>
 
         {/* Footer */}
-        <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+        <div className="px-5 sm:px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex justify-end shrink-0">
           <button
             onClick={onClose}
             className={`px-4 py-2 rounded-xl text-xs font-semibold border transition-colors ${

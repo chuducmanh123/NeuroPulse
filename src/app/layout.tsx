@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin", "vietnamese"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Neurology & Stroke Journal Monitor | Multi-Journal Clinical Tracker",
@@ -53,7 +59,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased text-slate-900 bg-slate-100 dark:bg-slate-950 dark:text-slate-100">{children}</body>
+      <body className={`${inter.className} antialiased text-slate-900 bg-slate-100 dark:bg-slate-950 dark:text-slate-100`}>{children}</body>
     </html>
   );
 }

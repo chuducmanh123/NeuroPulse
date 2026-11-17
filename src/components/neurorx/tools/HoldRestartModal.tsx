@@ -183,24 +183,36 @@ export function HoldRestartModal({
                     )}
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="divide-y divide-slate-200 dark:divide-slate-800">
                     {sourceEntries.map((item, idx) => (
                       <div
                         key={idx}
-                        className={`p-3.5 rounded-xl border transition-all ${
+                        className={`py-3.5 first:pt-1 last:pb-1 transition-all ${
                           item.crcl_matched
                             ? darkMode
-                              ? "bg-sky-950/30 border-sky-600/50"
-                              : "bg-sky-50/60 border-sky-300"
-                            : darkMode
-                            ? "bg-slate-900 border-slate-800"
-                            : "bg-white border-slate-200"
+                              ? "px-3.5 my-1 rounded-xl bg-sky-950/30 border border-sky-600/50"
+                              : "px-3.5 my-1 rounded-xl bg-sky-50/70 border border-sky-300"
+                            : ""
                         }`}
                       >
-                        <div className="flex items-start justify-between gap-2 mb-2.5">
-                          <span className="font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100 leading-snug">
-                            {item.procedure_label}
-                          </span>
+                        {/* 1. Procedure / Intervention Name (First) */}
+                        <div className="flex items-start justify-between gap-2">
+                          <div>
+                            <div className="font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100 leading-snug">
+                              {item.procedure_label}
+                            </div>
+                            <div className="text-xs mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                              <span className="font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+                                {procedure === "lumbar_puncture"
+                                  ? "Lumbar Puncture"
+                                  : "Neurosurgery"}
+                              </span>
+                              <span className="text-slate-400" aria-hidden="true">•</span>
+                              <span className="text-slate-500 dark:text-slate-400">
+                                Confirm adequate hemostasis
+                              </span>
+                            </div>
+                          </div>
                           {item.crcl_matched && (
                             <span className="text-xs px-2.5 py-0.5 rounded-full font-semibold shrink-0 bg-sky-500/15 text-sky-700 dark:text-sky-300 border border-sky-500/30">
                               Matched Renal Stratum
@@ -208,54 +220,22 @@ export function HoldRestartModal({
                           )}
                         </div>
 
-                        {/* Visual Timeline: Last Dose / Hold -> Intervention -> Restart */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2">
-                          {/* Step 1: Hold */}
-                          <div
-                            className={`p-3 rounded-xl border ${
-                              darkMode ? "bg-slate-950/60 border-slate-800" : "bg-slate-50 border-slate-200"
-                            }`}
-                          >
-                            <span className="text-[11px] font-bold uppercase tracking-wide text-rose-500 block">
-                              1. Pre-Procedure Hold
+                        {/* 2. Pre-Procedure Hold & 3. Post-Procedure Restart (Horizontal Rows, No Nested Boxes) */}
+                        <div className="mt-3 space-y-2 text-sm">
+                          <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
+                            <span className="sm:w-48 shrink-0 text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400">
+                              Pre-Procedure Hold
                             </span>
-                            <span className="text-sm font-semibold text-slate-900 dark:text-slate-100 block mt-1.5 leading-snug">
+                            <span className="text-sm font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
                               {item.hold_hours}
                             </span>
-                            <span className="text-xs text-slate-500 dark:text-slate-400 block mt-1">
-                              Hold prior to procedure
-                            </span>
                           </div>
 
-                          {/* Step 2: Procedure */}
-                          <div
-                            className={`p-3 rounded-xl border ${
-                              darkMode ? "bg-slate-950/60 border-slate-800" : "bg-slate-50 border-slate-200"
-                            }`}
-                          >
-                            <span className="text-[11px] font-bold uppercase tracking-wide text-amber-500 block">
-                              2. Intervention
+                          <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
+                            <span className="sm:w-48 shrink-0 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                              Post-Procedure Restart
                             </span>
-                            <span className="text-sm font-semibold text-slate-900 dark:text-slate-100 block mt-1.5 leading-snug">
-                              {procedure === "lumbar_puncture"
-                                ? "Lumbar Puncture"
-                                : "Neurosurgery"}
-                            </span>
-                            <span className="text-xs text-slate-500 dark:text-slate-400 block mt-1">
-                              Confirm adequate hemostasis
-                            </span>
-                          </div>
-
-                          {/* Step 3: Restart */}
-                          <div
-                            className={`p-3 rounded-xl border ${
-                              darkMode ? "bg-slate-950/60 border-slate-800" : "bg-slate-50 border-slate-200"
-                            }`}
-                          >
-                            <span className="text-[11px] font-bold uppercase tracking-wide text-emerald-500 block">
-                              3. Post-Procedure Restart
-                            </span>
-                            <span className="text-sm font-semibold text-slate-900 dark:text-slate-100 block mt-1.5 leading-snug">
+                            <span className="text-sm font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
                               {item.restart_timing}
                             </span>
                           </div>

@@ -90,7 +90,7 @@ export function SourcePopover({
                 <div>
                   <h3
                     id="source-popover-title"
-                    className="text-base font-extrabold tracking-tight text-slate-900 dark:text-white"
+                    className="text-base font-bold tracking-tight text-slate-900 dark:text-white"
                   >
                     Clinical Source Evidence
                   </h3>

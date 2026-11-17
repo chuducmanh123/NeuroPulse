@@ -48,20 +48,20 @@ export function ToolsRow({
       <div className="p-4 sm:p-5 rounded-2xl border border-l-4 border-l-purple-500 border-purple-200/80 dark:border-purple-900/40 bg-gradient-to-r from-purple-500/10 via-violet-500/5 to-slate-50/70 dark:from-purple-950/20 dark:via-slate-900/60 dark:to-slate-900/40 space-y-3">
         <div className="flex items-center gap-2.5">
           <Wrench className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-          <span className="text-sm sm:text-base font-extrabold uppercase tracking-wide text-purple-950 dark:text-purple-300">
+          <span className="text-xs font-semibold uppercase tracking-wider text-purple-950 dark:text-purple-300">
             Contextual Bedside Tools
           </span>
         </div>
 
-        <div className="flex flex-wrap gap-2.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-flow-col lg:auto-cols-fr gap-2.5">
           {hasHoldRestart && (
             <button
               type="button"
               onClick={() => setActiveModal("hold_restart")}
-              className="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-2 shadow-2xs min-h-[42px]"
+              className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center justify-center gap-2 shadow-2xs min-h-[44px]"
             >
-              <Clock className="w-4 h-4 text-sky-500" />
-              <span>⏱️ Hold / Restart Antithrombotic</span>
+              <Clock className="w-4 h-4 text-sky-500 shrink-0" />
+              <span className="truncate">Hold / Restart Antithrombotic</span>
             </button>
           )}
 
@@ -69,10 +69,10 @@ export function ToolsRow({
             <button
               type="button"
               onClick={() => setActiveModal("titration")}
-              className="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-2 shadow-2xs min-h-[42px]"
+              className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center justify-center gap-2 shadow-2xs min-h-[44px]"
             >
-              <Printer className="w-4 h-4 text-indigo-500" />
-              <span>🖨️ Titration Schedule Print</span>
+              <Printer className="w-4 h-4 text-indigo-500 shrink-0" />
+              <span className="truncate">Titration Schedule Print</span>
             </button>
           )}
 
@@ -80,10 +80,10 @@ export function ToolsRow({
             <button
               type="button"
               onClick={() => setActiveModal("missed_dose")}
-              className="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-2 shadow-2xs min-h-[42px]"
+              className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center justify-center gap-2 shadow-2xs min-h-[44px]"
             >
-              <HelpCircle className="w-4 h-4 text-amber-500" />
-              <span>❓ Missed Dose Protocol</span>
+              <HelpCircle className="w-4 h-4 text-amber-500 shrink-0" />
+              <span className="truncate">Missed Dose Protocol</span>
             </button>
           )}
 
@@ -91,10 +91,10 @@ export function ToolsRow({
             <button
               type="button"
               onClick={() => setActiveModal("reversal")}
-              className="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-2 shadow-2xs min-h-[42px]"
+              className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center justify-center gap-2 shadow-2xs min-h-[44px]"
             >
-              <Shield className="w-4 h-4 text-rose-500" />
-              <span>🛡️ Anticoagulation Reversal</span>
+              <Shield className="w-4 h-4 text-rose-500 shrink-0" />
+              <span className="truncate">Anticoagulation Reversal</span>
             </button>
           )}
 
@@ -102,10 +102,10 @@ export function ToolsRow({
             <button
               type="button"
               onClick={() => setActiveModal("ledd")}
-              className="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-2 shadow-2xs min-h-[42px]"
+              className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center justify-center gap-2 shadow-2xs min-h-[44px]"
             >
-              <Calculator className="w-4 h-4 text-amber-500" />
-              <span>🔄 LEDD / NPO</span>
+              <Calculator className="w-4 h-4 text-amber-500 shrink-0" />
+              <span className="truncate">LEDD / NPO</span>
             </button>
           )}
         </div>

@@ -52,10 +52,10 @@ export function ReversalPanel({
             <Shield className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-base font-extrabold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+            <h3 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 dark:text-slate-100 flex items-center gap-2">
               <span>🛡️ Urgent Anticoagulation Reversal Guidance</span>
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
               Protocol for acute intracranial hemorrhage (ICH) or life-threatening bleeding on <strong>{result.drug_name}</strong>
             </p>
           </div>
@@ -74,26 +74,26 @@ export function ReversalPanel({
 
       {/* Patient Parameters Reminder */}
       <div
-        className={`p-3 rounded-xl border flex items-center justify-between text-xs ${
+        className={`p-3 rounded-xl border flex flex-wrap items-center justify-between gap-x-4 gap-y-2 text-xs ${
           darkMode
             ? "bg-slate-950/60 border-slate-800 text-slate-300"
             : "bg-slate-50 border-slate-200 text-slate-700"
         }`}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <span className="font-bold">Patient Parameters:</span>
-          <span>
+          <span className="whitespace-nowrap">
             Weight: {patientWeight ? `${patientWeight} kg` : "Not entered"}
           </span>
-          <span>•</span>
-          <span>
+          <span aria-hidden="true">•</span>
+          <span className="whitespace-nowrap">
             INR: {patientInr ? patientInr.toFixed(1) : "Not entered"}
           </span>
         </div>
 
         {!patientWeight && (
           <span className="text-amber-700 dark:text-amber-400 text-xs font-bold flex items-center gap-1.5">
-            <AlertCircle className="w-4 h-4" />
+            <AlertCircle className="w-4 h-4 shrink-0" />
             <span>Enter weight in patient bar to compute doses</span>
           </span>
         )}
@@ -143,7 +143,7 @@ export function ReversalPanel({
             {/* Dose Rule */}
             <div className="text-sm text-slate-800 dark:text-slate-200 space-y-2 leading-relaxed">
               <div>
-                <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                <span className="font-extrabold text-xs uppercase tracking-wider text-slate-700 dark:text-slate-300">
                   Dose Rule:{" "}
                 </span>
                 <span className="font-medium">{agent.dose_rule}</span>
@@ -158,8 +158,8 @@ export function ReversalPanel({
                       : "bg-rose-50 border-rose-200 text-rose-900"
                   }`}
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wide">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-extrabold uppercase tracking-wider">
                       Computed Dose
                     </span>
                     {agent.computed_dose.capped && (
@@ -173,7 +173,7 @@ export function ReversalPanel({
                       ? `${agent.computed_dose.amount_exact.toLocaleString()} ${agent.computed_dose.unit}`
                       : `${agent.computed_dose.amount_min?.toLocaleString()} to ${agent.computed_dose.amount_max?.toLocaleString()} ${agent.computed_dose.unit}`}
                   </div>
-                  <p className="text-xs sm:text-sm font-medium opacity-90 leading-relaxed">
+                  <p className="text-sm font-medium opacity-90 leading-relaxed">
                     {agent.computed_dose.explanation}
                   </p>
                 </div>

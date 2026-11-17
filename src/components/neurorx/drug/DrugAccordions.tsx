@@ -119,7 +119,7 @@ export function DrugAccordions({
 
   return (
     <div className="space-y-4 pt-2">
-      <h3 className="text-sm sm:text-base font-extrabold uppercase tracking-wider text-slate-700 dark:text-slate-300 px-1">
+      <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 px-1">
         Clinical Reference &amp; Pharmacology Accordions
       </h3>
 
@@ -133,7 +133,7 @@ export function DrugAccordions({
           <button
             type="button"
             onClick={() => toggleSection("pregnancy")}
-            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-extrabold text-sm sm:text-base transition-colors ${
+            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base transition-colors ${
               openSections.pregnancy
                 ? darkMode
                   ? "bg-rose-950/25 text-rose-300"
@@ -147,7 +147,7 @@ export function DrugAccordions({
               <div className="p-2 rounded-xl bg-rose-500/10 text-rose-500 shrink-0">
                 <Baby className="w-5 h-5" />
               </div>
-              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base break-words">
+              <span className="text-slate-900 dark:text-white font-bold text-sm sm:text-base break-words">
                 Pregnancy &amp; Lactation Guidance
               </span>
               {rep.tier?.value && (
@@ -171,7 +171,7 @@ export function DrugAccordions({
             <div className="p-4 sm:p-5 divide-y divide-slate-100 dark:divide-slate-800/80 border-t border-slate-100 dark:border-slate-800/80">
               {/* Preconception Planning */}
               <div className="pb-4 space-y-3">
-                <h4 className="text-sm sm:text-base font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
                   Preconception Planning
                 </h4>
                 <div className="space-y-3">
@@ -182,7 +182,7 @@ export function DrugAccordions({
                       </span>
                       <SourcePopover refs={rep.folic_acid?.refs} sources={sources} darkMode={darkMode} />
                     </div>
-                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
+                    <p className="text-sm font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
                       {renderReproFieldValue(rep.folic_acid)}
                     </p>
                   </div>
@@ -194,7 +194,7 @@ export function DrugAccordions({
                       </span>
                       <SourcePopover refs={rep.contraception?.refs} sources={sources} darkMode={darkMode} />
                     </div>
-                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
+                    <p className="text-sm font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
                       {renderReproFieldValue(rep.contraception)}
                     </p>
                   </div>
@@ -203,7 +203,7 @@ export function DrugAccordions({
 
               {/* Pregnancy Safety, Pharmacokinetics & Malformations */}
               <div className="py-4 space-y-3">
-                <h4 className="text-sm sm:text-base font-extrabold uppercase tracking-wider text-rose-600 dark:text-rose-400">
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-rose-600 dark:text-rose-400">
                   Pregnancy Safety, Pharmacokinetics &amp; Malformations
                 </h4>
                 <div className="space-y-3">
@@ -214,7 +214,7 @@ export function DrugAccordions({
                       </span>
                       <SourcePopover refs={rep.tier?.refs} sources={sources} darkMode={darkMode} />
                     </div>
-                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                    <p className="text-sm font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
                       {rep.tier?.value ? (
                         REPRO_TIER_LABELS[rep.tier.value]
                       ) : (
@@ -232,7 +232,7 @@ export function DrugAccordions({
                       </span>
                       <SourcePopover refs={rep.pregnancy_pk?.refs} sources={sources} darkMode={darkMode} />
                     </div>
-                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
+                    <p className="text-sm font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
                       {renderReproFieldValue(rep.pregnancy_pk)}
                     </p>
                   </div>
@@ -275,7 +275,7 @@ export function DrugAccordions({
 
               {/* Postpartum */}
               <div className="py-4 space-y-3">
-                <h4 className="text-sm sm:text-base font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
                   Postpartum
                 </h4>
                 <div className="space-y-1">
@@ -285,7 +285,7 @@ export function DrugAccordions({
                     </span>
                     <SourcePopover refs={rep.postpartum?.refs} sources={sources} darkMode={darkMode} />
                   </div>
-                  <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
+                  <p className="text-sm font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
                     {renderReproFieldValue(rep.postpartum, "No specific postpartum dose reduction schedule in sources")}
                   </p>
                 </div>
@@ -293,7 +293,7 @@ export function DrugAccordions({
 
               {/* Lactation & Infant Exposure */}
               <div className="pt-4 space-y-3">
-                <h4 className="text-sm sm:text-base font-extrabold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
                   Lactation &amp; Infant Exposure
                 </h4>
                 <div className="space-y-3">
@@ -304,7 +304,7 @@ export function DrugAccordions({
                       </span>
                       <SourcePopover refs={rep.lactation_rid?.refs} sources={sources} darkMode={darkMode} />
                     </div>
-                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
+                    <p className="text-sm font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
                       {renderReproFieldValue(rep.lactation_rid, "No RID percentage reported in sources")}
                     </p>
                   </div>
@@ -316,7 +316,7 @@ export function DrugAccordions({
                       </span>
                       <SourcePopover refs={rep.lactation_summary?.refs} sources={sources} darkMode={darkMode} />
                     </div>
-                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
+                    <p className="text-sm font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
                       {renderReproFieldValue(rep.lactation_summary, "No lactation summary in sources")}
                     </p>
                   </div>
@@ -337,7 +337,7 @@ export function DrugAccordions({
           <button
             type="button"
             onClick={() => toggleSection("neuro")}
-            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-extrabold text-sm sm:text-base transition-colors ${
+            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base transition-colors ${
               openSections.neuro
                 ? darkMode
                   ? "bg-amber-950/25 text-amber-300"
@@ -351,7 +351,7 @@ export function DrugAccordions({
               <div className="p-2 rounded-xl bg-amber-500/10 text-amber-500 shrink-0">
                 <AlertTriangle className="w-5 h-5" />
               </div>
-              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base break-words">
+              <span className="text-slate-900 dark:text-white font-bold text-sm sm:text-base break-words">
                 Neuro Clinical Notes &amp; Pharmacogenomics
               </span>
             </div>
@@ -364,12 +364,12 @@ export function DrugAccordions({
               {drug.mechanism_of_action?.value && (
                 <div className="pb-4 space-y-1.5">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                    <span className="font-semibold text-xs uppercase tracking-wider text-slate-700 dark:text-slate-300">
                       Mechanism of Action
                     </span>
                     <SourcePopover refs={drug.mechanism_of_action?.refs} sources={sources} darkMode={darkMode} />
                   </div>
-                  <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                  <p className="text-sm font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
                     {drug.mechanism_of_action.value}
                   </p>
                 </div>
@@ -379,7 +379,7 @@ export function DrugAccordions({
               {drug.ae_tags?.value && drug.ae_tags.value.length > 0 && (
                 <div className="py-4 first:pt-0 space-y-2">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                    <span className="font-semibold text-xs uppercase tracking-wider text-slate-700 dark:text-slate-300">
                       Adverse Effect Classification Tags
                     </span>
                     <SourcePopover refs={drug.ae_tags?.refs} sources={sources} darkMode={darkMode} />
@@ -403,7 +403,7 @@ export function DrugAccordions({
                   {drug.adverse_effects?.serious?.value && (
                     <div className="p-3.5 sm:p-4 rounded-xl bg-rose-500/5 border border-rose-500/20 space-y-2">
                       <div className="flex items-center justify-between gap-2">
-                        <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-rose-800 dark:text-rose-300">
+                        <span className="font-semibold text-xs uppercase tracking-wider text-rose-800 dark:text-rose-300">
                           Serious Adverse Reactions
                         </span>
                         <SourcePopover refs={drug.adverse_effects.serious.refs} sources={sources} darkMode={darkMode} />
@@ -419,7 +419,7 @@ export function DrugAccordions({
                   {drug.adverse_effects?.most_common?.value && (
                     <div className="space-y-2">
                       <div className="flex items-center justify-between gap-2">
-                        <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                        <span className="font-semibold text-xs uppercase tracking-wider text-slate-700 dark:text-slate-300">
                           Most Common Reactions (≥ 5%)
                         </span>
                         <SourcePopover refs={drug.adverse_effects.most_common.refs} sources={sources} darkMode={darkMode} />
@@ -437,13 +437,13 @@ export function DrugAccordions({
               {/* Pharmacogenomics (PGx) */}
               <div className="pt-4 first:pt-0 space-y-1.5">
                 <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2 font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                  <div className="flex items-center gap-2 font-semibold text-xs uppercase tracking-wider text-slate-700 dark:text-slate-300">
                     <Dna className="w-4 h-4 text-sky-500" />
                     <span>Pharmacogenomics (PGx)</span>
                   </div>
                   <SourcePopover refs={drug.pgx?.refs} sources={sources} darkMode={darkMode} />
                 </div>
-                <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                <p className="text-sm font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
                   {drug.pgx?.value || "No recommendation in sources (No testing required by FDA label)"}
                 </p>
               </div>
@@ -462,7 +462,7 @@ export function DrugAccordions({
           <button
             type="button"
             onClick={() => toggleSection("pk")}
-            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-extrabold text-sm sm:text-base transition-colors ${
+            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base transition-colors ${
               openSections.pk
                 ? darkMode
                   ? "bg-sky-950/25 text-sky-300"
@@ -476,7 +476,7 @@ export function DrugAccordions({
               <div className="p-2 rounded-xl bg-blue-500/10 text-blue-500 shrink-0">
                 <FlaskConical className="w-5 h-5" />
               </div>
-              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base break-words">
+              <span className="text-slate-900 dark:text-white font-bold text-sm sm:text-base break-words">
                 Pharmacokinetics, Renal, Hepatic &amp; Metabolism
               </span>
             </div>
@@ -488,7 +488,7 @@ export function DrugAccordions({
               {/* Renal Impairment Guidance */}
               <div className="pb-4 space-y-2.5">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                  <span className="font-semibold text-xs uppercase tracking-wider text-slate-700 dark:text-slate-300">
                     Renal Impairment Guidance
                   </span>
                   <SourcePopover
@@ -497,7 +497,7 @@ export function DrugAccordions({
                     darkMode={darkMode}
                   />
                 </div>
-                <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                <p className="text-sm font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
                   {(() => {
                     const desc = drug.renal_impairment?.description?.trim();
                     const hasBands = Boolean(
@@ -568,12 +568,12 @@ export function DrugAccordions({
               {/* Hepatic Impairment */}
               <div className="py-4 space-y-1.5">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                  <span className="font-semibold text-xs uppercase tracking-wider text-slate-700 dark:text-slate-300">
                     Hepatic Impairment Guidance
                   </span>
                   <SourcePopover refs={drug.hepatic?.refs} sources={sources} darkMode={darkMode} />
                 </div>
-                <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                <p className="text-sm font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
                   {drug.hepatic?.value || "No dosage adjustment necessary for hepatic impairment."}
                 </p>
               </div>
@@ -582,7 +582,7 @@ export function DrugAccordions({
               {enz && (
                 <div className="pt-4 space-y-2">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                    <span className="font-semibold text-xs uppercase tracking-wider text-slate-700 dark:text-slate-300">
                       CYP &amp; Transporter Metabolism Profile
                     </span>
                     <SourcePopover refs={drug.enzyme_profile?.refs} sources={sources} darkMode={darkMode} />
@@ -691,7 +691,7 @@ export function DrugAccordions({
           <button
             type="button"
             onClick={() => toggleSection("interactions")}
-            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-extrabold text-sm sm:text-base transition-colors ${
+            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base transition-colors ${
               openSections.interactions
                 ? darkMode
                   ? "bg-purple-950/25 text-purple-300"
@@ -705,10 +705,10 @@ export function DrugAccordions({
               <div className="p-2 rounded-xl bg-purple-500/10 text-purple-500 shrink-0">
                 <ArrowRightLeft className="w-5 h-5" />
               </div>
-              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base break-words">
+              <span className="text-slate-900 dark:text-white font-bold text-sm sm:text-base break-words">
                 Drug Interactions (FDA Prescribing Information)
               </span>
-              <span className="px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider bg-purple-500/15 text-purple-700 dark:text-purple-300 shrink-0">
+              <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold uppercase tracking-wider bg-purple-500/15 text-purple-700 dark:text-purple-300 shrink-0">
                 {fdaInteractions.value.length} {fdaInteractions.value.length === 1 ? "Class" : "Classes"}
               </span>
             </div>
@@ -738,12 +738,12 @@ export function DrugAccordions({
                     >
                       <div className="flex items-start justify-between gap-2">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <span className="font-extrabold text-slate-900 dark:text-slate-100 text-sm sm:text-base">
+                          <span className="font-semibold text-slate-900 dark:text-slate-100 text-sm sm:text-base">
                             {item.drug_or_class}
                           </span>
                           {sev && (
                             <span
-                              className={`px-2.5 py-0.5 rounded text-xs font-extrabold uppercase tracking-wider ${
+                              className={`px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-wider ${
                                 sev === "contraindicated"
                                   ? "bg-rose-500/15 text-rose-700 dark:text-rose-400 border border-rose-500/30"
                                   : sev === "major"
@@ -762,16 +762,16 @@ export function DrugAccordions({
 
                       <div className="text-sm space-y-1.5 leading-relaxed">
                         <div>
-                          <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                          <span className="font-semibold text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">
                             Effect / Mechanism:{" "}
                           </span>
-                          <span className="text-slate-800 dark:text-slate-200 font-normal">{item.effect}</span>
+                          <span className="text-slate-700 dark:text-slate-300 font-normal">{item.effect}</span>
                         </div>
                         <div className="pt-0.5">
-                          <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-emerald-800 dark:text-emerald-400">
+                          <span className="font-semibold text-xs uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
                             Clinical Management:{" "}
                           </span>
-                          <span className="text-slate-900 dark:text-slate-100 font-medium">
+                          <span className="text-slate-800 dark:text-slate-200 font-normal">
                             {item.management}
                           </span>
                         </div>
@@ -795,7 +795,7 @@ export function DrugAccordions({
           <button
             type="button"
             onClick={() => toggleSection("ecosystem")}
-            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-extrabold text-sm sm:text-base transition-colors ${
+            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base transition-colors ${
               openSections.ecosystem
                 ? darkMode
                   ? "bg-indigo-950/25 text-indigo-300"
@@ -809,7 +809,7 @@ export function DrugAccordions({
               <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-500 shrink-0">
                 <LinkIcon className="w-5 h-5" />
               </div>
-              <span className="text-slate-900 dark:text-white font-extrabold text-sm sm:text-base break-words">
+              <span className="text-slate-900 dark:text-white font-bold text-sm sm:text-base break-words">
                 NeuroPulse Ecosystem Integration
               </span>
             </div>

@@ -125,7 +125,7 @@ export function DrugDetail({
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 sm:gap-4">
           <div className="space-y-2 min-w-0">
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-              <h1 className="text-xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white break-words">
+              <h1 className="text-xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white break-words">
                 {tallManName}
               </h1>
 
