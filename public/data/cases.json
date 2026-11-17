@@ -1,5 +1,232 @@
 [
   {
+    "id": "nc-2026-053",
+    "case_code": "NC-2026-053",
+    "title": "A 46-Year-Old Woman with a Rapidly Expanding Frontoparietal Mass",
+    "subspecialty": "Neuro-Oncology",
+    "subspecialties": [
+      "Neuro-Oncology",
+      "Multiple Sclerosis & Neuroimmunology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-18",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC12628849",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-025-04495-9",
+      "pmcid": "PMC12628849",
+      "pmid": "41257706",
+      "pub_year": "2025"
+    },
+    "presentation": {
+      "demographics": "46-year-old woman",
+      "chief_complaint": "Subacute neurological deficits",
+      "history_of_present_illness": "The patient presented with a subacute onset of progressive right-sided hemiparesis and associated cognitive decline. She reported a remote history of bilateral optic neuritis 12 years prior that had resolved entirely without long-term sequelae; brain magnetic resonance imaging at that time was reportedly normal.",
+      "past_medical_history": "Recurrent optic neuritis (12 years prior).",
+      "vitals": {
+        "bp": "128/82 mmHg",
+        "hr": "76 bpm",
+        "rr": "14 /min",
+        "temp": "36.7 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "Physical examination demonstrated a dense right hemiparesis (Medical Research Council grade 3/5 strength) and mild expressive aphasia. Cranial nerve testing was intact, and funduscopic examination showed no papilledema.",
+      "key_labs_csf": "Cerebrospinal fluid analysis revealed a normal protein concentration (35 mg/dL) and an absence of pleocytosis (0 white blood cells/µL), with an opening pressure of 14 cmH2O.",
+      "imaging": [
+        {
+          "modality": "MRI Brain",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC12628849)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12628849_fig1.jpg",
+          "pmcid": "PMC12628849",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04495-9",
+          "caption": "A Sagittal T1-weighted image showing a large hypointense lesion in the right frontoparietal lobe, with mild mass effect and compression of the adjacent sulci. B Axial T2-weighted sequence reveals a well-demarcated hyperintense lesion suggestive of vasogenic edema and demyelination. C Axial FLAIR image demonstrates extensive perilesional hyperintensity and incomplete ring-like appearance, features commonly associated with tumefactive demyelinating lesions",
+          "findings_summary": "A large, T1-hypointense lesion in the right frontoparietal lobe causing localized mass effect and effacement of adjacent cortical sulci."
+        },
+        {
+          "modality": "MRI Brain",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC12628849)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC12628849_fig2.jpg",
+          "pmcid": "PMC12628849",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04495-9",
+          "caption": "TMS Post-Treatment MRI (A) . Coronal T2W: Demonstrates marked reduction in lesion hyperintensity and perilesional edema (B) . Coronal T1W Contrast: Shows resolution of ring enhancement and restoration of surrounding parenchymal architecture (C) . Axial T1W Contrast: Highlights improved lesion margins and decreased mass effect",
+          "findings_summary": "Axial T2/FLAIR sequences demonstrating a well-demarcated hyperintense lesion with extensive surrounding edema and an incomplete ring-like pattern of contrast enhancement."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Given the clinical presentation and imaging findings, what is the most appropriate next step in management?",
+      "question_type": "Next Best Step",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Empiric surgical resection for suspected high-grade glioma",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. Although the expansive mass mimics a malignant neoplasm, upfront surgical resection carries substantial morbidity when the etiology is ambiguous, making tissue diagnosis via a less invasive approach preferable."
+        },
+        {
+          "id": "B",
+          "text": "Stereotactic brain biopsy",
+          "peer_percentage": 64,
+          "rationale": "Correct! When neuroimaging and initial cerebrospinal fluid findings are inconclusive for a solitary expansive brain lesion, stereotactic tissue acquisition is the gold standard to establish a definitive histopathological diagnosis and rule out malignancy."
+        },
+        {
+          "id": "C",
+          "text": "Initiation of broad-spectrum antibiotics and antivirals",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. There is no clinical, laboratory, or neuroimaging evidence supporting an infectious process such as a cerebral abscess or encephalitis."
+        },
+        {
+          "id": "D",
+          "text": "Immediate whole-brain radiation therapy",
+          "peer_percentage": 11,
+          "rationale": "Incorrect. Radiation therapy is contraindicated prior to obtaining a definitive histopathological diagnosis, as it risks exacerbating underlying inflammatory conditions and causing unnecessary neurotoxicity."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Tumefactive Multiple Sclerosis (TMS)",
+      "clinical_discussion": "Tumefactive multiple sclerosis (TMS) is a rare demyelinating variant that frequently poses a diagnostic dilemma because its radiological appearance closely mimics high-grade gliomas, primary central nervous system lymphomas, and cerebral abscesses. The presence of a large lesion measuring greater than 2 cm with significant mass effect, vasogenic edema, and contrast enhancement typically raises high suspicion for a malignant neoplasm. In this patient, the remote history of optic neuritis offered a subtle clue toward a central nervous system demyelinating diathesis, but the extensive latency period and initially unremarkable neuroimaging complicated the diagnostic trajectory.\n\nThe clinical inflection point was reached when the lesion failed to resolve, necessitating a stereotactic brain biopsy to secure tissue confirmation. Histopathologic examination remains the definitive method to differentiate demyelinating pseudotumors from neoplastic processes, characteristically revealing hypercellular white matter with abundant lipid-laden macrophages, perivascular lymphocytic infiltration, and relative preservation of axons, contrasted against the cellular atypia and mitotic figures pathognomonic for gliomas.\n\nFollowing the histopathological confirmation of a demyelinating pseudotumor, the patient received targeted therapy with plasma exchange, which serves as an established therapeutic intervention for severe, steroid-refractory demyelinating attacks. She achieved substantial clinical and radiological recovery, thereby avoiding the permanent neurological morbidity associated with aggressive surgical resection.",
+      "teaching_points": [
+        "Tumefactive demyelinating lesions should always be included in the differential diagnosis of solitary, tumor-like intracranial masses, particularly in patients with a prior history of central nervous system demyelination.",
+        "While specific radiological signs such as incomplete ring-like enhancement and relative sparing of the cortical gray matter suggest tumefactive multiple sclerosis, they are not pathognomonic.",
+        "Stereotactic brain biopsy is the definitive diagnostic procedure when clinical and neuroimaging features remain ambiguous and the lesion fails to respond to initial corticosteroid therapy.",
+        "Plasma exchange is a highly effective salvage therapy for patients presenting with severe, steroid-refractory tumefactive demyelinating events."
+      ],
+      "clinical_pitfalls": [
+        "Assuming that any large, contrast-enhancing intracranial mass with surrounding edema represents a high-grade neoplasm without considering inflammatory or demyelinating mimics.",
+        "Delaying histopathological evaluation in patients who fail initial medical management, leading to prolonged uncertainty and potential exposure to inappropriate therapies."
+      ],
+      "related_keywords": [
+        "Tumefactive Multiple Sclerosis",
+        "Demyelinating Pseudotumor",
+        "Stereotactic Biopsy",
+        "Plasma Exchange"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-054",
+    "case_code": "NC-2026-054",
+    "title": "Recurrent Unilateral Cortical Inflammation and Intracranial Hypertension in a Young Adult",
+    "subspecialty": "Neuroimmunology",
+    "subspecialties": [
+      "Neuroimmunology",
+      "Epilepsy"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-18",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13741521",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05217-5",
+      "pmcid": "PMC13741521",
+      "pmid": "42995546",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "28-year-old woman",
+      "chief_complaint": "Recurrent headache and visual distortion",
+      "history_of_present_illness": "A 28-year-old woman presented with a 10-day history of progressive right-sided throbbing headache and visual blurring. She had a history of autoimmune encephalitis diagnosed in 2018 that was treated with immunotherapy, achieving complete clinical remission, followed by a relapse in 2022 characterized by focal cortical swelling and seizures.",
+      "past_medical_history": "Autoimmune encephalitis (2018), focal cortical encephalitis (2022), remote focal epilepsy (2011–2016).",
+      "vitals": {
+        "bp": "124/78 mmHg",
+        "hr": "72 bpm",
+        "rr": "14 /min",
+        "temp": "36.7 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "On examination, she was alert and fully oriented. Neurological examination revealed no focal motor or sensory deficits, intact cranial nerves, normal gait, and no meningismus or papilledema.",
+      "key_labs_csf": "Lumbar puncture demonstrated an opening pressure of 28 cmH2O; CSF analysis revealed a mild lymphocytic pleocytosis of 12 cells/µL and an elevated protein level of 55 mg/dL. Serum inflammatory markers were within normal limits.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (2022)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13741521)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13741521_fig1.webp",
+          "pmcid": "PMC13741521",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05217-5",
+          "caption": "Longitudinal clinical course. The timeline summarizes the patient’s remote seizure history from 2011 to 2016, the first anti-NMDAR encephalitis episode in December 2018, relapse in July 2022 with day 8 clinical and radiological worsening, rituximab/B-cell and antibody follow-up during 2023–2024, relapse in July 2025 with serum MOG-IgG positivity and cortical edema, and marked MRI improvement in October 2025 after oral methylprednisolone OP, opening pressure; IVIG, intravenous immunoglobulin; IVMP, intravenous methylprednisolone; OCBs, oligoclonal bands",
+          "findings_summary": "Unilateral cortical and sulcal T2/FLAIR hyperintensity localized to the left temporo-parieto-occipital region."
+        },
+        {
+          "modality": "Brain MRI (2025)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13741521)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13741521_fig2.webp",
+          "pmcid": "PMC13741521",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05217-5",
+          "caption": "Brain MRI in July 2022 showed cortical and sulcal FLAIR hyperintensity in the left temporo-parieto-occipital region",
+          "findings_summary": "Extensive unilateral cortical edema and leptomeningeal enhancement in the right cerebral hemisphere with signs of elevated intracranial pressure."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most appropriate next diagnostic step to establish the underlying etiology in this patient with recurrent unilateral cortical inflammation?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Repeat index autoimmune encephalitis antibody panel only",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Relying solely on re-testing for the original antibody profile is insufficient, as the phenotypic evolution to unilateral cortical encephalitis with sulcal enhancement suggests an autoantibody overlap syndrome, such as MOGAD."
+        },
+        {
+          "id": "B",
+          "text": "Brain biopsy to evaluate for primary CNS vasculitis",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. Brain biopsy is an invasive procedure that is premature prior to completing noninvasive serological and CSF antibody evaluations, particularly when the clinicoradiographic picture is highly characteristic of MOG-IgG-associated cortical encephalitis."
+        },
+        {
+          "id": "C",
+          "text": "Serum and CSF myelin oligodendrocyte glycoprotein antibody (MOG-IgG) testing",
+          "peer_percentage": 68,
+          "rationale": "Correct! The phenotypic shift to unilateral cortical encephalitis with leptomeningeal enhancement and elevated intracranial pressure (FLAMES pattern) in a patient with a prior history of autoimmune encephalitis strongly warrants testing for MOG-IgG to detect an autoantibody overlap syndrome."
+        },
+        {
+          "id": "D",
+          "text": "Initiate empirical high-dose cyclophosphamide",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Escalation to cytotoxic alkylating agents like cyclophosphamide is inappropriate without confirming a specific diagnosis via antibody testing or demonstrating refractoriness to first-line therapies such as high-dose corticosteroids."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "MOG-IgG-associated encephalitis presenting as FLAIR-hyperintense lesions in anti-MOG-associated encephalitis with seizures (FLAMES) in the setting of autoantibody overlap",
+      "clinical_discussion": "The differential diagnosis for recurrent unilateral cortical inflammation with leptomeningeal enhancement includes myelin oligodendrocyte glycoprotein antibody-associated disease (MOGAD), anti-NMDAR encephalitis relapse, primary CNS vasculitis, infectious meningoencephalitis, neurosarcoidosis, and status epilepticus-related transient cortical signal changes. The patient's presentation of prominent headache, mild pleocytosis, elevated opening pressure, and unilateral cortical T2/FLAIR hyperintensity strongly favors the FLAMES spectrum within MOGAD over primary CNS vasculitis or infectious etiologies.\n\nThis presentation highlights a diagnostic inflection point where relying on prior autoimmune antibody panels creates a diagnostic blind spot. Subsequent live cell-based assay testing confirmed high-titer positive serum MOG-IgG, confirming an autoantibody overlap syndrome. Pathophysiologically, the occurrence of distinct autoantibody-mediated syndromes in the same patient over time suggests a genetic or immunological predisposition to humoral autoimmunity. Furthermore, disease emergence after prior B-cell-depleting therapy may reflect the persistence of long-lived, CD20-negative plasma cells residing in survival niches within the CNS bone marrow compartments, which are resistant to standard anti-CD20 monoclonal antibodies.\n\nTargeted management of MOG-IgG cortical encephalitis involves acute induction therapy with high-dose intravenous methylprednisolone (1 g daily for 3 to 5 days), followed by an oral corticosteroid taper. In this patient, high-dose corticosteroid therapy produced rapid clinical resolution of headaches and marked clearance of cortical FLAIR hyperintensity on follow-up neuroimaging. Maintenance immunosuppressive strategy with steroid-sparing agents or IVIG should be considered given her recurrent disease trajectory.",
+      "teaching_points": [
+        "Unilateral cortical FLAIR hyperintensity accompanied by sulcal leptomeningeal enhancement and seizures (FLAMES) is a characteristic clinicoradiographic phenotype of MOGAD.",
+        "Autoimmune central nervous system disorders can manifest as sequential autoantibody overlap syndromes; evolving clinical phenotypes require comprehensive re-evaluation rather than repeating index antibody panels alone.",
+        "Elevated intracranial pressure and severe headache can be prominent features of MOG-IgG-associated encephalitis even in the absence of dense focal motor deficits.",
+        "Anti-CD20 therapies deplete peripheral pre-B and mature B lymphocytes but spare long-lived CD20-negative plasma cells, which can continue producing pathogenic autoantibodies."
+      ],
+      "clinical_pitfalls": [
+        "Assuming a new neuroinflammatory presentation represents a simple relapse of a primary index autoimmune encephalitis without re-evaluating for secondary neuroautoantibodies.",
+        "Proceeding to invasive brain biopsy for suspected primary CNS vasculitis or low-grade neoplasm before completing comprehensive cell-based serum MOG-IgG testing."
+      ],
+      "related_keywords": [
+        "MOGAD",
+        "FLAMES",
+        "Autoimmune Encephalitis",
+        "Overlap Syndrome",
+        "Cortical Inflammation"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-051",
     "case_code": "NC-2026-051",
     "title": "Acute Headache and Visual Field Loss in a Febrile Postoperative Patient",
