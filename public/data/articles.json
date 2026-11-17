@@ -1,5 +1,1547 @@
 [
   {
+    "id": "10.1001/jamaneurol.2026.4218",
+    "title": "Agent Orange and Parkinson Disease—The War Ended, the Exposure: Did Not",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Goldman Samuel M.",
+      "Dorsey E. Ray",
+      "Okun Michael S."
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4218",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4313",
+    "title": "Intraocular Hemorrhage After Digital Subtraction Myelography",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Hauser Chatterjee Jessica",
+      "Elfering Jeanette"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4313",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Hemorrhage"
+      ]
+    },
+    "abstract": "This case report describes a young adult patient with intraretinal hemorrhages in both eyes resulting in reduction of visual acuity in the left eye.",
+    "ai_takeaways": {
+      "conclusion_vi": "Digital subtraction myelography can rarely be complicated by bilateral intraretinal hemorrhages and reduced visual acuity; clinicians should consider this ocular complication when evaluating post-procedural visual symptoms.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true,
+      "study_type": "Case Report"
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4292",
+    "title": "Absolute Risk of Progression to Cognitive Impairment Based on Plasma Phosphorylated Tau 217, Age, Sex, and APOE ε4",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Algeciras-Schimnich Alicia",
+      "Hu Mingzhao",
+      "Weigand Stephen D.",
+      "Therneau Terry M.",
+      "Wiste Heather J.",
+      "Griswold Michael E.",
+      "Figdore Daniel J.",
+      "Bornhorst Joshua A.",
+      "Vemuri Prashanthi",
+      "Knopman David S.",
+      "Graff-Radford Jonathan",
+      "Petersen Ronald C.",
+      "Jack Clifford R.",
+      "Abu Raya Maison",
+      "Abusalim Ala",
+      "Acevedo Mara",
+      "Acothley Skieff",
+      "Acree Allison",
+      "Adegoke Olusegun",
+      "Adem Hussen Kedir",
+      "Adhikari Alisa",
+      "Aggarwal Ruchi",
+      "Ahmed Tuba",
+      "Aisen Paul",
+      "Ajayi Adeyinka",
+      "Ajtai Bela",
+      "Aladeen Traci",
+      "Al-Amin Jahmila",
+      "Albers Colleen",
+      "Albert Marilyn",
+      "Alo Tolulope",
+      "Alosco Michael",
+      "Aloszka Deborah",
+      "Amaza Hannatu",
+      "Amoyaw Marie",
+      "Amtashar Fatima S.",
+      "Anderson Brandon",
+      "Anderson Karen",
+      "Apostolova Liana G.",
+      "Arcuri Daniel",
+      "Ardolino Allison",
+      "Arnold Abbey",
+      "Arthur Anne",
+      "Asbach Michael",
+      "Ash Sarah",
+      "Ashe Laura",
+      "Ashford Miriam",
+      "Assaly Michele",
+      "Asthana Sanjay",
+      "Atri Alireza",
+      "Avila Yair",
+      "Ayers Kristi",
+      "Ayo Omobolanle",
+      "Ayres Martin",
+      "Bailey Ronald",
+      "Baker Wendy",
+      "Bandy Daniel",
+      "Barcelos Nicole",
+      "Barger Brandi",
+      "Barker Warren",
+      "Barker Randall",
+      "Barlow Laura",
+      "Barnes Lisa",
+      "Bartha Rob",
+      "Basadre Sarah",
+      "Basham Kailey",
+      "Basheer Neetha",
+      "Bassett Margaret",
+      "Bateman James",
+      "Bates Charna",
+      "Bates Vernice",
+      "Bauerle Heather",
+      "Bean Robin",
+      "Becerra Mauricio",
+      "Beckett Laurel",
+      "Beigi Maryam",
+      "Bergman Howard",
+      "Berman Sarah",
+      "Bernard Marie",
+      "Berner Katherine",
+      "Bernhardt Haley",
+      "Bernick Charles",
+      "Bhan Aparna",
+      "Binder Sarah",
+      "Bishop Jeffrey",
+      "Bissig David",
+      "Black Sandra",
+      "Blackburn Morgan",
+      "Blanchard Kimberly",
+      "Blank Karen",
+      "Boatwright Virginia",
+      "Boegel Amy",
+      "Boeve Bradley",
+      "Bohlman Sarah",
+      "Bonacorsi Zach",
+      "Bonomi Robin",
+      "Boonsiri Joseph",
+      "Booth Robbins Lindsey",
+      "Borowski Bret",
+      "Borrie Michael",
+      "Botha Hugo",
+      "Bottoms Joseph",
+      "Bouchachi Soumya",
+      "Boudreau Julia",
+      "Bowser Sarah",
+      "Brawman-Mintzer Olga",
+      "Bray Jennifer",
+      "Brennan Amanda",
+      "Brennan Emma",
+      "Brewer James",
+      "Briglall Veronica",
+      "Britt Katherine",
+      "Brooks Regan",
+      "Brosch Jared",
+      "Brown Abby",
+      "Brown Ashley Loren",
+      "Browning Amy",
+      "Bryant Robert",
+      "Brylska Magdalena",
+      "Buckholtz Neil",
+      "Buckler Regan",
+      "Burgos-Rivera Genesis",
+      "Burney Terra",
+      "Burns Jeffrey",
+      "Cabrera Yuliana",
+      "Cairns Nigel J.",
+      "Calderon Sandra",
+      "Callan Michael",
+      "Calzavara Roberta",
+      "Camarro Terry",
+      "Campbell Debbie",
+      "Capote Horacio",
+      "Carlsson Cynthia M.",
+      "Carpentier Sallie",
+      "Carrillo Maria",
+      "Carter Della",
+      "Carter Princess",
+      "Cavrel Yanis",
+      "Celmins Dzintra",
+      "Cepeda Serena",
+      "Cereijo Maria",
+      "Chadwick Melanie",
+      "Chao Steven",
+      "Chapman Latasha",
+      "Chaudhary Maria",
+      "Cheatham Elizabeth",
+      "Chen Doris",
+      "Chen Ming-Kai",
+      "Chen Stephanie Rossi",
+      "Chertkow Howard",
+      "Chiado Caitlin",
+      "Chiotis Konstantinos",
+      "Chirinos Cesar",
+      "Choe Mark",
+      "Choudhury Parichita",
+      "Chrestensen Kandise",
+      "Clanton Taylor",
+      "Clark Emily",
+      "Clark Jan",
+      "Clark Kelly",
+      "Clay Tera",
+      "Clayton Vanessa",
+      "Cline Carol",
+      "Coleman Jaila",
+      "Colvee Helena",
+      "Combs Martha",
+      "Conant Carlota",
+      "Conti Catherine",
+      "Cooper Emma",
+      "Cooper Harold Matthew",
+      "Cordona Jonathan",
+      "Cornell Gary",
+      "Corona Maria",
+      "Correia Stephen",
+      "Craft Hannah",
+      "Crawford Freda",
+      "Crawford Karen",
+      "Crawley Kerry",
+      "Dagerman Karen",
+      "Dahlgren Alexandra",
+      "Daley Anthony",
+      "D'Ambrosio Stephen",
+      "Das Sandhitsu",
+      "DaSilva Nicole",
+      "Davis Jennifer",
+      "Dawson Courtney",
+      "Day Gregory",
+      "Day Traci",
+      "de Santiago Stephanie",
+      "DeCapo Madison",
+      "DeCarli Charles",
+      "DeMarco Alexis",
+      "Demsky Corey",
+      "Denis Ridiane",
+      "DeStefano Susan",
+      "Detling Sheryl",
+      "Devereux Gillian",
+      "Devine Rebecca",
+      "Devis Ycar",
+      "Di Benedetto Joseph",
+      "Diaz Adam",
+      "Dittrich Christine",
+      "Donahue Meghan",
+      "Donnelly Laura",
+      "Donohue Michael",
+      "Dooly Heather",
+      "Doraiswamy P. Murali",
+      "Doyon Kerstin",
+      "Drake Erin",
+      "Duara Ranjan",
+      "Duffy Charles",
+      "Duncan Crystal",
+      "Durbin Kelly",
+      "Echevarria Jenny",
+      "Eigenberger Paul",
+      "Elayan Nadeen",
+      "Ellis Slaughter Micah",
+      "Ellison Andrew",
+      "Ellison Ashton",
+      "Elmalik Wisam",
+      "Elmore Heather Nicole",
+      "Emborsky Allison",
+      "Endre Ruby",
+      "English Carolyn",
+      "Epperson Kevin",
+      "Erickson Claire",
+      "Erkkinen Michael",
+      "Esposito Giuseppe",
+      "Evans Kirsten",
+      "Evans Brittani",
+      "Faber Kelley",
+      "Faircloth Jacob",
+      "Fairooz Madiha",
+      "Falletta Jonathan",
+      "Farchi Maya",
+      "Farlow Martin",
+      "Farrington Leonie",
+      "Farshadi Marjan",
+      "Fatica Parianne",
+      "Felmlee Joel",
+      "Fenice Linda",
+      "Ferman Diana",
+      "Ferng Nichol",
+      "Fidell Andrea",
+      "Figueroa Chris",
+      "Figueroa Esteban",
+      "Fikru Samantha",
+      "Fleisher Adam",
+      "Flenniken Derek",
+      "Fletcher Evan",
+      "Flynn Longmire Crystal",
+      "Fockler Juliet",
+      "Fogerty Terry",
+      "Forenback Denece",
+      "Forero Angelica",
+      "Forghanian-Arani Arvin",
+      "Forloines Martha",
+      "Foroud Tatiana M.",
+      "Fox Nick C.",
+      "Fox Tiffani",
+      "Fragale Delaney",
+      "Frank Richard",
+      "Franklin Erin",
+      "Fransen Erin",
+      "Frascino Jennifer",
+      "Friedman Pamela",
+      "Frolov Alexander (Alex)",
+      "Gabriel Gillian",
+      "Gagliano Nicole",
+      "Gagnon Karen",
+      "Gale Seth",
+      "Gallagher Lora",
+      "Gallegos Maria",
+      "Gama Antonio",
+      "Gamble Bethanie",
+      "Garcia Angelica",
+      "Garcia Lauren",
+      "Garcia-Camilo Gina",
+      "Garrison Sonia",
+      "Geesey Emilie",
+      "Geldmacher David",
+      "Germano Kaori Kubo",
+      "Ghesani Nasrin",
+      "Gillen Lindsey",
+      "Glass Michael",
+      "Glennon Kirsten",
+      "Glittenberg Matt",
+      "Glueck Amanda",
+      "Goddard Molly",
+      "Goins Laura",
+      "Goldfarb Danielle",
+      "Gonazalez Rojas Yaneicy",
+      "Gondrez Josalen",
+      "GonzÃ¡lez Hector",
+      "Gonzalez Joanna",
+      "Good Susan",
+      "Graff-Radford Jonathan",
+      "Graff-Radford Neill",
+      "Grant Ian",
+      "Grant Sylvia",
+      "Green Robert C.",
+      "Greeson Julia",
+      "Greig-Custo Maria",
+      "Grill Joshua",
+      "Groome Alexandra",
+      "Grossman Hillel",
+      "Groves Alex",
+      "Gui Maurylette",
+      "Gunnoud Carol",
+      "Gunter Jeff",
+      "Gurung Maushami",
+      "Gutierrez Michele",
+      "Guzman Vanessa",
+      "Hackenmiller Barbara",
+      "Haddad Loreece",
+      "Hales Chadwick",
+      "Hall Tia",
+      "Hall Shaundra",
+      "Hamm Talia",
+      "Hamski Melissa",
+      "Harkins Jessica",
+      "Harkins Kristin",
+      "Harp Jordan",
+      "Harris Guy",
+      "Harrison William",
+      "Harte Tanya",
+      "Hartman Ellen",
+      "Harvey Danielle",
+      "Haviari Aferdita",
+      "Hawk Thomas",
+      "Hedberg Caitie",
+      "Hegedus Stephen",
+      "Heidebrink Judith",
+      "Helland Tascha",
+      "Hellegers Cammie",
+      "Hendrickson Kirsten",
+      "Hendrix Haley",
+      "Henkle Susan",
+      "Henson Rachel",
+      "Hergesheimer Lindsey",
+      "Hernandez Michelle",
+      "Hernandez Robert",
+      "Hernando Raymundo",
+      "Herring Scott",
+      "Hidalgo Elisa",
+      "Hills Aidyn Rose",
+      "Hirtreiter Joseph",
+      "Ho Carole",
+      "Hoang Isabella",
+      "Holt Michael",
+      "Holvey Bridget",
+      "Honig Lawrence",
+      "Hoover Bevan",
+      "Hopkins Kevin",
+      "Horenkamp Jennifer",
+      "Hosein Chris",
+      "Hoti Ina",
+      "Houghtaling Nathaniel",
+      "Hsiao John K.",
+      "Hsiung Robin",
+      "Hu William",
+      "Hughes Kyliah",
+      "Hunt Rebecca",
+      "Hustead Hadley",
+      "Ikner Gregory",
+      "Imhansiemhonehi Mary",
+      "Intorcia Debbie",
+      "Isip Richard",
+      "Jack Clifford R.",
+      "Jackson Jonathan",
+      "Jackson Kimberly",
+      "Jacobson Aaron",
+      "Jagust William",
+      "Jahanshad Neda",
+      "James Olga",
+      "Janavs Juris",
+      "Jefferson Sarah",
+      "Jenee Hill Sydni",
+      "Jenkins Cecily",
+      "Jennings Lauren",
+      "Jessup Alicia",
+      "Jimenez Amanda",
+      "Jimenez Gustavo",
+      "Jimenez-Knight Tatiana",
+      "Jin Chengshi",
+      "Jo Taeho",
+      "Johns Jennifer",
+      "Johnson Kathleen",
+      "Johnson Michaela",
+      "Johnson Sterling",
+      "Johnson Nicole",
+      "Jones David",
+      "Jones Matthew R.",
+      "Jones Floyd",
+      "Jooma Inara",
+      "Joshua Hasbani Mayer",
+      "Kachaturian Zaven",
+      "Kaddurah-Daouk Rima",
+      "Kadiri Oshoze",
+      "Kahulugan Queennie Majorie S",
+      "Kalowsky Teresa",
+      "Kantarci Kejal",
+      "Kapadia Anish",
+      "Kaplan Anthony",
+      "Karlawish Jason",
+      "Kataki Maria",
+      "Kaye Jeffrey",
+      "Kelley Brendan",
+      "Kenowsky Sunnie",
+      "Kertesz Andrew",
+      "Khachaturian Zaven",
+      "Khan Amber",
+      "Khan Javed",
+      "Khasnavis Siddharth",
+      "Khera Alka",
+      "Killiany Ronald",
+      "Kim Chi",
+      "Kim Ellen",
+      "King Kathy",
+      "King Kelsey",
+      "King Richard",
+      "King Megan",
+      "Kippels Andrea",
+      "Klemp Heather",
+      "Knaack Alexander",
+      "Knaack Joshua",
+      "Knopman David",
+      "Ko Ashley",
+      "Koeppe Robert A.",
+      "Koeppe Robert",
+      "Korecka Magdalena",
+      "Korkoyah Aaliyah",
+      "Kormos Adrienne",
+      "Korst William",
+      "Kowalski Nancy",
+      "Kreszyn Katelynn",
+      "Kreuger Connie",
+      "Kurvach Russell",
+      "Kusuran Jasmina",
+      "Kwang Winnie",
+      "La Joie Renaud",
+      "LaBarge Renee",
+      "Lacy Kaci",
+      "Lagarde Julien",
+      "Lah James",
+      "Lam Benjamin",
+      "Lam Jessica",
+      "Landau Susan",
+      "Lapins Allison",
+      "Largent Emily",
+      "Larkin Kelly",
+      "Lauture Mona",
+      "Lawrence Kayley",
+      "Le Richard",
+      "Leader Alicia",
+      "Ledford Phillip \"Hunter\"",
+      "Lee Edward B.",
+      "Lee T-Y",
+      "Lee Virginia M.Y.",
+      "Lenio Steven",
+      "Levesque Isabella",
+      "Levey Allan",
+      "Lieb Brigit",
+      "Liebsack Carolyn",
+      "Lim Joanne",
+      "Lin Emmeline",
+      "Lin Zoe",
+      "Little Emily",
+      "Liu Luter",
+      "Locke Mary",
+      "Logan Rebecca",
+      "Long Justin",
+      "Long Campbell",
+      "Long Rebecca",
+      "Lopez Oscar",
+      "LoPresti Brian",
+      "Lowe Suzan",
+      "Lowe Val",
+      "Lowery Serena",
+      "Lu YuQuan \"Oliver\"",
+      "Lukose Leena",
+      "Luong Brittney",
+      "Luu Tuan",
+      "Lynch Brendan",
+      "Lynch Sheryl",
+      "Lyons Casie",
+      "Lyron Stefka",
+      "MacDonald Steven",
+      "Macias Lorena",
+      "Macnamara Heather",
+      "Madison Mercedes",
+      "Magana Fabiola",
+      "Magnuson Jessica",
+      "Mahaffey Jennifer",
+      "Mahboubi Payam",
+      "Malakauskas Sarah",
+      "Malia Ann Arlene",
+      "Mallory Jessica",
+      "Malloy Paul",
+      "Malone Ian",
+      "Malyarenko Dariya",
+      "Mandal Anjana",
+      "Mandal Prabin",
+      "Maneval Jeffrey",
+      "Manning Sara",
+      "Mares Ivan",
+      "Marian Tahlee",
+      "Mariotti Lauren",
+      "Marolt A'llana",
+      "Marshall Gad",
+      "Marti Brittany",
+      "Martin Katherin",
+      "Martin Kimberly",
+      "Martinez Natalie",
+      "Martinez Tatianne",
+      "Martinez Walter",
+      "Masdeu Joseph",
+      "Masellis Mario",
+      "Masliah Eliezer",
+      "Masterman Donna",
+      "Masurkar Arjun",
+      "Mathews Dana",
+      "Mathewson Abigail",
+      "Mathis Nicole",
+      "Matoush Leonard",
+      "Mattle Anna",
+      "May Jeanine",
+      "Mayo Connie",
+      "Mba Ijeoma",
+      "McAdams-Ortiz Catherine",
+      "McCann Kelly",
+      "McColl Roderick",
+      "McCorkle Elizabeth",
+      "McCoubrey Hannah",
+      "McCurry Cierra",
+      "McDonnell Michelle",
+      "McGinnis Scott",
+      "McKinley Emily",
+      "McKinzie Sanna",
+      "McMillan Maureen",
+      "Meacham Beverly",
+      "Mecca Adam",
+      "Mechtler Laszlo",
+      "Mejia Diego",
+      "Mejia Kassandra",
+      "Mendonca Chelsea",
+      "Mendoza Apuango Xiomara",
+      "Mez Jesse",
+      "Middleton Anna",
+      "Miller Alyssa",
+      "Miller Bruce L.",
+      "Miller Matalin",
+      "Miller Melanie J.",
+      "Mintz Akiva",
+      "Mintzer Jacobo",
+      "Mitchell Meghan",
+      "Moghekar Abhay",
+      "Molchan Susan",
+      "Monarrez Candy",
+      "Moncayo Ercilia",
+      "Monserratt Lorena",
+      "Montero Alexandria",
+      "Montine Tom",
+      "Moore Tracey",
+      "Moore-Weiss John",
+      "Moorlach Kathryn",
+      "Morales Esmeralda",
+      "Morales Jessica",
+      "Moretz Lena",
+      "Morris John",
+      "Moss Ariana",
+      "Mossa David",
+      "Most Elaine",
+      "Munic Donna",
+      "Munie Sarah",
+      "Munoz Cynthia",
+      "Munro Catherine",
+      "Murphy Erin",
+      "Mwaura Isabell",
+      "Mwicigi Jane",
+      "Myers Bennett",
+      "Nasrallah Ilya",
+      "Natelson-Love Marissa",
+      "Nath Jessica",
+      "Nelsen Kimberly",
+      "Nelson Grace",
+      "Neu Scott",
+      "Neugroschl Judith",
+      "Newhouse Paul",
+      "Nguyen Mary",
+      "Nguyen Mike",
+      "Nguyen Trung",
+      "Nguyen Lynn",
+      "Nho Kwangsik",
+      "Nichols Kayla",
+      "Nieto Alayne",
+      "Nir Talia M.",
+      "Nolan Karen",
+      "Nosheny Rachel",
+      "Nudelman Kelly",
+      "Nunes Paula",
+      "Nunez Maribel",
+      "Nwosu Adaora",
+      "Nyborg Glen",
+      "Oakley MaryAnn",
+      "Obisesan Thomas",
+      "O'Connell Abigail",
+      "O'Connor James",
+      "O'Dell Ryan",
+      "O'Donnell Patricia",
+      "Ogrocki Paula",
+      "Ogwang Sheila",
+      "Okhravi Hamid",
+      "Okonkwo Immaculata",
+      "Okonkwo Ozioma",
+      "Oleary Kristin",
+      "Olgin Jennifer",
+      "Olgin Sonia",
+      "O'Malley Stephanie",
+      "Ordor Debra",
+      "Pacini Nathiel",
+      "Paczynski Madeline",
+      "Palou Mariana",
+      "Parand Leila",
+      "Parkins Shaniya",
+      "Parry Cindy",
+      "Patel Hitesh",
+      "Patterson Katlynn",
+      "Pavlik Valory",
+      "Pawluczyk Sonia",
+      "Pearlson Godfrey D.",
+      "Peehler Todd",
+      "Pejic Jelena",
+      "Pekar Jim",
+      "Penn Rachael",
+      "Perez Gilberto",
+      "Perkins Amy",
+      "Perrin Allison",
+      "Perrin Richard J.",
+      "Perrin Richard",
+      "Petersen Ronald",
+      "Petrella Jeffrey",
+      "Petrocca Emily",
+      "Pham Sari",
+      "Phillips Elizeva (Ellie)",
+      "Pierce Aimee",
+      "Pietras Alison",
+      "Pizzola Jeremy",
+      "Place Patricia",
+      "Plenge Jamie",
+      "Polleys Roxxanne",
+      "Polson Heather",
+      "Pomara Nunzio",
+      "Pomara Vita",
+      "Pomper Martin",
+      "Pontone Gregory",
+      "Porsteinsson Anton",
+      "Pot Stacy",
+      "Potter William",
+      "Potter ZoÃ«",
+      "Presto Steven",
+      "Puleio Alexa",
+      "Qiu Wendy",
+      "Quinlan Lucas",
+      "Rabinovici Gil",
+      "Rafii Michael",
+      "Rainka Michelle",
+      "Raja Ali",
+      "Raji Cyrus",
+      "Ramamurthy Arun",
+      "Raman Rema",
+      "Ramanan Vijay",
+      "Ramirez Jennifer",
+      "Rangel Milagros",
+      "Rangel Amy",
+      "Rankin Lisa",
+      "Rao Lesley",
+      "Raynes-Goldfinger Danielle",
+      "Reade Marina",
+      "Reeder Stephanie",
+      "Reichert Chelsea",
+      "Reid Robert",
+      "Reposa Michael",
+      "Reyes Calvin",
+      "Reyes Denise",
+      "Reyes Priscilla",
+      "Reynolds Brigid",
+      "Richards Arlene",
+      "Riddle Meghan",
+      "Risacher Shannon L.",
+      "Rivera Edgardo",
+      "Rivera Francisco",
+      "Rivera-Delpin Gladiliz",
+      "Rivera-Mindt Monica",
+      "Robert Nicole",
+      "Robinson Elizabeth",
+      "Robison Justin",
+      "Rodriguez Thao",
+      "Rodzon Barbara",
+      "Rogers John",
+      "Rogers Samantha",
+      "Rogers Virginia",
+      "Roglaski Emily",
+      "Romero Romina",
+      "Rosario Christina",
+      "Rose Heather",
+      "Rosen Howard J.",
+      "Ross Dorothy",
+      "Rovere Rachel",
+      "Rowell Jennifer",
+      "Ruan Audrey",
+      "Rudd Triana",
+      "Rufo Victoria",
+      "Russell Heather",
+      "Ruszkiewicz James",
+      "Ryan Caila",
+      "Ryan Jennifer",
+      "Ryan Laurie",
+      "Sabbagh Marwan",
+      "Sacaza Kimberly",
+      "Sachdev Pallavi",
+      "Sadowski Martin",
+      "Sadowsky Carl",
+      "Saganis Xanthia",
+      "Saito Naomi",
+      "Saklad Amy",
+      "Salardini Elaheh",
+      "Salazar Jennifer",
+      "Salazar Ricardo",
+      "Salloway Stephen",
+      "Samira Gutierrez Maria",
+      "Sanborn Victoria",
+      "Sanders Marianne",
+      "Sano Mary",
+      "Santulli Robert B.",
+      "Saunders Aubree",
+      "Savage Kathleen",
+      "Saykin Andrew J.",
+      "Scanlan Maria",
+      "Scharre Douglas W.",
+      "Schneider Lon",
+      "Schoolcraft Lisa",
+      "Schultz Olivia",
+      "Schulze Evan",
+      "Schumacher Michael",
+      "Schwartz Daniel",
+      "Schwartz Eben S.",
+      "Schwarz Christopher",
+      "Scott Christopher",
+      "Scott Turner Raymond",
+      "Seidenberg Katie",
+      "Senjem Matthew",
+      "Seshadri Sudha",
+      "Shaffer Elizabeth",
+      "Shah Raj",
+      "Shang Yanan",
+      "Shannon Michael",
+      "Sharma Saurabh",
+      "Shaw Leslie M.",
+      "Shaw Leslie",
+      "Shen Li",
+      "Sheppard Faye",
+      "Silberberg Kovac Debra",
+      "Silbert Lisa",
+      "Silver Regina M.",
+      "Silverberg Nina",
+      "Singh Erawadi",
+      "Singh Sarab",
+      "Sinn Meghan",
+      "Slazyk Daryn",
+      "Smelser Bryan",
+      "Smilowitz Stephen",
+      "Smith Amanda",
+      "Smith Stephanie",
+      "Smith Steven",
+      "Smith Caroline",
+      "Snyder Peter J.",
+      "Soleimani Laili",
+      "Soleimani-Meigooni David",
+      "Solomon Veronika",
+      "Sood Ajay",
+      "Sotelo V.",
+      "Soto Andres",
+      "Spicer Kenneth",
+      "Stanhope Jesse",
+      "Stapleton Katherine",
+      "Steinberg Eric",
+      "Stephens Sochenda",
+      "Stern Yaakov",
+      "Stewart Jasmine",
+      "Stewart Wendy",
+      "Stipanovich Ava",
+      "Stone Andrew",
+      "Stover Cynthia",
+      "Strong Joe",
+      "Sullivan Samantha",
+      "Swain Audrie",
+      "Swarm Robert",
+      "Swiniarski Jessica",
+      "Switzer Phyllis",
+      "Tacey Paige C.",
+      "Taghi-Zada Zhala",
+      "Talavera Sandra",
+      "Tallakson Melanie",
+      "Tam Steven",
+      "Tanase Costin",
+      "Tarawneh Rawan",
+      "Tariot Pierre",
+      "Taylor Janet \\\"Janae\\\"",
+      "Taylor Rebecca",
+      "Taylor-Reinwald Lisa",
+      "Teodoro Liberty",
+      "Thai Gaby",
+      "Thal Leon",
+      "Thao Mai Seng",
+      "Thomas Abey",
+      "Thomas Amy",
+      "Thomas Anton",
+      "Thomas Lisa",
+      "Thomopoulos Sophia I.",
+      "Thompson Paul",
+      "Thompson Deb",
+      "Toga Arthur W.",
+      "Ton Alyssa",
+      "Tong Haley",
+      "Toso Cyndy",
+      "Tosun Duygu",
+      "Tosun-Turgut Duygu",
+      "Toth Maria",
+      "Townley Ryan",
+      "Tran Anh",
+      "Trejo Elizabeth",
+      "Trncic Nadira",
+      "Trojanowki J.Q.",
+      "Trost Dick",
+      "Troutman Amelia",
+      "Trujillo Socorro",
+      "Truran-Sacrey Diana",
+      "Turner Jillian",
+      "Turner Kathryn",
+      "Udodong Ifreke",
+      "Uffelman Jade",
+      "Ulysse Anaztasia",
+      "Vaishnavi Sanjeev",
+      "van Dyck Christopher",
+      "Vanya Hafsanoor",
+      "Vasanawala Minal",
+      "Vaughn Phyllis",
+      "Vemuri Prashanthi",
+      "Veras Acosta Mauro",
+      "Veronelli Donna",
+      "Vides Beatriz",
+      "Villar Michelle",
+      "Villemagne Victor",
+      "Villena Teresa",
+      "Villinger Tara",
+      "Vincent Sylvia",
+      "Vo Katie",
+      "Vogler Blake",
+      "Vrillon Agathe",
+      "Wagner Benjamin",
+      "Walker Eboni",
+      "Wallace Bradley",
+      "Wallace Kelly",
+      "Walter Sarah",
+      "Wan Yang",
+      "Ward Carolyn",
+      "Ward Chad",
+      "Warren Scott",
+      "Waszak Julia",
+      "Watkins Amber",
+      "Watts Linda",
+      "Webb Caitlin",
+      "Webster James",
+      "Weiner Michael W.",
+      "Weiner Michael",
+      "Weisensel Trinity",
+      "Weller Jason",
+      "Wenner Violet",
+      "Westerhold Erin",
+      "Wever Kara",
+      "White Mikell",
+      "White (Salazar) Sylvia",
+      "Widman Asa",
+      "Wiesenauer Patricia",
+      "Williams Andrea",
+      "Williams Arthur",
+      "Williams Courtney",
+      "Williamson Jeff",
+      "Wilson Skylar",
+      "Wilson TaNisha",
+      "Windon Charles",
+      "Wint Dylan",
+      "Winterton Stacey",
+      "Wishnia Morris",
+      "Wisniewski Scott",
+      "Wong Jennifer",
+      "Wong Terence",
+      "Wright Ella",
+      "Wu Chuang-Kuo",
+      "Wu Pauline",
+      "Yau Eugene",
+      "Yazell Morgan",
+      "Yeboah Samira",
+      "Yong Meagan",
+      "York Kylee",
+      "Young Iris",
+      "Yu Melissa",
+      "Yurko Erin",
+      "Yushkevich Paul A.",
+      "Zamora Ezequiel",
+      "Zawislak Richard",
+      "Zhang Hongzheng",
+      "Zik Cary",
+      "Zimmerman Caileigh",
+      "Ziolkowski Jaimie",
+      "Zotovic Ljubica"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4292",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Alzheimer",
+        "Dementia",
+        "Amyloid",
+        "Tau"
+      ]
+    },
+    "abstract": "Importance: Alzheimer disease (AD) pathology can be detected years before symptom onset, but some individuals who are biomarker positive and cognitively unimpaired (CU) remain asymptomatic. Objective: To estimate 5- and 10-year absolute risks of mild cognitive impairment (MCI) and dementia using continuous plasma phosphorylated tau 217 (p-tau217) and p-tau217/amyloid β 42 (Aβ42). Design, Setting, and Participants: This cohort study included participants from the Mayo Clinic Study of Aging (MCSA) and the Alzheimer’s Disease Neuroimaging Initiative (ADNI). Participants were CU individuals aged 60 to 90 years with baseline Fujirebio Lumipulse plasma p-tau217 measurements, APOE genotyping, and longitudinal clinical follow-up. The MCSA is a population-based longitudinal cohort of residents in Olmsted County, Minnesota; ADNI is a multicenter observational cohort. MCSA data were ascertained from October 2008 to September 2025; ADNI data from September 2005 to January 2026. Exposures: Age, sex, APOE ε4, p-tau217, and p-tau217/Aβ42. Main Outcomes and Measures: Transition from CU to MCI and dementia estimated using continuous-time multistate models. Results: In the MCSA cohort (n = 1644), the median (IQR) age was 72 (66-79) years; 804 participants (49%) were female and 840 (51%) were male. In the ADNI cohort (n = 534), the median (IQR) age was 72 (68-77) years; 297 participants (56%) were female and 237 (44%) were male. A p-tau217 of 0.324 pg/mL vs 0.072 pg/mL (90th vs 10th percentile) was associated with 2.66 (95% CI, 2.02-3.51), 3.02 (95% CI, 2.21-4.12), 2.62 (95% CI, 1.99-3.46), and 2.79 (95% CI, 2.04-3.81) greater hazard of clinical progression in MCSA female participants who did not carry the APOE ε4 variant (ε4−), females who did carry the APOE ε4 variant (ε4+), males who were ε4−, and males who were ε4+, respectively. In ADNI, hazards were 2.67 (95% CI, 1.86-3.85), 2.83 (95% CI, 1.89-4.22), 2.08 (95% CI, 1.48-2.92), and 3.99 (95% CI, 2.59-6.13), respectively. In MCSA, higher baseline p-tau217 and older age were associated with greater absolute risk of progression. At age 75 years and assuming sex and APOE are at the MCSA means of 0.511 and 0.268, 5-year absolute risk of MCI increased from 7% (95% CI, 5%-8%) to 17% (95% CI, 13%-20%) for a p-tau217 concentration of 0.072 vs 0.324 pg/mL; 10-year absolute risk of MCI increased from 15% (95% CI, 12%-18%) to 35% (95% CI, 29%-41%; P < .001 for both). At 0.324 pg/mL, 5-year MCI risk increased from 6% (95% CI, 4%-8%) to 37% (95% CI, 32%-43%) for ages 65 to 85 years; 10-year risks were 17% (95% CI, 12%-21%) and 66% (95% CI, 57%-74%; P < .001 for both). Results were similar for p-tau217/Aβ42. Conclusions and Relevance: This study found that higher plasma p-tau217 and older age were associated with higher 5- and 10-year risk of cognitive impairment. Plasma p-tau217 concentrations, combined with age, sex, and APOE ε4 status, can enable individualized estimation of short-term absolute risk of cognitive impairment in CU individuals, with applications in prognosis and trial enrichment in preclinical AD.",
+    "ai_takeaways": {
+      "conclusion_vi": "In cognitively unimpaired older adults, higher baseline plasma p-tau217 and older age significantly increased the 10-year absolute risk of MCI (from 15% to 35% for 0.072 vs 0.324 pg/mL at age 75, P < .001). Combining p-tau217 with age, sex, and APOE ε4 status enables individualized prognostic risk estimation for preclinical Alzheimer disease.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4219",
+    "title": "Agent Orange Exposure and Diagnosis of Parkinson Disease and Related Disorders Among US Veterans",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Scott Gregory D.",
+      "Lim Miranda M.",
+      "Elliott Jonathan E.",
+      "Neilson Lee E."
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4219",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders",
+        "Neurocritical Care",
+        "Dementia"
+      ],
+      "topics": [
+        "Parkinson",
+        "Dementia",
+        "Brain",
+        "Traumatic brain injury"
+      ]
+    },
+    "abstract": "Importance: The risk of Parkinson disease (PD) due to Agent Orange, the Vietnam War Era defoliant, is inferred from studies of agricultural pesticide exposure. Epidemiological work is currently lacking. Objective: To examine the association between Agent Orange exposure with incident cases of synucleinopathies including Parkinson disease, rapid eye movement (REM) sleep behavior disorder (RBD), and dementia with Lewy bodies (DLB) among US veterans. Design, Setting, and Participants: This was an electronic health record–based cohort study inclusive of medical records from January 1, 1999, to December 30, 2022. Veterans were followed up for a mean (SD) of 12.5 (7.0) years from the start of records. Analyses were conducted from July 2024 to July 2026. The setting was the US Department of Veterans Affairs and included US veterans who served during the Vietnam War Era (August 1964 to May 1975) were screened. Those with incomplete demographic data or prevalent synucleinopathies before or within 6 months of follow-up were excluded. Exposure: Agent Orange defined by self-report. Direct or occupational exposure was defined by involvement in Operation Ranch Hand, Army Chemical Corps, and/or direct handling or spraying. Main Outcomes and Measures: Cumulative incidence of synucleinopathies was calculated adjusting for competing risk of death, age, traumatic brain injury, and frailty. Results: After screening of 4 917 272 US veterans, 4 468 509 veterans (mean [SD] age, 60.6 [8] years; 4 380 139 male [98%]) were included in analyses. A total of 1 035 210 veterans (23.2%) had Agent Orange exposure; 7600 (0.2%) of these had direct or occupational exposure. Birth year, age at time 0 (start of records), sex, race, ethnicity, and smoking history were balanced among the exposed and unexposed groups with further adjustment for traumatic brain injury and frailty. Agent Orange exposure was associated with higher risk of PD (hazard ratio [HR], 1.44; 95% CI, 1.37-1.52), RBD (HR, 1.78; 95% CI, 1.68-1.89), and DLB (HR, 1.66; 95% CI, 1.32-2.09). Associations strengthened when enriched for direct or occupational exposure, including PD (HR, 1.99; 95% CI, 1.71-2.32) and RBD (HR, 2.25; 95% CI, 1.87-2.70). Results were robust to additional adjustment for traumatic brain injury, frailty, health care utilization, and multiple imputation. Sensitivity analyses indicated that substantial unmeasured confounding would be required to explain the observed associations. Conclusions and Relevance: Results of this cohort study suggest that Agent Orange may be an independent risk factor for later development of PD and related conditions. This finding has implications for global policy change. Further studies are needed to understand the mechanism underlying this association, gene-toxin interactions, and whether there is a unique clinical phenotype to those exposed to Agent Orange.",
+    "ai_takeaways": {
+      "conclusion_vi": "In 4,468,509 Vietnam-era US veterans, Agent Orange exposure was independently associated with higher risk of Parkinson disease (HR, 1.44; 95% CI, 1.37-1.52), REM sleep behavior disorder (HR, 1.78; 95% CI, 1.68-1.89), and dementia with Lewy bodies (HR, 1.66; 95% CI, 1.32-2.09). Risks strengthened with direct occupational exposure.",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4253",
+    "title": "Nationwide Geographic Access to Subcutaneous Anti-Amyloid Alzheimer Disease Therapy Infrastructure",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Ketchum Fred B.",
+      "Sanford Cassie",
+      "Buckingham Will",
+      "Kind Amy J. H.",
+      "Powell W. Ryan"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4253",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Alzheimer",
+        "Amyloid"
+      ]
+    },
+    "abstract": "This cross-sectional study describes how geographic availability of the minimum health care infrastructure required for subcutaneous therapy for Alzheimer disease treatment varies by age and location across the US.",
+    "ai_takeaways": {
+      "conclusion_vi": "Geographic availability of the minimum healthcare infrastructure required for subcutaneous anti-amyloid Alzheimer disease therapy varies by age and location across the US, highlighting potential disparities in treatment access.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218737",
+    "title": "Frequency-Specific Thalamocortical Network Dynamics During Focal Seizures in Humans",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Panchavati Saarang",
+      "Daida Atsuro",
+      "Kanai Sotaro",
+      "Oana Shingo",
+      "Ono Hiroya",
+      "Izumi Masaki",
+      "Kaneko Kikuko",
+      "Fallah Aria",
+      "Qiao Joe X.",
+      "Salamon Noriko",
+      "Sankar Raman",
+      "Arnold Corey W.",
+      "Speier William",
+      "Nariai Hiroki"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218737",
+    "neurology_classification": {
+      "subspecialty": "Epilepsy",
+      "subspecialties": [
+        "Epilepsy"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Epilepsy practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218712",
+    "title": "Expanding Amyotrophic Lateral Sclerosis Genetic Spectrum via Systematic Screening of Adult-Onset Neurologic Disease Genes",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Manini Arianna",
+      "Spagliardi Jacopo",
+      "Brusati Alberto",
+      "Pensato Viviana",
+      "Leoni Serena",
+      "Peverelli Silvia",
+      "Magri Stefania",
+      "Scacciatella Giulia",
+      "Morelli Claudia",
+      "Maranzano Alessio",
+      "Gagliardi Delia",
+      "Gentilini Davide",
+      "Doretti Alberto",
+      "Verde Federico",
+      "Lauria Pinter Giuseppe",
+      "Comi Giacomo Pietro",
+      "Corti Stefania Paola",
+      "Silani Vincenzo",
+      "Keagle Pamela J.",
+      "Ratti Antonia",
+      "Landers John E.",
+      "Gellera Cinzia",
+      "Ticozzi Nicola"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218712",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Amyotrophic lateral sclerosis"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218702",
+    "title": "The Burden of Neurologic Disorders in Canada, 1990–2023",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Aali Amirali",
+      "Schaffner Samantha",
+      "Lam Joyce S.T.",
+      "Eshafi Sarah",
+      "Fereshtehnejad Seyed-Mohammad",
+      "Appel-Cresswell Silke"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218702",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: Neurologic disorders are leading contributors to global disability and mortality, yet Canada-specific burden estimates have not been updated with the most recent Global Burden of Disease (GBD) data. We aimed to quantify the burden of 18 neurologic conditions in Canada in 2023, characterize trends from 1990 to 2023, describe age-specific and sex-specific patterns, and compare Canada with the high-income country average. METHODS: This retrospective epidemiologic modeling study analyzed GBD 2023 data for Canada. Eighteen conditions whose primary health loss manifestation directly affects the central or peripheral nervous system were included. Outcome measures included prevalence, mortality, and disability-adjusted life years (DALYs) comprising years lived with disability (YLDs) and years of life lost (YLL). Age-standardized rates are all per 100,000 population. 95% uncertainty intervals (UI) are reported for all estimates. RESULTS: Modeling evaluated the entire Canadian population across 34 years. In 2023, neurologic disorders accounted for 11.48% (UI: 9.47-14.26) of total DALYs and 16.31% (UI: 10.56-26.24) of deaths. Burden was heavily driven by nonfatal disability metrics (YLDs); Alzheimer disease and other dementias led absolute DALYs at 366,548.5 (UI: 180,491.8-710,281.4), followed by migraine at 232,619.5 (UI: 151,390.4-320,391.1) and ischemic stroke at 223,748.0 (UI: 194,981.3-249,309.6). Migraine led age-standardized DALY rates at 565.8 (UI: 374.0-783.1) per 100,000, driven entirely by nonfatal disability metrics. Dementias drove mortality with 20,108.6 (UI: 4,999.6-50,266.6) deaths. From 1990 to 2023, the steepest age-standardized DALY rate increases occurred in other neurologic disorders (153.6% [UI: 129.0-185.1]), encephalitis (59.2% [UI: 25.1-95.6]), and Parkinson disease (25.4% [UI: 18.9-33.0]), while meningitis declined by 62.6% (UI: 57.4-66.9). DISCUSSION: Neurologic disorders present a substantial public health challenge in Canada, marked by widespread midlife nonfatal disability from migraine and escalating late-life neurodegeneration. Over 3 decades, the national burden shifted toward chronic neurodegenerative diseases. These findings highlight the need for national strategies to expand care capacity and address chronic disability. A key limitation of this analysis is that GBD estimates for Canada are currently restricted to the national level; because Canada is a vast, geographically and demographically diverse nation, country-wide aggregates do not elucidate critical subnational disparities.",
+    "ai_takeaways": {
+      "conclusion_vi": "In 2023, neurologic disorders accounted for 11.48% of total DALYs and 16.31% of deaths in Canada, led by dementias (366,548.5 DALYs), migraine (232,619.5 DALYs), and ischemic stroke (223,748.0 DALYs). From 1990 to 2023, burden shifted toward chronic neurodegeneration, with Parkinson disease DALY rates rising 25.4%.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218748",
+    "title": "From Research Cohorts to Clinical Practice",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Pichet Binette Alexa"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218748",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218784",
+    "title": "Robustness of Plasma P-Tau217 Diagnostic Thresholds for Alzheimer Disease Across Various Clinical Populations and Laboratory Environments",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Bayart Jean-Louis",
+      "Villain Nicolas",
+      "Planche Vincent",
+      "Boyer Emilien",
+      "Colmant Lise",
+      "Le Ber Isabelle",
+      "Picard Gaëtane",
+      "Clot Fabienne",
+      "Bombois Stéphanie",
+      "El Mazria Hassan",
+      "Dingeo Giulia",
+      "Bahroun Sarra",
+      "Nabeebaccus Fatimah",
+      "Huyghe Lara",
+      "Gérard Thomas",
+      "Quenon Lisa",
+      "Salman Yasmine",
+      "Durand Emmanuelle",
+      "Bedel Aurélie",
+      "Auriacombe Sophie",
+      "Lhommel Renaud",
+      "David Clara",
+      "Kienlen-Campard Pascal",
+      "Ivanoiu Adrian",
+      "Douxfils Jonathan",
+      "Levy Richard",
+      "Lamari Foudil",
+      "Hanseeuw Bernard J."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218784",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Alzheimer"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: Blood-based biomarkers (BBMs), especially plasma tau phosphorylated at threonine 217 (p-tau217), could scale Alzheimer disease (AD) clinical-biological diagnosis, but clinical use requires thresholds transferable across laboratories and populations. We compared Lumipulse p-tau217 with other BBMs; evaluated amyloid-anchored thresholds across centers, analyzers, reagent lots, and clinical populations; and assessed second-line CSF adjudication of gray zone results. METHODS: This multicenter, cross-sectional diagnostic-classification study included an exploratory Brussels cohort and 3 external validation cohorts. Brussels participants were cognitively unimpaired or impaired and had Aβ status determined by amyloid-PET or CSF Aβ42 and tau status by tau-PET or CSF p-tau181. Validation cohorts comprised consecutive Paris memory-clinic patients, patients with early-onset neurodegenerative dementia in Bordeaux, and individuals with monogenic frontotemporal lobar degeneration (FTLD). Plasma p-tau217 was measured locally on Lumipulse analyzers. BBMs and ratios were compared using receiver operating characteristic (ROC) analyses. In Brussels, a Youden cutoff and dual 95% or 97.5% sensitivity/specificity cutoffs were derived; intermediate values defined gray zones. RESULTS: Among 411 participants (mean age 70.5 years; 51.6% female), p-tau217 showed the best diagnostic performance; p-tau217/Aβ42 did not improve performance or reduce gray zones. In Brussels, p-tau217 discriminated Aβ+ from Aβ- status (AUC 0.96, 95% CI 0.93-0.98; p < 0.0001). The 0.193 pg/mL Youden cutoff (95% CI 0.178-0.213) yielded 91.5% sensitivity (95% CI 84.7-95.5) and 91.6% specificity (95% CI 84.8-95.5) and detected neocortical tau-PET positivity with 98.5% sensitivity and 81.8% specificity. In Paris, sensitivity/specificity for clinical-biological AD were 93.2% (95% CI 85.1-97.1)/93.0% (95% CI 81.4-97.6); in Bordeaux, sensitivity/specificity for clinical-biological AD were 95.7% (95% CI 79.0-99.2)/92.3% (95% CI 66.7-98.6). Specificity in monogenic FTLD was 88.4% (95% CI 75.5-94.9). False-positive classifications were enriched in FTLD with amyotrophic lateral sclerosis (ALS). Dual thresholds yielded gray zones in 15.4%-24.8% of Paris patients; second-line CSF testing resolved 86.2%-88.9% of gray zone cases. DISCUSSION: Lumipulse plasma p-tau217 thresholds were transferable across centers, analyzers, reagent lots, and heterogeneous clinical populations, supporting evaluation of plasma-first pathways with confirmatory testing for gray zone values. Values below 0.193 pg/mL made neocortical tauopathy unlikely. Limitations include cross-sectional design, specialized Western European recruitment, unavailable race/ethnicity data, heterogeneous reference standards, incomplete AD copathology adjudication in monogenic FTLD, and no cross-platform comparison.",
+    "ai_takeaways": {
+      "conclusion_vi": "Lumipulse plasma p-tau217 (0.193 pg/mL cutoff) discriminated Aβ+ from Aβ− status (AUC 0.96, 95% CI 0.93–0.98; p < 0.0001) with >91% sensitivity/specificity across diverse cohorts. Dual thresholds yielded gray zones in 15.4%–24.8% of memory-clinic patients, with second-line CSF resolving 86.2%–88.9% of cases.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218689",
+    "title": "APOE Genotype and Amyloid PET in People With Mild Cognitive Impairment or Dementia",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Pezzoli Stefania",
+      "Oddi Alexis P.",
+      "Blazhenets Ganna",
+      "Castruita Patricia A.",
+      "Lin Marlene",
+      "Jonson Caroline",
+      "Allen Isabel",
+      "Casaletto Kaitlin Blackstone",
+      "Hanna Lucy",
+      "March Andrew",
+      "Gatsonis Constantine",
+      "Nudelman Kelly",
+      "Faber Kelley",
+      "Carrillo Maria C.",
+      "Foroud Tatiana M.",
+      "La Joie Renaud",
+      "Yokoyama Jennifer S.",
+      "Rabinovici Gil D."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218689",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Dementia",
+        "Amyloid"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: APOE genotype is the strongest genetic risk factor for sporadic Alzheimer disease, but evidence on its utility in clinical practice is limited. We evaluated the predictive value of APOE genotype for PET-measured amyloid positivity and global amyloid burden in older adults with cognitive impairment evaluated in memory clinics as part of their clinical care. We also examined associations between APOE genotype and clinical presentation, including impairment level (mild cognitive impairment [MCI] or dementia) and MCI type (amnestic or nonamnestic). METHODS: This observational multicenter study included Medicare beneficiaries with MCI or dementia from the Imaging Dementia-Evidence for Amyloid Scanning (IDEAS) study, who were coenrolled in the Amyloid Neuroimaging and Genetics Initiative (ANGI). Participants underwent amyloid PET and APOE genotyping. Amyloid status was determined using local visual reads and a Centiloid threshold (24.4). Logistic regression assessed associations between APOE genotype and amyloid positivity. Analysis of covariance models assessed differences in global amyloid burden (Centiloids) across genotypes. Voxel-wise analyses examined regional tracer uptake. RESULTS: The study included 1,641 participants (mean [SD] age, 74.3 [5.6] years; 43.6% female), of whom 1,219 had MCI and 422 had dementia. APOE2/4, APOE3/4, and APOE4/4 genotypes had progressively higher odds of visual reads-based amyloid positivity compared with APOE3/3 (APOE2/4, OR = 3.10, 95% CI [1.58-6.47], p = 0.002; APOE3/4, OR = 4.52, 95% CI [3.50-5.86], p < 0.001; APOE4/4, OR = 26.34, 95% CI [12.93-63.39], p < 0.001). The results were similar when scan positivity was defined by a Centiloid threshold. Amyloid burden increased progressively across APOE genotypes, with higher-risk genotypes (APOE3/4 and APOE4/4) showing the highest Centiloids (p < 0.001, partial η2 = 0.20). Among amyloid-positive participants, APOE4 genotype was associated with increased tracer uptake across posterior cingulate, precuneus, medial frontal, temporoparietal, and lateral frontal cortices in a dose-dependent manner, whereas APOE2 genotype showed a more focal distribution. A significant APOE3/4-by-sex interaction indicated higher odds of visual reads-based amyloid positivity in APOE3/4 women. Clinically, APOE4/4 was associated with dementia and amnestic MCI. DISCUSSION: APOE4 genotype was associated with both amyloid PET positivity and quantitative amyloid burden, following a dose-dependent gradient. These findings extend evidence linking APOE genotype to amyloid pathology in clinical settings. Limitations include restriction to cognitively impaired individuals and limited racial and ethnic diversity.",
+    "ai_takeaways": {
+      "conclusion_vi": "In 1,641 memory-clinic patients with MCI or dementia, APOE4 alleles predicted amyloid PET positivity in a dose-dependent manner versus APOE3/3 (APOE3/4 OR 4.52, 95% CI 3.50–5.86; APOE4/4 OR 26.34, 95% CI 12.93–63.39; p < 0.001) and higher amyloid burden, with APOE4/4 linked to dementia and amnestic MCI.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218693",
+    "title": "In Vivo Topographic Associations Between Tau Pathology, Atrophy, and Symptom Domains in Patients With Progressive Supranuclear Palsy",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Kataoka Yuko",
+      "Goto Ryoji",
+      "Chishiki Yoshikazu",
+      "Osawa Kenta",
+      "Oyama Asaka",
+      "Matsumoto Hideki",
+      "Ichihashi Masanori",
+      "Moriguchi Sho",
+      "Momota Yuki",
+      "Kamada Tetsuji",
+      "Seki Chie",
+      "Matsuoka Kiwamu",
+      "Hirata Kosei",
+      "Kurose Shin",
+      "Oya Masaki",
+      "Kokubo Naomi",
+      "Shinotoh Hitoshi",
+      "Shimada Hitoshi",
+      "Kawamura Kazunori",
+      "Zhang Ming-Rong",
+      "Tokuda Takahiko",
+      "Takahata Keisuke",
+      "Tagai Kenji",
+      "Higuchi Makoto",
+      "Endo Hironobu"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218693",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia",
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Tau"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: Progressive supranuclear palsy (PSP) is a 4-repeat tauopathy characterized by subcortical atrophy and distinctive motor impairments. Although tau pathology is believed to drive neuronal loss, the spatial relationships among tau deposition, regional atrophy, and domain-specific symptoms remain incompletely understood. We aimed to determine how the topographic distribution of tau pathology and regional brain atrophy relate to distinct motor symptom domains in PSP and to clarify their contributions to clinical manifestations. METHODS: A single-center, cross-sectional study was conducted. Patients with PSP were recruited after diagnosis at neurology departments and were referred to our institution. All PSP cases underwent neurologic assessments, including PSP Rating Scale. Tau PET imaging with florzolotau (18F) and T1-weighted magnetic resonance imaging were obtained from patients and healthy controls to assess associations between domain scores, tau accumulation, and regional brain volumes. Path analysis was used to examine whether cross-sectional associations were consistent with hypothesized relationships among tau deposits, regional atrophy, and symptom domains. RESULTS: Fifty-eight patients with PSP (mean age, 71.6 years; 43.1% female; Richardson syndrome, n = 43) and 52 healthy controls (mean age, 60.8 years; 45.3% female) were included. Subcortical tau accumulation and atrophy demonstrated significant spatial overlap and were associated with motor deficits. \"Ocular motor\" domain scores were associated with tau deposition in the midbrain tegmentum and globus pallidus. \"Gait and midline\" domain scores were associated with tau in the globus pallidus, thalamus, and subthalamic nucleus. \"Limb motor\" domain scores were associated with tau in the primary motor and somatosensory cortices, as well as atrophy in the angular, supramarginal, and temporal cortices. These findings were identified at a family-wise error-corrected cluster-level threshold of p < 0.05. Path analysis indicated that tau in subcortical structures was associated with local neuronal loss and with impairments in the ocular motor and gait and midline domains. DISCUSSION: High-contrast tau imaging clarifies the neuropathologic basis of key symptoms and underscores distinct tau-induced neurotoxic effects in subcortical vs neocortical regions. Specifically, tau deposition in the neocortex may contribute to limb motor impairments through local effects and potentially through more distributed neurodegenerative processes. These findings support anatomically distinct tau-neurodegeneration pathways underlying key PSP symptom domains.",
+    "ai_takeaways": {
+      "conclusion_vi": "In 58 patients with progressive supranuclear palsy, florzolotau (18F) PET and MRI revealed distinct topographic links between tau, atrophy, and motor domains (p < 0.05). Subcortical tau was associated with ocular motor and gait/midline deficits via local neuronal loss, whereas neocortical tau and atrophy were linked to limb motor impairment.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218863",
+    "title": "α-Synuclein Seed Amplification Assays in Routine Clinical Settings",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Bendetowicz David",
+      "Meissner Wassilios G."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218863",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218763",
+    "title": "Identification of Type 1 and Type 2 α-Synuclein-Seeds by CSF Seed Amplification Assay in Patients With Movement Disorders",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-16T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Weber Sandrina K.",
+      "Farris Carly M.",
+      "Ma Yihua",
+      "Schnell Susana",
+      "Starke Maritta",
+      "Ebentheuer Jens",
+      "Kalinkara-Gomez Jesusa E.",
+      "Bartl Michael",
+      "Aust Holger",
+      "Trenkwalder Claudia",
+      "Concha-Marambio Luis",
+      "Mollenhauer Brit"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218763",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: A novel α-synuclein (syn) seed amplification assay (synSAA) differentiates 2 types of syn-seeds in CSF: type1, associated with Lewy bodies (LBs), and type2, associated with glial-cytoplasmic inclusions, the hallmark of multiple system atrophy (MSA). However, syn-copathology extends beyond synucleinopathies, and copathologies are increasingly relevant. Different syn-seeds have been assessed in highly characterized research cohorts, but data assessing type and frequency in patients from routine clinical encounters are lacking. Hence, our objective was to determine frequency, type, and clinical association of different syn-seeds in CSF in a large cohort from a movement disorders (MDs) clinic. METHODS: This cross-sectional study included consecutive patients from a MD clinic between 2009 and 2025. CSF was tested with synSAA and clinical data derived from medical records. RESULTS: We recruited 1,059 patients (mean age 70.5 ± 10.5 years; 38.4% female; mean disease duration 4.0 ± 4.6 years). Syn-seeds were detected in 54.2% of patients, with type1-seeds predominating (88.5%). High synSAA positivity was observed in Parkinson disease (PD) (84.7%), dementia with LB (93.4%), MSA (84.5%), isolated REM-sleep behavior disorder (iRBD) (80.0%), and normal pressure hydrocephalus (NPH) with PD (87.0%). Undetermined hypokinetic MD showed 53.7% positivity. Moderate proportions (∼25-33%) were detected in Alzheimer disease, progressive supranuclear palsy (PSP), corticobasal syndrome, and idiopathic NPH without PD, while other neurologic disorders showed 20.9% positivity. Type2-seeds were the major seed type in MSA (79.6% of syn-seeds) and minor type in PD (6.2%), PSP (9.1%), and undetermined hypokinetic MD (13.8%). Overall, type2-seeds were present in only 2.6% of non-MSA patients. Patients with type1-seeds had worse olfaction and more hallucinations. Multivariable regression identified impaired olfaction (OR = 0.67 per point increase of identified smells out of 12, higher scores indicating better olfaction) significantly associated with type1-seeds. DISCUSSION: Our results provide reference data on syn-seed frequency in routine clinical patients, demonstrating that type1-seeds indicate common underlying syn-pathology or copathology associated with hyposmia and hallucinations. Type2-seeds are specific to MSA and detection of type2-seeds outside the clinical MSA spectrum can improve diagnosis of patients with atypical presentations because our results match neuropathologic MSA studies. In vivo identification of different seed types will improve diagnosis, clinical trial stratification, and development of targeted therapies.",
+    "ai_takeaways": {
+      "conclusion_vi": "CSF synSAA detected alpha-synuclein seeds in 54.2% of routine movement disorder patients. Type 1 seeds predominated in PD, DLB, and iRBD and were associated with hyposmia (OR = 0.67 per point increase) and hallucinations. Type 2 seeds were highly specific to MSA, comprising 79.6% of syn-seeds in MSA versus 2.6% in non-MSA disorders.",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
     "id": "10.1056/nejmicm2608021",
     "title": "Functional Fixed Dystonia of the Foot",
     "journal": {
@@ -1120,11 +2662,9 @@
       "badge_text": "#DC2626"
     },
     "pub_date": "2026-11-12T00:00:00Z",
-    "article_type": "RCT",
+    "article_type": "Review",
     "article_types": [
-      "RCT",
-      "Clinical Trial",
-      "Original Article"
+      "Review"
     ],
     "authors": [
       "Albers Gregory W.",
@@ -2066,7 +3606,7 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Neurology"
+        "Mogad"
       ]
     },
     "abstract": "Objective: To report a case of MOG antibody-associated optic perineuritis following bisphosphonate exposure, highlighting a potential role for bisphosphonate-induced immune activation as a non-infectious trigger of myelin oligodendrocyte glycoprotein antibody-associated disease (MOGAD). Background: Bisphosphonates, widely used for osteoporosis, can induce immune activation through T-cell stimulation and cytokine release and have been associated with rare cases of bisphosphonate-associated orbital inflammation (BAOI). MOGAD is a steroid-responsive demyelinating disorder that typically presents with optic neuritis but may also cause optic perineuritis and, less commonly, orbital inflammation. The relationship between BAOI and MOGAD remains poorly understood. Design/Methods A case report. Results: A 59-year-old woman with history of hyperthyroidism presented with subacute onset of left eye pain approximately five days after intravenous zoledronic acid infusion. Examination revealed left eye proptosis with preserved visual acuity and no disc edema but severe left eye pain with extraocular movements. MRI orbits demonstrated prominent left optic nerve sheath enhancement with associated periorbital soft tissue edema, conjunctival edema, and retrobulbar fat stranding. A presumptive diagnosis of BAOI was made and the patient was treated with high-dose intravenous methylprednisolone for three days with rapid resolution of symptoms. Serum MOG IgG testing obtained during the initial evaluation returned positive at 1:100 titer (live cell-based assay). Follow-up MRI at four weeks demonstrated near-complete resolution of optic nerve sheath enhancement and orbital inflammation. The patient was continued on a prolonged prednisone taper over approximately four months with no subsequent disease relapse. Conclusions: To our knowledge, this is the first reported case of MOG antibody-associated optic perineuritis following bisphosphonate exposure. This case highlights temporal, radiologic, and clinical overlap between BAOI and MOGAD and suggests that, in some cases, bisphosphonates may serve as a non-infectious trigger of MOG autoimmunity. These findings support consideration of MOG antibody testing in select patients with presumed BAOI, particularly when optic perineuritis is present.",
@@ -2099,10 +3639,13 @@
     "neurology_classification": {
       "subspecialty": "Neuroimmunology",
       "subspecialties": [
-        "Neuroimmunology"
+        "Neuroimmunology",
+        "Neuromuscular"
       ],
       "topics": [
-        "Neurology"
+        "Cerebral",
+        "Brain",
+        "Spinal"
       ]
     },
     "abstract": "Objective: To characterize the cerebrospinal fluid (CSF) profile in neurosarcoidosis and its variability across disease phenotypes. Background: While CSF profiles in neurosarcoidosis typically include a lymphocytic pleocytosis, elevated protein, and hypoglycorrhachia, it is not known if the location of inflammation influences the probability of an inflammatory profile. Design/Methods In this single institution, retrospective study, the CSF profiles of adult patients with definite, probable, or possible neurosarcoidosis were analyzed. Results: 35 patients (median age of onset 46 years; female 21/35; Black 27/35) were included, most of whom (31/35) had systemic sarcoidosis. Disease was most commonly localized to the cranial leptomeninges (24/35), cranial nerves (17/35), hemispheric parenchyma (12/35), spinal leptomeninges (9/35), and cranial pachymeninges (8/35). Most (26/35) had at least one routine abnormality in the CSF: pleocytosis in 20/28 (range 0-100 cells/mm3; lymphocytic in 15/20), elevated protein in 24/34 (range 16-275 mg/dL), hypoglycorrhachia in 12/34 (range 15-114 mg/dL), elevated ACE level in 4/11, and oligoclonal bands in 4/14. Phenotypes with direct CSF contact usually exhibited a pleocytosis: spinal leptomeningitis (7/7), cranial neuropathies (13/15), cranial lepto- (15/18) and pachymeningitis (5/7), and cauda equina disease (4/5). While a pleocytosis was uniform in brain parenchymal disease (hemispheric 8/9, brainstem 5/5, and cerebellar 2/2), it was less common in spinal parenchymal disease (cervical 2/5, thoracic 1/3). A pleocytosis was most commonly present with inflammation in both the cerebral and spinal compartments (8/10), rather than in isolation (cranial 12/21, spinal 0/4). Similarly, hypoglycorrhachia was most frequently present with inflammation in both compartments (8/12) compared to in isolation (cranial 4/17, spinal 0/6). Conclusions: Inflammatory CSF profiles are more likely in phenotypes directly exposed to the CSF. Despite the lumbar location of CSF sampling, CSF inflammation was more commonly present in those with widespread inflammation and cranial phenotypes rather than ones isolated to the spinal compartment.",
@@ -2122,9 +3665,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Case Report",
     "article_types": [
-      "Editorial / Perspective"
+      "Case Report"
     ],
     "authors": [
       "Rawat Akash",
@@ -2143,11 +3686,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To report severe demyelinating GBS variant with anti-GM1 IgG antibodies following purified chick embryo cell (PCEC) antirabies vaccination, highlighting the need for vigilance in post-vaccination neurological decline. Background: Vaccine-associated GBS is rare but recognized, historically linked to older neural-tissue rabies vaccines. Newer PCEC vaccines are considered safer; however, recent large-scale data suggest a statistically significant association with GBS, warranting re-evaluation of post-vaccination surveillance thresholds. Design/Methods Single-patient observational report with clinical, biochemical, cerebrospinal fluid, electrodiagnostic, antibody, and radiologic correlation with follow-up at 3 months Results: A 25-year-old woman developed descending sensorimotor weakness, facial diplegia, bulbar dysfunction, and autonomic involvement — including urinary retention — three days after the third dose of PCEC antirabies vaccine administered following a monkey bite. No antecedent respiratory or gastrointestinal infection was identified. CSF demonstrated albuminocytologic dissociation (protein 283 mg/dL, normal cell count). Neurotropic virus panel was negative. Anti-GM1 IgG antibodies were detected — an antibody classically associated with axonal variants but identified here in a demyelinating phenotype. Nerve conduction studies showed prominent conduction block, prolonged distal latencies, slowed conduction velocities, and temporal dispersion in median and peroneal nerves, consistent with severe acquired demyelinating polyneuropathy. Respiratory compromise necessitated mechanical ventilation. Following seven sessions of plasmapheresis (40 mL/kg/session), the patient was extubated at day 7. Limb power improved to MRC 4/5. Repeat NCS at 4 weeks showed resolution of conduction block with partial normalization of distal latencies. At 3-month follow-up, full limb power was restored with only mild residual facial weakness. Conclusions: This case demonstrates that PCEC antirabies vaccination can be associated with severe demyelinating GBS with atypical anti-GM1 IgG seropositivity. The descending pattern of weakness risks misdiagnosis — with botulism, diphtheria, and acute intermittent porphyria in the differential. A low threshold for early electrodiagnostic evaluation and plasmapheresis initiation is critical. As rabies vaccination expands globally, post-vaccination neurological surveillance protocols require strengthening.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Purified chick embryo cell antirabies vaccination can trigger severe demyelinating Guillain–Barré syndrome with atypical anti-GM1 IgG antibodies and descending weakness, risking misdiagnosis. Early electrodiagnostic evaluation and plasmapheresis enabled rapid extubation and near-complete recovery by 3 months.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Case Report"
     }
   },
   {
@@ -2170,12 +3714,12 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001268232.55304.05",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Neuroimmunology",
       "subspecialties": [
-        "Other"
+        "Neuroimmunology"
       ],
       "topics": [
-        "Neurology"
+        "Multiple sclerosis"
       ]
     },
     "abstract": "Objective: We review usage of neurofilament light chain (NfL) as a biomarker for disease activity in glial fibrillary acidic protein astrocytopathy (GFAP-A). Background: GFAP-A is a monophasic or relapsing immune mediated meningoencephalomyelitis associated with IgG antibodies against GFAP. NfL, a product of axonal breakdown detected in cerebrospinal fluid (CSF) and serum, is an established biomarker of neuroinflammation/neurodegeneration. Elevated CSF and serum NfL (sNfL) were reported during acute GFAP-A. Design/Methods We describe a case of acute exacerbation of GFAP-A without increased sNfL levels. Results: A 41-year-old female presented to an outside hospital with generalized weakness, altered mental status, painful spasms, and urinary retention. MRI revealed multiple confluent supratentorial and infratentorial lesions with associated radial perivascular enhancement, and diffuse longitudinal cervical and thoracic cord signal hyperintensity, with edema and patchy enhancement. CSF revealed lymphocytic pleocytosis and elevated protein. Patient was diagnosed and treated for multiple sclerosis with 3 days of high dose intravenous steroids and 300mg of ocrelizumab. Patient then presented to our center with relapsing disease and was diagnosed with CSF confirmed GFAP-A. Patient had significant clinical improvement after plasma exchange and steroid taper, with resolved perivascular enhancement and reduction in parenchymal T2 hyperintensities. sNfl was measured (390 pg/mL, normal <17.3 pg/mL) ∼2 months after relapse and steadily declined over 7 months. At 8 months, while on 8mg prednisone, she developed expressive aphasia. Imaging revealed recurrent perivascular enhancement. Despite clinical and radiographic evidence of relapse, sNfL further decreased (31.5 pg/mL). Patient was treated with intravenous steroids, plasma exchange, and rituximab. sNfL 2 months post-treatment was stable. Conclusions: To our knowledge, no reports exist of declining NfL in acute GFAP-A. These findings suggest NfL levels may not be a reliable marker of disease activity in GFAP-A, possibly representing delayed neurodegeneration after acute inflammatory process. Further studies are needed to understand NfL trajectory throughout this disease course.",
@@ -2226,15 +3770,15 @@
       ],
       "topics": [
         "Multiple sclerosis",
-        "Neurology",
         "Mogad"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To investigate per- and polyfluoroalkyl substance (PFAS) concentrations in MS, AQP4-NMOSD, and MOGAD. Background: PFAS are persistent immunotoxic/neurotoxic chemicals widely detectable in the US population and elevated in MS in Sweden. Design/MethodsSerum PFHxS, PFOA, and PFOS were quantified in ACP (73 untreated RRMS, 35 NMOSD, 106 HC) and CMSAN (103 RRMS, 22 SPMS, 28 PPMS, 24 NMOSD, 48 MOGAD). Linear regression tested MS vs HC in ACP, MS vs NMOSD in both cohorts, and MS vs MOGAD in CMSAN, adjusting for age, sex, BMI, and smoking for normalized PFAS (mean=0, SD=1), including sex-stratified models. In 56 ACP RRMS females, associations between PFAS and sex-steroid metabolites were evaluated, and PFAS-correlated gene-expression signatures were examined. Results: PFHxS was elevated in MS versus HC (ACP β=0.38, p=0.0025), NMOSD (ACP+CMSAN β=0.52, p=6.3×10-5), and showed a trend versus MOGAD (CMSAN β=0.31, p=0.058). In females, PFHxS was higher versus HC (β=0.44, p=0.0058) and NMOSD (ACP+CMSAN β=0.53, p=0.00047), but not MOGAD (β=0.42, p=0.061); No significant differences were observed among males. PFOA was not significantly elevated versus HC (ACP β=0.16, p=0.054), but was higher versus NMOSD (ACP+CMSAN β=0.76, p=6.8×10-9) and MOGAD (β=0.33, p=0.010). Among females, PFOA showed a trend versus HC (β=0.24, p=0.075) and was higher versus NMOSD (ACP+CMSAN β=0.80, p=2.9×10-7) and MOGAD (β=0.60, p=0.013); males showed no differences. PFOS did not differ versus HC (β=0.14, p=0.32) and was higher versus NMOSD (ACP+CMSAN β=0.64, p=3.3×10-7) but not MOGAD (β=0.08, p=0.60), with less consistent sex-specific patterns. Exploratory analyses identified MS×PFOA interactions for several sex-steroid metabolites, and tentative enrichment of neuronal membrane pathways among PFAS-correlated genes. Conclusions: PFHxS and PFOA were elevated in MS versus HC, NMOSD, and MOGAD, specifically among females. Exploratory findings suggest plausible pathways linking PFAS exposure to MS. Multi-ethnic and longitudinal studies are needed to expand generalizability and clarify temporality and causality.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Serum PFHxS and PFOA levels were significantly elevated in MS compared with healthy controls (PFHxS β=0.38, p=0.0025), NMOSD (PFHxS β=0.52, p=6.3×10-5; PFOA β=0.76, p=6.8×10-9), and MOGAD (PFOA β=0.33, p=0.010), specifically among females. Exploratory analyses suggest potential links between PFAS exposure, sex-steroid metabolites, and neuronal membrane pathways in MS.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Original Article"
     }
   },
   {
@@ -2531,11 +4075,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To determine if response to inebilizumab, a monoclonal antibody targeting CD19+ B cells, differs by time since diagnosis of generalized myasthenia gravis in the MINT phase 3 trial. Background: Generalized myasthenia gravis (gMG) is characterized by autoreactive B cells producing anti–acetylcholine receptor antibodies (AChR+), anti–muscle-specific kinase antibodies (MuSK+), or other autoantibodies. The MINT primary endpoint (change in Myasthenia Gravis Activities of Daily Living [MG-ADL] score) was achieved, supporting the efficacy of inebilizumab in gMG. Design/MethodsParticipants with AChR+ or MuSK+ seropositive gMG were enrolled in MINT (NCT04524273). Participants underwent a protocol-specified glucocorticoid taper to ≤5 mg/day and were randomized 1:1 to 300mg inebilizumab or placebo for 26 (MuSK+) or 52 (AChR+) weeks. Changes from baseline (CFBs) in MG-ADL and Quantitative Myasthenia Gravis (QMG) scores by time since diagnosis (date of first dose in the randomized, controlled period minus gMG diagnosis date) were examined in this post hoc analysis. Results: Overall, 238 participants (AChR+, 190; MuSK+, 48) were enrolled and randomized to inebilizumab or placebo. The least squares mean (LSM) CFB in MG-ADL score was overall numerically greater for inebilizumab vs placebo at week (W) 26 for participants with time since diagnosis of <1 year (–5.4 vs –3.0), ≥1y–<4y (–4.3 vs –1.8), and ≥4y (–3.7 vs –2.5); the LSM CFB in QMG score was also numerically greater for inebilizumab vs placebo at W26 (<1y, –5.2 vs –4.0; ≥1y–<4y, –6.4 vs –2.2; ≥4y, –4.0 vs –1.9). Significant improvements from baseline with inebilizumab vs placebo were observed at W52 for MG-ADL (AChR+: <1y, –5.7 vs –2.3; ≥1y–<4y, –5.0 vs –2.7; ≥4y, –4.0 vs –1.5) and QMG (AChR+: <1y, –7.4 vs –1.8; ≥1y–<4y, –8.3 vs –2.9, ≥4y, –3.9 vs –0.5) scores. Conclusions: The efficacy of inebilizumab appears independent of time since diagnosis, although the small size of subgroups limits firm conclusions.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In a post-hoc analysis of the phase 3 MINT trial in generalized myasthenia gravis, inebilizumab demonstrated numerical and significant improvements over placebo in MG-ADL and QMG scores through week 52 regardless of time since diagnosis (<1, 1 to <4, or ≥4 years).",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Clinical Trial"
     }
   },
   {
@@ -2548,9 +4093,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Jordak Katherine",
@@ -2566,11 +4111,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To retrospectively examine the effectiveness of methotrexate monotherapy for neurosarcoidosis using clinical and radiographic data. Background: Treatment strategies for neurosarcoidosis remain poorly defined, and the data evaluating the role of methotrexate monotherapy is limited. Design/Methods In this single-center, retrospective analysis, adult patients with neurosarcoidosis were included if they received ≥7.5 mg of methotrexate monotherapy weekly for ≥3 months and had MRI studies performed after ≥3 months of therapy. Clinical disease burden was assessed using the modified Rankin Scale and Expanded Disability Status Scale, and radiographic response was evaluated by comparing pre- and post-treatment MRI findings. Response was defined as 1) clinical and radiographic improvement, 2) clinical stability with radiographic improvement, or 3) clinical improvement with radiographic stability. Results: Of 274 patients reviewed, 36 (19 females) met the inclusion criteria. At methotrexate initiation, the average age was 49.3 years, the average disease duration was 37 months, and patients had experienced an average of 1.7 attacks. The most frequent phenotypes included cranial leptomeningitis (16), optic neuritis (12), myelitis (12). Methotrexate was used first-line in 27 patients, with an average peak maintenance dose of 16.6mg weekly. After an average of 36.2 months of monotherapy, clinical and radiographic improvement occurred in 9 and 20 patients, respectively, resulting in 20 (56%) patients being classified as responders. Among phenotypes with ≥5 patients, responders most commonly had spinal leptomeningitis (57%), myelitis (58%), and cranial pachymeningitis (50%), whereas non-responders most commonly had brain parenchymal disease (75%), non-optic cranial neuropathies (60%), optic neuropathy (58%), and cranial leptomeningitis (56%). By the time of the last follow-up of methotrexate use, the average dose of concurrent prednisone was reduced from 31.9mg to 7.1mg daily. Conclusions: Methotrexate monotherapy was partially effective for the cohort, noting spinal phenotypes were more likely to respond than cranial ones. These results emphasize the importance of considering phenotypes in treatment decision-making.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In this retrospective cohort of 36 neurosarcoidosis patients, methotrexate monotherapy achieved clinical or radiographic response in 56% over a mean 36.2 months and reduced mean daily prednisone from 31.9 mg to 7.1 mg. Spinal phenotypes (myelitis 58%, spinal leptomeningitis 57%) responded more frequently than cranial phenotypes.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Original Article"
     }
   },
   {
@@ -2625,9 +4171,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Budhram Adrian",
@@ -2645,15 +4191,15 @@
         "Neuromuscular"
       ],
       "topics": [
-        "Myasthenia",
-        "Neurology"
+        "Myasthenia"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: Evaluate strategies to improve sensitivity of autoantibody testing for myasthenia gravis (MG) using cell-based assays (CBAs) at our centre. Background: Testing for acetylcholine receptor and muscle-specific kinase antibodies (anti-AChR and anti-MuSK) is a cornerstone of MG evaluation. Anti-AChR/MuSK fixed CBA has demonstrated higher overall sensitivity than radioimmunoassay (RIA), and is first-line testing in our laboratory. However, using multiple assays has been suggested to maximize sensitivity in persistently suspicious cases of MG, and in particular live CBA testing may detect autoantibodies that are missed by RIA or fixed CBA. Other strategies reported to improve sensitivity include repeat testing by the same methodology, and performing fixed CBA at a serum dilution of 1:5 (instead of 1:10 as per manufacturer’s instructions). We evaluated these strategies prior to potential incorporation into our diagnostic algorithm. Design/Methods Quality improvement/quality assurance (QI/QA) evaluation of patients at our centre who underwent anti-AChR/MuSK fixed CBA from January 2023-January 2026. Results: During the 3-year evaluation period, 973 patients underwent anti-AChR/MuSK fixed CBA. Of these, 127 (13.1%) exhibited autoantibody positivity, 3 (0.3%) were indeterminable, and 843 (86.6%) were negative. Testing of 78 patients represented repeat testing after initially negative anti-AChR/MuSK fixed CBA; among these, repeat fixed CBA was positive in 4 (5%). Thirteen patients with negative anti-AChR/MuSK fixed CBA underwent send-out live CBA, of whom 4 (31%) were positive. Of all 131 anti-AChR/MuSK-positive patients identified, 123 (94%) had positivity on initial fixed CBA, 4 (3%) had positivity on repeat fixed CBA, and 4 (3%) had positivity on send-out live CBA. Among 8 samples with negativity by fixed CBA at 1:10 dilution from patients with subsequent autoantibody positivity, 4 (50%) exhibited positivity at 1:5 dilution. Conclusions: Repeat fixed CBA at 1:10 dilution, send-out live CBA, and fixed CBA at 1:5 dilution are all strategies that may improve sensitivity of autoantibody testing for MG at our centre.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In patients with suspected myasthenia gravis, initial fixed CBA yielded 94% of all antibody-positive cases. Diagnostic sensitivity was improved through repeat fixed CBA (5% conversion rate), send-out live CBA (31% positivity in negative fixed CBAs), and testing fixed CBA at a 1:5 dilution (50% positivity in initially negative samples).",
       "clinical_significance": "Clinical significance for Neuromuscular practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Original Article"
     }
   },
   {
@@ -2723,15 +4269,15 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Encephalitis",
-        "Neurology"
+        "Encephalitis"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: This scoping review aims to explore research comparing the efficacy of steroids, IVIG, and PLEX immunotherapies for autoimmune encephalitis (AE) to determine which treatment(s) lead to better clinical outcomes. Background: Autoimmune encephalitis is a neurological disease treated with several different immunotherapies, including steroids, intravenous immunoglobulin (IVIG), and plasma exchange (PLEX). Steroids are often first-line, but it is unclear whether certain immunotherapies are more clinically efficacious. Design/Methods A comprehensive search of the PubMed, Cochrane, and Google Scholar databases from inception to July 1, 2025 was used to identify papers using the following search terms: “autoimmune encephalitis,” “IVIG or intravenous immunoglobulin,” “PLEX or plasma exchange,” and “corticosteroids.” Results: We identified 4 publications that fell within our search criteria. 3 of the 4 papers were retrospective studies. The remaining paper was a prospective cohort study. 2 papers examined clinical outcomes in children, and all 4 papers assessed clinical outcomes in the adult population. Half of the studies concluded that PLEX led to clinical improvement and improvement in mRS scores. 1 paper indicated that patients with anti-NMDA AE who received intravenous steroids and PLEX had a significantly greater response rate than patients with anti-LG1/CASPR2 AE. Another paper showed that ⅘ (80%) patients who received steroids and IVIG experienced mRS improvement at discharge compared to 2/4 (50%) patients who received steroids alone. Conclusions: There is limited data separately evaluating first-line immunotherapies to assess whether steroids, PLEX, or IVIG are clinically superior. Thus, exploring which immunotherapy correlates most strongly with improved clinical outcomes through additional prospective studies and randomized clinical trials would be beneficial. Additionally, further data on which combinations or cycling of therapies (ie, the “zipper method”) are most clinically efficacious, depending on patient presentation, demographics, and pathogenic mechanism would be crucial in developing more comprehensive treatment protocols.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Data directly comparing the efficacy of first-line immunotherapies (steroids, IVIG, PLEX) in autoimmune encephalitis are limited across 4 identified studies. While PLEX and combined therapies (e.g., steroids plus IVIG or PLEX) showed improved mRS scores in small cohorts, further prospective studies and randomized clinical trials are required.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Review"
     }
   },
   {
@@ -2911,15 +4457,15 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Multiple sclerosis",
-        "Neurology"
+        "Multiple sclerosis"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: NA. Background: Multiple sclerosis (MS) is a chronic autoimmune condition that is characterized by relapsing episodes of acute demyelination within the central nervous system that can lead to neurological deficits The first-line treatment for acute MS exacerbations is intravenous (IV) glucocorticoids, most commonly methylprednisolone. Design/Methods We present the case of a 32-year-old woman with a history of infertility who had previously required three rounds of in vitro fertilization (IVF) to conceive. The patient presented with new-onset neurologic and ophthalmologic symptoms consistent with a MS flare. T2 weighted magnetic resonance imaging (MRI) confirmed hyperintense lesions consistent with active MS, and the patient was hospitalized for three days for treatment with IV methylprednisone. Results: At follow up, the patient reported natural conception following several years of infertility and prior use of in-vitro fertilization six years prior to achieve conception. Conclusions: Although steroid-associated fertility changes are not well characterized, this finding suggests that further research is warranted to explore the effects of exogenous glucocorticoids used in MS treatment on ovarian reserves, follicular responses, uterine receptiveness and other factors influencing female fertility.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "A 32-year-old woman with a history of infertility requiring IVF spontaneously conceived following high-dose IV methylprednisolone for an acute MS exacerbation. This highlights the potential, uncharacterized effects of exogenous glucocorticoids on ovarian reserve, follicular response, and uterine receptivity in women with MS.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Case Report"
     }
   },
   {
@@ -2996,12 +4542,16 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001267816.02780.24",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Neuroimmunology",
       "subspecialties": [
-        "Other"
+        "Neuroimmunology",
+        "Neuromuscular",
+        "Movement Disorders"
       ],
       "topics": [
-        "Neurology"
+        "Neuropathy",
+        "Ataxia",
+        "Guillain-barré"
       ]
     },
     "abstract": "Objective: To determine the prevalence, characteristics and treatment course of patients with autoimmune nodopathies in the US. Background: Autoimmune nodopathies (AINs) are a rare group of disorders characterized by circulating autoantibodies targeting antigens at the node of Ranvier, usually of the immunoglobulin G4 (IgG4) subclass. About 5-10% of patients with electrodiagnostic features of a demyelinating neuropathy have autoimmune nodopathies. Patients with AINs may present with suggestive clinical features, demonstrate mixed responses to intravenous immunoglobulin (IVIg), but improve with B-cell-depleting therapy. Design/Methods This multi-center study, including over 12 centers in the US, is actively capturing the clinical features and therapeutic responses of patients with AINs. Results: To date, we have included 33 patients, with twenty-five (76%) positive for anti-neurofascin 155 (NF155), six (18%) positive for anti-Contactin IgG4 autoantibodies, and two (6%) positive for both autoantibodies. The average age of disease onset was 50.3 ± 19.6 years, and 18 (54.5%) patients were male. 55% had distal and proximal weakness, 36% predominant distal weakness, and 24% had facial weakness. Distal sensory loss, particularly loss of vibration sensation, and ataxia were common. Areflexia was noted in more than 80% of patients. Additional clinical details will be presented. Almost 40% of patients presented acutely or sub-acutely and were initially diagnosed as Guillain-Barré syndrome. Over 90% of this cohort received IVIg, but only 33% had partial benefit. Steroids were used in 50% of cases, neonatal Fc receptor (FcRn) inhibitors in 16% of cases, and PLEX in 20% of cases. Over 70% of patients received rituximab, and most showed objective benefit on clinical examination. Additional treatment details, including extent and durability of response will be presented. Conclusions: This collaborative effort across the US is providing new insights into the clinical characteristics of AIN from a large US cohort, as well as critical information on management strategies.",
@@ -3021,9 +4571,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Case Report",
     "article_types": [
-      "Editorial / Perspective"
+      "Case Report"
     ],
     "authors": [
       "Garcia-Dominguez Maria",
@@ -3042,11 +4592,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: N/A. Background: Aquaporin-4 (AQP4) positive NMOSD is a severe autoimmune demyelinating disease often managed with C5 complement inhibitors like Ravulizumab. This report details the first reported case of a patient experiencing a breakthrough exacerbation while adherent to Ravulizumab, highlighting the utility of complement monitoring and therapeutic challenges. Design/Methods A 30-year-old male, diagnosed with AQP4-positive NMOSD 1.5 years previously after a longitudinally extensive transverse myelitis found to have 1:1000 titer of AQP-4 antibody. He was adherent to Ravulizumab since that time with the longest variation from the ideal infusion date being 5 days. He then presented for 1 month of right vision loss. Exam found finger counting visual acuity OD with color vision loss and a large central scatoma. MRI revealed subtle enhancement in the right optic nerve. Free C5 levels are not commercially available, so Functional C5 Total C5 and C5a were tested. Functional C5 was reduced but not completely eliminated (13.8 normal range > 23), and C5a was normal, possibly indicating some successful breakdown of C5 into C5a and C5b consistent with incomplete complement inhibition. There was a significant amount of weight gained during observation period. Acute treatment involved high-dose intravenous corticosteroids for 5 days followed by plasmapheresis for 5 days, leading to only partial visual improvement (20/200 OD). Given the objective evidence of incomplete complement inhibition and the breakthrough disease, the patient opted to transition from Ravulizumab to Eculizumab for long-term management. Further C5a level monitoring is planned to guide ongoing therapy. Results: N/A. Conclusions: This case, to the best of our knowledge, reports the first NMOSD relapse on Ravulizumab. We believe this was due to incomplete complement inhibition in the setting of significant amount of weight gain. It emphasizes the critical importance of objective complement activity monitoring to identify suboptimal blockade and guide crucial therapeutic decisions in patients with refractory NMOSD.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "This first reported case of AQP4-positive NMOSD relapse on ravulizumab highlights that breakthrough disease can occur due to incomplete complement inhibition, potentially precipitated by significant weight gain. Objective complement activity monitoring (e.g., functional C5) can detect suboptimal blockade and guide therapeutic decisions, such as switching to eculizumab.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Case Report"
     }
   },
   {
@@ -3059,9 +4610,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Case Report",
     "article_types": [
-      "Editorial / Perspective"
+      "Case Report"
     ],
     "authors": [
       "Green Laura",
@@ -3075,15 +4626,15 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Neurology",
         "Myelitis"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To present a case of neurosarcoidosis manifesting as extensive cervicothoracic myelitis and emphasize the importance of early recognition and treatment. Background: A 31-year-old male with a 4-year history of neck pain and right-arm paresthesias, refractory to conservative treatments, presented with progressive radicular pain, worsening sensory symptoms, and upper motor neuron signs. Design/Methods NA. Results: Cervical and thoracic MRI demonstrated longitudinally extensive T2/STIR hyperintensity with enhancement from the medulla to T4, with additional lower thoracic lesions. CT chest revealed multiple pulmonary nodules and bilateral hilar and mediastinal lymphadenopathy. Endobronchial ultrasound–guided lymph node biopsy confirmed non-necrotizing granulomatous inflammation, consistent with sarcoidosis. He was treated with 1 g IV methylprednisolone daily for 3 days, followed by an oral prednisone taper and long-term immunosuppression with adalimumab and methotrexate, resulting in significant functional recovery and complete resolution of radicular pain. Conclusions: Spinal neurosarcoidosis is uncommon and typically presents as LETM, a pattern that overlaps with neuromyelitis optica spectrum disorder and other inflammatory myelopathies, complicating diagnosis. MRI features such as dorsal subpial or pial enhancement—including the characteristic “trident sign”—may help differentiate sarcoid myelitis from other etiologies. Tissue confirmation of non-necrotizing granulomas remains essential and is most safely obtained from peripheral lymph nodes. High-dose corticosteroids are first-line therapy and often yield rapid improvement, while long-term agents such as methotrexate or TNF-α inhibitors (e.g., infliximab, adalimumab) are frequently required as maintenance therapy for disease control. Radiologic improvement may lag behind clinical response and often evolves over months to years. This case underscores the importance of considering neurosarcoidosis in patients presenting with unexplained vague symptoms and longitudinally extensive myelitis, especially when accompanied by pulmonary or lymphatic findings. Early recognition, biopsy confirmation, and prompt initiation of immunosuppressive therapy are critical for preventing irreversible neurologic deficits and achieving favorable clinical outcomes.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Neurosarcoidosis should be considered in patients with refractory neck pain and longitudinally extensive transverse myelitis. MRI features like dorsal pial enhancement (—including the trident sign—) aid diagnosis, while tissue confirmation via peripheral lymph nodes and early high-dose corticosteroids followed by long-term immunosuppression (e.g., TNF-α inhibitors, methotrexate) prevent irreversible neurological deficits.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Case Report"
     }
   },
   {
@@ -3154,9 +4705,11 @@
     "neurology_classification": {
       "subspecialty": "Neuromuscular",
       "subspecialties": [
-        "Neuromuscular"
+        "Neuromuscular",
+        "Neuroimmunology"
       ],
       "topics": [
+        "Neuropathy",
         "Cidp"
       ]
     },
@@ -3216,11 +4769,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Meta-Analysis",
+    "article_type": "Review",
     "article_types": [
-      "Meta-Analysis",
-      "Review",
-      "Original Article"
+      "Review"
     ],
     "authors": [
       "Tahsin Nusaibah",
@@ -3234,15 +4785,15 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Encephalitis",
-        "Neurology"
+        "Encephalitis"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To systematically evaluate treatment approaches and outcomes for movement disorders in neuronal antibody-mediated autoimmune encephalitis and to characterize their heterogeneity across antibody subtypes. Background: Autoimmune encephalitis (AE) is an increasingly recognized cause of non-infectious encephalitis, presenting with neuropsychiatric and movement disorder features across all age groups. Although movement disorders are a prominent component of the clinical phenotype, their management is inconsistently described, and treatment strategies have not been systematically evaluated. Design/Methods MEDLINE and PubMed were systematically searched for observational studies published up to December 6, 2025. Studies including adult or pediatric patients with laboratory-confirmed neuronal cell-surface or synaptic antibody AE were included, while those lacking extractable data or relevant outcomes were excluded. Two independent reviewers conducted screening with consensus-based conflict resolution. The Joanna Briggs Institute critical appraisal checklist was used for data extraction and risk-of-bias assessment. Of 588 records identified, 106 duplicates were removed, leaving 482 records screened, 143 full-text articles assessed, and 121 studies included. Results: Across 121 studies comprising 2,748 patients, most employed a stepwise immunotherapy approach, with first-line treatments including corticosteroids, IVIG, and plasma exchange, followed by escalation to rituximab or cyclophosphamide where necessary. Symptomatic therapies (antiepileptics, benzodiazepines, dopamine-depleting agents) and tumor resection in paraneoplastic cases were also widely used. The most common movement disorder phenomenology were dystonia (47%) and chorea (33%), with distinct antibody-specific patterns. Partial response was the most frequent outcome (55%), followed by complete resolution (35%), no response (17%), and clinical worsening (16%). Complete-resolution rates were highest in LGI1 (62%, n=8) and anti-NMDA receptor encephalitis (43%, particularly in pediatric and tumor-associated cases), and lowest in IgLON5 disease (5%). Conclusions: These findings support early, individualized, stepwise immunotherapy as the optimal management strategy for movement disorders in AE. Standardized outcome reporting and longer-term follow-up are needed to facilitate timely treatment initiation and improve long-term outcomes.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Management of movement disorders in neuronal antibody-mediated encephalitis requires early, individualized, stepwise immunotherapy. Dystonia (47%) and chorea (33%) predominate. Partial response occurred in 55% of patients and complete resolution in 35%, with complete-resolution rates highest in LGI1 (62%) and anti-NMDAR encephalitis (43%), but lowest in IgLON5 disease (5%).",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Review"
     }
   },
   {
@@ -3497,8 +5048,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Original Article",
+    "article_type": "Clinical Trial",
     "article_types": [
+      "Clinical Trial",
       "Original Article"
     ],
     "authors": [
@@ -3524,15 +5076,15 @@
         "Neuromuscular"
       ],
       "topics": [
-        "Myasthenia",
-        "Neurology"
+        "Myasthenia"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To assess the durability of minimal symptom expression (MSE) response during treatment with zilucoplan, a complement component 5 inhibitor, in patients with generalised myasthenia gravis (gMG) in the RAISE-XT (NCT04225871) study. Background: MSE, defined as a Myasthenia Gravis Activities of Daily Living (MG-‍ADL) score of 0 or 1, is a rigorous measure of therapeutic efficacy in myasthenia gravis. RAISE-XT is a Phase 3, open-label extension study of zilucoplan. Design/MethodsAdults with anti-acetylcholine receptor antibody-positive gMG who completed a qualifying double-blind, placebo-controlled study (NCT03315130/NCT04115293 [RAISE]) could opt to enter RAISE-XT and self-administer once-daily subcutaneous injections of zilucoplan 0.3 mg/kg. The cumulative proportion of patients who achieved MSE (MG-ADL score of 0 or 1 without rescue therapy) at any time during zilucoplan treatment up to Week 120 and the proportion of time spent in MSE up to Week 120 were assessed post hoc (interim data cut-off: November 11, 2023). Results: Of 200 patients enrolled in RAISE-XT, 183 received zilucoplan 0.3 mg/kg or placebo in the double-blind studies. The cumulative proportion of patients who achieved MSE at any time from the start of zilucoplan treatment up to Week 120 in the zilucoplan 0.3 mg/kg/zilucoplan 0.3 mg/kg and placebo/zilucoplan 0.3 mg/kg groups was 61% and 64%, respectively. After first achieving MSE during zilucoplan treatment, patients maintained their MSE response for a median (range) of 80.8% (0.8–100.0%) of their remaining time in the study up to Week 120. Treatment-emergent adverse events were experienced by 97.0% (n=194/200) of patients; most were mild or moderate. Conclusions: Zilucoplan demonstrated sustained efficacy, as shown by maintenance of MSE response up to 120 weeks of treatment.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In a 120-week post hoc analysis of the RAISE-XT open-label extension study, zilucoplan demonstrated sustained efficacy in anti-AChR antibody-positive gMG. Cumulative MSE (MG-ADL 0–1) was achieved by 61% (zilucoplan/zilucoplan) and 64% (placebo/zilucoplan) of patients, who maintained MSE for a median of 80.8% (0.8–100.0%) of their remaining study time.",
       "clinical_significance": "Clinical significance for Neuromuscular practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Clinical Trial"
     }
   },
   {
@@ -3672,9 +5224,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Case Report",
     "article_types": [
-      "Editorial / Perspective"
+      "Case Report"
     ],
     "authors": [
       "Hildenbrandt Elisabeth",
@@ -3691,15 +5243,15 @@
         "Neuro-Oncology"
       ],
       "topics": [
-        "Glioblastoma",
-        "Neurology"
+        "Glioblastoma"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To describe an adult tumefactive demyelinating lesion mimicking glioblastoma, diagnosed after two stereotactic biopsies and pathologic review. Background: Tumefactive demyelinating lesions (TDLs) are uncommon, contrast-enhancing lesions within the Acute Disseminated Encephalomyleitis (ADEM)/MS spectrum that frequently mimic high-grade glioma, primary CNS lymphoma (PCNSL), and abscess. Adult ADEM-spectrum presentations may be monofocal and lack the encephalopathy characteristics of pediatric ADEM, complicating diagnosis. Design/Methods Single-patient case report with clinical, neuroimaging, cerebrospinal fluid analysis, laboratory evaluations, pathologic, and longitudinal follow-up data. Results: A 40-year-old female with no significant past medical history presented with two weeks of subtle behavioral changes and left homonymous hemianopia, beginning approximately two weeks after COVID-19 vaccination. A contrast MRI demonstrated a solitary right parietal lesion; the radiographic differential included glioblastoma, primary CNS lymphoma, and pyogenic abscess. Two stereotactic biopsies were performed and pathologic review was initiated for presumed glioblastoma. Pathology subsequently demonstrated demyelination with reactive astrogliosis, without neoplastic cells. CSF analysis was unremarkable. The diagnosis was revised to a tumefactive demyelinating lesion with the ADEM spectrum; high-dose intravenous corticosteroids were administered, with near-complete clinical and radiographic resolution. Serum MOG-IgG and AQP4-IgG were negative. Conclusions: TDLs should be considered in the differential of solitary, contrast-enhancing supratentorial lesions in adults, alongside glioblastoma, PCNSL, and abscess. Recognition of MRI features distinguishing demyelination from neoplasm, including open-ring enhancement, T2 hypointense rim, and peripheral facilitated diffusion may avert repeated biopsy and inappropriate oncologic therapy.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Tumefactive demyelinating lesions (TDLs) can mimic glioblastoma on MRI, even presenting monofocally without encephalopathy in adults post-COVID-19 vaccination. Recognizing MRI features like open-ring enhancement, T2 hypointense rim, and peripheral facilitated diffusion can prevent unnecessary repeated biopsies and inappropriate oncologic therapy.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Case Report"
     }
   },
   {
@@ -3712,9 +5264,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Case Report",
     "article_types": [
-      "Editorial / Perspective"
+      "Case Report"
     ],
     "authors": [
       "Shishido Akira",
@@ -3730,15 +5282,15 @@
         "Other"
       ],
       "topics": [
-        "Encephalitis",
-        "Neurology"
+        "Encephalitis"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: N/A. Background: Powassan virus (POWV) is a rare but increasingly recognized tick-borne flavivirus that can lead to life-threatening encephalitis. Immunocompromised patients, particularly those on rituximab or Bruton's Tyrosine Kinase (BTK) inhibitors, may experience impaired viral clearance and worsened disease severity. We report a case of fatal POWV encephalitis (POWVE) in a patient with chronic lymphocytic leukemia (CLL) on zanabrutinib. Design/Methods Case Presentation: A 68-year-old male with a history of hypertension, thyroid cancer, renal cell carcinoma, and CLL treated with rituximab and zanabrutinib presented with four days of progressive weakness, difficulty ambulating, and a fall. He reported a tick bite 2–3 weeks prior to symptom onset. Initial examination revealed bilateral upper extremity resting tremors and a wide-based gait. Labs showed leukopenia, thrombocytopenia, and elevated creatine- kinase. The patient’s cerebellar syndrome progressed with severe dysarthria, bilateral sixth cranial nerve palsy, horizontal nystagmus, and limb ataxia. Brain MRI revealed interval T2 cerebellar hyperintensities and leptomeningeal enhancement, consistent with cerebellitis. Cerebral spinal fluid (CSF) showed elevated proteins (604mg/dL) and 19 lymphocytes. POWV serum IgM and total antibodies were negative, but serum, CSF and urine tested positive for POWV by PCR with prolonged viremia over several weeks. Despite treatment with dexamethasone, IVIG, and high dose remdesivir, the patient's condition worsened, and he expired. Results: N/A. Conclusions: POWVE is an emerging disease with cases now being identified from April to December, likely due to human related changes in tick habitat and increase in ticks geographic activity. Targeted testing for POWV in patients who are on B-cell depleting therapies is important because, in addition to the poor outcome, these patients will present not only with negative serological testing but with prolonged viremia and viruria on molecular testing. Characteristic MRI findings such as signal abnormalities in the thalami, basal ganglia, brainstem, and cerebellum — should prompt high suspicion for tick-borne encephalitis.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In patients on B-cell depleting therapies (e.g., rituximab, BTK inhibitors), Powassan virus encephalitis can present with negative serologies and prolonged viremia/viruria, necessitating PCR testing. Characteristic MRI abnormalities in the cerebellum, brainstem, thalami, or basal ganglia following tick exposure should prompt high clinical suspicion.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Case Report"
     }
   },
   {
@@ -3772,11 +5324,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To report a case of CASPR2-antibody associated Morvan syndrome manifesting after thymectomy of a malignant thymoma, in the absence of thymoma recurrence, and in association with a pancreatic neuroendocrine tumor. To our knowledge, this is the first case report of such an association. Background: CASPR2-antibody associated Morvan Syndrome is known to cause profound peripheral, autonomic, and central nervous system dysfunction, but remains poorly recognized by clinicians. It can be associated with underlying tumors, most commonly thymomas. Early recognition and prompt treatment is important given the debilitating nature of the disease and its response to tumor removal and/or immunotherapy. Design/Methods We present the case of a 53-year-old man with subacute onset of severe, debilitating hyperhidrosis, neuropathic pain, cramps, insomnia, and weight loss approximately 1 year after being diagnosed with acetylcholine receptor antibody positive ocular myasthenia gravis in the setting of a malignant, invasive thymoma. He underwent thymectomy and radiation therapy with remission of thymoma and all ocular symptoms for approximately 1 year before developing symptoms of Morvan Syndrome. Work up revealed positive serum and CSF CASPR2-IgG and positive serum LGI1-IgG antibodies. Electromyography revealed fasciculations and myokymia. Work up was negative for thymoma recurrence, but did reveal a pancreatic lesion that was later biopsy-proven to be a pancreatic neuroendocrine tumor. Treatment with intravenous immunoglobulin and plasmapheresis failed to result in any clinical improvement. He was ultimately treated with Rituximab with complete symptomatic resolution. Results: N/A. Conclusions: Typically, the development of Morvan syndrome leads to the diagnosis of thymoma that is subsequently treated with thymectomy. This case illustrates that it can occur after thymectomy in the absence of thymoma recurrence. It also emphasizes the importance of a broad work up of underlying tumors, given there have not been reports of Morvan syndrome in the setting of a pancreatic neuroendocrine tumor.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Morvan syndrome associated with CASPR2-IgG can present post-thymectomy without thymoma recurrence and may be linked to non-thymic malignancies like pancreatic neuroendocrine tumors. Refractory cases unresponsive to IVIG or plasmapheresis may achieve complete symptomatic resolution with rituximab.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Case Report"
     }
   },
   {
@@ -3836,9 +5389,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Case Report",
     "article_types": [
-      "Editorial / Perspective"
+      "Case Report"
     ],
     "authors": [
       "Tang Rui",
@@ -3853,15 +5406,15 @@
         "CNS Infections"
       ],
       "topics": [
-        "Encephalitis",
-        "Neurology"
+        "Encephalitis"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: We present a case of HSV-1 encephalitis in a patient with hypogammaglobulinemia with coexisting parainfectious autoimmune encephalitis. Background: In immunocompetent patients, Herpes simplex virus encephalitis (HSV-1) affects medial temporal, orbitofrontal, insular regions, with necrotizing hemorrhagic inflammation with CD8 + T-cells, microglial nodules, viral inclusions, and B-cell infiltrates aiding viral clearance. In antibody-deficient hosts, the infection can be diffuse and prolonged with sparse B cells, dominant CD8 + /macrophage inflammation, abundant viral inclusions, and persistent viral activity. Parainfectious encephalitis is a post-infectious, immune-mediated process requiring recognition for immunotherapy rather than antiviral treatment. Design/Methods A 48-year-old man presented with right-gaze deviation, agitation and motor seizures. Brain MRI showed left hemisphere DWI/FLAIR cortical signal changes, sparing the temporal pole and orbitofrontal cortex. CSF showed pleocytosis, elevated protein, and positive HSV-1 PCR. Autoimmune encephalitis panel and serum MOG were negative. Results: After no clinical improvement with acyclovir treatment, further work up revealed pan-hypogammaglobulinemia and he was started on IVIG. PET scan was negative. Repeat MRI showed worsening of diffuse lentiform meningeal enhancement. Brain biopsy showed a T-cell–predominant inflammatory infiltrate, microglial activation, negative CD19, negative HSV and SV40 immunostains. Given the concern for para-infectious encephalitis, the patient received IVMP followed by high dose oral steroid taper. Patient improved radiographically and clinically, and was discharged without additional immunosuppressive medications. Conclusions: Immunocompromised patients with HSV-1 encephalitis often show more widespread brain involvement due to impaired viral control. In our patient, lack of clinical improvement despite antiviral therapy, worsening MRI findings, CSF pleocytosis with elevated protein, and severe hypogammaglobulinemia suggested an autoimmune or T-cell–mediated encephalitis. The patient did improve after immunotherapy with IVIG and corticosteroids. Brain biopsy showed T-cell–predominant meningoencephalitis, negative for HSV without B-cell infiltrates—consistent with a T-cell–driven autoimmune process in the setting of CVID. This rare case emphasizes early recognition of post-infectious, T-cell–mediated encephalitis to guide timely immunotherapy and recovery.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In antibody-deficient patients with HSV-1 encephalitis who fail to improve on antiviral therapy, consider a coexisting T-cell-driven parainfectious autoimmune encephalitis. Early brain biopsy showing T-cell-predominant, viral-negative inflammation can guide successful immunotherapy with corticosteroids and IVIG.",
       "clinical_significance": "Clinical significance for CNS Infections practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Case Report"
     }
   },
   {
@@ -3939,11 +5492,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: N/A. Background: Myelin oligodendrocyte glycoprotein antibody–associated disease (MOGAD) is a distinct inflammatory demyelinating disorder. Pregnancy is considered an immunotolerant; most studies suggest that the relapse rate of demyelinating diseases decreases during pregnancy, with increased relapse rates postpartum. Nonetheless, MOGAD can present for the first time during pregnancy, creating diagnostic and therapeutic dilemmas. Design/Methods We retrospectively reviewed three MOG-IgG–positive patients from two tertiary centers who presented for the first time during pregnancy or the postpartum period. We summarized clinical phenotype, MRI, acute treatments, disease-modifying therapy (DMT), and obstetric outcomes. Results: Three patients with confirmed MOG-IgG-associated disease were identified across two tertiary centers. 2 patients presenting with a new diagnosis of MOGAD for the first time during pregnancy and 1 patients presenting in postpartum period. Out of a total of four clinical episodes, two episodes were optic neuritis and the remaining two presentations were transvers myelitis. One of these patients subsequently relapsed five weeks postpartum. Visual outcomes were favorable overall, with recovery to 20/30 or better following immunotherapy. MOG-IgG titers were ≥1:100 in all; MRI findings demonstrated longitudinally extensive spinal cord lesions in two patients, and bilateral T2 hyperintensities of intra- orbital segments of the optic nerve in another. Pregnancy complications were seen in 2 patients including fetal distress requiring urgent cesarean section at 33 + 6 weeks and intrauterine growth restriction (IUGR) with cesarean delivery at 31 weeks. One patient experienced a miscarriage in subsequent pregnancy at 6 weeks followed by an additional pregnancy complicated by gestational diabetes and preterm cesarean delivery. Conclusions: This case series highlights an understudied population presenting with new-onset MOGAD during the peripartum period. MOGAD should remain in the differential diagnosis of inflammatory demyelinating events in pregnancy. Prompt diagnosis and therapy are crucial for maximizing recovery, and further research is needed to clarify the relationship between MOGAD and obstetric outcomes.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "MOGAD can manifest for the first time during the peripartum period, presenting as optic neuritis or longitudinally extensive transverse myelitis. Immunotherapy yields favorable visual recovery, but these pregnancies may carry higher risks of obstetric complications such as intrauterine growth restriction and preterm delivery.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Case Report"
     }
   },
   {
@@ -3998,9 +5552,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Makara Matt",
@@ -4013,15 +5567,15 @@
         "Other"
       ],
       "topics": [
-        "Neurological",
-        "Neurology"
+        "Neurological"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To examine the occurrence of neurological manifestations and impact on quality of life (QoL) among U.S.-based adults with Sjögren’s disease (SjD). Background: SjD is a serious and systemic autoimmune disease affecting the entire body, including the nervous system. Design/Methods An online survey was administered August-September 2025 to U.S.-based SjD patients aged ≥18 years. The survey was IRB-reviewed and determined exempt under 45 CFR § 46.104(d)(2). Results: Of all respondents (N=6,360), 71% reported having been diagnosed with ≥1 nervous system related condition. The most common was neuropathy (46%), followed by migraine (38%); 59% percent of men (n=239) reported a diagnosis of neuropathy. A majority reported experiencing the following symptoms at least once during the 12 months prior; brain fog (77%), neuropathy (61%), feeling faint or dizzy (56%), headache (56%), and muscle weakness (54%). A majority reported daily or weekly occurrence of these symptoms (range: 64-85%) and a major or moderate impact of the symptom on their life (range: 54%-78%). A larger proportion of men reported a major or moderate impact due to symptoms of neuropathy (71% versus 63% of women), whereas 78% of women reported a major or moderate impact of brain fog, compared to 69% of men. Most of the sample reported at least one neurological condition or symptom (n=6072); these respondents were more likely to report SjD negatively affected their participation in social activities, in hobbies or extracurricular activities, activities of daily living, job/career or ability to work, and ability to exercise (OR range: 4.77-8.00) compared to respondents who did not report any neurological condition or symptom (n=288). Respondents with neurological manifestations were more likely to state that SjD adds an emotional burden to their life (OR 3.78). Conclusions: Neurological manifestations frequently occur in SjD patients and have a major impact on QoL when compared to patients not reporting neurological conditions or symptoms.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In a survey of 6,360 adults with Sjögren's disease, 71% reported diagnosis of ≥1 neurological condition (neuropathy 46%, migraine 38%). Patients with neurological manifestations had significantly higher odds of impaired daily activities (OR range: 4.77-8.00) and emotional burden (OR 3.78) compared to those without.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Original Article"
     }
   },
   {
@@ -4091,7 +5645,8 @@
         "Other"
       ],
       "topics": [
-        "Neurological"
+        "Neurological",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -4127,7 +5682,8 @@
         "Neuromuscular"
       ],
       "topics": [
-        "Myasthenia"
+        "Myasthenia",
+        "Neurological"
       ]
     },
     "abstract": "Objective: We present a rare case of a triad of myasthenia gravis (MG), myositis, and myocarditis following a single cycle of pembrolizumab, highlighting the importance of early recognition and aggressive management of refractory neuromuscular immune-related adverse events (irAEs). Background: Immune checkpoint inhibitors (ICIs) have transformed oncologic care, but their neurological complications remain underappreciated. ICI-induced myasthenia gravis (MG) is uncommon yet far more dangerous, presenting with oculo-bulbar predominance and requiring ventilatory support up to seven times more frequently. The concurrent development of myositis and myocarditis, the IM3OS triad, escalates mortality from approximately 30% to 38–60%. No prospective treatment trials exist, and clinicians must rely on retrospective data and expert consensus to guide management. Design/Methods N/A. Results: A 77-year-old woman with stage IV serous endometrial carcinoma, treated with one cycle of pembrolizumab, was admitted after developing ptosis, generalized weakness, and myalgias. Examination revealed ophthalmoplegia with bilateral exotropia, fatigable extremity weakness, dysphagia, and dysarthria. MG was suspected and serial NIF and vital capacity monitoring were initiated. Despite negative acetylcholine receptor, MuSK, and LRP4 antibodies, clinical findings were consistent with ICI-induced MG. Creatine kinase peaked at 13,883 IU/L and troponin I at 15,060 ng/L, with atrioventricular conduction abnormalities and echocardiographic evidence of global left ventricular dysfunction (EF 45%), supporting the IM3OS triad. Additionally, the patient also developed ICI-induced hepatitis and destructive thyroiditis. Treatment included high-dose methylprednisolone, plasmapheresis, and rituximab. Cardiac function recovered, but refractory neuromuscular symptoms necessitated escalation to abatacept and ruxolitinib, after which the patient was discharged with gradual improvement. Conclusions: This case illustrates a rare but life-threatening occurrence of ICI-induced multi-system immune injury, where Myasthenia gravis emerged as the most refractory component. Early recognition of the IM3OS triad, stepwise escalation of immunosuppression for refractory neuromuscular symptoms, and coordinated multidisciplinary care are essential to improving survival outcomes in this challenging syndrome.",
@@ -4147,9 +5703,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Case Report",
     "article_types": [
-      "Editorial / Perspective"
+      "Case Report"
     ],
     "authors": [
       "Reyna Tania",
@@ -4165,11 +5721,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To report a case of paraneoplastic aquaporin-4 (AQP4)-IgG-seropositive neuromyelitis optica spectrum disorder (NMOSD) associated with a pathology-confirmed AQP4-positive ovarian teratoma. Background: NMOSD is a relapsing autoimmune CNS disease characterized by optic neuritis, transverse myelitis, and brainstem syndromes, driven by AQP4-IgG targeting astrocytic water channels. Approximately 3–5% of AQP4-IgG-seropositive cases may have a paraneoplastic etiology, with tumors ectopically expressing AQP4 hypothesized to break immune tolerance. Ovarian teratoma-associated NMOSD is exceedingly rare, with approximately nine prior reported cases. Design/Methods Retrospective chart review. Results: A 33-year-old woman with a known left ovarian mass presented with acute bilateral vision loss. Visual acuity (VA) was 20/50 (right eye) and counting fingers (left eye) with bilateral color desaturation. Orbital MRI showed enhancement of bilateral optic nerves, chiasm, and optic tracts. AQP4-IgG was positive at 1:1000 titer. During hospitalization, she developed acute abdominal pain; CT revealed a 12 cm left ovarian teratoma. Emergent surgical resection was performed. Histopathology confirmed AQP4 immunoreactivity in a focal cluster of epithelial cells. She received IV high-dose steroids (5 days) and plasmapheresis (4.5 days), with VA improving to 20/20 (right eye) at discharge. At 2-month follow-up, VA remained stable. Inebilizumab was initiated, and the patient has remained relapse-free. Conclusions: This case is notable for isolated bilateral optic neuritis without the brainstem involvement typical of teratoma-associated NMOSD (83% in prior series), AQP4 expression in epithelial rather than neural tissue, and concurrent ovarian torsion. A systematic review of 72 paraneoplastic NMOSD cases demonstrated heterogeneous phenotypes, supporting cancer screening in all newly diagnosed AQP4-IgG NMOSD regardless of age. This case reinforces the importance of considering paraneoplastic etiology in young women with NMOSD and supports pelvic imaging in newly diagnosed AQP4-IgG-seropositive patients.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Paraneoplastic AQP4-IgG NMOSD can present as isolated bilateral optic neuritis associated with an AQP4-expressing ovarian teratoma in young women. High-dose IV steroids, plasmapheresis, tumor resection, and anti-CD19 therapy led to clinical recovery, supporting cancer screening and pelvic imaging in all newly diagnosed AQP4-IgG-positive patients.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Case Report"
     }
   },
   {
@@ -4288,7 +5845,8 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Encephalitis"
+        "Encephalitis",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -4427,12 +5985,16 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001267824.97466.28",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Neurocritical Care",
       "subspecialties": [
-        "Other"
+        "Neurocritical Care",
+        "Headache & Pain"
       ],
       "topics": [
-        "Neurology"
+        "Cerebral",
+        "Neurological",
+        "Brain",
+        "Hydrocephalus"
       ]
     },
     "abstract": "Objective: NA. Background: CHANTER syndrome exhibits a typical pattern of clinical and radiologic findings, which include symmetric diffusion restriction in the cerebellum, hippocampus, and basal ganglia, particularly Globus pallidus (GP). Cerebral cortex and subcortical white matter are usually not involved and the distribution of diffusion restriction does not follow a specific vascular territory, differentiating from other causes. Cerebral edema can progress to cause obstructive hydrocephalous and herniation. Here, we report an instance of CHANTER syndrome where the cause was pain medication rather than substance abuse. Design/Methods Case report with electronic medical record review. Results: A 68-year-old woman presented for acute encephalopathy characterized by perseveration, disorientation accompanied by occipital headache and photosensitivity. Of note, she recently started opioid and barbiturate pain medication for chronic back pain. Neurological exam noted disorientation to time and difficulty following complex commands; the rest of the exam, including Kernig's and Brudzinski's, was unremarkable. A CT scan of the head without contrast revealed symmetric hypodensity in the bilateral GP, without signs of hydrocephalus or edema. CTA head/neck was negative for significant vessel stenosis. The drug screen was positive for cannabis and opiates. MRI of the brain with and without contrast noted symmetric diffusion restriction in the GP, hippocampus, and cerebellum. Rest of the workup, including spinal tap, carboxy Hb, and continuous EEG, was unremarkable. She improved clinically with conservative management, and a follow-up MRI of the brain in three months noted resolution of findings. Conclusions: CHANTERS syndrome is associated with severe edema, hydrocephalus, and herniation; thus, it is critical to recognise characteristic radiological findings regardless of history of illicit drug abuse for prompt recognition. The prognosis is favourable despite the severe presentation, particularly with early treatment.",
@@ -4777,11 +6339,14 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001268336.16363.78",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Other"
+        "Stroke"
       ],
       "topics": [
+        "Ischemic",
+        "Infarction",
+        "Cerebral",
         "Neurology"
       ]
     },
@@ -4819,7 +6384,9 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Neurology"
+        "Brain",
+        "Spinal",
+        "Foot drop"
       ]
     },
     "abstract": "Objective: To report a case of probable neurosarcoidosis with atypical necrotizing granulomatous inflammation and coexisting aquaporin-4 antibody positivity. Background: Necrotizing sarcoid granulomatosis of the CNS is rare, and coexistence with anti-aquaporin-4 antibodies is exceedingly uncommon. Research focuses on each disorder separately, and no clear management guidelines exist, creating a practice gap in diagnosis and treatment. Design/Methods We describe a 60-year-old African American female who initially presented with progressive numbness, tingling, and pain in the feet, evolving into bilateral leg weakness, right foot drop, gait instability, and recurrent falls. Examination revealed bilateral optic disc pallor and saccadic intrusions, right-predominant leg weakness, generalized hyperreflexia, bilateral positive Hoffman signs, wide-based gait, and impaired coordination. Brain MRI showed multiple punctate enhancing foci in the posterior fossa. Spine MRI revealed multifocal leptomeningeal enhancement throughout the cervical, thoracic, and lumbar regions, while whole-body PET demonstrated tracer uptake in the spinal canal and pelvic and inguinal lymph nodes. CSF analysis revealed lymphocytic pleocytosis (95 WBC/µL, 88% lymphocytes), hypoglycorrhachia (20 mg/dL; normal 40–70), elevated protein (197 mg/dL; normal 15–45), markedly increased IgG synthesis rate (232 mg/d; normal 0–8), elevated IgG index (1.49; normal 0.3–0.7), and 11 CSF-restricted oligoclonal bands; infectious and autoimmune panels were negative. Inguinal lymph node biopsy demonstrated focally caseating granulomatous inflammation concerning for atypical necrotizing sarcoid granulomatosis, probable neurosarcoidosis. Unexpectedly, serum aquaporin-4 IgG antibody was strongly positive at 1:1,280 via cell-based assay. The patient received high-dose corticosteroids with partial improvement, and recurrent deficits prompted initiation of Rituximab therapy, resulting in clinical benefit. Results: NA. Conclusions: The presence of anti-aquaporin-4 antibodies may indicate autoimmunity in CNS sarcoidosis, though coexistence is exceedingly rare. Recognizing this overlap is critical, as it impacts diagnosis and treatment in complex neuroinflammatory disorders. Rituximab is a plausible therapeutic option due to its off-label use and reported benefit in targeting both NMOSD and refractory sarcoidosis.",
@@ -5182,6 +6749,8 @@
         "Neuroimmunology"
       ],
       "topics": [
+        "Multiple sclerosis",
+        "Neuromyelitis",
         "Mogad"
       ]
     },
@@ -5344,10 +6913,12 @@
     "neurology_classification": {
       "subspecialty": "Neuroimmunology",
       "subspecialties": [
-        "Neuroimmunology"
+        "Neuroimmunology",
+        "Neuromuscular"
       ],
       "topics": [
-        "Neurology"
+        "Neuropathy",
+        "Cidp"
       ]
     },
     "abstract": "Objective: To examine patients with chronic inflammatory demyelinating polyradiculoneuropathy (CIDP) with off-treatment periods, and to characterize off-treatment periods. Background: CIDP is a rare and severe autoimmune neuropathy with progressive, relapsing, or monophasic courses. Although CIDP typically requires ongoing care, some patients discontinue treatment due to suspected remission or unmet needs with available therapies including treatment burden, suboptimal efficacy, or tolerability concerns. Design/Methods Adult patients with confirmed CIDP diagnosis and treatment initiation (first observed diagnosis date as index) were identified in Komodo Health’s Patient Level Insights Data (PLAID) closed claims database 01/01/2020–04/29/2026. Eligible patients had continuous enrollment ≥1-year pre- and post-index and were followed until end of enrollment. Patients with off-treatment periods (≥6-months) after treatment initiation were selected. Demographic and clinical characteristics were assessed at index. The first observed off-treatment period was evaluated using Kaplan–Meier methods, with time zero at off-treatment start and event as CIDP treatment restart (censored at end of enrollment). Results: 2085 patients with at least one off-treatment period were analyzed. At index, mean (SD) age was 65.5 (13.7) years; 60.3% (n=1257) were male; 29.8% (n=621) used commercial insurance; mean (SD) Charlson Comorbidity Index was 2.6 (2.6). Mean (SD) follow-up was 3.3 (1.4) years. Immunoglobulin monotherapy (24%, n=503) and corticosteroid monotherapy (14%, n=295) were the most common CIDP treatments used before the first observed off-treatment period. The first observed off-treatment period lasted for a median (IQR) duration of 13.2 (8.6–21.8) months. The probability of patients resuming treatment was 33.9% at 12 months (95% CI: 31.8%–36.1%), and 58.9% at 24 months (95% CI: 56.4%–61.4%). Conclusions: Median time to treatment re-initiation of 13 months suggests that, for most patients, a pause in therapy does not reflect durable long-term remission. Importantly, factors other than disease remission may also contribute to treatment pauses.",
@@ -5420,12 +6991,13 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001268184.89217.de",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Epilepsy",
       "subspecialties": [
-        "Other"
+        "Epilepsy",
+        "Neuromuscular"
       ],
       "topics": [
-        "Neurology"
+        "Neuropathy"
       ]
     },
     "abstract": "Objective: N/A. Background: Paraneoplastic syndromes can impact the neuro-axis, depending on the type of malignancies and the associated antibodies. In some instances, it can affect both central and peripheral nervous system. In our case, a patient who tested positive for anti-amphyphysin antibodies presented with conus medullaris syndrome, cauda equina syndrome, and peripheral neuropathy. This presentation is a rare occurrence. Case presentation: A 47-year-old-male came with a one month history of gradually progressive bilateral lower limb numbness and paresthesias, starting in the feet and ascending to the knees, worsened by cold exposure. After one month, he acutely developed urinary retention, perineal burning, and rapidly progressive bilateral symmetrical lower limb weakness within a day, along with painful calf spasms triggered by movement and cold,leading him bedbound. Upper limbs remained unaffected, with no history of trauma, backache, radiating pain, seizures, cranial nerve, systemic involvement,no prior episodes. On examination, there was reduced bulk and spastic tone in both lower limbs with 0/5 powers, absent ankle reflexes, and extensor plantar responses, saddle anesthesia and decreased pin prick upto knees bilaterally. MRI Spine showed a T2 hyperintense lesion from T11- L1. CSF revealed raised protein with lymphocytosis. Electrophysiology confirmed motor axonal neuropathy. Paraneoplastic panel was positive for anti-amphiphysin antibodies. CT Chest, Abdomen And Pelvis along with tumor markers were negative. Diagnosed as paraneoplastic myeloradiculoneurpathy, patient improved with steroids and plasmapheresis and remains on azathioprine with ongoing surveillance. Design/Methods N/A. Results: N/A. Conclusions: This case highlights the importance of combined CNS and PNS involvement as a clue to autoimmune myeloradiculoneuropathy. The presence of upper and lower motor neuron signs is often interpreted as motor neuron disease but thorough workup should prompt consideration of a paraneoplastic etiology, even in the absence of detectable malignancy. Early immunotherapy can lead to clinical improvement, while continued follow up and surveillance remains essential for underlying cancer detection.",
@@ -5537,12 +7109,17 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001268664.34819.0e",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Neuroimmunology",
       "subspecialties": [
-        "Other"
+        "Neuroimmunology",
+        "Movement Disorders",
+        "Headache & Pain"
       ],
       "topics": [
-        "Neurological"
+        "Encephalitis",
+        "Meningitis",
+        "Neurological",
+        "Ataxia"
       ]
     },
     "abstract": "Objective: NA. Background: Mycoplasma pneumoniae has been recognized as a trigger for extrapulmonary neurologic complications. Among the most common neurologic sequelae, transverse myelitis came second to encephalitis in children. Acute transverse myelitis (ATM) is a rare demyelinating disorder caused by inflammation of the spinal cord most often as a result of an abnormal immune response post-infection. While several pediatric cases have connected M. pneumoniae with ATM, we could not identify any previously reported cases of familial clustering in the literature. Design/Methods NA. Results: Case Presentation: Two previously healthy and developmentally appropriate sisters, ages 7 and 5, presented within two weeks of each other with neurological symptoms following pneumonia. Both initially had acute ataxia, headache, and other features of acute post-infectious cerebellitis versus meningitis. They initially improved without any pharmacological interventions, but within weeks, the older sister returned with worsening symptoms. A spine MRI was obtained and confirmed ATM. Upon lab work, both sisters had elevated M. pneumoniae IgM titers and elevated ESR while CSF PCR for M. pneumoniae was negative for the older sister. The older sister received escalating immunomodulatory therapy including intravenous methylprednisolone, intravenous immunoglobulin (IVIG), and doxycycline before achieving full recovery. The younger sister recovered with the exception of a mild gait abnormality after treatment with doxycycline and supportive care. The patients' family history was significant for autoimmune disorders in both grandmothers, including Sjögren syndrome and psoriatic arthritis. Conclusions: Genetic and immunologic factors may predispose patients to post-infectious neurological complications. To our knowledge, these cases represent the first reported familial occurrence of M. pneumoniae -associated neurological complications. In addition, they underline the importance of considering M. pneumoniae in the setting of pediatric ATM, particularly when similar clinical features occur within the same family.",
@@ -5652,9 +7229,9 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001267912.66180.ae",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Neuromuscular",
       "subspecialties": [
-        "Other"
+        "Neuromuscular"
       ],
       "topics": [
         "Neurology"
@@ -19127,7 +20704,7 @@
       "badge_text": "#E11D48"
     },
     "pub_date": "2026-10-01T00:00:00Z",
-    "article_type": "Original Article",
+    "article_type": "Review",
     "authors": [
       "Benatar Michael",
       "Barmada Sami",
@@ -19188,7 +20765,7 @@
       "ai_verified": true
     },
     "article_types": [
-      "Original Article"
+      "Review"
     ]
   },
   {
@@ -21320,9 +22897,9 @@
       "badge_text": "#E11D48"
     },
     "pub_date": "2026-09-21T00:00:00Z",
-    "article_type": "Original Article",
+    "article_type": "Review",
     "article_types": [
-      "Original Article"
+      "Review"
     ],
     "authors": [
       "Sars Carl",
@@ -23139,38 +24716,6 @@
     }
   },
   {
-    "id": "10.1001/jamaneurol.2026.0265",
-    "title": "JAMA Neurology Peer Reviewers in 2025",
-    "journal": {
-      "name": "JAMA Neurology",
-      "short_name": "JAMA Neurol",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#E11D48"
-    },
-    "pub_date": "2026-05-11T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [],
-    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.0265",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
     "id": "10.1016/s1474-4422(26)00096-7",
     "title": "Neurootologists' role as piano technicians",
     "journal": {
@@ -23314,38 +24859,6 @@
     }
   },
   {
-    "id": "10.1001/jamaneurol.2025.0293",
-    "title": "JAMA Neurology Peer Reviewers in 2024",
-    "journal": {
-      "name": "JAMA Neurology",
-      "short_name": "JAMA Neurol",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#E11D48"
-    },
-    "pub_date": "2025-05-12T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [],
-    "doi_url": "https://doi.org/10.1001/jamaneurol.2025.0293",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
     "id": "10.1161/strokeaha.123.042912",
     "title": "Air Pollution and Stroke: What Nurses Need to Know",
     "journal": {
@@ -23411,38 +24924,6 @@
       ]
     },
     "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1001/jamaneurol.2024.0288",
-    "title": "JAMA Neurology Peer Reviewers in 2023",
-    "journal": {
-      "name": "JAMA Neurology",
-      "short_name": "JAMA Neurol",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#E11D48"
-    },
-    "pub_date": "2024-05-13T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [],
-    "doi_url": "https://doi.org/10.1001/jamaneurol.2024.0288",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
       "clinical_significance": "Clinical significance for Other practice.",

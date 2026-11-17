@@ -1,5 +1,223 @@
 [
   {
+    "id": "nc-2026-051",
+    "case_code": "NC-2026-051",
+    "title": "Acute Headache and Visual Field Loss in a Febrile Postoperative Patient",
+    "subspecialty": "Headache & Pain",
+    "subspecialties": [
+      "Headache & Pain"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-17",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC12117834",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-025-04234-0",
+      "pmcid": "PMC12117834",
+      "pmid": "40437387",
+      "pub_year": "2025"
+    },
+    "presentation": {
+      "demographics": "73-year-old man",
+      "chief_complaint": "Sudden severe headache, progressive visual decline, fever, and dysuria",
+      "history_of_present_illness": "A 73-year-old man presented to the emergency department with a sudden, severe headache that began earlier that day, superimposed on a 5-day history of high fever (peaking at 40.0 °C), chills, urinary frequency, and dysuria. One month earlier, he had undergone surgical resection of a bladder tumor, which was complicated 3 weeks before presentation by an episode of postoperative atrial flutter; he had also received intravesical chemotherapy 1 week prior. Collateral history from family members revealed progressive visual decline over the preceding 3 weeks since the arrhythmia episode, which had initially been attributed to pre-existing cataracts.",
+      "past_medical_history": "Bladder urothelial carcinoma (resected 16 years, 12 years, and 1 month prior), benign prostatic hyperplasia, and type 2 diabetes mellitus.",
+      "vitals": {
+        "bp": "97/69 mmHg",
+        "hr": "110 bpm",
+        "rr": "17 breaths/min",
+        "temp": "37.8 °C",
+        "spo2": "96% on room air"
+      },
+      "neuro_exam": "On neurologic examination, he was alert and oriented to person and place. Neuro-ophthalmologic assessment demonstrated markedly reduced bilateral visual acuity and a bitemporal hemianopia. Extraocular movements were full without third, fourth, or sixth cranial nerve palsies, and pupillary light reflexes were sluggish bilaterally. There was no nuchal rigidity, Kernig sign, or focal motor or sensory deficit.",
+      "key_labs_csf": "Initial laboratory studies showed a random blood glucose of 398 mg/dL (22.1 mmol/L), a leukocyte count of 16,400/µL (89% neutrophils), and urinalysis positive for leukocyte esterase, nitrites, and marked pyuria. A baseline endocrine panel demonstrated a serum cortisol of 1.8 µg/dL (reference range, 5–25 µg/dL), an adrenocorticotropic hormone (ACTH) level of 4.2 pg/mL (low-normal), a free thyroxine (T4) level of 0.58 ng/dL (low), and a thyroid-stimulating hormone (TSH) level of 0.21 mIU/L (low).",
+      "imaging": [
+        {
+          "modality": "Chest and Abdominal CT",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC12117834)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12117834_fig1.jpg",
+          "pmcid": "PMC12117834",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04234-0",
+          "caption": "Chest CT revealed bilateral pulmonary inflammation with pleural effusion on both sides and atelectasis in the lower lobes ( A - D ).Abdominal CT demonstrated a low-density lesion in the lateral segment of the left hepatic lobe, bilateral renal cysts, and mild hydronephrosis of both renal pelves and the left ureter. The bladder wall was mildly thickened, suggestive of postoperative changes following bladder tumor resection. Additionally, a left inguinal hernia was noted (E - F )",
+          "findings_summary": "Bilateral pulmonary infiltrates with small pleural effusions and lower-lobe atelectasis, along with post-surgical bladder wall thickening and mild left hydronephrosis."
+        },
+        {
+          "modality": "Brain MRI (T1 FLAIR, T1 Contrast, T2-weighted)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC12117834)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC12117834_fig2.jpg",
+          "pmcid": "PMC12117834",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04234-0",
+          "caption": "In the T1 FLAIR sequence, the pituitary lesions show a ring-shaped high signal, and the center of the lesion is iso- or slightly low-signal ( A ). In the T1 enhancement, the pituitary lesions show a ring-shaped enhancement ( B - C ). In the T2-weighted sequence, the center of the lesion is a high signal, and the periphery of the lesion is iso-signal ( D - E ). This phenomenon is more obvious in the T2 FLAIR sequence ( F )",
+          "findings_summary": "Sellar mass compressing the optic chiasm, exhibiting peripheral rim enhancement on post-contrast T1-weighted imaging, ring-shaped T1 FLAIR hyperintensity, and central high signal intensity on T2-weighted sequences."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "In addition to empiric broad-spectrum antimicrobial therapy and fluid resuscitation, which of the following is the most critical immediate management step for this patient?",
+      "question_type": "Acute Management",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Immediate emergent transsphenoidal surgical decompression",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Immediate neurosurgical decompression without prior hemodynamic stabilization and stress-dose corticosteroid replacement carries a high risk of intraoperative cardiovascular collapse and fatal adrenal crisis. Although transsphenoidal decompression is indicated for persistent or progressive visual deficits once stabilized, medical restoration of the hypothalamic-pituitary-adrenal axis is the immediate priority."
+        },
+        {
+          "id": "B",
+          "text": "Lumbar puncture for CSF opening pressure measurement and broad pathogen PCR testing",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Although bacterial meningitis is an important consideration in a febrile patient with an acute headache, neuroimaging already demonstrates an expanding sellar mass compressing the optic chiasm, and urinalysis confirms a urinary tract infection. Performing a lumbar puncture in the setting of an intracranial mass lesion carries procedural risk and would dangerously delay life-saving stress-dose glucocorticoid administration for acute secondary adrenal insufficiency."
+        },
+        {
+          "id": "C",
+          "text": "Immediate intravenous levothyroxine replacement for central hypothyroidism",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Administering thyroid hormone replacement before glucocorticoid initiation in a patient with panhypopituitarism increases basal metabolic rate and accelerates cortisol clearance, which can precipitate a life-threatening acute adrenal crisis."
+        },
+        {
+          "id": "D",
+          "text": "Intravenous stress-dose glucocorticoid administration (hydrocortisone bolus followed by continuous infusion)",
+          "peer_percentage": 68,
+          "rationale": "Correct! Acute pituitary apoplexy frequently disrupts the hypothalamic-pituitary-adrenal axis, causing acute secondary adrenal insufficiency as evidenced by this patient's hypotension and inappropriately low cortisol and ACTH levels. Immediate administration of stress-dose intravenous hydrocortisone (100 mg bolus followed by 200 mg per 24 hours via continuous infusion or divided doses) is mandatory to restore vascular tone and prevent fatal adrenal crisis prior to definitive neurosurgical intervention."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Ischemic pituitary apoplexy within a pre-existing pituitary adenoma, complicated by secondary adrenal insufficiency and concurrent Escherichia coli urosepsis",
+      "clinical_discussion": "Pituitary apoplexy is an endocrine emergency caused by acute hemorrhage or ischemic infarction within a pre-existing pituitary adenoma. Recognizing this condition is particularly challenging when it coexists with severe systemic infection. In a febrile patient presenting with sudden severe headache, mild disorientation, and leukocytosis, bacterial meningitis or sepsis-associated encephalopathy is a compelling initial mimic. Moreover, subacute visual deterioration in older adults is frequently misattributed to pre-existing cataracts or transient cerebral hypoperfusion following perioperative arrhythmias such as atrial flutter, whereas cystic sellar lesions such as a Rathke cleft cyst or cystic craniopharyngioma can similarly produce headache and chiasmal compression.\n\nThe diagnostic inflection point in this patient was the combination of bitemporal hemianopia, a sellar mass compressing the optic chiasm on brain MRI (exhibiting peripheral rim enhancement and central T2 hyperintensity characteristic of ischemic necrosis), and biochemical panhypopituitarism, which established ischemic pituitary apoplexy. Blood and urine cultures subsequently grew Escherichia coli, confirming concurrent urosepsis. Pre-existing pituitary adenomas possess a tenuous, high-resistance microvascular supply relative to their metabolic demand; consequently, the systemic hypotension, inflammatory cascade, and hemodynamic instability triggered by postoperative atrial flutter and E. coli urosepsis critically impaired tumor perfusion, precipitating ischemic adenoma infarction and acute failure of the hypothalamic-pituitary-adrenal axis.\n\nAcute management prioritizes immediate medical stabilization over hyperacute surgical intervention. Prompt intravenous stress-dose glucocorticoid therapy (hydrocortisone 100 mg bolus followed by 200 mg per 24 hours via continuous infusion or divided intravenous doses) is essential to reverse secondary adrenal insufficiency, prevent refractory shock, and restore vascular tone. Levothyroxine replacement for central hypothyroidism must be deferred until after glucocorticoid initiation to avoid precipitating an adrenal crisis. Once hemodynamic stability and infection control are achieved with broad-spectrum antimicrobials and fluid resuscitation, endoscopic transnasal transsphenoidal resection provides definitive decompression of the optic chiasm and histopathologic confirmation of necrotic pituitary adenoma tissue.",
+      "teaching_points": [
+        "Pituitary apoplexy must be suspected in patients presenting with sudden severe headache, visual acuity or field loss, or oculomotor palsies, particularly in the setting of perioperative hemodynamic stress or sepsis.",
+        "Acute secondary adrenal insufficiency is the most immediately life-threatening complication of pituitary apoplexy and requires empiric intravenous stress-dose hydrocortisone prior to neurosurgical decompression.",
+        "In panhypopituitarism, thyroid hormone replacement must never precede glucocorticoid initiation, because isolated levothyroxine increases metabolic demand and cortisol clearance, precipitating acute adrenal crisis.",
+        "Systemic hypotension and severe inflammatory states such as sepsis can compromise the tenuous microvasculature of a pre-existing pituitary macroadenoma, triggering ischemic pituitary apoplexy."
+      ],
+      "clinical_pitfalls": [
+        "Attributing progressive visual loss in older adults exclusively to cataracts or aging, thereby overlooking optic chiasm compression from an expanding sellar mass.",
+        "Delaying intravenous glucocorticoid administration while awaiting neurosurgical consultation or emergent operative decompression in a hypotensive patient with suspected pituitary apoplexy.",
+        "Pursuing lumbar puncture for suspected meningitis before addressing neuroimaging findings of an intracranial mass lesion and initiating stress-dose corticosteroids in a patient with urosepsis and pituitary apoplexy."
+      ],
+      "related_keywords": [
+        "Pituitary apoplexy",
+        "Secondary adrenal insufficiency",
+        "Stress-dose hydrocortisone",
+        "Bitemporal hemianopia",
+        "Endoscopic transsphenoidal surgery"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-052",
+    "case_code": "NC-2026-052",
+    "title": "Acute Visual Loss and Headache Following Anticoagulation Reversal",
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Neuro-Ophthalmology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-17",
+    "status": "approved",
+    "author_credit": "Frontiers in neurology • PMC13469638",
+    "source_journal": {
+      "name": "Frontiers in neurology",
+      "short_name": "Frontiers in neurology",
+      "doi_url": "https://doi.org/10.3389/fneur.2026.1922229",
+      "pmcid": "PMC13469638",
+      "pmid": "42597845",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "69-year-old male",
+      "chief_complaint": "New-onset vision loss and headache",
+      "history_of_present_illness": "A 69-year-old male with atrial fibrillation and a CHA2DS2-VASc score of 7 underwent elective colonoscopy with polypectomy, for which chronic apixaban therapy was temporarily interrupted. Following the procedure, he developed severe gastrointestinal hemorrhage from the polypectomy site requiring endoscopic placement of a vascular clip and administration of andexanet alfa for factor Xa inhibitor reversal. Shortly after administration of the reversal agent, he experienced the acute onset of a severe headache, dizziness, and visual disturbance, prompting urgent neurological evaluation.",
+      "past_medical_history": "Diastolic heart failure, hypertension, obstructive sleep apnea, diabetes mellitus, angina, and hypercholesterolemia.",
+      "vitals": {
+        "bp": "134/82 mmHg",
+        "hr": "76 bpm, irregularly irregular",
+        "rr": "16 /min",
+        "temp": "36.7 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "Visual acuity was 20/25 in the right eye and 20/40 in the left eye. Confrontation visual field testing revealed an isolated left complete homonymous hemianopia. Ishihara color vision testing was normal, and extraocular movements were intact without nystagmus. Motor, sensory, and coordination examinations were entirely normal.",
+      "key_labs_csf": "Hemoglobin level was 9.2 g/dL following post-procedural bleeding; coagulation testing confirmed normalization of anti-factor Xa activity after andexanet alfa administration.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (DWI)",
+          "sequence_badge": "Figure 1 • Frontiers in neurology (PMC13469638)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13469638_fig1.jpg",
+          "pmcid": "PMC13469638",
+          "doi_url": "https://doi.org/10.3389/fneur.2026.1922229",
+          "caption": "Axial diffusion-weighted magnetic resonance imaging (DWI) demonstrating an acute ischemic infarction involving the right occipital lobe within the posterior cerebral artery territory. The two slices demonstrate the extent of the infarction.",
+          "findings_summary": "Demonstrates a focal area of restricted diffusion with corresponding apparent diffusion coefficient (ADC) hypointensity in the right medial occipital cortex, along with chronic small-vessel signal changes in the basal ganglia, pons, and left thalamus."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "What is the most likely cause of this patient's acute neurological presentation?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Acute right posterior cerebral artery ischemic stroke secondary to a prothrombotic state induced by anticoagulation reversal",
+          "peer_percentage": 72,
+          "rationale": "Correct! The patient developed an acute right posterior cerebral artery ischemic stroke, manifesting as an isolated left complete homonymous hemianopia with corresponding right medial occipital restricted diffusion, precipitated by andexanet alfa reversal in a high-risk patient with atrial fibrillation."
+        },
+        {
+          "id": "B",
+          "text": "Posterior reversible encephalopathy syndrome (PRES) secondary to acute hemodynamic shifts and post-procedural anemia",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Although PRES can cause acute headache and visual disturbances, it typically manifests with bilateral, symmetric subcortical vasogenic edema rather than isolated unilateral cortical restricted diffusion, and the patient was normotensive at presentation."
+        },
+        {
+          "id": "C",
+          "text": "Cerebral venous sinus thrombosis (CVST) with right occipital venous congestion following hemostatic reversal",
+          "peer_percentage": 9,
+          "rationale": "Incorrect. While CVST is a prothrombotic complication that can present with severe headache and focal deficits, venous parenchymal lesions typically cross arterial boundaries and show prominent vasogenic edema or hemorrhage rather than a discrete medial occipital arterial-territory diffusion abnormality."
+        },
+        {
+          "id": "D",
+          "text": "Hypoperfusion-induced watershed ischemia secondary to acute gastrointestinal hemorrhage and anemia",
+          "peer_percentage": 7,
+          "rationale": "Incorrect. Hemodynamic watershed ischemia typically affects the borderzones between major arterial territories (such as the parieto-occipital junction, often bilaterally) in the setting of sustained systemic hypotension, which was absent here."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Acute right posterior cerebral artery ischemic stroke following andexanet alfa reversal of apixaban",
+      "clinical_discussion": "The differential diagnosis for acute-onset headache and visual disturbance following systemic hemorrhage and reversal therapy encompasses several serious neurological conditions. Mimics such as posterior reversible encephalopathy syndrome (PRES), cerebral venous sinus thrombosis (CVST), and hemodynamic watershed ischemia were initially considered given the recent hemodynamic shifts, acute anemia, and prothrombotic interventions. However, these entities typically present with distinct neuroimaging features—such as bilateral symmetric vasogenic edema for PRES or arterial borderzone infarction patterns for watershed ischemia—which were absent on this patient's evaluation.\n\nBrain MRI provided the critical diagnostic inflection point by revealing a focal area of restricted diffusion localized strictly to the right medial occipital cortex within the posterior cerebral artery (PCA) territory. This imaging pattern confirmed an acute arterial ischemic stroke rather than a venous or metabolic lesion. The underlying pathophysiology relates to the rapid pharmacologic neutralization of factor Xa inhibitors by andexanet alfa, which not only restores a high-risk patient's baseline thromboembolic susceptibility—underscored by a CHA2DS2-VASc score of 7—but may also induce a transient prothrombotic surge via tissue factor pathway inhibitor binding and accelerated thrombin generation.\n\nManagement of such acute complications requires delicate multidisciplinary coordination to balance recurrent bleeding risks against life-threatening thrombotic events. Clinicians administering reversal agents to high-risk vascular patients must remain vigilant for subtle focal neurological deficits, maintain a low threshold for urgent neuroimaging, and carefully time the reinitiation of antithrombotic therapy.",
+      "teaching_points": [
+        "Acute posterior circulation ischemic stroke may present solely with isolated focal neuro-ophthalmic signs, such as homonymous hemianopia, without concurrent motor or sensory deficits.",
+        "Andexanet alfa effectively reverses factor Xa inhibitors during major bleeding episodes but can precipitate a transient prothrombotic state that exceeds a patient's baseline thromboembolic risk.",
+        "Standard clinical risk stratification tools like CHA2DS2-VASc and HAS-BLED do not account for acute, pharmacologically induced perturbations in the coagulation cascade.",
+        "Clinicians should maintain a low threshold for urgent brain MRI with diffusion-weighted imaging in high-risk vascular patients who develop acute neurological symptoms after reversal therapy."
+      ],
+      "clinical_pitfalls": [
+        "Attributing acute-onset visual field defects after endoscopic hemorrhage solely to acute anemia, procedural stress, or non-vascular etiologies without performing detailed visual field testing and neuroimaging.",
+        "Failing to anticipate the rebound prothrombotic window following direct oral anticoagulant reversal with andexanet alfa in patients with elevated baseline stroke risk."
+      ],
+      "related_keywords": [
+        "Homonymous hemianopia",
+        "Andexanet alfa",
+        "Apixaban reversal",
+        "Posterior cerebral artery stroke",
+        "CHA2DS2-VASc score"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-049",
     "case_code": "NC-2026-049",
     "title": "Thunderclap Headache and Progressive Encephalopathy Following Upper Respiratory Infection",
