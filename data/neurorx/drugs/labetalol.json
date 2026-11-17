@@ -200,7 +200,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "12357c34e37bf53ca006de61a1c942b0eec1b954229f83d0723556b198ff1815"
+    "content_hash": "cecf786c33060d3b3b57263186eb09b1fcc8347c7664401a98bb6d17998058b5"
   },
   "adverse_effects": {
     "most_common": {
@@ -274,7 +274,7 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "First-line oral and IV antihypertensive in pregnancy (AHA/ACOG 2026: start 200 mg 2–3 times daily, max 2,400 mg/day, titrate every 2–3 days toward goal <140/90 mmHg). UGT-mediated clearance increases during pregnancy; monitor fetal growth and newborns for transient hypoglycemia or bradycardia.",
+      "value": "UGT-mediated clearance increases during pregnancy; monitor fetal growth and observe newborns for transient hypoglycemia or bradycardia.\n• AHA/ACOG Maternal Stroke Statement (2026) & ACOG/ESC Guidelines: First-line oral and IV antihypertensive in pregnancy (start 200 mg 2–3 times daily, max 2,400 mg/day, titrate every 2–3 days toward goal <140/90 mmHg).",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -305,7 +305,7 @@
       }
     ],
     "postpartum": {
-      "value": "First-line postpartum antihypertensive (AHA/ACOG 2026: start 200 mg 2–3 times daily, max 2,400 mg/day, titrate every 2–3 days). Adjust carefully over days 3–6 when postpartum hypertension typically peaks, and taper downward as blood pressure stabilizes.",
+      "value": "Adjust carefully over days 3–6 when postpartum hypertension typically peaks, and taper downward as blood pressure stabilizes.\n• AHA/ACOG Maternal Stroke Statement (2026): First-line postpartum antihypertensive (start 200 mg 2–3 times daily, max 2,400 mg/day, titrate every 2–3 days).",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -320,7 +320,7 @@
       ]
     },
     "lactation_rid": {
-      "value": "0.04% to 0.6% (LactMed); 3.6% (AHA/ACOG 2026 Table 2)",
+      "value": "0.04% to 0.6% (LactMed)\n• AHA/ACOG Maternal Stroke Statement (2026): 3.6%",
       "refs": [
         {
           "source_id": "lactmed-wave3",

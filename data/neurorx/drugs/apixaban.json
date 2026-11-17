@@ -280,7 +280,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "ed27060ea69e61521b0c69c441d525d679601dc65b5ca58861eb956818522b3d"
+    "content_hash": "42d36cd4bfbb3ef282742ea5f262e036dcc61aa4fe2cb9546c420f7df79c050d"
   },
   "adverse_effects": {
     "most_common": {
@@ -393,7 +393,7 @@
       "note": "Not clinically applicable"
     },
     "contraception": {
-      "value": "Does not reduce hormonal contraceptive efficacy; ACOG PB 196 recommends transitioning from DOACs to LMWH prepregnancy or as soon as possible during pregnancy.",
+      "value": "Does not reduce hormonal contraceptive efficacy; effective contraception is recommended to permit transition to a pregnancy-safe anticoagulant prior to conception.\n• ACOG Practice Bulletin No. 196 (2018): Transition from DOACs to LMWH prepregnancy or as soon as possible during pregnancy.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -408,7 +408,7 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "Ex vivo human placenta studies demonstrate transplacental transfer with concern for fetal coagulation; ACOG PB 196 advises avoiding DOACs in pregnancy and switching to LMWH prepregnancy or as soon as pregnancy is recognized (hold prophylactic LMWH >=12 h and therapeutic LMWH >=24 h before scheduled delivery/neuraxial anesthesia).",
+      "value": "Ex vivo human placenta studies demonstrate transplacental transfer with concern for fetal blood coagulation.\n• ACOG Practice Bulletin No. 196 (2018): Avoid DOACs in pregnancy; switch to LMWH prepregnancy or as soon as pregnancy is recognized (hold prophylactic LMWH >=12 h and therapeutic LMWH >=24 h before scheduled delivery or neuraxial anesthesia).\n• ESC Guidelines & AHA/ACOG Maternal Stroke Statement (2026): Insufficient safety data in pregnancy; switch immediately to LMWH upon pregnancy recognition.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -429,7 +429,7 @@
     },
     "mcm": [],
     "postpartum": {
-      "value": "Per ACOG PB 196, DOACs may be considered for >6 weeks postpartum anticoagulation ONLY if not breastfeeding (restart no sooner than 4–6 h after vaginal delivery or 6–12 h after cesarean delivery once hemostasis is secure); use LMWH or warfarin if breastfeeding.",
+      "value": "• ACOG Practice Bulletin No. 196 (2018): For >6 weeks postpartum anticoagulation, DOACs may be considered ONLY if not breastfeeding (restart no sooner than 4–6 h after vaginal delivery or 6–12 h after cesarean delivery once hemostasis is secure); use LMWH or warfarin if breastfeeding.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -454,7 +454,7 @@
       ]
     },
     "lactation_summary": {
-      "value": "Concentrates in human milk (RID 12%–20%) with detectable milk transfer and theoretical infant bleeding risk; ACOG PB 196 advises avoiding DOACs during lactation (warfarin, LMWH, or UFH is preferred).",
+      "value": "Concentrates in human milk (RID 12%–20%) with theoretical infant bleeding risk.\n• ACOG Practice Bulletin No. 196 (2018) & AHA/ACOG Maternal Stroke Statement (2026): Avoid apixaban during breastfeeding due to detectable milk transfer and insufficient infant safety data; warfarin, LMWH, or UFH is preferred.",
       "refs": [
         {
           "source_id": "lactmed-wave3",

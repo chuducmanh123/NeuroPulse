@@ -323,7 +323,7 @@
     },
     "mcm": [],
     "postpartum": {
-      "value": "Alternative postpartum agent (AHA/ACOG 2026: start 2.5 mg daily, max 20 mg/day, titrate every 5–7 days). Reduce pregnancy-escalated doses postpartum and monitor newborns exposed late in pregnancy.",
+      "value": "Reduce pregnancy-escalated doses postpartum and monitor newborns exposed in late pregnancy for bradycardia or hypoglycemia.\n• AHA/ACOG Maternal Stroke Statement (2026): Alternative postpartum agent (start 2.5 mg daily, max 20 mg/day, titrate every 5–7 days).",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -367,6 +367,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "9ab947ba7c0d878ec96ad272625adfca65c4857193095d09ec47b0a7be2af49b"
+    "content_hash": "b5d38f6847913ceff9bddf3aa83eaad0bf7608ab4ff39670882a6df324c249c8"
   }
 }

@@ -523,7 +523,7 @@
       }
     ],
     "postpartum": {
-      "value": "Contraindicated in pregnancy; postpartum alternative agent (AHA/ACOG 2026: 2.5–40 mg/day, titrate every 5–7 days) with limited lactation safety data—prefer labetalol, nifedipine, or enalapril if breastfeeding.",
+      "value": "Contraindicated in pregnancy; monitor postpartum blood pressure before restarting antihypertensives.\n• AHA/ACOG Maternal Stroke Statement (2026): Alternative postpartum agent (2.5–40 mg/day, titrate every 5–7 days) with limited lactation safety data—prefer labetalol, nifedipine, or enalapril if breastfeeding.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -567,6 +567,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "c85512468c68b2c269cfa127abec03cf474c6c6fe7c981709a40ba535f310b76"
+    "content_hash": "1bef339bf637cf376810dcf07023bece2bd94f891003facf983dfd00f3ff4dbf"
   }
 }

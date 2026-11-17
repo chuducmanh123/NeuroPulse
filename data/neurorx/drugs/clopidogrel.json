@@ -231,7 +231,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "74a259a2ce18f57455fbb27a6236f80084b4d761068ce7df7e04b0b0543d3016"
+    "content_hash": "e87cf3e12621d4fc4c046bff5bf0e9c8b7d23c7169fce102ebb7b04c67efbad0"
   },
   "adverse_effects": {
     "most_common": {
@@ -355,7 +355,7 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "Use 75 mg daily for shortest duration necessary when stenting requires dual/single antiplatelet therapy (AHA/ACOG 2026: limited human data; stop 5–7 days before regional/neuraxial anesthesia).",
+      "value": "Limited human pregnancy data; reserve for essential coronary or carotid/intracranial stent indications.\n• AHA/ACOG Maternal Stroke Statement (2026): Use 75 mg daily for the shortest duration necessary; stop 5–7 days before regional/neuraxial anesthesia or delivery.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -376,7 +376,7 @@
     },
     "mcm": [],
     "postpartum": {
-      "value": "May be resumed immediately after delivery/regional anesthesia (no loading dose) unless high bleeding risk (AHA/ACOG 2026 Table 2).",
+      "value": "• AHA/ACOG Maternal Stroke Statement (2026): May be resumed immediately after delivery or regional anesthesia (no loading dose) unless high bleeding risk.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",

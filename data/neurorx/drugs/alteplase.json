@@ -195,7 +195,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "9e4a7dcba40e9571f3f5ac2e3a085d706babad32709ad22631de7affc4ca31b4"
+    "content_hash": "456db4043fdef530d6d430ca07c6c9674b84bb33ab49cfe3a8c11fb9205610de"
   },
   "enzyme_profile": {
     "refs": [
@@ -282,7 +282,7 @@
       "note": "Not clinically applicable"
     },
     "pregnancy_pk": {
-      "value": "Alteplase and tenecteplase do not cross the placenta (AHA/ACOG 2026: US guidelines support IV alteplase in pregnancy when benefits outweigh uterine bleeding risks; tenecteplase pregnancy data remain limited).",
+      "value": "Large ~59 kDa recombinant protein that does not cross the human placenta.\n• AHA/ACOG Maternal Stroke Statement (2026): US guidelines support IV alteplase during pregnancy when potential benefits outweigh uterine bleeding risks; case reports suggest good fetal outcomes, though tenecteplase pregnancy data remain limited.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -298,7 +298,7 @@
     },
     "mcm": [],
     "postpartum": {
-      "value": "Early postpartum thrombolysis decisions must be individualized, especially after recent cesarean delivery or neuraxial anesthesia due to hemorrhage risk (AHA/ACOG 2026).",
+      "value": "• AHA/ACOG Maternal Stroke Statement (2026): Early postpartum thrombolysis decisions should be individualized, especially in patients with recent cesarean delivery or neuraxial anesthesia due to bleeding risk.",
       "refs": [
         {
           "source_id": "aha-acog-2026-maternal-stroke",

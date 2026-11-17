@@ -182,7 +182,7 @@ export function DrugAccordions({
                       </span>
                       <SourcePopover refs={rep.folic_acid?.refs} sources={sources} darkMode={darkMode} />
                     </div>
-                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
                       {renderReproFieldValue(rep.folic_acid)}
                     </p>
                   </div>
@@ -194,7 +194,7 @@ export function DrugAccordions({
                       </span>
                       <SourcePopover refs={rep.contraception?.refs} sources={sources} darkMode={darkMode} />
                     </div>
-                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
                       {renderReproFieldValue(rep.contraception)}
                     </p>
                   </div>
@@ -232,7 +232,7 @@ export function DrugAccordions({
                       </span>
                       <SourcePopover refs={rep.pregnancy_pk?.refs} sources={sources} darkMode={darkMode} />
                     </div>
-                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
                       {renderReproFieldValue(rep.pregnancy_pk)}
                     </p>
                   </div>
@@ -285,7 +285,7 @@ export function DrugAccordions({
                     </span>
                     <SourcePopover refs={rep.postpartum?.refs} sources={sources} darkMode={darkMode} />
                   </div>
-                  <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                  <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
                     {renderReproFieldValue(rep.postpartum, "No specific postpartum dose reduction schedule in sources")}
                   </p>
                 </div>
@@ -304,7 +304,7 @@ export function DrugAccordions({
                       </span>
                       <SourcePopover refs={rep.lactation_rid?.refs} sources={sources} darkMode={darkMode} />
                     </div>
-                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
                       {renderReproFieldValue(rep.lactation_rid, "No RID percentage reported in sources")}
                     </p>
                   </div>
@@ -316,7 +316,7 @@ export function DrugAccordions({
                       </span>
                       <SourcePopover refs={rep.lactation_summary?.refs} sources={sources} darkMode={darkMode} />
                     </div>
-                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
                       {renderReproFieldValue(rep.lactation_summary, "No lactation summary in sources")}
                     </p>
                   </div>

@@ -282,7 +282,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "2b2680c4736b8049920b1705dc602b85f39bf822b5a1d1fd41b7aed4d5647301"
+    "content_hash": "e7c36b1479397823efad606fcc8c13237c216045f208d407d73508ce98252820"
   },
   "adverse_effects": {
     "most_common": {
@@ -344,7 +344,7 @@
       "note": "Not clinically applicable"
     },
     "pregnancy_pk": {
-      "value": "Crosses the placenta slowly in small physiological amounts; per ACOG PB 196, if delivery unexpectedly occurs while a mother is receiving warfarin, cesarean delivery and neonatal administration of vitamin K (phytonadione) plus fresh frozen plasma may be required.",
+      "value": "Crosses the placenta slowly in small physiological amounts.\n• ACOG Practice Bulletin No. 196 (2018): If delivery unexpectedly occurs while a mother is receiving warfarin, cesarean delivery and neonatal administration of vitamin K (phytonadione) plus fresh frozen plasma may be required.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",

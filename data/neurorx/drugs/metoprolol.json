@@ -412,7 +412,7 @@
       }
     ],
     "postpartum": {
-      "value": "Alternative postpartum agent (AHA/ACOG 2026: metoprolol tartrate start 12.5 mg twice daily, max 200 mg twice daily, titrate every 2–3 days). Reduce pregnancy-escalated doses promptly postpartum as CYP2D6 normalizes.",
+      "value": "CYP2D6 activity normalizes quickly after delivery; reduce pregnancy-escalated doses promptly postpartum to prevent maternal bradycardia and hypotension.\n• AHA/ACOG Maternal Stroke Statement (2026): Alternative postpartum agent (metoprolol tartrate start 12.5 mg twice daily, max 200 mg twice daily, titrate every 2–3 days).",
       "refs": [
         {
           "source_id": "neuro-repro-wave2-guidelines",
@@ -461,6 +461,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "9b3b4eed7a6da28dc58c8df169ca385dfdfea710758a61035783313fb51d4993"
+    "content_hash": "9925b5f3fdc4a83713b484b33e50542146d8ed752367d1abf24328a227b3ae01"
   }
 }

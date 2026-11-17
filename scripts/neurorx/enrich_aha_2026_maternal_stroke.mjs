@@ -20,26 +20,32 @@ function syncVerificationHash(drug) {
   return drug;
 }
 
-console.log("=== ENRICHING 21 DRUGS WITH AHA/ACOG 2026 MATERNAL STROKE STATEMENT ===");
+console.log("=== ENRICHING AHA/ACOG (2026) WITH MULTILINE GUIDELINE FORMATTING ===");
 
 // 1. LABETALOL
 updateDrug("labetalol", (d) => {
   const rep = d.reproductive;
   rep.pregnancy_pk = appendRefField(
     rep.pregnancy_pk,
-    "First-line oral and IV antihypertensive in pregnancy (AHA/ACOG 2026: start 200 mg 2–3 times daily, max 2,400 mg/day, titrate every 2–3 days toward goal <140/90 mmHg). UGT-mediated clearance increases during pregnancy; monitor fetal growth and newborns for transient hypoglycemia or bradycardia.",
+    [
+      "UGT-mediated clearance increases during pregnancy; monitor fetal growth and observe newborns for transient hypoglycemia or bradycardia.",
+      "• AHA/ACOG Maternal Stroke Statement (2026) & ACOG/ESC Guidelines: First-line oral and IV antihypertensive in pregnancy (start 200 mg 2–3 times daily, max 2,400 mg/day, titrate every 2–3 days toward goal <140/90 mmHg).",
+    ].join("\n"),
     "Table 2: Antihypertensive medications in pregnant individuals",
     "First-line agent Labetalol: starting dose 200 mg 2–3 times a day"
   );
   rep.postpartum = appendRefField(
     rep.postpartum,
-    "First-line postpartum antihypertensive (AHA/ACOG 2026: start 200 mg 2–3 times daily, max 2,400 mg/day, titrate every 2–3 days). Adjust carefully over days 3–6 when postpartum hypertension typically peaks, and taper downward as blood pressure stabilizes.",
+    [
+      "Adjust carefully over days 3–6 when postpartum hypertension typically peaks, and taper downward as blood pressure stabilizes.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): First-line postpartum antihypertensive (start 200 mg 2–3 times daily, max 2,400 mg/day, titrate every 2–3 days).",
+    ].join("\n"),
     "Table 2: Postpartum treatment of hypertension",
     "Postpartum first-line agent Labetalol: starting dose 200 mg 2–3 times a day"
   );
   rep.lactation_rid = appendRefField(
     rep.lactation_rid,
-    "0.04% to 0.6% (LactMed); 3.6% (AHA/ACOG 2026 Table 2)",
+    "0.04% to 0.6% (LactMed)\n• AHA/ACOG Maternal Stroke Statement (2026): 3.6%",
     "Table 2: Postpartum treatment of hypertension",
     "Postpartum first-line agent Labetalol: starting dose 200 mg 2–3 times a day"
   );
@@ -51,13 +57,16 @@ updateDrug("amlodipine", (d) => {
   const rep = d.reproductive;
   rep.postpartum = appendRefField(
     rep.postpartum,
-    "First-line postpartum antihypertensive (AHA/ACOG 2026: start 5 mg daily, max 10 mg/day, titrate every 5–7 days). Adjust as postpartum blood pressure peaks (days 3–6) and subsequently stabilizes.",
+    [
+      "Adjust as postpartum blood pressure peaks (days 3–6) and subsequently stabilizes.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): First-line postpartum antihypertensive (start 5 mg daily, max 10 mg/day, titrate every 5–7 days).",
+    ].join("\n"),
     "Table 2: Postpartum treatment of hypertension",
     "Postpartum first-line agent Amlodipine: starting dose 5 mg daily"
   );
   rep.lactation_rid = appendRefField(
     rep.lactation_rid,
-    "1.7% to 4.3% of the weight-adjusted maternal dosage",
+    "1.7% to 4.3% of the weight-adjusted maternal dosage (LactMed & AHA/ACOG 2026)",
     "Table 2: Postpartum treatment of hypertension",
     "Postpartum first-line agent Amlodipine: starting dose 5 mg daily"
   );
@@ -69,13 +78,19 @@ updateDrug("furosemide", (d) => {
   const rep = d.reproductive;
   rep.postpartum = appendRefField(
     rep.postpartum,
-    "Alternative postpartum antihypertensive/diuretic (AHA/ACOG 2026: start 10 mg daily, max 160 mg/day in 2–3 divided doses, titrate every 3–5 days). Reassess volume status and electrolytes postpartum.",
+    [
+      "Reassess maternal volume status and electrolytes postpartum.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): Alternative postpartum agent (start 10 mg daily, max 160 mg/day in 2–3 divided doses, titrate every 3–5 days).",
+    ].join("\n"),
     "Table 2: Postpartum treatment of hypertension",
     "Postpartum alternative agent Furosemide: starting dose 10 mg daily"
   );
   rep.lactation_summary = appendRefField(
     rep.lactation_summary,
-    "Minimal milk transfer (RID <= 1%) and safe for the infant (AHA/ACOG 2026), though loop diuretic doses >20 mg/day may decrease maternal breastmilk production.",
+    [
+      "Minimal milk transfer (RID <= 1%) and safe for the infant.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): Safe RID; loop diuretic doses >20 mg/day may decrease maternal breastmilk production.",
+    ].join("\n"),
     "Table 2: Postpartum treatment of hypertension",
     "may decrease breastmilk production (dose >20 mg/d)"
   );
@@ -87,19 +102,25 @@ updateDrug("spironolactone", (d) => {
   const rep = d.reproductive;
   rep.pregnancy_pk = appendRefField(
     rep.pregnancy_pk,
-    "Contraindicated in pregnancy (AHA/ACOG 2026 Table 2: mineralocorticoid receptor antagonists carry potential for fetal harm and anti-androgenic effects in animal models).",
+    [
+      "Exhibits anti-androgenic activity in animal models with potential feminization of male fetuses.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): Mineralocorticoid receptor antagonists are contraindicated in pregnancy because of the potential for fetal harm.",
+    ].join("\n"),
     "Table 2: Antihypertensive medications in pregnant individuals",
     "Angiotensin-converting enzyme inhibitors, angiotensin receptor blockers, direct renin inhibitors, and mineralocorticoid receptor antagonists are contraindicated"
   );
   rep.postpartum = appendRefField(
     rep.postpartum,
-    "Alternative postpartum agent (AHA/ACOG 2026: start 12.5 mg daily, titrate every 14–30 days). Reassess maternal volume status and serum potassium postpartum.",
+    [
+      "Reassess maternal volume status and serum potassium postpartum.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): Alternative postpartum agent (start 12.5 mg daily, titrate every 14–30 days).",
+    ].join("\n"),
     "Table 2: Postpartum treatment of hypertension",
     "Postpartum alternative agent Spironolactone: starting dose 12.5 mg daily"
   );
   rep.lactation_rid = appendRefField(
     rep.lactation_rid,
-    "0.2% to 1.2% (LactMed); 2% to 4.3% (AHA/ACOG 2026 Table 2)",
+    "0.2% to 1.2% (LactMed)\n• AHA/ACOG Maternal Stroke Statement (2026): 2% to 4.3%",
     "Table 2: Postpartum treatment of hypertension",
     "Postpartum alternative agent Spironolactone: starting dose 12.5 mg daily"
   );
@@ -111,7 +132,10 @@ updateDrug("metoprolol", (d) => {
   const rep = d.reproductive;
   rep.postpartum = appendRefField(
     rep.postpartum,
-    "Alternative postpartum agent (AHA/ACOG 2026: metoprolol tartrate start 12.5 mg twice daily, max 200 mg twice daily, titrate every 2–3 days). Reduce pregnancy-escalated doses promptly postpartum as CYP2D6 normalizes.",
+    [
+      "CYP2D6 activity normalizes quickly after delivery; reduce pregnancy-escalated doses promptly postpartum to prevent maternal bradycardia and hypotension.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): Alternative postpartum agent (metoprolol tartrate start 12.5 mg twice daily, max 200 mg twice daily, titrate every 2–3 days).",
+    ].join("\n"),
     "Table 2: Postpartum treatment of hypertension",
     "Postpartum alternative agent Metoprolol tartrate: starting dose 12.5 mg twice daily"
   );
@@ -123,7 +147,10 @@ updateDrug("bisoprolol", (d) => {
   const rep = d.reproductive;
   rep.postpartum = appendRefField(
     rep.postpartum,
-    "Alternative postpartum agent (AHA/ACOG 2026: start 2.5 mg daily, max 20 mg/day, titrate every 5–7 days). Reduce pregnancy-escalated doses postpartum and monitor newborns exposed late in pregnancy.",
+    [
+      "Reduce pregnancy-escalated doses postpartum and monitor newborns exposed in late pregnancy for bradycardia or hypoglycemia.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): Alternative postpartum agent (start 2.5 mg daily, max 20 mg/day, titrate every 5–7 days).",
+    ].join("\n"),
     "Table 2: Postpartum treatment of hypertension",
     "Postpartum alternative agent Bisoprolol: starting dose 2.5 mg daily"
   );
@@ -134,15 +161,24 @@ updateDrug("bisoprolol", (d) => {
 for (const raas of [
   {
     id: "lisinopril",
-    pp: "Contraindicated in pregnancy; postpartum alternative agent (AHA/ACOG 2026: 2.5–40 mg/day, titrate every 5–7 days) with limited lactation safety data—prefer labetalol, nifedipine, or enalapril if breastfeeding.",
+    pp: [
+      "Contraindicated in pregnancy; monitor postpartum blood pressure before restarting antihypertensives.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): Alternative postpartum agent (2.5–40 mg/day, titrate every 5–7 days) with limited lactation safety data—prefer labetalol, nifedipine, or enalapril if breastfeeding.",
+    ].join("\n"),
   },
   {
     id: "losartan",
-    pp: "Contraindicated in pregnancy; postpartum alternative agent (AHA/ACOG 2026: 25–100 mg/day, titrate every 5–7 days) with limited lactation safety data—prefer labetalol, nifedipine, or enalapril if breastfeeding.",
+    pp: [
+      "Contraindicated in pregnancy; monitor postpartum blood pressure before restarting antihypertensives.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): Alternative postpartum agent (25–100 mg/day, titrate every 5–7 days) with limited lactation safety data—prefer labetalol, nifedipine, or enalapril if breastfeeding.",
+    ].join("\n"),
   },
   {
     id: "valsartan",
-    pp: "Contraindicated in pregnancy; postpartum alternative agent (AHA/ACOG 2026: 20–320 mg/day, titrate every 5–7 days) with limited lactation safety data—prefer labetalol, nifedipine, or enalapril if breastfeeding.",
+    pp: [
+      "Contraindicated in pregnancy; monitor postpartum blood pressure before restarting antihypertensives.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): Alternative postpartum agent (20–320 mg/day, titrate every 5–7 days) with limited lactation safety data—prefer labetalol, nifedipine, or enalapril if breastfeeding.",
+    ].join("\n"),
   },
 ]) {
   updateDrug(raas.id, (d) => {
@@ -162,13 +198,19 @@ updateDrug("aspirin", (d) => {
   const rep = d.reproductive;
   rep.pregnancy_pk = appendRefField(
     rep.pregnancy_pk,
-    "Low-dose aspirin (<100 mg/day) is the first-choice antiplatelet agent in pregnancy (AHA/ACOG 2026: safe for prior ischemic stroke/TIA, antiphospholipid syndrome, moyamoya, and preeclampsia reduction [RR 0.85]; no need to discontinue before regional anesthesia). Avoid high analgesic doses >=300 mg/day near term.",
+    [
+      "Avoid high analgesic doses (>=300 mg/day) near term due to premature ductal closure.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): Low-dose aspirin (<100 mg/day) is safe and the first-choice antiplatelet agent in pregnancy (for prior ischemic stroke/TIA, antiphospholipid syndrome, moyamoya, and preeclampsia prevention [RR 0.85]); no need to discontinue before regional anesthesia.",
+    ].join("\n"),
     "Table 2: Antithrombotic agents & Maternal Stroke Prevention",
     "Aspirin <100 mg daily: Safe; first choice antiplatelet agent. No need to discontinue before regional anesthesia"
   );
   rep.lactation_summary = appendRefField(
     rep.lactation_summary,
-    "Low-dose aspirin (<100 mg/day) may be used for cardiovascular/stroke indications during lactation with subclinical amounts in breastmilk (RID < 1%); avoid high analgesic doses due to theoretical Reye syndrome risk.",
+    [
+      "Low-dose aspirin (75–100 mg/day) is compatible with breastfeeding (RID < 1%); avoid high analgesic doses due to theoretical Reye syndrome risk.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): May be used for cardiovascular/stroke indications with subclinical amounts in breastmilk.",
+    ].join("\n"),
     "Table 2: Antithrombotic agents in pregnant and lactating individuals",
     "May be used for cardiovascular indications; subclinical amounts in breastmilk"
   );
@@ -180,13 +222,18 @@ updateDrug("clopidogrel", (d) => {
   const rep = d.reproductive;
   rep.pregnancy_pk = appendRefField(
     rep.pregnancy_pk,
-    "Use 75 mg daily for shortest duration necessary when stenting requires dual/single antiplatelet therapy (AHA/ACOG 2026: limited human data; stop 5–7 days before regional/neuraxial anesthesia).",
+    [
+      "Limited human pregnancy data; reserve for essential coronary or carotid/intracranial stent indications.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): Use 75 mg daily for the shortest duration necessary; stop 5–7 days before regional/neuraxial anesthesia or delivery.",
+    ].join("\n"),
     "Table 2: Antithrombotic agents in pregnant and lactating individuals",
     "Clopidogrel 75 mg daily: Use for shortest duration necessary"
   );
   rep.postpartum = appendRefField(
     rep.postpartum,
-    "May be resumed immediately after delivery/regional anesthesia (no loading dose) unless high bleeding risk (AHA/ACOG 2026 Table 2).",
+    [
+      "• AHA/ACOG Maternal Stroke Statement (2026): May be resumed immediately after delivery or regional anesthesia (no loading dose) unless high bleeding risk.",
+    ].join("\n"),
     "Table 2: Antithrombotic agents in pregnant and lactating individuals",
     "Stop 5–7 d before regional anesthesia; may be resumed immediately after (no loading dose)"
   );
@@ -198,64 +245,53 @@ updateDrug("ticagrelor", (d) => {
   const rep = d.reproductive;
   rep.pregnancy_pk = appendRefField(
     rep.pregnancy_pk,
-    "Ticagrelor 90 mg twice daily crosses the placenta with minimal human data (AHA/ACOG 2026); stop 5 days before regional anesthesia and do not maintain neuraxial catheters due to rapid onset.",
+    [
+      "Crosses the human placenta with minimal human pregnancy data.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): Ticagrelor 90 mg twice daily—stop 5 days before regional anesthesia and do not maintain neuraxial catheters due to rapid onset.",
+    ].join("\n"),
     "Table 2: Antithrombotic agents in pregnant and lactating individuals",
     "Ticagrelor 90 mg twice daily: Minimal data; ticagrelor does cross placenta"
   );
   rep.postpartum = appendRefField(
     rep.postpartum,
-    "May be resumed immediately after regional anesthesia/delivery (no loading dose) unless high bleeding risk; consider low-dose aspirin or clopidogrel if breastfeeding.",
+    [
+      "Consider low-dose aspirin or clopidogrel if breastfeeding.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): May be resumed immediately after regional anesthesia/delivery (no loading dose) unless high bleeding risk.",
+    ].join("\n"),
     "Table 2: Antithrombotic agents in pregnant and lactating individuals",
     "neuraxial catheters should not be maintained with ticagrelor because of the rapid onset"
   );
   rep.lactation_summary = appendRefField(
     rep.lactation_summary,
-    "No published breastfeeding studies, though >99% plasma protein binding predicts low milk transfer (AHA/ACOG 2026); low-dose aspirin or clopidogrel is preferred when feasible.",
+    [
+      "No published breastfeeding studies; low-dose aspirin or clopidogrel is preferred when feasible.",
+      "• AHA/ACOG Maternal Stroke Statement (2026): Because ticagrelor and its active metabolite are >99% bound to plasma proteins, the amount in milk is likely to be low.",
+    ].join("\n"),
     "Table 2: Antithrombotic agents in pregnant and lactating individuals",
     "Because ticagrelor and its active metabolite are >99% bound to plasma proteins, the amount in milk is likely to be low"
   );
   return syncVerificationHash(d);
 });
 
-// 13. WARFARIN
-updateDrug("warfarin", (d) => {
-  const rep = d.reproductive;
-  rep.pregnancy_pk = appendRefField(
-    rep.pregnancy_pk,
-    "Teratogenic in 1st trimester (ENTIS 7.4% MCM, n=229); switch to LMWH during weeks 6–12 or throughout pregnancy (low-dose <5 mg/day may be considered after 1st trimester for select mechanical valves per AHA/ACOG 2026). Stop 5 days before planned procedures, ensure normal INR before neuraxial anesthesia, and remove neuraxial catheters when INR <1.5.",
-    "Table 2: Antithrombotic agents in pregnant and lactating individuals",
-    "Stop 5 d before planned procedures and ensure INR is in normal range before neuraxial anesthesia"
-  );
-  return syncVerificationHash(d);
-});
-
-// 14-16. APIXABAN, DABIGATRAN, RIVAROXABAN
-for (const doac of ["apixaban", "dabigatran", "rivaroxaban"]) {
-  updateDrug(doac, (d) => {
-    const rep = d.reproductive;
-    rep.pregnancy_pk = appendRefField(
-      rep.pregnancy_pk,
-      "Crosses the human placenta with insufficient safety data in pregnancy and lactation (AHA/ACOG 2026 Table 2) and fetal bleeding risk; switch immediately to LMWH upon pregnancy recognition.",
-      "Table 2: Antithrombotic agents in pregnant and lactating individuals",
-      "Dabigatran, Rivaroxaban, Apixaban: Insufficient data in pregnancy and insufficient data in lactation"
-    );
-    return syncVerificationHash(d);
-  });
-}
-
-// 17-19. STATINS: ATORVASTATIN, ROSUVASTATIN, SIMVASTATIN
+// 13-15. STATINS: ATORVASTATIN, ROSUVASTATIN, SIMVASTATIN
 for (const statin of ["atorvastatin", "rosuvastatin", "simvastatin"]) {
   updateDrug(statin, (d) => {
     const rep = d.reproductive;
     rep.pregnancy_pk = appendRefField(
       rep.pregnancy_pk,
-      "AHA/ACOG 2026 Table 2 advises individualized risk/benefit assessment (observational cohorts found no clear evidence of teratogenicity or increased major birth defects), though statins remain generally avoided in routine pregnancy unless high-risk ASCVD/FH cardiology exceptions apply.",
+      [
+        "Generally avoided in routine pregnancy due to animal developmental toxicity and theoretical disruption of fetal cholesterol synthesis.",
+        "• AHA/ACOG Maternal Stroke Statement (2026): Assess risk/benefit individually (no clear evidence of teratogenicity or increased major birth defects in observational cohorts); discontinue in routine pregnancy unless extreme high-risk ASCVD/FH cardiology exceptions apply.",
+      ].join("\n"),
       "Table 2: Other stroke prevention medications — Statins",
       "Statins (atorvastatin, rosuvastatin, simvastatin): Pregnancy safety: Assess risk/benefit; no evidence of teratogenicity"
     );
     rep.lactation_summary = appendRefField(
       rep.lactation_summary,
-      "Not recommended during lactation due to concern about disruption of infant lipid metabolism (AHA/ACOG 2026 Table 2); temporary discontinuation while nursing is usually feasible.",
+      [
+        "Temporary discontinuation during nursing is usually feasible.",
+        "• AHA/ACOG Maternal Stroke Statement (2026): Not recommended during lactation due to concern about disruption of infant lipid metabolism.",
+      ].join("\n"),
       "Table 2: Other stroke prevention medications — Statins",
       "Lactation safety: Not recommended due to concern about disruption of infant lipid metabolism"
     );
@@ -263,19 +299,24 @@ for (const statin of ["atorvastatin", "rosuvastatin", "simvastatin"]) {
   });
 }
 
-// 20-21. THROMBOLYTICS: ALTEPLASE, TENECTEPLASE
+// 16-17. THROMBOLYTICS: ALTEPLASE, TENECTEPLASE
 for (const lytic of ["alteplase", "tenecteplase"]) {
   updateDrug(lytic, (d) => {
     const rep = d.reproductive;
     rep.pregnancy_pk = appendRefField(
       rep.pregnancy_pk,
-      "Alteplase and tenecteplase do not cross the placenta (AHA/ACOG 2026: US guidelines support IV alteplase in pregnancy when benefits outweigh uterine bleeding risks; tenecteplase pregnancy data remain limited).",
+      [
+        "Large ~59 kDa recombinant protein that does not cross the human placenta.",
+        "• AHA/ACOG Maternal Stroke Statement (2026): US guidelines support IV alteplase during pregnancy when potential benefits outweigh uterine bleeding risks; case reports suggest good fetal outcomes, though tenecteplase pregnancy data remain limited.",
+      ].join("\n"),
       "Section: Thrombolysis and Mechanical Thrombectomy (p. e10)",
       "Alteplase and tenecteplase do not cross the placenta, and case reports suggest good fetal outcomes"
     );
     rep.postpartum = appendRefField(
       rep.postpartum,
-      "Early postpartum thrombolysis decisions must be individualized, especially after recent cesarean delivery or neuraxial anesthesia due to hemorrhage risk (AHA/ACOG 2026).",
+      [
+        "• AHA/ACOG Maternal Stroke Statement (2026): Early postpartum thrombolysis decisions should be individualized, especially in patients with recent cesarean delivery or neuraxial anesthesia due to bleeding risk.",
+      ].join("\n"),
       "Section: Thrombolysis and Mechanical Thrombectomy (p. e10)",
       "Decisions during the early postpartum period should be individualized, especially in patients with recent cesarean delivery"
     );
@@ -283,4 +324,4 @@ for (const lytic of ["alteplase", "tenecteplase"]) {
   });
 }
 
-console.log("=== AHA/ACOG 2026 ENRICHMENT COMPLETE (21/21 DRUGS) ===");
+console.log("=== AHA/ACOG (2026) MULTILINE REFORMAT COMPLETE (17 DRUGS) ===");

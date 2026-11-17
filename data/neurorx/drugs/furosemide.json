@@ -423,7 +423,7 @@
     },
     "mcm": [],
     "postpartum": {
-      "value": "Alternative postpartum antihypertensive/diuretic (AHA/ACOG 2026: start 10 mg daily, max 160 mg/day in 2–3 divided doses, titrate every 3–5 days). Reassess volume status and electrolytes postpartum.",
+      "value": "Reassess maternal volume status and electrolytes postpartum.\n• AHA/ACOG Maternal Stroke Statement (2026): Alternative postpartum agent (start 10 mg daily, max 160 mg/day in 2–3 divided doses, titrate every 3–5 days).",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -448,7 +448,7 @@
       ]
     },
     "lactation_summary": {
-      "value": "Minimal milk transfer (RID <= 1%) and safe for the infant (AHA/ACOG 2026), though loop diuretic doses >20 mg/day may decrease maternal breastmilk production.",
+      "value": "Minimal milk transfer (RID <= 1%) and safe for the infant.\n• AHA/ACOG Maternal Stroke Statement (2026): Safe RID; loop diuretic doses >20 mg/day may decrease maternal breastmilk production.",
       "refs": [
         {
           "source_id": "lactmed-wave3",
@@ -472,6 +472,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "7c3f42d9fdbc65792e4342aaa3e73cae88a5d4ff313ae0c8344d05b24472c689"
+    "content_hash": "36ca661678f4f73693ac68f5cd2b3462c6f17e2b3d3e22c9c2e84165804a1870"
   }
 }

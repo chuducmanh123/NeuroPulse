@@ -199,7 +199,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "f23316d842dca74dcbd5699cff2b8bdff79a6323502acdae14708246be5ae678"
+    "content_hash": "60327bceb625bd73860a75698603c3a40a36ade2b09944b17ba651e560ac6a1a"
   },
   "adverse_effects": {
     "most_common": {
@@ -262,7 +262,7 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "Ticagrelor 90 mg twice daily crosses the placenta with minimal human data (AHA/ACOG 2026); stop 5 days before regional anesthesia and do not maintain neuraxial catheters due to rapid onset.",
+      "value": "Crosses the human placenta with minimal human pregnancy data.\n• AHA/ACOG Maternal Stroke Statement (2026): Ticagrelor 90 mg twice daily—stop 5 days before regional anesthesia and do not maintain neuraxial catheters due to rapid onset.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -278,7 +278,7 @@
     },
     "mcm": [],
     "postpartum": {
-      "value": "May be resumed immediately after regional anesthesia/delivery (no loading dose) unless high bleeding risk; consider low-dose aspirin or clopidogrel if breastfeeding.",
+      "value": "Consider low-dose aspirin or clopidogrel if breastfeeding.\n• AHA/ACOG Maternal Stroke Statement (2026): May be resumed immediately after regional anesthesia/delivery (no loading dose) unless high bleeding risk.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -303,7 +303,7 @@
       ]
     },
     "lactation_summary": {
-      "value": "No published breastfeeding studies, though >99% plasma protein binding predicts low milk transfer (AHA/ACOG 2026); low-dose aspirin or clopidogrel is preferred when feasible.",
+      "value": "No published breastfeeding studies; low-dose aspirin or clopidogrel is preferred when feasible.\n• AHA/ACOG Maternal Stroke Statement (2026): Because ticagrelor and its active metabolite are >99% bound to plasma proteins, the amount in milk is likely to be low.",
       "refs": [
         {
           "source_id": "lactmed-wave3",

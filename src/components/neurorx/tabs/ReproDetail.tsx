@@ -72,7 +72,7 @@ export function ReproDetail({
             Not clinically applicable
           </p>
         ) : (
-          <p className={`text-xs leading-relaxed ${text ? "text-slate-600 dark:text-slate-300" : "text-slate-400 italic"}`}>
+          <p className={`text-xs leading-relaxed whitespace-pre-line ${text ? "text-slate-600 dark:text-slate-300" : "text-slate-400 italic"}`}>
             {text || fallbackText}
           </p>
         )}

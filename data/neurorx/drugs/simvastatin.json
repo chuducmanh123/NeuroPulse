@@ -429,7 +429,7 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "AHA/ACOG 2026 Table 2 advises individualized risk/benefit assessment (observational cohorts found no clear evidence of teratogenicity or increased major birth defects), though statins remain generally avoided in routine pregnancy unless high-risk ASCVD/FH cardiology exceptions apply.",
+      "value": "Generally avoided in routine pregnancy due to animal developmental toxicity and theoretical disruption of fetal cholesterol synthesis.\n• AHA/ACOG Maternal Stroke Statement (2026): Assess risk/benefit individually (no clear evidence of teratogenicity or increased major birth defects in observational cohorts); discontinue in routine pregnancy unless extreme high-risk ASCVD/FH cardiology exceptions apply.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -465,7 +465,7 @@
       ]
     },
     "lactation_summary": {
-      "value": "Not recommended during lactation due to concern about disruption of infant lipid metabolism (AHA/ACOG 2026 Table 2); temporary discontinuation while nursing is usually feasible.",
+      "value": "Temporary discontinuation during nursing is usually feasible.\n• AHA/ACOG Maternal Stroke Statement (2026): Not recommended during lactation due to concern about disruption of infant lipid metabolism.",
       "refs": [
         {
           "source_id": "lactmed-wave3",
@@ -489,6 +489,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "cbcb3753aa189daf4c00fee4a96c938e1e04d62b4db0394dc2c1a2198093d345"
+    "content_hash": "2aead3143e94610af6eacfa5f5adb96ae5c13964fc09d0bf1906d156d33fc20a"
   }
 }

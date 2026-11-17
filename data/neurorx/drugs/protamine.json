@@ -161,7 +161,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "7b38ab26aa7bf2981ecc4b9bb7853e9f93b27d5fea3b5d161b573811ade1be41"
+    "content_hash": "93f91b09be71b339e8851ceddf41d558e43e4f9c15c0c2975814d3932f23e5ad"
   },
   "adverse_effects": {
     "most_common": {
@@ -219,7 +219,7 @@
       "note": "Not clinically applicable"
     },
     "pregnancy_pk": {
-      "value": "Poly-cationic peptide without significant placental transfer; per ACOG PB 196, reverses UFH (or, less predictably, LMWH) with dosing based on heparin type and route. Rarely required in obstetrics and not indicated for prophylactic heparin doses.",
+      "value": "Poly-cationic peptide without significant placental transfer.\n• ACOG Practice Bulletin No. 196 (2018): Protamine sulfate reverses UFH (or, less predictably, LMWH) with dosing based on heparin type and route; reversal is rarely required in obstetrics and is not indicated for prophylactic heparin doses.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",

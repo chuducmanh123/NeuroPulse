@@ -478,7 +478,7 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "Contraindicated in pregnancy (AHA/ACOG 2026 Table 2: mineralocorticoid receptor antagonists carry potential for fetal harm and anti-androgenic effects in animal models).",
+      "value": "Exhibits anti-androgenic activity in animal models with potential feminization of male fetuses.\n• AHA/ACOG Maternal Stroke Statement (2026): Mineralocorticoid receptor antagonists are contraindicated in pregnancy because of the potential for fetal harm.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -494,7 +494,7 @@
     },
     "mcm": [],
     "postpartum": {
-      "value": "Alternative postpartum agent (AHA/ACOG 2026: start 12.5 mg daily, titrate every 14–30 days). Reassess maternal volume status and serum potassium postpartum.",
+      "value": "Reassess maternal volume status and serum potassium postpartum.\n• AHA/ACOG Maternal Stroke Statement (2026): Alternative postpartum agent (start 12.5 mg daily, titrate every 14–30 days).",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -509,7 +509,7 @@
       ]
     },
     "lactation_rid": {
-      "value": "0.2% to 1.2% (LactMed); 2% to 4.3% (AHA/ACOG 2026 Table 2)",
+      "value": "0.2% to 1.2% (LactMed)\n• AHA/ACOG Maternal Stroke Statement (2026): 2% to 4.3%",
       "refs": [
         {
           "source_id": "lactmed-wave3",
@@ -543,6 +543,6 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "abe20f7905294fcf72239358cf09a7e4cee332cf64af7159d535b7e042e73ffe"
+    "content_hash": "5018be1ed59887a0669ed0cfe4d913153afde73ea06bd8865a88f43876b3c280"
   }
 }

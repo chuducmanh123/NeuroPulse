@@ -207,7 +207,7 @@
   "verification": {
     "verified_by": "Admin",
     "verified_at": "2026-11-16",
-    "content_hash": "8812689f163818269087b6b0e87a7be61720576ee99adb0eb58b2ad75d7a72b9"
+    "content_hash": "fed19099cd4297301710d15968ecc49a009faa1371a0c7dfe72cdc7f5bdd8dae"
   },
   "adverse_effects": {
     "most_common": {
@@ -271,7 +271,7 @@
       ]
     },
     "pregnancy_pk": {
-      "value": "Low-dose aspirin (<100 mg/day) is the first-choice antiplatelet agent in pregnancy (AHA/ACOG 2026: safe for prior ischemic stroke/TIA, antiphospholipid syndrome, moyamoya, and preeclampsia reduction [RR 0.85]; no need to discontinue before regional anesthesia). Avoid high analgesic doses >=300 mg/day near term.",
+      "value": "Avoid high analgesic doses (>=300 mg/day) near term due to premature ductal closure.\n• AHA/ACOG Maternal Stroke Statement (2026): Low-dose aspirin (<100 mg/day) is safe and the first-choice antiplatelet agent in pregnancy (for prior ischemic stroke/TIA, antiphospholipid syndrome, moyamoya, and preeclampsia prevention [RR 0.85]); no need to discontinue before regional anesthesia.",
       "refs": [
         {
           "source_id": "neuro-repro-wave3-guidelines",
@@ -317,7 +317,7 @@
       ]
     },
     "lactation_summary": {
-      "value": "Low-dose aspirin (<100 mg/day) may be used for cardiovascular/stroke indications during lactation with subclinical amounts in breastmilk (RID < 1%); avoid high analgesic doses due to theoretical Reye syndrome risk.",
+      "value": "Low-dose aspirin (75–100 mg/day) is compatible with breastfeeding (RID < 1%); avoid high analgesic doses due to theoretical Reye syndrome risk.\n• AHA/ACOG Maternal Stroke Statement (2026): May be used for cardiovascular/stroke indications with subclinical amounts in breastmilk.",
       "refs": [
         {
           "source_id": "lactmed-wave3",
