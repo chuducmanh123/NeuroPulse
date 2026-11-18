@@ -154,31 +154,29 @@ export function LookupTab({
   // Drug Directory List View
   return (
     <div className="space-y-6">
-      {/* 1. Clinical Omnibar */}
-      <Omnibar
-        query={query}
-        onQueryChange={setQuery}
-        parsed={parsed}
-        results={searchResults}
-        onSelectDrug={handleSelectDrug}
-        darkMode={darkMode}
-      />
+      {/* 1. Clinical Omnibar & Subspecialty Filter */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-start gap-3">
+        <div className="flex-1 min-w-0">
+          <Omnibar
+            query={query}
+            onQueryChange={setQuery}
+            parsed={parsed}
+            results={searchResults}
+            onSelectDrug={handleSelectDrug}
+            darkMode={darkMode}
+          />
+        </div>
+        <SubspecialtySelect
+          value={selectedSubspecialty}
+          onChange={setSelectedSubspecialty}
+          drugs={searchResults}
+          darkMode={darkMode}
+          className="w-full sm:w-auto shrink-0 sm:mt-0.5"
+        />
+      </div>
 
       {/* 2. Drug Cards Grid */}
       <div className="space-y-3">
-        <div className="flex flex-wrap items-center justify-between gap-3 px-1">
-          <span className="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400">
-            Available Drugs ({filteredResults.length})
-          </span>
-          <SubspecialtySelect
-            value={selectedSubspecialty}
-            onChange={setSelectedSubspecialty}
-            drugs={searchResults}
-            darkMode={darkMode}
-            className="w-full sm:w-auto"
-          />
-        </div>
-
         {filteredResults.length === 0 ? (
           <div
             className={`p-10 rounded-2xl border text-center ${

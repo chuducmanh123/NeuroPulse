@@ -3,6 +3,14 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import {
+  Building2,
+  ChevronDown,
+  Layers,
+  Radio,
+  Search,
+  X,
+} from "lucide-react";
+import {
   NEUROLOGY_SUBSPECIALTIES,
   SubspecialtyType,
   TIER_CONFIG,
@@ -24,6 +32,7 @@ import {
 } from "../../data/neuroguideMockData";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../../components/ecosystem/AdminButton";
+import { CustomSelect } from "../../components/ecosystem/CustomSelect";
 import { MEDICAL_DISCLAIMER_TEXT } from "../../components/ecosystem/MedicalDisclaimerFooter";
 import { NeuroGuideSyncStatusBadge } from "../../components/neuroguide/sync/NeuroGuideSyncStatusBadge";
 import { useNeuroGuideSync } from "../../hooks/useNeuroGuideSync";
@@ -1116,7 +1125,7 @@ export default function NeuroGuidePage() {
 
           {/* Quick Header Badges & Actions */}
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 self-start sm:self-auto">
-            {isSyncV2 && (
+            {isSyncV2 && isAdminVerified && (
               <NeuroGuideSyncStatusBadge
                 syncStatus={syncState.status}
                 lastSyncAt={syncState.lastSyncAt}
@@ -1162,7 +1171,7 @@ export default function NeuroGuidePage() {
         </header>
 
         {/* =========================================================================
-            NAVIGATION BAR (3 Tabs in user-specified order + Contextual Search)
+            NAVIGATION BAR (3 Tabs in user-specified order)
            ========================================================================= */}
         <nav
           className={`mb-4 sm:mb-6 p-1.5 rounded-xl border flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-1.5 ${
@@ -1170,7 +1179,7 @@ export default function NeuroGuidePage() {
           }`}
         >
           {/* Tab 1: Guidelines | Tab 2: Conferences | Tab 3: Clinical Navigator */}
-          <div className="grid grid-cols-2 gap-1 sm:flex sm:flex-wrap sm:items-center sm:gap-1.5 w-full sm:w-auto">
+          <div className="grid grid-cols-2 gap-1 sm:flex sm:flex-wrap sm:items-center sm:gap-1.5 w-full">
             {navTabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
@@ -1204,100 +1213,82 @@ export default function NeuroGuidePage() {
               );
             })}
           </div>
-
-          {/* Universal Search Input active across Guidelines & Conferences (Hidden in Navigator) */}
-          {activeTab !== "navigator" && (
-            <div className="relative w-full sm:w-72">
-              <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-400 text-xs">
-                🔍
-              </span>
-              <input
-                type="text"
-                placeholder={
-                  activeTab === "guidelines"
-                    ? "Search guidelines, trials, topics..."
-                    : "Search conferences, trials..."
-                }
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full pl-8 pr-7 py-1.5 text-xs rounded-lg border outline-none transition-all ${
-                  darkMode
-                    ? "bg-slate-800 border-slate-700 text-slate-100 placeholder-slate-400 focus:border-amber-500"
-                    : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-amber-500"
-                }`}
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="absolute inset-y-0 right-2.5 flex items-center text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-                  title="Clear search"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-          )}
         </nav>
-
-        {/* =========================================================================
-            SUBSPECIALTY FILTER CHIPS (Horizontal Scroll Bar)
-           ========================================================================= */}
-        {activeTab !== "navigator" && (
-          <div
-            className={`mb-6 p-2 rounded-xl border overflow-x-auto scrollbar-none flex items-center gap-1.5 ${
-              darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"
-            }`}
-          >
-            <span className="text-[10.5px] font-black uppercase tracking-wider text-slate-400 whitespace-nowrap ml-1 mr-1">
-              Subspecialty:
-            </span>
-            {NEUROLOGY_SUBSPECIALTIES.map((sub) => {
-              const isSelected = selectedSubspecialty === sub;
-              return (
-                <button
-                  key={sub}
-                  onClick={() => setSelectedSubspecialty(sub)}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-                    isSelected
-                      ? "bg-amber-500 text-white shadow-xs font-bold"
-                      : darkMode
-                      ? "bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white"
-                      : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
-                  }`}
-                >
-                  {sub}
-                </button>
-              );
-            })}
-          </div>
-        )}
 
         {/* =========================================================================
             TAB 1: PRACTICE GUIDELINES (Distinct theme colors, details revealed on click)
            ========================================================================= */}
         {activeTab === "guidelines" && (
           <div className="space-y-4">
-            {/* Direct Society Filter Bar */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-2">
-              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
-                <span className="text-xs font-bold text-slate-400 mr-1 whitespace-nowrap">
-                  Society:
-                </span>
-                {availableSocieties.map((soc) => (
+            {/* Search & Dropdown Filters (Subspecialty, Society) */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+              <div className="relative flex-1 min-w-0">
+                <Search
+                  className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-amber-500 pointer-events-none"
+                  aria-hidden="true"
+                />
+                <input
+                  type="text"
+                  placeholder="Search guidelines, trials, topics..."
+                  aria-label="Search guidelines, trials, topics"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className={`w-full min-h-[44px] pl-10 pr-9 py-2 rounded-xl border text-xs sm:text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500/30 ${
+                    darkMode
+                      ? "bg-slate-900 border-slate-700/80 text-slate-100 placeholder:text-slate-500 hover:border-slate-600"
+                      : "bg-white border-slate-200 text-slate-800 placeholder:text-slate-400 hover:border-slate-300 shadow-xs"
+                  }`}
+                />
+                {searchQuery && (
                   <button
-                    key={soc}
-                    onClick={() => setSelectedSocietyFilter(soc)}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all ${
-                      selectedSocietyFilter === soc
-                        ? "bg-amber-500 text-white shadow-xs"
-                        : darkMode
-                        ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                        : "bg-slate-200 text-slate-700 hover:bg-slate-300"
-                    }`}
+                    type="button"
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                    title="Clear search"
+                    aria-label="Clear search"
                   >
-                    {soc === "ALL" ? "All Societies" : soc}
+                    <X className="w-3.5 h-3.5" />
                   </button>
-                ))}
+                )}
+              </div>
+
+              <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 shrink-0">
+                <CustomSelect
+                  value={selectedSubspecialty}
+                  onChange={(val) => setSelectedSubspecialty(val as SubspecialtyType)}
+                  options={NEUROLOGY_SUBSPECIALTIES.map((sub) => ({ value: sub, label: sub }))}
+                  ariaLabel="Filter by subspecialty"
+                  darkMode={darkMode}
+                  accent="amber"
+                  align="right"
+                  className="flex-1 sm:flex-initial"
+                  icon={
+                    <Layers
+                      className={`w-4 h-4 ${darkMode ? "text-amber-400" : "text-amber-600"}`}
+                      aria-hidden="true"
+                    />
+                  }
+                />
+
+                <CustomSelect
+                  value={selectedSocietyFilter}
+                  onChange={setSelectedSocietyFilter}
+                  options={availableSocieties.map((soc) => ({
+                    value: soc,
+                    label: soc === "ALL" ? "All Societies" : soc,
+                  }))}
+                  ariaLabel="Filter by society"
+                  darkMode={darkMode}
+                  accent="amber"
+                  align="right"
+                  className="flex-1 sm:flex-initial"
+                  icon={
+                    <Building2
+                      className={`w-4 h-4 ${darkMode ? "text-amber-400" : "text-amber-600"}`}
+                      aria-hidden="true"
+                    />
+                  }
+                />
               </div>
             </div>
 
@@ -1666,50 +1657,98 @@ export default function NeuroGuidePage() {
            ========================================================================= */}
         {activeTab === "conf" && (
           <div className="space-y-4">
-            {/* Direct Filters Bar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
-              <div className="flex items-center gap-1.5">
-                <span className="text-xs font-bold text-slate-400 mr-1">Status:</span>
-                {(["ALL", "LIVE", "RECENT", "UPCOMING"] as const).map((st) => (
-                  <button
-                    key={st}
-                    onClick={() => setSelectedConfStatus(st)}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
-                      selectedConfStatus === st
-                        ? "bg-amber-500 text-white"
-                        : darkMode
-                        ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                        : "bg-slate-200 text-slate-700 hover:bg-slate-300"
-                    }`}
-                  >
-                    {st === "ALL"
-                      ? "All Events"
-                      : st === "LIVE"
-                      ? "🔴 LIVE"
-                      : st === "RECENT"
-                      ? "🟡 Recent"
-                      : "⚪ Upcoming"}
-                  </button>
-                ))}
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="text-xs text-slate-400 font-medium">
-                  {filteredConferences.length} Major Conferences Monitored
-                </div>
-                {isAdminVerified && (
+            {/* Search & Dropdown Filters (Subspecialty, Status) */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+              <div className="relative flex-1 min-w-0">
+                <Search
+                  className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-amber-500 pointer-events-none"
+                  aria-hidden="true"
+                />
+                <input
+                  type="text"
+                  placeholder="Search conferences, trials..."
+                  aria-label="Search conferences, trials"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className={`w-full min-h-[44px] pl-10 pr-9 py-2 rounded-xl border text-xs sm:text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500/30 ${
+                    darkMode
+                      ? "bg-slate-900 border-slate-700/80 text-slate-100 placeholder:text-slate-500 hover:border-slate-600"
+                      : "bg-white border-slate-200 text-slate-800 placeholder:text-slate-400 hover:border-slate-300 shadow-xs"
+                  }`}
+                />
+                {searchQuery && (
                   <button
                     type="button"
-                    onClick={() => {
-                      setEditingConference(null);
-                      setShowConferenceModal(true);
-                    }}
-                    className="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500 text-white hover:bg-amber-600 transition-colors cursor-pointer"
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                    title="Clear search"
+                    aria-label="Clear search"
                   >
-                    + Add Conference
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 )}
               </div>
+
+              <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 shrink-0">
+                <CustomSelect
+                  value={selectedSubspecialty}
+                  onChange={(val) => setSelectedSubspecialty(val as SubspecialtyType)}
+                  options={NEUROLOGY_SUBSPECIALTIES.map((sub) => ({ value: sub, label: sub }))}
+                  ariaLabel="Filter by subspecialty"
+                  darkMode={darkMode}
+                  accent="amber"
+                  align="right"
+                  className="flex-1 sm:flex-initial"
+                  icon={
+                    <Layers
+                      className={`w-4 h-4 ${darkMode ? "text-amber-400" : "text-amber-600"}`}
+                      aria-hidden="true"
+                    />
+                  }
+                />
+
+                <CustomSelect
+                  value={selectedConfStatus}
+                  onChange={(val) =>
+                    setSelectedConfStatus(val as "ALL" | "LIVE" | "RECENT" | "UPCOMING")
+                  }
+                  options={[
+                    { value: "ALL", label: "All Events" },
+                    { value: "LIVE", label: "🔴 LIVE" },
+                    { value: "RECENT", label: "🟡 Recent" },
+                    { value: "UPCOMING", label: "⚪ Upcoming" },
+                  ]}
+                  ariaLabel="Filter by conference status"
+                  darkMode={darkMode}
+                  accent="amber"
+                  align="right"
+                  className="flex-1 sm:flex-initial"
+                  icon={
+                    <Radio
+                      className={`w-4 h-4 ${darkMode ? "text-amber-400" : "text-amber-600"}`}
+                      aria-hidden="true"
+                    />
+                  }
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-2 px-1">
+              <div className="text-xs text-slate-400 font-medium">
+                {filteredConferences.length} Major Conferences Monitored
+              </div>
+              {isAdminVerified && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEditingConference(null);
+                    setShowConferenceModal(true);
+                  }}
+                  className="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500 text-white hover:bg-amber-600 transition-colors cursor-pointer"
+                >
+                  + Add Conference
+                </button>
+              )}
             </div>
 
             {/* Conference Cards List (Colored by Status, Click to Expand Details) */}

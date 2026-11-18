@@ -12,6 +12,7 @@ import {
 } from "../components/ArticleCard";
 import { AppSwitcher } from "../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../components/ecosystem/AdminButton";
+import { CustomSelect } from "../components/ecosystem/CustomSelect";
 import { MedicalDisclaimerFooter } from "../components/ecosystem/MedicalDisclaimerFooter";
 import { SUBSPECIALTY_TABS } from "../constants/subspecialties";
 import {
@@ -1270,64 +1271,56 @@ export default function HomePage() {
                     <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">
                       Year
                     </label>
-                    <select
+                    <CustomSelect
                       value={selectedYear}
-                      onChange={(e) => {
-                        setSelectedYear(e.target.value);
+                      onChange={(val) => {
+                        setSelectedYear(val);
                         setVisibleCount(35);
                       }}
-                      aria-label="Filter by publication year"
-                      className={`w-full px-2 py-1.5 rounded-lg text-xs font-semibold border outline-none transition-colors cursor-pointer ${
+                      options={[
+                        { value: "All", label: "All Years" },
+                        ...availableYears.map((y) => ({ value: String(y), label: String(y) })),
+                      ]}
+                      ariaLabel="Filter by publication year"
+                      darkMode={darkMode}
+                      accent="teal"
+                      compact={true}
+                      buttonClassName={
                         selectedYear !== "All"
-                          ? "bg-teal-600 text-white border-teal-500 font-bold"
-                          : darkMode
-                          ? "bg-slate-800 border-slate-700 text-slate-200"
-                          : "bg-slate-50 border-slate-200 text-slate-700"
-                      }`}
-                    >
-                      <option value="All">All Years</option>
-                      {availableYears.map((y) => (
-                        <option
-                          key={y}
-                          value={y}
-                          className={darkMode ? "bg-slate-900 text-white" : "bg-white text-slate-900"}
-                        >
-                          {y}
-                        </option>
-                      ))}
-                    </select>
+                          ? "!bg-teal-600 !text-white !border-teal-500 !font-bold"
+                          : ""
+                      }
+                    />
                   </div>
 
                   <div>
                     <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">
                       Month
                     </label>
-                    <select
+                    <CustomSelect
                       value={selectedMonth}
-                      onChange={(e) => {
-                        setSelectedMonth(e.target.value);
+                      onChange={(val) => {
+                        setSelectedMonth(val);
                         setVisibleCount(35);
                       }}
-                      aria-label="Filter by publication month"
-                      className={`w-full px-2 py-1.5 rounded-lg text-xs font-semibold border outline-none transition-colors cursor-pointer ${
+                      options={[
+                        { value: "All", label: "All Months" },
+                        ...MONTH_OPTIONS.map((m) => ({
+                          value: String(m.value),
+                          label: m.label,
+                        })),
+                      ]}
+                      ariaLabel="Filter by publication month"
+                      darkMode={darkMode}
+                      accent="teal"
+                      compact={true}
+                      align="right"
+                      buttonClassName={
                         selectedMonth !== "All"
-                          ? "bg-teal-600 text-white border-teal-500 font-bold"
-                          : darkMode
-                          ? "bg-slate-800 border-slate-700 text-slate-200"
-                          : "bg-slate-50 border-slate-200 text-slate-700"
-                      }`}
-                    >
-                      <option value="All">All Months</option>
-                      {MONTH_OPTIONS.map((m) => (
-                        <option
-                          key={m.value}
-                          value={m.value}
-                          className={darkMode ? "bg-slate-900 text-white" : "bg-white text-slate-900"}
-                        >
-                          {m.label}
-                        </option>
-                      ))}
-                    </select>
+                          ? "!bg-teal-600 !text-white !border-teal-500 !font-bold"
+                          : ""
+                      }
+                    />
                   </div>
                 </div>
               </div>

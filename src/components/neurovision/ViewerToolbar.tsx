@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useNeuroVisionStore } from "../../store/useNeuroVisionStore";
 import { useNeuroViewer } from "./NeuroViewerContext";
 import SearchBar from "./SearchBar";
+import { CustomSelect } from "../ecosystem/CustomSelect";
 import type { BaseModality, ActiveOverlay, ViewMode } from "../../types/neurovision";
 
 interface CentroidData {
@@ -168,18 +169,17 @@ export default function ViewerToolbar() {
 
         {/* Atlas Overlay Dropdown & Opacity */}
         <div className="flex items-center gap-1.5 flex-1 min-w-0">
-          <select
-            id="atlas-select"
+          <CustomSelect
             value={activeOverlay}
-            onChange={(e) => setActiveOverlay(e.target.value as ActiveOverlay)}
-            className="w-full bg-slate-950 border border-slate-700 text-slate-200 text-xs rounded-lg px-2 py-1 focus:outline-none focus:border-sky-500 font-medium sm:max-w-[220px] lg:max-w-[240px] truncate"
-          >
-            {OVERLAYS.map((ov) => (
-              <option key={ov.id} value={ov.id}>
-                {ov.label}
-              </option>
-            ))}
-          </select>
+            onChange={(val) => setActiveOverlay(val as ActiveOverlay)}
+            options={OVERLAYS.map((ov) => ({ value: ov.id, label: ov.label }))}
+            ariaLabel="Chọn lớp phủ bản đồ não"
+            darkMode={true}
+            accent="sky"
+            compact={true}
+            className="w-full sm:max-w-[220px] lg:max-w-[240px]"
+            buttonClassName="bg-slate-950 border-slate-700 text-slate-200"
+          />
 
           {activeOverlay !== "none" && (
             <div className="hidden xl:flex items-center gap-1 bg-slate-950/70 px-2 py-0.5 rounded-lg border border-slate-800 shrink-0">

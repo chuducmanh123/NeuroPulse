@@ -13,6 +13,7 @@ import { AppSwitcher } from "@/components/ecosystem/AppSwitcher";
 import { MedicalDisclaimerFooter } from "@/components/ecosystem/MedicalDisclaimerFooter";
 import { OfflineStatus } from "@/components/neurorx/OfflineStatus";
 import { useNeuroRxDrugs } from "@/hooks/useNeuroRxDrugs";
+import { getStoredAdminToken } from "@/utils/clientAuth";
 import type { Source, Interaction } from "@/types/neurorx";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import { LookupTab } from "./tabs/LookupTab";
@@ -45,6 +46,16 @@ export function NeuroRxShell({
 
   // Dark Mode State (Night Shift) - Synced with local storage and html class
   const [darkMode, setDarkMode] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const checkAdmin = () => {
+      setIsAdmin(Boolean(getStoredAdminToken()));
+    };
+    checkAdmin();
+    window.addEventListener("storage", checkAdmin);
+    return () => window.removeEventListener("storage", checkAdmin);
+  }, []);
 
   useEffect(() => {
     const isDark =
@@ -218,16 +229,18 @@ export function NeuroRxShell({
 
           {/* Quick Header Badges & Actions */}
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 self-start sm:self-auto">
-            <OfflineStatus
-              dataHash={dataVersionHash}
-              darkMode={darkMode}
-              syncV2={true}
-              syncStatus={syncState.status}
-              lastSyncAt={syncState.lastSyncAt}
-              lastChangeCount={syncState.lastChangeCount}
-              lastSeq={syncState.lastSeq}
-              onRefresh={syncState.refresh}
-            />
+            {isAdmin && (
+              <OfflineStatus
+                dataHash={dataVersionHash}
+                darkMode={darkMode}
+                syncV2={true}
+                syncStatus={syncState.status}
+                lastSyncAt={syncState.lastSyncAt}
+                lastChangeCount={syncState.lastChangeCount}
+                lastSeq={syncState.lastSeq}
+                onRefresh={syncState.refresh}
+              />
+            )}
 
             {/* Night Shift Toggle */}
             <button

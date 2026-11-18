@@ -4,6 +4,7 @@ import React from "react";
 import { ClinicalCase, CaseDifficulty, UserCaseProgress } from "@/types/clinicalCase";
 import { Article } from "@/types/article";
 import { CaseChallenge } from "@/components/neurocase/CaseChallenge";
+import { CustomSelect } from "@/components/ecosystem/CustomSelect";
 
 interface ArchiveTabProps {
   archiveViewingCase: ClinicalCase | null;
@@ -208,36 +209,36 @@ export function ArchiveTab({
 
         <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-200 dark:border-slate-800">
           <div className="flex flex-wrap items-center gap-2">
-            <select
+            <CustomSelect
               value={selectedDifficulty}
-              onChange={(e) => onSelectDifficulty(e.target.value)}
-              aria-label="Filter by difficulty"
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold border ${
-                darkMode
-                  ? "bg-slate-800 border-slate-700 text-slate-200"
-                  : "bg-slate-50 border-slate-200 text-slate-700"
-              }`}
-            >
-              <option value="All">All Difficulty Levels</option>
-              <option value="Resident">Resident</option>
-              <option value="Fellow">Fellow</option>
-              <option value="Attending">Attending</option>
-            </select>
+              onChange={onSelectDifficulty}
+              options={[
+                { value: "All", label: "All Difficulty Levels" },
+                { value: "Resident", label: "Resident" },
+                { value: "Fellow", label: "Fellow" },
+                { value: "Attending", label: "Attending" },
+              ]}
+              ariaLabel="Filter by difficulty"
+              darkMode={darkMode}
+              accent="teal"
+              compact={true}
+              className="min-w-[165px]"
+            />
 
-            <select
+            <CustomSelect
               value={selectedSolvedFilter}
-              onChange={(e) => onSelectSolvedFilter(e.target.value as typeof selectedSolvedFilter)}
-              aria-label="Filter by completion status"
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold border ${
-                darkMode
-                  ? "bg-slate-800 border-slate-700 text-slate-200"
-                  : "bg-slate-50 border-slate-200 text-slate-700"
-              }`}
-            >
-              <option value="All">All Statuses</option>
-              <option value="Unsolved">Unsolved Only</option>
-              <option value="Solved">Completed</option>
-            </select>
+              onChange={(val) => onSelectSolvedFilter(val as typeof selectedSolvedFilter)}
+              options={[
+                { value: "All", label: "All Statuses" },
+                { value: "Unsolved", label: "Unsolved Only" },
+                { value: "Solved", label: "Completed" },
+              ]}
+              ariaLabel="Filter by completion status"
+              darkMode={darkMode}
+              accent="teal"
+              compact={true}
+              className="min-w-[140px]"
+            />
           </div>
 
           <input

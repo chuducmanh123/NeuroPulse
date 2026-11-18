@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
-import { Baby, Milk } from "lucide-react";
+import React, { useMemo, useState } from "react";
+import { Baby, Milk, Search, X } from "lucide-react";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
+import { searchDrugs } from "@/lib/neurorx/omnibar";
 import type { Source, Subspecialty } from "@/types/neurorx";
 import { ReproBoard } from "./ReproBoard";
 import { ReproDetail } from "./ReproDetail";
@@ -37,14 +38,25 @@ export function PregnancyTab({
 }: PregnancyTabProps) {
   const [activeSubTab, setActiveSubTab] = useState<"pregnancy" | "lactation">("pregnancy");
   const [selectedGroup, setSelectedGroup] = useState<ReproDiseaseGroup>("all");
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedDrug, setSelectedDrug] = useState<DrugWithEffectiveStatus | null>(null);
 
+  const searchedDrugs = useMemo(() => {
+    const trimmed = searchQuery.trim();
+    if (!trimmed) return drugs;
+    return searchDrugs(trimmed.split(/\s+/), drugs).map((res) => ({
+      drug: res.drug,
+      effectiveStatus: res.effectiveStatus,
+      hashMatches: res.hashMatches,
+    }));
+  }, [drugs, searchQuery]);
+
   const normalizedSubspecialty = normalizeGroup(selectedGroup);
-  const groupDrugs = drugs.filter((d) => matchesSubspecialty(d, normalizedSubspecialty));
+  const groupDrugs = searchedDrugs.filter((d) => matchesSubspecialty(d, normalizedSubspecialty));
 
   return (
     <div className="space-y-5">
-      {/* 1. Sub-tab Switcher (Pregnancy vs Lactation) & Subspecialty Dropdown */}
+      {/* 1. Sub-tab Switcher (Pregnancy vs Lactation), Drug Search & Subspecialty Dropdown */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div
           className={`inline-flex p-1 rounded-xl border ${
@@ -88,12 +100,42 @@ export function PregnancyTab({
           </button>
         </div>
 
+        <div className="relative flex-1 min-w-[200px] order-last sm:order-none">
+          <Search
+            className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+            aria-hidden="true"
+          />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search drug, brand, or class..."
+            aria-label="Search drugs in Pregnancy and Lactation"
+            className={`w-full min-h-[44px] pl-10 pr-9 py-2 rounded-xl border text-xs sm:text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500/40 ${
+              darkMode
+                ? "bg-slate-900 border-slate-700/80 text-slate-100 placeholder:text-slate-500 hover:border-slate-600"
+                : "bg-white border-slate-200 text-slate-800 placeholder:text-slate-400 hover:border-slate-300 shadow-sm"
+            }`}
+          />
+          {searchQuery.trim().length > 0 && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery("")}
+              aria-label="Clear search"
+              title="Clear search"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          )}
+        </div>
+
         <SubspecialtySelect
           value={normalizedSubspecialty}
           onChange={(val) => setSelectedGroup(val)}
-          drugs={drugs}
+          drugs={searchedDrugs}
           darkMode={darkMode}
-          className="w-full sm:w-auto"
+          className="w-full sm:w-auto shrink-0"
         />
       </div>
 
