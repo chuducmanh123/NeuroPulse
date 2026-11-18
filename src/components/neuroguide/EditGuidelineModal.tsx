@@ -3693,7 +3693,7 @@ export function EditGuidelineModal({
                             return (
                               <div>
                                 <label className="block font-bold mb-1 text-[11px] text-sky-700 dark:text-sky-300">
-                                  Condition Sub-tags (Tag phụ):
+                                  Condition Sub-tags:
                                 </label>
                                 {isCustomizingV3 ? (
                                   <div className="flex flex-wrap gap-1.5">

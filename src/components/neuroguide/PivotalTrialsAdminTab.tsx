@@ -576,21 +576,31 @@ export function PivotalTrialsAdminTab({
                           )}
                         </div>
 
-                        {/* Ontology Tags Summary Pill */}
-                        {trial.ontologyTags && Object.keys(trial.ontologyTags).length > 0 && (
-                          <div className="flex items-center gap-1 flex-wrap">
-                            {Object.entries(trial.ontologyTags).flatMap(([facet, tags]) =>
-                              (tags || []).slice(0, 3).map((tag) => (
+                        {/* Unified Tags Summary Pill */}
+                        {(() => {
+                          const summaryTags = trial.v3Tags
+                            ? [
+                                ...(trial.v3Tags.conditionIds || []).slice(0, 2),
+                                ...(trial.v3Tags.conditionSubTags || []).slice(0, 2),
+                                ...(trial.v3Tags.interventionTags || []).slice(0, 3),
+                                ...(trial.v3Tags.outcomeTargets || []).slice(0, 2),
+                              ]
+                            : Object.values(trial.ontologyTags || {})
+                                .flatMap((t) => (t || []).slice(0, 2));
+                          if (summaryTags.length === 0) return null;
+                          return (
+                            <div className="flex items-center gap-1 flex-wrap">
+                              {summaryTags.map((tag, idx) => (
                                 <span
-                                  key={`${facet}-${tag}`}
+                                  key={`${tag}-${idx}`}
                                   className="px-1.5 py-0.2 rounded text-[9.5px] font-mono bg-slate-200/60 dark:bg-slate-700/60 text-slate-600 dark:text-slate-300"
                                 >
                                   {tag}
                                 </span>
-                              ))
-                            )}
-                          </div>
-                        )}
+                              ))}
+                            </div>
+                          );
+                        })()}
                       </div>
                     </div>
                   )}

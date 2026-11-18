@@ -1051,6 +1051,51 @@ const CONDITION_SUBTAG_RULES: { id: string; parentConditionId: string; patterns:
     },
 ];
 
+const OUTCOME_TARGET_RULES: { id: string; patterns: RegExp[] }[] = [
+    {
+        id: 'functional_outcome',
+        patterns: [/\bmrs\b/i, /\bfunctional outcome/i, /\bfunctional independence/i, /\bgood outcome/i, /\bbarthel/i, /\bdisability/i],
+    },
+    {
+        id: 'mortality',
+        patterns: [/\bmortality\b/i, /\bsurvival\b/i, /\bdeath\b/i, /\bfatality/i],
+    },
+    {
+        id: 'symptomatic_ich',
+        patterns: [/\bsich\b/i, /\bsymptomatic.*h(?:a)?emorrhage/i, /\bhemorrhagic transformation/i, /\bbleeding risk/i],
+    },
+    {
+        id: 'recanalization',
+        patterns: [/\brecanalization\b/i, /\breperfusion\b/i, /\btici\b/i, /\bmtici\b/i, /\betici\b/i, /\brevascularization/i],
+    },
+    {
+        id: 'recurrent_stroke',
+        patterns: [/\brecurrent stroke/i, /\bstroke recurrence/i, /\bsecondary prevention/i, /\brecurrence/i],
+    },
+    {
+        id: 'complications',
+        patterns: [/\bcomplication/i, /\bpneumonia\b/i, /\bedema\b/i, /\bvasospasm\b/i, /\bdvt\b/i, /\bdysphagia\b/i],
+    },
+    {
+        id: 'diagnostic_identification',
+        patterns: [/\bdiagnos/i, /\bdetection\b/i, /\btriage\b/i, /\bscreen(?:ing)?\b/i],
+    },
+    {
+        id: 'time_to_treatment',
+        patterns: [/\bdoor-to-needle/i, /\bdoor-to-puncture/i, /\btime-to-treatment/i],
+    },
+];
+
+function detectOutcomeTargets(text: string, existing?: string[]): string[] {
+    const out = new Set<string>(existing || []);
+    for (const rule of OUTCOME_TARGET_RULES) {
+        if (rule.patterns.some((rx) => rx.test(text))) {
+            out.add(rule.id);
+        }
+    }
+    return Array.from(out);
+}
+
 function detectConditionSubTags(text: string, ontologyConditions?: string[]): { subTagIds: string[]; parentConditionIds: string[] } {
     const subTagIds = new Set<string>();
     const parentConditionIds = new Set<string>();
@@ -1102,6 +1147,8 @@ export function classifyRecommendationV3(
     const recText = `${sectionPath} ${change.currentText || ''} ${change.expertConsensusStatement || ''}`;
     const ontologyConds = change.ontologyLabels?.labels?.condition?.map((c) => c.value);
     const detectedSub = detectConditionSubTags(recText, ontologyConds);
+    const ontologyOutcomes = change.ontologyLabels?.labels?.outcome_target?.map((o) => o.value);
+    const detectedOutcomes = detectOutcomeTargets(recText, ontologyOutcomes);
 
     if (change.v3Labels && change.v3Labels.conditionIds.length > 0) {
         return {
@@ -1110,6 +1157,10 @@ export function classifyRecommendationV3(
                 change.v3Labels.conditionSubTags && change.v3Labels.conditionSubTags.length > 0
                     ? change.v3Labels.conditionSubTags
                     : detectedSub.subTagIds,
+            outcomeTargets:
+                change.v3Labels.outcomeTargets && change.v3Labels.outcomeTargets.length > 0
+                    ? change.v3Labels.outcomeTargets
+                    : detectedOutcomes,
             isFallbackCondition: false,
             isExplicit: true,
         };
@@ -1327,6 +1378,7 @@ export function classifyRecommendationV3(
         diagnosisTags: Array.from(diagnosisTags),
         timeWindowIds: Array.from(timeWindowIds),
         interventionTags: Array.from(interventionTags),
+        outcomeTargets: detectedOutcomes,
         direction,
         isFallbackCondition,
         isExplicit: false,
@@ -1380,8 +1432,9 @@ const ONTOLOGY_CONDITION_TO_V3_ID: Record<string, string> = {
  * Classifies a PivotalTrialRecord into V3.0 tags for seamless filtering alongside recommendations.
  */
 export function classifyPivotalTrialV3(trial: PivotalTrialRecord): NonNullable<PivotalTrialRecord['v3Tags']> {
-    const trialText = `${trial.title} ${trial.pico.population} ${trial.pico.timeWindow || ''} ${trial.pico.intervention} ${trial.bottomLine}`;
+    const trialText = `${trial.title} ${trial.pico.population} ${trial.pico.timeWindow || ''} ${trial.pico.intervention} ${trial.bottomLine} ${trial.primaryEndpoint?.metric || ''} ${trial.primaryEndpoint?.resultStats || ''}`;
     const detectedSub = detectConditionSubTags(trialText, trial.ontologyTags?.condition);
+    const detectedOutcomes = detectOutcomeTargets(trialText, trial.ontologyTags?.outcome_target);
 
     if (trial.v3Tags && trial.v3Tags.conditionIds.length > 0) {
         return {
@@ -1390,6 +1443,10 @@ export function classifyPivotalTrialV3(trial: PivotalTrialRecord): NonNullable<P
                 trial.v3Tags.conditionSubTags && trial.v3Tags.conditionSubTags.length > 0
                     ? trial.v3Tags.conditionSubTags
                     : detectedSub.subTagIds,
+            outcomeTargets:
+                trial.v3Tags.outcomeTargets && trial.v3Tags.outcomeTargets.length > 0
+                    ? trial.v3Tags.outcomeTargets
+                    : detectedOutcomes,
         };
     }
     const syntheticDoc = {
@@ -1433,5 +1490,6 @@ export function classifyPivotalTrialV3(trial: PivotalTrialRecord): NonNullable<P
         diagnosisTags: v3.diagnosisTags,
         timeWindowIds: v3.timeWindowIds,
         interventionTags: Array.from(interventionTags),
+        outcomeTargets: detectedOutcomes,
     };
 }

@@ -544,8 +544,9 @@ export function ClinicalNavigatorTab({
     initialPresetOrQuery?.interventionTags || []
   );
   const [selectedOutcomeTargets, setSelectedOutcomeTargets] = useState<string[]>(
-    initialPresetOrQuery?.facets?.outcome_target || []
+    initialPresetOrQuery?.outcomeTargets || initialPresetOrQuery?.facets?.outcome_target || []
   );
+  const [showMoreFilters, setShowMoreFilters] = useState(false);
   const [selectedDirectionFilter, setSelectedDirectionFilter] = useState<DirectionFilterV3>(
     initialPresetOrQuery?.directionFilter || "all"
   );
@@ -649,9 +650,9 @@ export function ClinicalNavigatorTab({
       diagnosisTags: selectedDiagnosisTags.length > 0 ? selectedDiagnosisTags : undefined,
       timeWindowId: selectedTimeWindowId !== "all" ? selectedTimeWindowId : undefined,
       interventionTags: selectedInterventionTags.length > 0 ? selectedInterventionTags : undefined,
+      outcomeTargets: selectedOutcomeTargets.length > 0 ? selectedOutcomeTargets : undefined,
       directionFilter: selectedDirectionFilter !== "all" ? selectedDirectionFilter : undefined,
       societies: selectedSocieties.length > 0 ? selectedSocieties : undefined,
-      facets: selectedOutcomeTargets.length > 0 ? { outcome_target: selectedOutcomeTargets } : undefined,
       includeAiChecked: true,
       onlyPracticeChanges,
       verificationFilter,
@@ -1442,7 +1443,7 @@ export function ClinicalNavigatorTab({
                   <div className="p-3 rounded-xl bg-sky-50/50 dark:bg-sky-950/20 border border-sky-200/80 dark:border-sky-900/50 space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-[11px] font-extrabold uppercase tracking-wider text-sky-800 dark:text-sky-300">
-                        Tag phụ (Condition Sub-tags)
+                        Condition Sub-tags
                       </span>
                       {selectedConditionSubTags.length > 0 && (
                         <button
@@ -1676,9 +1677,37 @@ export function ClinicalNavigatorTab({
                 </div>
 
                 {/* =========================================================
-                    SECONDARY FILTERS: OUTCOME TARGET, DIRECTION / HARM, SOCIETY & UPDATES
+                    MORE FILTERS (Collapsible: Outcome Target, Direction, Society, New/Upgraded, Verification)
                    ========================================================= */}
-                <div className="pt-2.5 border-t border-slate-200 dark:border-slate-800 space-y-3">
+                {(() => {
+                  const activeMoreCount =
+                    selectedOutcomeTargets.length +
+                    (selectedDirectionFilter !== "all" ? 1 : 0) +
+                    selectedSocieties.length +
+                    (onlyPracticeChanges ? 1 : 0) +
+                    (verificationFilter !== "all" ? 1 : 0);
+                  return (
+                    <div className="pt-2.5 border-t border-slate-200 dark:border-slate-800 space-y-3">
+                      <button
+                        type="button"
+                        onClick={() => setShowMoreFilters((prev) => !prev)}
+                        className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/70 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 transition"
+                      >
+                        <span className="flex items-center gap-2">
+                          <span>More Filters</span>
+                          {activeMoreCount > 0 && (
+                            <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
+                              {activeMoreCount}
+                            </span>
+                          )}
+                        </span>
+                        <span className="text-[10px] text-slate-400">
+                          {showMoreFilters ? "▲" : "▼"}
+                        </span>
+                      </button>
+
+                      {showMoreFilters && (
+                        <div className="space-y-3 pt-1">
                   {/* Outcome Target Filter */}
                   {STROKE_ONTOLOGY.facets.outcome_target && (
                     <MultiSelectFilterDropdown
@@ -1688,7 +1717,7 @@ export function ClinicalNavigatorTab({
                         .map((v) => ({
                           id: v.id,
                           label: v.label_en || v.id,
-                          count: navResult.facetValueCounts.outcome_target?.[v.id] || 0,
+                          count: navResult.v3Counts.outcomeTargets?.[v.id] || 0,
                         }))}
                       selectedIds={selectedOutcomeTargets}
                       onToggle={handleToggleOutcomeTarget}
@@ -1841,7 +1870,11 @@ export function ClinicalNavigatorTab({
                       </button>
                     </div>
                   </div>
-                </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })()}
     </div>
   );
 

@@ -144,6 +144,7 @@ export interface V3FilterCounts {
   diagnosisTags: Record<string, number>;
   timeWindows: Record<string, number>;
   interventionTags: Record<string, number>;
+  outcomeTargets: Record<string, number>;
   directions: Record<string, number>;
   unlabeledCount: number;
   approvedCount: number;
@@ -511,6 +512,7 @@ export function hasActiveNavigatorQuery(query: NavigatorQuery): boolean {
   if (query.diagnosisTags && query.diagnosisTags.length > 0) return true;
   if (query.timeWindowId && query.timeWindowId !== "all") return true;
   if (query.interventionTags && query.interventionTags.length > 0) return true;
+  if (query.outcomeTargets && query.outcomeTargets.length > 0) return true;
   if (query.directionFilter && query.directionFilter !== "all") return true;
   if (query.societies && query.societies.length > 0) return true;
   if (query.onlyPracticeChanges) return true;
@@ -586,6 +588,7 @@ export function runClinicalNavigatorQuery(params: {
     diagnosisTags: {},
     timeWindows: {},
     interventionTags: {},
+    outcomeTargets: {},
     directions: {},
     unlabeledCount: totalUnlabeled,
     approvedCount: totalApproved,
@@ -636,6 +639,9 @@ export function runClinicalNavigatorQuery(params: {
     }
     for (const it of r.v3Labels.interventionTags) {
       v3Counts.interventionTags[it] = (v3Counts.interventionTags[it] || 0) + 1;
+    }
+    for (const ot of r.v3Labels.outcomeTargets || []) {
+      v3Counts.outcomeTargets[ot] = (v3Counts.outcomeTargets[ot] || 0) + 1;
     }
     v3Counts.directions[r.v3Labels.direction] = (v3Counts.directions[r.v3Labels.direction] || 0) + 1;
   }
@@ -715,6 +721,7 @@ export function runClinicalNavigatorQuery(params: {
   const reqTimeWindowId =
     query.timeWindowId && query.timeWindowId !== "all" ? query.timeWindowId : undefined;
   const reqInterventions = query.interventionTags || [];
+  const reqOutcomeTargets = query.outcomeTargets || [];
   const reqDirection =
     query.directionFilter && query.directionFilter !== "all" ? query.directionFilter : undefined;
 
@@ -761,6 +768,13 @@ export function runClinicalNavigatorQuery(params: {
     if (reqInterventions.length > 0) {
       // OR across selected intervention tags (Cross-Domain Single Label ID works across Treatment, Prevention, or All)
       if (!reqInterventions.some((it) => rec.v3Labels.interventionTags.includes(it))) {
+        continue;
+      }
+    }
+    if (reqOutcomeTargets.length > 0) {
+      const recOutcomes = rec.v3Labels.outcomeTargets || [];
+      const legacyOutcomes = getRecordFacetValues(rec.labels, "outcome_target");
+      if (!reqOutcomeTargets.some((ot) => recOutcomes.includes(ot) || legacyOutcomes.includes(ot))) {
         continue;
       }
     }
@@ -1009,6 +1023,13 @@ export function runClinicalNavigatorQuery(params: {
     if (reqInterventions.length > 0 && !reqInterventions.some((it) => trV3.interventionTags.includes(it))) {
       return false;
     }
+    if (reqOutcomeTargets.length > 0) {
+      const trOutcomes = trV3.outcomeTargets || [];
+      const legacyTrOutcomes = tr.ontologyTags?.outcome_target || [];
+      if (!reqOutcomeTargets.some((ot) => trOutcomes.includes(ot) || legacyTrOutcomes.includes(ot))) {
+        return false;
+      }
+    }
     if (activeFacetEntries.length > 0) {
       for (const [fid, requiredVals] of activeFacetEntries) {
         const trVals = tr.ontologyTags?.[fid] || [];
@@ -1021,6 +1042,7 @@ export function runClinicalNavigatorQuery(params: {
     return Boolean(
       reqConditionIds.length > 0 ||
         reqInterventions.length > 0 ||
+        reqOutcomeTargets.length > 0 ||
         reqSubspecialties.length > 0 ||
         activeFacetEntries.length > 0
     );

@@ -227,10 +227,16 @@ function buildPivotalTrialFacetIndex(trial: PivotalTrialRecord): NeuroGuideBlock
     v3Labels: {
       subspecialties: subspecs,
       conditionIds: uniqueSorted(v3Tags.conditionIds || []),
+      ...(v3Tags.conditionSubTags && v3Tags.conditionSubTags.length > 0
+        ? { conditionSubTags: uniqueSorted(v3Tags.conditionSubTags) }
+        : {}),
       domains: uniqueSorted(v3Tags.domains || ["treatment"]) as ("diagnosis" | "treatment" | "prevention")[],
       diagnosisTags: uniqueSorted(v3Tags.diagnosisTags || []),
       timeWindowIds: uniqueSorted(v3Tags.timeWindowIds || []),
       interventionTags: uniqueSorted(v3Tags.interventionTags || []),
+      ...(v3Tags.outcomeTargets && v3Tags.outcomeTargets.length > 0
+        ? { outcomeTargets: uniqueSorted(v3Tags.outcomeTargets) }
+        : {}),
       direction: verdictDir,
     },
     customLabel: null,

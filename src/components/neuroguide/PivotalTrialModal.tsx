@@ -16,6 +16,8 @@ import {
 import {
   getConditionsForSubspecialtiesV3,
   getConditionSubTagsForScopesV3,
+  getTreatmentSchemaForScopesV3,
+  getPreventionSchemaForScopesV3,
   compareConditionLabelsV3,
   getTagLabelByIdV3,
 } from "../../data/clinicalNavigatorTaxonomyV3";
@@ -305,6 +307,10 @@ export function PivotalTrialModal({
   >({});
   const [v3ConditionIds, setV3ConditionIds] = useState<string[]>([]);
   const [v3ConditionSubTags, setV3ConditionSubTags] = useState<string[]>([]);
+  const [v3Domains, setV3Domains] = useState<("diagnosis" | "treatment" | "prevention")[]>(["treatment"]);
+  const [v3TimeWindowIds, setV3TimeWindowIds] = useState<string[]>([]);
+  const [v3InterventionTags, setV3InterventionTags] = useState<string[]>([]);
+  const [v3OutcomeTargets, setV3OutcomeTargets] = useState<string[]>([]);
 
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -339,6 +345,10 @@ export function PivotalTrialModal({
       const initialV3 = classifyPivotalTrialV3(initialTrial);
       setV3ConditionIds(initialV3.conditionIds || []);
       setV3ConditionSubTags(initialV3.conditionSubTags || []);
+      setV3Domains(initialV3.domains || ["treatment"]);
+      setV3TimeWindowIds(initialV3.timeWindowIds || []);
+      setV3InterventionTags(initialV3.interventionTags || []);
+      setV3OutcomeTargets(initialV3.outcomeTargets || []);
     } else {
       setAcronym("");
       setTitle("");
@@ -364,6 +374,10 @@ export function PivotalTrialModal({
       setOntologyTags(filterAndSanitizeTags(defaultOntologyTags));
       setV3ConditionIds([]);
       setV3ConditionSubTags([]);
+      setV3Domains(["treatment"]);
+      setV3TimeWindowIds([]);
+      setV3InterventionTags([]);
+      setV3OutcomeTargets(defaultOntologyTags?.outcome_target || []);
     }
   }, [isOpen, initialTrial, defaultOntologyTags]);
 
@@ -407,6 +421,13 @@ export function PivotalTrialModal({
         setSafetyNote(t.safetyEndpoint?.note || "");
         setBottomLine(t.bottomLine || "");
         setOntologyTags(filterAndSanitizeTags(t.ontologyTags));
+        const autoFilledV3 = classifyPivotalTrialV3(t);
+        setV3ConditionIds(autoFilledV3.conditionIds || []);
+        setV3ConditionSubTags(autoFilledV3.conditionSubTags || []);
+        setV3Domains(autoFilledV3.domains || ["treatment"]);
+        setV3TimeWindowIds(autoFilledV3.timeWindowIds || []);
+        setV3InterventionTags(autoFilledV3.interventionTags || []);
+        setV3OutcomeTargets(autoFilledV3.outcomeTargets || []);
         const sourceLabel =
           data.source === "seed"
             ? "Landmark Seed Library"
@@ -504,14 +525,17 @@ export function PivotalTrialModal({
       bottomLine:
         bottomLine.trim() ||
         `${acronym.trim()} (${journal.trim()} ${year}): ${primaryStats.trim()}`,
-      ontologyTags,
     };
 
     const autoV3 = classifyPivotalTrialV3({ ...record, v3Tags: undefined });
     record.v3Tags = {
-      ...autoV3,
       conditionIds: v3ConditionIds.length > 0 ? v3ConditionIds : autoV3.conditionIds,
-      conditionSubTags: v3ConditionSubTags.length > 0 ? v3ConditionSubTags : autoV3.conditionSubTags,
+      conditionSubTags: v3ConditionSubTags,
+      domains: v3Domains.length > 0 ? v3Domains : autoV3.domains,
+      diagnosisTags: autoV3.diagnosisTags,
+      timeWindowIds: v3TimeWindowIds,
+      interventionTags: v3InterventionTags,
+      outcomeTargets: v3OutcomeTargets,
     };
 
     setIsSaving(true);
@@ -897,69 +921,165 @@ export function PivotalTrialModal({
             </div>
           </div>
 
-          {/* Navigator V3 Clinical Condition & Sub-tags */}
-          <div className="p-4 sm:p-5 rounded-xl bg-sky-50/60 dark:bg-sky-950/20 border border-sky-200 dark:border-sky-900/50 space-y-3">
-            <div className="flex items-center justify-between">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-sky-900 dark:text-sky-300">
-                Navigator Classification (Clinical Condition &amp; Sub-tags)
-              </h3>
-              {(v3ConditionIds.length > 0 || v3ConditionSubTags.length > 0) && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setV3ConditionIds([]);
-                    setV3ConditionSubTags([]);
-                  }}
-                  className="text-[11px] font-semibold text-rose-600 dark:text-rose-400 hover:underline"
-                >
-                  Clear V3 Tags
-                </button>
-              )}
-            </div>
+          {/* Unified Clinical Classification Tags (Single Source of Truth: V3.0) */}
+          <div className="p-4 sm:p-5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 space-y-4">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+              Clinical Classification Tags
+            </h3>
 
-            <div>
-              <span className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-                Clinical Condition ({subspecialty})
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {[...getConditionsForSubspecialtiesV3([subspecialty])]
-                  .sort((a, b) => compareConditionLabelsV3(a.label, b.label))
-                  .map((cond) => {
-                    const active = v3ConditionIds.includes(cond.id);
-                    return (
-                      <button
-                        key={cond.id}
-                        type="button"
-                        onClick={() =>
-                          setV3ConditionIds((prev) =>
-                            prev.includes(cond.id)
-                              ? prev.filter((id) => id !== cond.id)
-                              : [...prev, cond.id]
-                          )
+            {(() => {
+              const treatmentSchema = getTreatmentSchemaForScopesV3([subspecialty], v3ConditionIds);
+              const preventionSchema = getPreventionSchemaForScopesV3([subspecialty], v3ConditionIds);
+
+              const dedupeTags = (items: { id: string; label: string }[]) => {
+                const seen = new Map<string, { id: string; label: string }>();
+                for (const item of items) {
+                  if (!seen.has(item.id)) seen.set(item.id, item);
+                }
+                return Array.from(seen.values());
+              };
+
+              const drugOptions = dedupeTags([
+                ...treatmentSchema.drugs,
+                ...preventionSchema.pharmacologicalProphylaxis,
+                ...preventionSchema.proceduralDevice,
+              ]).map((t) => ({ id: t.id, label_en: t.label, label_vi: t.label, def: "" }));
+
+              const interventionOptions = dedupeTags([
+                ...treatmentSchema.interventions,
+                ...treatmentSchema.otherCare,
+                ...preventionSchema.lifestyleRehabMonitoring,
+              ]).map((t) => ({ id: t.id, label_en: t.label, label_vi: t.label, def: "" }));
+
+              const timeWindowOptions = treatmentSchema.timeWindows.map((t) => ({
+                id: t.id,
+                label_en: t.label,
+                label_vi: t.label,
+                def: "",
+              }));
+
+              const toggleId = (
+                setter: React.Dispatch<React.SetStateAction<string[]>>,
+                id: string
+              ) =>
+                setter((prev) =>
+                  prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+                );
+
+              return (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {/* 1. Clinical Condition (filtered by Subspecialty, Other last) */}
+                  <FacetMultiSelect
+                    label={`Clinical Condition (${subspecialty})`}
+                    options={[...getConditionsForSubspecialtiesV3([subspecialty])]
+                      .sort((a, b) => compareConditionLabelsV3(a.label, b.label))
+                      .map((cond) => ({
+                        id: cond.id,
+                        label_en: cond.label,
+                        label_vi: cond.label,
+                        def: cond.subTags && cond.subTags.length > 0 ? `Has ${cond.subTags.length} sub-tags` : "",
+                      }))}
+                    selectedIds={v3ConditionIds}
+                    preserveOrder={true}
+                    onToggle={(condId) =>
+                      setV3ConditionIds((prev) => {
+                        if (prev.includes(condId)) {
+                          const removedSubTagIds = new Set(
+                            getConditionSubTagsForScopesV3([condId]).flatMap((g) => g.subTags.map((s) => s.id))
+                          );
+                          setV3ConditionSubTags((stPrev) => stPrev.filter((id) => !removedSubTagIds.has(id)));
+                          return prev.filter((id) => id !== condId);
                         }
-                        className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold border transition ${
-                          active
-                            ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
-                            : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
-                        }`}
-                      >
-                        {cond.label}
-                      </button>
-                    );
-                  })}
-              </div>
-            </div>
+                        return [...prev, condId];
+                      })
+                    }
+                    onClear={() => {
+                      setV3ConditionIds([]);
+                      setV3ConditionSubTags([]);
+                    }}
+                  />
 
+                  {/* 2. Clinical Domain */}
+                  <FacetMultiSelect
+                    label="Clinical Domain"
+                    options={[
+                      { id: "diagnosis", label_en: "1. Diagnosis", label_vi: "1. Diagnosis", def: "" },
+                      { id: "treatment", label_en: "2. Treatment", label_vi: "2. Treatment", def: "" },
+                      { id: "prevention", label_en: "3. Prevention & Care", label_vi: "3. Prevention & Care", def: "" },
+                    ]}
+                    selectedIds={v3Domains}
+                    preserveOrder={true}
+                    onToggle={(domId) => {
+                      const d = domId as "diagnosis" | "treatment" | "prevention";
+                      setV3Domains((prev) =>
+                        prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]
+                      );
+                    }}
+                    onClear={() => setV3Domains([])}
+                  />
+
+                  {/* 3. Intervention Category */}
+                  <FacetMultiSelect
+                    label="Intervention Category"
+                    options={interventionOptions}
+                    selectedIds={v3InterventionTags}
+                    onToggle={(id) => toggleId(setV3InterventionTags, id)}
+                    onClear={() => setV3InterventionTags([])}
+                  />
+
+                  {/* 4. Drug / Device / Procedure */}
+                  <FacetMultiSelect
+                    label="Drug / Device / Procedure"
+                    options={drugOptions}
+                    selectedIds={v3InterventionTags}
+                    onToggle={(id) => toggleId(setV3InterventionTags, id)}
+                    onClear={() => setV3InterventionTags([])}
+                  />
+
+                  {/* 5. Onset Time Window */}
+                  <FacetMultiSelect
+                    label="Onset Time Window"
+                    options={timeWindowOptions}
+                    selectedIds={v3TimeWindowIds}
+                    preserveOrder={true}
+                    onToggle={(id) => toggleId(setV3TimeWindowIds, id)}
+                    onClear={() => setV3TimeWindowIds([])}
+                  />
+
+                  {/* 6. Outcome Target */}
+                  <FacetMultiSelect
+                    label="Outcome Target"
+                    options={STROKE_ONTOLOGY.facets.outcome_target?.values || []}
+                    selectedIds={v3OutcomeTargets}
+                    onToggle={(id) => toggleId(setV3OutcomeTargets, id)}
+                    onClear={() => setV3OutcomeTargets([])}
+                  />
+                </div>
+              );
+            })()}
+
+            {/* Condition Sub-tags (shown dynamically when selected Clinical Condition has sub-tags) */}
             {(() => {
               const subTagGroups = getConditionSubTagsForScopesV3(v3ConditionIds);
               if (subTagGroups.length === 0) return null;
               return (
-                <div className="pt-2 border-t border-sky-200/70 dark:border-sky-800/50 space-y-2">
-                  <span className="block text-[11px] font-semibold text-sky-900 dark:text-sky-300">
-                    Condition Sub-tags
-                  </span>
+                <div className="p-3.5 rounded-xl bg-sky-50/70 dark:bg-sky-950/20 border border-sky-200 dark:border-sky-900/50 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-sky-900 dark:text-sky-300">
+                      Condition Sub-tags
+                    </span>
+                    {v3ConditionSubTags.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => setV3ConditionSubTags([])}
+                        className="text-[11px] font-semibold text-rose-600 dark:text-rose-400 hover:underline"
+                      >
+                        Clear ({v3ConditionSubTags.length})
+                      </button>
+                    )}
+                  </div>
                   {subTagGroups.map((group) => (
-                    <div key={group.conditionId} className="space-y-1">
+                    <div key={group.conditionId} className="space-y-1.5">
                       {subTagGroups.length > 1 && (
                         <span className="block text-[10px] font-bold text-slate-500 dark:text-slate-400">
                           {group.conditionLabel}
@@ -997,30 +1117,6 @@ export function PivotalTrialModal({
                 </div>
               );
             })()}
-          </div>
-
-          {/* Ontology Tag Bridge */}
-          <div className="p-4 sm:p-5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-3">
-              Ontology Facet Tags
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {KEY_TRIAL_FACETS.map((facetKey) => {
-                const facetDef = STROKE_ONTOLOGY.facets[facetKey];
-                if (!facetDef) return null;
-                return (
-                  <FacetMultiSelect
-                    key={facetKey}
-                    label={facetDef.label_en || facetKey}
-                    options={facetDef.values}
-                    selectedIds={ontologyTags[facetKey] || []}
-                    preserveOrder={facetKey === "time_window"}
-                    onToggle={(termId) => toggleOntologyTag(facetKey, termId)}
-                    onClear={() => clearOntologyFacet(facetKey)}
-                  />
-                );
-              })}
-            </div>
           </div>
 
           {saveError && (

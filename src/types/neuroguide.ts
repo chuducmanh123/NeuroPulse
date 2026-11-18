@@ -100,6 +100,7 @@ export interface RecommendationV3Labels {
   diagnosisTags: string[];
   timeWindowIds: string[];
   interventionTags: string[];
+  outcomeTargets?: string[];
   direction: "recommended" | "conditional" | "harm";
   isFallbackCondition?: boolean;
   isExplicit?: boolean;
@@ -349,7 +350,7 @@ export interface PivotalTrialRecord {
     note?: string;
   };
   bottomLine: string;
-  ontologyTags: Partial<Record<OntologyFacetId, string[]>>;
+  ontologyTags?: Partial<Record<OntologyFacetId, string[]>>;
   v3Tags?: {
     conditionIds: string[];
     conditionSubTags?: string[];
@@ -357,6 +358,7 @@ export interface PivotalTrialRecord {
     diagnosisTags?: string[];
     timeWindowIds?: string[];
     interventionTags: string[];
+    outcomeTargets?: string[];
   };
   linkedScenarioIds?: string[];
 }
@@ -373,6 +375,7 @@ export interface NavigatorQuery {
   diagnosisTags?: string[];
   timeWindowId?: string | "all";
   interventionTags?: string[];
+  outcomeTargets?: string[];
   directionFilter?: "all" | "recommended" | "conditional" | "harm";
   societies?: string[];
   facets?: Partial<Record<OntologyFacetId, string[]>>;
