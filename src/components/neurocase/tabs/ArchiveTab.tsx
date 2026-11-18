@@ -236,6 +236,7 @@ export function ArchiveTab({
               ariaLabel="Filter by completion status"
               darkMode={darkMode}
               accent="teal"
+              align="right"
               compact={true}
               className="min-w-[140px]"
             />

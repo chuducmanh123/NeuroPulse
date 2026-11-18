@@ -21,6 +21,7 @@ interface CustomSelectProps<T extends string = string> {
   accent?: CustomSelectAccent;
   align?: "left" | "right";
   compact?: boolean;
+  showIndicator?: "checkbox" | "check" | "none";
   className?: string;
   buttonClassName?: string;
   menuClassName?: string;
@@ -74,6 +75,7 @@ export function CustomSelect<T extends string = string>({
   accent = "cyan",
   align = "left",
   compact = false,
+  showIndicator = "checkbox",
   className = "",
   buttonClassName = "",
   menuClassName = "",
@@ -159,7 +161,7 @@ export function CustomSelect<T extends string = string>({
           id={listboxId}
           role="listbox"
           aria-label={ariaLabel}
-          className={`absolute z-50 mt-1.5 min-w-full w-max max-w-[calc(100vw-2rem)] sm:max-w-xs rounded-xl border p-1.5 max-h-72 overflow-y-auto shadow-xl ${
+          className={`absolute z-50 mt-1.5 min-w-full w-max max-w-[min(22rem,calc(100vw-1.5rem))] rounded-xl border p-1.5 max-h-72 overflow-y-auto shadow-xl ${
             align === "right" ? "right-0" : "left-0"
           } ${
             darkMode
@@ -188,21 +190,26 @@ export function CustomSelect<T extends string = string>({
                 }`}
               >
                 <span className="flex items-center gap-2 min-w-0">
-                  <span
-                    className={`w-4 h-4 shrink-0 inline-flex items-center justify-center rounded border ${
-                      isSelected
-                        ? darkMode
+                  {showIndicator === "checkbox" && (
+                    <span
+                      className={`w-4 h-4 shrink-0 inline-flex items-center justify-center rounded border ${
+                        isSelected
                           ? "border-current bg-current/10"
-                          : "border-current bg-current/10"
-                        : darkMode
-                        ? "border-slate-700 bg-slate-800/60"
-                        : "border-slate-300 bg-slate-50"
-                    }`}
-                    aria-hidden="true"
-                  >
-                    {isSelected && <Check className={`w-3 h-3 ${accentStyle.check}`} />}
-                  </span>
-                  <span className="leading-snug">{opt.label}</span>
+                          : darkMode
+                          ? "border-slate-700 bg-slate-800/60"
+                          : "border-slate-300 bg-slate-50"
+                      }`}
+                      aria-hidden="true"
+                    >
+                      {isSelected && <Check className={`w-3 h-3 ${accentStyle.check}`} />}
+                    </span>
+                  )}
+                  {showIndicator === "check" && (
+                    <span className="w-4 h-4 shrink-0 inline-flex items-center justify-center" aria-hidden="true">
+                      {isSelected && <Check className={`w-3.5 h-3.5 ${accentStyle.check}`} />}
+                    </span>
+                  )}
+                  <span className="leading-snug whitespace-normal break-words">{opt.label}</span>
                 </span>
 
                 {opt.badge !== undefined && (

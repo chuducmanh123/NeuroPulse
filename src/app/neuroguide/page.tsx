@@ -1260,7 +1260,7 @@ export default function NeuroGuidePage() {
                   ariaLabel="Filter by subspecialty"
                   darkMode={darkMode}
                   accent="amber"
-                  align="right"
+                  align="left"
                   className="flex-1 sm:flex-initial"
                   icon={
                     <Layers
@@ -1697,7 +1697,7 @@ export default function NeuroGuidePage() {
                   ariaLabel="Filter by subspecialty"
                   darkMode={darkMode}
                   accent="amber"
-                  align="right"
+                  align="left"
                   className="flex-1 sm:flex-initial"
                   icon={
                     <Layers

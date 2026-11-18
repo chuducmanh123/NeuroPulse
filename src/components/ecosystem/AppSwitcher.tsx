@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import Link from "next/link";
 
 interface AppSwitcherProps {
@@ -25,14 +25,22 @@ export function AppSwitcher({
   darkMode = false,
 }: AppSwitcherProps) {
   const [open, setOpen] = useState(false);
-  const [mobileTop, setMobileTop] = useState<number>(116);
+  const [mobileOffsetX, setMobileOffsetX] = useState<number>(0);
+  const [mobileWidth, setMobileWidth] = useState<number>(356);
   const [alignLeftOnDesktop, setAlignLeftOnDesktop] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const updatePopoverPosition = () => {
-    if (!menuRef.current) return;
+    if (!menuRef.current || typeof window === "undefined") return;
     const rect = menuRef.current.getBoundingClientRect();
-    setMobileTop(Math.round(rect.bottom + 8));
+    const vw = window.innerWidth;
+    const popW = Math.min(356, Math.max(240, vw - 24));
+    const isRightHalf = rect.left + rect.width / 2 > vw / 2;
+    const targetLeft = isRightHalf ? rect.right - popW : rect.left;
+    const clampedLeft = Math.max(12, Math.min(targetLeft, vw - 12 - popW));
+
+    setMobileWidth(popW);
+    setMobileOffsetX(Math.round(clampedLeft - rect.left));
     setAlignLeftOnDesktop(rect.right < 372);
   };
 
@@ -61,14 +69,16 @@ export function AppSwitcher({
     };
   }, [open]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!open) return;
     updatePopoverPosition();
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
     window.addEventListener("resize", updatePopoverPosition);
-    window.addEventListener("scroll", updatePopoverPosition, { passive: true });
     return () => {
       window.removeEventListener("resize", updatePopoverPosition);
-      window.removeEventListener("scroll", updatePopoverPosition);
     };
   }, [open]);
 
@@ -196,11 +206,16 @@ export function AppSwitcher({
         </svg>
       </button>
 
-      {/* Google Workspace-Style App Launcher Popover (Mobile-Safe + Desktop-Anchored) */}
+      {/* Google Workspace-Style App Launcher Popover (Anchored directly below trigger) */}
       {open && (
         <div
-          style={{ top: `${mobileTop}px` }}
-          className={`fixed left-3 right-3 mx-auto max-w-[356px] sm:absolute sm:!top-full sm:mt-2 sm:w-[356px] sm:max-w-none sm:mx-0 ${
+          style={
+            {
+              "--mobile-left": `${mobileOffsetX}px`,
+              "--mobile-width": `${mobileWidth}px`,
+            } as React.CSSProperties
+          }
+          className={`absolute top-full mt-2 left-[var(--mobile-left)] w-[var(--mobile-width)] sm:w-[356px] ${
             alignLeftOnDesktop ? "sm:left-0 sm:right-auto" : "sm:right-0 sm:left-auto"
           } rounded-2xl border shadow-2xl z-50 overflow-hidden ${
             darkMode

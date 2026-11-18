@@ -46,7 +46,6 @@ export default function NeuroVisionPage() {
         {/* 1. Global Navigation Bar */}
         <header className="bg-slate-900 border-b border-slate-800 px-3 py-2 flex items-center justify-between shrink-0 shadow-md z-40">
           <div className="flex items-center gap-2.5">
-            <AppSwitcher currentApp="neurovision" darkMode={true} />
             <div className="flex items-center gap-2">
               <h1 className="text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
                 <span className="text-sky-400">NeuroVision</span>
@@ -107,6 +106,7 @@ export default function NeuroVisionPage() {
                 </svg>
               </button>
             )}
+            <AppSwitcher currentApp="neurovision" darkMode={true} />
           </div>
         </header>
 
