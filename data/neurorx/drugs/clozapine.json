@@ -1,0 +1,370 @@
+{
+  "id": "clozapine",
+  "generic_name": "clozapine",
+  "tall_man": {
+    "value": "clozapine",
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "11 DESCRIPTION",
+        "quote": "CLOZARIL ® (clozapine), an atypical antipsychotic drug, is a tricyclic dibenzodiazepine derivative,"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antipsychotic",
+    "atypical antipsychotic",
+    "second-generation antipsychotic",
+    "dibenzodiazepine derivative"
+  ],
+  "subspecialties": [
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "clo-po-trs",
+      "indication": "Treatment-Resistant Schizophrenia & Reduction of Recurrent Suicidal Behavior (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-clozapine-label",
+          "locator": "2.2 Recommended Dosage and Administration",
+          "quote": "The recommended starting oral dosage of CLOZARIL is 12.5 mg once or twice daily. If well-tolerated, increase the total daily dose in increments of 25 mg to 50 mg per day to achieve a target dosage of 150 mg to 225 mg twice per day by the end of two weeks. Subsequently, may"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 12.5,
+        "unit": "mg",
+        "frequency": "once or twice daily initially; target 150–225 mg BID by week 2 (max 450 mg BID / 900 mg/day)",
+        "max_single": 450,
+        "max_daily": 900
+      },
+      "dose_text": "Initial: 12.5 mg orally once or twice daily; increase by 25–50 mg/day to target 150–225 mg BID by end of week 2, then up to 100 mg once or twice weekly; max 450 mg BID (900 mg/day). Requires baseline and serial ANC monitoring."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "8.6 Patients with Renal or Hepatic Impairment",
+        "quote": "Dose reduction may be necessary in patients with significant impairment of renal or hepatic function. Clozapine concentrations may be increased in these patients, because clozapine is almost completely metabolized and then"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No specific PK study in renal impairment; dose reduction may be necessary in patients with significant renal impairment as clozapine concentrations may be increased.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-clozapine-label",
+          "locator": "8.6 Patients with Renal or Hepatic Impairment",
+          "quote": "Dose reduction may be necessary in patients with significant impairment of renal or hepatic function."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "8.6 Patients with Renal or Hepatic Impairment",
+        "quote": "Dose reduction may be necessary in patients with significant impairment of renal or hepatic function."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Dose reduction may be necessary in patients with significant impairment of hepatic function; higher clozapine plasma concentrations are likely.",
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "8.6 Patients with Renal or Hepatic Impairment",
+        "quote": "Dose reduction may be necessary in patients with significant impairment of renal or hepatic function. Clozapine concentrations may be increased in these patients,"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "SEVERE NEUTROPENIA: CLOZARIL has caused severe neutropenia, associated with serious and fatal infections. Obtain baseline ANC (initiate only if ANC >=1500/uL, or >=1000/uL for Benign Ethnic Neutropenia) and monitor ANC per schedule.",
+      "ORTHOSTATIC HYPOTENSION, BRADYCARDIA, AND SYNCOPE: Can occur with first dose or as low as 12.5 mg/day; initiate at 12.5 mg once or twice daily and titrate slowly.",
+      "SEIZURES: Risk is dose-related; initiate at 12.5 mg, titrate gradually, and use divided doses.",
+      "MYOCARDITIS, PERICARDITIS, CARDIOMYOPATHY, AND MITRAL VALVE INCOMPETENCE: Fatal myocarditis and cardiomyopathy have occurred; discontinue and obtain cardiac evaluation if suspected.",
+      "INCREASED MORTALITY IN ELDERLY PATIENTS WITH DEMENTIA-RELATED PSYCHOSIS: CLOZARIL is not approved for this condition."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SEVERE NEUTROPENIA; ORTHOSTATIC HYPOTENSION, BRADYCARDIA, AND SYNCOPE; SEIZURE; MYOCARDITIS, PERICARDITIS AND CARDIOMYOPATHY; INCREASED MORTALITY IN ELDERLY PATIENTS WITH DEMENTIA-RELATED PSYCHOSIS Severe Neutropenia CLOZARIL has"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Musculoskeletal System and Connective Tissue Disorders Myasthenic syndrome, rhabdomyolysis, and systemic lupus erythematosus. Respiratory"
+      }
+    ],
+    "note": "Postmarketing experience lists myasthenic syndrome; dysphagia, sedation, and anticholinergic toxicity also warrant caution."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "No enteral tube administration instructions in FDA label."
+  },
+  "pgx": {
+    "value": "Substrate for CYP1A2, CYP2D6, and CYP3A4. CYP2D6 poor metabolizers (3%–10% of population) may develop higher than expected plasma concentrations and may require dose reduction.",
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "8.7 CYP2D6 Poor Metabolizers",
+        "quote": "Dose reduction may be necessary in patients who are CYP2D6 poor metabolizers. Clozapine concentrations may be increased in these patients, because clozapine is almost completely metabolized and then excreted [see Dosage"
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "weight_gain",
+      "qt_prolongation",
+      "hepatotoxicity",
+      "pancreatitis",
+      "rash_sjs_ten",
+      "confusion_delirium",
+      "myoclonus",
+      "hyponatremia",
+      "extrapyramidal"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Most common adverse reactions (≥5%) were: CNS reactions (sedation, dizziness/vertigo, headache, and tremor); cardiovascular reactions (tachycardia, hypotension, and syncope); autonomic nervous system reactions (hypersalivation, sweating, dry mouth, and visual disturbances);"
+      },
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "QT interval prolongation, Torsades de Pointes, mit"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Sedation/somnolence, dizziness/vertigo, headache, tremor",
+        "Hypersalivation (salivary hypersecretion), dry mouth, sweating, visual disturbances",
+        "Tachycardia, hypotension, syncope, constipation, nausea, fever, weight gain"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-clozapine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Most common adverse reactions (≥5%) were: CNS reactions (sedation, dizziness/vertigo, headache, and tremor); cardiovascular reactions (tachycardia, hypotension, and syncope); autonomic nervous system reactions (hypersalivation, sweating, dry mouth, and visual disturbances); gastrointestinal reactions (constipation and nausea); and fever."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe neutropenia / agranulocytosis",
+        "Orthostatic hypotension, bradycardia, syncope, and cardiac arrest",
+        "Myocarditis, pericarditis, cardiomyopathy, mitral valve incompetence",
+        "Seizures (including status epilepticus), QT prolongation / Torsades de pointes",
+        "Severe GI hypomotility (megacolon, intestinal ischemia/perforation), hepatotoxicity/liver failure, pancreatitis, pulmonary embolism, NMS, SJS"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-clozapine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Severe Neutropenia [see Warnings and Precautions ( 5.1 )] • Orthostatic Hypotension, Bradycardia, and Syncope [see Warnings and Precautions ( 5.2 )] • Falls [see Warnings and Precautions ( 5.3 )] • Seizures [see Warnings and Precautions ( 5.4 )] • Myocarditis, Pericarditis, Cardiomyopathy, and Mitral Valve"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Atypical antipsychotic (tricyclic dibenzodiazepine) proposed to act via antagonism of dopamine D2 and serotonin 5-HT2A receptors, plus adrenergic, cholinergic, and histaminergic antagonism.",
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "it has been proposed that the therapeutic efficacy of clozapine in schizophrenia is mediated through antagonism of the dopamine type 2 (D 2 ) and the serotonin type 2A (5-HT 2A ) receptors."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp1a2": "substrate",
+      "cyp2d6": "substrate",
+      "cyp3a4": "substrate",
+      "qt_risk": "possible"
+    },
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Clozapine is a substrate for many cytochrome P450 isozymes, in particular CYP1A2, CYP3A4, and CYP2D6. Use caution when"
+      },
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "QT interval prolongation, Torsades de Pointes, mit"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Strong CYP1A2 Inhibitors (fluvoxamine, ciprofloxacin, enoxacin)",
+        "severity": "major",
+        "effect": "Markedly increases clozapine plasma levels (fluvoxamine elevated clozapine trough concentrations ~3-fold).",
+        "management": "Reduce clozapine dose to one-third of the original dose; restore original dose when strong CYP1A2 inhibitor is discontinued.",
+        "refs": [
+          {
+            "source_id": "fda-clozapine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Reduce CLOZARIL dose to one-third when coadministered with strong CYP1A2 inhibitors (e.g., fluvoxamine, ciprofloxacin, enoxacin). ( 2.7 ,"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2D6 and CYP3A4 Inhibitors (fluoxetine, paroxetine, sertraline, duloxetine, cimetidine, erythromycin)",
+        "severity": "moderate",
+        "effect": "Can increase clozapine plasma levels (<2-fold) and lead to adverse reactions.",
+        "management": "Use caution, monitor patients closely, and consider reducing the clozapine dose.",
+        "refs": [
+          {
+            "source_id": "fda-clozapine-label",
+            "locator": "7.1 Potential for Other Drugs to Affect CLOZARIL",
+            "quote": "Concomitant treatment with CLOZARIL and CYP2D6 or CYP3A4 inhibitors (e.g., cimetidine, escitalopram, erythromycin, paroxetine, bupropion, fluoxetine, quinidine, duloxetine, terbinafine, or sertraline) can increase clozapine levels and lead to adverse reactions [see Clinical"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Strong CYP3A4 Inducers (carbamazepine, phenytoin, rifampin, St. John's wort)",
+        "severity": "major",
+        "effect": "Decreases clozapine plasma concentrations, risking reduced effectiveness; discontinuation of inducers can raise clozapine levels.",
+        "management": "Concomitant use is not recommended. If necessary, increase clozapine dose and monitor efficacy; reduce dose if inducer is discontinued.",
+        "refs": [
+          {
+            "source_id": "fda-clozapine-label",
+            "locator": "7.1 Potential for Other Drugs to Affect CLOZARIL",
+            "quote": "Strong CYP3A4 inducers include carbamazepine, phenytoin, St. John’s wort, and rifampin. It may be necessary to increase the CLOZARIL dose if used concomitantly with inducers of these enzymes. However, concomitant use of CLOZARIL and strong CYP3A4 inducers is not recommended [see Dosage and"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Anticholinergic Drugs",
+        "severity": "major",
+        "effect": "Increases risk of anticholinergic toxicity and severe gastrointestinal adverse reactions related to hypomotility.",
+        "management": "Avoid concomitant use of clozapine with anticholinergic drugs when possible.",
+        "refs": [
+          {
+            "source_id": "fda-clozapine-label",
+            "locator": "7.1 Potential for Other Drugs to Affect CLOZARIL",
+            "quote": "Concomitant treatment with clozapine and other drugs with anticholinergic activity (e.g., benztropine, cyclobenzaprine, diphenhydramine) can increase the risk for anticholinergic toxicity and severe gastrointestinal adverse reactions related to hypomotility. Avoid concomitant use of CLOZARIL with anticholinergic drugs when possible [see"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Drugs that Prolong QT Interval (e.g., amiodarone, sotalol, erythromycin)",
+        "severity": "major",
+        "effect": "Additive QT interval prolongation risk.",
+        "management": "Use caution when administering concomitant medications that prolong the QT interval.",
+        "refs": [
+          {
+            "source_id": "fda-clozapine-label",
+            "locator": "7.1 Potential for Other Drugs to Affect CLOZARIL",
+            "quote": "Use caution when administering concomitant medications that prolong the QT interval or inhibit the metabolism of clozapine. Drugs"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Reduce CLOZARIL dose to one-third when coadministered with strong CYP1A2 inhibitors"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Available epidemiologic studies over decades have not established a drug-associated risk of major birth defects or miscarriage, but third-trimester exposure risks neonatal EPS/withdrawal; present in human milk with reports of infant sedation and agranulocytosis.",
+      "refs": [
+        {
+          "source_id": "fda-clozapine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Available data from published epidemiologic studies over decades of use with clozapine during pregnancy have not established a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes ( see"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "No folic acid recommendation in FDA label."
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "Oral contraceptives are noted as moderate/weak CYP1A2 inhibitors in Section 7.1 (monitor closely; consider reducing clozapine dose if needed)."
+    },
+    "pregnancy_pk": {
+      "value": "Neonates exposed to antipsychotic drugs during the third trimester are at risk for extrapyramidal and/or withdrawal symptoms following delivery.",
+      "refs": [
+        {
+          "source_id": "fda-clozapine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Neonates exposed to antipsychotic drugs, including CLOZARIL, during the third trimester are at risk for extrapyramidal and/or withdrawal symptoms following delivery ("
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Monitor neonates for extrapyramidal and/or withdrawal symptoms after third-trimester exposure; monitor breastfed infants for excess sedation and neutropenia.",
+      "refs": [
+        {
+          "source_id": "fda-clozapine-label",
+          "locator": "8.2 Lactation — Clinical Considerations",
+          "quote": "Infants exposed to CLOZARIL should be monitored for excess sedation and neutropenia. 8.4"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": [],
+      "note": "No RID percentage reported in FDA label."
+    },
+    "lactation_summary": {
+      "value": "Clozapine is present in human milk; case reports exist of sedation and agranulocytosis in breastfed infants. Monitor exposed infants for excess sedation and neutropenia.",
+      "refs": [
+        {
+          "source_id": "fda-clozapine-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "Clozapine is present in human milk. There is one case report of sedation and a report of agranulocytosis in an infant exposed to clozapine through human milk ( see"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

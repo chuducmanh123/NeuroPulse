@@ -1,0 +1,315 @@
+{
+  "id": "citalopram",
+  "generic_name": "citalopram",
+  "tall_man": {
+    "value": "citalopram",
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "CELEXA is a selective serotonin reuptake inhibitor (SSRI) indicated for the treatment of major depressive disorder (MDD) in adults ( 1"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antidepressant",
+    "selective serotonin reuptake inhibitor",
+    "SSRI"
+  ],
+  "subspecialties": [
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "cit-po-mdd",
+      "indication": "Major Depressive Disorder (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-citalopram-label",
+          "locator": "2.1 Recommended Dosage",
+          "quote": "Administer CELEXA once daily, with or without food, at an initial dosage of 20 mg once daily, with an increase to a maximum dosage of 40 mg once daily at an interval of no less than one week. Dosages above 40 mg once daily are not recommended due to the risk of QT prolongation [see"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily (max 40 mg/day; max 20 mg/day if >60 y, hepatic impairment, CYP2C19 PM, or CYP2C19 inhibitor)",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "Initial: 20 mg orally once daily; may increase to maximum 40 mg once daily after >=1 week (>40 mg/day NOT recommended due to QT prolongation). Max 20 mg/day in patients >60 years, hepatic impairment, CYP2C19 poor metabolizers, or concomitant CYP2C19 inhibitors."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "12.3 Pharmacokinetics — Renal Impairment",
+        "quote": "In patients with mild to moderate renal impairment, oral clearance of citalopram was reduced by 17% compared to normal subjects. No"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "In mild to moderate renal impairment, oral clearance was reduced by 17% compared to normal subjects; no routine dose adjustment specified for mild-moderate RI, but use caution in severe renal impairment.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-citalopram-label",
+          "locator": "12.3 Pharmacokinetics — Renal Impairment",
+          "quote": "In patients with mild to moderate renal impairment, oral clearance of citalopram was reduced by 17% compared to normal subjects. No"
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "12.3 Pharmacokinetics — Renal Impairment",
+        "quote": "In patients with mild to moderate renal impairment, oral clearance of citalopram was reduced by 17% compared to normal subjects. No"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Maximum recommended dosage in patients with hepatic impairment is 20 mg once daily.",
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "2.3 Recommended Dosage for Specific Populations",
+        "quote": "The maximum recommended dosage of CELEXA for patients who are greater than 60 years of age, patients with hepatic impairment, and for CYP2C19 poor metabolizers is 20 mg once daily [ s ee"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: SUICIDAL THOUGHTS AND BEHAVIORS: Antidepressants increased the risk of suicidal thoughts and behaviors in pediatric and young adult patients in short-term studies. Closely monitor all antidepressant-treated patients for clinical worsening and emergence of suicidal thoughts and behaviors."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SUICIDAL THOUGHTS AND BEHAVIORS Antidepre"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "CELEXA is a selective serotonin reuptake inhibitor (SSRI)"
+      }
+    ],
+    "note": "SSRIs do not impair neuromuscular transmission; no MG warning in FDA label."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "No enteral tube administration instructions in FDA label."
+  },
+  "pgx": {
+    "value": "CYP2C19 poor metabolizers: maximum recommended dosage is 20 mg once daily due to increased citalopram exposure and QT prolongation risk.",
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "2.3 Recommended Dosage for Specific Populations",
+        "quote": "The maximum recommended dosage of CELEXA for patients who are greater than 60 years of age, patients with hepatic impairment, and for CYP2C19 poor metabolizers is 20 mg once daily [ s ee"
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "qt_prolongation",
+      "serotonin_syndrome",
+      "hyponatremia",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "2.1 Recommended Dosage",
+        "quote": "Dosages above 40 mg once daily are not recommended due to the risk of QT prolongation"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea, dry mouth, diarrhea, dyspepsia",
+        "Somnolence, insomnia, fatigue, tremor",
+        "Increased sweating, ejaculation disorder, decreased libido, impotence"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-citalopram-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "QT-prolongation and torsade de pointes [see Warnings and Precautions ( 5.2 )]"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Dose-dependent QT interval prolongation and Torsades de Pointes",
+        "Suicidal thoughts and behaviors in pediatric and young adult patients",
+        "Serotonin syndrome",
+        "Abnormal bleeding",
+        "Hyponatremia / SIADH, seizures, mania/hypomania, angle-closure glaucoma"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-citalopram-label",
+          "locator": "2.1 Recommended Dosage",
+          "quote": "Dosages above 40 mg once daily are not recommended due to the risk of QT prolongation"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Selective serotonin reuptake inhibitor (SSRI) that potentiates serotonergic activity in the CNS by inhibiting neuronal reuptake of serotonin.",
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "CELEXA is a selective serotonin reuptake inhibitor (SSRI) indicated for the treatment of major depressive disorder (MDD) in"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c19": "substrate",
+      "cyp3a4": "substrate",
+      "qt_risk": "known",
+      "serotonergic": true
+    },
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "2.1 & 2.3 QT Prolongation & CYP2C19",
+        "quote": "Dosages above 40 mg once daily are not recommended due to the risk of QT prolongation"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "MAOIs (including linezolid and IV methylene blue) & Pimozide",
+        "severity": "contraindicated",
+        "effect": "Risk of serotonin syndrome (MAOIs) or QT prolongation/ventricular arrhythmias (pimozide).",
+        "management": "Contraindicated; allow >=14 days between MAOI and citalopram.",
+        "refs": [
+          {
+            "source_id": "fda-citalopram-label",
+            "locator": "4 CONTRAINDICATIONS",
+            "quote": "taking, or within 14 days of stopping, MAOIs (including MAOIs such as linezolid or intravenous methylene blue) because of an increased risk of serotonin"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2C19 Inhibitors & QT-Prolonging Drugs",
+        "severity": "major",
+        "effect": "CYP2C19 inhibitors increase citalopram exposure and QT prolongation risk; QT-prolonging drugs cause additive QTc prolongation.",
+        "management": "Maximum recommended dosage of citalopram with concomitant CYP2C19 inhibitors is 20 mg once daily; avoid concomitant QT-prolonging drugs.",
+        "refs": [
+          {
+            "source_id": "fda-citalopram-label",
+            "locator": "2.4 Dosage Modifications with Concomitant Use of CYP2C19 Inhibitors",
+            "quote": "The maximum recommended dosage of CELEXA when used concomitantly with a CYP2C19 inhibitor is 20 mg once daily [see"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Avoid concomitant use of CELEXA with drugs that prolong the QT interval (CELEXA"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Epidemiologic studies and postmarketing reports have not established an increased risk of major birth defects or miscarriage, but cord blood/amniotic fluid levels match maternal serum and late-pregnancy exposure carries risks of PPHN, poor neonatal adaptation, and <2-fold postpartum hemorrhage; present in human milk (RID 0.7%–9.4%).",
+      "refs": [
+        {
+          "source_id": "fda-citalopram-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Available data from published epidemiologic studies and postmarketing reports with citalopram use in pregnancy have not established an increased risk of major birth defects or"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "No hormonal contraceptive interaction reported in FDA label."
+    },
+    "pregnancy_pk": {
+      "value": "Citalopram levels in cord blood and amniotic fluid are similar to maternal serum. Epidemiologic studies have not established an increased risk of major birth defects or miscarriage; however, exposure in the month before delivery is associated with <2-fold increased postpartum hemorrhage risk, and late-pregnancy exposure carries risks of PPHN and poor neonatal adaptation.",
+      "refs": [
+        {
+          "source_id": "fda-citalopram-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Published studies demonstrated that citalopram levels in both cord blood and amniotic fluid are similar to those observed in maternal"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Monitor for postpartum hemorrhage if exposed in the month before delivery, and monitor breastfed infants for irritability, restlessness, excessive somnolence, decreased feeding, and weight loss.",
+      "refs": [
+        {
+          "source_id": "fda-citalopram-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "There are reports of breastfed infants exposed to citalopram experiencing irritability, restlessness, excessive somnolence, decreased feeding, and weight loss"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "0.7% to 9.4% of maternal weight-adjusted dosage (milk/plasma ratio 0.78–4.3)",
+      "refs": [
+        {
+          "source_id": "fda-citalopram-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "Data from the published literature report the presence of citalopram in human milk at relative infant doses ranging between 0.7 to 9.4% of the maternal weight-adjusted dosage and a milk/plasma ratio ranging between 0.78 to 4.3."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Present in human milk at RID 0.7% to 9.4% (milk/plasma ratio 0.78–4.3); reports exist of infant irritability, restlessness, excessive somnolence, decreased feeding, and weight loss.",
+      "refs": [
+        {
+          "source_id": "fda-citalopram-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "Data from the published literature report the presence of citalopram in human milk at relative infant doses ranging between 0.7 to 9.4% of the maternal weight-adjusted dosage and a milk/plasma ratio ranging between 0.78 to 4.3."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -1,0 +1,474 @@
+[
+  {
+    "id": "eszopiclone-diazepam",
+    "drug_a": "eszopiclone",
+    "drug_b": "diazepam",
+    "severity": "moderate",
+    "mechanism": "Additive pharmacodynamic CNS-depressant effects at GABA-receptor complexes.",
+    "clinical_effect": "Potentially additive CNS depression and next-day psychomotor impairment.",
+    "management": "Dosage adjustments may be necessary when eszopiclone is combined with other CNS depressant drugs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "2.4 Use with CNS Depressants / 7 DRUG INTERACTIONS",
+        "quote": "Dosage adjustments may be necessary when LUNESTA is combined with other central nervous system (CNS) depressant drugs because of the potentially additive effects"
+      }
+    ]
+  },
+  {
+    "id": "eszopiclone-midazolam",
+    "drug_a": "eszopiclone",
+    "drug_b": "midazolam",
+    "severity": "moderate",
+    "mechanism": "Additive pharmacodynamic CNS-depressant effects at GABA-receptor complexes.",
+    "clinical_effect": "Potentially additive CNS depression and psychomotor impairment.",
+    "management": "Dosage adjustments may be necessary when eszopiclone is combined with other CNS depressant drugs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "CNS Depressants: Additive CNS-depressant effects with combination use."
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-rasagiline",
+    "drug_a": "mirtazapine",
+    "drug_b": "rasagiline",
+    "severity": "contraindicated",
+    "mechanism": "Combined enhancement of central serotonergic activity via alpha-2 antagonism and monoamine oxidase inhibition.",
+    "clinical_effect": "Increased risk of potentially life-threatening serotonin syndrome.",
+    "management": "Contraindicated during or within 14 days of stopping an MAOI; allow at least 14 days after stopping mirtazapine before starting an MAOI.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "4 CONTRAINDICATIONS",
+        "quote": "REMERON/REMERONSolTab is contraindicated in patients: Taking, or within 14 days of stopping, MAOIs (including the MAOIs linezolid and intravenous methylene blue) because of an increased risk of serotonin syndrome"
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-diazepam",
+    "drug_a": "mirtazapine",
+    "drug_b": "diazepam",
+    "severity": "contraindicated",
+    "mechanism": "Additive pharmacodynamic CNS depression; diazepam (15 mg) had minimal effect on mirtazapine plasma levels but produced additive impairment of motor skills.",
+    "clinical_effect": "Increased impairment of cognitive and motor skills produced by mirtazapine alone.",
+    "management": "Avoid concomitant use of benzodiazepines and alcohol with REMERON/REMERONSolTab.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "7 DRUG INTERACTIONS — Table 5",
+        "quote": "The concomitant use of benzodiazepines or alcohol with REMERON/REMERONSolTab increases the impairment of cognitive and motor skills produced by REMERON/REMERONSolTab alone. Intervention Avoid concomitant use of benzodiazepines and alcohol with REMERON/REMERONSolTab"
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-phenytoin",
+    "drug_a": "mirtazapine",
+    "drug_b": "phenytoin",
+    "severity": "moderate",
+    "mechanism": "Phenytoin (a strong CYP3A inducer) increased mirtazapine clearance about 2-fold.",
+    "clinical_effect": "Decrease in average plasma mirtazapine concentrations of 45%, potentially reducing antidepressant efficacy; mirtazapine did not significantly affect phenytoin PK.",
+    "management": "Increase the dose of mirtazapine if needed with concomitant phenytoin; decrease mirtazapine dose if phenytoin is discontinued.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce hepatic CYP3A enzymes."
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "12.3 Pharmacokinetics — Phenytoin",
+        "quote": "phenytoin (200 mg daily, at steady state) increased mirtazapine (30 mg daily, at steady state) clearance about 2-fold, resulting in a decrease in average plasma mirtazapine concentrations of 45%"
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-carbamazepine",
+    "drug_a": "mirtazapine",
+    "drug_b": "carbamazepine",
+    "severity": "moderate",
+    "mechanism": "Carbamazepine (a strong CYP3A inducer) increased mirtazapine clearance about 2-fold.",
+    "clinical_effect": "Decrease in average plasma mirtazapine concentrations of 60%, potentially reducing antidepressant efficacy.",
+    "management": "Increase the dose of mirtazapine if needed with concomitant carbamazepine; decrease mirtazapine dose if carbamazepine is discontinued.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce hepatic CYP3A enzymes."
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "12.3 Pharmacokinetics — Carbamazepine",
+        "quote": "carbamazepine (400 mg twice a day, at steady state) increased mirtazapine (15 mg twice a day, at steady state) clearance about 2-fold, resulting in a decrease in average plasma mirtazapine concentrations of 60%"
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-warfarin",
+    "drug_a": "mirtazapine",
+    "drug_b": "warfarin",
+    "severity": "moderate",
+    "mechanism": "Pharmacokinetic/pharmacodynamic interaction increasing anticoagulation effect.",
+    "clinical_effect": "Mirtazapine (30 mg daily) at steady state caused a statistically significant increase (0.2) in INR in subjects treated with warfarin.",
+    "management": "Monitor INR during concomitant use of warfarin with mirtazapine.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "12.3 Pharmacokinetics — Warfarin",
+        "quote": "Mirtazapine (30 mg daily) at steady state caused a statistically significant increase (0.2) in the International Normalized Ratio (INR) in subjects treated with warfarin"
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-tramadol",
+    "drug_a": "mirtazapine",
+    "drug_b": "tramadol",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity.",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor patients for signs and symptoms of serotonin syndrome, particularly during initiation and dosage increases.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "7 DRUG INTERACTIONS — Table 5",
+        "quote": "The concomitant use of serotonergic drugs with REMERON/REMERONSolTab increases the risk of serotonin syndrome. Intervention Monitor patients for signs and symptoms of serotonin syndrome, particularly during treatment initiation and dosage increases."
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-sumatriptan",
+    "drug_a": "mirtazapine",
+    "drug_b": "sumatriptan",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity with triptans.",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor patients for signs and symptoms of serotonin syndrome, particularly during initiation and dosage increases.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "7 DRUG INTERACTIONS — Table 5",
+        "quote": "Examples SSRIs, SNRIs, triptans, tricyclic antidepressants, fentanyl, lithium, amphetamines, St. John's Wort, tramadol, tryptophan, buspirone"
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-fluoxetine",
+    "drug_a": "mirtazapine",
+    "drug_b": "fluoxetine",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity with SSRIs.",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor patients for signs and symptoms of serotonin syndrome, particularly during initiation and dosage increases.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "7 DRUG INTERACTIONS — Table 5",
+        "quote": "The concomitant use of serotonergic drugs with REMERON/REMERONSolTab increases the risk of serotonin syndrome. Intervention Monitor patients for signs and symptoms of serotonin syndrome, particularly during treatment initiation and dosage increases."
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-amiodarone",
+    "drug_a": "mirtazapine",
+    "drug_b": "amiodarone",
+    "severity": "moderate",
+    "mechanism": "Additive QTc interval prolongation.",
+    "clinical_effect": "Increased risk of QT prolongation and/or ventricular arrhythmias (e.g., Torsades de Pointes).",
+    "management": "Use caution when using mirtazapine concomitantly with drugs that prolong the QTc interval.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "7 DRUG INTERACTIONS — Table 5",
+        "quote": "The concomitant use of other drugs which prolong the QTc interval with REMERON/REMERONSolTab, increase the risk of QT prolongation and/or ventricular arrhythmias (e.g., Torsades de Pointes). Intervention Use caution when using REMERON/REMERONSolTab concomitantly with drugs that prolong the QTc interval"
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-rasagiline",
+    "drug_a": "venlafaxine",
+    "drug_b": "rasagiline",
+    "severity": "contraindicated",
+    "mechanism": "Combined serotonin reuptake inhibition and monoamine oxidase inhibition.",
+    "clinical_effect": "High risk of potentially fatal serotonin syndrome.",
+    "management": "Contraindicated; allow at least 14 days after stopping an MAOI before starting venlafaxine, and at least 7 days after stopping venlafaxine before starting an MAOI.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "4 CONTRAINDICATIONS",
+        "quote": "taking, or within 14 days of stopping, MAOIs (including the MAOIs linezolid and intravenous methylene blue) because of the risk of serotonin syndrome"
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-tramadol",
+    "drug_a": "venlafaxine",
+    "drug_b": "tramadol",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity (and CYP2D6 interaction potential).",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor for symptoms of serotonin syndrome; discontinue venlafaxine and/or concomitant serotonergic drugs if serotonin syndrome occurs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with other serotonergic drugs (including other SNRIs, SSRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) increases the risk of serotonin syndrome."
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-sumatriptan",
+    "drug_a": "venlafaxine",
+    "drug_b": "sumatriptan",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity with triptans.",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor for symptoms of serotonin syndrome; discontinue venlafaxine and/or sumatriptan if serotonin syndrome occurs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with other serotonergic drugs (including other SNRIs, SSRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) increases the risk of serotonin syndrome."
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-warfarin",
+    "drug_a": "venlafaxine",
+    "drug_b": "warfarin",
+    "severity": "moderate",
+    "mechanism": "Venlafaxine impairs platelet serotonin release, potentiating bleeding risk with anticoagulants.",
+    "clinical_effect": "Increased risk of bleeding (including GI hemorrhage and ecchymosis).",
+    "management": "Closely monitor for bleeding when venlafaxine is initiated or discontinued in patients receiving an anticoagulant.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with an antiplatelet or anticoagulant drug may potentiate the risk of bleeding. This may be due to the effect of Effexor XR on the release of serotonin by platelets. Intervention Closely monitor for bleeding"
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-aspirin",
+    "drug_a": "venlafaxine",
+    "drug_b": "aspirin",
+    "severity": "moderate",
+    "mechanism": "Venlafaxine impairs platelet serotonin release, potentiating bleeding risk with antiplatelets.",
+    "clinical_effect": "Increased risk of bleeding.",
+    "management": "Closely monitor for bleeding when venlafaxine is initiated or discontinued in patients receiving an antiplatelet drug.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with an antiplatelet or anticoagulant drug may potentiate the risk of bleeding. This may be due to the effect of Effexor XR on the release of serotonin by platelets."
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-clopidogrel",
+    "drug_a": "venlafaxine",
+    "drug_b": "clopidogrel",
+    "severity": "moderate",
+    "mechanism": "Venlafaxine impairs platelet serotonin release, potentiating bleeding risk with antiplatelets.",
+    "clinical_effect": "Increased risk of bleeding.",
+    "management": "Closely monitor for bleeding when venlafaxine is initiated or discontinued in patients receiving an antiplatelet drug.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with an antiplatelet or anticoagulant drug may potentiate the risk of bleeding. This may be due to the effect of Effexor XR on the release of serotonin by platelets."
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-fluoxetine",
+    "drug_a": "venlafaxine",
+    "drug_b": "fluoxetine",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity (and CYP2D6 inhibition by fluoxetine).",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor for symptoms of serotonin syndrome; discontinue if serotonin syndrome occurs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with other serotonergic drugs (including other SNRIs, SSRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) increases the risk of serotonin syndrome."
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-paroxetine",
+    "drug_a": "venlafaxine",
+    "drug_b": "paroxetine",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity (and CYP2D6 inhibition by paroxetine).",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor for symptoms of serotonin syndrome; discontinue if serotonin syndrome occurs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with other serotonergic drugs (including other SNRIs, SSRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) increases the risk of serotonin syndrome."
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-metoprolol",
+    "drug_a": "venlafaxine",
+    "drug_b": "metoprolol",
+    "severity": "moderate",
+    "mechanism": "Venlafaxine increases Cmax and AUC of CYP2D6 substrates.",
+    "clinical_effect": "Increased systemic exposure and risk of toxicity of concomitant CYP2D6 substrate (metoprolol).",
+    "management": "Consider reduction in dose of concomitant CYP2D6 substrates.",
+    "alternatives": [
+      {
+        "drug_id": "bisoprolol",
+        "rationale": "Bisoprolol has balanced renal/hepatic elimination with less dependence on CYP2D6."
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR increases C max and AUC of a CYP2D6 substrate, which may increase the risk of toxicity of the CYP2D6 substrate [see Clinical Pharmacology (12.3) ] . Intervention Consider reduction in dose of concomitant CYP2D6 substrates."
+      }
+    ]
+  },
+  {
+    "id": "nifedipine-phenytoin",
+    "drug_a": "nifedipine",
+    "drug_b": "phenytoin",
+    "severity": "contraindicated",
+    "mechanism": "Phenytoin induces CYP3A4-mediated metabolism of nifedipine.",
+    "clinical_effect": "Lowers systemic exposure to nifedipine by approximately 70%, risking loss of antihypertensive or antianginal efficacy.",
+    "management": "Avoid co-administration of nifedipine with phenytoin or any known CYP3A4 inducer or consider an alternative antihypertensive therapy.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce CYP3A4."
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Co-administration of nifedipine with phenytoin, an inducer of CYP3A4, lowers the systemic exposure to nifedipine by approximately 70%. Avoid co-administration of nifedipine with phenytoin or any known CYP3A4 inducer or consider an alternative antihypertensive therapy."
+      }
+    ]
+  },
+  {
+    "id": "nifedipine-carbamazepine",
+    "drug_a": "nifedipine",
+    "drug_b": "carbamazepine",
+    "severity": "contraindicated",
+    "mechanism": "Carbamazepine is a known CYP3A4 inducer that accelerates nifedipine metabolism.",
+    "clinical_effect": "Markedly reduced systemic exposure to nifedipine and loss of efficacy.",
+    "management": "Avoid co-administration of nifedipine with phenytoin or any known CYP3A4 inducer or consider an alternative antihypertensive therapy.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce CYP3A4."
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Avoid co-administration of nifedipine with phenytoin or any known CYP3A4 inducer or consider an alternative antihypertensive therapy."
+      }
+    ]
+  },
+  {
+    "id": "nifedipine-digoxin",
+    "drug_a": "nifedipine",
+    "drug_b": "digoxin",
+    "severity": "moderate",
+    "mechanism": "Nifedipine reduces renal/non-renal clearance of digoxin.",
+    "clinical_effect": "Increased digoxin levels in 9 of 12 normal volunteers with an average increase of 45%, risking digitalis toxicity.",
+    "management": "Monitor digoxin levels when initiating, adjusting, and discontinuing nifedipine to avoid over- or under-digitalization.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS — C) Digitalis",
+        "quote": "Administration of nifedipine with digoxin increased digoxin levels in nine of twelve normal volunteers. The average increase was 45%."
+      }
+    ]
+  },
+  {
+    "id": "nifedipine-fluoxetine",
+    "drug_a": "nifedipine",
+    "drug_b": "fluoxetine",
+    "severity": "moderate",
+    "mechanism": "Fluoxetine inhibits CYP3A-mediated metabolism of nifedipine.",
+    "clinical_effect": "May result in increased systemic exposure to nifedipine and enhanced vasodilatory/hypotensive effects.",
+    "management": "Careful monitoring and dose adjustment may be necessary; consider initiating nifedipine at the lowest dose available.",
+    "alternatives": [
+      {
+        "drug_id": "sertraline",
+        "rationale": "Sertraline is not listed as a CYP3A inhibitor affecting nifedipine in the label."
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "CYP3A inhibitors such as fluconazole, itraconazole, clarithromycin, erythromycin, nefazodone, fluoxetine, saquinavir, indinavir, and nelfinavir may result in increased exposure to nifedipine when co‑administered. Careful monitoring and dose adjustment may be necessary; consider initiating nifedipine at the lowest dose available"
+      }
+    ]
+  },
+  {
+    "id": "nifedipine-metoprolol",
+    "drug_a": "nifedipine",
+    "drug_b": "metoprolol",
+    "severity": "moderate",
+    "mechanism": "Additive hypotensive and negative inotropic/chronotropic effects with beta-adrenergic blockers.",
+    "clinical_effect": "May increase the likelihood of congestive heart failure, severe hypotension, or exacerbation of angina.",
+    "management": "Monitor blood pressure closely when introducing concomitant therapy.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS — A) Beta-adrenergic blocking agents",
+        "quote": "there have been occasional literature reports suggesting that the combination may increase the likelihood of congestive heart failure, severe hypotension, or exacerbation of angina."
+      }
+    ]
+  },
+  {
+    "id": "nifedipine-warfarin",
+    "drug_a": "nifedipine",
+    "drug_b": "warfarin",
+    "severity": "minor",
+    "mechanism": "Uncertain mechanism; rare reports with coumarin anticoagulants.",
+    "clinical_effect": "Rare reports of increased prothrombin time in patients taking coumarin anticoagulants to whom nifedipine was administered.",
+    "management": "Monitor prothrombin time / INR if clinically indicated.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS — D) Coumarin Anticoagulants",
+        "quote": "There have been rare reports of increased prothrombin time in patients taking coumarin anticoagulants to whom nifedipine was administered. However, the relationship to nifedipine therapy is uncertain."
+      }
+    ]
+  }
+]

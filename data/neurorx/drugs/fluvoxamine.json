@@ -1,0 +1,292 @@
+{
+  "id": "fluvoxamine",
+  "generic_name": "fluvoxamine",
+  "tall_man": {
+    "value": "fluvoxamine",
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "2.1 OCD (Obsessive Compulsive Disorder)",
+        "quote": "The recommended starting dose is 100 mg at bedtime, with weekly increases of 50 mg as tolerated to maximum therapeutic benefit, not to exceed 300 mg per day."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antidepressant",
+    "selective serotonin reuptake inhibitor",
+    "SSRI"
+  ],
+  "subspecialties": [
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "flv-po-ocd-er",
+      "indication": "Obsessive Compulsive Disorder (Adults — Extended-Release Capsules)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-fluvoxamine-label",
+          "locator": "2.1 OCD (Obsessive Compulsive Disorder)",
+          "quote": "The recommended starting dose is 100 mg at bedtime, with weekly increases of 50 mg as tolerated to maximum therapeutic benefit, not to exceed 300 mg per day. Capsules should not be crushed or chewed. 2.2"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "once daily at bedtime (weekly 50 mg increments as tolerated; max 300 mg/day)",
+        "max_single": 300,
+        "max_daily": 300
+      },
+      "dose_text": "Initial: 100 mg orally at bedtime; increase by 50 mg weekly as tolerated to maximum 300 mg/day. Do not crush or chew capsules."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": [],
+    "note": "No specific renal dose adjustment in FDA label."
+  },
+  "hepatic": {
+    "value": "Patients with hepatic impairment have decreased clearance of fluvoxamine maleate; titrate slowly following the initial dose.",
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "2.3 Dosage for Elderly or Hepatically Impaired Patients",
+        "quote": "Elderly patients and those with hepatic impairment have been observed to have a decreased clearance of fluvoxamine maleate. Consequently, it may be appropriate to titrate slowly following the initial dose of 100 mg in these patient groups."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: SUICIDAL THOUGHTS AND BEHAVIORS: Antidepressants increased the risk of suicidal thoughts and behaviors in children, adolescents, and young adults in short-term trials. Closely monitor all patients for clinical worsening and emergence of suicidal thoughts and behaviors."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SUICIDALITY AND ANTIDEPRESSANT DRUGS Anti"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "The mechanism of action of fluvoxamine maleate in obsessive compulsive disorder is presumed to be linked to its specific serotonin reuptake inhibition in brain neurons."
+      }
+    ],
+    "note": "SSRIs do not impair neuromuscular transmission; no MG warning in FDA label."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Extended-release capsules should not be crushed or chewed."
+    },
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "2.1 OCD (Obsessive Compulsive Disorder)",
+        "quote": "Capsules should not be crushed or chewed. 2.2"
+      }
+    ]
+  },
+  "pgx": {
+    "value": "Approximately 7% of the population are CYP2D6 poor metabolizers; fluvoxamine also inhibits multiple CYP isoenzymes (CYP1A2, CYP2C9, CYP3A4, CYP2C19).",
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "12.3 Pharmacokinetics — CYP2D6",
+        "quote": "Approximately 7% of the normal population has a genetic code that leads to reduced levels of activity of CYP2D6 enzyme. Such"
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "serotonin_syndrome",
+      "hyponatremia",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Most common reactions in controlled trials with OCD patients and"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea, diarrhea, dyspepsia, anorexia",
+        "Somnolence, insomnia, asthenia, dizziness, tremor, nervousness",
+        "Abnormal ejaculation, sweating"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-fluvoxamine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Most common reactions in controlled trials with OCD patients and patients from another studied population (incidence ≥5% and at least twice that for"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Suicidal thoughts and behaviors in pediatric and young adult patients",
+        "Serotonin syndrome",
+        "Abnormal bleeding",
+        "Hyponatremia, seizures, ventricular arrhythmia / Torsades de Pointes (postmarketing), Stevens-Johnson syndrome"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-fluvoxamine-label",
+          "locator": "6 Postmarketing",
+          "quote": "ventricular arrythmia, ventricular tachycardia (including torsades de pointes known to cause cardiac arrest, sometimes fatal),"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Potent selective serotonin reuptake inhibitor (SSRI) in brain neurons with minimal affinity for histaminergic, adrenergic, muscarinic, or dopaminergic receptors.",
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "The mechanism of action of fluvoxamine maleate in obsessive compulsive disorder is presumed to be linked to its specific serotonin reuptake inhibition in brain neurons."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp1a2": "inhibitor_strong",
+      "cyp2c19": "inhibitor_strong",
+      "cyp2c9": "inhibitor_weak",
+      "cyp3a4": "inhibitor_weak",
+      "qt_risk": "conditional",
+      "serotonergic": true
+    },
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Fluvoxamine inhibits several cytochrome P450 isoenzymes (CYP1A2, CYP2C9, CYP3A4, and CYP2C19) ( 7.1"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "MAOIs (including linezolid and IV methylene blue)",
+        "severity": "contraindicated",
+        "effect": "Increased risk of serotonin syndrome.",
+        "management": "Contraindicated within 14 days of stopping an MAOI or stopping fluvoxamine.",
+        "refs": [
+          {
+            "source_id": "fda-fluvoxamine-label",
+            "locator": "4.1 Monoamine Oxidase Inhibitors (MAOIs)",
+            "quote": "The use of MAOIs intended to treat psychiatric disorders with fluvoxamine maleate extended-release capsules or within 14 days of stopping treatment with fluvoxamine maleate extended-release capsules is contraindicated because of an increased risk of serotonin syndrome. The"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Carbamazepine, TCAs, Propranolol/Metoprolol, Sumatriptan",
+        "severity": "major",
+        "effect": "Inhibition of CYP1A2, CYP2C19, CYP2C9, and CYP3A4 increases plasma concentrations of carbamazepine, TCAs, and beta-blockers; triptans add serotonergic risk.",
+        "management": "Monitor plasma levels and clinical toxicity; reduce TCA or propranolol/metoprolol doses as indicated.",
+        "refs": [
+          {
+            "source_id": "fda-fluvoxamine-label",
+            "locator": "7.2 Drug Interactions",
+            "quote": "Carbamazepine: Elevated carbamazepine levels and symptoms of toxicity with"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Fluvoxamine inhibits several cytochrome P450 isoenzymes (CYP1A2, CYP2C9, CYP3A4, and CYP2C19) ( 7.1"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Animal studies showed embryofetal death and eye abnormalities at >=120 mg/kg/day (~4x MRHD); late-pregnancy SSRI exposure carries risks of PPHN, poor neonatal adaptation, and <2-fold postpartum hemorrhage; secreted in human milk.",
+      "refs": [
+        {
+          "source_id": "fda-fluvoxamine-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Pregnancy: Consider both potential risks and benefits when treating a pregnant woman. Infants exposed to SSRIs in pregnancy have developed various complications and may be at risk for persistent pulmonary hypertension of the newborn (PPHN) ( 2.7 ,"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "No hormonal contraceptive interaction reported in FDA label."
+    },
+    "pregnancy_pk": {
+      "value": "Consider potential risks and benefits during pregnancy. Exposure to SSRIs in the month before delivery is associated with <2-fold increased postpartum hemorrhage risk; late-pregnancy exposure may cause PPHN and neonatal complications.",
+      "refs": [
+        {
+          "source_id": "fda-fluvoxamine-label",
+          "locator": "8.1 Pregnancy — Nonteratogenic Effects",
+          "quote": "Based on data from published observational studies, exposure to SSRIs, particularly in the month before delivery, has been associated with a less than 2-fold increase in the risk of postpartum haemorrhage [see"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Monitor for postpartum hemorrhage if exposed in the month before delivery. Fluvoxamine is secreted in human breast milk; decide whether to discontinue nursing or the drug.",
+      "refs": [
+        {
+          "source_id": "fda-fluvoxamine-label",
+          "locator": "8.3 Nursing Mothers",
+          "quote": "Fluvoxamine is secreted in human breast milk. Because of the potential for serious adverse reactions in nursing infants from fluvoxamine maleate extended-release capsules, a decision should be made whether to discontinue nursing or discontinue the drug, taking into account the importance of the drug to the mother. 8.4"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": [],
+      "note": "No RID percentage reported in FDA label."
+    },
+    "lactation_summary": {
+      "value": "Secreted in human breast milk; because of the potential for serious adverse reactions in nursing infants, decide whether to discontinue nursing or discontinue the drug based on maternal clinical need.",
+      "refs": [
+        {
+          "source_id": "fda-fluvoxamine-label",
+          "locator": "8.3 Nursing Mothers",
+          "quote": "Fluvoxamine is secreted in human breast milk. Because of the potential for serious adverse reactions in nursing infants from fluvoxamine maleate extended-release capsules, a decision should be made whether to discontinue nursing or discontinue the drug, taking into"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

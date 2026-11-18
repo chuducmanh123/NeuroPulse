@@ -1,0 +1,339 @@
+{
+  "id": "eszopiclone",
+  "generic_name": "eszopiclone",
+  "tall_man": {
+    "value": "eszopiclone",
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "LUNESTA ® (eszopiclone) is indicated for the treatment of insomnia. In"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "sedative-hypnotic",
+    "nonbenzodiazepine hypnotic",
+    "cyclopyrrolone"
+  ],
+  "subspecialties": [
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "esz-po-insomnia-adult",
+      "indication": "Insomnia (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-eszopiclone-label",
+          "locator": "2.1 Dosage in Adults",
+          "quote": "The recommended starting dose is 1 mg. Dosing can be raised to 2 mg or 3 mg if clinically indicated. In some patients, the higher morning blood levels of"
+        },
+        {
+          "source_id": "fda-eszopiclone-label",
+          "locator": "2.1 Dosage in Adults",
+          "quote": "The total dose of LUNESTA should not exceed 3 mg, once daily immediately before bedtime [ see Warnings and Precautions"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "once daily immediately before bedtime (max 3 mg/day)",
+        "max_single": 3,
+        "max_daily": 3
+      },
+      "dose_text": "Initial: 1 mg orally immediately before bedtime (with at least 7–8 hours remaining before planned awakening). May increase to 2 mg or 3 mg if clinically indicated; maximum 3 mg/day. Do not take with or immediately after a heavy, high-fat meal."
+    },
+    {
+      "id": "esz-po-insomnia-elderly",
+      "indication": "Insomnia (Geriatric or Debilitated Patients)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-eszopiclone-label",
+          "locator": "2.2 Geriatric or Debilitated Patients",
+          "quote": "The total dose of LUNESTA should not exceed 2 mg in elderly or debilitated patients. 2.3 Patients"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "once daily immediately before bedtime (max 2 mg/day)",
+        "max_single": 2,
+        "max_daily": 2
+      },
+      "dose_text": "Initial: 1 mg orally immediately before bedtime; total dose should not exceed 2 mg in elderly or debilitated patients."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "12.3 Pharmacokinetics — Renal Impairment",
+        "quote": "No dose adjustment is necessary in patients with renal impairment, since less than 10% of the orally administered eszopiclone dose is excreted in the urine as parent drug. Drug"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dose adjustment is necessary in patients with renal impairment, since less than 10% of the orally administered eszopiclone dose is excreted in the urine as parent drug.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-eszopiclone-label",
+          "locator": "12.3 Pharmacokinetics — Renal Impairment",
+          "quote": "No dose adjustment is necessary in patients with renal impairment, since less than 10% of the orally administered eszopiclone dose is excreted in the urine as parent drug. Drug"
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "12.3 Pharmacokinetics — Renal Impairment",
+        "quote": "No dose adjustment is necessary in patients with renal impairment, since less than 10% of the orally administered eszopiclone dose is excreted in the urine as parent drug. Drug"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "No dose adjustment is necessary for mild-to-moderate hepatic impairment. In patients with severe hepatic impairment, total dose should not exceed 2 mg; use with caution in patients with hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "8.6 Hepatic Impairment",
+        "quote": "No dose adjustment is necessary for patients with mild-to-moderate hepatic impairment. Exposure was increased in severely impaired patients compared with healthy volunteers. The dose of LUNESTA should not exceed 2 mg in patients with severe hepatic impairment. LUNESTA should be used with caution in patients with"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: COMPLEX SLEEP BEHAVIORS: Complex sleep behaviors including sleep-walking, sleep-driving, and engaging in other activities while not fully awake may occur following use of LUNESTA. Some of these events may result in serious injuries, including death. Discontinue LUNESTA immediately if a patient experiences a complex sleep behavior."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: COMPLEX SLEEP BEHAVIORS Complex sleep behaviors including sleep-walking, sleep-driving, and engaging in other activities while not fully awake may occur following use of LUNESTA. Some of these events may result in serious injuries, including death. Discontinue LUNESTA immediately if a patient experiences a complex sleep"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "its effect could be related to its interaction with GABA-receptor complexes at binding domains located close to or allosterically coupled to benzodiazepine receptors."
+      }
+    ],
+    "note": "Acts on GABA-receptor complexes coupled to benzodiazepine receptors and causes CNS depression; no specific myasthenia gravis warning in FDA label, use with caution."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "No enteral tube administration instructions in FDA label."
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic dosing recommendations in FDA label (metabolized by CYP3A4 and CYP2E1)."
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "confusion_delirium",
+      "psychiatric_behavioral"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Most commonly observed adverse reactions (incidence ≥2%) were unpleasant taste, headache, somnolence, respiratory infection, dizziness, dry mouth, rash, anxiety, hallucinations, and viral infections ( 6.1 ) To"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Unpleasant taste (dysgeusia)",
+        "Headache, dizziness, somnolence",
+        "Dry mouth, dyspepsia, nausea",
+        "Respiratory infection, viral infection, rash, anxiety, hallucinations"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-eszopiclone-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Most commonly observed adverse reactions (incidence ≥2%) were unpleasant taste, headache, somnolence, respiratory infection, dizziness, dry mouth, rash, anxiety, hallucinations, and viral infections ( 6.1 ) To"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Complex sleep behaviors (sleep-walking, sleep-driving) including fatal injuries",
+        "CNS depressant effects and next-day impairment",
+        "Severe anaphylactic and anaphylactoid reactions (angioedema)",
+        "Abnormal thinking, behavioral changes, hallucinations",
+        "Withdrawal effects upon rapid dose reduction or discontinuation"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-eszopiclone-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Complex Sleep Behaviors [see Boxed Warning and Warnings and Precautions ( 5.1 )] CNS Depressant Effects and Next-Day Impairment [see Warnings and"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Nonbenzodiazepine hypnotic (cyclopyrrolone) whose effect is thought to be related to interaction with GABA-receptor complexes at binding domains located close to or allosterically coupled to benzodiazepine receptors.",
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "The mechanism of action of eszopiclone as a hypnotic is unclear; however, its effect could be related to its interaction with GABA-receptor complexes at binding domains located close to or allosterically coupled to benzodiazepine receptors. 12.3"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "12.3 Pharmacokinetics — Metabolism",
+        "quote": "In vitro studies have shown that CYP3A4 and CYP2E1 enzymes are involved in the metabolism of eszopiclone. Eszopiclone did not show any inhibitory potential on CYP450 1A2, 2A6, 2C9, 2C19, 2D6, 2E1, and 3A4 in cryopreserved human hepatocytes."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "CNS Depressants (including Ethanol and Olanzapine)",
+        "severity": "moderate",
+        "effect": "Additive CNS-depressant effects and psychomotor impairment.",
+        "management": "Dosage adjustments may be necessary when LUNESTA is combined with other CNS depressant drugs.",
+        "refs": [
+          {
+            "source_id": "fda-eszopiclone-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "CNS Depressants: Additive CNS-depressant effects with combination use. Use with ethanol causes additive psychomotor impairment ("
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Potent CYP3A4 Inhibitors (e.g., ketoconazole, itraconazole, clarithromycin, ritonavir, nelfinavir, nefazodone)",
+        "severity": "major",
+        "effect": "Ketoconazole increased eszopiclone exposure 2.2-fold (Cmax 1.4-fold, t1/2 1.3-fold).",
+        "management": "Total dose of LUNESTA should not exceed 2 mg in patients coadministered with potent CYP3A4 inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-eszopiclone-label",
+            "locator": "7.2 Drugs that Inhibit or Induce CYP3A4",
+            "quote": "The exposure of eszopiclone was increased by coadministration of ketoconazole, a potent inhibitor of CYP3A4. Other strong inhibitors of CYP3A4 (e.g., itraconazole, clarithromycin, nefazodone, troleandomycin, ritonavir, nelfinavir) would be expected to behave similarly. Dose reduction of LUNESTA is needed for"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Potent CYP3A4 Inducers (e.g., rifampicin)",
+        "severity": "moderate",
+        "effect": "Racemic zopiclone exposure was decreased 80% by concomitant rifampicin; similar effect expected with eszopiclone.",
+        "management": "Combination use with a CYP3A4 inducer may decrease exposure and effects of LUNESTA.",
+        "refs": [
+          {
+            "source_id": "fda-eszopiclone-label",
+            "locator": "7.2 Drugs that Inhibit or Induce CYP3A4",
+            "quote": "Racemic zopiclone exposure was decreased 80% by concomitant use of rifampicin, a potent inducer of CYP3A4. A similar effect would be expected with eszopiclone. Combination use with CYP3A4 inducer may decrease the exposure and effects of LUNESTA.\n\n=== 8 USE IN"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "CNS Depressants: Additive CNS-depressant effects with combination use. Use with"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Available pharmacovigilance data in pregnant women are insufficient to identify drug-associated risk; no teratogenicity in rats/rabbits, but offspring toxicities in rats at >=200x MRHD (mg/m2); no data on human milk presence.",
+      "refs": [
+        {
+          "source_id": "fda-eszopiclone-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Available pharmacovigilance data with LUNESTA use in pregnant women are insufficient to identify a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes. In"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "No hormonal contraceptive interaction reported in FDA label."
+    },
+    "pregnancy_pk": {
+      "value": "Available pharmacovigilance data with LUNESTA use in pregnant women are insufficient to identify a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes. No teratogenicity in rats or rabbits; offspring toxicities in rats at >=200x MRHD (mg/m2).",
+      "refs": [
+        {
+          "source_id": "fda-eszopiclone-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Administration of eszopiclone to rats throughout pregnancy and lactation resulted in offspring toxicities at all doses tested; the lowest dose was approximately 200 times the maximum recommended human dose (MRHD) of 3 mg/day based on mg/m 2 body surface area (See Data"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "No specific postpartum warning in FDA label."
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": [],
+      "note": "No data on presence in human milk."
+    },
+    "lactation_summary": {
+      "value": "There are no data on the presence of eszopiclone in either human or animal milk, the effects on the breastfed infant, or the effects on milk production. Weigh developmental and health benefits of breastfeeding against maternal clinical need.",
+      "refs": [
+        {
+          "source_id": "fda-eszopiclone-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "There are no data on the presence of eszopiclone in either human or animal milk, the effects on the breastfed infant, or the effects on milk production. The"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -1,0 +1,394 @@
+{
+  "id": "nifedipine",
+  "generic_name": "nifedipine",
+  "tall_man": {
+    "value": "nifedipine",
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "11 DESCRIPTION",
+        "quote": "Nifedipine is a drug belonging to a class of pharmacological agents known as the calcium channel blockers."
+      }
+    ],
+    "note": "Lowercase generic per task specification and EXTRACTION.md"
+  },
+  "classes": [
+    "dihydropyridine calcium channel blocker",
+    "antihypertensive",
+    "antianginal"
+  ],
+  "subspecialties": [
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "nif-po-htn",
+      "indication": "Hypertension (Adults — Extended Release)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-nifedipine-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "Therapy for either hypertension or angina should be initiated with 30 or 60 mg once daily. PROCARDIA XL Extended Release Tablets should be swallowed whole and should not be bitten or"
+        },
+        {
+          "source_id": "fda-nifedipine-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "Titration to doses above 120 mg are not recommended. Angina"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 30,
+        "unit": "mg",
+        "frequency": "once daily (initiate 30 or 60 mg once daily; max 120 mg/day)",
+        "max_single": 120,
+        "max_daily": 120
+      },
+      "dose_text": "Initial: 30 or 60 mg orally once daily (swallow whole; do not bite or divide). Titrate over 7–14 days; doses above 120 mg/day are not recommended. Avoid co-administration with grapefruit juice."
+    },
+    {
+      "id": "nif-po-angina",
+      "indication": "Vasospastic Angina & Chronic Stable Angina (Adults — Extended Release)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-nifedipine-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "Experience with doses greater than 90 mg in patients with angina is limited. Therefore, doses greater than 90 mg should be used with caution and only when clinically warranted."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 30,
+        "unit": "mg",
+        "frequency": "once daily (initiate 30 or 60 mg once daily; use >90 mg with caution; max 120 mg/day)",
+        "max_single": 120,
+        "max_daily": 120
+      },
+      "dose_text": "Initial: 30 or 60 mg orally once daily (swallow whole; do not bite or divide). Experience with doses >90 mg in angina is limited (use with caution); doses above 120 mg/day are not recommended."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "12 CLINICAL PHARMACOLOGY — Pharmacokinetics",
+        "quote": "the pharmacokinetics of nifedipine are not significantly influenced by the degree of renal impairment. Patients in hemodialysis or chronic ambulatory peritoneal dialysis have not reported significantly altered pharmacokinetics of"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Pharmacokinetics of nifedipine are not significantly influenced by the degree of renal impairment; no altered pharmacokinetics in hemodialysis or chronic ambulatory peritoneal dialysis.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-nifedipine-label",
+          "locator": "12 CLINICAL PHARMACOLOGY — Pharmacokinetics",
+          "quote": "the pharmacokinetics of nifedipine are not significantly influenced by the degree of renal impairment."
+        }
+      ]
+    },
+    "bands": [],
+    "hemodialysis": {
+      "value": "Patients in hemodialysis or chronic ambulatory peritoneal dialysis have not reported significantly altered pharmacokinetics of nifedipine.",
+      "refs": [
+        {
+          "source_id": "fda-nifedipine-label",
+          "locator": "12 CLINICAL PHARMACOLOGY — Pharmacokinetics",
+          "quote": "Patients in hemodialysis or chronic ambulatory peritoneal dialysis have not reported significantly altered pharmacokinetics of nifedipine."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "12 CLINICAL PHARMACOLOGY — Pharmacokinetics",
+        "quote": "the pharmacokinetics of nifedipine are not significantly influenced by the degree of renal impairment."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Patients with hepatic impairment (liver cirrhosis) have a longer disposition half-life and higher bioavailability of nifedipine than healthy volunteers; clearance is expected to be prolonged.",
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "12 CLINICAL PHARMACOLOGY — Pharmacokinetics",
+        "quote": "Patients with hepatic impairment (liver cirrhosis) have a longer disposition half-life and higher bioavailability of nifedipine than healthy volunteers. The"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": [],
+    "note": "No boxed warning in FDA Procardia XL label."
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "12 CLINICAL PHARMACOLOGY",
+        "quote": "Nifedipine is a calcium ion influx inhibitor (slow-channel blocker or calcium ion antagonist) and inhibits the transmembrane influx of calcium ions into cardiac muscle and smooth muscle."
+      }
+    ],
+    "note": "Calcium channel blockers can rarely exacerbate muscle weakness in myasthenia gravis; no specific MG warning in FDA label, use with clinical monitoring."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "PROCARDIA XL Extended Release Tablets should be swallowed whole and should not be bitten or divided."
+    },
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "2 DOSAGE AND ADMINISTRATION",
+        "quote": "PROCARDIA XL Extended Release Tablets should be swallowed whole and should not be bitten or divided. In"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic dosing recommendations in FDA label (metabolized by CYP3A4)."
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "rash_sjs_ten",
+      "ataxia"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "The most common side effect reported with PROCARDIA XL was edema which was dose related and ranged in frequency from approximately 10% to about 30% at the highest dose studied (180 mg)."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Peripheral edema (10–30%, dose-related)",
+        "Headache (15.8%), fatigue (5.9%), dizziness (4.1%)",
+        "Constipation (3.3%), nausea (3.3%)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-nifedipine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The most common side effect reported with PROCARDIA XL was edema which was dose related and ranged in frequency from approximately 10% to about 30% at the highest dose studied (180 mg). Other common adverse experiences reported in placebo-controlled trials include: Adverse Effect PROCARDIA XL (%) (N=707) Placebo (%) (N=266) Headache 15.8 9.8"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe hypotension, myocardial infarction, congestive heart failure or pulmonary edema",
+        "Gastrointestinal obstruction / bezoar / tablet adherence ulceration",
+        "Exfoliative dermatitis, Stevens-Johnson Syndrome (SJS), toxic epidermal necrolysis (TEN), AGEP"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-nifedipine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "There have been rare reports of exfoliative or bullous skin adverse events (such as erythema multiforme, Stevens-Johnson Syndrome, and toxic epidermal necrolysis) and photosensitivity reactions."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Dihydropyridine calcium ion influx inhibitor (slow-channel blocker) that inhibits transmembrane influx of calcium ions into vascular smooth muscle and cardiac muscle, causing peripheral arterial vasodilation and reduced peripheral vascular resistance.",
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "12 CLINICAL PHARMACOLOGY",
+        "quote": "Nifedipine is a calcium ion influx inhibitor (slow-channel blocker or calcium ion antagonist) and inhibits the transmembrane influx of calcium ions into cardiac muscle and smooth muscle."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Nifedipine is metabolized by CYP3A4. Co-"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Phenytoin and CYP3A4 Inducers",
+        "severity": "contraindicated",
+        "effect": "Phenytoin lowers systemic exposure to nifedipine by approximately 70%.",
+        "management": "Avoid co-administration of nifedipine with phenytoin or any known CYP3A4 inducer or consider an alternative antihypertensive therapy.",
+        "refs": [
+          {
+            "source_id": "fda-nifedipine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Co-administration of nifedipine with phenytoin, an inducer of CYP3A4, lowers the systemic exposure to nifedipine by approximately 70%. Avoid co-administration of nifedipine with phenytoin or any known CYP3A4 inducer or consider an alternative antihypertensive therapy. CYP3A"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP3A4 Inhibitors (e.g., fluconazole, itraconazole, clarithromycin, erythromycin, nefazodone, fluoxetine, ritonavir-class)",
+        "severity": "moderate",
+        "effect": "May result in increased exposure to nifedipine.",
+        "management": "Careful monitoring and dose adjustment may be necessary; consider initiating nifedipine at the lowest dose available.",
+        "refs": [
+          {
+            "source_id": "fda-nifedipine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "CYP3A inhibitors such as fluconazole, itraconazole, clarithromycin, erythromycin, nefazodone, fluoxetine, saquinavir, indinavir, and nelfinavir may result in increased exposure to nifedipine when co‑administered. Careful monitoring and dose adjustment may be necessary; consider initiating nifedipine at the lowest dose"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Beta-adrenergic Blocking Agents",
+        "severity": "moderate",
+        "effect": "May increase likelihood of congestive heart failure, severe hypotension, or exacerbation of angina.",
+        "management": "Monitor blood pressure closely when introducing concomitant therapy.",
+        "refs": [
+          {
+            "source_id": "fda-nifedipine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "there have been occasional literature reports suggesting that the combination may increase the likelihood of congestive heart failure, severe hypotension, or exacerbation of"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Digoxin",
+        "severity": "moderate",
+        "effect": "Increased digoxin levels in 9 of 12 normal volunteers (average increase 45%).",
+        "management": "Monitor digoxin levels when initiating, adjusting, and discontinuing nifedipine.",
+        "refs": [
+          {
+            "source_id": "fda-nifedipine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Administration of nifedipine with digoxin increased digoxin levels in nine of twelve normal volunteers. The average increase was 45%."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Cimetidine",
+        "severity": "moderate",
+        "effect": "Increased peak nifedipine plasma levels by 80% and AUC by 74%.",
+        "management": "Cautious titration is advised if nifedipine is initiated in a patient receiving cimetidine.",
+        "refs": [
+          {
+            "source_id": "fda-nifedipine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "A study in six healthy volunteers has shown a significant increase in peak nifedipine plasma levels (80%) and area-under-the-curve (74%), after a one week course of cimetidine at 1000 mg per day and nifedipine at 40 mg per day."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Coumarin Anticoagulants",
+        "severity": "minor",
+        "effect": "Rare reports of increased prothrombin time; relationship uncertain.",
+        "management": "Monitor prothrombin time / INR if clinically indicated.",
+        "refs": [
+          {
+            "source_id": "fda-nifedipine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "There have been rare reports of increased prothrombin time in patients taking coumarin anticoagulants to whom nifedipine was administered. However, the relationship to nifedipine therapy is"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Grapefruit Juice",
+        "severity": "contraindicated",
+        "effect": "Inhibits CYP3A4 first-pass metabolism and increases nifedipine exposure.",
+        "management": "Avoid co-administration of nifedipine with grapefruit juice.",
+        "refs": [
+          {
+            "source_id": "fda-nifedipine-label",
+            "locator": "2 DOSAGE AND ADMINISTRATION",
+            "quote": "Avoid co-administration of nifedipine with grapefruit juice (see"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Nifedipine is metabolized by CYP3A4. Co-"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "No adequate and well-controlled studies in pregnant women; animal studies showed teratogenic (digital anomalies), embryotoxic, placentotoxic, and fetotoxic effects. Label states to use during pregnancy only if potential benefit justifies potential risk.",
+      "refs": [
+        {
+          "source_id": "fda-nifedipine-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS — Pregnancy",
+          "quote": "There are no adequate and well-controlled studies in pregnant women. PROCARDIA XL Extended Release Tablets should be used during pregnancy only if the potential benefit justifies the potential"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "No hormonal contraceptive interaction reported in FDA label."
+    },
+    "pregnancy_pk": {
+      "value": "No adequate and well-controlled studies in pregnant women. Animal studies showed teratogenic (digital anomalies), embryotoxic, placentotoxic, and fetotoxic effects. Should be used during pregnancy only if potential benefit justifies potential risk.",
+      "refs": [
+        {
+          "source_id": "fda-nifedipine-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS — Pregnancy",
+          "quote": "Nifedipine has been shown to produce teratogenic findings in rats and rabbits, including digital anomalies similar to those reported for phenytoin."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "No specific postpartum warning in FDA label."
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": [],
+      "note": "No lactation data in FDA Procardia XL label."
+    },
+    "lactation_summary": {
+      "value": null,
+      "refs": [],
+      "note": "No lactation data in FDA Procardia XL label."
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "id": "sertraline",
+  "generic_name": "sertraline",
+  "tall_man": {
+    "value": "sertraline",
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "2 DOSAGE AND ADMINISTRATION",
+        "quote": "The recommended initial dosage and maximum ZOLOFT dosage in patients with MDD, OCD, PD, PTSD, and SAD are displayed in"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antidepressant",
+    "selective serotonin reuptake inhibitor",
+    "SSRI"
+  ],
+  "subspecialties": [
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ser-po-mdd-ocd",
+      "indication": "Major Depressive Disorder & Obsessive Compulsive Disorder (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-sertraline-label",
+          "locator": "2.1 Dosage in Patients with MDD, OCD, PD, PTSD, and SAD",
+          "quote": "Table 1: Recommended Daily Dosage of ZOLOFT in Patients with MDD, OCD, PD, PTSD, and SAD Indication Starting Dose Therapeutic Range Adults MDD 50 mg 50-200 mg OCD 50 mg PD, PTSD,"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "once daily (titrate by 25–50 mg/day weekly; max 200 mg/day)",
+        "max_single": 200,
+        "max_daily": 200
+      },
+      "dose_text": "Initial: 50 mg orally once daily; titrate in 25–50 mg/day increments at intervals of >=1 week up to maximum 200 mg/day."
+    },
+    {
+      "id": "ser-po-pd-ptsd-sad",
+      "indication": "Panic Disorder, PTSD, and Social Anxiety Disorder (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-sertraline-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "PD, PTSD, SAD ( 2.1 ) 25 mg per day 200 mg per day PMDD ("
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 25,
+        "unit": "mg",
+        "frequency": "once daily (titrate by 25–50 mg/day weekly; max 200 mg/day)",
+        "max_single": 200,
+        "max_daily": 200
+      },
+      "dose_text": "Initial: 25 mg orally once daily; titrate in 25–50 mg/day increments weekly up to maximum 200 mg/day."
+    },
+    {
+      "id": "ser-po-pmdd",
+      "indication": "Premenstrual Dysphoric Disorder (PMDD)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-sertraline-label",
+          "locator": "2.2 Dosage in Patients with PMDD",
+          "quote": "The recommended starting ZOLOFT dosage in adult women with PMDD is 50 mg per day. ZOLOFT may"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "once daily continuously (max 150 mg/day) or luteal phase only (max 100 mg/day)",
+        "max_single": 150,
+        "max_daily": 150
+      },
+      "dose_text": "Initial: 50 mg/day continuously throughout cycle (max 150 mg/day) or intermittently during luteal phase only (max 100 mg/day)."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "8 USE IN SPECIFIC POPULATIONS — Renal Impairment",
+        "quote": "No dose adjustment is needed in patients with mild to severe renal impairment. Sertraline exposure does not appear to be affected by renal impairment [See"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dose adjustment is needed in patients with mild to severe renal impairment.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-sertraline-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS — Renal Impairment",
+          "quote": "No dose adjustment is needed in patients with mild to severe renal impairment. Sertraline"
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "8 USE IN SPECIFIC POPULATIONS — Renal Impairment",
+        "quote": "No dose adjustment is needed in patients with mild to severe renal impairment. Sertraline exposure does not appear to be affected by renal impairment [See"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Mild hepatic impairment: recommended starting and maximum dosage is half the recommended dosage. Moderate or severe hepatic impairment: not recommended.",
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "2 DOSAGE AND ADMINISTRATION",
+        "quote": "Hepatic impairment: o Mild: Recommended starting and maximum dosage is half recommended dosage ( 2.4 ) o Moderate or severe: Not recommended ( 2.4 )"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: SUICIDAL THOUGHTS AND BEHAVIORS: Antidepressants increased the risk of suicidal thoughts and behaviors in pediatric and young adult patients in short-term trials. Closely monitor all antidepressant-treated patients for clinical worsening and emergence of suicidal thoughts and behaviors."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SUICIDAL THOUGHTS AND BEHAVIORS Antidepre"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Sertraline exposure"
+      }
+    ],
+    "note": "SSRIs do not impair neuromuscular transmission; no MG warning in FDA label."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Oral solution must be diluted before administration; no NG tube instructions in FDA label."
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No specific PGx dosing table in FDA label."
+  },
+  "ae_tags": {
+    "value": [
+      "serotonin_syndrome",
+      "hyponatremia",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Most common adverse reactions (≥5% and twice placebo) in"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea, diarrhea/loose stool, dyspepsia, decreased appetite",
+        "Insomnia, somnolence, dizziness, tremor, fatigue",
+        "Sweating increased, ejaculation failure, decreased libido"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-sertraline-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Most common adverse reactions (≥5% and twice placebo) in pooled placebo-controlled MDD, OCD, PD, PTSD, SAD and PMDD clinical trials were nausea, diarrhea/loose stool, tremor, dyspepsia, decreased"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Suicidal thoughts and behaviors in pediatric and young adult patients",
+        "Serotonin syndrome",
+        "Abnormal bleeding",
+        "Hyponatremia, seizures, activation of mania/hypomania, angle-closure glaucoma",
+        "QTc prolongation / Torsades de Pointes (rare postmarketing)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-sertraline-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "QTc prolongation and ventricular arrhythmias when taken with pimozide [See"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Selective serotonin reuptake inhibitor (SSRI) that potentiates serotonergic activity in the CNS by inhibiting neuronal reuptake of serotonin (5-HT).",
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Sertraline potentiates serotonergic activity in the central nervous system through inhibition of neuronal reuptake of serotonin (5-HT). 12.2"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2d6": "inhibitor_weak",
+      "qt_risk": "conditional",
+      "serotonergic": true
+    },
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "CYP2D6 substrates: Reduce dosage of drugs metabolized by CYP2D6. ("
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "MAOIs (including linezolid and IV methylene blue) & Pimozide",
+        "severity": "contraindicated",
+        "effect": "Risk of serotonin syndrome (MAOIs) or QT prolongation/ventricular arrhythmias (pimozide).",
+        "management": "Contraindicated; allow >=14 days washout between MAOI and sertraline.",
+        "refs": [
+          {
+            "source_id": "fda-sertraline-label",
+            "locator": "4 CONTRAINDICATIONS",
+            "quote": "Taking, or within 14 days of stopping, MAOIs, (including the MAOIs linezolid"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2D6 Substrates",
+        "severity": "moderate",
+        "effect": "Sertraline inhibits CYP2D6 and increases plasma concentrations of CYP2D6 substrates.",
+        "management": "Reduce dosage of drugs metabolized by CYP2D6 when coadministered with sertraline.",
+        "refs": [
+          {
+            "source_id": "fda-sertraline-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "CYP2D6 substrates: Reduce dosage of drugs metabolized by CYP2D6. ("
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "CYP2D6 substrates: Reduce dosage of drugs metabolized by CYP2D6. ("
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "First-trimester epidemiologic studies suggest no difference in major birth defects compared to background, but late-pregnancy exposure carries risks of PPHN, neonatal withdrawal/poor adaptation, and <2-fold postpartum hemorrhage risk; low levels in human milk.",
+      "refs": [
+        {
+          "source_id": "fda-sertraline-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Overall, available published epidemiologic studies of pregnant women exposed to sertraline in the first trimester suggest no difference in major birth defect risk compared to the background rate for major birth defects in comparator populations."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "No hormonal contraceptive interaction reported in FDA label."
+    },
+    "pregnancy_pk": {
+      "value": "First-trimester epidemiologic studies suggest no difference in major birth defect risk vs background. Exposure in the month before delivery is associated with <2-fold increased postpartum hemorrhage risk; third-trimester exposure may increase risk of PPHN and neonatal withdrawal/poor adaptation.",
+      "refs": [
+        {
+          "source_id": "fda-sertraline-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Based on data from published observational studies, exposure to SSRIs, particularly in the month before delivery, has been associated with a less than 2-fold increase in the risk of postpartum hemorrhage [see Warnings"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Monitor for postpartum hemorrhage if exposed in the month before delivery. Low levels in human milk; in a pooled analysis of 53 mother-infant pairs, exclusively breastfed infants had an average of 2% (range 0%–15%) of maternal serum sertraline levels with no adverse reactions observed.",
+      "refs": [
+        {
+          "source_id": "fda-sertraline-label",
+          "locator": "8.2 Lactation — Data",
+          "quote": "In a published pooled analysis of 53 mother-infant pairs, exclusively human milk-fed infants had an average of 2% (range 0% to 15%) of the sertraline serum levels measured in their mothers. No adverse reactions were observed in these infants. 8.4 Pediatric"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": [],
+      "note": "FDA label reports infant serum levels averaging 2% (0–15%) of maternal serum levels; no RID % stated."
+    },
+    "lactation_summary": {
+      "value": "Published literature demonstrates low levels of sertraline and its metabolites in human milk (infant serum levels averaged 2% [range 0%–15%] of maternal serum in 53 pairs, with no adverse reactions observed).",
+      "refs": [
+        {
+          "source_id": "fda-sertraline-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "Available data from published literature demonstrate low levels of sertraline and its metabolites in human milk [See"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

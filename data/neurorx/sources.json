@@ -1245,5 +1245,155 @@
     "version": "02fb700d-a28c-4d45-b78d-382dc0d5986c",
     "file": "fda-heparin-label.txt",
     "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-fluoxetine-label",
+    "type": "fda_label",
+    "title": "Prozac (fluoxetine) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Dista Products Company",
+    "year": 2026,
+    "version": "c88f33ed-6dfb-4c5e-bc01-d8e36dd97299",
+    "file": "fda-fluoxetine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-sertraline-label",
+    "type": "fda_label",
+    "title": "Zoloft (sertraline) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Viatris Specialty LLC",
+    "year": 2026,
+    "version": "fda754f6-d0f3-4dce-a17a-927d64f912f7",
+    "file": "fda-sertraline-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-escitalopram-label",
+    "type": "fda_label",
+    "title": "Lexapro (escitalopram) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Allergan, Inc.",
+    "year": 2026,
+    "version": "13bb8267-1cab-43e5-acae-55a4d957630a",
+    "file": "fda-escitalopram-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-citalopram-label",
+    "type": "fda_label",
+    "title": "Celexa (citalopram) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Allergan, Inc.",
+    "year": 2026,
+    "version": "4259d9b1-de34-43a4-85a8-41dd214e9177",
+    "file": "fda-citalopram-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-paroxetine-label",
+    "type": "fda_label",
+    "title": "PAXIL CR (paroxetine) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Apotex Corp",
+    "year": 2026,
+    "version": "483bd97f-c4d0-4e23-aaa8-6334f4471e0c",
+    "file": "fda-paroxetine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-fluvoxamine-label",
+    "type": "fda_label",
+    "title": "Fluvoxamine Maleate (fluvoxamine) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Ajanta Pharma USA Inc.",
+    "year": 2026,
+    "version": "0a6836ab-bd0e-410b-82af-07720e386532",
+    "file": "fda-fluvoxamine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-haloperidol-label",
+    "type": "fda_label",
+    "title": "Haloperidol (haloperidol) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Lifestar Pharma LLC",
+    "year": 2026,
+    "version": "00bb61c8-db35-4c04-9ef7-47d447d2496b",
+    "file": "fda-haloperidol-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-risperidone-label",
+    "type": "fda_label",
+    "title": "RISPERDAL (risperidone) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Janssen Pharmaceuticals, Inc.",
+    "year": 2026,
+    "version": "7e117c7e-02fc-4343-92a1-230061dfc5e0",
+    "file": "fda-risperidone-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-olanzapine-label",
+    "type": "fda_label",
+    "title": "Olanzapine (olanzapine) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Lannett Company, Inc.",
+    "year": 2026,
+    "version": "002dd00f-7946-ea4f-e063-6294a90a5916",
+    "file": "fda-olanzapine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-clozapine-label",
+    "type": "fda_label",
+    "title": "Clozaril (clozapine) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / HLS Therapeutics (USA), Inc.",
+    "year": 2026,
+    "version": "90876802-0e3a-44c9-9ff7-1754dfbe736a",
+    "file": "fda-clozapine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-quetiapine-label",
+    "type": "fda_label",
+    "title": "SEROQUEL (quetiapine) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / AstraZeneca Pharmaceuticals LP",
+    "year": 2026,
+    "version": "0584dda8-bc3c-48fe-1a90-79608f78e8a0",
+    "file": "fda-quetiapine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-eszopiclone-label",
+    "type": "fda_label",
+    "title": "Lunesta (eszopiclone) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Waylis Therapeutics LLC",
+    "year": 2026,
+    "version": "3821f4b7-a3c8-4920-ba80-18aa96532c09",
+    "file": "fda-eszopiclone-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-mirtazapine-label",
+    "type": "fda_label",
+    "title": "REMERONSOLTAB (mirtazapine) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Organon LLC",
+    "year": 2026,
+    "version": "98ad1917-a094-44f5-a28f-a64a8cfcd887",
+    "file": "fda-mirtazapine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-venlafaxine-label",
+    "type": "fda_label",
+    "title": "Effexor XR (venlafaxine) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Viatris Specialty LLC",
+    "year": 2026,
+    "version": "c848a5d8-ba94-4c84-80e3-0bf35fb8e32e",
+    "file": "fda-venlafaxine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-nifedipine-label",
+    "type": "fda_label",
+    "title": "Procardia XL (nifedipine) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Pfizer Laboratories Div Pfizer Inc",
+    "year": 2026,
+    "version": "8ebcb33c-f43b-4b36-9f94-9774b2a59e06",
+    "file": "fda-nifedipine-label.txt",
+    "accessed": "2026-11-11"
   }
 ]

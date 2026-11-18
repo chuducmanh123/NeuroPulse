@@ -1,0 +1,470 @@
+{
+  "id": "venlafaxine",
+  "generic_name": "venlafaxine",
+  "tall_man": {
+    "value": "venlafaxine",
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "Effexor XR is a serotonin and norepinephrine reuptake inhibitor (SNRI) indicated for the treatment of adults with: •"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antidepressant",
+    "serotonin and norepinephrine reuptake inhibitor",
+    "SNRI"
+  ],
+  "subspecialties": [
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ven-po-mdd-gad",
+      "indication": "Major Depressive Disorder & Generalized Anxiety Disorder (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "2.2 Major Depressive Disorder",
+          "quote": "For most patients, the recommended starting dose for Effexor XR is 75 mg per day, administered in a single dose. For some patients, it may be desirable to start at 37.5 mg per day for 4 to 7 days to allow new patients to adjust to the medication before increasing to 75 mg per day. Patients not"
+        },
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "2.2 Major Depressive Disorder",
+          "quote": "Patients not responding to the initial 75 mg per day dose may benefit from dose increases to a maximum of 225 mg per day. Dose"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 75,
+        "unit": "mg",
+        "frequency": "once daily with food (may start 37.5 mg/day for 4–7 days; max 225 mg/day)",
+        "max_single": 225,
+        "max_daily": 225
+      },
+      "dose_text": "Initial: 75 mg/day orally once daily with food (or 37.5 mg/day for 4–7 days to adjust). May increase in increments up to 75 mg/day at intervals >=4 days to maximum 225 mg/day. Swallow capsules whole or sprinkle contents on applesauce."
+    },
+    {
+      "id": "ven-po-sad",
+      "indication": "Social Anxiety Disorder (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "2.4 Social Anxiety Disorder",
+          "quote": "The recommended dose is 75 mg per day, administered in a single dose. There was no evidence that higher doses confer any additional benefit. 2.5"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 75,
+        "unit": "mg",
+        "frequency": "once daily with food",
+        "max_single": 75,
+        "max_daily": 75
+      },
+      "dose_text": "75 mg/day orally once daily with food (no evidence higher doses confer additional benefit)."
+    },
+    {
+      "id": "ven-po-pd",
+      "indication": "Panic Disorder (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "2.5 Panic Disorder",
+          "quote": "The recommended starting dose is 37.5 mg per day of Effexor XR for 7 days. Patients not responding to 75 mg per day may benefit from dose increases to a maximum of approximately 225 mg per day. Dose"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 37.5,
+        "unit": "mg",
+        "frequency": "once daily with food for 7 days, then 75 mg/day (max 225 mg/day)",
+        "max_single": 225,
+        "max_daily": 225
+      },
+      "dose_text": "Initial: 37.5 mg/day orally once daily with food for 7 days, then increase to 75 mg/day; may increase by up to 75 mg/day at intervals >=7 days up to maximum 225 mg/day."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "2.9 Dosage Recommendations for Patients with Renal Impairment",
+        "quote": "Reduce the Effexor XR total daily dose by 25% to 50% in patients with mild (CLcr 60-89 mL/min) or moderate (CLcr 30-59 mL/min) renal impairment. Reduce the"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Reduce total daily dose by 25% to 50% in mild (CLcr 60–89 mL/min) or moderate (CLcr 30–59 mL/min) renal impairment; reduce by 50% or more in severe renal impairment (CLcr <30 mL/min) or hemodialysis.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "2.9 Dosage Recommendations for Patients with Renal Impairment",
+          "quote": "Reduce the Effexor XR total daily dose by 25% to 50% in patients with mild (CLcr 60-89 mL/min) or moderate (CLcr 30-59 mL/min) renal impairment. Reduce the"
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 60,
+        "max": 89,
+        "dose_text": "Reduce total daily dose by 25% to 50% (mild renal impairment, CLcr 60–89 mL/min).",
+        "refs": [
+          {
+            "source_id": "fda-venlafaxine-label",
+            "locator": "2.9 Dosage Recommendations for Patients with Renal Impairment",
+            "quote": "Reduce the Effexor XR total daily dose by 25% to 50% in patients with mild (CLcr 60-89 mL/min) or moderate (CLcr 30-59 mL/min) renal impairment. Reduce the"
+          }
+        ]
+      },
+      {
+        "min": 30,
+        "max": 59,
+        "dose_text": "Reduce total daily dose by 25% to 50% (moderate renal impairment, CLcr 30–59 mL/min).",
+        "refs": [
+          {
+            "source_id": "fda-venlafaxine-label",
+            "locator": "2.9 Dosage Recommendations for Patients with Renal Impairment",
+            "quote": "Reduce the Effexor XR total daily dose by 25% to 50% in patients with mild (CLcr 60-89 mL/min) or moderate (CLcr 30-59 mL/min) renal impairment. Reduce the"
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 29,
+        "dose_text": "Reduce total daily dose by 50% or more (severe renal impairment, CLcr <30 mL/min).",
+        "refs": [
+          {
+            "source_id": "fda-venlafaxine-label",
+            "locator": "2.9 Dosage Recommendations for Patients with Renal Impairment",
+            "quote": "Reduce the total daily dose by 50% or more in patients undergoing hemodialysis or with severe renal impairment (CLcr <30 mL/min). Because"
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Reduce the total daily dose by 50% or more in patients undergoing hemodialysis.",
+      "refs": [
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "2.9 Dosage Recommendations for Patients with Renal Impairment",
+          "quote": "Reduce the total daily dose by 50% or more in patients undergoing hemodialysis or with severe renal impairment (CLcr <30 mL/min). Because"
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "2.9 Dosage Recommendations for Patients with Renal Impairment",
+        "quote": "Reduce the Effexor XR total daily dose by 25% to 50% in patients with mild (CLcr 60-89 mL/min) or moderate (CLcr 30-59 mL/min) renal impairment. Reduce the"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Reduce total daily dose by 50% in mild (Child-Pugh Class A) to moderate (Child-Pugh Class B) hepatic impairment. Reduce total daily dose by 50% or more in severe hepatic impairment (Child-Pugh Class C) or hepatic cirrhosis.",
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "2.8 Dosage Recommendations for Patients with Hepatic Impairment",
+        "quote": "Reduce the Effexor XR total daily dose by 50% in patients with mild (Child-Pugh Class A) to moderate (Child-Pugh Class B) hepatic impairment. Reduce the total daily dose by 50% or more in patients with severe hepatic impairment (Child-Pugh Class C) or hepatic cirrhosis"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: SUICIDAL THOUGHTS AND BEHAVIORS: Antidepressants increased the risk of suicidal thoughts and behavior in pediatric and young adult patients in short-term studies. Closely monitor all antidepressant-treated patients for clinical worsening, and emergence of suicidal thoughts and behaviors. Effexor XR is not approved for use in pediatric patients."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SUICIDAL THOUGHTS AND BEHAVIORS Antidepressants increased the risk of suicidal thoughts and behavior in pediatric and young adult patients in short-term studies. Closely monitor all antidepressant-treated patients for clinical worsening, and emergence of suicidal thoughts and behaviors"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "venlafaxine in the treatment of MDD, GAD, SAD, and PD is"
+      }
+    ],
+    "note": "No myasthenia gravis warning in FDA label."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Do not divide, crush, chew, or dissolve capsules; may open capsule and sprinkle contents on applesauce to swallow immediately without chewing. No NG tube instructions in FDA label."
+  },
+  "pgx": {
+    "value": "CYP2D6 catalyzes formation of active metabolite O-desmethylvenlafaxine (ODV); CYP2D6 poor metabolizers have increased venlafaxine and reduced ODV levels compared to extensive metabolizers.",
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "12.3 Pharmacokinetics — Metabolism",
+        "quote": "In vitro studies indicate that the formation of ODV is catalyzed by CYP2D6; this has been confirmed in a clinical study showing that patients with low CYP2D6 levels (poor metabolizers) had increased levels of venlafaxine and reduced levels of ODV compared to people with normal CYP2D6 levels (extensive metabolizers)"
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "serotonin_syndrome",
+      "hyponatremia",
+      "sedation_somnolence",
+      "qt_prolongation",
+      "rash_sjs_ten",
+      "weight_loss"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "6.1 Clinical Studies Experience",
+        "quote": "The most commonly observed adverse reactions in the clinical study database in Effexor XR treated patients in MDD, GAD, SAD, and PD (incidence ≥5% and at least twice the rate of placebo) were: nausea (30.0%), somnolence (15.3%), dry mouth (14.8%), sweating (11.4%), abnormal ejaculation (9.9%), anorexia (9.8%), constipation (9.3%), impotence"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea (30.0%), dry mouth (14.8%), constipation (9.3%), anorexia (9.8%)",
+        "Insomnia (17.8%), dizziness (15.8%), somnolence (15.3%), tremor (4.7%)",
+        "Asthenia (12.6%), sweating (11.4%)",
+        "Abnormal ejaculation (9.9%), impotence (5.3%), decreased libido (5.1%)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "6.1 Clinical Studies Experience",
+          "quote": "The most commonly observed adverse reactions in the clinical study database in Effexor XR treated patients in MDD, GAD, SAD, and PD (incidence ≥5% and at least twice the rate of placebo) were: nausea (30.0%), somnolence (15.3%), dry mouth (14.8%), sweating (11.4%), abnormal ejaculation (9.9%), anorexia (9.8%), constipation (9.3%), impotence"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Suicidal thoughts and behaviors in adolescents and young adults",
+        "Serotonin syndrome / Neuroleptic Malignant Syndrome",
+        "Elevated blood pressure (dose-related sustained hypertension)",
+        "Increased risk of bleeding (GI hemorrhage, ecchymosis)",
+        "Angle-closure glaucoma, seizures, hyponatremia/SIADH, interstitial lung disease/eosinophilic pneumonia, SJS/TEN, QT prolongation/TdP (postmarketing)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "• Serotonin Syndrome [see Warnings and Precautions (5.2) ] • Elevated Blood Pressure [see Warnings and Precautions (5.3) ] • Increased Risk of Bleeding [see Warnings and Precautions (5.4) ] •"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Potent and selective inhibitor of neuronal serotonin and norepinephrine reuptake (SNRI) and weak inhibitor of dopamine reuptake, with no significant affinity for muscarinic-cholinergic, H1-histaminergic, or alpha-1-adrenergic receptors.",
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "12.2 Pharmacodynamics",
+        "quote": "In vitro studies have demonstrated that venlafaxine and its active metabolite, O-desmethylvenlafaxine (ODV), are potent and selective inhibitors of neuronal serotonin and norepinephrine reuptake and weak inhibitors of dopamine reuptake."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2d6": "substrate",
+      "qt_risk": "possible",
+      "serotonergic": true
+    },
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "12.3 Pharmacokinetics — Metabolism",
+        "quote": "In vitro studies indicate that the formation of ODV is catalyzed by CYP2D6;"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "MAOIs (including linezolid and IV methylene blue)",
+        "severity": "contraindicated",
+        "effect": "Increased risk of serotonin syndrome.",
+        "management": "Contraindicated; allow at least 14 days after stopping an MAOI before starting Effexor XR, and at least 7 days after stopping Effexor XR before starting an MAOI.",
+        "refs": [
+          {
+            "source_id": "fda-venlafaxine-label",
+            "locator": "4 CONTRAINDICATIONS",
+            "quote": "Effexor XR is contraindicated in patients: • with known hypersensitivity to venlafaxine hydrochloride, desvenlafaxine succinate or to any excipients in the formulation [see Adverse Reactions (6.2) ] . • taking, or within 14 days of stopping, MAOIs (including the MAOIs linezolid and intravenous methylene blue) because of the risk of serotonin"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Other Serotonergic Drugs (SNRIs, SSRIs, triptans, TCAs, opioids, lithium, buspirone, amphetamines, tryptophan, St. John's Wort)",
+        "severity": "moderate",
+        "effect": "Increases risk of serotonin syndrome.",
+        "management": "Monitor for symptoms of serotonin syndrome; discontinue Effexor XR and/or concomitant serotonergic drugs if serotonin syndrome occurs.",
+        "refs": [
+          {
+            "source_id": "fda-venlafaxine-label",
+            "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+            "quote": "Concomitant use of Effexor XR with other serotonergic drugs (including other SNRIs, SSRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) increases the risk of serotonin syndrome. Intervention"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Drugs that Interfere with Hemostasis (antiplatelets, anticoagulants)",
+        "severity": "moderate",
+        "effect": "May potentiate the risk of bleeding via impaired platelet serotonin release.",
+        "management": "Closely monitor for bleeding when Effexor XR is initiated or discontinued.",
+        "refs": [
+          {
+            "source_id": "fda-venlafaxine-label",
+            "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+            "quote": "Concomitant use of Effexor XR with an antiplatelet or anticoagulant drug may potentiate the risk of bleeding. This may be due to the effect of Effexor XR on the release of serotonin by platelets. Intervention Closely monitor for bleeding for"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP3A Inhibitors",
+        "severity": "moderate",
+        "effect": "Increases Cmax and AUC of venlafaxine and O-desmethylvenlafaxine (ODV), increasing risk of toxicity.",
+        "management": "Consider reducing the dose of Effexor XR.",
+        "refs": [
+          {
+            "source_id": "fda-venlafaxine-label",
+            "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+            "quote": "Concomitant use of a CYP3A inhibitor increases the C max and AUC of venlafaxine and O-desmethylvenlafaxine (ODV) [see Clinical Pharmacology (12.3) ] , which may increase the risk of toxicity of Effexor XR. Intervention Consider reducing the dose of Effexor XR. CYP2D6"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2D6 Substrates",
+        "severity": "moderate",
+        "effect": "Increases Cmax and AUC of concomitant CYP2D6 substrates, increasing risk of substrate toxicity.",
+        "management": "Consider reduction in dose of concomitant CYP2D6 substrates.",
+        "refs": [
+          {
+            "source_id": "fda-venlafaxine-label",
+            "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+            "quote": "Concomitant use of Effexor XR increases C max and AUC of a CYP2D6 substrate, which may increase the risk of toxicity of the CYP2D6 substrate [see Clinical Pharmacology (12.3) ] . Intervention Consider reduction in dose of concomitant CYP2D6 substrates. 7.2 Other Drug"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Weight Loss Agents (e.g., phentermine)",
+        "severity": "major",
+        "effect": "Safety and efficacy in combination have not been established.",
+        "management": "Concomitant use of Effexor XR and weight loss agents is not recommended.",
+        "refs": [
+          {
+            "source_id": "fda-venlafaxine-label",
+            "locator": "7.2 Other Drug Interactions with Effexor XR",
+            "quote": "Concomitant use of Effexor XR and weight loss agents is not recommended. The safety and efficacy of venlafaxine therapy in combination with weight loss agents, including phentermine, have not been established."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Table 15: Clinically Important Drug Interactions with Effexor XR"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Epidemiologic studies have not established an increased risk of major birth defects or miscarriage, but observational studies suggest increased preeclampsia risk in mid-to-late pregnancy, <2-fold increased postpartum hemorrhage near delivery, and third-trimester poor neonatal adaptation; present in human milk (RID 6.4–8.1%).",
+      "refs": [
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Available data from published epidemiologic studies on venlafaxine use in pregnant women have not identified a drug-associated risk of major birth defects, miscarriage or adverse fetal outcomes (see"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "No hormonal contraceptive interaction reported in FDA label."
+    },
+    "pregnancy_pk": {
+      "value": "Published epidemiologic studies have not established an increased risk of major birth defects or miscarriage. Mid-to-late pregnancy exposure may increase preeclampsia risk (adj RR 1.57); exposure in the month before delivery is associated with <2-fold increased postpartum hemorrhage; third-trimester exposure may cause poor neonatal adaptation.",
+      "refs": [
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Available data from observational studies with venlafaxine have identified a potential increased risk for preeclampsia when used during mid to late pregnancy; exposure to SNRIs near delivery may increase the risk for postpartum hemorrhage"
+        },
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Pregnancy: Third trimester use may increase risk for symptoms of poor neonatal adaptation (respiratory distress, temperature instability, feeding difficulty, hypotonia, tremor, irritability) in the neonate ("
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Monitor for postpartum hemorrhage if exposed near delivery (adj RR 2.24 through delivery), and monitor neonates exposed in the third trimester for poor neonatal adaptation / drug discontinuation syndrome.",
+      "refs": [
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "8.1 Pregnancy — Data",
+          "quote": "One study showed an increased risk for postpartum hemorrhage when venlafaxine exposure occurred through delivery, compared to unexposed depressed women (adj RR 2.24 [95% CI"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "6.4% to 8.1% (sum of venlafaxine and desvenlafaxine across two lactation studies)",
+      "refs": [
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "8.2 Lactation — Data",
+          "quote": "the estimated mean relative infant dose was 8.1% and 6.4% based on the sum of venlafaxine and its major metabolite, desvenlafaxine. No adverse reactions were seen in the infants."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Venlafaxine and its active metabolite are present in human milk (mean RID 6.4% and 8.1%); no adverse reactions were seen in breastfed infants in published lactation studies. Weigh developmental/health benefits of breastfeeding against maternal clinical need.",
+      "refs": [
+        {
+          "source_id": "fda-venlafaxine-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "Data from published literature report the presence of venlafaxine and its active metabolite in human milk and have not shown adverse reactions in breastfed"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

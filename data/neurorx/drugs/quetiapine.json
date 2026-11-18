@@ -1,0 +1,422 @@
+{
+  "id": "quetiapine",
+  "generic_name": "quetiapine",
+  "tall_man": {
+    "value": "quetiapine",
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "11 DESCRIPTION",
+        "quote": "SEROQUEL ® (quetiapine) is an atypical antipsychotic belonging to a chemical class, the dibenzothiazepine derivatives."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antipsychotic",
+    "atypical antipsychotic",
+    "second-generation antipsychotic",
+    "dibenzothiazepine derivative"
+  ],
+  "subspecialties": [
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "que-po-schiz-adult",
+      "indication": "Schizophrenia (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-quetiapine-label",
+          "locator": "2.2 Recommended Dosing",
+          "quote": "Schizophrenia - Adults Day 1: 25 mg twice daily. Increase in increments of 25 mg-50 mg divided two or three times on Days 2 and 3 to range of 300-400 mg by Day 4. Further"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 25,
+        "unit": "mg",
+        "frequency": "twice daily Day 1, titrate to 300–400 mg/day by Day 4 (recommended 150–750 mg/day; max 750 mg/day)",
+        "max_single": 750,
+        "max_daily": 750
+      },
+      "dose_text": "Day 1: 25 mg BID; increase by 25–50 mg BID–TID on Days 2–3 to 300–400 mg/day by Day 4; recommended 150–750 mg/day (max 750 mg/day)."
+    },
+    {
+      "id": "que-po-bipolar-mania-adult",
+      "indication": "Bipolar I Mania (Adults, Monotherapy or Adjunct to Lithium/Divalproex)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-quetiapine-label",
+          "locator": "2.2 Recommended Dosing",
+          "quote": "Bipolar Mania - Adults Monotherapy or as an adjunct to lithium or divalproex Day 1: Twice daily dosing totaling 100 mg. Day 2: Twice daily dosing totaling 200 mg. Day 3: Twice daily dosing totaling 300 mg. Day 4: Twice daily dosing totaling 400 mg. Further dosage adjustments up"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "twice daily Day 1 (100 mg/day), titrate to 400 mg/day by Day 4 (recommended 400–800 mg/day; max 800 mg/day)",
+        "max_single": 800,
+        "max_daily": 800
+      },
+      "dose_text": "Day 1: 50 mg BID (100 mg/day), Day 2: 200 mg/day, Day 3: 300 mg/day, Day 4: 400 mg/day; further adjustments up to 800 mg/day by Day 6 (max 800 mg/day)."
+    },
+    {
+      "id": "que-po-bipolar-dep-adult",
+      "indication": "Bipolar Depression (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-quetiapine-label",
+          "locator": "2.2 Recommended Dosing",
+          "quote": "Bipolar Depression - Adults Administer once daily at bedtime. Day 1: 50 mg Day 2: 100 mg Day 3: 200 mg Day 4: 300 mg 300 mg/day 300 mg/day Bipolar I Disorder"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "once daily at bedtime Day 1 (100 mg Day 2, 200 mg Day 3, 300 mg Day 4; max 300 mg/day)",
+        "max_single": 300,
+        "max_daily": 300
+      },
+      "dose_text": "Once daily at bedtime: Day 1: 50 mg, Day 2: 100 mg, Day 3: 200 mg, Day 4: 300 mg (recommended and maximum 300 mg/day)."
+    },
+    {
+      "id": "que-po-schiz-adol",
+      "indication": "Schizophrenia (Adolescents 13–17 years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-quetiapine-label",
+          "locator": "2.2 Recommended Dosing",
+          "quote": "Schizophrenia - Adolescents (13-17 years) Day 1: 25 mg twice daily. Day 2: Twice daily dosing totaling 100 mg. Day 3: Twice daily dosing totaling 200 mg. Day 4: Twice daily dosing totaling 300 mg. Day 5: Twice daily dosing totaling 400 mg. Further adjustments"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 25,
+        "unit": "mg",
+        "frequency": "twice daily Day 1, titrate to 400 mg/day by Day 5 (recommended 400–800 mg/day; max 800 mg/day)",
+        "max_single": 800,
+        "max_daily": 800
+      },
+      "dose_text": "Day 1: 25 mg BID; Day 2: 100 mg/day; Day 3: 200 mg/day; Day 4: 300 mg/day; Day 5: 400 mg/day; recommended 400–800 mg/day (max 800 mg/day)."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_normalized_1_73",
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "12.3 Pharmacokinetics — Renal Insufficiency",
+        "quote": "Patients with severe renal impairment (Clcr=10-30 mL/min/1.73 m 2 , n=8) had a 25% lower mean oral clearance than normal subjects (Clcr > 80 mL/min/1.73 m 2 , n=8), but plasma quetiapine concentrations in the subjects with renal insufficiency were within the range of concentrations seen in normal subjects receiving the same dose. Dosage"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Dosage adjustment is not needed in renal impairment (severe renal impairment Clcr 10–30 mL/min/1.73 m2 had 25% lower oral clearance, but plasma concentrations remained within normal range).",
+    "renal_basis": {
+      "value": "cg_normalized_1_73",
+      "refs": [
+        {
+          "source_id": "fda-quetiapine-label",
+          "locator": "12.3 Pharmacokinetics — Renal Insufficiency",
+          "quote": "Dosage adjustment is therefore not needed in these patients [see"
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "12.3 Pharmacokinetics — Renal Insufficiency",
+        "quote": "Patients with severe renal impairment (Clcr=10-30 mL/min/1.73 m 2 , n=8) had a 25% lower mean oral clearance than normal subjects (Clcr >"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Patients with hepatic impairment should be started on 25 mg/day and increased daily in increments of 25–50 mg/day to an effective dose (mean oral clearance 30% lower; AUC and Cmax 3x higher in 2 of 8 patients).",
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "2.4 Dose Modifications in Hepatically Impaired Patients",
+        "quote": "Patients with hepatic impairment should be started on 25 mg/day. The dose should be increased daily in increments of 25 mg/day - 50 mg/day to an effective dose, depending on the clinical response and tolerability of the patient. 2.5 Dose"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "INCREASED MORTALITY IN ELDERLY PATIENTS WITH DEMENTIA-RELATED PSYCHOSIS: Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death; SEROQUEL is not approved for this use.",
+      "SUICIDAL THOUGHTS AND BEHAVIORS: Antidepressants increased the risk of suicidal thoughts and behavior in children, adolescents, and young adults in short-term studies; monitor closely for worsening and emergence of suicidal thoughts and behaviors."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: INCREASED MORTALITY IN ELDERLY PATIENTS WITH DEMENTIA-RELATED PSYCHOSIS; and SUICIDAL THOUGHTS AND BEHAVIORS"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Dysphagia [see Warnings and Precautions (5.18 )] • Discontinuation Syndrome [see Warnings and Precautions (5.19 )] • Anticholinergic (antimuscarinic) Effects [see Warnings and Precautions (5.20 )] • Most"
+      }
+    ],
+    "note": "No specific MG warning in FDA label; dysphagia, anticholinergic effects, and somnolence warrant caution."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "No enteral tube administration instructions in FDA label."
+  },
+  "pgx": {
+    "value": "Metabolized extensively by the liver via CYP3A4 to inactive sulfoxide metabolite and active norquetiapine. Non-inhibitor of CYP1A2, 2C9, 2C19, 2D6, and 3A4.",
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "12.3 Pharmacokinetics — Metabolism and Elimination",
+        "quote": "cytochrome P450 3A4 isoenzyme is involved in the metabolism of quetiapine to its major, but inactive, sulfoxide metabolite and in the metabolism of its active metabolite N-desalkyl quetiapine. Age"
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "weight_gain",
+      "qt_prolongation",
+      "hepatotoxicity",
+      "hyponatremia",
+      "pancreatitis",
+      "rash_sjs_ten",
+      "ataxia",
+      "confusion_delirium"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Most common adverse reactions (incidence ≥5% and twice placebo): Adults: somnolence, dry mouth, dizziness, constipation, asthenia, abdominal pain, postural hypotension, pharyngitis, weight gain, lethargy, ALT increased, dyspepsia ( 6.1 ) • Children"
+      },
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "hyponatremia, myocarditis, nocturnal enuresis, pancreatitis, retrograde amnesia, rhabdomyolysis, syndrome of inappropriate antidiuretic hormone secretion (SIADH), Stevens-Johnson syndrome (SJS), toxic epidermal necrolysis (TEN), decreased"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Somnolence/sedation, dizziness, lethargy, asthenia",
+        "Dry mouth, constipation, dyspepsia, abdominal pain",
+        "Postural hypotension, weight gain, ALT increased, pharyngitis"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-quetiapine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Adults: somnolence, dry mouth, dizziness, constipation, asthenia, abdominal pain, postural hypotension, pharyngitis, weight gain, lethargy, ALT increased, dyspepsia ( 6.1 ) •"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Increased mortality and cerebrovascular adverse reactions in elderly patients with dementia-related psychosis",
+        "Suicidal thoughts and behaviors in adolescents and young adults",
+        "Neuroleptic malignant syndrome (NMS), tardive dyskinesia, seizures, cataracts",
+        "Metabolic changes (hyperglycemia, dyslipidemia, weight gain), hypotension, leukopenia/neutropenia/agranulocytosis",
+        "Postmarketing: QT prolongation (overdose/concomitant illness/QT drugs), myocarditis, cardiomyopathy, serious liver reactions, SJS/TEN, DRESS, pancreatitis, SIADH/hyponatremia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-quetiapine-label",
+          "locator": "6.2 Postmarketing Experience",
+          "quote": "serious liver reactions (including hepatitis, liver necrosis, and hepatic failure), agranulocytosis, intestinal obstruction, ileus, colon ischemia, urinary"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Atypical antipsychotic (dibenzothiazepine) whose efficacy may be mediated through a combination of dopamine D2 and serotonin 5HT2 antagonism; active metabolite norquetiapine has greater affinity at 5HT2A receptors.",
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "efficacy of quetiapine in these indications could be mediated through a combination of dopamine type 2 (D 2 ) and serotonin type 2 (5HT 2 ) antagonism. The active metabolite, N-desalkyl quetiapine (norquetiapine), has similar activity at D 2 , but greater activity at 5HT 2A receptors, than the"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate",
+      "qt_risk": "possible"
+    },
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "12.3 Pharmacokinetics — Metabolism and Elimination",
+        "quote": "cytochrome P450 3A4 isoenzyme is involved in the metabolism of quetiapine to its major,"
+      },
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "12.2 Pharmacodynamics — Effect on QT Interval",
+        "quote": "In post marketing experience, there were cases reported of QT prolongation in patients who overdosed on quetiapine [see Overdosage (10.1) ], in patients with concomitant illness, and in patients taking medicines known to cause electrolyte imbalance or increase QT"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Strong CYP3A4 Inhibitors (e.g., ketoconazole, itraconazole, ritonavir, nefazodone)",
+        "severity": "major",
+        "effect": "Markedly increases quetiapine exposure (ketoconazole decreased oral clearance 84%, increasing AUC 6.2-fold).",
+        "management": "Reduce quetiapine dose to one-sixth of the original dose when co-administered with a strong CYP3A4 inhibitor; increase by 6-fold when discontinued.",
+        "refs": [
+          {
+            "source_id": "fda-quetiapine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Reduce quetiapine dose to one sixth when coadministered with strong CYP3A4 inhibitors (e.g., ketoconazole, ritonavir) ( 2.5 , 7.1 , 12.3 )"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Strong CYP3A4 Inducers (e.g., phenytoin, carbamazepine, rifampin, St. John's wort)",
+        "severity": "major",
+        "effect": "Markedly decreases quetiapine exposure (phenytoin increased mean oral clearance 5-fold).",
+        "management": "Increase quetiapine dose up to 5-fold during chronic (>7–14 days) co-administration; reduce to original level within 7–14 days of discontinuation.",
+        "refs": [
+          {
+            "source_id": "fda-quetiapine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Increase quetiapine dose up to 5 fold when used in combination with a chronic treatment (more than 7-14 days) of potent CYP3A4 inducers (e.g., phenytoin, rifampin, St. John’s wort) ( 2.6 , 7.1 , 12.3"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Levodopa and Dopamine Agonists",
+        "severity": "moderate",
+        "effect": "Quetiapine may antagonize the effects of levodopa and dopamine agonists.",
+        "management": "Monitor for reduced antiparkinsonian efficacy.",
+        "refs": [
+          {
+            "source_id": "fda-quetiapine-label",
+            "locator": "7.2 Effect of Quetiapine on Other Drugs",
+            "quote": "SEROQUEL may antagonize the effects of levodopa and dopamine agonists. There"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Anticholinergic Drugs",
+        "severity": "moderate",
+        "effect": "Concomitant treatment can increase the risk for severe gastrointestinal adverse reactions related to hypomotility.",
+        "management": "Use with caution in patients receiving medications with anticholinergic (antimuscarinic) effects.",
+        "refs": [
+          {
+            "source_id": "fda-quetiapine-label",
+            "locator": "7.1 Effect of Other Drugs on Quetiapine",
+            "quote": "Concomitant treatment with quetiapine and other drugs with anticholinergic activity can increase the risk for severe gastrointestinal adverse reactions related to hypomotility. SEROQUEL should be used with caution in patients receiving medications having anticholinergic (antimuscarinic) effects"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Concomitant use of strong CYP3A4 inhibitors: Reduce quetiapine dose to one sixth when"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Available epidemiologic studies have not established a drug-associated risk of major birth defects or miscarriage, though animal studies showed embryo-fetal toxicity at 1–2x MRHD and third-trimester exposure risks neonatal EPS/withdrawal.",
+      "refs": [
+        {
+          "source_id": "fda-quetiapine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Overall available data from published epidemiologic studies of pregnant women exposed to quetiapine have not established a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes (see"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "No folic acid recommendation in FDA label."
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "No hormonal contraceptive interaction reported in FDA label."
+    },
+    "pregnancy_pk": {
+      "value": "Neonates exposed to antipsychotic drugs during the third trimester are at risk for extrapyramidal and/or withdrawal symptoms following delivery.",
+      "refs": [
+        {
+          "source_id": "fda-quetiapine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Neonates exposed to antipsychotic drugs (including SEROQUEL) during the third trimester are at risk for extrapyramidal and/or withdrawal symptoms following delivery (see"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Monitor neonates for extrapyramidal and/or withdrawal symptoms after third-trimester exposure.",
+      "refs": [
+        {
+          "source_id": "fda-quetiapine-label",
+          "locator": "8.1 Pregnancy — Clinical Considerations",
+          "quote": "Monitor neonates for extrapyramidal and/or withdrawal symptoms and manage symptoms appropriately."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "<1% of the maternal weight-adjusted dosage",
+      "refs": [
+        {
+          "source_id": "fda-quetiapine-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "presence of quetiapine in human breast milk at relative infant dose of <1% of the maternal weight-adjusted dosage. There are no"
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Quetiapine is present in human breast milk at RID <1%; no consistent adverse events have been reported in exposed infants.",
+      "refs": [
+        {
+          "source_id": "fda-quetiapine-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "Limited data from published literature report the presence of quetiapine in human breast milk at relative infant dose of <1% of the maternal weight-adjusted dosage. There are no consistent adverse events that have been reported in infants exposed to quetiapine through breast milk. There is no"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

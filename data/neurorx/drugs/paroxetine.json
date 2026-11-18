@@ -1,0 +1,386 @@
+{
+  "id": "paroxetine",
+  "generic_name": "paroxetine",
+  "tall_man": {
+    "value": "paroxetine",
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "2.2 Important Administration Instructions",
+        "quote": "Administer PAXIL CR once daily in the morning, with or without food. Swallow"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antidepressant",
+    "selective serotonin reuptake inhibitor",
+    "SSRI"
+  ],
+  "subspecialties": [
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "par-po-mdd-cr",
+      "indication": "Major Depressive Disorder (Adults — PAXIL CR)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-paroxetine-label",
+          "locator": "2.3 Dosage in Patients with MDD, PD, and SAD",
+          "quote": "Table 1: Recommended Daily Dosage of PAXIL CR in Patients with MDD, PD, and SAD Indication Starting Dosage Maximum Dosage MDD 25 mg 62.5 mg PD 12.5"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 25,
+        "unit": "mg",
+        "frequency": "once daily in the morning (max 62.5 mg/day; elderly/severe RI/severe HI: start 12.5 mg, max 50 mg)",
+        "max_single": 62.5,
+        "max_daily": 62.5
+      },
+      "dose_text": "Initial: 25 mg once daily in the morning (swallow whole); titrate by 12.5 mg/day weekly up to max 62.5 mg/day. Elderly, severe renal, or severe hepatic impairment: start 12.5 mg/day, max 50 mg/day."
+    },
+    {
+      "id": "par-po-pd-cr",
+      "indication": "Panic Disorder (Adults — PAXIL CR)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-paroxetine-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "PD 12.5 mg/day 75 mg/day SAD 12.5 mg/day"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 12.5,
+        "unit": "mg",
+        "frequency": "once daily in the morning (max 75 mg/day; elderly/severe RI/HI: max 50 mg/day)",
+        "max_single": 75,
+        "max_daily": 75
+      },
+      "dose_text": "Initial: 12.5 mg once daily in the morning; titrate by 12.5 mg/day weekly up to max 75 mg/day (max 50 mg/day in elderly, severe renal, or severe hepatic impairment)."
+    },
+    {
+      "id": "par-po-sad-cr",
+      "indication": "Social Anxiety Disorder (Adults — PAXIL CR)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-paroxetine-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "SAD 12.5 mg/day 37.5 mg/day PMDD 12.5 mg"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 12.5,
+        "unit": "mg",
+        "frequency": "once daily in the morning (max 37.5 mg/day)",
+        "max_single": 37.5,
+        "max_daily": 37.5
+      },
+      "dose_text": "Initial: 12.5 mg once daily in the morning; titrate by 12.5 mg/day weekly up to max 37.5 mg/day."
+    },
+    {
+      "id": "par-po-pmdd-cr",
+      "indication": "Premenstrual Dysphoric Disorder (Adults — PAXIL CR)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-paroxetine-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "PMDD 12.5 mg/day 25 mg/day For PMDD, dos"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 12.5,
+        "unit": "mg",
+        "frequency": "once daily in the morning continuously or luteal phase only (max 25 mg/day)",
+        "max_single": 25,
+        "max_daily": 25
+      },
+      "dose_text": "Initial: 12.5 mg once daily in the morning (continuously or luteal phase only); max 25 mg/day."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "8.6 Renal Impairment",
+        "quote": "The recommended starting and maximum dosage of PAXIL CR is lower in patients with severe RI compared to those with normal renal function"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Plasma concentrations increase with greater degrees of renal impairment. In severe renal impairment, starting dosage is 12.5 mg/day and maximum dosage is 50 mg/day (MDD/PD) or 37.5 mg/day (SAD).",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-paroxetine-label",
+          "locator": "8.6 Renal Impairment",
+          "quote": "The recommended starting and maximum dosage of PAXIL CR is lower in patients with severe RI compared to those with normal renal function"
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 0,
+        "max": 29,
+        "dose_text": "Severe renal impairment: start 12.5 mg/day; max 50 mg/day (MDD or PD) or 37.5 mg/day (SAD).",
+        "refs": [
+          {
+            "source_id": "fda-paroxetine-label",
+            "locator": "2 DOSAGE AND ADMINISTRATION",
+            "quote": "Geriatric patients, patients with severe renal impairment or severe hepatic impairment: Starting dosage is 12.5 mg/day and the maximum dosage for MDD or PD is 50 mg/day and for SAD is 37.5 mg/day. ("
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "8.6 Renal Impairment",
+        "quote": "Paroxetine plasma concentrations were higher in patients with greater degrees of RI. The recommended starting and maximum dosage of PAXIL CR is lower in patients with severe RI compared to those with normal renal"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Severe hepatic impairment: starting dosage is 12.5 mg/day and maximum dosage is 50 mg/day (MDD or PD) or 37.5 mg/day (SAD).",
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "2 DOSAGE AND ADMINISTRATION",
+        "quote": "Geriatric patients, patients with severe renal impairment or severe hepatic impairment: Starting dosage is 12.5 mg/day and the maximum dosage for MDD or PD is 50 mg/day and for SAD is 37.5 mg/day. ("
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: SUICIDAL THOUGHTS AND BEHAVIORS: Antidepressants increased the risk of suicidal thoughts and behavior in pediatric and young adult patients in short-term studies. Closely monitor all antidepressant-treated patients for clinical worsening and emergence of suicidal thoughts and behaviors."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SUICIDAL THOUGHTS AND BEHAVIORS Antidepre"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "paroxetine) Prescrib"
+      }
+    ],
+    "note": "SSRIs do not impair neuromuscular transmission; no MG warning in FDA label."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Swallow extended-release (PAXIL CR) tablets whole and do not chew or crush."
+    },
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "2.2 Important Administration Instructions",
+        "quote": "Swallow the extended-release tablets whole and do not chew or crush."
+      }
+    ]
+  },
+  "pgx": {
+    "value": "Metabolized by CYP2D6 and strongly inhibits CYP2D6; consider dose adjustments for CYP2D6 substrates.",
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "4 CONTRAINDICATIONS",
+        "quote": "CYP2D6 substrates [see Drug In"
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "serotonin_syndrome",
+      "hyponatremia",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "6.1 Clinical Trials Experience",
+        "quote": "Most common adverse reactions (≥5% and at least twice placebo) in placebo-controlled MDD, PD, SAD, and PMDD clinical trials: abnormal ejaculation, abnormal vision, asthenia, constipation, decreased appetite, diarrhea, dizziness, dry mouth, female genital disorder, impotence, insomnia, libido decreased, nausea, somnolence, sweating,"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea, dry mouth, constipation, diarrhea, decreased appetite",
+        "Somnolence, dizziness, insomnia, tremor, asthenia, sweating",
+        "Abnormal ejaculation, impotence, female genital disorder, decreased libido, abnormal vision"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-paroxetine-label",
+          "locator": "6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions (≥5% and at least twice placebo) in placebo-controlled MDD, PD, SAD, and PMDD clinical trials: abnormal ejaculation, abnormal vision, asthenia, constipation, decreased appetite, diarrhea, dizziness, dry mouth, female genital disorder, impotence, insomnia, libido decreased, nausea, somnolence, sweating,"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Suicidal thoughts and behaviors in pediatric and young adult patients",
+        "Serotonin syndrome",
+        "Cardiovascular malformations (first-trimester exposure), PPHN, and poor neonatal adaptation",
+        "Abnormal bleeding, hyponatremia, seizures, angle-closure glaucoma, Stevens-Johnson syndrome/anaphylaxis"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-paroxetine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Paroxetine is associated with a less than 2-fold increase in cardiovascular malformations when administered to a pregnant woman during the first trimester."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Selective serotonin reuptake inhibitor (SSRI) that potentiates serotonergic activity in the CNS via inhibition of neuronal serotonin reuptake.",
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "paroxetine) Prescrib"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2d6": "inhibitor_strong",
+      "qt_risk": "none",
+      "serotonergic": true
+    },
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "4 CONTRAINDICATIONS",
+        "quote": "CYP2D6 substrates [see Drug In"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "MAOIs (including linezolid and IV methylene blue), Thioridazine, and Pimozide",
+        "severity": "contraindicated",
+        "effect": "Risk of serotonin syndrome (MAOIs) or QT prolongation/arrhythmias (thioridazine, pimozide via CYP2D6 inhibition).",
+        "management": "Contraindicated; allow >=14 days between MAOI and paroxetine.",
+        "refs": [
+          {
+            "source_id": "fda-paroxetine-label",
+            "locator": "4 CONTRAINDICATIONS",
+            "quote": "Taking, or within 14 days of stopping monoamine oxidase inhibitors"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "4 CONTRAINDICATIONS",
+        "quote": "PAXIL CR is contraindicated in patients: Taking, or within 14 days of stopping monoamine oxidase inhibitors"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "note": "FDA label advises initiating PAXIL CR in women intending pregnancy or in the first trimester only after considering other treatment options, as paroxetine is associated with a <2-fold increase in cardiovascular malformations in the first trimester, plus PPHN, poor neonatal adaptation, and <2-fold postpartum hemorrhage risk.",
+      "refs": [
+        {
+          "source_id": "fda-paroxetine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "For women who intend to become pregnant or who are in their first trimester of pregnancy, PAXIL CR should be initiated only after consideration of the other available treatment options."
+        },
+        {
+          "source_id": "fda-paroxetine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Paroxetine is associated with a less than 2-fold increase in cardiovascular malformations when administered to a pregnant woman during the first trimester."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "No hormonal contraceptive interaction reported in FDA label (note: paroxetine may affect sperm quality in males)."
+    },
+    "pregnancy_pk": {
+      "value": "Avoid in women intending pregnancy or in the first trimester unless other options are considered (<2-fold increase in cardiovascular malformations in 1st trimester). Also carries risks of PPHN, poor neonatal adaptation, and <2-fold increased postpartum hemorrhage if exposed in the month before delivery.",
+      "refs": [
+        {
+          "source_id": "fda-paroxetine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Paroxetine is associated with a less than 2-fold increase in cardiovascular malformations when administered to a pregnant woman during the first trimester."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Monitor for postpartum hemorrhage if exposed in the month before delivery, and monitor breastfed infants for agitation, irritability, poor feeding, and poor weight gain.",
+      "refs": [
+        {
+          "source_id": "fda-paroxetine-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "There are reports of agitation, irritability, poor feeding and poor weight gain in infants exposedto paroxetine through breast milk ( see"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": [],
+      "note": "No RID percentage reported in FDA label."
+    },
+    "lactation_summary": {
+      "value": "Present in human milk; reports exist of agitation, irritability, poor feeding, and poor weight gain in breastfed infants. Monitor exposed nursing infants closely.",
+      "refs": [
+        {
+          "source_id": "fda-paroxetine-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "Data from the published literature report the presence of paroxetine in human milk ( see Data ).There are reports of agitation, irritability, poor feeding and poor weight gain in infants exposedto paroxetine through breast milk ("
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

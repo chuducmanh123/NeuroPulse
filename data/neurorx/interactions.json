@@ -1406,5 +1406,1666 @@
         "quote": "Co-administration of esomeprazole 30 mg and diazepam, a CYP2C19 substrate, resulted in a 45% decrease in clearance of diazepam. Increased plasma levels of diazepam were observed 12 hours after dosing and onwards."
       }
     ]
+  },
+  {
+    "id": "enoxaparin-aspirin",
+    "drug_a": "enoxaparin",
+    "drug_b": "aspirin",
+    "severity": "major",
+    "mechanism": "Additive antithrombotic and antiplatelet effects (LMWH anti-Xa/IIa inhibition combined with irreversible platelet COX-1 inhibition).",
+    "clinical_effect": "Significantly increased risk of major hemorrhage and spinal/epidural hematoma during neuraxial procedures.",
+    "management": "Discontinue agents that enhance hemorrhage risk prior to initiating enoxaparin when possible; when coadministered (e.g. UA/NSTEMI or STEMI), conduct close clinical and laboratory monitoring.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-enoxaparin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Whenever possible, agents which may enhance the risk of hemorrhage should be discontinued prior to initiation of Lovenox therapy. These agents include medications such as: anticoagulants, platelet inhibitors including acetylsalicylic acid, salicylates, NSAIDs (including ketorolac tromethamine), dipyridamole, or sulfinpyrazone. If"
+      }
+    ]
+  },
+  {
+    "id": "enoxaparin-clopidogrel",
+    "drug_a": "enoxaparin",
+    "drug_b": "clopidogrel",
+    "severity": "major",
+    "mechanism": "Additive pharmacodynamic inhibition of coagulation (LMWH) and P2Y12-mediated platelet aggregation (clopidogrel).",
+    "clinical_effect": "Increased risk of major bleeding and neuraxial hematoma.",
+    "management": "Discontinue platelet inhibitors prior to enoxaparin whenever possible; if coadministration is essential, perform close clinical and laboratory monitoring.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-enoxaparin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "These agents include medications such as: anticoagulants, platelet inhibitors including acetylsalicylic acid, salicylates, NSAIDs (including ketorolac tromethamine), dipyridamole, or sulfinpyrazone. If coadministration is essential, conduct close clinical and laboratory monitoring [see Warnings and Precautions (5.1) ] . Discontinue"
+      }
+    ]
+  },
+  {
+    "id": "enoxaparin-warfarin",
+    "drug_a": "enoxaparin",
+    "drug_b": "warfarin",
+    "severity": "major",
+    "mechanism": "Combined inhibition of Factor Xa/IIa (enoxaparin) and vitamin K-dependent clotting factors (warfarin).",
+    "clinical_effect": "Additive bleeding risk during overlap bridging.",
+    "management": "Overlap only as clinically indicated (e.g., DVT/PE bridging for >=5 days until INR 2–3); monitor closely for signs of bleeding and check INR.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-enoxaparin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Whenever possible, agents which may enhance the risk of hemorrhage should be discontinued prior to initiation of Lovenox therapy. These agents include medications such as: anticoagulants, platelet inhibitors including acetylsalicylic acid, salicylates, NSAIDs (including ketorolac tromethamine), dipyridamole, or sulfinpyrazone. If"
+      }
+    ]
+  },
+  {
+    "id": "enoxaparin-ibuprofen",
+    "drug_a": "enoxaparin",
+    "drug_b": "ibuprofen",
+    "severity": "major",
+    "mechanism": "LMWH anticoagulation combined with NSAID-induced platelet dysfunction and GI mucosal injury.",
+    "clinical_effect": "Markedly increased risk of gastrointestinal and systemic hemorrhage.",
+    "management": "Discontinue NSAIDs prior to initiating enoxaparin whenever possible; if coadministration is essential, conduct close clinical and laboratory monitoring.",
+    "alternatives": [
+      {
+        "drug_id": "acetaminophen",
+        "rationale": "Acetaminophen does not impair platelet aggregation or cause GI mucosal injury"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-enoxaparin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Whenever possible, agents which may enhance the risk of hemorrhage should be discontinued prior to initiation of Lovenox therapy. These agents include medications such as: anticoagulants, platelet inhibitors including acetylsalicylic acid, salicylates, NSAIDs (including ketorolac tromethamine), dipyridamole, or sulfinpyrazone. If"
+      }
+    ]
+  },
+  {
+    "id": "enoxaparin-protamine",
+    "drug_a": "enoxaparin",
+    "drug_b": "protamine",
+    "severity": "moderate",
+    "mechanism": "Ionic binding of basic protamine sulfate to acidic LMWH chains partially neutralizes enoxaparin anticoagulant activity.",
+    "clinical_effect": "Partial reversal of enoxaparin (anti-Factor Xa activity is never completely neutralized, maximum ~60%).",
+    "management": "For overdose/bleeding: 1 mg protamine per 1 mg enoxaparin slow IV if given <=8 h ago; 0.5 mg per 1 mg if >8 h ago or second dose needed.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-enoxaparin-label",
+        "locator": "10 OVERDOSAGE",
+        "quote": "Injected Lovenox may be largely neutralized by the slow intravenous injection of protamine sulfate (1% solution). The dose of protamine sulfate should be equal to the dose of Lovenox injected: 1 mg protamine sulfate should be administered to neutralize 1 mg Lovenox, if Lovenox was administered in the previous 8 hours. An infusion of 0.5"
+      }
+    ]
+  },
+  {
+    "id": "heparin-aspirin",
+    "drug_a": "heparin",
+    "drug_b": "aspirin",
+    "severity": "major",
+    "mechanism": "Salicylates interfere with platelet-aggregation reactions, the main hemostatic defense of heparinized patients.",
+    "clinical_effect": "Increased risk of major bleeding.",
+    "management": "Use with caution; a reduction in the dose of the antiplatelet agent or heparin is recommended to reduce bleeding risk.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-heparin-label",
+        "locator": "7.2 Platelet Inhibitors",
+        "quote": "Drugs such as NSAIDS (including salicylic acid, ibuprofen, indomethacin, and celecoxib), dextran, phenylbutazone, thienopyridines, dipyridamole, hydroxychloroquine, glycoprotein IIb/IIIa antagonists (including abciximab, eptifibatide, and tirofiban), and others that interfere with platelet-aggregation reactions (the main hemostatic"
+      }
+    ]
+  },
+  {
+    "id": "heparin-clopidogrel",
+    "drug_a": "heparin",
+    "drug_b": "clopidogrel",
+    "severity": "major",
+    "mechanism": "Thienopyridines (clopidogrel) inhibit platelet aggregation, impairing the primary hemostatic defense in heparinized patients.",
+    "clinical_effect": "Increased risk of hemorrhage.",
+    "management": "Use with caution; consider reducing the dose of antiplatelet agent or heparin and monitor closely for bleeding.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-heparin-label",
+        "locator": "7.2 Platelet Inhibitors",
+        "quote": "thienopyridines, dipyridamole, hydroxychloroquine, glycoprotein IIb/IIIa antagonists (including abciximab, eptifibatide, and tirofiban), and others that interfere with platelet-aggregation reactions (the main hemostatic defense of heparinized patients) may induce bleeding and should be used with caution in patients receiving heparin"
+      }
+    ]
+  },
+  {
+    "id": "heparin-ibuprofen",
+    "drug_a": "heparin",
+    "drug_b": "ibuprofen",
+    "severity": "major",
+    "mechanism": "NSAIDs (including ibuprofen) interfere with platelet aggregation and add to heparin-induced bleeding risk.",
+    "clinical_effect": "Increased risk of GI and systemic bleeding.",
+    "management": "Use with caution or avoid; reduce dose of antiplatelet/NSAID or heparin if coadministered.",
+    "alternatives": [
+      {
+        "drug_id": "acetaminophen",
+        "rationale": "Acetaminophen does not inhibit platelet aggregation"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-heparin-label",
+        "locator": "7.2 Platelet Inhibitors",
+        "quote": "Drugs such as NSAIDS (including salicylic acid, ibuprofen, indomethacin, and celecoxib), dextran, phenylbutazone, thienopyridines, dipyridamole, hydroxychloroquine, glycoprotein IIb/IIIa antagonists (including abciximab, eptifibatide, and tirofiban), and others that interfere with platelet-aggregation reactions (the main hemostatic"
+      }
+    ]
+  },
+  {
+    "id": "heparin-warfarin",
+    "drug_a": "heparin",
+    "drug_b": "warfarin",
+    "severity": "moderate",
+    "mechanism": "Heparin sodium prolongs the one-stage prothrombin time (PT/INR), confounding warfarin INR monitoring.",
+    "clinical_effect": "Falsely elevated PT/INR if blood is drawn too soon after heparin administration, plus additive bleeding risk during bridging.",
+    "management": "Wait at least 5 hours after the last IV heparin dose or 24 hours after the last SC heparin dose before drawing blood for a valid PT/INR.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-heparin-label",
+        "locator": "7.1 Oral Anticoagulants",
+        "quote": "Heparin sodium may prolong the one-stage prothrombin time. Therefore, when heparin sodium is given with dicumarol or warfarin sodium, a period of at least 5 hours after the last intravenous dose or 24 hours after the last subcutaneous dose should elapse before blood is drawn, if a valid prothrombin time is to be obtained. 7.2 Platelet"
+      }
+    ]
+  },
+  {
+    "id": "heparin-protamine",
+    "drug_a": "heparin",
+    "drug_b": "protamine",
+    "severity": "moderate",
+    "mechanism": "Protamine sulfate forms an inactive salt complex with acidic heparin molecules.",
+    "clinical_effect": "Rapid neutralization of unfractionated heparin anticoagulation (each 1 mg protamine neutralizes ~100 USP heparin units).",
+    "management": "Administer 1% protamine sulfate by slow IV infusion; do not exceed 50 mg in any 10-minute period.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-heparin-label",
+        "locator": "10 OVERDOSAGE — Neutralization of Heparin Effect",
+        "quote": "When clinical circumstances (bleeding) require reversal of the heparin effect, protamine sulfate (1% solution) by slow infusion will neutralize heparin sodium. No more than 50 mg should be administered, very slowly , in any 10-minute period. Each mg of protamine sulfate neutralizes approximately 100 USP heparin units. The amount of"
+      }
+    ]
+  },
+  {
+    "id": "fluoxetine-warfarin",
+    "drug_a": "fluoxetine",
+    "drug_b": "warfarin",
+    "severity": "major",
+    "mechanism": "SSRI-mediated inhibition of platelet serotonin uptake plus displacement from plasma protein binding / CYP2C9 inhibition.",
+    "clinical_effect": "Potentiated risk of bleeding and altered warfarin anticoagulant effect.",
+    "management": "Monitor INR closely and observe for signs of bleeding when initiating, titrating, or stopping fluoxetine.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Drugs that Interfere with Hemostasis (e.g. NSAIDs, Aspirin, Warfarin): May potentiate the risk of bleeding ( 7.4 ) Drugs Tightly Bound to Plasma Proteins: May cause a shift in plasma concentrations ( 7.6 , 7.7 ) Olanzapine: When used in combination with PROZAC, also refer to the Drug Interactions section of the package insert for Symbyax"
+      }
+    ]
+  },
+  {
+    "id": "fluoxetine-aspirin",
+    "drug_a": "fluoxetine",
+    "drug_b": "aspirin",
+    "severity": "major",
+    "mechanism": "SSRIs deplete platelet serotonin, impairing platelet aggregation additively with aspirin.",
+    "clinical_effect": "Increased risk of upper GI and systemic bleeding.",
+    "management": "Advise patients of increased bleeding risk and monitor closely when combining fluoxetine with aspirin or NSAIDs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Drugs that Interfere with Hemostasis (e.g. NSAIDs, Aspirin, Warfarin): May potentiate the risk of bleeding ( 7.4 ) Drugs Tightly Bound to Plasma Proteins: May cause a shift in plasma concentrations ( 7.6 , 7.7 ) Olanzapine: When used in combination with PROZAC, also refer to the Drug Interactions section of the package insert for Symbyax"
+      }
+    ]
+  },
+  {
+    "id": "fluoxetine-carbamazepine",
+    "drug_a": "fluoxetine",
+    "drug_b": "carbamazepine",
+    "severity": "major",
+    "mechanism": "Fluoxetine inhibits hepatic metabolism of carbamazepine.",
+    "clinical_effect": "Elevated carbamazepine plasma levels and clinical anticonvulsant toxicity.",
+    "management": "Monitor serum carbamazepine levels and clinical signs of toxicity; adjust carbamazepine dose as needed.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam is not hepatically metabolized by CYP enzymes"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Anticonvulsants: Potential for elevated phenytoin and carbamazepine levels and clinical anticonvulsant toxicity ( 7.7 ) Serotonergic Drugs: ( 2.9 , 2.10 , 4.1 , 5.2 ) Drugs that Interfere with Hemostasis (e.g. NSAIDs, Aspirin, Warfarin): May potentiate the risk of bleeding ( 7.4 ) Drugs Tightly Bound to Plasma Proteins: May cause a shift"
+      }
+    ]
+  },
+  {
+    "id": "fluoxetine-phenytoin",
+    "drug_a": "fluoxetine",
+    "drug_b": "phenytoin",
+    "severity": "major",
+    "mechanism": "Fluoxetine inhibits hepatic CYP metabolism of phenytoin.",
+    "clinical_effect": "Elevated phenytoin levels and clinical anticonvulsant toxicity.",
+    "management": "Monitor phenytoin serum concentrations and signs of toxicity; adjust phenytoin dose accordingly.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam has no CYP-mediated interactions with SSRIs"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Anticonvulsants: Potential for elevated phenytoin and carbamazepine levels and clinical anticonvulsant toxicity ( 7.7 ) Serotonergic Drugs: ( 2.9 , 2.10 , 4.1 , 5.2 ) Drugs that Interfere with Hemostasis (e.g. NSAIDs, Aspirin, Warfarin): May potentiate the risk of bleeding ( 7.4 ) Drugs Tightly Bound to Plasma Proteins: May cause a shift"
+      }
+    ]
+  },
+  {
+    "id": "fluoxetine-tramadol",
+    "drug_a": "fluoxetine",
+    "drug_b": "tramadol",
+    "severity": "major",
+    "mechanism": "Additive serotonergic stimulation (SSRI + tramadol serotonin reuptake inhibition) plus CYP2D6 inhibition reducing tramadol O-desmethylation.",
+    "clinical_effect": "Increased risk of serotonin syndrome and reduced opioid analgesia.",
+    "management": "Monitor closely for serotonin syndrome, especially at initiation and dose increases; discontinue if serotonin syndrome occurs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "serotonergic drugs (including other SSRIs, SNRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) with PROZAC increases the risk of serotonin syndrome. Monitor patients for signs and symptoms of serotonin syndrome, particularly during treatment initiation and dosage"
+      }
+    ]
+  },
+  {
+    "id": "fluoxetine-sumatriptan",
+    "drug_a": "fluoxetine",
+    "drug_b": "sumatriptan",
+    "severity": "major",
+    "mechanism": "Additive serotonergic activity (SSRI + 5-HT1B/1D agonist).",
+    "clinical_effect": "Increased risk of serotonin syndrome (agitation, hyperreflexia, autonomic instability, incoordination).",
+    "management": "Monitor patients for signs and symptoms of serotonin syndrome, particularly during initiation and dosage increases.",
+    "alternatives": [
+      {
+        "drug_id": "rimegepant",
+        "rationale": "CGRP receptor antagonist without serotonergic activity"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "serotonergic drugs (including other SSRIs, SNRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) with PROZAC increases the risk of serotonin syndrome. Monitor patients for signs and symptoms of serotonin syndrome, particularly during treatment initiation and dosage"
+      }
+    ]
+  },
+  {
+    "id": "fluoxetine-amiodarone",
+    "drug_a": "fluoxetine",
+    "drug_b": "amiodarone",
+    "severity": "major",
+    "mechanism": "Additive QTc interval prolongation (fluoxetine + Class III antiarrhythmic amiodarone).",
+    "clinical_effect": "Increased risk of QT prolongation and ventricular arrhythmias (Torsades de Pointes).",
+    "management": "Avoid concomitant use with QT-prolonging drugs when possible; monitor ECG/QTc if clinically necessary.",
+    "alternatives": [
+      {
+        "drug_id": "sertraline",
+        "rationale": "Lower QTc prolongation risk at therapeutic doses compared with fluoxetine or citalopram"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Class III antiarrhythmics (e.g., amiodarone, sotalol); and others (e.g., pentamidine, levomethadyl acetate, methadone, halofantrine, mefloquine, dolasetron mesylate, probucol or tacrolimus). PROZAC is primarily metabolized by CYP2D6. Concomitant treatment with CYP2D6 inhibitors can increase the concentration of PROZAC. Concomitant use of"
+      }
+    ]
+  },
+  {
+    "id": "sertraline-warfarin",
+    "drug_a": "sertraline",
+    "drug_b": "warfarin",
+    "severity": "major",
+    "mechanism": "Additive bleeding risk from SSRI platelet serotonin depletion plus potential plasma protein-binding displacement.",
+    "clinical_effect": "Increased risk of hemorrhage and altered INR.",
+    "management": "Monitor INR and clinical signs of bleeding closely when starting, adjusting, or stopping sertraline.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "7.1 Clinically Significant Drug Interactions",
+        "quote": "Examples: aspirin, clopidogrel, heparin, warfarin Drugs Highly Bound to Plasma Protein Clinical Impact: ZOLOFT is highly bound to plasma protein. The concomitant use of ZOLOFT with another drug that is highly bound to plasma protein may increase free concentrations of ZOLOFT or other tightly-bound drugs in plasma [See Clinical"
+      }
+    ]
+  },
+  {
+    "id": "sertraline-aspirin",
+    "drug_a": "sertraline",
+    "drug_b": "aspirin",
+    "severity": "major",
+    "mechanism": "Concurrent use of an antiplatelet agent with an SSRI impairs platelet hemostasis additively.",
+    "clinical_effect": "Increased risk of GI and systemic bleeding.",
+    "management": "Monitor for bleeding and consider gastroprotection when clinically indicated.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "7.1 Clinically Significant Drug Interactions",
+        "quote": "Drugs that Interfere with Hemostasis (antiplatelet agents and anticoagulants) Clinical Impact: The concurrent use of an antiplatelet agent or anticoagulant with ZOLOFT may potentiate the risk of bleeding. Intervention: Inform patients of the increased risk of bleeding associated with the concomitant use of ZOLOFT and antiplatelet agents"
+      }
+    ]
+  },
+  {
+    "id": "sertraline-clopidogrel",
+    "drug_a": "sertraline",
+    "drug_b": "clopidogrel",
+    "severity": "major",
+    "mechanism": "Concurrent P2Y12 antiplatelet therapy with SSRI platelet serotonin depletion.",
+    "clinical_effect": "Potentiated risk of bleeding.",
+    "management": "Monitor closely for signs and symptoms of bleeding.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "7.1 Clinically Significant Drug Interactions",
+        "quote": "Examples: aspirin, clopidogrel, heparin, warfarin Drugs Highly Bound to Plasma Protein Clinical Impact: ZOLOFT is highly bound to plasma protein. The concomitant use of ZOLOFT with another drug that is highly bound to plasma protein may increase free concentrations of ZOLOFT or other tightly-bound drugs in plasma [See Clinical"
+      }
+    ]
+  },
+  {
+    "id": "sertraline-phenytoin",
+    "drug_a": "sertraline",
+    "drug_b": "phenytoin",
+    "severity": "major",
+    "mechanism": "Sertraline may increase plasma concentrations of phenytoin, a narrow therapeutic index drug.",
+    "clinical_effect": "Increased risk of phenytoin toxicity (ataxia, nystagmus, confusion).",
+    "management": "Monitor phenytoin levels when initiating or titrating sertraline and reduce phenytoin dosage if needed.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam has no CYP-mediated interaction with sertraline"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "7.1 Clinically Significant Drug Interactions",
+        "quote": "Phenytoin Clinical Impact: Phenytoin is a narrow therapeutic index drug. ZOLOFT may increase phenytoin concentrations. Intervention: Monitor phenytoin levels when initiating or titrating ZOLOFT. Reduce phenytoin dosage if needed. Examples: phenytoin, fosphenytoin Drugs that Prolong the QTc Interval Clinical Impact: The risk of QTc"
+      }
+    ]
+  },
+  {
+    "id": "sertraline-metoprolol",
+    "drug_a": "sertraline",
+    "drug_b": "metoprolol",
+    "severity": "moderate",
+    "mechanism": "Sertraline inhibits CYP2D6, increasing plasma exposure of CYP2D6 substrates such as metoprolol.",
+    "clinical_effect": "Enhanced beta-blockade (bradycardia, hypotension).",
+    "management": "Reduce dosage of CYP2D6-metabolized drugs like metoprolol as clinically warranted.",
+    "alternatives": [
+      {
+        "drug_id": "bisoprolol",
+        "rationale": "Bisoprolol has balanced renal/CYP3A4 clearance and is less dependent on CYP2D6"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "CYP2D6 substrates: Reduce dosage of drugs metabolized by CYP2D6. ( 7.1 , 12.3 ) 7.1 Clinically Significant Drug Interactions Table 5 includes clinically significant drug interactions with ZOLOFT [See Clinical Pharmacology (12.3) ] . Table 5. Clinically-Significant Drug Interactions with ZOLOFT Monoamine Oxidase Inhibitors (MAOIs)"
+      }
+    ]
+  },
+  {
+    "id": "sertraline-tramadol",
+    "drug_a": "sertraline",
+    "drug_b": "tramadol",
+    "severity": "major",
+    "mechanism": "Additive serotonergic activity (SSRI + opioid/serotonin reuptake inhibitor tramadol).",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor closely for serotonin syndrome during initiation and dose escalation.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "7.1 Clinically Significant Drug Interactions",
+        "quote": "Examples: Other SSRIs, SNRIs, triptans, tricyclic antidepressants, opioids, lithium, tryptophan, buspirone, amphetamines, and St. John’s Wort. Drugs that Interfere with Hemostasis (antiplatelet agents and anticoagulants) Clinical Impact: The concurrent use of an antiplatelet agent or anticoagulant with ZOLOFT may potentiate the risk of"
+      }
+    ]
+  },
+  {
+    "id": "sertraline-sumatriptan",
+    "drug_a": "sertraline",
+    "drug_b": "sumatriptan",
+    "severity": "major",
+    "mechanism": "Additive serotonergic stimulation (SSRI + triptan).",
+    "clinical_effect": "Risk of serotonin syndrome (weakness, hyperreflexia, incoordination, autonomic instability).",
+    "management": "Monitor closely for serotonin syndrome if concomitant use is clinically warranted.",
+    "alternatives": [
+      {
+        "drug_id": "rimegepant",
+        "rationale": "CGRP antagonist without serotonergic mechanism"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-sertraline-label",
+        "locator": "7.1 Clinically Significant Drug Interactions",
+        "quote": "Examples: Other SSRIs, SNRIs, triptans, tricyclic antidepressants, opioids, lithium, tryptophan, buspirone, amphetamines, and St. John’s Wort. Drugs that Interfere with Hemostasis (antiplatelet agents and anticoagulants) Clinical Impact: The concurrent use of an antiplatelet agent or anticoagulant with ZOLOFT may potentiate the risk of"
+      }
+    ]
+  },
+  {
+    "id": "escitalopram-warfarin",
+    "drug_a": "escitalopram",
+    "drug_b": "warfarin",
+    "severity": "major",
+    "mechanism": "Concomitant SSRI and anticoagulant therapy impairs both platelet serotonin-mediated aggregation and coagulation.",
+    "clinical_effect": "Potentiated risk of bleeding.",
+    "management": "Inform patients of increased bleeding risk and monitor INR and bleeding signs closely.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-escitalopram-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Concomitant use of Lexapro and an antiplatelet or anticoagulant may potentiate the risk of bleeding. Intervention: Inform patients of the increased risk of bleeding associated with the concomitant use of Lexapro and antiplatelet agents and anticoagulants. For patients taking warfarin, carefully monitor the international normalized ratio"
+      }
+    ]
+  },
+  {
+    "id": "escitalopram-aspirin",
+    "drug_a": "escitalopram",
+    "drug_b": "aspirin",
+    "severity": "major",
+    "mechanism": "Additive antiplatelet/hemostatic impairment between escitalopram and aspirin.",
+    "clinical_effect": "Increased risk of GI and systemic bleeding.",
+    "management": "Inform patients of increased bleeding risk and monitor clinically.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-escitalopram-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Concomitant use of Lexapro and an antiplatelet or anticoagulant may potentiate the risk of bleeding. Intervention: Inform patients of the increased risk of bleeding associated with the concomitant use of Lexapro and antiplatelet agents and anticoagulants. For patients taking warfarin, carefully monitor the international normalized ratio"
+      }
+    ]
+  },
+  {
+    "id": "escitalopram-sumatriptan",
+    "drug_a": "escitalopram",
+    "drug_b": "sumatriptan",
+    "severity": "major",
+    "mechanism": "Additive serotonergic stimulation (SSRI + 5-HT1B/1D agonist).",
+    "clinical_effect": "Postmarketing reports of weakness, hyperreflexia, and incoordination; risk of serotonin syndrome.",
+    "management": "If concomitant treatment with sumatriptan and an SSRI is clinically warranted, appropriate observation of the patient is advised.",
+    "alternatives": [
+      {
+        "drug_id": "rimegepant",
+        "rationale": "CGRP receptor antagonist without serotonergic activity"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-escitalopram-label",
+        "locator": "7 DRUG INTERACTIONS — Sumatriptan",
+        "quote": "Sumatriptan Clinical Impact: There have been postmarketing reports describing patients with weakness, hyperreflexia, and incoordination following the use of an SSRI and sumatriptan. Intervention: If concomitant treatment with sumatriptan and an SSRI is clinically warranted, appropriate observation of the patient is advised [see Warning"
+      }
+    ]
+  },
+  {
+    "id": "escitalopram-tramadol",
+    "drug_a": "escitalopram",
+    "drug_b": "tramadol",
+    "severity": "major",
+    "mechanism": "Additive serotonergic activity (escitalopram + tramadol).",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor patients for signs and symptoms of serotonin syndrome, particularly during initiation and dosage increases.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-escitalopram-label",
+        "locator": "7 DRUG INTERACTIONS — Other Serotonergic Drugs",
+        "quote": "Concomitant use of Lexapro and other serotonergic drugs (including other SSRIs, SNRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) increases the risk of serotonin syndrome. Intervention: Monitor patients for signs and symptoms of serotonin syndrome, particularly during"
+      }
+    ]
+  },
+  {
+    "id": "citalopram-warfarin",
+    "drug_a": "citalopram",
+    "drug_b": "warfarin",
+    "severity": "major",
+    "mechanism": "Additive bleeding risk with SSRIs and anticoagulants.",
+    "clinical_effect": "Increased risk of hemorrhage and potential INR instability.",
+    "management": "For patients taking warfarin, carefully monitor the international normalized ratio (INR) and observe for bleeding.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "For patients taking warfarin, carefully monitor the international normalized ratio [ see Warning and Precautions ( 5.4 )] . CYP2C19 Inhibitors: CELEXA 20 mg daily is the maximum recommended dosage for patients taking concomitant CYP2C19 inhibitors ( 5.2 , 7.1).\n\n=== 8 USE IN SPECIFIC POPULATIONS ===\n\n8 USE IN SPECIFIC POPULATIONS"
+      }
+    ]
+  },
+  {
+    "id": "citalopram-omeprazole",
+    "drug_a": "citalopram",
+    "drug_b": "omeprazole",
+    "severity": "major",
+    "mechanism": "Omeprazole inhibits CYP2C19, increasing citalopram systemic exposure and dose-dependent QTc prolongation risk.",
+    "clinical_effect": "Elevated citalopram plasma levels and increased risk of QT prolongation / Torsades de Pointes.",
+    "management": "Maximum recommended dosage of citalopram when used concomitantly with a CYP2C19 inhibitor is 20 mg once daily.",
+    "alternatives": [
+      {
+        "drug_id": "pantoprazole",
+        "rationale": "Pantoprazole has minimal CYP2C19 inhibition compared with omeprazole"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "2.4 Dosage Modifications with Concomitant Use of CYP2C19 Inhibitors",
+        "quote": "The maximum recommended dosage of CELEXA when used concomitantly with a CYP2C19 inhibitor is 20 mg once daily [see Warnings and Precautions ( 5.2 ), Drug Interactions ( 7 )]. 2. 5 Switching Patients t o or f rom a Monoamine Oxidase Inhibitor Antidepressant At least 14 days must elapse between discontinuation of a monoamine oxidase"
+      }
+    ]
+  },
+  {
+    "id": "citalopram-sumatriptan",
+    "drug_a": "citalopram",
+    "drug_b": "sumatriptan",
+    "severity": "major",
+    "mechanism": "Additive serotonergic stimulation (citalopram + triptan).",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor patients for signs and symptoms of serotonin syndrome, particularly during initiation and dosage increases.",
+    "alternatives": [
+      {
+        "drug_id": "rimegepant",
+        "rationale": "Non-serotonergic CGRP receptor antagonist"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Concomitant use of CELEXA and other serotonergic drugs (including other SSRIs, SNRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) increases the risk of serotonin syndrome. Intervention: Monitor patients for signs and symptoms of serotonin syndrome, particularly during"
+      }
+    ]
+  },
+  {
+    "id": "citalopram-tramadol",
+    "drug_a": "citalopram",
+    "drug_b": "tramadol",
+    "severity": "major",
+    "mechanism": "Additive serotonergic activity (citalopram + tramadol).",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor patients for signs and symptoms of serotonin syndrome, particularly during initiation and dosage increases.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-citalopram-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Concomitant use of CELEXA and other serotonergic drugs (including other SSRIs, SNRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) increases the risk of serotonin syndrome. Intervention: Monitor patients for signs and symptoms of serotonin syndrome, particularly during"
+      }
+    ]
+  },
+  {
+    "id": "paroxetine-warfarin",
+    "drug_a": "paroxetine",
+    "drug_b": "warfarin",
+    "severity": "major",
+    "mechanism": "High plasma protein binding displacement and SSRI platelet serotonin depletion.",
+    "clinical_effect": "Increased risk of bleeding and altered anticoagulant response.",
+    "management": "Monitor for adverse reactions (bleeding/INR) and reduce dosage of paroxetine or protein-bound drugs (e.g. warfarin) as warranted.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Drugs Highly Bound to Plasma Protein: Monitor for adverse reactions and reduce dosage of PAXIL CR or other protein-bound drugs (e.g., warfarin) as warranted. ( 7 ) CYP2D6 Substrates: Reduce dosage of the CYP2D6 substrate if needed. ( 7 ) Concomitant use with Tamoxifen: Consider use of an alternative antidepressant with little or no"
+      }
+    ]
+  },
+  {
+    "id": "paroxetine-tramadol",
+    "drug_a": "paroxetine",
+    "drug_b": "tramadol",
+    "severity": "major",
+    "mechanism": "Additive serotonergic activity plus strong CYP2D6 inhibition by paroxetine (impairing tramadol bioactivation to O-desmethyltramadol).",
+    "clinical_effect": "Increased risk of serotonin syndrome and reduced analgesic efficacy.",
+    "management": "Monitor patients for signs and symptoms of serotonin syndrome with concomitant use.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-paroxetine-label",
+        "locator": "7.1 Clinically Significant Drug Interactions",
+        "quote": "The concomitant use of serotonergic drugs with PAXIL CR increases the risk of serotonin syndrome. Prevention or Management Monitor patients for signs and symptoms of serotonin syndrome with concomitant use of PAXIL and other serotonergic drugs, If serotonin syndrome occurs, immediately discontinue treatment with PAXIL CR and/or"
+      }
+    ]
+  },
+  {
+    "id": "fluvoxamine-tizanidine",
+    "drug_a": "fluvoxamine",
+    "drug_b": "tizanidine",
+    "severity": "contraindicated",
+    "mechanism": "Fluvoxamine potently inhibits CYP1A2, dramatically increasing tizanidine plasma concentrations.",
+    "clinical_effect": "Severe hypotension, profound sedation, and psychomotor impairment.",
+    "management": "Coadministration of tizanidine with fluvoxamine is contraindicated.",
+    "alternatives": [
+      {
+        "drug_id": "baclofen",
+        "rationale": "Baclofen is renally eliminated and not metabolized by CYP1A2"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "4 CONTRAINDICATIONS",
+        "quote": "Coadministration of thioridazine, tizanidine, pimozide, alosetron, or ramelteon with fluvoxamine maleate extended-release capsules is contraindicated ( see WARNINGS AND PRECAUTIONS [ 5.4 - 5.8 ] ) . Coadministration of thioridazine, tizanidine, pimozide, alosetron, or ramelteon ( 4 ). Serotonin Syndrome and MAOIs: Do not use MAOIs"
+      }
+    ]
+  },
+  {
+    "id": "fluvoxamine-warfarin",
+    "drug_a": "fluvoxamine",
+    "drug_b": "warfarin",
+    "severity": "major",
+    "mechanism": "Fluvoxamine inhibits CYP1A2 (R-warfarin) and CYP2C9 (S-warfarin), plus SSRI bleeding risk.",
+    "clinical_effect": "Markedly elevated warfarin exposure, prolonged PT/INR, and hemorrhage risk.",
+    "management": "Monitor PT/INR closely and reduce warfarin dose as needed when initiating or stopping fluvoxamine.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "7.1 Potential Interactions with CYP Isoenzymes",
+        "quote": "CYP1A2 (e.g., warfarin, theophylline, propranolol, tizanidine), CYP2C9 (e.g., warfarin), CYP3A4 (e.g., alprazolam), and CYP2C19 (e.g., omeprazole). In vitro data suggest that fluvoxamine is a relatively weak inhibitor of CYP2D6. Approximately 7% of the normal population has a genetic code that leads to reduced levels of activity of"
+      }
+    ]
+  },
+  {
+    "id": "fluvoxamine-carbamazepine",
+    "drug_a": "fluvoxamine",
+    "drug_b": "carbamazepine",
+    "severity": "major",
+    "mechanism": "Fluvoxamine inhibits hepatic CYP3A4/oxidative metabolism of carbamazepine.",
+    "clinical_effect": "Elevated carbamazepine levels and symptoms of toxicity.",
+    "management": "Monitor carbamazepine serum levels and clinical toxicity; adjust dose as indicated.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam is not metabolized by CYP isoenzymes"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "7.2 Drug Interactions",
+        "quote": "Carbamazepine: Elevated carbamazepine levels and symptoms of toxicity with coadministration ( 7.2 ) . Sumatriptan: Rare postmarketing reports of weakness, hyperreflexia, and incoordination following use of an SSRI and sumatriptan. Monitor appropriately if concomitant treatment is clinically warranted ( 7.2 ) . Tacrine: Coadministration"
+      }
+    ]
+  },
+  {
+    "id": "fluvoxamine-phenytoin",
+    "drug_a": "fluvoxamine",
+    "drug_b": "phenytoin",
+    "severity": "major",
+    "mechanism": "Fluvoxamine inhibits CYP2C9/CYP2C19 oxidative metabolism of phenytoin, a narrow therapeutic index drug.",
+    "clinical_effect": "Elevated phenytoin plasma concentrations and toxicity.",
+    "management": "Monitor phenytoin plasma levels and clinical effects closely; adjust phenytoin dose as needed.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam has no CYP-mediated interaction with fluvoxamine"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "7.1 Potential Interactions with CYP Isoenzymes",
+        "quote": "certain benzodiazepines, omeprazole, and phenytoin. If fluvoxamine maleate extended-release capsules are to be administered together with a drug that is eliminated via oxidative metabolism and has a narrow therapeutic window, plasma levels and/or pharmacodynamic effects of the latter drug should be monitored closely, at least until"
+      }
+    ]
+  },
+  {
+    "id": "fluvoxamine-omeprazole",
+    "drug_a": "fluvoxamine",
+    "drug_b": "omeprazole",
+    "severity": "moderate",
+    "mechanism": "Fluvoxamine inhibits CYP2C19-mediated metabolism of omeprazole.",
+    "clinical_effect": "Increased plasma concentrations of omeprazole.",
+    "management": "Monitor for enhanced omeprazole exposure or consider a PPI less reliant on CYP2C19 if needed.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "7.1 Potential Interactions with CYP Isoenzymes",
+        "quote": "CYP2C19 (e.g., omeprazole). In vitro data suggest that fluvoxamine is a relatively weak inhibitor of CYP2D6. Approximately 7% of the normal population has a genetic code that leads to reduced levels of activity of CYP2D6 enzyme. Such individuals have been referred to as “poor metabolizers” (PM) of drugs such as debrisoquin,"
+      }
+    ]
+  },
+  {
+    "id": "fluvoxamine-metoprolol",
+    "drug_a": "fluvoxamine",
+    "drug_b": "metoprolol",
+    "severity": "moderate",
+    "mechanism": "Fluvoxamine inhibits hepatic metabolism of beta-blockers (propranolol/metoprolol).",
+    "clinical_effect": "Elevated metoprolol plasma levels, increasing risk of bradycardia and hypotension.",
+    "management": "Reduce metoprolol dose if coadministered with fluvoxamine and titrate more cautiously.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "7.3 Drug Interactions",
+        "quote": "Propranolol or Metoprolol: Reduce dose if coadministered with fluvoxamine and titrate more cautiously ( 7.3 ) . 7.1 Potential Interactions with Drugs that Inhibit or are Metabolized by Cytochrome P450 Isoenzymes Multiple hepatic cytochrome P450 isoenzymes are involved in the oxidative biotransformation of a large number of structurally"
+      }
+    ]
+  },
+  {
+    "id": "fluvoxamine-sumatriptan",
+    "drug_a": "fluvoxamine",
+    "drug_b": "sumatriptan",
+    "severity": "major",
+    "mechanism": "Additive serotonergic activity (SSRI + sumatriptan).",
+    "clinical_effect": "Rare postmarketing reports of weakness, hyperreflexia, and incoordination.",
+    "management": "Monitor appropriately if concomitant treatment is clinically warranted.",
+    "alternatives": [
+      {
+        "drug_id": "rimegepant",
+        "rationale": "CGRP receptor antagonist without serotonergic activity"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluvoxamine-label",
+        "locator": "7.2 Drug Interactions",
+        "quote": "Sumatriptan: Rare postmarketing reports of weakness, hyperreflexia, and incoordination following use of an SSRI and sumatriptan. Monitor appropriately if concomitant treatment is clinically warranted ( 7.2 ) . Tacrine: Coadministration increased tacrine C max and AUC five-and eight-fold and caused nausea, vomiting, sweating, and diarrhea"
+      }
+    ]
+  },
+  {
+    "id": "risperidone-carbamazepine",
+    "drug_a": "risperidone",
+    "drug_b": "carbamazepine",
+    "severity": "major",
+    "mechanism": "Carbamazepine induces hepatic enzymes (CYP3A/P-gp), reducing plasma concentrations of risperidone and its active metabolite 9-hydroxyrisperidone (AUC ratio 0.51, Cmax ratio 0.55).",
+    "clinical_effect": "Decreased plasma concentrations of the active antipsychotic moiety, risking loss of antipsychotic efficacy.",
+    "management": "When risperidone is co-administered with carbamazepine, increase the risperidone dose up to double the patient's usual dose and titrate slowly. Decrease risperidone dose when carbamazepine is discontinued.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Carbamazepine and other enzyme inducers decrease plasma concentrations of risperidone. Increase the RISPERDAL dose up to double the patient's usual dose. Titrate slowly."
+      }
+    ]
+  },
+  {
+    "id": "risperidone-fluoxetine",
+    "drug_a": "risperidone",
+    "drug_b": "fluoxetine",
+    "severity": "major",
+    "mechanism": "Fluoxetine strongly inhibits CYP2D6-mediated metabolism of risperidone, increasing plasma concentrations of the active moiety (AUC ratio 1.4, Cmax ratio 1.5).",
+    "clinical_effect": "Elevated risperidone exposure and increased risk of dose-dependent adverse effects including extrapyramidal symptoms (EPS).",
+    "management": "Reduce the initial risperidone dose and titrate slowly; do not exceed a final dose of 8 mg/day in adults when co-administered with fluoxetine. Re-evaluate if fluoxetine is discontinued.",
+    "alternatives": [
+      {
+        "drug_id": "citalopram",
+        "rationale": "Citalopram has minimal CYP2D6 inhibition compared with fluoxetine or paroxetine"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Fluoxetine, paroxetine, and other CYP 2D6 enzyme inhibitors increase plasma concentrations of risperidone. Reduce the initial dose. Do not exceed a final dose of 8 mg per day of RISPERDAL."
+      }
+    ]
+  },
+  {
+    "id": "risperidone-paroxetine",
+    "drug_a": "risperidone",
+    "drug_b": "paroxetine",
+    "severity": "major",
+    "mechanism": "Paroxetine strongly inhibits CYP2D6-mediated metabolism of risperidone, increasing plasma concentrations of the active moiety (AUC ratio 1.3 at 10 mg/day, 1.6 at 20 mg/day, 1.8 at 40 mg/day).",
+    "clinical_effect": "Elevated risperidone exposure and increased risk of extrapyramidal symptoms and other dose-related adverse reactions; Torsade de pointes reported in combined overdose.",
+    "management": "Reduce the initial risperidone dose and titrate slowly; do not exceed a final dose of 8 mg/day in adults when co-administered with paroxetine.",
+    "alternatives": [
+      {
+        "drug_id": "sertraline",
+        "rationale": "Sertraline has weaker CYP2D6 inhibition than paroxetine at standard doses"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Fluoxetine, paroxetine, and other CYP 2D6 enzyme inhibitors increase plasma concentrations of risperidone. Reduce the initial dose. Do not exceed a final dose of 8 mg per day of RISPERDAL."
+      }
+    ]
+  },
+  {
+    "id": "risperidone-levodopa-carbidopa",
+    "drug_a": "risperidone",
+    "drug_b": "levodopa-carbidopa",
+    "severity": "moderate",
+    "mechanism": "Pharmacodynamic antagonism: risperidone blocks central dopamine D2 receptors, opposing dopaminergic stimulation by levodopa.",
+    "clinical_effect": "Reduced antiparkinsonian efficacy of levodopa and potential worsening of parkinsonian motor symptoms.",
+    "management": "Monitor for worsening parkinsonian symptoms or loss of levodopa efficacy; patients with Parkinson's disease have increased sensitivity to risperidone.",
+    "alternatives": [
+      {
+        "drug_id": "quetiapine",
+        "rationale": "Quetiapine has lower D2 affinity and lower EPS risk, though it may still antagonize levodopa"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "Section 7.2 Pharmacodynamic-related Interactions",
+        "quote": "RISPERDAL may antagonize the effects of levodopa and dopamine agonists."
+      }
+    ]
+  },
+  {
+    "id": "risperidone-pramipexole",
+    "drug_a": "risperidone",
+    "drug_b": "pramipexole",
+    "severity": "moderate",
+    "mechanism": "Pharmacodynamic antagonism: risperidone blocks central dopamine D2 receptors, opposing dopamine agonist activity of pramipexole.",
+    "clinical_effect": "Reduced therapeutic efficacy of pramipexole and potential worsening of motor symptoms.",
+    "management": "Monitor for reduced dopamine agonist efficacy and extrapyramidal symptoms.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "Section 7.2 Pharmacodynamic-related Interactions",
+        "quote": "RISPERDAL may antagonize the effects of levodopa and dopamine agonists."
+      }
+    ]
+  },
+  {
+    "id": "risperidone-ropinirole",
+    "drug_a": "risperidone",
+    "drug_b": "ropinirole",
+    "severity": "moderate",
+    "mechanism": "Pharmacodynamic antagonism: risperidone blocks central dopamine D2 receptors, opposing dopamine agonist activity of ropinirole.",
+    "clinical_effect": "Reduced therapeutic efficacy of ropinirole and potential worsening of motor symptoms.",
+    "management": "Monitor for reduced dopamine agonist efficacy and extrapyramidal symptoms.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "Section 7.2 Pharmacodynamic-related Interactions",
+        "quote": "RISPERDAL may antagonize the effects of levodopa and dopamine agonists."
+      }
+    ]
+  },
+  {
+    "id": "olanzapine-fluvoxamine",
+    "drug_a": "olanzapine",
+    "drug_b": "fluvoxamine",
+    "severity": "major",
+    "mechanism": "Fluvoxamine inhibits CYP1A2, decreasing olanzapine clearance and increasing olanzapine Cmax by 54% (female nonsmokers) to 77% (male smokers) and AUC by 52% to 108%.",
+    "clinical_effect": "Substantially increased systemic exposure to olanzapine, increasing risk of sedation, orthostatic hypotension, and anticholinergic/metabolic adverse effects.",
+    "management": "Consider lower doses of olanzapine in patients receiving concomitant treatment with fluvoxamine and monitor closely for adverse reactions.",
+    "alternatives": [
+      {
+        "drug_id": "sertraline",
+        "rationale": "Sertraline does not strongly inhibit CYP1A2"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect Olanzapine",
+        "quote": "Fluvoxamine, a CYP1A2 inhibitor, decreases the clearance of olanzapine. This results in a mean increase in olanzapine Cmax following fluvoxamine of 54% in female nonsmokers and 77% in male smokers. The mean increase in olanzapine AUC is 52% and 108%, respectively. Lower doses of olanzapine should be considered"
+      }
+    ]
+  },
+  {
+    "id": "olanzapine-carbamazepine",
+    "drug_a": "olanzapine",
+    "drug_b": "carbamazepine",
+    "severity": "moderate",
+    "mechanism": "Carbamazepine potently induces CYP1A2, increasing olanzapine clearance by approximately 50% (at 200 mg BID; greater at higher doses).",
+    "clinical_effect": "Reduced olanzapine plasma concentrations, potentially decreasing antipsychotic or antimanic efficacy.",
+    "management": "Monitor clinical response closely and consider higher olanzapine doses when co-administered with carbamazepine.",
+    "alternatives": [
+      {
+        "drug_id": "valproate",
+        "rationale": "Olanzapine does not affect steady-state valproate concentrations and valproate does not induce CYP1A2"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect Olanzapine",
+        "quote": "Carbamazepine therapy (200 mg bid) causes an approximately 50% increase in the clearance of olanzapine. This increase is likely due to the fact that carbamazepine is a potent inducer of CYP1A2 activity."
+      }
+    ]
+  },
+  {
+    "id": "olanzapine-diazepam",
+    "drug_a": "olanzapine",
+    "drug_b": "diazepam",
+    "severity": "moderate",
+    "mechanism": "Additive pharmacodynamic CNS depression and alpha-1 adrenergic blockade; olanzapine does not alter diazepam pharmacokinetics.",
+    "clinical_effect": "Potentiated orthostatic hypotension and additive CNS depression/sedation compared with either agent alone.",
+    "management": "Monitor blood pressure (including orthostatic vitals) and sedation closely when co-administering diazepam with olanzapine.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect Olanzapine",
+        "quote": "The co-administration of diazepam with olanzapine potentiated the orthostatic hypotension observed with olanzapine"
+      }
+    ]
+  },
+  {
+    "id": "olanzapine-levodopa-carbidopa",
+    "drug_a": "olanzapine",
+    "drug_b": "levodopa-carbidopa",
+    "severity": "moderate",
+    "mechanism": "Pharmacodynamic antagonism: olanzapine antagonizes dopamine receptors (D1–D4), opposing dopaminergic effects of levodopa.",
+    "clinical_effect": "May antagonize the antiparkinsonian effects of levodopa.",
+    "management": "Monitor for worsening motor symptoms or reduced levodopa efficacy.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "Section 7.2 Potential for Olanzapine to Affect Other Drugs",
+        "quote": "Olanzapine may antagonize the effects of levodopa and dopamine agonists."
+      }
+    ]
+  },
+  {
+    "id": "clozapine-fluvoxamine",
+    "drug_a": "clozapine",
+    "drug_b": "fluvoxamine",
+    "severity": "major",
+    "mechanism": "Fluvoxamine is a strong CYP1A2 inhibitor; co-administration for 14 days elevated mean trough concentrations of clozapine and its metabolites approximately 3-fold.",
+    "clinical_effect": "Markedly elevated clozapine plasma concentrations with high risk of dose-dependent toxicity (seizures, orthostatic hypotension, sedation, myocarditis/cardiac toxicity).",
+    "management": "Reduce the clozapine dose to one-third of the original dose when co-administered with fluvoxamine; restore the original dose when fluvoxamine is discontinued.",
+    "alternatives": [
+      {
+        "drug_id": "citalopram",
+        "rationale": "Citalopram does not strongly inhibit CYP1A2"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Reduce CLOZARIL dose to one-third when coadministered with strong CYP1A2 inhibitors (e.g., fluvoxamine, ciprofloxacin, enoxacin)."
+      }
+    ]
+  },
+  {
+    "id": "clozapine-ciprofloxacin",
+    "drug_a": "clozapine",
+    "drug_b": "ciprofloxacin",
+    "severity": "major",
+    "mechanism": "Ciprofloxacin is a strong CYP1A2 inhibitor that impairs clozapine metabolism and increases clozapine plasma levels.",
+    "clinical_effect": "Elevated clozapine plasma concentrations and increased risk of serious dose-related adverse reactions (sedation, hypotension, seizures).",
+    "management": "Reduce the clozapine dose to one-third of the original dose when co-administered with ciprofloxacin; restore the original dose when ciprofloxacin is discontinued.",
+    "alternatives": [
+      {
+        "drug_id": "levofloxacin",
+        "rationale": "Levofloxacin has minimal CYP1A2 inhibition compared with ciprofloxacin"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Reduce CLOZARIL dose to one-third when coadministered with strong CYP1A2 inhibitors (e.g., fluvoxamine, ciprofloxacin, enoxacin)."
+      }
+    ]
+  },
+  {
+    "id": "clozapine-carbamazepine",
+    "drug_a": "clozapine",
+    "drug_b": "carbamazepine",
+    "severity": "major",
+    "mechanism": "Carbamazepine is a strong CYP3A4 inducer that decreases clozapine plasma concentrations; additionally, clozapine may increase levels of carbamazepine.",
+    "clinical_effect": "Decreased clozapine effectiveness during co-administration, and risk of increased clozapine toxicity if carbamazepine is discontinued; also additive hematologic risk (neutropenia) clinically noted.",
+    "management": "Concomitant use of clozapine and strong CYP3A4 inducers is not recommended. If necessary, increase clozapine dose and monitor for decreased effectiveness; reduce clozapine dose when discontinuing carbamazepine.",
+    "alternatives": [
+      {
+        "drug_id": "valproate",
+        "rationale": "Valproate is not a strong CYP3A4 inducer"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Strong CYP3A4 inducers include carbamazepine, phenytoin, St. John’s wort, and rifampin. It may be necessary to increase the CLOZARIL dose if used concomitantly with inducers of these enzymes. However, concomitant use of CLOZARIL and strong CYP3A4 inducers is not recommended"
+      }
+    ]
+  },
+  {
+    "id": "clozapine-phenytoin",
+    "drug_a": "clozapine",
+    "drug_b": "phenytoin",
+    "severity": "major",
+    "mechanism": "Phenytoin is a strong CYP3A4 inducer that accelerates clozapine metabolism and lowers plasma clozapine concentrations.",
+    "clinical_effect": "Decreased clozapine plasma concentrations and risk of reduced antipsychotic effectiveness; risk of clozapine toxicity upon phenytoin discontinuation.",
+    "management": "Concomitant use of clozapine and strong CYP3A4 inducers is not recommended. If co-administration is necessary, monitor for decreased effectiveness and adjust clozapine dose accordingly.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce CYP3A4 or CYP1A2"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Strong CYP3A4 inducers include carbamazepine, phenytoin, St. John’s wort, and rifampin. It may be necessary to increase the CLOZARIL dose if used concomitantly with inducers of these enzymes. However, concomitant use of CLOZARIL and strong CYP3A4 inducers is not recommended"
+      }
+    ]
+  },
+  {
+    "id": "clozapine-fluoxetine",
+    "drug_a": "clozapine",
+    "drug_b": "fluoxetine",
+    "severity": "moderate",
+    "mechanism": "Fluoxetine inhibits CYP2D6 (and CYP2C19/3A4), causing modest (<2-fold) elevations in clozapine and metabolite concentrations.",
+    "clinical_effect": "Increased clozapine plasma levels and potential for clozapine-related adverse reactions.",
+    "management": "Use caution, monitor patients closely for clozapine adverse effects, and consider reducing the clozapine dose.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Concomitant treatment with CLOZARIL and CYP2D6 or CYP3A4 inhibitors (e.g., cimetidine, escitalopram, erythromycin, paroxetine, bupropion, fluoxetine, quinidine, duloxetine, terbinafine, or sertraline) can increase clozapine levels and lead to adverse reactions"
+      }
+    ]
+  },
+  {
+    "id": "clozapine-paroxetine",
+    "drug_a": "clozapine",
+    "drug_b": "paroxetine",
+    "severity": "moderate",
+    "mechanism": "Paroxetine inhibits CYP2D6; published reports describe modest (<2-fold) elevations in clozapine and metabolite concentrations.",
+    "clinical_effect": "Increased clozapine plasma levels and potential for adverse reactions.",
+    "management": "Use caution, monitor patients closely, and consider reducing the clozapine dose.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Concomitant treatment with CLOZARIL and CYP2D6 or CYP3A4 inhibitors (e.g., cimetidine, escitalopram, erythromycin, paroxetine, bupropion, fluoxetine, quinidine, duloxetine, terbinafine, or sertraline) can increase clozapine levels and lead to adverse reactions"
+      }
+    ]
+  },
+  {
+    "id": "clozapine-sertraline",
+    "drug_a": "clozapine",
+    "drug_b": "sertraline",
+    "severity": "moderate",
+    "mechanism": "CYP2D6/CYP3A4 inhibition; published reports describe modest (<2-fold) elevations in clozapine and metabolite concentrations.",
+    "clinical_effect": "Increased clozapine plasma levels and potential for adverse reactions.",
+    "management": "Use caution, monitor patients closely, and consider reducing the clozapine dose.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Concomitant treatment with CLOZARIL and CYP2D6 or CYP3A4 inhibitors (e.g., cimetidine, escitalopram, erythromycin, paroxetine, bupropion, fluoxetine, quinidine, duloxetine, terbinafine, or sertraline) can increase clozapine levels and lead to adverse reactions"
+      }
+    ]
+  },
+  {
+    "id": "clozapine-amiodarone",
+    "drug_a": "clozapine",
+    "drug_b": "amiodarone",
+    "severity": "major",
+    "mechanism": "Additive pharmacodynamic QT interval prolongation.",
+    "clinical_effect": "Increased risk of QT interval prolongation and ventricular arrhythmias (including Torsades de Pointes).",
+    "management": "Use caution when administering clozapine with QT-prolonging antiarrhythmics such as amiodarone; monitor ECG and electrolytes.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Use caution when administering concomitant medications that prolong the QT interval or inhibit the metabolism of clozapine."
+      }
+    ]
+  },
+  {
+    "id": "quetiapine-phenytoin",
+    "drug_a": "quetiapine",
+    "drug_b": "phenytoin",
+    "severity": "major",
+    "mechanism": "Phenytoin is a potent CYP3A4 inducer that increased the mean oral clearance of quetiapine by 5-fold.",
+    "clinical_effect": "Markedly decreased quetiapine plasma exposure, risking loss of symptom control; abrupt phenytoin withdrawal can cause quetiapine overexposure.",
+    "management": "Increase quetiapine dose up to 5-fold during chronic (>7–14 days) co-administration with phenytoin, titrated to clinical response and tolerability. Reduce quetiapine dose to original level within 7–14 days when phenytoin is discontinued.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce CYP3A4"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "Section 7.1 Effect of Other Drugs on Quetiapine",
+        "quote": "Coadministration of quetiapine and phenytoin, a CYP3A4 inducer increased the mean oral clearance of quetiapine by 5-fold. Increased doses of SEROQUEL up to 5 fold may be required to maintain control of symptoms of schizophrenia in patients receiving quetiapine and phenytoin, or other known potent CYP3A4 inducers"
+      }
+    ]
+  },
+  {
+    "id": "quetiapine-carbamazepine",
+    "drug_a": "quetiapine",
+    "drug_b": "carbamazepine",
+    "severity": "major",
+    "mechanism": "Carbamazepine is a potent CYP3A4 inducer that increases quetiapine clearance and reduces systemic exposure.",
+    "clinical_effect": "Markedly decreased quetiapine plasma concentrations and potential loss of antipsychotic or mood-stabilizing efficacy.",
+    "management": "Increase quetiapine dose up to 5-fold when used with chronic potent CYP3A4 inducers; reduce quetiapine dose to original level within 7–14 days of discontinuing carbamazepine.",
+    "alternatives": [
+      {
+        "drug_id": "valproate",
+        "rationale": "Divalproex/valproate had no effect on quetiapine absorption or mean oral clearance (17% Cmax increase)"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "Section 7.1 Effect of Other Drugs on Quetiapine",
+        "quote": "Quetiapine exposure is increased by the prototype CYP3A4 inhibitors (e.g., ketoconazole, itraconazole, indinavir, ritonavir, nefazodone, etc.) and decreased by the prototype CYP3A4 inducers (e.g., phenytoin, carbamazepine, rifampin, avasimibe, St. John’s wort etc.)."
+      }
+    ]
+  },
+  {
+    "id": "quetiapine-levodopa-carbidopa",
+    "drug_a": "quetiapine",
+    "drug_b": "levodopa-carbidopa",
+    "severity": "moderate",
+    "mechanism": "Pharmacodynamic antagonism: quetiapine blocks dopamine D2 receptors, opposing dopaminergic effects of levodopa.",
+    "clinical_effect": "May antagonize the antiparkinsonian effects of levodopa and dopamine agonists.",
+    "management": "Monitor for reduced antiparkinsonian efficacy.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "Section 7.2 Effect of Quetiapine on Other Drugs",
+        "quote": "SEROQUEL may antagonize the effects of levodopa and dopamine agonists."
+      }
+    ]
+  },
+  {
+    "id": "eszopiclone-diazepam",
+    "drug_a": "eszopiclone",
+    "drug_b": "diazepam",
+    "severity": "moderate",
+    "mechanism": "Additive pharmacodynamic CNS-depressant effects at GABA-receptor complexes.",
+    "clinical_effect": "Potentially additive CNS depression and next-day psychomotor impairment.",
+    "management": "Dosage adjustments may be necessary when eszopiclone is combined with other CNS depressant drugs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "2.4 Use with CNS Depressants / 7 DRUG INTERACTIONS",
+        "quote": "Dosage adjustments may be necessary when LUNESTA is combined with other central nervous system (CNS) depressant drugs because of the potentially additive effects"
+      }
+    ]
+  },
+  {
+    "id": "eszopiclone-midazolam",
+    "drug_a": "eszopiclone",
+    "drug_b": "midazolam",
+    "severity": "moderate",
+    "mechanism": "Additive pharmacodynamic CNS-depressant effects at GABA-receptor complexes.",
+    "clinical_effect": "Potentially additive CNS depression and psychomotor impairment.",
+    "management": "Dosage adjustments may be necessary when eszopiclone is combined with other CNS depressant drugs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-eszopiclone-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "CNS Depressants: Additive CNS-depressant effects with combination use."
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-rasagiline",
+    "drug_a": "mirtazapine",
+    "drug_b": "rasagiline",
+    "severity": "contraindicated",
+    "mechanism": "Combined enhancement of central serotonergic activity via alpha-2 antagonism and monoamine oxidase inhibition.",
+    "clinical_effect": "Increased risk of potentially life-threatening serotonin syndrome.",
+    "management": "Contraindicated during or within 14 days of stopping an MAOI; allow at least 14 days after stopping mirtazapine before starting an MAOI.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "4 CONTRAINDICATIONS",
+        "quote": "REMERON/REMERONSolTab is contraindicated in patients: Taking, or within 14 days of stopping, MAOIs (including the MAOIs linezolid and intravenous methylene blue) because of an increased risk of serotonin syndrome"
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-diazepam",
+    "drug_a": "mirtazapine",
+    "drug_b": "diazepam",
+    "severity": "contraindicated",
+    "mechanism": "Additive pharmacodynamic CNS depression; diazepam (15 mg) had minimal effect on mirtazapine plasma levels but produced additive impairment of motor skills.",
+    "clinical_effect": "Increased impairment of cognitive and motor skills produced by mirtazapine alone.",
+    "management": "Avoid concomitant use of benzodiazepines and alcohol with REMERON/REMERONSolTab.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "7 DRUG INTERACTIONS — Table 5",
+        "quote": "The concomitant use of benzodiazepines or alcohol with REMERON/REMERONSolTab increases the impairment of cognitive and motor skills produced by REMERON/REMERONSolTab alone. Intervention Avoid concomitant use of benzodiazepines and alcohol with REMERON/REMERONSolTab"
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-phenytoin",
+    "drug_a": "mirtazapine",
+    "drug_b": "phenytoin",
+    "severity": "moderate",
+    "mechanism": "Phenytoin (a strong CYP3A inducer) increased mirtazapine clearance about 2-fold.",
+    "clinical_effect": "Decrease in average plasma mirtazapine concentrations of 45%, potentially reducing antidepressant efficacy; mirtazapine did not significantly affect phenytoin PK.",
+    "management": "Increase the dose of mirtazapine if needed with concomitant phenytoin; decrease mirtazapine dose if phenytoin is discontinued.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce hepatic CYP3A enzymes."
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "12.3 Pharmacokinetics — Phenytoin",
+        "quote": "phenytoin (200 mg daily, at steady state) increased mirtazapine (30 mg daily, at steady state) clearance about 2-fold, resulting in a decrease in average plasma mirtazapine concentrations of 45%"
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-carbamazepine",
+    "drug_a": "mirtazapine",
+    "drug_b": "carbamazepine",
+    "severity": "moderate",
+    "mechanism": "Carbamazepine (a strong CYP3A inducer) increased mirtazapine clearance about 2-fold.",
+    "clinical_effect": "Decrease in average plasma mirtazapine concentrations of 60%, potentially reducing antidepressant efficacy.",
+    "management": "Increase the dose of mirtazapine if needed with concomitant carbamazepine; decrease mirtazapine dose if carbamazepine is discontinued.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce hepatic CYP3A enzymes."
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "12.3 Pharmacokinetics — Carbamazepine",
+        "quote": "carbamazepine (400 mg twice a day, at steady state) increased mirtazapine (15 mg twice a day, at steady state) clearance about 2-fold, resulting in a decrease in average plasma mirtazapine concentrations of 60%"
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-warfarin",
+    "drug_a": "mirtazapine",
+    "drug_b": "warfarin",
+    "severity": "moderate",
+    "mechanism": "Pharmacokinetic/pharmacodynamic interaction increasing anticoagulation effect.",
+    "clinical_effect": "Mirtazapine (30 mg daily) at steady state caused a statistically significant increase (0.2) in INR in subjects treated with warfarin.",
+    "management": "Monitor INR during concomitant use of warfarin with mirtazapine.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "12.3 Pharmacokinetics — Warfarin",
+        "quote": "Mirtazapine (30 mg daily) at steady state caused a statistically significant increase (0.2) in the International Normalized Ratio (INR) in subjects treated with warfarin"
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-tramadol",
+    "drug_a": "mirtazapine",
+    "drug_b": "tramadol",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity.",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor patients for signs and symptoms of serotonin syndrome, particularly during initiation and dosage increases.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "7 DRUG INTERACTIONS — Table 5",
+        "quote": "The concomitant use of serotonergic drugs with REMERON/REMERONSolTab increases the risk of serotonin syndrome. Intervention Monitor patients for signs and symptoms of serotonin syndrome, particularly during treatment initiation and dosage increases."
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-sumatriptan",
+    "drug_a": "mirtazapine",
+    "drug_b": "sumatriptan",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity with triptans.",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor patients for signs and symptoms of serotonin syndrome, particularly during initiation and dosage increases.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "7 DRUG INTERACTIONS — Table 5",
+        "quote": "Examples SSRIs, SNRIs, triptans, tricyclic antidepressants, fentanyl, lithium, amphetamines, St. John's Wort, tramadol, tryptophan, buspirone"
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-fluoxetine",
+    "drug_a": "mirtazapine",
+    "drug_b": "fluoxetine",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity with SSRIs.",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor patients for signs and symptoms of serotonin syndrome, particularly during initiation and dosage increases.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "7 DRUG INTERACTIONS — Table 5",
+        "quote": "The concomitant use of serotonergic drugs with REMERON/REMERONSolTab increases the risk of serotonin syndrome. Intervention Monitor patients for signs and symptoms of serotonin syndrome, particularly during treatment initiation and dosage increases."
+      }
+    ]
+  },
+  {
+    "id": "mirtazapine-amiodarone",
+    "drug_a": "mirtazapine",
+    "drug_b": "amiodarone",
+    "severity": "moderate",
+    "mechanism": "Additive QTc interval prolongation.",
+    "clinical_effect": "Increased risk of QT prolongation and/or ventricular arrhythmias (e.g., Torsades de Pointes).",
+    "management": "Use caution when using mirtazapine concomitantly with drugs that prolong the QTc interval.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "7 DRUG INTERACTIONS — Table 5",
+        "quote": "The concomitant use of other drugs which prolong the QTc interval with REMERON/REMERONSolTab, increase the risk of QT prolongation and/or ventricular arrhythmias (e.g., Torsades de Pointes). Intervention Use caution when using REMERON/REMERONSolTab concomitantly with drugs that prolong the QTc interval"
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-rasagiline",
+    "drug_a": "venlafaxine",
+    "drug_b": "rasagiline",
+    "severity": "contraindicated",
+    "mechanism": "Combined serotonin reuptake inhibition and monoamine oxidase inhibition.",
+    "clinical_effect": "High risk of potentially fatal serotonin syndrome.",
+    "management": "Contraindicated; allow at least 14 days after stopping an MAOI before starting venlafaxine, and at least 7 days after stopping venlafaxine before starting an MAOI.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "4 CONTRAINDICATIONS",
+        "quote": "taking, or within 14 days of stopping, MAOIs (including the MAOIs linezolid and intravenous methylene blue) because of the risk of serotonin syndrome"
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-tramadol",
+    "drug_a": "venlafaxine",
+    "drug_b": "tramadol",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity (and CYP2D6 interaction potential).",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor for symptoms of serotonin syndrome; discontinue venlafaxine and/or concomitant serotonergic drugs if serotonin syndrome occurs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with other serotonergic drugs (including other SNRIs, SSRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) increases the risk of serotonin syndrome."
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-sumatriptan",
+    "drug_a": "venlafaxine",
+    "drug_b": "sumatriptan",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity with triptans.",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor for symptoms of serotonin syndrome; discontinue venlafaxine and/or sumatriptan if serotonin syndrome occurs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with other serotonergic drugs (including other SNRIs, SSRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) increases the risk of serotonin syndrome."
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-warfarin",
+    "drug_a": "venlafaxine",
+    "drug_b": "warfarin",
+    "severity": "moderate",
+    "mechanism": "Venlafaxine impairs platelet serotonin release, potentiating bleeding risk with anticoagulants.",
+    "clinical_effect": "Increased risk of bleeding (including GI hemorrhage and ecchymosis).",
+    "management": "Closely monitor for bleeding when venlafaxine is initiated or discontinued in patients receiving an anticoagulant.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with an antiplatelet or anticoagulant drug may potentiate the risk of bleeding. This may be due to the effect of Effexor XR on the release of serotonin by platelets. Intervention Closely monitor for bleeding"
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-aspirin",
+    "drug_a": "venlafaxine",
+    "drug_b": "aspirin",
+    "severity": "moderate",
+    "mechanism": "Venlafaxine impairs platelet serotonin release, potentiating bleeding risk with antiplatelets.",
+    "clinical_effect": "Increased risk of bleeding.",
+    "management": "Closely monitor for bleeding when venlafaxine is initiated or discontinued in patients receiving an antiplatelet drug.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with an antiplatelet or anticoagulant drug may potentiate the risk of bleeding. This may be due to the effect of Effexor XR on the release of serotonin by platelets."
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-clopidogrel",
+    "drug_a": "venlafaxine",
+    "drug_b": "clopidogrel",
+    "severity": "moderate",
+    "mechanism": "Venlafaxine impairs platelet serotonin release, potentiating bleeding risk with antiplatelets.",
+    "clinical_effect": "Increased risk of bleeding.",
+    "management": "Closely monitor for bleeding when venlafaxine is initiated or discontinued in patients receiving an antiplatelet drug.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with an antiplatelet or anticoagulant drug may potentiate the risk of bleeding. This may be due to the effect of Effexor XR on the release of serotonin by platelets."
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-fluoxetine",
+    "drug_a": "venlafaxine",
+    "drug_b": "fluoxetine",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity (and CYP2D6 inhibition by fluoxetine).",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor for symptoms of serotonin syndrome; discontinue if serotonin syndrome occurs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with other serotonergic drugs (including other SNRIs, SSRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) increases the risk of serotonin syndrome."
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-paroxetine",
+    "drug_a": "venlafaxine",
+    "drug_b": "paroxetine",
+    "severity": "moderate",
+    "mechanism": "Additive serotonergic activity (and CYP2D6 inhibition by paroxetine).",
+    "clinical_effect": "Increased risk of serotonin syndrome.",
+    "management": "Monitor for symptoms of serotonin syndrome; discontinue if serotonin syndrome occurs.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR with other serotonergic drugs (including other SNRIs, SSRIs, triptans, tricyclic antidepressants, opioids, lithium, buspirone, amphetamines, tryptophan, and St. John's Wort) increases the risk of serotonin syndrome."
+      }
+    ]
+  },
+  {
+    "id": "venlafaxine-metoprolol",
+    "drug_a": "venlafaxine",
+    "drug_b": "metoprolol",
+    "severity": "moderate",
+    "mechanism": "Venlafaxine increases Cmax and AUC of CYP2D6 substrates.",
+    "clinical_effect": "Increased systemic exposure and risk of toxicity of concomitant CYP2D6 substrate (metoprolol).",
+    "management": "Consider reduction in dose of concomitant CYP2D6 substrates.",
+    "alternatives": [
+      {
+        "drug_id": "bisoprolol",
+        "rationale": "Bisoprolol has balanced renal/hepatic elimination with less dependence on CYP2D6."
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-venlafaxine-label",
+        "locator": "7.1 Drugs Having Clinically Important Interactions with Effexor XR",
+        "quote": "Concomitant use of Effexor XR increases C max and AUC of a CYP2D6 substrate, which may increase the risk of toxicity of the CYP2D6 substrate [see Clinical Pharmacology (12.3) ] . Intervention Consider reduction in dose of concomitant CYP2D6 substrates."
+      }
+    ]
+  },
+  {
+    "id": "nifedipine-phenytoin",
+    "drug_a": "nifedipine",
+    "drug_b": "phenytoin",
+    "severity": "contraindicated",
+    "mechanism": "Phenytoin induces CYP3A4-mediated metabolism of nifedipine.",
+    "clinical_effect": "Lowers systemic exposure to nifedipine by approximately 70%, risking loss of antihypertensive or antianginal efficacy.",
+    "management": "Avoid co-administration of nifedipine with phenytoin or any known CYP3A4 inducer or consider an alternative antihypertensive therapy.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce CYP3A4."
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Co-administration of nifedipine with phenytoin, an inducer of CYP3A4, lowers the systemic exposure to nifedipine by approximately 70%. Avoid co-administration of nifedipine with phenytoin or any known CYP3A4 inducer or consider an alternative antihypertensive therapy."
+      }
+    ]
+  },
+  {
+    "id": "nifedipine-carbamazepine",
+    "drug_a": "nifedipine",
+    "drug_b": "carbamazepine",
+    "severity": "contraindicated",
+    "mechanism": "Carbamazepine is a known CYP3A4 inducer that accelerates nifedipine metabolism.",
+    "clinical_effect": "Markedly reduced systemic exposure to nifedipine and loss of efficacy.",
+    "management": "Avoid co-administration of nifedipine with phenytoin or any known CYP3A4 inducer or consider an alternative antihypertensive therapy.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce CYP3A4."
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Avoid co-administration of nifedipine with phenytoin or any known CYP3A4 inducer or consider an alternative antihypertensive therapy."
+      }
+    ]
+  },
+  {
+    "id": "nifedipine-digoxin",
+    "drug_a": "nifedipine",
+    "drug_b": "digoxin",
+    "severity": "moderate",
+    "mechanism": "Nifedipine reduces renal/non-renal clearance of digoxin.",
+    "clinical_effect": "Increased digoxin levels in 9 of 12 normal volunteers with an average increase of 45%, risking digitalis toxicity.",
+    "management": "Monitor digoxin levels when initiating, adjusting, and discontinuing nifedipine to avoid over- or under-digitalization.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS — C) Digitalis",
+        "quote": "Administration of nifedipine with digoxin increased digoxin levels in nine of twelve normal volunteers. The average increase was 45%."
+      }
+    ]
+  },
+  {
+    "id": "nifedipine-fluoxetine",
+    "drug_a": "nifedipine",
+    "drug_b": "fluoxetine",
+    "severity": "moderate",
+    "mechanism": "Fluoxetine inhibits CYP3A-mediated metabolism of nifedipine.",
+    "clinical_effect": "May result in increased systemic exposure to nifedipine and enhanced vasodilatory/hypotensive effects.",
+    "management": "Careful monitoring and dose adjustment may be necessary; consider initiating nifedipine at the lowest dose available.",
+    "alternatives": [
+      {
+        "drug_id": "sertraline",
+        "rationale": "Sertraline is not listed as a CYP3A inhibitor affecting nifedipine in the label."
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "CYP3A inhibitors such as fluconazole, itraconazole, clarithromycin, erythromycin, nefazodone, fluoxetine, saquinavir, indinavir, and nelfinavir may result in increased exposure to nifedipine when co‑administered. Careful monitoring and dose adjustment may be necessary; consider initiating nifedipine at the lowest dose available"
+      }
+    ]
+  },
+  {
+    "id": "nifedipine-metoprolol",
+    "drug_a": "nifedipine",
+    "drug_b": "metoprolol",
+    "severity": "moderate",
+    "mechanism": "Additive hypotensive and negative inotropic/chronotropic effects with beta-adrenergic blockers.",
+    "clinical_effect": "May increase the likelihood of congestive heart failure, severe hypotension, or exacerbation of angina.",
+    "management": "Monitor blood pressure closely when introducing concomitant therapy.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS — A) Beta-adrenergic blocking agents",
+        "quote": "there have been occasional literature reports suggesting that the combination may increase the likelihood of congestive heart failure, severe hypotension, or exacerbation of angina."
+      }
+    ]
+  },
+  {
+    "id": "nifedipine-warfarin",
+    "drug_a": "nifedipine",
+    "drug_b": "warfarin",
+    "severity": "minor",
+    "mechanism": "Uncertain mechanism; rare reports with coumarin anticoagulants.",
+    "clinical_effect": "Rare reports of increased prothrombin time in patients taking coumarin anticoagulants to whom nifedipine was administered.",
+    "management": "Monitor prothrombin time / INR if clinically indicated.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-nifedipine-label",
+        "locator": "7 DRUG INTERACTIONS — D) Coumarin Anticoagulants",
+        "quote": "There have been rare reports of increased prothrombin time in patients taking coumarin anticoagulants to whom nifedipine was administered. However, the relationship to nifedipine therapy is uncertain."
+      }
+    ]
   }
 ]

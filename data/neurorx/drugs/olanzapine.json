@@ -1,0 +1,419 @@
+{
+  "id": "olanzapine",
+  "generic_name": "olanzapine",
+  "tall_man": {
+    "value": "olanzapine",
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "11 DESCRIPTION",
+        "quote": "Olanzapine is an atypical antipsychotic that belongs to the thienobenzodiazepine class. The"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antipsychotic",
+    "atypical antipsychotic",
+    "second-generation antipsychotic",
+    "thienobenzodiazepine"
+  ],
+  "subspecialties": [
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ola-po-schiz-adult",
+      "indication": "Schizophrenia (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-olanzapine-label",
+          "locator": "2.1 Schizophrenia — Adults",
+          "quote": "Oral olanzapine should be administered on a once-a-day schedule without regard to meals, generally beginning with 5 mg to 10 mg initially, with a target dose of 10 mg/day within several days. Further dosage"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily (initial 5–10 mg/day; target 10 mg/day; max 20 mg/day)",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "Initial: 5–10 mg orally once daily; target 10 mg/day within several days; adjust in 5 mg increments at intervals >=1 week (not indicated above 20 mg/day). Start at 5 mg in debilitated/hypotensive-prone/slow-metabolism patients."
+    },
+    {
+      "id": "ola-po-bipolar-adult",
+      "indication": "Bipolar I Disorder — Manic or Mixed Episodes (Adults, Monotherapy)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-olanzapine-label",
+          "locator": "2.2 Bipolar I Disorder — Adults",
+          "quote": "Oral olanzapine should be administered on a once-a-day schedule without regard to meals, generally beginning with 10 mg or 15 mg. Dosage adjustments,"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once daily (initial 10–15 mg/day; range 5–20 mg/day)",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "Initial: 10 mg or 15 mg orally once daily; adjust in 5 mg increments at intervals >=24 h within 5–20 mg/day."
+    },
+    {
+      "id": "ola-po-bipolar-adj",
+      "indication": "Bipolar I Disorder — Manic or Mixed Episodes (Adults, Adjunct to Lithium or Valproate)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-olanzapine-label",
+          "locator": "2.2 Bipolar I Disorder — Adjunctive Treatment",
+          "quote": "When administered as adjunctive treatment to lithium or valproate, oral olanzapine dosing should generally begin with 10 mg once-a-day without regard to meals. Antimanic"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once daily (range 5–20 mg/day)",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "Initial: 10 mg orally once daily (effective range 5–20 mg/day; safety above 20 mg/day not evaluated)."
+    },
+    {
+      "id": "ola-po-adol",
+      "indication": "Schizophrenia or Bipolar I Mania (Adolescents 13–17 years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-olanzapine-label",
+          "locator": "2.1 / 2.2 Adolescents",
+          "quote": "Oral olanzapine should be administered on a once-a-day schedule without regard to meals with a recommended starting dose of 2.5 mg or 5 mg, with a target dose of 10 mg/day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2.5,
+        "unit": "mg",
+        "frequency": "once daily (initial 2.5–5 mg/day; target 10 mg/day; range 2.5–20 mg/day)",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "Initial: 2.5 mg or 5 mg orally once daily; target 10 mg/day; adjust in 2.5–5 mg increments (max evaluated 20 mg/day)."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "12.3 Pharmacokinetics — Renal Impairment",
+        "quote": "The pharmacokinetic characteristics of olanzapine were similar in patients with severe renal impairment and normal subjects, indicating that dosage adjustment based upon the degree of renal impairment is not required. In addition, olanzapine is not removed by dialysis."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Dosage adjustment based upon the degree of renal impairment is not required. Olanzapine is not removed by dialysis.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-olanzapine-label",
+          "locator": "12.3 Pharmacokinetics — Renal Impairment",
+          "quote": "dosage adjustment based upon the degree of renal impairment is not required. In addition, olanzapine is not removed by dialysis."
+        }
+      ]
+    },
+    "bands": [],
+    "hemodialysis": {
+      "value": "Olanzapine is not removed by dialysis.",
+      "refs": [
+        {
+          "source_id": "fda-olanzapine-label",
+          "locator": "12.3 Pharmacokinetics — Renal Impairment",
+          "quote": "olanzapine is not removed by dialysis. The effect"
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "12.3 Pharmacokinetics — Renal Impairment",
+        "quote": "dosage adjustment based upon the degree of renal impairment is not required. In addition, olanzapine is not removed by dialysis."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Child-Pugh A and B cirrhosis revealed little effect on olanzapine pharmacokinetics; however, when used in combination with fluoxetine in hepatic impairment, use a lower starting dose (2.5–5 mg olanzapine + 20 mg fluoxetine).",
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "12.3 Pharmacokinetics — Hepatic Impairment",
+        "quote": "a study of the effect of impaired liver function in subjects (n=6) with clinically significant (Childs Pugh Classification A and B) cirrhosis revealed little effect on the pharmacokinetics of"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: INCREASED MORTALITY IN ELDERLY PATIENTS WITH DEMENTIA-RELATED PSYCHOSIS: Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death. Olanzapine is not approved for the treatment of patients with dementia-related psychosis."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "BOXED WARNING",
+        "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death. Olanzapine is not approved for the treatment of patients with dementia-related psychosis. ("
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "12.2 Pharmacodynamics",
+        "quote": "Olanzapine is an antagonist with moderate affinity binding for serotonin 5HT 3 (K i =57 nM) and muscarinic M 1-5 (K i =73, 96, 132, 32, and 48 nM,"
+      }
+    ],
+    "note": "No specific MG warning in FDA label; antimuscarinic affinity, sedation, and postural hypotension warrant caution."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "No enteral tube administration instructions in FDA label (ODT disintegrates in saliva and can be swallowed with or without liquid)."
+  },
+  "pgx": {
+    "value": "Metabolized via direct glucuronidation and CYP1A2 (and minor CYP2D6 oxidation). Clearance is not reduced in CYP2D6-deficient subjects. Clearance is ~40% higher in smokers and ~30% lower in women; elderly nonsmoking females may have ~3-fold lower clearance than young smoking males.",
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "12.3 Pharmacokinetics — Metabolism and Elimination",
+        "quote": "CYP2D6 mediated oxidation appears to be a minor metabolic pathway in vivo, because the clearance of olanzapine is not reduced in subjects who are deficient in this enzyme."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "weight_gain",
+      "extrapyramidal",
+      "ataxia",
+      "confusion_delirium",
+      "hepatotoxicity"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Schizophrenia (Adults) – postural hypotension, constipation, weight gain, dizziness, personality disorder, akathisia ( 6.1 )"
+      },
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "6.1 Clinical Trials Experience",
+        "quote": "discontinuations due to increases in ALT were considered to be drug related (2% for oral olanzapine vs 0% for placebo). Bipolar I"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Somnolence/sedation, dizziness, asthenia, headache",
+        "Weight gain, increased appetite",
+        "Dry mouth, constipation, dyspepsia",
+        "Postural hypotension, akathisia, tremor"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-olanzapine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Manic or Mixed Episodes, Bipolar I Disorder (Adults) – asthenia, dry mouth, constipation, increased appetite, somnolence, dizziness, tremor ( 6.1 )"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Increased mortality and cerebrovascular adverse events in elderly patients with dementia-related psychosis",
+        "ALT/transaminase elevations and hepatic adverse events",
+        "Orthostatic hypotension, tachycardia, falls",
+        "Delirium, seizures, neuroleptic malignant syndrome, respiratory depression/arrest (in overdose)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-olanzapine-label",
+          "locator": "6.1 Clinical Trials Experience",
+          "quote": "discontinuations due to increases in ALT were considered to be drug related (2% for oral olanzapine vs 0% for placebo). Bipolar I"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Atypical antipsychotic (thienobenzodiazepine) whose efficacy in schizophrenia may be mediated through a combination of dopamine and serotonin type 2 (5HT2) antagonism.",
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "the efficacy of olanzapine in schizophrenia could be mediated through a combination of dopamine and serotonin type 2 (5HT2) antagonism."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp1a2": "substrate",
+      "cyp2d6": "substrate",
+      "qt_risk": "none"
+    },
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "12.3 Pharmacokinetics — Metabolism and Elimination",
+        "quote": "In vitro studies suggest that CYPs 1A2 and 2D6, and the flavin-containing monooxygenase system are involved in olanzapine oxidation. CYP2D6"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Fluvoxamine (CYP1A2 inhibitor)",
+        "severity": "major",
+        "effect": "Decreases olanzapine clearance, increasing Cmax by 54%–77% and AUC by 52%–108%.",
+        "management": "Consider lower doses of olanzapine in patients receiving concomitant fluvoxamine.",
+        "refs": [
+          {
+            "source_id": "fda-olanzapine-label",
+            "locator": "7.1 Potential for Other Drugs to Affect Olanzapine",
+            "quote": "Fluvoxamine, a CYP1A2 inhibitor, decreases the clearance of olanzapine. This results in a mean increase in olanzapine Cmax following fluvoxamine of 54% in female nonsmokers and 77% in male smokers. The mean increase in olanzapine AUC is 52% and 108%, respectively. Lower doses of olanzapine should be considered in patients"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Carbamazepine (CYP1A2 inducer)",
+        "severity": "moderate",
+        "effect": "Carbamazepine (200 mg BID) causes an approximately 50% increase in olanzapine clearance.",
+        "management": "Monitor for reduced olanzapine efficacy; higher olanzapine doses may be needed.",
+        "refs": [
+          {
+            "source_id": "fda-olanzapine-label",
+            "locator": "7.1 Potential for Other Drugs to Affect Olanzapine",
+            "quote": "Carbamazepine therapy (200 mg bid) causes an approximately 50% increase in the clearance of olanzapine. This increase is likely due to the fact that carbamazepine is a potent inducer of CYP1A2 activity. Higher daily"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Diazepam and Alcohol",
+        "severity": "moderate",
+        "effect": "Co-administration potentiated the orthostatic hypotension observed with olanzapine.",
+        "management": "Monitor blood pressure and orthostasis; caution patients about additive CNS and hypotensive effects.",
+        "refs": [
+          {
+            "source_id": "fda-olanzapine-label",
+            "locator": "7.1 Potential for Other Drugs to Affect Olanzapine",
+            "quote": "The co-administration of diazepam with olanzapine potentiated the orthostatic hypotension observed with olanzapine [see Drug"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Levodopa and Dopamine Agonists",
+        "severity": "moderate",
+        "effect": "Olanzapine may antagonize the effects of levodopa and dopamine agonists.",
+        "management": "Monitor for reduced antiparkinsonian efficacy.",
+        "refs": [
+          {
+            "source_id": "fda-olanzapine-label",
+            "locator": "7.2 Potential for Olanzapine to Affect Other Drugs",
+            "quote": "Olanzapine may antagonize the effects of levodopa and dopamine agonists."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Fluvoxamine: May increase olanzapine levels. ( 7.1 )"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Available epidemiologic studies have not established a drug-associated risk of major birth defects or miscarriage, but third-trimester exposure risks neonatal EPS/withdrawal; present in human milk with reports of infant sedation, irritability, poor feeding, and EPS.",
+      "refs": [
+        {
+          "source_id": "fda-olanzapine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Overall available data from published epidemiologic studies of pregnant women exposed to olanzapine have not established a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes (see Data)"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "No folic acid recommendation in FDA label."
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "No hormonal contraceptive interaction reported in FDA label."
+    },
+    "pregnancy_pk": {
+      "value": "Placental passage ratio highly variable (7%–167% at birth). Third-trimester exposure carries risk of neonatal extrapyramidal and/or withdrawal symptoms.",
+      "refs": [
+        {
+          "source_id": "fda-olanzapine-label",
+          "locator": "8.1 Pregnancy — Human Data",
+          "quote": "Placental passage has been reported in published study reports; however, the placental passage ratio was highly variable ranging between 7% to 167% at birth following exposure during pregnancy. The clinical"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Monitor neonates for extrapyramidal and/or withdrawal symptoms after third-trimester exposure; monitor breastfed infants for excess sedation, irritability, poor feeding, and EPS.",
+      "refs": [
+        {
+          "source_id": "fda-olanzapine-label",
+          "locator": "8.2 Lactation — Clinical Considerations",
+          "quote": "Infants exposed to olanzapine should be monitored for excess sedation, irritability, poor feeding, and extrapyramidal symptoms (tremors and abnormal muscle movements). 8.3 Females"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": [],
+      "note": "No RID percentage reported in FDA label."
+    },
+    "lactation_summary": {
+      "value": "Olanzapine is present in human milk; reports of excess sedation, irritability, poor feeding, and EPS in breastfed infants.",
+      "refs": [
+        {
+          "source_id": "fda-olanzapine-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "Olanzapine is present in human milk. There are reports of excess sedation, irritability, poor feeding and extrapyramidal symptoms (tremors and abnormal muscle movements) in infants exposed to olanzapine through breast milk (see"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

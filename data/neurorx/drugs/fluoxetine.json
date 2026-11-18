@@ -1,0 +1,382 @@
+{
+  "id": "fluoxetine",
+  "generic_name": "fluoxetine",
+  "tall_man": {
+    "value": "fluoxetine",
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "PROZAC ® is a selective serotonin reuptake inhibitor indicated for: Acute and maintenance treatment of Major"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antidepressant",
+    "selective serotonin reuptake inhibitor",
+    "SSRI"
+  ],
+  "subspecialties": [
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "flu-po-mdd",
+      "indication": "Major Depressive Disorder (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-fluoxetine-label",
+          "locator": "2.1 Major Depressive Disorder",
+          "quote": "Initiate PROZAC 20 mg/day orally in the morning. Consider a dose increase after several weeks if insufficient clinical improvement is observed. Administer doses above 20 mg/day once daily in the morning or twice daily (i.e., morning and noon).The maximum fluoxetine dose should not exceed 80 mg/day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily in the morning (max 80 mg/day)",
+        "max_single": 80,
+        "max_daily": 80
+      },
+      "dose_text": "Initial: 20 mg/day orally in the morning. May increase after several weeks (once daily AM or BID AM/noon) up to maximum 80 mg/day."
+    },
+    {
+      "id": "flu-po-ocd",
+      "indication": "Obsessive Compulsive Disorder (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-fluoxetine-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "OCD ( 2.2 ) 20 mg/day in am (initial dose) 10 mg/day (initial dose) Bulimia"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily in the morning (recommended 20–60 mg/day; max 80 mg/day)",
+        "max_single": 80,
+        "max_daily": 80
+      },
+      "dose_text": "Initial: 20 mg/day orally in the morning; usual range 20 to 60 mg/day; maximum 80 mg/day."
+    },
+    {
+      "id": "flu-po-bulimia",
+      "indication": "Bulimia Nervosa (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-fluoxetine-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "Bulimia Nervosa ( 2.3 ) 60 mg/day in am Panic Disorder ("
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 60,
+        "unit": "mg",
+        "frequency": "once daily in the morning",
+        "max_single": 60,
+        "max_daily": 60
+      },
+      "dose_text": "60 mg/day orally in the morning (may titrate over several days in some patients)."
+    },
+    {
+      "id": "flu-po-panic",
+      "indication": "Panic Disorder (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-fluoxetine-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "Panic Disorder ( 2.4 ) 10 mg/day (initial dose) Depressive Episodes"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once daily initially, increase to 20 mg/day after 1 week (max 60 mg/day)",
+        "max_single": 60,
+        "max_daily": 60
+      },
+      "dose_text": "Initial: 10 mg/day orally; increase to 20 mg/day after 1 week (usual range 20–60 mg/day; max 60 mg/day)."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "12.3 Pharmacokinetics — Renal Impairment",
+        "quote": "use of a lower or less frequent dose is not routinely necessary in renally impaired patients. Geriatric"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Use of a lower or less frequent dose is not routinely necessary in renally impaired patients.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-fluoxetine-label",
+          "locator": "12.3 Pharmacokinetics — Renal Impairment",
+          "quote": "use of a lower or less frequent dose is not routinely necessary in renally impaired patients. Geriatric"
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "12.3 Pharmacokinetics — Renal Impairment",
+        "quote": "use of a lower or less frequent dose is not routinely necessary in renally impaired patients. Geriatric"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "A lower or less frequent dosage should be used in patients with hepatic impairment (cirrhosis).",
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "2 DOSAGE AND ADMINISTRATION",
+        "quote": "A lower or less frequent dosage should be used in patients with hepatic impairment, the elderly, and for patients with concurrent disease or on multiple concomitant medications ("
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: SUICIDAL THOUGHTS AND BEHAVIORS: Antidepressants increased the risk of suicidal thoughts and behavior in children, adolescents, and young adults in short-term studies. Monitor closely for worsening and emergence of suicidal thoughts and behaviors."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SUICIDAL THOUGHTS AND BEHAVIORS Antidepressants increased the risk of suicidal thoughts and behavior in children, adolescents, and young adults in short-term studies. These studies did not"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "PROZAC ® is a selective serotonin reuptake inhibitor indicated for:"
+      }
+    ],
+    "note": "SSRIs do not impair neuromuscular transmission; no MG warning in FDA label."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "No enteral tube administration instructions in FDA label."
+  },
+  "pgx": {
+    "value": "Metabolized via CYP2D6 and inhibits CYP2D6. PROZAC can also prolong the QT interval; exercise caution in CYP2D6 poor metabolizers or with CYP2D6 substrates/QT-prolonging drugs.",
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "5 Warnings and Precautions / Clinical Pharmacology",
+        "quote": "CYP2D6. PROZAC can also prolong the QT interval.\n\n=== 6"
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "serotonin_syndrome",
+      "hyponatremia",
+      "qt_prolongation",
+      "sedation_somnolence",
+      "weight_loss"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "6.1 Clinical Trials Experience",
+        "quote": "Most common adverse reactions (≥5% and at least twice that for placebo) associated with: Major Depressive Disorder, Obsessive Compulsive Disorder, Bulimia, and Panic Disorder: abnormal dreams, abnormal ejaculation, anorexia, anxiety, asthenia, diarrhea, dry mouth, dyspepsia, flu syndrome, impotence, insomnia, libido decreased, nausea,"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea, diarrhea, dyspepsia, dry mouth, anorexia",
+        "Insomnia, somnolence, anxiety, nervousness, abnormal dreams, tremor",
+        "Asthenia, sweating, rash, vasodilatation",
+        "Decreased libido, abnormal ejaculation, impotence"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-fluoxetine-label",
+          "locator": "6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions (≥5% and at least twice that for placebo) associated with: Major Depressive Disorder, Obsessive Compulsive Disorder, Bulimia, and Panic Disorder: abnormal dreams, abnormal ejaculation, anorexia, anxiety, asthenia, diarrhea, dry mouth, dyspepsia, flu syndrome, impotence, insomnia, libido decreased, nausea,"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Suicidal thoughts and behaviors in pediatric and young adult patients",
+        "Serotonin syndrome",
+        "QT interval prolongation and ventricular arrhythmias",
+        "Abnormal bleeding (especially with NSAIDs/antiplatelets/anticoagulants)",
+        "Hyponatremia / SIADH, seizures, activation of mania/hypomania, angle-closure glaucoma"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-fluoxetine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Suicidal Thoughts and Behaviors in Children, Adolescents, and Young Adults [see Boxed Warning and Warnings and Precautions ( 5.1 )] Serotonin Syndrome [see Warnings and Precautions ( 5.2 )] Allergic Reactions and Rash"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Selective serotonin reuptake inhibitor (SSRI) that potentiates serotonergic activity in the CNS by inhibiting neuronal reuptake of serotonin.",
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Although the exact mechanism of PROZAC is unknown, it is presumed to be linked to its inhibition of CNS neuronal uptake of serotonin. 12.2 Pharmacodynamics"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2d6": "inhibitor_strong",
+      "qt_risk": "possible",
+      "serotonergic": true
+    },
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "5 / 12.3 CYP2D6 & QT",
+        "quote": "CYP2D6. PROZAC can also prolong the QT interval.\n\n=== 6"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "MAOIs (including linezolid and IV methylene blue)",
+        "severity": "contraindicated",
+        "effect": "High risk of potentially fatal serotonin syndrome.",
+        "management": "Contraindicated; allow at least 5 weeks after stopping fluoxetine before starting an MAOI (and 14 days after stopping an MAOI before starting fluoxetine).",
+        "refs": [
+          {
+            "source_id": "fda-fluoxetine-label",
+            "locator": "4 CONTRAINDICATIONS",
+            "quote": "Do not use MAOIs intended to treat psychiatric disorders with PROZAC or within 5 weeks of stopping treatment with PROZAC. Do not use PROZAC within 14 days of stopping an MAOI intended to treat"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Pimozide and Thioridazine",
+        "severity": "contraindicated",
+        "effect": "Risk of QT interval prolongation and elevated plasma levels of pimozide/thioridazine.",
+        "management": "Contraindicated; do not use thioridazine within 5 weeks of discontinuing fluoxetine.",
+        "refs": [
+          {
+            "source_id": "fda-fluoxetine-label",
+            "locator": "4.2 Contraindications",
+            "quote": "Thioridazine: Do not use. Risk of QT interval prolongation and elevated thioridazine plasma levels. Do not use thioridazine within 5 weeks of discontinuing PROZAC. Do not use"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-fluoxetine-label",
+        "locator": "4 CONTRAINDICATIONS",
+        "quote": "Do not use MAOIs intended to treat psychiatric disorders with PROZAC or within 5 weeks of stopping treatment with PROZAC. Do not use PROZAC within 14"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Epidemiologic studies have not established an increased risk of major birth defects or miscarriage, but SSRI exposure carries risks of PPHN, poor neonatal adaptation, and <2-fold increased postpartum hemorrhage risk; present in human milk with reports of infant agitation/irritability/poor feeding.",
+      "refs": [
+        {
+          "source_id": "fda-fluoxetine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Available data from published epidemiologic studies and postmarketing reports over several decades have not established an increased risk of major birth defects or miscarriage."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "No hormonal contraceptive interaction reported in FDA label."
+    },
+    "pregnancy_pk": {
+      "value": "Published epidemiologic studies have not established an increased risk of major birth defects or miscarriage. Exposure in the month before delivery is associated with a <2-fold increase in postpartum hemorrhage; late-pregnancy exposure carries risks of persistent pulmonary hypertension of the newborn (PPHN) and poor neonatal adaptation.",
+      "refs": [
+        {
+          "source_id": "fda-fluoxetine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Based on data from published observational studies, exposure to SSRIs, particularly in the month before delivery, has been associated with a less than 2-fold increase in the risk of postpartum hemorrhage [see Warnings"
+        },
+        {
+          "source_id": "fda-fluoxetine-label",
+          "locator": "8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Pregnancy: SSRI use, particularly later in pregnancy, may increase risk for persistent pulmonary hypertension and symptoms of poor adaptation (respiratory distress, temperature instability, feeding difficulty, hypotonia, tremor, irritability) in the neonate ( 8.1 ) Pediatric Use"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Monitor for postpartum hemorrhage if exposed in the month before delivery, and monitor breastfed infants for agitation, irritability, poor feeding, and poor weight gain.",
+      "refs": [
+        {
+          "source_id": "fda-fluoxetine-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "There are reports of agitation, irritability, poor feeding, and poor weight gain in infants exposed to fluoxetine through breast milk (see Clinical"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": [],
+      "note": "No RID percentage reported in FDA label."
+    },
+    "lactation_summary": {
+      "value": "Fluoxetine and norfluoxetine are present in human milk; reports exist of agitation, irritability, poor feeding, and poor weight gain in breastfed infants. Weigh developmental/health benefits of breastfeeding against maternal clinical need.",
+      "refs": [
+        {
+          "source_id": "fda-fluoxetine-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "Data from published literature report the presence of fluoxetine and norfluoxetine in human milk (see Data). There are reports of agitation, irritability, poor feeding, and poor weight gain in infants exposed to fluoxetine through breast milk (see Clinical"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

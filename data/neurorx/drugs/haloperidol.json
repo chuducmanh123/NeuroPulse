@@ -1,0 +1,272 @@
+{
+  "id": "haloperidol",
+  "generic_name": "haloperidol",
+  "tall_man": {
+    "value": "haloperidol",
+    "refs": [
+      {
+        "source_id": "fda-haloperidol-label",
+        "locator": "11 DESCRIPTION",
+        "quote": "Haloperidol, USP is the first of the butyrophenone series of major tranquilizers. The chemical"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antipsychotic",
+    "first-generation antipsychotic",
+    "typical antipsychotic",
+    "butyrophenone"
+  ],
+  "subspecialties": [
+    "movement_disorders",
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "hal-po-psychotic-mod",
+      "indication": "Psychotic Disorders — Moderate Symptomatology / Geriatric or Debilitated (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-haloperidol-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "Moderate Symptomatology - 0.5 mg to 2 mg b.i.d. or t.i.d. Severe Symptomatology - 3 mg to 5 mg b.i.d. or t.i.d. To"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.5,
+        "unit": "mg",
+        "frequency": "BID or TID (initial 0.5–2 mg BID–TID; max 100 mg/day)",
+        "max_single": 100,
+        "max_daily": 100
+      },
+      "dose_text": "Initial: 0.5 mg to 2 mg orally b.i.d. or t.i.d. (moderate symptomatology; geriatric or debilitated patients: 0.5 mg to 2 mg b.i.d. or t.i.d.)."
+    },
+    {
+      "id": "hal-po-psychotic-sev",
+      "indication": "Psychotic Disorders — Severe Symptomatology / Chronic or Resistant (Adults)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-haloperidol-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "Severe Symptomatology - 3 mg to 5 mg b.i.d. or t.i.d. To achieve prompt control, higher doses may be required in some cases. Geriatric or Debilitated Patients - 0.5 mg to 2 mg b.i.d. or t.i.d. Chronic or Resistant Patients - 3 mg to 5 mg b.i.d. or t.i.d."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 3,
+        "unit": "mg",
+        "frequency": "BID or TID (initial 3–5 mg BID–TID; up to 100 mg/day)",
+        "max_single": 100,
+        "max_daily": 100
+      },
+      "dose_text": "Initial: 3 mg to 5 mg orally b.i.d. or t.i.d. for severe symptomatology or chronic/resistant patients; daily dosages up to 100 mg may be necessary in some cases."
+    },
+    {
+      "id": "hal-po-tourette-ped",
+      "indication": "Tourette's Disorder & Nonpsychotic Behavior Disorders (Children 3–12 years, 15–40 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-haloperidol-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "Therapy should begin at the lowest dose possible (0.5 mg per day). If required, the dose should be increased by an increment of 0.5 mg at 5 to 7 day intervals until the desired therapeutic effect is obtained. (See chart below.) The total dose may be divided, to be given b.i.d. or t.i.d. Psychotic Disorders - 0.05 mg/kg/day to 0.15"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.5,
+        "unit": "mg",
+        "frequency": "once daily initially, titrate by 0.5 mg every 5–7 days to 0.05–0.075 mg/kg/day (divided BID or TID)",
+        "max_daily": 6
+      },
+      "dose_text": "Begin at 0.5 mg/day; increase by 0.5 mg at 5–7 day intervals to 0.05–0.075 mg/kg/day divided b.i.d. or t.i.d. (0.05–0.15 mg/kg/day for psychotic disorders; little evidence of further benefit beyond 6 mg/day)."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": [],
+    "note": "No renal impairment dosing guidance in FDA haloperidol tablets label."
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "No hepatic dosing adjustment guidance in FDA haloperidol tablets label (impaired liver function and/or jaundice reported in Adverse Reactions)."
+  },
+  "black_box": {
+    "value": [
+      "WARNING: Increased Mortality in Elderly Patients with Dementia-Related Psychosis: Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death (1.6 to 1.7 times placebo). Haloperidol is not approved for the treatment of patients with dementia-related psychosis."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-haloperidol-label",
+        "locator": "BOXED WARNING",
+        "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death. Analyses of seventeen placebo-controlled trials (modal duration of 10 weeks), largely in patients taking atypical antipsychotic drugs,"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-haloperidol-label",
+        "locator": "4 CONTRAINDICATIONS",
+        "quote": "Haloperidol tablets are contraindicated in severe toxic central nervous system depression or comatose states from any cause and in individuals who are hypersensitive to this drug or have Parkinson's"
+      }
+    ],
+    "note": "No dedicated MG warning in FDA haloperidol tablets label; contraindicated in severe CNS depression and Parkinson's disease; dystonia/swallowing difficulty and sedation reported."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "No enteral tube administration instructions in FDA label."
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic or CYP metabolism data in FDA haloperidol tablets label."
+  },
+  "ae_tags": {
+    "value": [
+      "extrapyramidal",
+      "qt_prolongation",
+      "sedation_somnolence",
+      "confusion_delirium",
+      "hyponatremia",
+      "hyperammonemia",
+      "hepatotoxicity"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-haloperidol-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "QT prolongation and/or ventricular arrhythmias have also been reported, in addition to ECG pattern changes compatible with the polymorphous configuration of Torsades de pointes, and may occur more"
+      },
+      {
+        "source_id": "fda-haloperidol-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Extrapyramidal Symptoms (EPS) EPS during the administration of haloperidol have been reported frequently, often during the first few days of treatment. EPS can be categorized generally as Parkinson-like symptoms, akathisia, or dystonia (including"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Extrapyramidal symptoms (Parkinson-like symptoms, akathisia, acute dystonia)",
+        "Insomnia, restlessness, anxiety, agitation, drowsiness, lethargy, headache",
+        "Dry mouth, blurred vision, constipation, hypersalivation, nausea, vomiting",
+        "Tachycardia, hypotension, hypertension"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-haloperidol-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "EPS during the administration of haloperidol have been reported frequently, often during the first few days of treatment. EPS can be categorized generally as Parkinson-like symptoms, akathisia, or dystonia (including opisthotonos and oculogyric"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "QT prolongation, ventricular arrhythmias, Torsades de pointes, and sudden unexpected death",
+        "Neuroleptic malignant syndrome (NMS), hyperpyrexia, and heat stroke",
+        "Tardive dyskinesia and tardive dystonia (potentially irreversible)",
+        "Agranulocytosis (rarely, with other medication), leukopenia",
+        "Grand mal seizures, laryngospasm, bronchospasm, impaired liver function/jaundice, hyponatremia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-haloperidol-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Neuroleptic malignant syndrome (NMS), hyperpyrexia and heat stroke have been reported with haloperidol. (See WARNINGS"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "The precise mechanism of action has not been clearly established (butyrophenone antipsychotic).",
+    "refs": [
+      {
+        "source_id": "fda-haloperidol-label",
+        "locator": "12 CLINICAL PHARMACOLOGY",
+        "quote": "The precise mechanism of action has not been clearly established."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "known"
+    },
+    "refs": [
+      {
+        "source_id": "fda-haloperidol-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "QT prolongation and/or ventricular arrhythmias have also been reported, in addition to ECG pattern changes compatible with the polymorphous configuration of Torsades de pointes, and may occur more frequently with high doses and in"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": null,
+    "refs": [],
+    "note": "No dedicated Section 7 Drug Interactions in FDA haloperidol tablets label; Section 10 Overdosage notes epinephrine should not be used for hypotension."
+  },
+  "reproductive": {
+    "tier": {
+      "value": null,
+      "refs": [],
+      "note": "No Pregnancy or Lactation section in FDA haloperidol tablets label."
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "No pregnancy/folic acid data in FDA haloperidol tablets label."
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "No contraception data in FDA haloperidol tablets label."
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": [],
+      "note": "No Pregnancy section in FDA haloperidol tablets label."
+    },
+    "postpartum": {
+      "value": null,
+      "refs": [],
+      "note": "No Pregnancy/Lactation section in FDA haloperidol tablets label."
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": [],
+      "note": "No Lactation section in FDA haloperidol tablets label."
+    },
+    "lactation_summary": {
+      "value": null,
+      "refs": [],
+      "note": "No Lactation section in FDA haloperidol tablets label (Endocrine Disorders notes lactation/galactorrhea as an adverse effect)."
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

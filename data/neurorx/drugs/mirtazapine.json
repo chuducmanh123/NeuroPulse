@@ -1,0 +1,404 @@
+{
+  "id": "mirtazapine",
+  "generic_name": "mirtazapine",
+  "tall_man": {
+    "value": "mirtazapine",
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "REMERON/REMERONSolTab are indicated for the treatment of major depressive disorder (MDD) in adults"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antidepressant",
+    "tetracyclic antidepressant",
+    "alpha-2 antagonist"
+  ],
+  "subspecialties": [
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "mir-po-mdd",
+      "indication": "Major Depressive Disorder (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-mirtazapine-label",
+          "locator": "2.1 Recommended Dosage",
+          "quote": "The recommended starting dose of REMERON/REMERONSolTab is 15 mg once daily, administered orally, preferably in the evening prior to sleep. If patients do not have an adequate response to the initial 15 mg dose, increase the dose up to a maximum of 45 mg per day. Dose changes"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 15,
+        "unit": "mg",
+        "frequency": "once daily preferably in the evening prior to sleep (max 45 mg/day)",
+        "max_single": 45,
+        "max_daily": 45
+      },
+      "dose_text": "Initial: 15 mg orally once daily, preferably in the evening prior to sleep. May increase up to maximum 45 mg/day at intervals >=1 to 2 weeks. Reduce dose gradually when discontinuing."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_normalized_1_73",
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "12.3 Pharmacokinetics — Renal Impairment",
+        "quote": "total body clearance of mirtazapine was reduced approximately 30% in renal impaired patients with GFR=11–39 mL/min/1.73 m 2 and approximately 50% in renal impaired patients with GFR=<10 mL/min/1.73 m 2 ) [see"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Clearance of mirtazapine is reduced ~30% in GFR 11–39 mL/min/1.73 m2 and ~50% in GFR <10 mL/min/1.73 m2. Dosage decrease may be necessary in moderate to severe renal impairment.",
+    "renal_basis": {
+      "value": "cg_normalized_1_73",
+      "refs": [
+        {
+          "source_id": "fda-mirtazapine-label",
+          "locator": "8.6 Renal or Hepatic Impairment",
+          "quote": "Dosage decrease may be necessary when administering REMERON/REMERONSolTab to patients with moderate to severe renal or hepatic impairment"
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 11,
+        "max": 39,
+        "dose_text": "Total body clearance reduced ~30% (GFR 11–39 mL/min/1.73 m2); dosage decrease may be necessary.",
+        "refs": [
+          {
+            "source_id": "fda-mirtazapine-label",
+            "locator": "12.3 Pharmacokinetics — Renal Impairment",
+            "quote": "total body clearance of mirtazapine was reduced approximately 30% in renal impaired patients with GFR=11–39 mL/min/1.73 m 2 and"
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 10,
+        "dose_text": "Total body clearance reduced ~50% (GFR <10 mL/min/1.73 m2); dosage decrease may be necessary.",
+        "refs": [
+          {
+            "source_id": "fda-mirtazapine-label",
+            "locator": "12.3 Pharmacokinetics — Renal Impairment",
+            "quote": "approximately 50% in renal impaired patients with GFR=<10 mL/min/1.73 m 2 )"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "8.6 Renal or Hepatic Impairment",
+        "quote": "The clearance of mirtazapine is reduced in patients with moderate to severe renal or hepatic impairment."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Oral clearance of mirtazapine decreased by approximately 30% in hepatic impairment; dosage decrease may be necessary when administering REMERON/REMERONSolTab to patients with hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "12.3 Pharmacokinetics — Hepatic Impairment",
+        "quote": "Following a single 15-mg oral dose of REMERON, the oral clearance of mirtazapine in patients with hepatic impairment was decreased by approximately 30%, compared to subjects with normal hepatic function [see"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: SUICIDAL THOUGHTS AND BEHAVIORS: Antidepressants increased the risk of suicidal thoughts and behaviors in pediatric and young adult patients in short-term studies. Closely monitor all antidepressant-treated patients for clinical worsening, and for emergence of suicidal thoughts and behaviors. REMERON/REMERONSolTab is not approved for use in pediatric patients."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SUICIDAL THOUGHTS AND BEHAVIORS Antidepressants increased the risk of suicidal thoughts and behaviors in pediatric and young adult patients in short-term studies. Closely monitor all antidepressant-treated patients for clinical worsening, and for emergence of suicidal thoughts and behaviors [see"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "mirtazapine for the treatment of major depressive disorder,"
+      }
+    ],
+    "note": "No myasthenia gravis warning in FDA label."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "REMERONSolTab (ODT) must be placed on tongue to disintegrate without chewing or crushing and not split; no NG tube instructions in FDA label."
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No specific pharmacogenomic dosing recommendations in FDA label (CYP2D6, CYP1A2, CYP3A involved in metabolism)."
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "weight_gain",
+      "hyponatremia",
+      "serotonin_syndrome",
+      "qt_prolongation",
+      "confusion_delirium",
+      "rash_sjs_ten"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Most common adverse reactions (≥5% or greater and twice placebo) were somnolence, increased appetite, weight gain, and dizziness. ( 6.1 )"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Somnolence (54%), dizziness (7%)",
+        "Increased appetite (17%), weight gain (12%)",
+        "Dry mouth (25%), constipation (13%), asthenia (8%)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-mirtazapine-label",
+          "locator": "6.1 Clinical Trial Experience",
+          "quote": "Most common adverse reactions (≥5% or greater and twice placebo) were somnolence, increased appetite, weight gain, and dizziness. ( 6.1 )"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Suicidal thoughts and behaviors in pediatric and young adult patients",
+        "Agranulocytosis, serotonin syndrome, angle-closure glaucoma",
+        "QT prolongation and Torsades de Pointes",
+        "Severe skin reactions (DRESS, Stevens-Johnson syndrome, toxic epidermal necrolysis)",
+        "Hyponatremia, seizures, activation of mania/hypomania, elevated cholesterol/triglycerides, transaminase elevations"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-mirtazapine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Agranulocytosis [see Warnings and Precautions (5.2) ] Serotonin Syndrome [see Contraindications (4) , Warnings and Precautions (5.3) , Drug Interactions (7) ] Angle-Closure Glaucoma [see Warnings and Precautions (5.4) ] QT Prolongation and Torsades de Pointes [see"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Antagonist at central presynaptic alpha-2-adrenergic inhibitory autoreceptors and heteroreceptors, enhancing central noradrenergic and serotonergic activity; also antagonizes 5-HT2, 5-HT3, H1, peripheral alpha-1, and muscarinic receptors.",
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "its efficacy could be mediated through its activity as an antagonist at central presynaptic α 2 -adrenergic inhibitory autoreceptors and heteroreceptors and enhancing central noradrenergic and serotonergic"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp1a2": "substrate",
+      "cyp2d6": "substrate",
+      "cyp3a4": "substrate",
+      "qt_risk": "possible",
+      "serotonergic": true
+    },
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "12.3 Pharmacokinetics — Metabolism",
+        "quote": "In vitro data from human liver microsomes indicate that CYP2D6 and CYP1A2 are involved in the formation of the 8-hydroxy metabolite of mirtazapine, whereas CYP3A is considered to be responsible for the formation of the N-desmethyl and N-oxide metabolite."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "MAOIs (including linezolid and IV methylene blue)",
+        "severity": "contraindicated",
+        "effect": "Increased risk of serotonin syndrome.",
+        "management": "Contraindicated during or within 14 days of stopping MAOIs (and wait 14 days after stopping mirtazapine before starting an MAOI).",
+        "refs": [
+          {
+            "source_id": "fda-mirtazapine-label",
+            "locator": "4 CONTRAINDICATIONS",
+            "quote": "REMERON/REMERONSolTab is contraindicated in patients: Taking, or within 14 days of stopping, MAOIs (including the MAOIs linezolid and intravenous methylene blue) because of an increased risk of serotonin syndrome"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Other Serotonergic Drugs (SSRIs, SNRIs, triptans, TCAs, tramadol, lithium, fentanyl, buspirone, St. John's Wort)",
+        "severity": "moderate",
+        "effect": "Increased risk of serotonin syndrome.",
+        "management": "Monitor patients for signs and symptoms of serotonin syndrome, particularly during initiation and dosage increases.",
+        "refs": [
+          {
+            "source_id": "fda-mirtazapine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "The concomitant use of serotonergic drugs with REMERON/REMERONSolTab increases the risk of serotonin syndrome. Intervention Monitor patients for signs and symptoms of serotonin syndrome, particularly during treatment initiation and dosage increases. If"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Strong CYP3A Inducers (phenytoin, carbamazepine, rifampin)",
+        "severity": "moderate",
+        "effect": "Decreases plasma concentration of mirtazapine (phenytoin -45%, carbamazepine -60%).",
+        "management": "Increase mirtazapine dose if needed with concomitant CYP3A inducer; decrease if inducer is discontinued.",
+        "refs": [
+          {
+            "source_id": "fda-mirtazapine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "The concomitant use of strong CYP3A inducers with REMERON/REMERONSolTab decreases the plasma concentration of mirtazapine [see Clinical Pharmacology (12.3) ] . Intervention Increase the dose of REMERON/REMERONSolTab if needed with concomitant CYP3A inducer use."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Strong CYP3A Inhibitors (ketoconazole, itraconazole, clarithromycin, ritonavir, nefazodone) & Cimetidine",
+        "severity": "moderate",
+        "effect": "Increases plasma concentration of mirtazapine (ketoconazole AUC +50%, cimetidine AUC >50%).",
+        "management": "Decrease mirtazapine dose if needed with concomitant strong CYP3A inhibitor or cimetidine.",
+        "refs": [
+          {
+            "source_id": "fda-mirtazapine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "The concomitant use of strong CYP3A inhibitors with REMERON/REMERONSolTab may increase the plasma concentration of mirtazapine [see Clinical Pharmacology (12.3) ] . Intervention Decrease the dose of REMERON/REMERONSolTab if needed with"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Benzodiazepines (diazepam, alprazolam) and Alcohol",
+        "severity": "contraindicated",
+        "effect": "Increases impairment of cognitive and motor skills produced by mirtazapine alone.",
+        "management": "Avoid concomitant use of benzodiazepines and alcohol with REMERON/REMERONSolTab.",
+        "refs": [
+          {
+            "source_id": "fda-mirtazapine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Avoid concomitant use of benzodiazepines and alcohol with REMERON/REMERONSolTab [see"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Drugs that Prolong QTc Interval",
+        "severity": "moderate",
+        "effect": "Increased risk of QT prolongation and/or ventricular arrhythmias (e.g., Torsades de Pointes).",
+        "management": "Use caution when using mirtazapine concomitantly with drugs that prolong the QTc interval.",
+        "refs": [
+          {
+            "source_id": "fda-mirtazapine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "The concomitant use of other drugs which prolong the QTc interval with REMERON/REMERONSolTab, increase the risk of QT prolongation and/or ventricular arrhythmias (e.g., Torsades de Pointes). Intervention Use caution"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Warfarin",
+        "severity": "moderate",
+        "effect": "Mirtazapine (30 mg/day) caused a statistically significant increase (0.2) in INR.",
+        "management": "Monitor INR during concomitant use of warfarin with REMERON/REMERONSolTab.",
+        "refs": [
+          {
+            "source_id": "fda-mirtazapine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "The concomitant use of warfarin with REMERON/REMERONSolTab may result in an increase in INR [see Clinical Pharmacology (12.3) ] . Intervention Monitor INR during concomitant use of warfarin with REMERON/REMERONSolTab. Strong"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-mirtazapine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Table 5: Clinically Important Drug Interactions with REMERON/REMERONSolTab"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Prolonged human experience has not reliably identified a drug-associated risk of major birth defects or miscarriage, but animal studies showed postimplantation loss and pup deaths at 20x MRHD; present in human milk at low RID (0.6–2.8%).",
+      "refs": [
+        {
+          "source_id": "fda-mirtazapine-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Prolonged experience with mirtazapine in pregnant women, based on published observational studies and postmarketing reports, has not reliably identified a drug-associated risk of major birth defects, miscarriage or adverse maternal or fetal"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "No hormonal contraceptive interaction reported in FDA label."
+    },
+    "pregnancy_pk": {
+      "value": "Prolonged experience with mirtazapine in pregnant women has not reliably identified a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes. Consider risk of untreated depression when discontinuing or changing treatment.",
+      "refs": [
+        {
+          "source_id": "fda-mirtazapine-label",
+          "locator": "8.1 Pregnancy — Clinical Considerations",
+          "quote": "Women who discontinue antidepressants during pregnancy are more likely to experience a relapse of major depression than women who continue antidepressants."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Consider the risk of untreated depression when discontinuing or changing treatment with antidepressant medication during pregnancy and postpartum.",
+      "refs": [
+        {
+          "source_id": "fda-mirtazapine-label",
+          "locator": "8.1 Pregnancy — Clinical Considerations",
+          "quote": "Consider the risk of untreated depression when discontinuing or changing treatment with antidepressant medication during pregnancy and"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "0.6% to 2.8% (mean 1.5% for mirtazapine and 0.4% for desmethyl metabolite in 8 mother-infant pairs)",
+      "refs": [
+        {
+          "source_id": "fda-mirtazapine-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "Data from published literature report the presence of mirtazapine in human milk at low levels with relative infant doses for mirtazapine ranging between 0.6 and 2.8% of the maternal weight-adjusted dose (see"
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Present in human milk at low levels (RID 0.6–2.8%); no adverse effects on the breastfed infant reported in most cases (none in 8-pair pooled analysis). Weigh developmental/health benefits of breastfeeding against maternal clinical need.",
+      "refs": [
+        {
+          "source_id": "fda-mirtazapine-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "No adverse effects on the breastfed infant have been reported in most cases of maternal use of mirtazapine."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

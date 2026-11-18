@@ -1,0 +1,434 @@
+{
+  "id": "risperidone",
+  "generic_name": "risperidone",
+  "tall_man": {
+    "value": "risperiDONE",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "risperiDONE\r\n\t\t\trOPINIRole\r\nSu"
+      }
+    ],
+    "note": "Per FDA/ISMP Name Differentiation List (tall-man.json)."
+  },
+  "classes": [
+    "antipsychotic",
+    "atypical antipsychotic",
+    "second-generation antipsychotic",
+    "benzisoxazole derivative"
+  ],
+  "subspecialties": [
+    "other"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ris-po-schiz-adult",
+      "indication": "Schizophrenia (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-risperidone-label",
+          "locator": "2.1 Schizophrenia — Adults",
+          "quote": "Initial dosing is 2 mg per day. May increase the dose at intervals of 24 hours or greater, in increments of 1 to 2 mg per day, as tolerated, to a recommended dose of 4 to 8 mg per day. In some patients, slower titration may be appropriate. Efficacy"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2,
+        "unit": "mg",
+        "frequency": "once or twice daily initially; target 4–8 mg/day (max 16 mg/day)",
+        "max_single": 16,
+        "max_daily": 16
+      },
+      "dose_text": "Initial: 2 mg/day orally (QD or BID); increase by 1–2 mg/day at intervals >=24 h to target 4–8 mg/day (effective range 4–16 mg/day; doses >6 mg/day BID generally not recommended)."
+    },
+    {
+      "id": "ris-po-schiz-adol",
+      "indication": "Schizophrenia (Adolescents 13–17 years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-risperidone-label",
+          "locator": "2.1 Schizophrenia — Adolescents",
+          "quote": "The initial dose is 0.5 mg once daily, administered as a single-daily dose in the morning or evening. The dose may be adjusted at intervals of 24 hours or greater, in increments of 0.5 mg or 1 mg per day, as tolerated, to a recommended dose of 3 mg per day. Although"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.5,
+        "unit": "mg",
+        "frequency": "once daily initially; target 3 mg/day (effective range 1–6 mg/day)",
+        "max_single": 6,
+        "max_daily": 6
+      },
+      "dose_text": "Initial: 0.5 mg orally once daily; titrate by 0.5–1 mg/day at intervals >=24 h to target 3 mg/day (effective range 1–6 mg/day; no additional benefit above 3 mg/day)."
+    },
+    {
+      "id": "ris-po-bipolar-adult",
+      "indication": "Bipolar I Mania (Adults, monotherapy or adjunctive with lithium or valproate)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-risperidone-label",
+          "locator": "2.2 Bipolar Mania — Adults",
+          "quote": "The initial dose range is 2 mg to 3 mg per day. The dose may be adjusted at intervals of 24 hours or greater, in increments of 1 mg per day. The effective dose range is 1 mg to 6 mg per day, as"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2,
+        "unit": "mg",
+        "frequency": "once daily (initial 2–3 mg/day; effective range 1–6 mg/day)",
+        "max_single": 6,
+        "max_daily": 6
+      },
+      "dose_text": "Initial: 2–3 mg/day orally; adjust by 1 mg/day at intervals >=24 h within effective range of 1–6 mg/day."
+    },
+    {
+      "id": "ris-po-autism-ped",
+      "indication": "Irritability Associated with Autistic Disorder (Pediatrics 5–17 years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-risperidone-label",
+          "locator": "2.3 Irritability Associated with Autistic Disorder",
+          "quote": "For patients with body weight less than 20 kg, initiate dosing at 0.25 mg per day. For patients with body weight greater than or equal to 20 kg, initiate dosing at 0.5 mg per day. After a minimum of"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.25,
+        "unit": "mg",
+        "frequency": "once daily or divided BID (<20 kg: 0.25 mg/day; >=20 kg: 0.5 mg/day; range 0.5–3 mg/day)",
+        "max_single": 3,
+        "max_daily": 3
+      },
+      "dose_text": "Weight <20 kg: start 0.25 mg/day (target 0.5 mg/day after >=4 days). Weight >=20 kg: start 0.5 mg/day (target 1.0 mg/day after >=4 days). Effective range 0.5–3 mg/day."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "2.4 Dosing in Patients with Severe Renal or Hepatic Impairment",
+        "quote": "For patients with severe renal impairment (Clcr< 30 mL/min) or hepatic impairment (10–15 points on Child Pugh System), the initial starting dose is 0.5 mg twice daily. The dose"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "In moderate to severe renal disease (Clcr 59 to 15 mL/min), clearance of risperidone + 9-hydroxyrisperidone decreased by 60%. Use lower starting dose of 0.5 mg twice daily in severe renal impairment (Clcr < 30 mL/min).",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-risperidone-label",
+          "locator": "8.6 Renal Impairment",
+          "quote": "In patients with moderate to severe (Clcr 59 to 15 mL/min) renal disease, clearance of the sum of risperidone and its active metabolite decreased by 60%, compared to young healthy subjects. RISPERDAL"
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 0,
+        "max": 30,
+        "dose_text": "Initial: 0.5 mg twice daily; increase in increments of <=0.5 mg twice daily. For doses above 1.5 mg twice daily, increase at intervals of >=1 week.",
+        "dose": {
+          "kind": "fixed",
+          "amount": 0.5,
+          "unit": "mg",
+          "frequency": "twice daily"
+        },
+        "refs": [
+          {
+            "source_id": "fda-risperidone-label",
+            "locator": "2.4 Dosing in Patients with Severe Renal or Hepatic Impairment",
+            "quote": "For patients with severe renal impairment (Clcr< 30 mL/min) or hepatic impairment (10–15 points on Child Pugh System), the initial starting dose is 0.5 mg twice daily. The dose may be increased in increments of 0.5 mg or less, administered twice daily. For doses above 1.5 mg twice daily, increase in intervals of one week or greater [see"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "2.4 Dosing in Patients with Severe Renal or Hepatic Impairment",
+        "quote": "For patients with severe renal impairment (Clcr< 30 mL/min) or hepatic impairment (10–15 points on Child Pugh System), the initial starting dose is 0.5 mg twice daily. The dose"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Mean free fraction of risperidone in plasma increased by ~35% in hepatic impairment. For severe hepatic impairment (Child-Pugh 10–15), initiate at 0.5 mg twice daily and increase by <=0.5 mg BID (above 1.5 mg BID at >=1-week intervals).",
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "8.7 Hepatic Impairment",
+        "quote": "the mean free fraction of risperidone in plasma was increased by about 35% because of the diminished concentration of both albumin and α 1 -acid glycoprotein. RISPERDAL doses should be reduced in patients with liver disease [see"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: INCREASED MORTALITY IN ELDERLY PATIENTS WITH DEMENTIA-RELATED PSYCHOSIS: Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death. RISPERDAL is not approved for the treatment of patients with dementia-related psychosis."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "BOXED WARNING",
+        "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death. RISPERDAL is not approved for the treatment of patients with dementia-related psychosis."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Dysphagia [see Warnings and Precautions (5.12) ] Priapism"
+      }
+    ],
+    "note": "No specific MG warning in FDA label; dysphagia, sedation, and increased sensitivity in Parkinson's/Lewy body dementia are noted."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "No enteral tube administration instructions in FDA label (Oral Solution is compatible with water, coffee, orange juice, and low-fat milk; NOT compatible with cola or tea)."
+  },
+  "pgx": {
+    "value": "Extensively metabolized in the liver via CYP2D6 hydroxylation to active 9-hydroxyrisperidone (paliperidone). CYP2D6 poor metabolizers convert risperidone more slowly (t1/2 ~20 h vs 3 h), though combined active moiety pharmacokinetics are similar.",
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "12.3 Pharmacokinetics — Elimination",
+        "quote": "The main metabolic pathway is through hydroxylation of risperidone to 9-hydroxyrisperidone by the enzyme, CYP 2D6. A minor"
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "extrapyramidal",
+      "sedation_somnolence",
+      "weight_gain",
+      "qt_prolongation",
+      "rash_sjs_ten",
+      "hyponatremia",
+      "pancreatitis"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "The most common adverse reactions in clinical trials (>5% and twice placebo) were parkinsonism, akathisia, dystonia, tremor, sedation, dizziness, anxiety, blurred vision, nausea, vomiting, upper abdominal pain, stomach discomfort, dyspepsia, diarrhea, salivary hypersecretion, constipation, dry mouth, increased appetite, increased weight,"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Parkinsonism, akathisia, dystonia, tremor",
+        "Sedation/somnolence, dizziness, anxiety, fatigue, blurred vision",
+        "Nausea, vomiting, dyspepsia, constipation, diarrhea, dry mouth, salivary hypersecretion",
+        "Increased appetite, weight gain, nasal congestion, rash"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-risperidone-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The most common adverse reactions in clinical trials (>5% and twice placebo) were parkinsonism, akathisia, dystonia, tremor, sedation, dizziness, anxiety, blurred vision, nausea, vomiting, upper abdominal pain, stomach discomfort, dyspepsia, diarrhea, salivary hypersecretion, constipation, dry mouth, increased appetite, increased weight,"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Increased mortality and cerebrovascular adverse events (including stroke) in elderly patients with dementia-related psychosis",
+        "Neuroleptic malignant syndrome (NMS) and tardive dyskinesia",
+        "Metabolic changes (hyperglycemia/diabetes mellitus, dyslipidemia, weight gain) and hyperprolactinemia",
+        "Orthostatic hypotension, falls, leukopenia/neutropenia/agranulocytosis, seizures, dysphagia, priapism",
+        "Postmarketing: QT prolongation, sudden death, SJS/TEN, pancreatitis, SIADH/hyponatremia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-risperidone-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Cerebrovascular adverse events, including stroke, in elderly patients with dementia-related psychosis [see Warnings and Precautions (5.2) ] Neuroleptic malignant syndrome [see Warnings and Precautions (5.3) ] Tardive dyskinesia [see Warnings and"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Atypical antipsychotic whose therapeutic activity in schizophrenia may be mediated through combined dopamine Type 2 (D2) and serotonin Type 2 (5HT2) receptor antagonism; clinical effect results from risperidone plus 9-hydroxyrisperidone (paliperidone).",
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "The drug's therapeutic activity in schizophrenia could be mediated through a combination of dopamine Type 2 (D 2 ) and serotonin Type 2 (5HT 2 ) receptor antagonism. The"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2d6": "substrate",
+      "qt_risk": "possible"
+    },
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "12.3 Pharmacokinetics — Elimination",
+        "quote": "The main metabolic pathway is through hydroxylation of risperidone to 9-hydroxyrisperidone by the enzyme, CYP 2D6. A minor"
+      },
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "QT prolongation, sleep apnea s"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Carbamazepine and other enzyme inducers (phenytoin, rifampin, phenobarbital)",
+        "severity": "major",
+        "effect": "Decreases combined plasma concentrations of risperidone + 9-hydroxyrisperidone (carbamazepine reduced active moiety AUC to 0.51).",
+        "management": "Increase risperidone dose up to double the patient's usual dose; titrate slowly and decrease dose when enzyme inducer is discontinued.",
+        "refs": [
+          {
+            "source_id": "fda-risperidone-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Carbamazepine and other enzyme inducers decrease plasma concentrations of risperidone. Increase the RISPERDAL dose up to double the patient's usual dose. Titrate slowly. ( 7.1 )"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Fluoxetine, paroxetine, and other CYP2D6 inhibitors",
+        "severity": "major",
+        "effect": "Increases plasma concentrations of risperidone (active moiety AUC increased 1.4-fold with fluoxetine and 1.3–1.8-fold with paroxetine).",
+        "management": "Reduce initial risperidone dose; do not exceed 8 mg/day in adults when co-administered with fluoxetine or paroxetine.",
+        "refs": [
+          {
+            "source_id": "fda-risperidone-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Fluoxetine, paroxetine, and other CYP 2D6 enzyme inhibitors increase plasma concentrations of risperidone. Reduce the initial dose. Do not exceed a final dose of 8 mg per day of RISPERDAL. ( 7.1 )"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Levodopa and Dopamine Agonists",
+        "severity": "moderate",
+        "effect": "Risperidone may antagonize the effects of levodopa and dopamine agonists.",
+        "management": "Monitor for reduced antiparkinsonian efficacy; avoid or adjust therapy as clinically indicated.",
+        "refs": [
+          {
+            "source_id": "fda-risperidone-label",
+            "locator": "7.2 Pharmacodynamic-related Interactions",
+            "quote": "RISPERDAL may antagonize the effects of levodopa and dopamine agonists."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Methylphenidate",
+        "severity": "moderate",
+        "effect": "Concomitant use when changing dosage of either medication may increase risk of extrapyramidal symptoms (EPS).",
+        "management": "Monitor for symptoms of EPS during concomitant use and dosage changes.",
+        "refs": [
+          {
+            "source_id": "fda-risperidone-label",
+            "locator": "7.2 Pharmacodynamic-related Interactions",
+            "quote": "Concomitant use with methylphenidate, when there is change in dosage of either medication, may increase the risk of extrapyramidal symptoms (EPS). Monitor for"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Carbamazepine and other enzyme inducers decrease plasma concentrations of risperidone."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Available epidemiologic studies have not established an overall drug-associated risk of major birth defects or miscarriage (though one Medicaid subgroup of 1566 first-trimester exposures noted RR 1.26, 95% CI 1.02–1.56); third-trimester exposure carries risk of neonatal EPS/withdrawal.",
+      "refs": [
+        {
+          "source_id": "fda-risperidone-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Overall, available data from published epidemiologic studies of pregnant women exposed to risperidone have not established a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes (see"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "No folic acid recommendation in FDA label."
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "No hormonal contraceptive interaction reported in FDA label."
+    },
+    "pregnancy_pk": {
+      "value": "Placental passage demonstrated in humans. Neonates exposed during the third trimester are at risk for extrapyramidal and/or withdrawal symptoms (agitation, hypertonia, hypotonia, tremor, somnolence, respiratory distress, feeding disorder).",
+      "refs": [
+        {
+          "source_id": "fda-risperidone-label",
+          "locator": "8.1 Pregnancy — Risk Summary",
+          "quote": "Neonates exposed to antipsychotic drugs during the third trimester of pregnancy are at risk for extrapyramidal and/or withdrawal symptoms following delivery"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Monitor neonates for extrapyramidal and/or withdrawal symptoms after third-trimester exposure; monitor breastfed infants for excess sedation, failure to thrive, jitteriness, and EPS.",
+      "refs": [
+        {
+          "source_id": "fda-risperidone-label",
+          "locator": "8.2 Lactation — Clinical Considerations",
+          "quote": "Infants exposed to RISPERDAL through breastmilk should be monitored for excess sedation, failure to thrive, jitteriness, and extrapyramidal symptoms (tremors and abnormal muscle movements). 8.3"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "2.3% to 4.7% of the maternal weight-adjusted dosage",
+      "refs": [
+        {
+          "source_id": "fda-risperidone-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "presence of risperidone and its metabolite, 9-hydroxyrisperidone, in human breast milk at relative infant dose ranging between 2.3% and 4.7% of the maternal weight-adjusted dosage. There"
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Risperidone and 9-hydroxyrisperidone are present in human breast milk (RID 2.3%–4.7%); reports of sedation, failure to thrive, jitteriness, and EPS in breastfed infants.",
+      "refs": [
+        {
+          "source_id": "fda-risperidone-label",
+          "locator": "8.2 Lactation — Risk Summary",
+          "quote": "There are reports of sedation, failure to thrive, jitteriness, and extrapyramidal symptoms (tremors and abnormal muscle movements) in breastfed infants exposed to risperidone (see"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

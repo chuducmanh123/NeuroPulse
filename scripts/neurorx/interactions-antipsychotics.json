@@ -1,0 +1,414 @@
+[
+  {
+    "id": "risperidone-carbamazepine",
+    "drug_a": "risperidone",
+    "drug_b": "carbamazepine",
+    "severity": "major",
+    "mechanism": "Carbamazepine induces hepatic enzymes (CYP3A/P-gp), reducing plasma concentrations of risperidone and its active metabolite 9-hydroxyrisperidone (AUC ratio 0.51, Cmax ratio 0.55).",
+    "clinical_effect": "Decreased plasma concentrations of the active antipsychotic moiety, risking loss of antipsychotic efficacy.",
+    "management": "When risperidone is co-administered with carbamazepine, increase the risperidone dose up to double the patient's usual dose and titrate slowly. Decrease risperidone dose when carbamazepine is discontinued.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Carbamazepine and other enzyme inducers decrease plasma concentrations of risperidone. Increase the RISPERDAL dose up to double the patient's usual dose. Titrate slowly."
+      }
+    ]
+  },
+  {
+    "id": "risperidone-fluoxetine",
+    "drug_a": "risperidone",
+    "drug_b": "fluoxetine",
+    "severity": "major",
+    "mechanism": "Fluoxetine strongly inhibits CYP2D6-mediated metabolism of risperidone, increasing plasma concentrations of the active moiety (AUC ratio 1.4, Cmax ratio 1.5).",
+    "clinical_effect": "Elevated risperidone exposure and increased risk of dose-dependent adverse effects including extrapyramidal symptoms (EPS).",
+    "management": "Reduce the initial risperidone dose and titrate slowly; do not exceed a final dose of 8 mg/day in adults when co-administered with fluoxetine. Re-evaluate if fluoxetine is discontinued.",
+    "alternatives": [
+      {
+        "drug_id": "citalopram",
+        "rationale": "Citalopram has minimal CYP2D6 inhibition compared with fluoxetine or paroxetine"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Fluoxetine, paroxetine, and other CYP 2D6 enzyme inhibitors increase plasma concentrations of risperidone. Reduce the initial dose. Do not exceed a final dose of 8 mg per day of RISPERDAL."
+      }
+    ]
+  },
+  {
+    "id": "risperidone-paroxetine",
+    "drug_a": "risperidone",
+    "drug_b": "paroxetine",
+    "severity": "major",
+    "mechanism": "Paroxetine strongly inhibits CYP2D6-mediated metabolism of risperidone, increasing plasma concentrations of the active moiety (AUC ratio 1.3 at 10 mg/day, 1.6 at 20 mg/day, 1.8 at 40 mg/day).",
+    "clinical_effect": "Elevated risperidone exposure and increased risk of extrapyramidal symptoms and other dose-related adverse reactions; Torsade de pointes reported in combined overdose.",
+    "management": "Reduce the initial risperidone dose and titrate slowly; do not exceed a final dose of 8 mg/day in adults when co-administered with paroxetine.",
+    "alternatives": [
+      {
+        "drug_id": "sertraline",
+        "rationale": "Sertraline has weaker CYP2D6 inhibition than paroxetine at standard doses"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Fluoxetine, paroxetine, and other CYP 2D6 enzyme inhibitors increase plasma concentrations of risperidone. Reduce the initial dose. Do not exceed a final dose of 8 mg per day of RISPERDAL."
+      }
+    ]
+  },
+  {
+    "id": "risperidone-levodopa-carbidopa",
+    "drug_a": "risperidone",
+    "drug_b": "levodopa-carbidopa",
+    "severity": "moderate",
+    "mechanism": "Pharmacodynamic antagonism: risperidone blocks central dopamine D2 receptors, opposing dopaminergic stimulation by levodopa.",
+    "clinical_effect": "Reduced antiparkinsonian efficacy of levodopa and potential worsening of parkinsonian motor symptoms.",
+    "management": "Monitor for worsening parkinsonian symptoms or loss of levodopa efficacy; patients with Parkinson's disease have increased sensitivity to risperidone.",
+    "alternatives": [
+      {
+        "drug_id": "quetiapine",
+        "rationale": "Quetiapine has lower D2 affinity and lower EPS risk, though it may still antagonize levodopa"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "Section 7.2 Pharmacodynamic-related Interactions",
+        "quote": "RISPERDAL may antagonize the effects of levodopa and dopamine agonists."
+      }
+    ]
+  },
+  {
+    "id": "risperidone-pramipexole",
+    "drug_a": "risperidone",
+    "drug_b": "pramipexole",
+    "severity": "moderate",
+    "mechanism": "Pharmacodynamic antagonism: risperidone blocks central dopamine D2 receptors, opposing dopamine agonist activity of pramipexole.",
+    "clinical_effect": "Reduced therapeutic efficacy of pramipexole and potential worsening of motor symptoms.",
+    "management": "Monitor for reduced dopamine agonist efficacy and extrapyramidal symptoms.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "Section 7.2 Pharmacodynamic-related Interactions",
+        "quote": "RISPERDAL may antagonize the effects of levodopa and dopamine agonists."
+      }
+    ]
+  },
+  {
+    "id": "risperidone-ropinirole",
+    "drug_a": "risperidone",
+    "drug_b": "ropinirole",
+    "severity": "moderate",
+    "mechanism": "Pharmacodynamic antagonism: risperidone blocks central dopamine D2 receptors, opposing dopamine agonist activity of ropinirole.",
+    "clinical_effect": "Reduced therapeutic efficacy of ropinirole and potential worsening of motor symptoms.",
+    "management": "Monitor for reduced dopamine agonist efficacy and extrapyramidal symptoms.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-risperidone-label",
+        "locator": "Section 7.2 Pharmacodynamic-related Interactions",
+        "quote": "RISPERDAL may antagonize the effects of levodopa and dopamine agonists."
+      }
+    ]
+  },
+  {
+    "id": "olanzapine-fluvoxamine",
+    "drug_a": "olanzapine",
+    "drug_b": "fluvoxamine",
+    "severity": "major",
+    "mechanism": "Fluvoxamine inhibits CYP1A2, decreasing olanzapine clearance and increasing olanzapine Cmax by 54% (female nonsmokers) to 77% (male smokers) and AUC by 52% to 108%.",
+    "clinical_effect": "Substantially increased systemic exposure to olanzapine, increasing risk of sedation, orthostatic hypotension, and anticholinergic/metabolic adverse effects.",
+    "management": "Consider lower doses of olanzapine in patients receiving concomitant treatment with fluvoxamine and monitor closely for adverse reactions.",
+    "alternatives": [
+      {
+        "drug_id": "sertraline",
+        "rationale": "Sertraline does not strongly inhibit CYP1A2"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect Olanzapine",
+        "quote": "Fluvoxamine, a CYP1A2 inhibitor, decreases the clearance of olanzapine. This results in a mean increase in olanzapine Cmax following fluvoxamine of 54% in female nonsmokers and 77% in male smokers. The mean increase in olanzapine AUC is 52% and 108%, respectively. Lower doses of olanzapine should be considered"
+      }
+    ]
+  },
+  {
+    "id": "olanzapine-carbamazepine",
+    "drug_a": "olanzapine",
+    "drug_b": "carbamazepine",
+    "severity": "moderate",
+    "mechanism": "Carbamazepine potently induces CYP1A2, increasing olanzapine clearance by approximately 50% (at 200 mg BID; greater at higher doses).",
+    "clinical_effect": "Reduced olanzapine plasma concentrations, potentially decreasing antipsychotic or antimanic efficacy.",
+    "management": "Monitor clinical response closely and consider higher olanzapine doses when co-administered with carbamazepine.",
+    "alternatives": [
+      {
+        "drug_id": "valproate",
+        "rationale": "Olanzapine does not affect steady-state valproate concentrations and valproate does not induce CYP1A2"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect Olanzapine",
+        "quote": "Carbamazepine therapy (200 mg bid) causes an approximately 50% increase in the clearance of olanzapine. This increase is likely due to the fact that carbamazepine is a potent inducer of CYP1A2 activity."
+      }
+    ]
+  },
+  {
+    "id": "olanzapine-diazepam",
+    "drug_a": "olanzapine",
+    "drug_b": "diazepam",
+    "severity": "moderate",
+    "mechanism": "Additive pharmacodynamic CNS depression and alpha-1 adrenergic blockade; olanzapine does not alter diazepam pharmacokinetics.",
+    "clinical_effect": "Potentiated orthostatic hypotension and additive CNS depression/sedation compared with either agent alone.",
+    "management": "Monitor blood pressure (including orthostatic vitals) and sedation closely when co-administering diazepam with olanzapine.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect Olanzapine",
+        "quote": "The co-administration of diazepam with olanzapine potentiated the orthostatic hypotension observed with olanzapine"
+      }
+    ]
+  },
+  {
+    "id": "olanzapine-levodopa-carbidopa",
+    "drug_a": "olanzapine",
+    "drug_b": "levodopa-carbidopa",
+    "severity": "moderate",
+    "mechanism": "Pharmacodynamic antagonism: olanzapine antagonizes dopamine receptors (D1–D4), opposing dopaminergic effects of levodopa.",
+    "clinical_effect": "May antagonize the antiparkinsonian effects of levodopa.",
+    "management": "Monitor for worsening motor symptoms or reduced levodopa efficacy.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-olanzapine-label",
+        "locator": "Section 7.2 Potential for Olanzapine to Affect Other Drugs",
+        "quote": "Olanzapine may antagonize the effects of levodopa and dopamine agonists."
+      }
+    ]
+  },
+  {
+    "id": "clozapine-fluvoxamine",
+    "drug_a": "clozapine",
+    "drug_b": "fluvoxamine",
+    "severity": "major",
+    "mechanism": "Fluvoxamine is a strong CYP1A2 inhibitor; co-administration for 14 days elevated mean trough concentrations of clozapine and its metabolites approximately 3-fold.",
+    "clinical_effect": "Markedly elevated clozapine plasma concentrations with high risk of dose-dependent toxicity (seizures, orthostatic hypotension, sedation, myocarditis/cardiac toxicity).",
+    "management": "Reduce the clozapine dose to one-third of the original dose when co-administered with fluvoxamine; restore the original dose when fluvoxamine is discontinued.",
+    "alternatives": [
+      {
+        "drug_id": "citalopram",
+        "rationale": "Citalopram does not strongly inhibit CYP1A2"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Reduce CLOZARIL dose to one-third when coadministered with strong CYP1A2 inhibitors (e.g., fluvoxamine, ciprofloxacin, enoxacin)."
+      }
+    ]
+  },
+  {
+    "id": "clozapine-ciprofloxacin",
+    "drug_a": "clozapine",
+    "drug_b": "ciprofloxacin",
+    "severity": "major",
+    "mechanism": "Ciprofloxacin is a strong CYP1A2 inhibitor that impairs clozapine metabolism and increases clozapine plasma levels.",
+    "clinical_effect": "Elevated clozapine plasma concentrations and increased risk of serious dose-related adverse reactions (sedation, hypotension, seizures).",
+    "management": "Reduce the clozapine dose to one-third of the original dose when co-administered with ciprofloxacin; restore the original dose when ciprofloxacin is discontinued.",
+    "alternatives": [
+      {
+        "drug_id": "levofloxacin",
+        "rationale": "Levofloxacin has minimal CYP1A2 inhibition compared with ciprofloxacin"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Reduce CLOZARIL dose to one-third when coadministered with strong CYP1A2 inhibitors (e.g., fluvoxamine, ciprofloxacin, enoxacin)."
+      }
+    ]
+  },
+  {
+    "id": "clozapine-carbamazepine",
+    "drug_a": "clozapine",
+    "drug_b": "carbamazepine",
+    "severity": "major",
+    "mechanism": "Carbamazepine is a strong CYP3A4 inducer that decreases clozapine plasma concentrations; additionally, clozapine may increase levels of carbamazepine.",
+    "clinical_effect": "Decreased clozapine effectiveness during co-administration, and risk of increased clozapine toxicity if carbamazepine is discontinued; also additive hematologic risk (neutropenia) clinically noted.",
+    "management": "Concomitant use of clozapine and strong CYP3A4 inducers is not recommended. If necessary, increase clozapine dose and monitor for decreased effectiveness; reduce clozapine dose when discontinuing carbamazepine.",
+    "alternatives": [
+      {
+        "drug_id": "valproate",
+        "rationale": "Valproate is not a strong CYP3A4 inducer"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Strong CYP3A4 inducers include carbamazepine, phenytoin, St. John’s wort, and rifampin. It may be necessary to increase the CLOZARIL dose if used concomitantly with inducers of these enzymes. However, concomitant use of CLOZARIL and strong CYP3A4 inducers is not recommended"
+      }
+    ]
+  },
+  {
+    "id": "clozapine-phenytoin",
+    "drug_a": "clozapine",
+    "drug_b": "phenytoin",
+    "severity": "major",
+    "mechanism": "Phenytoin is a strong CYP3A4 inducer that accelerates clozapine metabolism and lowers plasma clozapine concentrations.",
+    "clinical_effect": "Decreased clozapine plasma concentrations and risk of reduced antipsychotic effectiveness; risk of clozapine toxicity upon phenytoin discontinuation.",
+    "management": "Concomitant use of clozapine and strong CYP3A4 inducers is not recommended. If co-administration is necessary, monitor for decreased effectiveness and adjust clozapine dose accordingly.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce CYP3A4 or CYP1A2"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Strong CYP3A4 inducers include carbamazepine, phenytoin, St. John’s wort, and rifampin. It may be necessary to increase the CLOZARIL dose if used concomitantly with inducers of these enzymes. However, concomitant use of CLOZARIL and strong CYP3A4 inducers is not recommended"
+      }
+    ]
+  },
+  {
+    "id": "clozapine-fluoxetine",
+    "drug_a": "clozapine",
+    "drug_b": "fluoxetine",
+    "severity": "moderate",
+    "mechanism": "Fluoxetine inhibits CYP2D6 (and CYP2C19/3A4), causing modest (<2-fold) elevations in clozapine and metabolite concentrations.",
+    "clinical_effect": "Increased clozapine plasma levels and potential for clozapine-related adverse reactions.",
+    "management": "Use caution, monitor patients closely for clozapine adverse effects, and consider reducing the clozapine dose.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Concomitant treatment with CLOZARIL and CYP2D6 or CYP3A4 inhibitors (e.g., cimetidine, escitalopram, erythromycin, paroxetine, bupropion, fluoxetine, quinidine, duloxetine, terbinafine, or sertraline) can increase clozapine levels and lead to adverse reactions"
+      }
+    ]
+  },
+  {
+    "id": "clozapine-paroxetine",
+    "drug_a": "clozapine",
+    "drug_b": "paroxetine",
+    "severity": "moderate",
+    "mechanism": "Paroxetine inhibits CYP2D6; published reports describe modest (<2-fold) elevations in clozapine and metabolite concentrations.",
+    "clinical_effect": "Increased clozapine plasma levels and potential for adverse reactions.",
+    "management": "Use caution, monitor patients closely, and consider reducing the clozapine dose.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Concomitant treatment with CLOZARIL and CYP2D6 or CYP3A4 inhibitors (e.g., cimetidine, escitalopram, erythromycin, paroxetine, bupropion, fluoxetine, quinidine, duloxetine, terbinafine, or sertraline) can increase clozapine levels and lead to adverse reactions"
+      }
+    ]
+  },
+  {
+    "id": "clozapine-sertraline",
+    "drug_a": "clozapine",
+    "drug_b": "sertraline",
+    "severity": "moderate",
+    "mechanism": "CYP2D6/CYP3A4 inhibition; published reports describe modest (<2-fold) elevations in clozapine and metabolite concentrations.",
+    "clinical_effect": "Increased clozapine plasma levels and potential for adverse reactions.",
+    "management": "Use caution, monitor patients closely, and consider reducing the clozapine dose.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Concomitant treatment with CLOZARIL and CYP2D6 or CYP3A4 inhibitors (e.g., cimetidine, escitalopram, erythromycin, paroxetine, bupropion, fluoxetine, quinidine, duloxetine, terbinafine, or sertraline) can increase clozapine levels and lead to adverse reactions"
+      }
+    ]
+  },
+  {
+    "id": "clozapine-amiodarone",
+    "drug_a": "clozapine",
+    "drug_b": "amiodarone",
+    "severity": "major",
+    "mechanism": "Additive pharmacodynamic QT interval prolongation.",
+    "clinical_effect": "Increased risk of QT interval prolongation and ventricular arrhythmias (including Torsades de Pointes).",
+    "management": "Use caution when administering clozapine with QT-prolonging antiarrhythmics such as amiodarone; monitor ECG and electrolytes.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-clozapine-label",
+        "locator": "Section 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Use caution when administering concomitant medications that prolong the QT interval or inhibit the metabolism of clozapine."
+      }
+    ]
+  },
+  {
+    "id": "quetiapine-phenytoin",
+    "drug_a": "quetiapine",
+    "drug_b": "phenytoin",
+    "severity": "major",
+    "mechanism": "Phenytoin is a potent CYP3A4 inducer that increased the mean oral clearance of quetiapine by 5-fold.",
+    "clinical_effect": "Markedly decreased quetiapine plasma exposure, risking loss of symptom control; abrupt phenytoin withdrawal can cause quetiapine overexposure.",
+    "management": "Increase quetiapine dose up to 5-fold during chronic (>7–14 days) co-administration with phenytoin, titrated to clinical response and tolerability. Reduce quetiapine dose to original level within 7–14 days when phenytoin is discontinued.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce CYP3A4"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "Section 7.1 Effect of Other Drugs on Quetiapine",
+        "quote": "Coadministration of quetiapine and phenytoin, a CYP3A4 inducer increased the mean oral clearance of quetiapine by 5-fold. Increased doses of SEROQUEL up to 5 fold may be required to maintain control of symptoms of schizophrenia in patients receiving quetiapine and phenytoin, or other known potent CYP3A4 inducers"
+      }
+    ]
+  },
+  {
+    "id": "quetiapine-carbamazepine",
+    "drug_a": "quetiapine",
+    "drug_b": "carbamazepine",
+    "severity": "major",
+    "mechanism": "Carbamazepine is a potent CYP3A4 inducer that increases quetiapine clearance and reduces systemic exposure.",
+    "clinical_effect": "Markedly decreased quetiapine plasma concentrations and potential loss of antipsychotic or mood-stabilizing efficacy.",
+    "management": "Increase quetiapine dose up to 5-fold when used with chronic potent CYP3A4 inducers; reduce quetiapine dose to original level within 7–14 days of discontinuing carbamazepine.",
+    "alternatives": [
+      {
+        "drug_id": "valproate",
+        "rationale": "Divalproex/valproate had no effect on quetiapine absorption or mean oral clearance (17% Cmax increase)"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "Section 7.1 Effect of Other Drugs on Quetiapine",
+        "quote": "Quetiapine exposure is increased by the prototype CYP3A4 inhibitors (e.g., ketoconazole, itraconazole, indinavir, ritonavir, nefazodone, etc.) and decreased by the prototype CYP3A4 inducers (e.g., phenytoin, carbamazepine, rifampin, avasimibe, St. John’s wort etc.)."
+      }
+    ]
+  },
+  {
+    "id": "quetiapine-levodopa-carbidopa",
+    "drug_a": "quetiapine",
+    "drug_b": "levodopa-carbidopa",
+    "severity": "moderate",
+    "mechanism": "Pharmacodynamic antagonism: quetiapine blocks dopamine D2 receptors, opposing dopaminergic effects of levodopa.",
+    "clinical_effect": "May antagonize the antiparkinsonian effects of levodopa and dopamine agonists.",
+    "management": "Monitor for reduced antiparkinsonian efficacy.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-quetiapine-label",
+        "locator": "Section 7.2 Effect of Quetiapine on Other Drugs",
+        "quote": "SEROQUEL may antagonize the effects of levodopa and dopamine agonists."
+      }
+    ]
+  }
+]
