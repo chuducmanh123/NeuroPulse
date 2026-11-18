@@ -1,5 +1,221 @@
 [
   {
+    "id": "nc-2026-055",
+    "case_code": "NC-2026-055",
+    "title": "Progressive Thoracic Spinal Cord Syndrome and Severe Sphincter Dysfunction in a Young Adult",
+    "subspecialty": "Other",
+    "subspecialties": [
+      "Other"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-19",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13757232",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05273-x",
+      "pmcid": "PMC13757232",
+      "pmid": "43015662",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "31-year-old male",
+      "chief_complaint": "Progressive lower-limb sensory disturbances, leg weakness, and bowel and bladder dysfunction",
+      "history_of_present_illness": "A 31-year-old previously healthy man presented with a 1-month history of progressive burning paresthesias, intermittent numbness, and cutaneous hypersensitivity involving both lower extremities and the buttocks. His sensory symptoms ascended proximally over subsequent weeks, followed by difficulty climbing stairs, urinary retention requiring Foley catheterization, and fecal incontinence. Prior spinal imaging at an outside facility was reportedly interpreted as unremarkable, prompting referral to the neurology service as his deficits progressed. On further questioning, he disclosed recent unprotected sexual exposure but had no documented history of genital ulcers, mucocutaneous rash, or prior treatment for sexually transmitted infections.",
+      "past_medical_history": "No known systemic disease; no documented prior sexually transmitted infections.",
+      "vitals": {
+        "bp": "Not reported",
+        "hr": "Not reported",
+        "rr": "Not reported",
+        "temp": "Not reported",
+        "spo2": "Not reported"
+      },
+      "neuro_exam": "Neurological examination revealed symmetric proximal lower-extremity weakness, pyramidal tract signs in the legs, thermal dysesthesia and hyperesthesia over the lower extremities and gluteal regions, and severe sphincter dysfunction.",
+      "key_labs_csf": "Initial serum testing was negative for human immunodeficiency virus (HIV). Brain MRI was unremarkable, whereas whole-spine MRI demonstrated a longitudinally extensive central intramedullary T2 hyperintensity spanning T6 to T10. Lumbar puncture yielded blood-contaminated cerebrospinal fluid (CSF) without pleocytosis; autoimmune myelopathy autoantibodies, oligoclonal bands, and infectious serologies were pending.",
+      "imaging": [
+        {
+          "modality": "Clinical Timeline Diagram",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13757232)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13757232_fig1.webp",
+          "pmcid": "PMC13757232",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05273-x",
+          "caption": "Clinical timeline. The timeline summarizes the sequence of symptom evolution, diagnostic work-up, treatment, and longitudinal recovery. CSF, cerebrospinal fluid; LETM, longitudinally extensive transverse myelitis; MRI, magnetic resonance imaging; VDRL, Venereal Disease Research Laboratory",
+          "findings_summary": "Chronological overview illustrating the progression of thoracic sensorimotor and sphincter deficits alongside the initial diagnostic evaluation."
+        },
+        {
+          "modality": "Spinal MRI (T2/STIR, T1, and Post-Contrast T1)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13757232)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13757232_fig2.webp",
+          "pmcid": "PMC13757232",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05273-x",
+          "caption": "Initial spinal MRI demonstrating thoracic longitudinally extensive transverse myelitis. Initial spinal magnetic resonance imaging showed longitudinally extensive central thoracic cord T2 hyperintensity from T6 to T10. A , B Sagittal T2-weighted/STIR images showed central cord hyperintensity at the involved thoracic levels. C , D Corresponding T1-weighted and post-contrast T1-weighted images are shown. E Axial T2-weighted image at the involved thoracic level demonstrated central intramedullary hyperintensity. LETM, longitudinally extensive transverse myelitis",
+          "findings_summary": "Sagittal and axial thoracic spine images demonstrating a longitudinally extensive central intramedullary T2/STIR hyperintensity spanning T6 to T10."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis in this patient?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Aquaporin-4-IgG neuromyelitis optica spectrum disorder (NMOSD)",
+          "peer_percentage": 20,
+          "rationale": "Incorrect. Although NMOSD is a classic cause of longitudinally extensive transverse myelitis (LETM) with paraparesis and sphincter dysfunction, it predominantly affects women, frequently involves the optic nerves or area postrema, and does not account for the patient's sexual exposure history; moreover, serum AQP4-IgG testing was negative."
+        },
+        {
+          "id": "B",
+          "text": "Myelin oligodendrocyte glycoprotein antibody-associated disease (MOGAD)",
+          "peer_percentage": 18,
+          "rationale": "Incorrect. MOGAD is an important radioclinical mimic of infectious LETM that frequently causes prominent bladder dysfunction and lacks CSF oligoclonal bands; however, it commonly involves the conus medullaris with CSF pleocytosis, and serum MOG-IgG testing returned negative in this patient."
+        },
+        {
+          "id": "C",
+          "text": "Idiopathic transverse myelitis",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Idiopathic transverse myelitis is strictly a diagnosis of exclusion that requires ruling out reversible infectious, vascular, and autoimmune etiologies; assigning this diagnosis prematurely would overlook a treatable infectious cause suggested by the patient's epidemiologic exposure."
+        },
+        {
+          "id": "D",
+          "text": "Neurosyphilis-associated longitudinally extensive transverse myelitis",
+          "peer_percentage": 52,
+          "rationale": "Correct! Neurosyphilis is a classic neurological mimic that can present in HIV-negative individuals without prior mucocutaneous lesions as progressive thoracic LETM with severe sphincter dysfunction. Even when initial CSF is blood-contaminated and lacks pleocytosis, relevant sexual exposure should prompt syphilis testing, which yielded reactive serum serology and CSF-VDRL (supporting probable neurosyphilis-associated LETM) with subsequent clinical and radiologic resolution."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Probable neurosyphilis-associated longitudinally extensive transverse myelitis (LETM)",
+      "clinical_discussion": "Longitudinally extensive transverse myelitis (LETM) encompasses a broad differential diagnosis spanning autoimmune, infectious, vascular, neoplastic, metabolic, and paraneoplastic disorders. In contemporary neurological practice, a central thoracic T6-T10 LETM accompanied by severe sphincter dysfunction immediately raises suspicion for aquaporin-4 (AQP4)-IgG neuromyelitis optica spectrum disorder (NMOSD), myelin oligodendrocyte glycoprotein antibody-associated disease (MOGAD), or idiopathic transverse myelitis. Nevertheless, syphilitic myelitis remains a well-recognized mimic that can arise at any stage of Treponema pallidum infection—including in HIV-negative young adults without a documented primary chancre or secondary mucocutaneous rash—and closely resembles seronegative inflammatory myelitis.\n\nThe diagnostic inflection point occurred when autoimmune testing returned negative for serum AQP4-IgG and MOG-IgG (by cell-based indirect immunofluorescence assay) with absent CSF oligoclonal bands, whereas serum syphilis serology and the CSF Venereal Disease Research Laboratory (VDRL) test returned reactive. Because the initial CSF specimen was blood-contaminated, lacked pleocytosis, and did not undergo CSF treponemal testing, the presentation was classified as probable neurosyphilis-associated LETM rather than definitive syphilitic myelitis. Proposed mechanisms of spinal cord injury in neurosyphilis include syphilitic meningomyelitis with meningeal and perivascular inflammatory infiltration, meningovascular obliterative endarteritis or vasculitis, and secondary spinal cord ischemia, processes that may coexist and produce variable MRI appearances.\n\nThe patient received ceftriaxone-based anti-treponemal therapy alongside adjunctive corticosteroids. Follow-up evaluation demonstrated recovery of spontaneous voiding, conversion of CSF-VDRL to nonreactive status, and radiologic resolution on repeat spinal MRI. Although interpretation is tempered by the nonstandard ceftriaxone regimen, concurrent corticosteroid administration, and serum-only AQP4 and MOG antibody testing, the coordinated clinical, serologic, and radiologic recovery underscores the importance of early syphilis screening in patients presenting with LETM.",
+      "teaching_points": [
+        "Include serum syphilis serology and CSF-VDRL testing early in the evaluation of longitudinally extensive transverse myelitis (LETM), particularly when prominent sphincter dysfunction is present and AQP4-IgG and MOG-IgG are negative.",
+        "Neurosyphilis can involve the spinal cord at any stage of infection and occurs in HIV-negative individuals without a prior documented genital ulcer or mucocutaneous rash.",
+        "Syphilitic myelitis arises from meningomyelitis, meningovascular obliterative endarteritis, or secondary spinal cord ischemia, producing longitudinal T2 cord hyperintensity that mimics autoimmune LETM.",
+        "Absence of CSF pleocytosis or initial blood contamination does not exclude probable neurosyphilis when clinical, imaging, serum serologic, and CSF-VDRL findings support the diagnosis."
+      ],
+      "clinical_pitfalls": [
+        "Prematurely labeling AQP4-IgG- and MOG-IgG-negative LETM as idiopathic or seronegative autoimmune myelitis without excluding treatable infectious mimics such as neurosyphilis.",
+        "Relying solely on CSF pleocytosis to suspect neurosyphilis or failing to integrate blood-contaminated CSF-VDRL results with serum serology and treatment response.",
+        "Dismissing progressive sensory and sphincter deficits after an initially unremarkable outside imaging interpretation, thereby delaying dedicated spinal MRI and etiologic testing."
+      ],
+      "related_keywords": [
+        "Neurosyphilis",
+        "Longitudinally extensive transverse myelitis",
+        "Syphilitic myelitis",
+        "CSF-VDRL"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-056",
+    "case_code": "NC-2026-056",
+    "title": "Progressive Exertional Headaches and a Brainstem Mass in a 14-Year-Old Girl",
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-19",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13718052",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05040-y",
+      "pmcid": "PMC13718052",
+      "pmid": "42958061",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "14-year-old female",
+      "chief_complaint": "Progressive throbbing headaches for 2 months",
+      "history_of_present_illness": "A previously healthy 14-year-old girl with no history of head trauma presented to the pediatric neurosurgery clinic with a 2-month history of throbbing headaches that were initially triggered by physical education class and occurred two to three times daily. An outpatient non-contrast head CT scan at a referring hospital revealed a space-occupying lesion in the brainstem region. Over the 2 weeks preceding presentation, her headaches escalated in frequency and severity, occurring even at rest in episodes lasting 2 to 3 minutes and accompanied by insomnia and intermittent dizziness when straining during bowel movements. She reported no limb weakness, numbness, diplopia, blurred vision, nausea, vomiting, or gait instability.",
+      "past_medical_history": "No significant past medical history or prior head trauma.",
+      "vitals": {
+        "bp": "124/85 mmHg",
+        "hr": "113 bpm",
+        "rr": "21 breaths/min",
+        "temp": "36.8 °C",
+        "spo2": "Not reported"
+      },
+      "neuro_exam": "On examination, she was alert and cooperative, with intact cranial nerves, full motor strength, normal sensation, and preserved coordination without focal neurological deficits. Cardiopulmonary auscultation was normal aside from mild sinus tachycardia.",
+      "key_labs_csf": "No cerebrospinal fluid sampling was performed.",
+      "imaging": [
+        {
+          "modality": "MRA and 3.0-T High-Resolution Vessel Wall MRI (HR-VWI)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13718052)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13718052_fig1.webp",
+          "pmcid": "PMC13718052",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05040-y",
+          "caption": "High-resolution vessel wall imaging (HR-VWI) and 3D quantitative analysis of wall enhancement in a dissecting aneurysm. A MR angiography illustrating the overall morphology of the cerebral vasculature. B Sagittal 3D T1-weighted black-blood MRI showing pronounced focal enhancement (arrows) and significantly thickened wall (up to 1.5 mm). C and D 3D pseudo-color mapping of the aneurysm wall enhancement (AWE). The color scale (CRstalk) reflects the signal intensity ratio normalized against the pituitary stalk. Segmental mapping (Segments 1–3) intuitively demonstrates the spatial distribution of p",
+          "findings_summary": "MRA demonstrates a giant fusiform dilation of the left intracranial vertebral artery adjacent to the brainstem, while sagittal three-dimensional T1-weighted black-blood MRI and pseudo-color mapping show asymmetric mural thickening up to 1.5 mm with three focal segments of pronounced wall enhancement (wall-to-corpus callosum signal-intensity ratio, 1.25)."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Given the escalating clinical symptoms and high-resolution vessel wall MRI findings, what is the most appropriate next step in management?",
+      "question_type": "Acute Management",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Expedited endovascular or microsurgical repair of the lesion because of a high risk of imminent rupture",
+          "peer_percentage": 72,
+          "rationale": "Correct! Escalating headaches occurring at rest and with Valsalva maneuvers, combined with asymmetric mural thickening and three segments of pronounced wall enhancement on 3D high-resolution vessel wall MRI, indicates active mural inflammation and structural vulnerability carrying a high risk of imminent rupture that warrants urgent intervention."
+        },
+        {
+          "id": "B",
+          "text": "Conservative outpatient surveillance with repeat MRA in 6 months given the intact neurological examination",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Relying on a normal baseline neurological examination to defer treatment is unsafe when symptoms are rapidly progressing and high-resolution vessel wall MRI demonstrates focal wall enhancement indicative of unstable vascular pathology."
+        },
+        {
+          "id": "C",
+          "text": "Empiric high-dose intravenous corticosteroids and immunosuppressive workup for presumed primary CNS vasculitis",
+          "peer_percentage": 9,
+          "rationale": "Incorrect. Although vessel wall enhancement occurs in CNS vasculitis, the solitary giant fusiform dilation of an intracranial vertebral artery with eccentric wall thickening is characteristic of a dissecting vascular lesion rather than diffuse vasculitis, and delaying definitive repair risks catastrophic hemorrhage."
+        },
+        {
+          "id": "D",
+          "text": "Symptomatic headache prophylaxis with oral beta-blockers and routine elective scheduling",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Treating progressive, Valsalva-exacerbated headaches as benign primary headaches and deferring intervention for routine elective scheduling places the patient at high risk for acute preoperative rupture."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Giant left vertebral artery dissecting aneurysm with high-risk focal wall enhancement (preoperative rupture)",
+      "clinical_discussion": "On initial non-contrast head CT, a giant vertebrobasilar vascular lesion can closely mimic a posterior fossa neoplasm such as a pediatric brainstem glioma or cavernous malformation. Subsequent MRA localized the mass to a giant fusiform dissecting aneurysm of the left intracranial vertebral artery compressing the adjacent brainstem. Although focal vessel wall enhancement on MRI can raise consideration for inflammatory vasculopathies such as primary angiitis of the central nervous system or infectious arteritis, the solitary fusiform dissecting morphology with asymmetric mural thickening strongly favors a high-risk dissecting aneurysm rather than diffuse vasculitis.\n\nThe diagnostic inflection point in this case was the use of 3.0-T three-dimensional T1-weighted black-blood high-resolution vessel wall MRI (HR-VWI) with quantitative pseudo-color mapping normalized to the pituitary stalk and corpus callosum, which revealed mural thickening up to 1.5 mm and three discrete segments of pronounced enhancement (wall-to-corpus callosum signal-intensity ratio, 1.25). Pathophysiologically, aneurysm wall enhancement reflects inflammatory cell infiltration, neovascularization, vasa vasorum proliferation, and mural degeneration, representing areas of structural vulnerability predisposed to rupture. The patient's escalating rest headaches and straining-induced dizziness paralleled this underlying mural instability despite an intact baseline neurological examination.\n\nPediatric intracranial aneurysms account for fewer than 5% of all intracranial aneurysms, exhibit a distinct natural history compared with adult lesions, and carry a mortality rate exceeding 10% once ruptured. Risk stratification in children therefore cannot rely solely on adult size thresholds or the absence of focal deficits. When progressive clinical symptoms coincide with pronounced focal aneurysm wall enhancement on HR-VWI, expedited multidisciplinary neurovascular intervention via endovascular reconstruction, parent-vessel occlusion, or microsurgical trapping is critical; unfortunately, this patient suffered an acute preoperative aneurysm rupture prior to scheduled surgery.",
+      "teaching_points": [
+        "Pediatric intracranial aneurysms (<5% of all intracranial aneurysms) exhibit a distinct natural history from adult lesions and carry >10% mortality after rupture, requiring specialized risk stratification.",
+        "Giant posterior circulation aneurysms can mimic brainstem neoplasms on non-contrast head CT; urgent vascular imaging (CTA or MRA) is mandatory before considering invasive biopsy or lumbar puncture.",
+        "High-resolution vessel wall MRI (HR-VWI) detects focal aneurysm wall enhancement and mural thickening, which reflect underlying mural inflammation and neovascularization and serve as biomarkers of rupture-prone vulnerability.",
+        "Escalating headaches occurring at rest or triggered by Valsalva maneuvers in a patient with an unruptured intracranial aneurysm signal impending instability and warrant expedited repair rather than routine elective scheduling."
+      ],
+      "clinical_pitfalls": [
+        "Assuming structural stability based on an unremarkable baseline neurological examination despite progressive headache frequency and severity.",
+        "Delaying definitive surgical or endovascular repair when HR-VWI demonstrates pronounced focal aneurysm wall enhancement, which increases the risk of catastrophic preoperative rupture."
+      ],
+      "related_keywords": [
+        "Pediatric intracranial aneurysm",
+        "Vertebral artery dissection",
+        "High-resolution vessel wall imaging",
+        "Aneurysm wall enhancement",
+        "Rupture risk stratification"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-053",
     "case_code": "NC-2026-053",
     "title": "A 46-Year-Old Woman with a Rapidly Expanding Frontoparietal Mass",
