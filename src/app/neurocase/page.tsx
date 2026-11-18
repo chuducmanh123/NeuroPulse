@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
+import { Flame, Layers, PlusCircle, Timer } from "lucide-react";
 import { ClinicalCase, CaseDifficulty, CaseStatus, CaseNeuroImaging } from "../../types/clinicalCase";
 import { Article } from "../../types/article";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
@@ -758,20 +759,21 @@ export default function NeuroCasePage() {
           </div>
         </header>
 
-        {/* NAVIGATION BAR: Clean Clinical Focus for Doctors */}
+        {/* NAVIGATION BAR: GitHub-style Underline Tabs with NeuroCase Indigo Accent */}
         <nav
-          className={`mb-6 p-1.5 rounded-xl border flex flex-wrap items-center justify-between gap-1.5 ${
-            darkMode ? "bg-slate-900/90 border-slate-800" : "bg-white border-slate-200 shadow-xs"
+          className={`mb-6 border-b ${
+            darkMode ? "border-slate-800" : "border-slate-200"
           }`}
         >
-          <div className="flex flex-wrap items-center gap-1.5">
+          <div className="flex items-center gap-1 overflow-x-auto no-scrollbar -mb-px">
             {[
-              { id: "daily", label: "🔥 Daily Challenge", badge: undefined },
-              { id: "archive", label: "📚 Case Archive", badge: `${approvedCases.length}` },
-              { id: "exam", label: "⏱️ Exam Mode", badge: undefined },
-              { id: "submit", label: "➕ Submit Case", badge: undefined },
+              { id: "daily", label: "Daily Challenge", icon: Flame, badge: undefined },
+              { id: "archive", label: "Case Archive", icon: Layers, badge: `${approvedCases.length}` },
+              { id: "exam", label: "Exam Mode", icon: Timer, badge: undefined },
+              { id: "submit", label: "Submit Case", icon: PlusCircle, badge: undefined },
             ].map((tab) => {
               const active = activeTab === tab.id;
+              const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
@@ -783,27 +785,57 @@ export default function NeuroCasePage() {
                       setShowDetailedWorkup(false);
                     }
                   }}
-                  className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  className={`group relative shrink-0 pb-2.5 pt-1 text-[13px] transition-colors ${
                     active
-                      ? "bg-indigo-600 text-white shadow-sm"
+                      ? darkMode
+                        ? "font-semibold text-white"
+                        : "font-semibold text-slate-900"
                       : darkMode
-                      ? "text-slate-300 hover:bg-slate-800"
-                      : "text-slate-700 hover:bg-slate-100"
+                      ? "font-medium text-slate-400 hover:text-slate-200"
+                      : "font-medium text-slate-600 hover:text-slate-900"
                   }`}
                 >
-                  <span>{tab.label}</span>
-                  {tab.badge && (
-                    <span
-                      className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
+                  <span
+                    className={`flex items-center gap-2 px-2.5 py-1.5 rounded-md transition-colors ${
+                      darkMode ? "group-hover:bg-slate-800/80" : "group-hover:bg-slate-200/70"
+                    }`}
+                  >
+                    <Icon
+                      size={15}
+                      strokeWidth={1.75}
+                      className={
                         active
-                          ? "bg-white/20 text-white"
+                          ? darkMode
+                            ? "text-indigo-400"
+                            : "text-indigo-600"
                           : darkMode
-                          ? "bg-slate-800 text-slate-300"
-                          : "bg-slate-100 text-slate-600"
+                          ? "text-slate-500 group-hover:text-slate-300"
+                          : "text-slate-400 group-hover:text-slate-600"
+                      }
+                    />
+                    <span className="whitespace-nowrap">{tab.label}</span>
+                    {tab.badge && (
+                      <span
+                        className={`px-2 py-0.5 rounded-full text-[11px] font-semibold leading-none ${
+                          active
+                            ? darkMode
+                              ? "bg-indigo-500/20 text-indigo-300"
+                              : "bg-indigo-50 text-indigo-700"
+                            : darkMode
+                            ? "bg-slate-800 text-slate-300"
+                            : "bg-slate-200/80 text-slate-700"
+                        }`}
+                      >
+                        {tab.badge}
+                      </span>
+                    )}
+                  </span>
+                  {active && (
+                    <span
+                      className={`absolute inset-x-1 bottom-0 h-[2px] rounded-full ${
+                        darkMode ? "bg-indigo-400" : "bg-indigo-600"
                       }`}
-                    >
-                      {tab.badge}
-                    </span>
+                    />
                   )}
                 </button>
               );

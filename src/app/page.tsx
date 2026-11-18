@@ -863,16 +863,18 @@ export default function HomePage() {
 
             <button
               onClick={() => setShowSavedOnly(!showSavedOnly)}
-              className={`px-3.5 py-2 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 ${
+              className={`px-2.5 sm:px-3.5 py-2 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 ${
                 showSavedOnly
                   ? "bg-amber-500 text-white border-amber-600 shadow-sm"
                   : darkMode
                   ? "bg-slate-900 text-slate-200 border-slate-700 hover:bg-slate-800"
                   : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
               }`}
+              title={`Saved (${bookmarks.length})`}
+              aria-label={`Saved (${bookmarks.length})`}
             >
-              <span>{showSavedOnly ? "★" : "☆"}</span>
-              <span>Saved ({bookmarks.length})</span>
+              <span className="text-sm sm:text-xs leading-4">{showSavedOnly ? "★" : "☆"}</span>
+              <span className="hidden sm:inline">Saved ({bookmarks.length})</span>
             </button>
 
             <AppSwitcher currentApp="neuropulse" darkMode={darkMode} />
@@ -888,31 +890,36 @@ export default function HomePage() {
                 : "border-amber-300/90 bg-gradient-to-br from-amber-50/90 via-white to-orange-50/60"
             }`}
           >
-            <div className="px-4 py-3 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white flex flex-wrap items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <span className="text-base">🌅</span>
-                <div>
-                  <span className="text-xs font-black uppercase tracking-wider text-amber-300 block sm:inline sm:mr-2">
-                    MORNING CLINICAL BRIEFING
-                  </span>
+            <div
+              className={`px-4 ${
+                showBriefing ? "py-3 flex-wrap" : "py-2.5 flex-nowrap"
+              } bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white flex items-center justify-between gap-2`}
+            >
+              <div className="min-w-0">
+                <span className="text-xs font-black uppercase tracking-wider text-amber-300 block sm:inline sm:mr-2 truncate">
+                  MORNING CLINICAL BRIEFING
+                </span>
+                {showBriefing && (
                   <span className="text-[11px] text-slate-300">
                     Top {briefingHighlights.length} High-Yield RCTs, Guidelines &amp; Studies for Handover
                   </span>
-                </div>
+                )}
               </div>
 
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={handleCopyFullBriefing}
-                  className={`px-2.5 py-1 rounded text-[11px] font-bold transition-all ${
-                    briefingCopied
-                      ? "bg-emerald-500 text-white"
-                      : "bg-white/15 hover:bg-white/25 text-white"
-                  }`}
-                  title="Copy all 4 morning highlights for Zalo / Telegram handover"
-                >
-                  {briefingCopied ? "✓ Briefing Copied!" : "📋 Copy Briefing"}
-                </button>
+              <div className="flex items-center gap-2 shrink-0">
+                {showBriefing && (
+                  <button
+                    onClick={handleCopyFullBriefing}
+                    className={`px-2.5 py-1 rounded text-[11px] font-bold transition-all ${
+                      briefingCopied
+                        ? "bg-emerald-500 text-white"
+                        : "bg-white/15 hover:bg-white/25 text-white"
+                    }`}
+                    title="Copy all 4 morning highlights for Zalo / Telegram handover"
+                  >
+                    {briefingCopied ? "✓ Briefing Copied!" : "📋 Copy Briefing"}
+                  </button>
+                )}
                 <button
                   onClick={() => setShowBriefing(!showBriefing)}
                   className="px-2 py-1 rounded text-[11px] font-semibold bg-white/10 hover:bg-white/20 text-slate-200"

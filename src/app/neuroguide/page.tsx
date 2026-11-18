@@ -3,8 +3,10 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import {
+  BookOpen,
   Building2,
   ChevronDown,
+  Compass,
   Layers,
   Radio,
   Search,
@@ -453,23 +455,32 @@ export default function NeuroGuidePage() {
 
   // Dynamic Navigation Tabs with Live Counts (Review Queue visible to Admin only)
   const navTabs = useMemo(() => {
-    const tabs: { id: NavTabId; label: string; mobileLabel: string; badge?: string }[] = [
+    const tabs: {
+      id: NavTabId;
+      label: string;
+      mobileLabel: string;
+      icon: typeof BookOpen;
+      badge?: string;
+    }[] = [
       {
         id: "guidelines" as const,
-        label: "🔥 Guidelines",
-        mobileLabel: "🔥 Guidelines",
+        label: "Guidelines",
+        mobileLabel: "Guidelines",
+        icon: BookOpen,
         badge: `${guidelineDocs.length}`,
       },
       {
         id: "conf" as const,
-        label: "🎙️ Conferences & Trials",
-        mobileLabel: "🎙️ Conferences",
+        label: "Conferences & Trials",
+        mobileLabel: "Conferences",
+        icon: Radio,
         badge: `${conferences.length}`,
       },
       {
         id: "navigator" as const,
-        label: "🧭 Clinical Navigator",
-        mobileLabel: "🧭 Navigator",
+        label: "Clinical Navigator",
+        mobileLabel: "Navigator",
+        icon: Compass,
       },
     ];
 
@@ -1171,43 +1182,75 @@ export default function NeuroGuidePage() {
         </header>
 
         {/* =========================================================================
-            NAVIGATION BAR (3 Tabs in user-specified order)
+            NAVIGATION BAR (GitHub-style Underline Tabs with NeuroGuide Amber Accent)
            ========================================================================= */}
         <nav
-          className={`mb-4 sm:mb-6 p-1.5 rounded-xl border flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-1.5 ${
-            darkMode ? "bg-slate-900/90 border-slate-800" : "bg-white border-slate-200 shadow-xs"
+          className={`mb-4 sm:mb-6 border-b ${
+            darkMode ? "border-slate-800" : "border-slate-200"
           }`}
         >
           {/* Tab 1: Guidelines | Tab 2: Conferences | Tab 3: Clinical Navigator */}
-          <div className="grid grid-cols-2 gap-1 sm:flex sm:flex-wrap sm:items-center sm:gap-1.5 w-full">
+          <div className="flex items-center gap-1 overflow-x-auto no-scrollbar -mb-px">
             {navTabs.map((tab) => {
               const isActive = activeTab === tab.id;
+              const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
+                  type="button"
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-1.5 py-2 sm:px-3.5 sm:py-2 rounded-lg text-[11px] sm:text-xs font-bold transition-all flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 text-center ${
+                  className={`group relative shrink-0 pb-2.5 pt-1 text-[12px] sm:text-[13px] transition-colors ${
                     isActive
-                      ? "bg-amber-500 text-white shadow-sm"
+                      ? darkMode
+                        ? "font-semibold text-white"
+                        : "font-semibold text-slate-900"
                       : darkMode
-                      ? "text-slate-300 hover:bg-slate-800 hover:text-white"
-                      : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+                      ? "font-medium text-slate-400 hover:text-slate-200"
+                      : "font-medium text-slate-600 hover:text-slate-900"
                   }`}
                 >
-                  <span className="sm:hidden">{tab.mobileLabel}</span>
-                  <span className="hidden sm:inline">{tab.label}</span>
-                  {tab.badge && (
-                    <span
-                      className={`text-[9.5px] sm:text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                  <span
+                    className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1.5 rounded-md transition-colors ${
+                      darkMode ? "group-hover:bg-slate-800/80" : "group-hover:bg-slate-200/70"
+                    }`}
+                  >
+                    <Icon
+                      size={15}
+                      strokeWidth={1.75}
+                      className={
                         isActive
-                          ? "bg-white/20 text-white"
+                          ? darkMode
+                            ? "text-amber-400"
+                            : "text-amber-600"
                           : darkMode
-                          ? "bg-slate-800 text-slate-400"
-                          : "bg-slate-200 text-slate-600"
+                          ? "text-slate-500 group-hover:text-slate-300"
+                          : "text-slate-400 group-hover:text-slate-600"
+                      }
+                    />
+                    <span className="sm:hidden whitespace-nowrap">{tab.mobileLabel}</span>
+                    <span className="hidden sm:inline whitespace-nowrap">{tab.label}</span>
+                    {tab.badge && (
+                      <span
+                        className={`px-2 py-0.5 rounded-full text-[11px] font-semibold leading-none ${
+                          isActive
+                            ? darkMode
+                              ? "bg-amber-500/20 text-amber-300"
+                              : "bg-amber-50 text-amber-700"
+                            : darkMode
+                            ? "bg-slate-800 text-slate-300"
+                            : "bg-slate-200/80 text-slate-700"
+                        }`}
+                      >
+                        {tab.badge}
+                      </span>
+                    )}
+                  </span>
+                  {isActive && (
+                    <span
+                      className={`absolute inset-x-1 bottom-0 h-[2px] rounded-full ${
+                        darkMode ? "bg-amber-400" : "bg-amber-500"
                       }`}
-                    >
-                      {tab.badge}
-                    </span>
+                    />
                   )}
                 </button>
               );

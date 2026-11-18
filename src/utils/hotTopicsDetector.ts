@@ -25,59 +25,59 @@ export interface HotTopicResult {
 // Ngân hàng các chủ đề can thiệp, đích tác động và dấu ấn sinh học lâm sàng chuyên sâu
 export const HOT_TOPICS_BANK: HotTopicDefinition[] = [
   {
-    label: "🩸 Late-Window & Mild-Stroke EVT",
+    label: "Late-Window & Mild-Stroke EVT",
     query: "thrombectomy|endovascular therapy|large-vessel occlusion|large vessel occlusion",
   },
   {
-    label: "🧬 Anti-Amyloid & Plasma p-tau217",
+    label: "Anti-Amyloid & Plasma p-tau217",
     query: "p-tau217|ptau217|p-tau181|lecanemab|donanemab|amyloid pet|preclinical alzheimer",
   },
   {
-    label: "🔬 NfL, GFAP & Fluid Biomarkers",
+    label: "NfL, GFAP & Fluid Biomarkers",
     query: "neurofilament|nfl|gfap|glial fibrillary|n-terminal tau|chitotriosidase",
   },
   {
-    label: "💊 DOAC & Rhythm Control Post-Stroke/ICH",
+    label: "DOAC & Rhythm Control Post-Stroke/ICH",
     query: "anticoagulation|doac|doacs|warfarin|intracranial bleeding|early rhythm control",
   },
   {
-    label: "🎯 Focused Ultrasound & Parkinson/DBS",
+    label: "Focused Ultrasound & Parkinson/DBS",
     query: "focused ultrasound|deep brain stimulation|pallidothalamic|parkinson|levodopa|dyskinesia",
   },
   {
-    label: "🩸 Acute ICH BP & Neurocritical Care",
+    label: "Acute ICH BP & Neurocritical Care",
     query: "intracerebral hemorrhage|hematoma expansion|bp-lowering|intensive blood pressure",
   },
   {
-    label: "🧠 Small Vessel Disease, WMH & EPVS",
+    label: "Small Vessel Disease, WMH & EPVS",
     query: "white matter hyperintensities|small vessel disease|perivascular spaces|microbleeds",
   },
   {
-    label: "🛡️ Ocrelizumab, MOGAD & NMOSD",
+    label: "Ocrelizumab, MOGAD & NMOSD",
     query: "ocrelizumab|mogad|nmosd|aquaporin-4|chronic active lesion|multiple sclerosis",
   },
   {
-    label: "⚡ Tenecteplase & Delayed Thrombolysis",
+    label: "Tenecteplase & Delayed Thrombolysis",
     query: "tenecteplase|alteplase|thrombolysis|delayed treatment window",
   },
   {
-    label: "🧬 ALS & Motor Neuron Therapies",
+    label: "ALS & Motor Neuron Therapies",
     query: "tofersen|amyotrophic lateral sclerosis|motor neuron disease|exon skipping|gene therapy",
   },
   {
-    label: "⚡ ASM Interactions & Epilepsy Outcomes",
+    label: "ASM Interactions & Epilepsy Outcomes",
     query: "antiseizure|drug-resistant epilepsy|young-onset dementia|status epilepticus|seizure",
   },
   {
-    label: "🎗️ Meningioma & Glioma Radiotherapy",
+    label: "Meningioma & Glioma Radiotherapy",
     query: "meningioma|astrocytoma|glioblastoma|adjuvant radiotherapy|cns lymphoma",
   },
   {
-    label: "💉 CGRP, Gepants & Migraine",
+    label: "CGRP, Gepants & Migraine",
     query: "cgrp|gepant|ubrogepant|atogepant|rimegepant|erenumab|fremanezumab|migraine",
   },
   {
-    label: "🫀 Carotid Stenosis & Revascularization",
+    label: "Carotid Stenosis & Revascularization",
     query: "carotid stenting|carotid endarterectomy|carotid stenosis|endarterectomy",
   },
 ];
