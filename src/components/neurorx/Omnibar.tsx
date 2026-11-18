@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect, useId } from "react";
 import { Search, X, CheckCircle2, AlertTriangle, ShieldCheck } from "lucide-react";
 import type { ParsedOmnibarQuery, ParsedPatientParams, SearchResult } from "@/lib/neurorx/omnibar";
+import { TallManHint } from "@/components/neurorx/TallManHint";
 
 interface OmnibarProps {
   query: string;
@@ -294,6 +295,12 @@ export function Omnibar({
                       <span className="font-extrabold text-sm sm:text-base tracking-tight text-slate-900 dark:text-white">
                         {tallManName}
                       </span>
+
+                      <TallManHint
+                        tallMan={drug.tall_man}
+                        genericName={drug.generic_name}
+                        darkMode={darkMode}
+                      />
 
                       {/* Brand Match or Product Hint */}
                       {drug.vn_products?.value && drug.vn_products.value.length > 0 && (

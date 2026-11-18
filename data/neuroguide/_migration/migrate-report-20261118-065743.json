@@ -1,0 +1,46 @@
+{
+  "mode": "apply",
+  "snapshotFile": "data/neuroguide/_migration/snapshot-20261118.json",
+  "summaryFile": "data/neuroguide/_migration/summary-20261118.json",
+  "totalSnapshotBlocks": 1112,
+  "totalSnapshotProtocols": 22,
+  "totalSnapshotLinks": 4878,
+  "existingLiveBlocks": 0,
+  "existingLiveProtocols": 0,
+  "toCreateBlocksCount": 1112,
+  "toSkipBlocksCount": 0,
+  "createdBlocksCount": 1112,
+  "toCreateProtocolsCount": 22,
+  "toSkipProtocolsCount": 0,
+  "createdProtocolsCount": 22,
+  "upsertedLinksCount": 4878,
+  "beforeState": {
+    "maxSeq": 0,
+    "purgeHorizonSeq": 0,
+    "rootHash": ""
+  },
+  "afterState": {
+    "maxSeq": 1158,
+    "purgeHorizonSeq": 0,
+    "rootHash": "bf52b4c6c3526015fdad729a8623b3d6e84b354526928d3adf178ec031e73cc7"
+  },
+  "recomputedRootHash": "bf52b4c6c3526015fdad729a8623b3d6e84b354526928d3adf178ec031e73cc7",
+  "postCheck": {
+    "passed": true,
+    "errors": [],
+    "liveBlockCount": 1112,
+    "liveProtocolCount": 22,
+    "liveLinkCount": 4878,
+    "blockCountsByType": {
+      "clinical_scenario": 8,
+      "pivotal_trial": 95,
+      "recommendation": 997,
+      "recommendation_atom": 12
+    },
+    "protocolHashesMatchSummary": true,
+    "rootHashMatchesComputed": true,
+    "rootHashMatchesSummary": true
+  },
+  "generatedAt": "2026-11-18T06:57:43.770Z",
+  "reportPath": "data/neuroguide/_migration/migrate-report-20261118-065743.json"
+}

@@ -1,29 +1,13 @@
 import type { DrugRecord } from "../../../types/neurorx.ts";
+import { RepoError as SharedRepoError } from "../../sync/repo.ts";
 import type {
   JsonPatchOp,
-  RepoErrorCode,
   RevisionRow,
   SyncRow,
   SyncState,
 } from "./types.ts";
 
-export class RepoError extends Error {
-  readonly code: RepoErrorCode;
-  readonly currentRev?: number;
-  readonly currentRow?: SyncRow;
-
-  constructor(
-    code: RepoErrorCode,
-    message: string,
-    opts?: { currentRev?: number; currentRow?: SyncRow }
-  ) {
-    super(message);
-    this.name = "RepoError";
-    this.code = code;
-    this.currentRev = opts?.currentRev;
-    this.currentRow = opts?.currentRow;
-  }
-}
+export class RepoError extends SharedRepoError<SyncRow> {}
 
 export interface DrugRepo {
   getSyncState(): Promise<SyncState>;

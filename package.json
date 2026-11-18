@@ -14,7 +14,9 @@
     "rx:push": "node --use-system-ca --experimental-strip-types scripts/neurorx/push_local_to_v2.ts",
     "rx:verify": "node --use-system-ca --experimental-strip-types scripts/neurorx/verify.ts",
     "rx:snapshot": "node --experimental-strip-types scripts/neurorx/export-effective-snapshot.ts",
-    "rx:migrate-v2": "node --use-system-ca --experimental-strip-types scripts/neurorx/migrate-to-v2.ts"
+    "rx:migrate-v2": "node --use-system-ca --experimental-strip-types scripts/neurorx/migrate-to-v2.ts",
+    "ng:snapshot": "node --use-system-ca --experimental-strip-types scripts/neuroguide/export-effective-snapshot.ts",
+    "ng:migrate-v2": "node --use-system-ca --experimental-strip-types scripts/neuroguide/migrate-to-v2.ts"
   },
   "dependencies": {
     "@niivue/niivue": "^0.69.0",

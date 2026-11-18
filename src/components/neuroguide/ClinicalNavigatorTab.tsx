@@ -26,6 +26,9 @@ import {
   getPreventionSchemaForScopesV3,
   getTagLabelByIdV3,
   getAllDiagnosisTagsV3,
+  compareConditionLabelsV3,
+  getConditionSubTagsForScopesV3,
+  getSubTagParentConditionV3,
   type Subspecialty,
   type ClinicalDomainV3,
   type DirectionFilterV3,
@@ -39,6 +42,7 @@ import {
   type IndexedNavigatorRecommendation,
 } from "../../lib/neuroguide/clinicalNavigatorEngine";
 import { PivotalTrialModal } from "./PivotalTrialModal";
+import { STROKE_ONTOLOGY } from "../../lib/neuroguide/ontologyValidator";
 import { getAdminHeaders } from "@/utils/clientAuth";
 
 interface ClinicalNavigatorTabProps {
@@ -271,6 +275,7 @@ interface FilterDropdownOption {
   label: string;
   count?: number;
   hint?: string;
+  keywords?: string[];
 }
 
 interface MultiSelectFilterDropdownProps {
@@ -311,7 +316,11 @@ function MultiSelectFilterDropdown({
   const filteredOptions = useMemo(() => {
     if (!innerSearch.trim()) return options;
     const q = innerSearch.toLowerCase();
-    return options.filter((o) => o.label.toLowerCase().includes(q));
+    return options.filter(
+      (o) =>
+        o.label.toLowerCase().includes(q) ||
+        (o.keywords && o.keywords.some((kw) => kw.toLowerCase().includes(q)))
+    );
   }, [options, innerSearch]);
 
   const summaryText = useMemo(() => {
@@ -511,6 +520,9 @@ export function ClinicalNavigatorTab({
     }
     return [];
   });
+  const [selectedConditionSubTags, setSelectedConditionSubTags] = useState<string[]>(
+    initialPresetOrQuery?.conditionSubTags || []
+  );
 
   const [selectedDomains, setSelectedDomains] = useState<ClinicalDomainV3[]>(() => {
     if (initialPresetOrQuery?.domains && initialPresetOrQuery.domains.length > 0) {
@@ -530,6 +542,9 @@ export function ClinicalNavigatorTab({
   );
   const [selectedInterventionTags, setSelectedInterventionTags] = useState<string[]>(
     initialPresetOrQuery?.interventionTags || []
+  );
+  const [selectedOutcomeTargets, setSelectedOutcomeTargets] = useState<string[]>(
+    initialPresetOrQuery?.facets?.outcome_target || []
   );
   const [selectedDirectionFilter, setSelectedDirectionFilter] = useState<DirectionFilterV3>(
     initialPresetOrQuery?.directionFilter || "all"
@@ -628,6 +643,7 @@ export function ClinicalNavigatorTab({
       subspecialties: selectedSubspecialties,
       conditionId: selectedConditionIds.length === 1 ? selectedConditionIds[0] : (selectedConditionIds.length === 0 ? "all" : undefined),
       conditionIds: selectedConditionIds,
+      conditionSubTags: selectedConditionSubTags.length > 0 ? selectedConditionSubTags : undefined,
       domain: selectedDomains.length === 1 ? selectedDomains[0] : (selectedDomains.length === 0 ? "all" : undefined),
       domains: selectedDomains,
       diagnosisTags: selectedDiagnosisTags.length > 0 ? selectedDiagnosisTags : undefined,
@@ -635,6 +651,7 @@ export function ClinicalNavigatorTab({
       interventionTags: selectedInterventionTags.length > 0 ? selectedInterventionTags : undefined,
       directionFilter: selectedDirectionFilter !== "all" ? selectedDirectionFilter : undefined,
       societies: selectedSocieties.length > 0 ? selectedSocieties : undefined,
+      facets: selectedOutcomeTargets.length > 0 ? { outcome_target: selectedOutcomeTargets } : undefined,
       includeAiChecked: true,
       onlyPracticeChanges,
       verificationFilter,
@@ -643,10 +660,12 @@ export function ClinicalNavigatorTab({
       deferredSearchText,
       selectedSubspecialties,
       selectedConditionIds,
+      selectedConditionSubTags,
       selectedDomains,
       selectedDiagnosisTags,
       selectedTimeWindowId,
       selectedInterventionTags,
+      selectedOutcomeTargets,
       selectedDirectionFilter,
       selectedSocieties,
       onlyPracticeChanges,
@@ -692,8 +711,12 @@ export function ClinicalNavigatorTab({
   // Requirement 1: Nội dung sắp xếp theo thứ tự bảng chữ cái
   const availableConditions = useMemo(() => {
     const conds = getConditionsForSubspecialtiesV3(selectedSubspecialties);
-    return [...conds].sort((a, b) => a.label.localeCompare(b.label));
+    return [...conds].sort((a, b) => compareConditionLabelsV3(a.label, b.label));
   }, [selectedSubspecialties]);
+
+  const availableConditionSubTags = useMemo(() => {
+    return getConditionSubTagsForScopesV3(selectedConditionIds);
+  }, [selectedConditionIds]);
 
   // Requirement 1: Clinical Domains sorted alphabetically
   const sortedDomains = useMemo(
@@ -732,12 +755,19 @@ export function ClinicalNavigatorTab({
       // Requirement 3: khi chọn subspecialty thì các lựa chọn khác trong clinical condition không thuộc subspecialty đó sẽ biến mất
       // Clean up any conditions that no longer belong to active subspecialties
       if (nextSubs.length > 0) {
-        setSelectedConditionIds((prevConds) =>
-          prevConds.filter((cid) => {
+        setSelectedConditionIds((prevConds) => {
+          const remaining = prevConds.filter((cid) => {
             const cond = getConditionByIdV3(cid);
             return cond && cond.subspecialties.some((s) => nextSubs.includes(s));
-          })
-        );
+          });
+          setSelectedConditionSubTags((prevSubTags) =>
+            prevSubTags.filter((stId) => {
+              const parent = getSubTagParentConditionV3(stId);
+              return parent ? remaining.includes(parent.id) : false;
+            })
+          );
+          return remaining;
+        });
       }
       return nextSubs;
     });
@@ -750,7 +780,11 @@ export function ClinicalNavigatorTab({
     setSelectedConditionIds((prev) => {
       const isAlready = prev.includes(condId);
       if (isAlready) {
-        return prev.filter((id) => id !== condId);
+        const next = prev.filter((id) => id !== condId);
+        setSelectedConditionSubTags((prevSubTags) =>
+          prevSubTags.filter((stId) => getSubTagParentConditionV3(stId)?.id !== condId)
+        );
+        return next;
       } else {
         const next = [...prev, condId];
         // Requirement 2: khi chọn 1 clinical condition thì tự động chọn subspecialty
@@ -762,6 +796,29 @@ export function ClinicalNavigatorTab({
         }
         return next;
       }
+    });
+  };
+
+  const handleToggleConditionSubTag = (subTagId: string) => {
+    setActivePresetId(null);
+    setVisibleCountBySociety({});
+    setSelectedConditionSubTags((prev) => {
+      const isAlready = prev.includes(subTagId);
+      if (isAlready) {
+        return prev.filter((id) => id !== subTagId);
+      }
+      const parent = getSubTagParentConditionV3(subTagId);
+      if (parent) {
+        setSelectedConditionIds((prevConds) =>
+          prevConds.includes(parent.id) ? prevConds : [...prevConds, parent.id]
+        );
+        if (parent.subspecialties.length > 0) {
+          setSelectedSubspecialties((prevSubs) =>
+            Array.from(new Set([...prevSubs, ...parent.subspecialties]))
+          );
+        }
+      }
+      return [...prev, subTagId];
     });
   };
 
@@ -820,9 +877,11 @@ export function ClinicalNavigatorTab({
       setSelectedDomains([]);
     }
 
+    setSelectedConditionSubTags(preset.query.conditionSubTags || []);
     setSelectedDiagnosisTags(preset.query.diagnosisTags || []);
     setSelectedTimeWindowId(preset.query.timeWindowId || "all");
     setSelectedInterventionTags(preset.query.interventionTags || []);
+    setSelectedOutcomeTargets(preset.query.facets?.outcome_target || []);
     setSelectedDirectionFilter(preset.query.directionFilter || "all");
     setSelectedSocieties(preset.query.societies || []);
     setOnlyPracticeChanges(preset.query.onlyPracticeChanges ?? false);
@@ -836,15 +895,25 @@ export function ClinicalNavigatorTab({
     setFilterSearchTerm("");
     setSelectedSubspecialties([]);
     setSelectedConditionIds([]);
+    setSelectedConditionSubTags([]);
     setSelectedDomains([]);
     setSelectedDiagnosisTags([]);
     setSelectedTimeWindowId("all");
     setSelectedInterventionTags([]);
+    setSelectedOutcomeTargets([]);
     setSelectedDirectionFilter("all");
     setSelectedSocieties([]);
     setOnlyPracticeChanges(false);
     setVerificationFilter("all");
     setVisibleCountBySociety({});
+  };
+
+  const handleToggleOutcomeTarget = (outcomeId: string) => {
+    setActivePresetId(null);
+    setVisibleCountBySociety({});
+    setSelectedOutcomeTargets((prev) =>
+      prev.includes(outcomeId) ? prev.filter((id) => id !== outcomeId) : [...prev, outcomeId]
+    );
   };
 
   const handleToggleSociety = (soc: string) => {
@@ -863,7 +932,7 @@ export function ClinicalNavigatorTab({
     interface MatchingTagItem {
       id: string;
       label: string;
-      category: "Subspecialty" | "Condition" | "Domain" | "Diagnosis" | "Treatment / Drug" | "Prevention" | "Time Window";
+      category: "Subspecialty" | "Condition" | "Condition Sub-tag" | "Domain" | "Diagnosis" | "Treatment / Drug" | "Prevention" | "Time Window";
       categoryColor: string;
       count?: number;
       isSelected: boolean;
@@ -892,7 +961,7 @@ export function ClinicalNavigatorTab({
       }
     }
 
-    // 2. Conditions
+    // 2. Conditions & Condition Sub-tags
     for (const cond of CLINICAL_CONDITIONS_V3) {
       if (cond.label.toLowerCase().includes(term)) {
         const key = `cond:${cond.id}`;
@@ -907,6 +976,28 @@ export function ClinicalNavigatorTab({
             isSelected: selectedConditionIds.includes(cond.id),
             onToggle: () => handleToggleCondition(cond.id),
           });
+        }
+      }
+      if (cond.subTags) {
+        for (const st of cond.subTags) {
+          const matchesSubTag =
+            st.label.toLowerCase().includes(term) ||
+            (st.aliases && st.aliases.some((al) => al.toLowerCase().includes(term)));
+          if (matchesSubTag) {
+            const key = `subtag:${st.id}`;
+            if (!seen.has(key)) {
+              seen.add(key);
+              results.push({
+                id: st.id,
+                label: `${st.label} — ${cond.label}`,
+                category: "Condition Sub-tag",
+                categoryColor: "bg-sky-100 text-sky-800 dark:bg-sky-950/80 dark:text-sky-300 border-sky-200 dark:border-sky-800",
+                count: navResult.v3Counts.conditionSubTags[st.id] || 0,
+                isSelected: selectedConditionSubTags.includes(st.id),
+                onToggle: () => handleToggleConditionSubTag(st.id),
+              });
+            }
+          }
         }
       }
     }
@@ -1021,13 +1112,14 @@ export function ClinicalNavigatorTab({
       }
     }
 
-    results.sort((a, b) => a.label.localeCompare(b.label));
+    results.sort((a, b) => compareConditionLabelsV3(a.label, b.label));
     return results;
   }, [
     normalizedFilterSearch,
     navResult.v3Counts,
     selectedSubspecialties,
     selectedConditionIds,
+    selectedConditionSubTags,
     selectedDomains,
     selectedDiagnosisTags,
     selectedTimeWindowId,
@@ -1051,6 +1143,14 @@ export function ClinicalNavigatorTab({
         label: cond?.label || cid,
         color: "bg-indigo-600 text-white",
         onRemove: () => handleToggleCondition(cid),
+      });
+    }
+    for (const stId of selectedConditionSubTags) {
+      chips.push({
+        id: `subtag:${stId}`,
+        label: getTagLabelByIdV3(stId),
+        color: "bg-sky-600 text-white",
+        onRemove: () => handleToggleConditionSubTag(stId),
       });
     }
     for (const dom of selectedDomains) {
@@ -1089,6 +1189,15 @@ export function ClinicalNavigatorTab({
         label: getTagLabelByIdV3(it),
         color: "bg-teal-600 text-white",
         onRemove: () => handleToggleInterventionTag(it),
+      });
+    }
+    for (const ot of selectedOutcomeTargets) {
+      const otDef = STROKE_ONTOLOGY.facets.outcome_target?.values.find((v) => v.id === ot);
+      chips.push({
+        id: `outcome:${ot}`,
+        label: `🎯 ${otDef?.label_en || ot}`,
+        color: "bg-fuchsia-700 text-white",
+        onRemove: () => handleToggleOutcomeTarget(ot),
       });
     }
     if (selectedDirectionFilter !== "all") {
@@ -1308,7 +1417,7 @@ export function ClinicalNavigatorTab({
                   allLabel="All Subspecialties"
                 />
 
-                {/* CLINICAL CONDITION DROPDOWN (Requirement 1, 2, 3, 5: Alphabetical, Multi-select checkboxes, auto-select subspecialty, auto-filter, No Axis 1B) */}
+                {/* CLINICAL CONDITION DROPDOWN (Requirement 1, 2, 3, 5: Alphabetical with Other last, Multi-select checkboxes, auto-select subspecialty, auto-filter, No Axis 1B) */}
                 <MultiSelectFilterDropdown
                   label="Clinical Condition"
                   options={availableConditions.map((cond) => ({
@@ -1316,13 +1425,78 @@ export function ClinicalNavigatorTab({
                     label: cond.label,
                     count: navResult.v3Counts.conditions[cond.id] || 0,
                     hint: cond.subspecialties.length > 1 ? `Shared: ${cond.subspecialties.join(", ")}` : undefined,
+                    keywords: cond.subTags?.flatMap((st) => [st.label, ...(st.aliases || [])]),
                   }))}
                   selectedIds={selectedConditionIds}
                   onToggle={handleToggleCondition}
-                  onClear={() => setSelectedConditionIds([])}
+                  onClear={() => {
+                    setSelectedConditionIds([]);
+                    setSelectedConditionSubTags([]);
+                  }}
                   allLabel="All Conditions"
                   enableSearch={true}
                 />
+
+                {/* CLINICAL CONDITION SUB-TAGS (Secondary layer when selected condition has sub-tags) */}
+                {availableConditionSubTags.length > 0 && (
+                  <div className="p-3 rounded-xl bg-sky-50/50 dark:bg-sky-950/20 border border-sky-200/80 dark:border-sky-900/50 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-extrabold uppercase tracking-wider text-sky-800 dark:text-sky-300">
+                        Tag phụ (Condition Sub-tags)
+                      </span>
+                      {selectedConditionSubTags.length > 0 && (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedConditionSubTags([])}
+                          className="text-[10px] font-bold text-rose-600 dark:text-rose-400 hover:underline"
+                        >
+                          Clear ({selectedConditionSubTags.length})
+                        </button>
+                      )}
+                    </div>
+                    {availableConditionSubTags.map((group) => {
+                      const sortedSubTags = [...group.subTags].sort((a, b) =>
+                        compareConditionLabelsV3(a.label, b.label)
+                      );
+                      return (
+                        <div key={group.conditionId} className="space-y-1.5">
+                          {availableConditionSubTags.length > 1 && (
+                            <span className="block text-[10px] font-bold text-slate-500 dark:text-slate-400">
+                              {group.conditionLabel}
+                            </span>
+                          )}
+                          <div className="flex flex-wrap gap-1.5">
+                            {sortedSubTags.map((st) => {
+                              const isActive = selectedConditionSubTags.includes(st.id);
+                              const count = navResult.v3Counts.conditionSubTags[st.id] || 0;
+                              return (
+                                <button
+                                  key={st.id}
+                                  type="button"
+                                  onClick={() => handleToggleConditionSubTag(st.id)}
+                                  className={`inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-semibold border transition-colors ${
+                                    isActive
+                                      ? "bg-sky-600 text-white border-sky-600 shadow-sm"
+                                      : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-sky-400 dark:hover:border-sky-600"
+                                  }`}
+                                >
+                                  <span>{st.label}</span>
+                                  <span
+                                    className={`text-[10px] font-mono ${
+                                      isActive ? "text-sky-100" : "text-slate-400 dark:text-slate-500"
+                                    }`}
+                                  >
+                                    ({count})
+                                  </span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
 
                 {/* CLINICAL DOMAIN DROPDOWN (Requirement 1 & 5: Alphabetical, Multi-select checkboxes, No Axis 2) */}
                 <MultiSelectFilterDropdown
@@ -1455,12 +1629,12 @@ export function ClinicalNavigatorTab({
                       )}
 
                       {renderInterventionGroup(
-                        "Drug",
+                        "Drug / Device / Procedure",
                         treatmentSchema.drugs,
                         "bg-teal-600 text-white border-teal-600"
                       )}
                       {renderInterventionGroup(
-                        "Intervention / Surgical",
+                        "Intervention Category (Surgical / Endovascular)",
                         treatmentSchema.interventions,
                         "bg-indigo-600 text-white border-indigo-600"
                       )}
@@ -1502,9 +1676,28 @@ export function ClinicalNavigatorTab({
                 </div>
 
                 {/* =========================================================
-                    SECONDARY FILTERS: DIRECTION / HARM, SOCIETY & UPDATES
+                    SECONDARY FILTERS: OUTCOME TARGET, DIRECTION / HARM, SOCIETY & UPDATES
                    ========================================================= */}
                 <div className="pt-2.5 border-t border-slate-200 dark:border-slate-800 space-y-3">
+                  {/* Outcome Target Filter */}
+                  {STROKE_ONTOLOGY.facets.outcome_target && (
+                    <MultiSelectFilterDropdown
+                      label="Outcome Target"
+                      options={[...STROKE_ONTOLOGY.facets.outcome_target.values]
+                        .sort((a, b) => compareConditionLabelsV3(a.label_en || a.id, b.label_en || b.id))
+                        .map((v) => ({
+                          id: v.id,
+                          label: v.label_en || v.id,
+                          count: navResult.facetValueCounts.outcome_target?.[v.id] || 0,
+                        }))}
+                      selectedIds={selectedOutcomeTargets}
+                      onToggle={handleToggleOutcomeTarget}
+                      onClear={() => setSelectedOutcomeTargets([])}
+                      allLabel="All Outcome Targets"
+                      enableSearch={true}
+                    />
+                  )}
+
                   {/* Recommendation Direction / Harm Filter (Rule 5) */}
                   <div>
                     <span className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1.5">

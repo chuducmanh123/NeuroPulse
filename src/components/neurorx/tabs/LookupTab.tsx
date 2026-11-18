@@ -19,6 +19,7 @@ import { buildDrugSelectionSearchParams } from "@/lib/neurorx/sync/lookupHelpers
 import type { SyncRow } from "@/lib/neurorx/sync/types";
 import { useNeuroRxStore } from "@/store/useNeuroRxStore";
 import { Omnibar } from "@/components/neurorx/Omnibar";
+import { TallManHint } from "@/components/neurorx/TallManHint";
 import { DrugDetail } from "@/components/neurorx/drug/DrugDetail";
 import {
   SubspecialtySelect,
@@ -222,6 +223,12 @@ export function LookupTab({
                       <span className="font-extrabold text-base sm:text-xl tracking-tight text-slate-900 dark:text-white">
                         {tallManName}
                       </span>
+
+                      <TallManHint
+                        tallMan={drug.tall_man}
+                        genericName={drug.generic_name}
+                        darkMode={darkMode}
+                      />
 
                       {/* Brand tags */}
                       {drug.vn_products?.value && drug.vn_products.value.length > 0 && (

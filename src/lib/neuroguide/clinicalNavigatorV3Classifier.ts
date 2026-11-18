@@ -963,6 +963,121 @@ export function classifyDomainsV3(
 // 6. MAIN V3 RECOMMENDATION CLASSIFIER
 // ============================================================================
 
+const ONTOLOGY_CONDITION_TO_SUBTAG: Record<string, { subTagId: string; parentConditionId: string }> = {
+    large_vessel_occlusion: { subTagId: 'subtag_lvo', parentConditionId: 'cond_ischemic_stroke' },
+    basilar_artery_occlusion: { subTagId: 'subtag_bao', parentConditionId: 'cond_ischemic_stroke' },
+    medium_distal_vessel_occlusion: { subTagId: 'subtag_mevo_dmvo', parentConditionId: 'cond_ischemic_stroke' },
+    large_ischemic_core: { subTagId: 'subtag_large_ischemic_core', parentConditionId: 'cond_ischemic_stroke' },
+    cerebellar_infarction: { subTagId: 'subtag_cerebellar_infarction', parentConditionId: 'cond_ischemic_stroke' },
+    suspected_stroke: { subTagId: 'subtag_suspected_stroke', parentConditionId: 'cond_ischemic_stroke' },
+    large_hemispheric_infarction: { subTagId: 'subtag_malignant_mca', parentConditionId: 'cond_ischemic_stroke' },
+    atrial_fibrillation: { subTagId: 'subtag_afib', parentConditionId: 'cond_ischemic_stroke' },
+    post_stroke_aphasia: { subTagId: 'subtag_post_stroke_aphasia', parentConditionId: 'cond_ischemic_stroke' },
+    post_stroke_motor_impairment: { subTagId: 'subtag_post_stroke_motor', parentConditionId: 'cond_ischemic_stroke' },
+    post_stroke_visual_impairment: { subTagId: 'subtag_post_stroke_visual', parentConditionId: 'cond_ischemic_stroke' },
+};
+
+const CONDITION_SUBTAG_RULES: { id: string; parentConditionId: string; patterns: RegExp[] }[] = [
+    {
+        id: 'subtag_lvo',
+        parentConditionId: 'cond_ischemic_stroke',
+        patterns: [/\blarge vessel occlusion/i, /\blarge-vessel occlusion/i, /\blvo\b/i],
+    },
+    {
+        id: 'subtag_bao',
+        parentConditionId: 'cond_ischemic_stroke',
+        patterns: [/\bbasilar artery occlusion/i, /\bbasilar occlusion/i, /\bbao\b/i],
+    },
+    {
+        id: 'subtag_mevo_dmvo',
+        parentConditionId: 'cond_ischemic_stroke',
+        patterns: [
+            /\bmedium[\s/-]*distal vessel occlusion/i,
+            /\bmedium vessel occlusion/i,
+            /\bdistal vessel occlusion/i,
+            /\bmevo\b/i,
+            /\bdmvo\b/i,
+        ],
+    },
+    {
+        id: 'subtag_large_ischemic_core',
+        parentConditionId: 'cond_ischemic_stroke',
+        patterns: [
+            /\blarge(?:r)? ischemic core/i,
+            /\blarge core\b/i,
+            /\baspects\s*3\s*[–-]\s*5\b/i,
+            /\bextensive baseline ischemic/i,
+        ],
+    },
+    {
+        id: 'subtag_cerebellar_infarction',
+        parentConditionId: 'cond_ischemic_stroke',
+        patterns: [/\bcerebellar infarction/i, /\bcerebellar infarct\b/i, /\bcerebellar stroke/i],
+    },
+    {
+        id: 'subtag_suspected_stroke',
+        parentConditionId: 'cond_ischemic_stroke',
+        patterns: [/\bsuspected stroke\b/i, /\bsuspected ais\b/i, /\bstroke mimics\b/i],
+    },
+    {
+        id: 'subtag_malignant_mca',
+        parentConditionId: 'cond_ischemic_stroke',
+        patterns: [/\bmalignant mca/i, /\blarge hemispheric infarction/i],
+    },
+    {
+        id: 'subtag_afib',
+        parentConditionId: 'cond_ischemic_stroke',
+        patterns: [/\batrial fibrillation/i, /\bafib\b/i, /\bcardioembolic/i],
+    },
+    {
+        id: 'subtag_post_stroke_aphasia',
+        parentConditionId: 'cond_ischemic_stroke',
+        patterns: [/\baphasia\b/i],
+    },
+    {
+        id: 'subtag_post_stroke_motor',
+        parentConditionId: 'cond_ischemic_stroke',
+        patterns: [/\bmotor rehabilitation/i, /\barm paresis\b/i, /\bupper limb impairment/i, /\bgait impairment/i, /\bmotor impairment/i],
+    },
+    {
+        id: 'subtag_post_stroke_visual',
+        parentConditionId: 'cond_ischemic_stroke',
+        patterns: [/\bvisual impairment/i, /\bhemianopia\b/i, /\bvisual field loss/i],
+    },
+    {
+        id: 'subtag_icas',
+        parentConditionId: 'cond_carotid',
+        patterns: [/\bintracranial atherosclerosis/i, /\bintracranial stenosis/i, /\bicas\b/i],
+    },
+];
+
+function detectConditionSubTags(text: string, ontologyConditions?: string[]): { subTagIds: string[]; parentConditionIds: string[] } {
+    const subTagIds = new Set<string>();
+    const parentConditionIds = new Set<string>();
+
+    if (ontologyConditions) {
+        for (const oc of ontologyConditions) {
+            const mapped = ONTOLOGY_CONDITION_TO_SUBTAG[oc];
+            if (mapped) {
+                subTagIds.add(mapped.subTagId);
+                parentConditionIds.add(mapped.parentConditionId);
+            }
+        }
+    }
+
+    for (const rule of CONDITION_SUBTAG_RULES) {
+        if (rule.patterns.some((rx) => rx.test(text))) {
+            subTagIds.add(rule.id);
+            parentConditionIds.add(rule.parentConditionId);
+        }
+    }
+
+    return {
+        subTagIds: Array.from(subTagIds),
+        parentConditionIds: Array.from(parentConditionIds),
+    };
+}
+
 export function classifyRecommendationV3(
     doc: Pick<GuidelineDoc, 'id' | 'title' | 'society' | 'year' | 'subspecialty'>,
     change: Pick<
@@ -979,21 +1094,29 @@ export function classifyRecommendationV3(
         | 'expertConsensusStatement'
         | 'drivingTrials'
         | 'v3Labels'
+        | 'ontologyLabels'
     >,
     precomputedTier?: NormalizedTier
 ): RecommendationV3Labels {
+    const sectionPath = `${change.category || ''} — ${change.topic || ''}`;
+    const recText = `${sectionPath} ${change.currentText || ''} ${change.expertConsensusStatement || ''}`;
+    const ontologyConds = change.ontologyLabels?.labels?.condition?.map((c) => c.value);
+    const detectedSub = detectConditionSubTags(recText, ontologyConds);
+
     if (change.v3Labels && change.v3Labels.conditionIds.length > 0) {
         return {
             ...change.v3Labels,
+            conditionSubTags:
+                change.v3Labels.conditionSubTags && change.v3Labels.conditionSubTags.length > 0
+                    ? change.v3Labels.conditionSubTags
+                    : detectedSub.subTagIds,
             isFallbackCondition: false,
             isExplicit: true,
         };
     }
 
     let isFallbackCondition = false;
-    const sectionPath = `${change.category || ''} — ${change.topic || ''}`;
     const fullText = `${doc.title || ''} ${sectionPath} ${change.currentText || ''} ${change.expertConsensusStatement || ''} ${(change.drivingTrials || []).join(' ')}`;
-    const recText = `${sectionPath} ${change.currentText || ''} ${change.expertConsensusStatement || ''}`;
 
     // 1. Identify matched conditions
     const matchedConditionIds = new Set<string>();
@@ -1008,6 +1131,13 @@ export function classifyRecommendationV3(
             for (const sub of rule.subspecialties) {
                 matchedSubspecialties.add(sub);
             }
+        }
+    }
+
+    for (const pid of detectedSub.parentConditionIds) {
+        matchedConditionIds.add(pid);
+        if (pid === 'cond_ischemic_stroke' || pid === 'cond_carotid') {
+            matchedSubspecialties.add('Stroke');
         }
     }
 
@@ -1192,6 +1322,7 @@ export function classifyRecommendationV3(
     return {
         subspecialties: Array.from(matchedSubspecialties),
         conditionIds: Array.from(matchedConditionIds),
+        conditionSubTags: detectedSub.subTagIds,
         domains,
         diagnosisTags: Array.from(diagnosisTags),
         timeWindowIds: Array.from(timeWindowIds),
@@ -1202,12 +1333,64 @@ export function classifyRecommendationV3(
     };
 }
 
+const ONTOLOGY_INTERVENTION_TO_V3_LABELS: Record<string, string[]> = {
+    ia_thrombolysis: ['Intra-arterial Thrombolysis'],
+    endovascular_thrombectomy: ['Mechanical Thrombectomy'],
+    mechanical_thrombectomy_device: ['Mechanical Thrombectomy'],
+    tenecteplase: ['Tenecteplase'],
+    alteplase: ['Alteplase'],
+    doac: ['DOAC'],
+    warfarin: ['VKA'],
+    statin: ['Statin'],
+    bp_management: ['Blood Pressure Control'],
+    nicardipine: ['Blood Pressure Control'],
+    labetalol: ['Blood Pressure Control'],
+    nimodipine: ['Nimodipine'],
+    tranexamic_acid: ['Tranexamic Acid'],
+    mannitol: ['Mannitol'],
+    hypertonic_saline: ['Hypertonic Saline'],
+    left_atrial_appendage_occlusion: ['LAAO'],
+    cardiac_rhythm_management: ['LAAO'],
+    decompressive_craniectomy: ['Hemicraniectomy'],
+    decompressive_surgery: ['Hemicraniectomy'],
+    endovascular_coiling: ['Aneurysm Coiling'],
+    aneurysm_securing: ['Aneurysm Coiling'],
+    microsurgical_clipping: ['Surgical Clipping'],
+    dysphagia_swallowing: ['Swallowing Screen'],
+    rehabilitation_therapy: ['Motor Rehab'],
+    speech_language_therapy: ['Speech Therapy'],
+    glycemic_management: ['Glucose Protocol'],
+    temperature_management: ['Temperature Normalization'],
+    aspirin: ['SAPT'],
+    clopidogrel: ['SAPT'],
+    ticagrelor: ['SAPT'],
+};
+
+const ONTOLOGY_CONDITION_TO_V3_ID: Record<string, string> = {
+    ais: 'cond_ischemic_stroke',
+    tia: 'cond_tia',
+    ich: 'cond_ich',
+    sah: 'cond_sah',
+    cvt: 'cond_cvt',
+    carotid_stenosis: 'cond_carotid',
+    status_epilepticus: 'cond_status_epilepticus',
+};
+
 /**
  * Classifies a PivotalTrialRecord into V3.0 tags for seamless filtering alongside recommendations.
  */
 export function classifyPivotalTrialV3(trial: PivotalTrialRecord): NonNullable<PivotalTrialRecord['v3Tags']> {
+    const trialText = `${trial.title} ${trial.pico.population} ${trial.pico.timeWindow || ''} ${trial.pico.intervention} ${trial.bottomLine}`;
+    const detectedSub = detectConditionSubTags(trialText, trial.ontologyTags?.condition);
+
     if (trial.v3Tags && trial.v3Tags.conditionIds.length > 0) {
-        return trial.v3Tags;
+        return {
+            ...trial.v3Tags,
+            conditionSubTags:
+                trial.v3Tags.conditionSubTags && trial.v3Tags.conditionSubTags.length > 0
+                    ? trial.v3Tags.conditionSubTags
+                    : detectedSub.subTagIds,
+        };
     }
     const syntheticDoc = {
         id: trial.id,
@@ -1220,17 +1403,32 @@ export function classifyPivotalTrialV3(trial: PivotalTrialRecord): NonNullable<P
         id: trial.id,
         category: trial.pico.population,
         topic: trial.pico.intervention,
-        currentText: `${trial.title} ${trial.pico.population} ${trial.pico.timeWindow || ''} ${trial.pico.intervention} ${trial.bottomLine}`,
+        currentText: trialText,
         currentGrade: 'Class I',
         drivingTrials: [trial.acronym],
     };
     const v3 = classifyRecommendationV3(syntheticDoc, syntheticChange, 1);
     const interventionTags = new Set(v3.interventionTags);
-    if (trial.ontologyTags?.intervention_type?.includes('ia_thrombolysis')) {
-        interventionTags.add(toCanonicalTagId('Intra-arterial Thrombolysis'));
+    for (const key of ['intervention_type', 'drug_or_procedure'] as const) {
+        for (const termId of trial.ontologyTags?.[key] || []) {
+            for (const label of ONTOLOGY_INTERVENTION_TO_V3_LABELS[termId] || []) {
+                interventionTags.add(toCanonicalTagId(label));
+            }
+        }
     }
+
+    const extraCondIds: string[] = [];
+    for (const oc of trial.ontologyTags?.condition || []) {
+        if (ONTOLOGY_CONDITION_TO_V3_ID[oc]) {
+            extraCondIds.push(ONTOLOGY_CONDITION_TO_V3_ID[oc]);
+        }
+    }
+
+    const mergedSubTags = Array.from(new Set([...(v3.conditionSubTags || []), ...detectedSub.subTagIds]));
+    const mergedConditionIds = Array.from(new Set([...v3.conditionIds, ...detectedSub.parentConditionIds, ...extraCondIds]));
     return {
-        conditionIds: v3.conditionIds,
+        conditionIds: mergedConditionIds,
+        conditionSubTags: mergedSubTags,
         domains: v3.domains,
         diagnosisTags: v3.diagnosisTags,
         timeWindowIds: v3.timeWindowIds,

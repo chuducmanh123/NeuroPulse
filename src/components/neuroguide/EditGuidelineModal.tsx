@@ -25,11 +25,35 @@ import {
   getAllDiagnosisTagsV3,
   getTagLabelByIdV3,
   toCanonicalTagId,
+  getConditionSubTagsForScopesV3,
+  compareConditionLabelsV3,
   type ClinicalDomainV3,
   type DirectionFilterV3,
   type TaxonomyTagV3,
 } from "@/data/clinicalNavigatorTaxonomyV3";
 import { classifyRecommendationV3 } from "@/lib/neuroguide/clinicalNavigatorV3Classifier";
+import {
+  NEUROGUIDE_DRAFT_AUTOSAVE_INTERVAL_MS,
+  clearLocalBlockDraftsForUid,
+  findLatestLocalBlockDraftForUid,
+  resolveBlockConflictChoice,
+  saveLocalBlockDraft,
+  type BlockConflictResolutionMode,
+  type LocalBlockDraftRecord,
+  type NeuroGuideBlockWriteInput,
+} from "@/lib/neuroguide/sync/adminHelpers";
+import {
+  resolveRecommendationBlockForPracticeChange,
+  stripRuntimeBlockMeta,
+  type PracticeChangeDetailWithBlockMeta,
+} from "@/lib/neuroguide/sync/lookupHelpers";
+import type {
+  NeuroGuideContentBlockData,
+  NeuroGuideContentBlockRow,
+  NeuroGuideProtocolRow,
+} from "@/lib/neuroguide/sync/types";
+import { BlockConflictDialog } from "@/components/neuroguide/sync/BlockConflictDialog";
+import { BlockHistoryPanel } from "@/components/neuroguide/sync/BlockHistoryPanel";
 
 export type { GuidelineFormFormat } from "@/lib/neuroguide/guidelineFormat";
 
@@ -42,6 +66,11 @@ interface EditGuidelineModalProps {
   onSuccess: (updatedDoc?: GuidelineDoc) => void;
   darkMode: boolean;
   adminToken?: string;
+  syncV2Enabled?: boolean;
+  blocksByUid?: ReadonlyMap<string, NeuroGuideContentBlockRow>;
+  blocksBySlug?: ReadonlyMap<string, NeuroGuideContentBlockRow>;
+  protocolsBySlug?: ReadonlyMap<string, NeuroGuideProtocolRow>;
+  onApplyLocalBlockWrite?: (row: NeuroGuideContentBlockRow) => Promise<void> | void;
 }
 
 interface AutoResizeTextareaProps
@@ -332,6 +361,11 @@ export function EditGuidelineModal({
   onSuccess,
   darkMode,
   adminToken,
+  syncV2Enabled = false,
+  blocksByUid,
+  blocksBySlug,
+  protocolsBySlug,
+  onApplyLocalBlockWrite,
 }: EditGuidelineModalProps) {
   // Active Tab: metadata | takeaways | recommendations
   const [activeTab, setActiveTab] = useState<"metadata" | "takeaways" | "recommendations">(
@@ -378,6 +412,7 @@ export function EditGuidelineModal({
   // V3 Taxonomy & Labels State (Dual-Primary Axis)
   const [isCustomizingV3, setIsCustomizingV3] = useState<boolean>(false);
   const [customConditionId, setCustomConditionId] = useState<string>("");
+  const [customConditionSubTags, setCustomConditionSubTags] = useState<string[]>([]);
   const [customDomain, setCustomDomain] = useState<"diagnosis" | "treatment" | "prevention">("treatment");
   const [customTimeWindowId, setCustomTimeWindowId] = useState<string>("all");
   const [customInterventionTags, setCustomInterventionTags] = useState<string[]>([]);
@@ -387,6 +422,23 @@ export function EditGuidelineModal({
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Sync v2 granular block state: 3s auto-save draft, HistoryPanel, and 409 ConflictDialog
+  const [foundLocalDraft, setFoundLocalDraft] = useState<LocalBlockDraftRecord | null>(null);
+  const [draftSavedAt, setDraftSavedAt] = useState<string | null>(null);
+  const [historyBlockTarget, setHistoryBlockTarget] = useState<{
+    uid: string;
+    title: string;
+    rev: number;
+  } | null>(null);
+  const [conflictState, setConflictState] = useState<{
+    base: NeuroGuideContentBlockRow;
+    mine: NeuroGuideBlockWriteInput;
+    cloudRow: NeuroGuideContentBlockRow;
+    submitting: boolean;
+    error: string | null;
+  } | null>(null);
+  const lastDraftCheckUidRef = React.useRef<string | null>(null);
 
   // Drag & drop state for ESO recommendations (right pane)
   const [draggedRecIndex, setDraggedRecIndex] = useState<number | null>(null);
@@ -549,6 +601,7 @@ export function EditGuidelineModal({
     if (rec.v3Labels && rec.v3Labels.isExplicit) {
       setIsCustomizingV3(true);
       setCustomConditionId(rec.v3Labels.conditionIds?.[0] || "");
+      setCustomConditionSubTags(rec.v3Labels.conditionSubTags || []);
       setCustomDomain((rec.v3Labels.domains?.[0] as "diagnosis" | "treatment" | "prevention") || "treatment");
       setCustomTimeWindowId(rec.v3Labels.timeWindowIds?.[0] || "all");
       setCustomInterventionTags(rec.v3Labels.interventionTags || []);
@@ -558,6 +611,7 @@ export function EditGuidelineModal({
       setIsCustomizingV3(false);
       if (rec.v3Labels) {
         setCustomConditionId(rec.v3Labels.conditionIds?.[0] || "");
+        setCustomConditionSubTags(rec.v3Labels.conditionSubTags || []);
         setCustomDomain((rec.v3Labels.domains?.[0] as "diagnosis" | "treatment" | "prevention") || "treatment");
         setCustomTimeWindowId(rec.v3Labels.timeWindowIds?.[0] || "all");
         setCustomInterventionTags(rec.v3Labels.interventionTags || []);
@@ -627,6 +681,7 @@ export function EditGuidelineModal({
       return {
         subspecialties: [docSubspecialty],
         conditionIds: [condId],
+        conditionSubTags: customConditionSubTags,
         domains: [customDomain],
         diagnosisTags: customDiagnosisTags,
         timeWindowIds: customTimeWindowId && customTimeWindowId !== "all" ? [customTimeWindowId] : [],
@@ -640,6 +695,7 @@ export function EditGuidelineModal({
   }, [
     isCustomizingV3,
     customConditionId,
+    customConditionSubTags,
     computedAutoV3Labels,
     docSubspecialty,
     customDomain,
@@ -722,6 +778,7 @@ export function EditGuidelineModal({
   const handleEnableCustomV3 = () => {
     setIsCustomizingV3(true);
     setCustomConditionId(activeV3Labels.conditionIds[0] || "cond_ischemic_stroke");
+    setCustomConditionSubTags([...(activeV3Labels.conditionSubTags || [])]);
     setCustomDomain(activeV3Labels.domains[0] || "treatment");
     setCustomTimeWindowId(activeV3Labels.timeWindowIds[0] || "all");
     setCustomInterventionTags([...activeV3Labels.interventionTags]);
@@ -732,6 +789,7 @@ export function EditGuidelineModal({
   const handleResetToAutoV3 = () => {
     setIsCustomizingV3(false);
     setCustomConditionId(computedAutoV3Labels.conditionIds[0] || "");
+    setCustomConditionSubTags([...(computedAutoV3Labels.conditionSubTags || [])]);
     setCustomDomain(computedAutoV3Labels.domains[0] || "treatment");
     setCustomTimeWindowId(computedAutoV3Labels.timeWindowIds[0] || "all");
     setCustomInterventionTags([...computedAutoV3Labels.interventionTags]);
@@ -772,6 +830,426 @@ export function EditGuidelineModal({
     const nextList = [...practiceChanges];
     nextList[selectedRecIndex] = updated;
     setPracticeChanges(nextList);
+  };
+
+  const buildCurrentStandardChangeDraft = (): PracticeChangeDetail | null => {
+    if (practiceChanges.length === 0 || selectedRecIndex < 0 || selectedRecIndex >= practiceChanges.length) {
+      return null;
+    }
+    const computedGrade = isAha ? `Class ${ahaCor}, Level ${ahaLoe}` : generalGrade;
+    const trials = recTrialsStr
+      .split(",")
+      .map((t) => t.trim())
+      .filter((t) => t.length > 0);
+    return {
+      ...practiceChanges[selectedRecIndex],
+      category: recCategory || "Recommendations",
+      topic: recTopic || `Recommendation ${selectedRecIndex + 1}`,
+      currentGrade: computedGrade,
+      cor: isAha ? ahaCor : undefined,
+      loe: isAha ? ahaLoe : undefined,
+      currentText: recStatement,
+      drivingTrials: trials,
+      changeType: recChangeType,
+      previousGrade: recPrevGrade || undefined,
+      previousText: recPrevText || undefined,
+      v3Labels: activeV3Labels,
+    };
+  };
+
+  const resolveBlockForRec = (
+    rec: PracticeChangeDetail | undefined,
+    indexHint: number,
+  ): NeuroGuideContentBlockRow | null => {
+    if (!syncV2Enabled || !rec || !blocksByUid || !blocksBySlug || !protocolsBySlug) {
+      return null;
+    }
+    return resolveRecommendationBlockForPracticeChange({
+      docId: docId || guidelineDoc?.id || "",
+      recId: rec.id,
+      index: indexHint,
+      sharedBlockKey: rec.sharedBlockKey,
+      blockUidHint: (rec as PracticeChangeDetailWithBlockMeta)._blockUid,
+      blocksByUid,
+      blocksBySlug,
+      protocolsBySlug,
+    });
+  };
+
+  const activeStandardBlock = useMemo(() => {
+    if (!syncV2Enabled || isEso) return null;
+    return resolveBlockForRec(practiceChanges[selectedRecIndex], selectedRecIndex);
+  }, [syncV2Enabled, isEso, practiceChanges, selectedRecIndex, blocksByUid, blocksBySlug, protocolsBySlug]);
+
+  const activeFocusedEsoRecIdx = editingEsoRecIndex ?? 0;
+  const activeEsoDraftChange = useMemo(() => {
+    if (!syncV2Enabled || !isEso) return null;
+    const curPico = esoPicos[selectedPicoIndex];
+    const rec = curPico?.recommendations[activeFocusedEsoRecIdx];
+    if (!curPico || !rec) return null;
+    const computedGrade = `GRADE ${rec.strength} (Evidence: ${rec.quality}${rec.voting ? `, Voting: ${rec.voting}` : ""})`;
+    return {
+      id: rec.id || `rec-${curPico.picoNumber}-${activeFocusedEsoRecIdx + 1}`,
+      category: curPico.category || "Recommendations",
+      topic: `PICO ${curPico.picoNumber}: ${curPico.picoQuestion}`,
+      picoNumber: curPico.picoNumber,
+      picoQuestion: curPico.picoQuestion,
+      currentGrade: computedGrade,
+      currentText: rec.statement,
+      strength: rec.strength,
+      quality: rec.quality,
+      expertConsensusStatement: rec.expertConsensusStatement?.trim() || undefined,
+      voting: rec.voting?.trim() || undefined,
+      drivingTrials: rec.drivingTrials || [],
+      changeType: rec.changeType || "STANDARD",
+      previousText: rec.expertConsensusStatement?.trim() || undefined,
+      v3Labels: rec.v3Labels,
+    } as PracticeChangeDetail;
+  }, [syncV2Enabled, isEso, esoPicos, selectedPicoIndex, activeFocusedEsoRecIdx]);
+
+  const activeEsoBlock = useMemo(() => {
+    if (!syncV2Enabled || !isEso || !activeEsoDraftChange) return null;
+    const flatChangesBefore = esoPicos
+      .slice(0, selectedPicoIndex)
+      .reduce((sum, p) => sum + p.recommendations.length, 0);
+    return resolveBlockForRec(activeEsoDraftChange, flatChangesBefore + activeFocusedEsoRecIdx);
+  }, [syncV2Enabled, isEso, activeEsoDraftChange, esoPicos, selectedPicoIndex, activeFocusedEsoRecIdx, blocksByUid, blocksBySlug, protocolsBySlug]);
+
+  const activeSyncBlock = isEso ? activeEsoBlock : activeStandardBlock;
+
+  const buildBlockWriteInputForChange = (
+    block: NeuroGuideContentBlockRow,
+    change: PracticeChangeDetail,
+  ): NeuroGuideBlockWriteInput => {
+    const cleanChange = stripRuntimeBlockMeta(change);
+    const nextFacet = {
+      ...structuredClone(block.data.facetIndex),
+      recId: cleanChange.id || block.data.facetIndex.recId,
+      ...(cleanChange.v3Labels
+        ? {
+            subspecialties: cleanChange.v3Labels.subspecialties,
+            conditionIds: cleanChange.v3Labels.conditionIds,
+            domains: cleanChange.v3Labels.domains,
+            diagnosisTags: cleanChange.v3Labels.diagnosisTags,
+            timeWindowIds: cleanChange.v3Labels.timeWindowIds,
+            interventionTags: cleanChange.v3Labels.interventionTags,
+            direction: cleanChange.v3Labels.direction,
+            v3Labels: structuredClone(cleanChange.v3Labels),
+          }
+        : {}),
+      ...(cleanChange.drivingTrials
+        ? { citedTrialKeys: [...cleanChange.drivingTrials] }
+        : {}),
+    };
+
+    const payloadKind =
+      block.blockType === "shared_clinical_block"
+        ? "shared_clinical_block"
+        : "recommendation";
+
+    return {
+      blockKey: block.data.blockKey,
+      blockType: payloadKind,
+      payload: {
+        kind: payloadKind,
+        practiceChange: cleanChange,
+      },
+      facetIndex: nextFacet,
+    };
+  };
+
+  // Detect unsaved local draft whenever active block changes
+  useEffect(() => {
+    if (!isOpen || !syncV2Enabled || !activeSyncBlock || typeof window === "undefined") {
+      setFoundLocalDraft(null);
+      lastDraftCheckUidRef.current = null;
+      return;
+    }
+    if (lastDraftCheckUidRef.current === activeSyncBlock.uid) return;
+    lastDraftCheckUidRef.current = activeSyncBlock.uid;
+    const existing = findLatestLocalBlockDraftForUid(window.localStorage, activeSyncBlock.uid);
+    if (existing) {
+      setFoundLocalDraft(existing);
+    } else {
+      setFoundLocalDraft(null);
+    }
+  }, [isOpen, syncV2Enabled, activeSyncBlock?.uid]);
+
+  // 3-second local draft auto-save loop
+  useEffect(() => {
+    if (!isOpen || !syncV2Enabled || !activeSyncBlock || typeof window === "undefined") {
+      return;
+    }
+    const timer = window.setInterval(() => {
+      const draftChange = isEso ? activeEsoDraftChange : buildCurrentStandardChangeDraft();
+      if (!draftChange) return;
+      const input = buildBlockWriteInputForChange(activeSyncBlock, draftChange);
+      const saved = saveLocalBlockDraft(window.localStorage, {
+        uid: activeSyncBlock.uid,
+        baseRev: activeSyncBlock.rev,
+        data: input,
+      });
+      if (saved) {
+        setDraftSavedAt(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" }));
+      }
+    }, NEUROGUIDE_DRAFT_AUTOSAVE_INTERVAL_MS);
+
+    return () => window.clearInterval(timer);
+  });
+
+  const applySavedBlockRowToForm = (row: NeuroGuideContentBlockRow) => {
+    const payload = row.data.payload;
+    if (payload.kind !== "recommendation" && payload.kind !== "shared_clinical_block") {
+      return;
+    }
+    const restoredChange = {
+      ...structuredClone(payload.practiceChange),
+      ...(row.data.facetIndex.v3Labels ? { v3Labels: structuredClone(row.data.facetIndex.v3Labels) } : {}),
+    };
+    if (isEso) {
+      setEsoPicos((prev) =>
+        prev.map((pico) => ({
+          ...pico,
+          recommendations: pico.recommendations.map((rec) =>
+            rec.id === restoredChange.id
+              ? {
+                  ...rec,
+                  statement: restoredChange.currentText || rec.statement,
+                  strength: restoredChange.strength || rec.strength,
+                  quality: restoredChange.quality || rec.quality,
+                  voting: restoredChange.voting || rec.voting,
+                  expertConsensusStatement:
+                    restoredChange.expertConsensusStatement ?? rec.expertConsensusStatement,
+                  drivingTrials: restoredChange.drivingTrials ?? rec.drivingTrials,
+                  v3Labels: restoredChange.v3Labels ?? rec.v3Labels,
+                }
+              : rec,
+          ),
+        })),
+      );
+    } else {
+      setPracticeChanges((prev) => {
+        const idx = prev.findIndex((c) => c.id === restoredChange.id);
+        if (idx === -1) return prev;
+        const next = [...prev];
+        next[idx] = restoredChange;
+        if (idx === selectedRecIndex) {
+          loadStandardRecIntoForm(restoredChange);
+        }
+        return next;
+      });
+    }
+  };
+
+  const handleRestoreFoundLocalDraft = () => {
+    if (!foundLocalDraft) return;
+    const payload = foundLocalDraft.data.payload;
+    if (payload.kind === "recommendation" || payload.kind === "shared_clinical_block") {
+      const pc = payload.practiceChange;
+      if (isEso) {
+        setEsoPicos((prev) =>
+          prev.map((pico) => ({
+            ...pico,
+            recommendations: pico.recommendations.map((rec) =>
+              rec.id === pc.id
+                ? {
+                    ...rec,
+                    statement: pc.currentText || rec.statement,
+                    strength: pc.strength || rec.strength,
+                    quality: pc.quality || rec.quality,
+                    voting: pc.voting || rec.voting,
+                    expertConsensusStatement:
+                      pc.expertConsensusStatement ?? rec.expertConsensusStatement,
+                    drivingTrials: pc.drivingTrials ?? rec.drivingTrials,
+                    v3Labels: pc.v3Labels ?? rec.v3Labels,
+                  }
+                : rec,
+            ),
+          })),
+        );
+      } else {
+        loadStandardRecIntoForm({
+          ...pc,
+          ...(foundLocalDraft.data.facetIndex.v3Labels
+            ? { v3Labels: foundLocalDraft.data.facetIndex.v3Labels }
+            : {}),
+        });
+      }
+    }
+    setFoundLocalDraft(null);
+  };
+
+  const handleDiscardFoundLocalDraft = () => {
+    if (!activeSyncBlock || typeof window === "undefined") return;
+    clearLocalBlockDraftsForUid(window.localStorage, activeSyncBlock.uid);
+    setFoundLocalDraft(null);
+  };
+
+  const handleSaveSingleBlock = async (
+    targetBlock: NeuroGuideContentBlockRow,
+    changeDraft: PracticeChangeDetail,
+  ) => {
+    const token = adminToken || getStoredAdminToken();
+    if (!token) {
+      setErrorMessage("Admin privileges required. Please log in as Admin to save block changes.");
+      return;
+    }
+
+    const mineInput = buildBlockWriteInputForChange(targetBlock, changeDraft);
+    if (typeof window !== "undefined") {
+      saveLocalBlockDraft(window.localStorage, {
+        uid: targetBlock.uid,
+        baseRev: targetBlock.rev,
+        data: mineInput,
+      });
+    }
+
+    setIsLoading(true);
+    setErrorMessage(null);
+    try {
+      const res = await fetch(
+        `/api/neuroguide/sync/blocks/${encodeURIComponent(targetBlock.uid)}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            ...getAdminHeaders(token),
+          },
+          body: JSON.stringify({
+            data: mineInput,
+            expectedRev: targetBlock.rev,
+          }),
+        },
+      );
+      const json = await res.json().catch(() => ({}));
+      if (res.status === 409 && json?.code === "REV_CONFLICT" && json.current) {
+        setConflictState({
+          base: targetBlock,
+          mine: mineInput,
+          cloudRow: json.current as NeuroGuideContentBlockRow,
+          submitting: false,
+          error: null,
+        });
+        return;
+      }
+      if (!res.ok || !json?.row) {
+        setErrorMessage(json?.error || `Failed to save block (${res.status}).`);
+        return;
+      }
+
+      const savedRow = json.row as NeuroGuideContentBlockRow;
+      await onApplyLocalBlockWrite?.(savedRow);
+      applySavedBlockRowToForm(savedRow);
+      if (typeof window !== "undefined") {
+        clearLocalBlockDraftsForUid(window.localStorage, targetBlock.uid);
+      }
+      setFoundLocalDraft(null);
+      onSuccess();
+    } catch {
+      setErrorMessage("Network error while saving block to Sync v2.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleResolveBlockConflict = async (
+    mode: BlockConflictResolutionMode,
+    fieldChoices: Record<string, "mine" | "cloud">,
+  ) => {
+    if (!conflictState) return;
+    const token = adminToken || getStoredAdminToken();
+    if (!token) {
+      setConflictState((prev) =>
+        prev ? { ...prev, error: "Admin session expired. Please re-login." } : null,
+      );
+      return;
+    }
+
+    const resolved = resolveBlockConflictChoice({
+      mode,
+      base: conflictState.base,
+      mine: conflictState.mine,
+      cloud: conflictState.cloudRow,
+      fieldChoices,
+    });
+
+    if (mode === "use_cloud") {
+      await onApplyLocalBlockWrite?.(conflictState.cloudRow);
+      applySavedBlockRowToForm(conflictState.cloudRow);
+      if (typeof window !== "undefined") {
+        clearLocalBlockDraftsForUid(window.localStorage, conflictState.cloudRow.uid);
+      }
+      setFoundLocalDraft(null);
+      setConflictState(null);
+      onSuccess();
+      return;
+    }
+
+    if (mode === "smart_merge" && resolved.unresolvedPaths.length > 0) {
+      setConflictState((prev) =>
+        prev
+          ? {
+              ...prev,
+              error: `Choose Mine or Cloud for ${resolved.unresolvedPaths.length} remaining field(s).`,
+            }
+          : null,
+      );
+      return;
+    }
+
+    setConflictState((prev) => (prev ? { ...prev, submitting: true, error: null } : null));
+    try {
+      const res = await fetch(
+        `/api/neuroguide/sync/blocks/${encodeURIComponent(conflictState.cloudRow.uid)}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            ...getAdminHeaders(token),
+          },
+          body: JSON.stringify({
+            data: resolved.nextInput,
+            expectedRev: resolved.expectedRev,
+          }),
+        },
+      );
+      const json = await res.json().catch(() => ({}));
+      if (res.status === 409 && json?.code === "REV_CONFLICT" && json.current) {
+        setConflictState((prev) =>
+          prev
+            ? {
+                ...prev,
+                cloudRow: json.current as NeuroGuideContentBlockRow,
+                submitting: false,
+                error: "Cloud updated again while resolving. Please review new Cloud revision.",
+              }
+            : null,
+        );
+        return;
+      }
+      if (!res.ok || !json?.row) {
+        setConflictState((prev) =>
+          prev
+            ? { ...prev, submitting: false, error: json?.error || "Conflict resolution failed." }
+            : null,
+        );
+        return;
+      }
+
+      const savedRow = json.row as NeuroGuideContentBlockRow;
+      await onApplyLocalBlockWrite?.(savedRow);
+      applySavedBlockRowToForm(savedRow);
+      if (typeof window !== "undefined") {
+        clearLocalBlockDraftsForUid(window.localStorage, savedRow.uid);
+      }
+      setFoundLocalDraft(null);
+      setConflictState(null);
+      onSuccess();
+    } catch {
+      setConflictState((prev) =>
+        prev ? { ...prev, submitting: false, error: "Network error resolving conflict." } : null,
+      );
+    }
   };
 
   // --- ESO PICO Handlers ---
@@ -1171,10 +1649,14 @@ export function EditGuidelineModal({
 
     let finalizedChanges: PracticeChangeDetail[] = [];
     if (isEso) {
-      finalizedChanges = esoPicosToChanges(esoPicos);
+      finalizedChanges = esoPicosToChanges(esoPicos).map((c) => stripRuntimeBlockMeta(c));
     } else {
       syncStandardRecToMemory();
-      finalizedChanges = [...practiceChanges];
+      const liveDraft = buildCurrentStandardChangeDraft();
+      const mergedList = practiceChanges.map((itemRow, idx) =>
+        idx === selectedRecIndex && liveDraft ? liveDraft : itemRow,
+      );
+      finalizedChanges = mergedList.map((c) => stripRuntimeBlockMeta(c));
     }
 
     try {
@@ -1203,6 +1685,16 @@ export function EditGuidelineModal({
 
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
+        if (syncV2Enabled && typeof window !== "undefined") {
+          if (activeSyncBlock) {
+            clearLocalBlockDraftsForUid(window.localStorage, activeSyncBlock.uid);
+          }
+          for (let i = 0; i < finalizedChanges.length; i++) {
+            const b = resolveBlockForRec(finalizedChanges[i], i);
+            if (b) clearLocalBlockDraftsForUid(window.localStorage, b.uid);
+          }
+        }
+        setFoundLocalDraft(null);
         onSuccess(data.guideline);
         onClose();
       } else {
@@ -1329,6 +1821,40 @@ export function EditGuidelineModal({
         {errorMessage && (
           <div className="mx-5 mt-3 p-3 rounded-xl text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-800 flex-shrink-0">
             ⚠️ {errorMessage}
+          </div>
+        )}
+
+        {/* LOCAL DRAFT RECOVERY BANNER (SYNC V2) */}
+        {syncV2Enabled && foundLocalDraft && (
+          <div
+            role="status"
+            className="mx-5 mt-3 p-3 rounded-xl text-xs bg-amber-50 text-amber-900 border border-amber-300 dark:bg-amber-950/40 dark:text-amber-200 dark:border-amber-700 flex flex-wrap items-center justify-between gap-2 flex-shrink-0"
+          >
+            <div>
+              <span className="font-extrabold">Unsaved local draft found</span>
+              {foundLocalDraft.savedAt && (
+                <span className="ml-2 opacity-80">
+                  (saved {new Date(foundLocalDraft.savedAt).toLocaleTimeString()} · rev{" "}
+                  {foundLocalDraft.baseRev})
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleRestoreFoundLocalDraft}
+                className="min-h-[36px] px-3 py-1 rounded-lg font-bold bg-amber-600 hover:bg-amber-700 text-white cursor-pointer"
+              >
+                Restore Draft
+              </button>
+              <button
+                type="button"
+                onClick={handleDiscardFoundLocalDraft}
+                className="min-h-[36px] px-3 py-1 rounded-lg font-bold border border-amber-400 dark:border-amber-600 hover:bg-amber-100 dark:hover:bg-amber-900/40 cursor-pointer"
+              >
+                Discard
+              </button>
+            </div>
           </div>
         )}
 
@@ -1940,6 +2466,58 @@ export function EditGuidelineModal({
                                   </div>
 
                                   <div className="flex items-center gap-2 flex-wrap">
+                                    {syncV2Enabled && (() => {
+                                      const priorCount = esoPicos
+                                        .slice(0, selectedPicoIndex)
+                                        .reduce((sum, p) => sum + p.recommendations.length, 0);
+                                      const esoBlockChange: PracticeChangeDetail = {
+                                        id: rec.id || `rec-${currentPico.picoNumber}-${rIdx + 1}`,
+                                        category: currentPico.category || "Recommendations",
+                                        topic: `PICO ${currentPico.picoNumber}: ${currentPico.picoQuestion}`,
+                                        picoNumber: currentPico.picoNumber,
+                                        picoQuestion: currentPico.picoQuestion,
+                                        currentGrade: `GRADE ${rec.strength} (Evidence: ${rec.quality}${rec.voting ? `, Voting: ${rec.voting}` : ""})`,
+                                        currentText: rec.statement,
+                                        strength: rec.strength,
+                                        quality: rec.quality,
+                                        expertConsensusStatement: rec.expertConsensusStatement?.trim() || undefined,
+                                        voting: rec.voting?.trim() || undefined,
+                                        drivingTrials: rec.drivingTrials || [],
+                                        changeType: rec.changeType || "STANDARD",
+                                        previousText: rec.expertConsensusStatement?.trim() || undefined,
+                                        v3Labels: rec.v3Labels,
+                                      };
+                                      const recBlock = resolveBlockForRec(esoBlockChange, priorCount + rIdx);
+                                      if (!recBlock) return null;
+                                      return (
+                                        <>
+                                          <button
+                                            type="button"
+                                            onClick={() =>
+                                              setHistoryBlockTarget({
+                                                uid: recBlock.uid,
+                                                title: `PICO ${currentPico.picoNumber} · Rec #${rIdx + 1}`,
+                                                rev: recBlock.rev,
+                                              })
+                                            }
+                                            className="px-2 py-1 rounded-lg text-[10.5px] font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20 cursor-pointer"
+                                            title="Inspect block revision history & restore"
+                                          >
+                                            History (rev {recBlock.rev})
+                                          </button>
+                                          <button
+                                            type="button"
+                                            disabled={isLoading}
+                                            onClick={() => void handleSaveSingleBlock(recBlock, esoBlockChange)}
+                                            className="px-2 py-1 rounded-lg text-[10.5px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer disabled:opacity-50"
+                                            title="Save only this block atomically with optimistic lock"
+                                          >
+                                            Save Block
+                                          </button>
+                                        </>
+                                      );
+                                    })()}
+
                                     {/* Reassign to another PICO / Clinical Question */}
                                     {esoPicos.length > 1 && (
                                       <div className="flex items-center gap-1">
@@ -2684,14 +3262,48 @@ export function EditGuidelineModal({
                             </span>
                           </div>
 
-                          <button
-                            type="button"
-                            onClick={() => handleDeleteStandardRec(selectedRecIndex)}
-                            className="px-2 py-0.5 rounded text-[11px] font-bold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 border border-rose-300 dark:border-rose-800 cursor-pointer transition-colors"
-                            title="Delete this recommendation"
-                          >
-                            🗑️ Delete
-                          </button>
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            {syncV2Enabled && activeStandardBlock && (
+                              <>
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    setHistoryBlockTarget({
+                                      uid: activeStandardBlock.uid,
+                                      title: recTopic || activeStandardBlock.blockKey,
+                                      rev: activeStandardBlock.rev,
+                                    })
+                                  }
+                                  className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20 cursor-pointer transition-colors"
+                                  title="Inspect block revision history & restore"
+                                >
+                                  History (rev {activeStandardBlock.rev})
+                                </button>
+                                <button
+                                  type="button"
+                                  disabled={isLoading}
+                                  onClick={() => {
+                                    const draft = buildCurrentStandardChangeDraft();
+                                    if (draft) {
+                                      void handleSaveSingleBlock(activeStandardBlock, draft);
+                                    }
+                                  }}
+                                  className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer transition-colors disabled:opacity-50"
+                                  title="Save only this block atomically with optimistic lock"
+                                >
+                                  Save Block
+                                </button>
+                              </>
+                            )}
+                            <button
+                              type="button"
+                              onClick={() => handleDeleteStandardRec(selectedRecIndex)}
+                              className="px-2 py-0.5 rounded text-[11px] font-bold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 border border-rose-300 dark:border-rose-800 cursor-pointer transition-colors"
+                              title="Delete this recommendation"
+                            >
+                              🗑️ Delete
+                            </button>
+                          </div>
                         </div>
 
                         {/* SECTION & TOPIC */}
@@ -2950,6 +3562,7 @@ export function EditGuidelineModal({
                                   value={customConditionId || activeV3Labels.conditionIds[0] || ""}
                                   onChange={(e) => {
                                     setCustomConditionId(e.target.value);
+                                    setCustomConditionSubTags([]);
                                     setCustomTimeWindowId("all");
                                   }}
                                   className={`w-full p-2 rounded-xl border font-bold text-xs ${
@@ -2957,19 +3570,23 @@ export function EditGuidelineModal({
                                   }`}
                                 >
                                   <optgroup label={`Under Subspecialty: ${docSubspecialty}`}>
-                                    {availableConditions.forSub.map((c) => (
-                                      <option key={c.id} value={c.id}>
-                                        {c.label}
-                                      </option>
-                                    ))}
+                                    {[...availableConditions.forSub]
+                                      .sort((a, b) => compareConditionLabelsV3(a.label, b.label))
+                                      .map((c) => (
+                                        <option key={c.id} value={c.id}>
+                                          {c.label}
+                                        </option>
+                                      ))}
                                   </optgroup>
                                   {availableConditions.others.length > 0 && (
                                     <optgroup label="Other Subspecialties">
-                                      {availableConditions.others.map((c) => (
-                                        <option key={c.id} value={c.id}>
-                                          {c.label} ({c.subspecialties.join(", ")})
-                                        </option>
-                                      ))}
+                                      {[...availableConditions.others]
+                                        .sort((a, b) => compareConditionLabelsV3(a.label, b.label))
+                                        .map((c) => (
+                                          <option key={c.id} value={c.id}>
+                                            {c.label} ({c.subspecialties.join(", ")})
+                                          </option>
+                                        ))}
                                     </optgroup>
                                   )}
                                 </select>
@@ -3065,6 +3682,72 @@ export function EditGuidelineModal({
                               )}
                             </div>
                           </div>
+
+                          {/* Condition Sub-tags (e.g., LVO, BAO, MeVO/DMVO, Large Ischemic Core, Cerebellar Infarction, Suspected Stroke) */}
+                          {(() => {
+                            const subTagGroups = getConditionSubTagsForScopesV3(activeV3Labels.conditionIds);
+                            if (subTagGroups.length === 0) return null;
+                            const activeSubTags = isCustomizingV3
+                              ? customConditionSubTags
+                              : activeV3Labels.conditionSubTags || [];
+                            return (
+                              <div>
+                                <label className="block font-bold mb-1 text-[11px] text-sky-700 dark:text-sky-300">
+                                  Condition Sub-tags (Tag phụ):
+                                </label>
+                                {isCustomizingV3 ? (
+                                  <div className="flex flex-wrap gap-1.5">
+                                    {subTagGroups.flatMap((g) =>
+                                      [...g.subTags]
+                                        .sort((a, b) => compareConditionLabelsV3(a.label, b.label))
+                                        .map((st) => {
+                                          const isSelected = activeSubTags.includes(st.id);
+                                          return (
+                                            <button
+                                              key={st.id}
+                                              type="button"
+                                              onClick={() =>
+                                                setCustomConditionSubTags((prev) =>
+                                                  prev.includes(st.id)
+                                                    ? prev.filter((id) => id !== st.id)
+                                                    : [...prev, st.id]
+                                                )
+                                              }
+                                              className={`px-2 py-1 rounded-lg text-[10px] font-bold border transition ${
+                                                isSelected
+                                                  ? "bg-sky-600 text-white border-sky-600 shadow-sm"
+                                                  : darkMode
+                                                  ? "bg-slate-800 border-slate-700 text-slate-300 hover:border-sky-500"
+                                                  : "bg-white border-slate-300 text-slate-700 hover:border-sky-400"
+                                              }`}
+                                            >
+                                              {st.label}
+                                            </button>
+                                          );
+                                        })
+                                    )}
+                                  </div>
+                                ) : (
+                                  <div className="flex flex-wrap gap-1.5">
+                                    {activeSubTags.length > 0 ? (
+                                      activeSubTags.map((stId) => (
+                                        <span
+                                          key={stId}
+                                          className="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-sky-100 dark:bg-sky-900/50 text-sky-800 dark:text-sky-200 border border-sky-200 dark:border-sky-800"
+                                        >
+                                          {getTagLabelByIdV3(stId)}
+                                        </span>
+                                      ))
+                                    ) : (
+                                      <span className="text-[10px] italic text-slate-400">
+                                        No specific sub-tags detected
+                                      </span>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })()}
 
                           {/* Optional: Time Window (Only if Domain is treatment) */}
                           {(isCustomizingV3 ? customDomain === "treatment" : activeV3Labels.domains.includes("treatment")) &&
@@ -3269,6 +3952,11 @@ export function EditGuidelineModal({
             </button>
 
             <div className="flex items-center gap-2">
+              {syncV2Enabled && draftSavedAt && (
+                <span className="hidden sm:inline text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+                  Draft auto-saved {draftSavedAt}
+                </span>
+              )}
               <button
                 type="button"
                 onClick={onClose}
@@ -3292,6 +3980,53 @@ export function EditGuidelineModal({
           </div>
         </form>
       </div>
+
+      {syncV2Enabled && historyBlockTarget && (
+        <BlockHistoryPanel
+          isOpen={true}
+          uid={historyBlockTarget.uid}
+          blockTitle={historyBlockTarget.title}
+          currentRev={historyBlockTarget.rev}
+          darkMode={darkMode}
+          adminToken={adminToken}
+          onClose={() => setHistoryBlockTarget(null)}
+          onRestored={async (restoredRow) => {
+            await onApplyLocalBlockWrite?.(restoredRow);
+            applySavedBlockRowToForm(restoredRow);
+            setHistoryBlockTarget((prev) =>
+              prev ? { ...prev, rev: restoredRow.rev } : null,
+            );
+            onSuccess();
+          }}
+          onConflict={(cloudRow) => {
+            setHistoryBlockTarget(null);
+            const fallbackBase =
+              blocksByUid?.get(cloudRow.uid) ?? activeSyncBlock ?? cloudRow;
+            setConflictState({
+              base: fallbackBase,
+              mine: fallbackBase.data,
+              cloudRow,
+              submitting: false,
+              error: null,
+            });
+          }}
+        />
+      )}
+
+      {syncV2Enabled && conflictState && (
+        <BlockConflictDialog
+          isOpen={true}
+          base={conflictState.base}
+          mine={conflictState.mine}
+          cloudRow={conflictState.cloudRow}
+          baseRev={conflictState.base.rev}
+          submitting={conflictState.submitting}
+          error={conflictState.error}
+          darkMode={darkMode}
+          onResolve={handleResolveBlockConflict}
+          onCancel={() => setConflictState(null)}
+        />
+      )}
     </div>
   );
 }

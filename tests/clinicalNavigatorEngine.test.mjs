@@ -12,6 +12,8 @@ import {
   getConditionByIdV3,
   getTreatmentSchemaForScopeV3,
   getPreventionSchemaForScopeV3,
+  compareConditionLabelsV3,
+  getConditionSubTagsForScopesV3,
 } from "../src/data/clinicalNavigatorTaxonomyV3.ts";
 import {
   indexAllGuidelineRecommendations,
@@ -329,4 +331,47 @@ test("Axis 1B -> Axis 1A Sync: Condition selection resolves to correct correspon
   // 4. Selecting "all" conditions does not alter current subspecialty
   assert.equal(resolveSubspecialtyOnConditionSelect("Stroke", "all"), "Stroke");
   assert.equal(resolveSubspecialtyOnConditionSelect("all", "all"), "all");
+});
+
+test("Clinical Condition Sub-tags (LVO, BAO, MeVO, Large Core, Cerebellar, Suspected Stroke) & Other-last sort", () => {
+  const strokeConds = getConditionsForSubspecialtyV3("Stroke");
+  const sortedStrokeLabels = [...strokeConds].sort((a, b) => compareConditionLabelsV3(a.label, b.label)).map((c) => c.label);
+  assert.equal(sortedStrokeLabels[sortedStrokeLabels.length - 1], "Other (Stroke)");
+
+  const subTagGroups = getConditionSubTagsForScopesV3(["cond_ischemic_stroke"]);
+  assert.equal(subTagGroups.length, 1);
+  const subTagIds = new Set(subTagGroups[0].subTags.map((s) => s.id));
+  for (const requiredId of [
+    "subtag_lvo",
+    "subtag_bao",
+    "subtag_mevo_dmvo",
+    "subtag_large_ischemic_core",
+    "subtag_cerebellar_infarction",
+    "subtag_suspected_stroke",
+  ]) {
+    assert.ok(subTagIds.has(requiredId), `Missing expected Ischemic Stroke sub-tag: ${requiredId}`);
+  }
+
+  const guidelines = cloudPayload.guidelines || [];
+  const conferences = cloudPayload.conferences || [];
+  const scenarios = cloudPayload.scenarios || [];
+  const indexed = indexAllGuidelineRecommendations(guidelines, MOCK_RECOMMENDATION_ATOMS);
+
+  const lvoRes = runClinicalNavigatorQuery({
+    indexedRecommendations: indexed,
+    guidelines,
+    conferences,
+    scenarios,
+    query: {
+      subspecialties: ["Stroke"],
+      conditionIds: ["cond_ischemic_stroke"],
+      conditionSubTags: ["subtag_lvo"],
+    },
+  });
+  assert.ok(lvoRes.coreRecommendations.length >= 1, "LVO sub-tag should match at least 1 recommendation");
+  assert.ok(
+    lvoRes.coreRecommendations.every((r) => (r.v3Labels.conditionSubTags || []).includes("subtag_lvo")),
+    "All returned recommendations should carry subtag_lvo"
+  );
+  assert.ok((lvoRes.v3Counts.conditionSubTags.subtag_lvo || 0) >= 1, "v3Counts should count subtag_lvo");
 });

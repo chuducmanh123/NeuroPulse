@@ -1,0 +1,145 @@
+{
+  "storageSource": "supabase",
+  "lastSyncedAt": "2026-11-15T16:35:33.93+00:00",
+  "totalGuidelines": 18,
+  "totalConferences": 0,
+  "totalScenarios": 8,
+  "totalPivotalTrials": 95,
+  "totalRecommendationAtoms": 12,
+  "customRecLabelCount": 0,
+  "deletedGuidelineCount": 32,
+  "deletedTrialCount": 10,
+  "totalProtocols": 22,
+  "totalBlocks": 1112,
+  "blockCountsByType": {
+    "clinical_scenario": 8,
+    "pivotal_trial": 95,
+    "recommendation": 997,
+    "recommendation_atom": 12
+  },
+  "totalProtocolBlockEdges": 1112,
+  "totalBlockLinkEdges": 4878,
+  "linkCountsByType": {
+    "in_scenario": 13,
+    "cites_trial": 57,
+    "same_section": 1568,
+    "differs": 2402,
+    "supersedes": 560,
+    "same_pico": 276,
+    "refers_to": 2
+  },
+  "rootHash": "bf52b4c6c3526015fdad729a8623b3d6e84b354526928d3adf178ec031e73cc7",
+  "perProtocolHash": {
+    "ahaasa-2026-early-ischemic-stroke-f6bx": {
+      "protocolType": "guideline",
+      "blockCount": 202,
+      "protocolHash": "c73086d915c20b2025860d57c8758a4c59292b1526e3262bb3c550a24e461f71"
+    },
+    "eso-2026-doc-1793547549940": {
+      "protocolType": "guideline",
+      "blockCount": 17,
+      "protocolHash": "7e9028781a7a426fadfc5dcd034469a6a7a30c629532f177fa5cee9f7b2d588b"
+    },
+    "eso-2026-eso-guideline-on-stroke-associated-pneumonia-": {
+      "protocolType": "guideline",
+      "blockCount": 19,
+      "protocolHash": "4468c72fbc6815937f69f3b2b5fb9fce46c9749846550132b00b0febe76e6104"
+    },
+    "eso-2025-visual-impairment-stroke": {
+      "protocolType": "guideline",
+      "blockCount": 6,
+      "protocolHash": "7761ad0dc1212e95b3c29fa26d7f4115167dafda5aaebd5631e32bc978f61ec2"
+    },
+    "eso-2025-blood-pressure-management": {
+      "protocolType": "guideline",
+      "blockCount": 12,
+      "protocolHash": "a9d5a01200def54b85d5d427097ff25f592affc758fffc5aa0275f1d78a43990"
+    },
+    "eso-2025-stroke-due-to-spontaneous-intracerebral-haemorrhag-hzo9": {
+      "protocolType": "guideline",
+      "blockCount": 39,
+      "protocolHash": "64a76dad78c28e7ba683421392ebbedb9d374cfe5a741e7e7511c188daba3497"
+    },
+    "eso-2025-motor-rehabilitation": {
+      "protocolType": "guideline",
+      "blockCount": 7,
+      "protocolHash": "41ce4a7fa2f826633f66713077be6f27e5e5e6bc8fb458d98ecbf0ffa9c983a3"
+    },
+    "eso-2025-doc-1793635049826": {
+      "protocolType": "guideline",
+      "blockCount": 10,
+      "protocolHash": "bfa583b717ed8452d0e5eabbf9fc2e0950528ba817eda9901363273666375927"
+    },
+    "aha-primary-prevention-2024": {
+      "protocolType": "guideline",
+      "blockCount": 83,
+      "protocolHash": "5fb8619c014898bba0645b303fa3e8f2c8bcf773da39827f1407091d926ff6ae"
+    },
+    "eso-2024-cerebral-small-vessel-disease-part-2-lacunar-ischa-hsch": {
+      "protocolType": "guideline",
+      "blockCount": 17,
+      "protocolHash": "b8e272842714317f49f39d8d0a25546de0bf36368218728e8ea4943906e73858"
+    },
+    "eso-2024-patent-foramen-ovale-pfo-after-stroke-iop9": {
+      "protocolType": "guideline",
+      "blockCount": 10,
+      "protocolHash": "4e0a39ca04e6051ee19cf8e62c2e1544dcdf560c8e5258bf34ce4ea857e9622f"
+    },
+    "eso-2024-basilar-artery-occlusion-layx": {
+      "protocolType": "guideline",
+      "blockCount": 11,
+      "protocolHash": "b63bd6434127610050e7f5c104f55c9eb69a5f97b1dacdb905a0977cb5ef1fca"
+    },
+    "ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio": {
+      "protocolType": "guideline",
+      "blockCount": 84,
+      "protocolHash": "88e9a40adfb9ca8e58dbe66b48d0e7946ca78b43a7246bfe07a8b09ee0dfa614"
+    },
+    "ahaasa-2023-acc-aha-accp-hrs-guideline-for-the-diagnosis-": {
+      "protocolType": "guideline",
+      "blockCount": 86,
+      "protocolHash": "b248e8e6fee9787260c9c059929723825bfdbfd8ed4066493931ad3e4741da0c"
+    },
+    "eso-2023-moyamoya-angiopathy-wdfb": {
+      "protocolType": "guideline",
+      "blockCount": 13,
+      "protocolHash": "962d2f65ce50d3bba7b35aef1b092f998c702325b78240071ea1de870c19275b"
+    },
+    "ahaasa-2022-aha-asa-guideline-for-the-management-of-patie": {
+      "protocolType": "guideline",
+      "blockCount": 124,
+      "protocolHash": "2449d51ab2557d76e5b6948f77a29ab32bb41bd24d2c86e12fe42628a0cd042e"
+    },
+    "eso-2021-doc-1793620528679": {
+      "protocolType": "guideline",
+      "blockCount": 44,
+      "protocolHash": "1a2d036db58ae2ddc86f3f16f6af7cdd0e1495ac5e902ec303cdf072aa83528a"
+    },
+    "ahaasa-2019-early-ischemic-stroke-uv3u": {
+      "protocolType": "guideline",
+      "blockCount": 213,
+      "protocolHash": "6b5c5913fe1e87ed21681b0ecb48ba308a28ea86f82cf014c0589bc6e6deca26"
+    },
+    "catalog-clinical-scenarios": {
+      "protocolType": "scenario_catalog",
+      "blockCount": 8,
+      "protocolHash": "8e79f1ab464576f57f46baaeb4a520f24cab39fdb5402505b18632a207fc1c64"
+    },
+    "catalog-pivotal-trials": {
+      "protocolType": "scenario_catalog",
+      "blockCount": 95,
+      "protocolHash": "8ed457051804f536ca15fabb089f7735d6d97e27a9c8b4144e1ecab660aef6ca"
+    },
+    "catalog-recommendation-atoms": {
+      "protocolType": "scenario_catalog",
+      "blockCount": 12,
+      "protocolHash": "680769c3d3c1d1df2c1b247595e36549931914ce287ad645ca631fe79f6d0991"
+    },
+    "catalog-system-meta": {
+      "protocolType": "scenario_catalog",
+      "blockCount": 0,
+      "protocolHash": "9d5d72ecfd5c02792a5c7abc763d432ca1d7d4d2d628cba3bc2fcfbab19bba9b"
+    }
+  },
+  "generatedAt": "2026-11-18T06:20:58.709Z"
+}

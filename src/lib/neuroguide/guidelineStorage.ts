@@ -28,6 +28,15 @@ import {
   isEsoAsahGuideline,
   isEsoPfoGuideline,
 } from "./esoPicoGrouper.ts";
+import { SupabaseNeuroGuideRepo } from "./sync/repoSupabase.ts";
+import {
+  loadNeuroGuideCatalogFromSyncV2,
+  mirrorStorePayloadToV2Repo,
+} from "./sync/serverAdapter.ts";
+
+export function isNeuroGuideSyncV2Enabled(): boolean {
+  return process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2 === "1";
+}
 
 const LOCAL_STORAGE_PATH = path.join(process.cwd(), "public", "data", "neuroguide_cloud.json");
 
@@ -593,6 +602,51 @@ export async function loadMergedNeuroGuideData(): Promise<{
 
   let dynamicData: SupabaseNeuroGuidePayload | null = null;
 
+  // Primary (Sync v2 when feature flag enabled): 2-tier Granular Block & Merkle Graph
+  if (isNeuroGuideSyncV2Enabled() && hasSupabaseConfig()) {
+    try {
+      const v2Catalog = await loadNeuroGuideCatalogFromSyncV2(
+        new SupabaseNeuroGuideRepo(),
+        {
+          conferences: MOCK_CONFERENCE_EVENTS,
+          scenarios: MOCK_CLINICAL_SCENARIOS,
+          recommendationAtoms: MOCK_RECOMMENDATION_ATOMS,
+        },
+      );
+      if (v2Catalog.protocolCount > 0 && v2Catalog.guidelines.length > 0) {
+        const mergedDeletedSet = new Set<string>(
+          (v2Catalog.deletedGuidelineIds || []).map((x) => x.toLowerCase()),
+        );
+        const mergedConfs = mergeConferences(v2Catalog.conferences);
+        const mergedDelTrials = Array.from(
+          new Set(
+            (v2Catalog.deletedTrialIds || [])
+              .map((x) => String(x || "").toLowerCase().trim())
+              .filter(Boolean),
+          ),
+        );
+        return {
+          guidelines: mergeGuidelines(v2Catalog.guidelines, [], mergedDeletedSet),
+          conferences: mergedConfs,
+          scenarios: mergeScenarios(v2Catalog.scenarios),
+          recommendationAtoms: mergeRecommendationAtoms(v2Catalog.recommendationAtoms),
+          pivotalTrials: mergePivotalTrialsWithConferences(
+            v2Catalog.pivotalTrials,
+            mergedConfs,
+            mergedDelTrials,
+          ),
+          customRecLabels: v2Catalog.customRecLabels || {},
+          storageSource: "supabase",
+          lastSyncedAt: v2Catalog.lastUpdatedAt || `v2-seq-${v2Catalog.maxSeq}`,
+          deletedGuidelineIds: Array.from(mergedDeletedSet),
+          deletedTrialIds: mergedDelTrials,
+        };
+      }
+    } catch (v2Err) {
+      console.warn("NeuroGuide Sync v2 read fallback to legacy Supabase:", v2Err);
+    }
+  }
+
   // Primary: Load directly from Supabase
   if (hasSupabaseConfig()) {
     dynamicData = await getFromSupabase();
@@ -919,6 +973,22 @@ export async function saveNeuroGuideToActiveStorage(payload: {
       }
     }
     const sbRes = await setToSupabase(fullPayload);
+    if (sbRes.ok && isNeuroGuideSyncV2Enabled()) {
+      try {
+        await mirrorStorePayloadToV2Repo(new SupabaseNeuroGuideRepo(), {
+          guidelines: fullPayload.guidelines,
+          conferences: fullPayload.conferences,
+          scenarios: fullPayload.scenarios,
+          recommendationAtoms: fullPayload.recommendationAtoms,
+          pivotalTrials: fullPayload.pivotalTrials,
+          customRecLabels: fullPayload.customRecLabels,
+          deletedGuidelineIds: fullPayload.deletedGuidelineIds,
+          deletedTrialIds: fullPayload.deletedTrialIds,
+        });
+      } catch (v2WriteErr) {
+        console.warn("NeuroGuide Sync v2 dual-write warning:", v2WriteErr);
+      }
+    }
     if (sbRes.ok) {
       return { success: true, storage: "supabase" };
     }

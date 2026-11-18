@@ -23,6 +23,7 @@ import { getStoredAdminToken } from "@/utils/clientAuth";
 import { PatientBar } from "./PatientBar";
 import { DoseCard } from "./DoseCard";
 import { SourcePopover } from "./SourcePopover";
+import { TallManHint } from "../TallManHint";
 import { ToolsRow } from "./ToolsRow";
 import { DrugAccordions } from "./DrugAccordions";
 import { AuditTrail } from "./AuditTrail";
@@ -128,6 +129,12 @@ export function DrugDetail({
               <h1 className="text-xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white break-words">
                 {tallManName}
               </h1>
+
+              <TallManHint
+                tallMan={drug.tall_man}
+                genericName={drug.generic_name}
+                darkMode={darkMode}
+              />
 
               {/* Source Popover for Tall Man */}
               <SourcePopover

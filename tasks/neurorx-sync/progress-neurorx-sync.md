@@ -18,7 +18,7 @@
 | **6a** | UI Lookup sau cờ `NEXT_PUBLIC_NEURORX_SYNC_V2` (0 ms click) | **Hydrogen** | `DONE` | `PASS (Iter 1)` | — | `page.tsx`, `NeuroRxShell.tsx`, `LookupTab.tsx`, `OfflineStatus.tsx`, `lookupHelpers.ts` + `neurorxLookupV2.test.mjs` |
 | **6b** | UI Admin (Draft Auto-Save, 3-Mode ConflictDialog, HistoryPanel) | **Argon** | `DONE` | `PASS (Iter 1)` | E2E B1–B6: PASS (Live Supabase) | Theo dõi production ≥ 3 ngày |
 | **7** | Cutover, gỡ code legacy, đặt lịch `pg_cron` + GHA fallback & mirror | **Argon** | `DONE` | `PASS (Iter 1)` | User đã xác nhận `"GO CUTOVER"` (2026-11-16) | Đã giữ bảng cũ; có `LATER_drop_legacy_neurorx.sql` chờ ≥ 30 ngày |
-| **8** | Tách lõi `src/lib/sync/` & áp dụng Granular Blocks cho NeuroGuide | **Argon** / **Hydrogen** | `BACKLOG` | — | Chờ Phase 7 ổn định ≥ 7 ngày | Xem `00-design-neurorx-sync.md §10` |
+| **8** | Tách lõi `src/lib/sync/` & áp dụng Granular Blocks cho NeuroGuide | **Argon** / **Hydrogen** | `IN_PROGRESS` | `Phase 8.0–8.5 DONE` | `Gate 8.3 PASSED` · `Phase 8.4 API` & `Phase 8.5 Client Engine DONE`; sẵn sàng **Phase 8.6** UI Integration | Xem `00-design-neurorx-sync.md §10` |
 
 ---
 
@@ -91,6 +91,21 @@ Hướng dẫn chạy (khi Phase 1 hoàn thành):
 - [ ] Đã bật `NEXT_PUBLIC_NEURORX_SYNC_V2=1` trên production ≥ 3 ngày, 6 kịch bản B1–B6 trong [`20-evaluation-neurorx-sync.md §4`](./20-evaluation-neurorx-sync.md) đạt hết.
   - *(2026-11-14)* Kiểm thử E2E tự động B1–B6 (`tests/neurorxE2EB1B6.test.mjs`) đã **PASS** cả in-memory (69 thuốc) lẫn **Live Supabase RPCs** (`NEURORX_SYNC_IT=1`); còn bước bật `NEXT_PUBLIC_NEURORX_SYNC_V2=1` theo dõi production ≥ 3 ngày trước khi `"GO CUTOVER"`.
 - [x] User đã xác nhận `"GO CUTOVER"` (`2026-11-16` — kích hoạt Phase 7 Cutover).
+
+### Gate 8.1 — Kết quả chạy SQL Phase 8.1 trên Supabase SQL Editor
+Hướng dẫn chạy (khi Phase 8.1 hoàn thành):
+1. Mở **Supabase Dashboard → SQL Editor**.
+2. Chạy toàn bộ file [`20261118_neuroguide_granular_sync_v2.sql`](../../supabase/migrations/20261118_neuroguide_granular_sync_v2.sql) (có thể chạy lại lần 2 để kiểm tra idempotent).
+3. Chạy toàn bộ file [`neuroguide_granular_sync_v2_checks.sql`](../../supabase/tests/neuroguide_granular_sync_v2_checks.sql) (tự bọc trong `BEGIN ... ROLLBACK` nên không để lại dữ liệu rác).
+4. Dán kết quả chạy checks vào dưới đây:
+- **Trạng thái Gate 8.1:** `PASSED (2026-11-18)`
+- **Kết quả SQL checks:** `Cả 2 phiên chạy đều success` (`20261118_neuroguide_granular_sync_v2.sql` & `neuroguide_granular_sync_v2_checks.sql` T1–T12)
+
+### Gate 8.3 — Kết quả chạy Migration NeuroGuide (`--apply`)
+- **Trạng thái Gate 8.3:** `PASSED (2026-11-18)`
+- **Live `--dry-run` đã kiểm chứng (`2026-11-18`):** `npm run ng:migrate-v2` → `Existing live: 0 protocols, 0 blocks`, `Planned create: 22 protocols, 1112 blocks` (+ `4878` unique cross-links), `Before max_seq: 0`, `After max_seq: 0`, `After root_hash: (empty)`.
+- **Live `--apply` lần 1 (`migrate-report-20261118-065743.json`):** `createdProtocolsCount: 22`, `createdBlocksCount: 1112`, `upsertedLinksCount: 4878`, `maxSeq: 0 -> 1158`, `rootHash: "bf52b4c6c3526015fdad729a8623b3d6e84b354526928d3adf178ec031e73cc7"`, `postCheck: PASS (protocols=22, blocks=1112, links=4878, protocolHashes=true, rootComputed=true, rootSummary=true)`.
+- **Live `--apply` lần 2 (`migrate-report-20261118-065801.json`):** Idempotent `createdProtocolsCount: 0`, `createdBlocksCount: 0`, `upsertedLinksCount: 0`, `toSkipProtocolsCount: 22`, `toSkipBlocksCount: 1112`, `maxSeq: 1158 -> 1158`, `postCheck: PASS (protocols=22, blocks=1112, links=4878, protocolHashes=true, rootComputed=true, rootSummary=true)`.
 
 ---
 
@@ -355,3 +370,165 @@ Hướng dẫn chạy (khi Phase 1 hoàn thành):
 - **Gates:** G-HYGIENE [PASS] · Grep Gate AC7.1 [PASS] · G-TEST [PASS] · G-BUILD [PASS] · TypeScript `tsc --noEmit` [PASS]
 - **AC checklist:** AC7.1 [x] · AC7.2 [x] · AC7.3 [x] · AC7.4 [x]
 - **Next step for user:** Chạy `supabase/migrations/20261120_neurorx_purge_cron.sql` trên Supabase SQL Editor (và/hoặc cấu hình secret `NEURORX_APP_URL`, `NEURORX_ADMIN_TOKEN` cho GitHub Actions fallback `.github/workflows/neurorx_purge.yml`); giữ `LATER_drop_legacy_neurorx.sql` đến sau ≥ 30 ngày ổn định. Sau ≥ 7 ngày ổn định, sẵn sàng chuyển sang **Phase 8** (NeuroGuide Granular Blocks & Merkle Tree).
+
+---
+
+## Phase 8.0 — Execution Log (2026-11-18)
+
+### Thay đổi đã thực hiện (Zero Supabase Write)
+- **Tách lõi đa collection (`src/lib/sync/`):**
+  - Tạo mới `src/lib/sync/types.ts`, `src/lib/sync/repo.ts`, `src/lib/sync/applyChanges.ts`, `src/lib/sync/localStore.ts` (tham số hóa `collection`, `schemaVersion`, `recordsStoreName`), `src/lib/sync/jsonPatch.ts`, `src/lib/sync/syncEngine.ts` (tham số hóa `endpoint`), `src/lib/sync/realtime.ts` (tham số hóa `channelName`, `table`, `schema`).
+  - Nối lại `src/lib/neurorx/sync/{types.ts,repo.ts,applyChanges.ts,localStore.ts,jsonPatch.ts,syncEngine.ts,realtime.ts}` ủy quyền về `src/lib/sync/` giữ nguyên hành vi và tương thích ngược NeuroRx.
+- **Động cơ Granular Blocks & Merkle Tree cho NeuroGuide (`src/lib/neuroguide/sync/`):**
+  - Cập nhật `src/types/neuroguide.ts` (bổ sung `sharedBlockKey?: string` trên `PracticeChangeDetail`).
+  - Tạo mới `src/lib/neuroguide/sync/types.ts` và `src/lib/neuroguide/sync/blockGraph.ts`: phân rã lossless `GuidelineDoc`, `ClinicalScenario`, `PivotalTrialRecord`, `RecommendationAtom` thành các khối hạt mịn kèm UID tất định, hàm băm Tier-3 leaf / Tier-2 protocol Merkle / Tier-1 root Merkle, cập nhật $O(\log N)$ (`recomputeAffectedProtocolsForBlock` trả về tag `block:<uid>` và `protocol:<slug>`), chỉ mục liên kết chéo và truy vấn đa trục nhãn chồng chéo (`queryBlocksByOverlappingFacets`).
+- **Trình xuất snapshot đọc-duy-nhất (`ng:snapshot`):**
+  - Tạo mới `scripts/neuroguide/export-effective-snapshot.ts` (nạp `.env.local` trước dynamic import để đọc đúng dữ liệu Supabase hiện hành, chặn ghi ngoài `data/neuroguide/_migration/`) và thêm script `"ng:snapshot"` trong `package.json`.
+  - Xuất `data/neuroguide/_migration/snapshot-20261118.json` và `data/neuroguide/_migration/summary-20261118.json` từ nguồn live `supabase` (`lastSyncedAt: 2026-11-15T16:35:33.93+00:00`):
+    - Đầu vào: `18` guidelines, `0` conferences, `8` scenarios, `95` pivotal trials, `12` rec atoms, `0` custom labels (`32` deleted guidelines, `10` deleted trials).
+    - Đồ thị khối: `22` protocols, `1112` content blocks (`clinical_scenario: 8`, `pivotal_trial: 95`, `recommendation: 997`, `recommendation_atom: 12`), `1112` protocol-block edges, `4878` cross-link edges (`in_scenario: 13`, `cites_trial: 57`, `same_section: 1568`, `differs: 2402`, `supersedes: 560`, `same_pico: 276`, `refers_to: 2`).
+    - Root Merkle hash: `bf52b4c6c3526015fdad729a8623b3d6e84b354526928d3adf178ec031e73cc7`.
+- **Kiểm thử bổ sung:**
+  - Tạo mới `tests/sharedSyncCore.test.mjs` và `tests/neuroguideBlockGraph.test.mjs`.
+
+### Evaluation Log (Phase 8.0)
+- **Trạng thái hoàn tất Phase 8.0:** Hoàn thành tách lõi đồng bộ đa collection, động cơ Merkle + Granular Blocks cho NeuroGuide và xuất snapshot thực tế ở chế độ chỉ đọc; chuyển sang chạy toàn bộ cổng kiểm tra cuối kỳ (`G-HYGIENE`, `npm test`, `npm run build`, `npx tsc --noEmit`).
+- **Next step:** Sau khi user xác nhận, chuyển sang **Phase 8.1** (SQL migration cho `neuroguide_protocols`, `neuroguide_content_blocks`, `neuroguide_protocol_blocks`, `neuroguide_block_links`, `neuroguide_block_revisions`, RLS, RPC dùng advisory lock và kiểm thử SQL `T1–T12`).
+
+---
+
+## Phase 8.1 — Execution Log (2026-11-18)
+
+### Thay đổi đã thực hiện (Zero Live DB Mutation)
+- **Database Migration (`supabase/migrations/20261118_neuroguide_granular_sync_v2.sql`):**
+  - Sequence `public.neuroguide_change_seq` và 7 bảng chuẩn hóa: `neuroguide_protocols` (Tier-2 Merkle `protocol_hash`, `block_order uuid[]`, GIN `subspecialties jsonb_path_ops`), `neuroguide_content_blocks` (Tier-3 leaf `content_hash`, GIN `facets jsonb_path_ops`, ràng buộc `block_slug_matches_key`), `neuroguide_protocol_blocks` (join N-N cho shared clinical blocks), `neuroguide_block_links` (cạnh liên kết chéo có hướng), `neuroguide_block_revisions` (audit RFC 6902 `patch_diff` + snapshot), `neuroguide_sync_state` (1 dòng realtime cho `anon`), `neuroguide_sync_config` (`90 / 90 / 5 / 365`).
+  - Bật RLS toàn bộ 7 bảng, thu hồi quyền mặc định từ `public, anon, authenticated`, chỉ cấp `SELECT` trên `neuroguide_sync_state` cho `anon`, cấp toàn quyền cho `service_role`, thêm `neuroguide_sync_state` vào `supabase_realtime`.
+  - 14 RPC `SECURITY DEFINER` khóa `service_role` với `pg_advisory_xact_lock(hashtext('neuroguide_sync'))` trước `FOR UPDATE` và `nextval`: `neuroguide_recompute_protocol_hash`, `neuroguide_recompute_root_hash`, `neuroguide_recompute_affected_protocols`, `neuroguide_upsert_protocol`, `neuroguide_delete_protocol`, `neuroguide_create_block`, `neuroguide_update_block`, `neuroguide_delete_block`, `neuroguide_restore_block_revision`, `neuroguide_replace_block_links`, `neuroguide_query_blocks_by_facets`, `neuroguide_changes_since`, `neuroguide_protocol_changes_since`, `neuroguide_purge`.
+- **Rollback Script (`supabase/migrations/20261118_neuroguide_granular_sync_v2_rollback.sql`):**
+  - Gỡ sạch chỉ các đối tượng NeuroGuide Sync v2 (`publication`, 14 functions, 7 tables, `neuroguide_change_seq`), không chạm `neuroguide_docs` hay `neurorx_*`.
+- **SQL Verification Suite (`supabase/tests/neuroguide_granular_sync_v2_checks.sql`):**
+  - Bộ test tự chứa `T1–T12` bọc trong `BEGIN ... ROLLBACK` (bao gồm kiểm tra shared block $O(\log N)$ selective Merkle update, `NG_REV_CONFLICT`, `NG_SLUG_TAKEN`, rename giữ `uid`, recreate cấp `uid` mới, restore stripped `verification` + ép `draft`, retention `90/90/5/365`, ranh giới quyền `anon`, I13 short-circuit, `block_links` & `query_blocks_by_facets`).
+- **Contract Test (`tests/neuroguideSqlSchema.test.mjs`):**
+  - Tự động kiểm chứng cấu trúc SQL migration, rollback, thứ tự lock `pg_advisory_xact_lock`, không đụng bảng cũ và đủ checks `T1–T12`.
+
+### Evaluation Log (Phase 8.1)
+- **Human Gate ready:** YES (`WAITING_HUMAN_GATE` — chờ user chạy `20261118_neuroguide_granular_sync_v2.sql` và `neuroguide_granular_sync_v2_checks.sql` trên Supabase SQL Editor).
+- **Next step:** Sau khi user xác nhận SQL checks PASS, chuyển sang **Phase 8.2** (Repo interface, `MemoryNeuroGuideRepo`, `SupabaseNeuroGuideRepo` & property tests).
+
+---
+
+## Phase 8.2 — Execution Log (2026-11-18)
+
+### Thay đổi đã thực hiện
+- **Mở rộng kiểu & hợp đồng Repo (`src/lib/neuroguide/sync/`):**
+  - Cập nhật `src/lib/neuroguide/sync/types.ts`: tái xuất các kiểu lõi từ `../../sync/types.ts`, thêm `createdAt?: string` trên `NeuroGuideProtocolRow`, `linkedScenarioKeys?: string[]` trên `NeuroGuideOverlappingFacetFilter`, cùng các kiểu `NeuroGuideBlockRevisionRow`, `NeuroGuideProtocolEdgeInput`, `NeuroGuideProtocolUpsertInput`, `NeuroGuideBlockMutateResult`, `NeuroGuideProtocolMutateResult`.
+  - Tạo mới `src/lib/neuroguide/sync/repo.ts`: định nghĩa `RepoError` và interface `NeuroGuideRepo` cho cả 2 tầng (`protocols`, `content_blocks`, `protocol_blocks`, `block_links`, `block_revisions`, `queryBlocksByFacets`, `purge`).
+- **Tầng In-Memory & Supabase RPC (`repoMemory.ts`, `repoSupabase.ts`):**
+  - Tạo mới `src/lib/neuroguide/sync/repoMemory.ts`: `MemoryNeuroGuideRepo` mô phỏng đầy đủ hành vi SQL Phase 8.1 (`O(log N)` selective Merkle re-hashing trả về `invalidatedTags`, I13 short-circuit cho block & protocol, Pitfall P9 gỡ `verification` cả cấp ngoài lẫn lồng trong `payload` và ép `draft`, `replaceBlockLinks`, `queryBlocksByFacets` đa trục chồng chéo, và retention `90 / 90 / 5 / 365`).
+  - Tạo mới `src/lib/neuroguide/sync/repoSupabase.ts`: `SupabaseNeuroGuideRepo` khóa cứng Pitfall P8 (`SERVICE_UNAVAILABLE` khi thiếu `SUPABASE_SERVICE_ROLE_KEY`, không fallback anon key), ánh xạ `NG_REV_CONFLICT` / `NG_SLUG_TAKEN` / `NG_NOT_FOUND` và gọi 14 RPC Phase 8.1.
+- **Chiến lược hội tụ delta 2 tầng (`applyChanges.ts`):**
+  - Cập nhật `src/lib/sync/applyChanges.ts` với tùy chọn `allowSameRevHigherSeq?: boolean` (mặc định giữ nguyên hành vi cũ cho NeuroRx & Tier-3 content blocks) và tạo `src/lib/neuroguide/sync/applyChanges.ts` với `applyNeuroGuideGraphChanges()` áp dụng `(rev, changeSeq)` đơn điệu cho Tier-2 `protocols` (khi block con cập nhật `protocolHash` + `changeSeq` mà không tăng `protocol.rev`).
+- **Kiểm thử Phase 8.2 (`tests/neuroguideSyncRepo.test.mjs`):**
+  - Thêm bộ contract tests `T1–T10 + T12` trên `MemoryNeuroGuideRepo`, kiểm thử Pitfall P8 & mock RPC error mapping trên `SupabaseNeuroGuideRepo`, và property test 50 hoán vị/chia chunk ngẫu nhiên trên `applyNeuroGuideGraphChanges`.
+
+### Evaluation Log (Phase 8.2)
+- **Trạng thái hoàn tất:** Đã ghi nhận `Gate 8.1 PASSED` (`2026-11-18`), hoàn tất tầng Repo + Property Tests cho NeuroGuide Sync v2 và chạy toàn bộ cổng kiểm tra cuối kỳ (`G-HYGIENE`, `npm test`, `npm run build`, `npx tsc --noEmit`).
+- **Next step:** Sau khi user xác nhận, chuyển sang **Phase 8.3** (Migration CLI `scripts/neuroguide/migrate-to-v2.ts` — `--dry-run` & `--apply` với kiểm tra hash post-check).
+
+---
+
+## Phase 8.3 — Execution Log (2026-11-18)
+
+### Thay đổi đã thực hiện
+- **Phân trang PostgREST (> 1000 dòng) trên `src/lib/neuroguide/sync/repoSupabase.ts`:**
+  - Cập nhật `listProtocolEdges` (`.order("protocol_uid").order("position").order("block_uid").range(...)`) và `listBlockLinks` (`.order("id").range(...)`) phân trang từng batch `1000` dòng để không bị cắt `1112` protocol edges hoặc `4878` cross-link edges ở giới hạn mặc định PostgREST.
+- **Script Migration CLI `scripts/neuroguide/migrate-to-v2.ts` (`npm run ng:migrate-v2` trong `package.json`):**
+  - Đọc snapshot đóng băng từ Phase 8.0 (`snapshot-20261118.json` & `summary-20261118.json`), kiểm tra khóa cấm I10 và khớp `contentHash` từng block trước khi ghi.
+  - Mặc định chạy `--dry-run` (chỉ đọc); chế độ `--apply` bơm idempotent `neuroguide_content_blocks` (`skipRootRehash: true`, concurrency `8`), `neuroguide_protocols` + `neuroguide_protocol_blocks`, `neuroguide_block_links` theo chunk `1000`, gọi `recomputeRootHash()` duy nhất 1 lần ở cuối batch, kiểm tra post-check toàn diện và xuất `data/neuroguide/_migration/migrate-report-*.json`.
+- **Kiểm thử Phase 8.3 (`tests/neuroguideMigrateV2.test.mjs`):**
+  - Xác minh `--dry-run` giữ nguyên `maxSeq = 0`, `--apply` tạo đủ `1112` blocks + `22` protocols + `1112` protocol edges + `4878` cross-links khớp tuyệt đối `rootHash: bf52b4c6c3526015fdad729a8623b3d6e84b354526928d3adf178ec031e73cc7`, lần `--apply` thứ 2 bỏ qua toàn bộ (idempotent), và phát hiện lỗi khi `perProtocolHash` / `blockCountsByType` bị sai lệch.
+- **Live `--dry-run` trên Supabase thật:**
+  - `npm run ng:migrate-v2` → `Existing live: 0 protocols, 0 blocks`, `Planned create: 22 protocols, 1112 blocks` (`4878` links), `Before max_seq: 0`, `After max_seq: 0`, `Dry-run complete. Zero writes performed.`
+
+- **Live `--apply` lần 1 & lần 2 trên Supabase thật:**
+  - Run 1 (`data/neuroguide/_migration/migrate-report-20261118-065743.json`) → `createdProtocolsCount: 22`, `createdBlocksCount: 1112`, `upsertedLinksCount: 4878`, `maxSeq: 0 -> 1158`, `rootHash: bf52b4c6c3526015fdad729a8623b3d6e84b354526928d3adf178ec031e73cc7`, `Post-check: PASS (protocols=22, blocks=1112, links=4878, protocolHashes=true, rootComputed=true, rootSummary=true)`.
+  - Run 2 (`data/neuroguide/_migration/migrate-report-20261118-065801.json`) → Idempotent `createdProtocolsCount: 0`, `createdBlocksCount: 0`, `upsertedLinksCount: 0`, `toSkipProtocolsCount: 22`, `toSkipBlocksCount: 1112`, `maxSeq: 1158 -> 1158`, `Post-check: PASS`.
+
+### Evaluation Log (Phase 8.3)
+- **Trạng thái hoàn tất:** **Gate 8.3 `PASSED`** (`2026-11-18`) — dữ liệu thực tế NeuroGuide đã được chuẩn hóa an toàn lên Supabase Sync v2 và vượt qua đối chiếu Merkle 3 tầng (`protocolHashes=true, rootComputed=true, rootSummary=true`).
+- **Next step:** Sau khi user xác nhận, chuyển sang **Phase 8.4** (HTTP Sync API `/api/neuroguide/sync/*`, ETag `304`, `revalidateTag('block:' + uid)` + `revalidateTag('protocol:' + slug)`).
+
+---
+
+## Phase 8.4 — Execution Log (2026-11-18)
+
+### Thay đổi đã thực hiện
+- **Pure HTTP Sync Handlers (`src/lib/neuroguide/sync/handlers.ts`):**
+  - Triển khai các handler độc lập framework: `handleGetChanges` (hỗ trợ `tier=blocks | protocols | graph`, `includeLinks=1`, ETag `"ng-v2-*"` fast-path `304`, `hasMore`, `purgeHorizonSeq` reset), `handleCreateBlock`, `handleUpdateBlock`, `handleDeleteBlock`, `handleGetBlockHistory`, `handleRestoreBlockRevision`, `handleListProtocols`, `handleUpsertProtocol`, `handleDeleteProtocol`, `handleGetBlockLinks`, `handleReplaceBlockLinks`, `handleQueryBlocksByFacets`, `handlePurgeNeuroGuide`.
+  - Ép `status = 'draft'` & xóa `verification` mặc định cho các API ghi/restore (Pitfall P9), không phát invalidation tag khi ghi no-op (I13), và tự động phát danh sách `block:<uid>` + các `protocol:<slug>` bị ảnh hưởng ($O(\log N)$ selective invalidation) qua `onInvalidateTag`.
+- **9 Thin Next.js 16 Route Handlers (`src/app/api/neuroguide/sync/*`):**
+  - `changes/route.ts` (`GET`), `blocks/route.ts` (`GET` lọc đa trục & `POST`), `blocks/[uid]/route.ts` (`PUT` & `DELETE`), `blocks/[uid]/history/route.ts` (`GET`), `blocks/[uid]/restore/route.ts` (`POST`), `protocols/route.ts` (`GET` & `POST`), `protocols/[uid]/route.ts` (`DELETE`), `links/route.ts` (`GET` & `POST`), `purge/route.ts` (`POST`).
+  - Tất cả đặt `export const dynamic = "force-dynamic"`, `Cache-Control: no-store`, dùng `await context.params`, và gọi `revalidateTag(tag, { expire: 0 })` qua `invalidateSyncTag`.
+- **Next.js docs cited:**
+  - [`node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/route.md`](../../node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/route.md)
+  - [`node_modules/next/dist/docs/01-app/03-api-reference/04-functions/revalidateTag.md`](../../node_modules/next/dist/docs/01-app/03-api-reference/04-functions/revalidateTag.md)
+- **Kiểm thử Phase 8.4 (`tests/neuroguideSyncApi.test.mjs`):**
+  - Kiểm chứng `AC8.4.1–AC8.4.4`: chặn `401` khi `isAdmin=false`, ETag `304` + paging + `reset`, ép `draft` / no-op I13 / `409 REV_CONFLICT` / invalidation $O(\log N)$ chỉ chạm `protocol:aha-ais` & `protocol:eso-ais`, restore gỡ `verification`, truy vấn facet chồng chéo và map `503 SERVICE_UNAVAILABLE`.
+
+### Evaluation Log (Phase 8.4)
+- **Trạng thái hoàn tất:** Hoàn thành tầng HTTP API Sync v2 cho NeuroGuide kèm các route Next.js 16 và kiểm thử tự động.
+- **Next step:** Sau khi user xác nhận, chuyển sang **Phase 8.5** (Client IndexedDB `LocalStore` + `SyncEngine` + Realtime Bridge + `useNeuroGuideSync` hook).
+
+---
+
+## Phase 8.5 — Execution Log (2026-11-18)
+
+### Thay đổi đã thực hiện
+- **Mở rộng `src/lib/sync/syncEngine.ts`:**
+  - Hỗ trợ `endpoint` đã chứa query string (`?tier=blocks` / `?tier=protocols`) bằng separator `?` hoặc `&` và truyền `options.applyChangesOptions` vào `applyChanges()`.
+- **Client 2-Tier LocalStore & SyncEngine (`src/lib/neuroguide/sync/`):**
+  - Tạo `localStore.ts`: `IdbBlockLocalStore` (`neuroguide-blocks-sync-v1`, store `blocks`), `IdbProtocolLocalStore` (`neuroguide-protocols-sync-v1`, store `protocols`), cùng `MemoryBlockLocalStore` / `MemoryProtocolLocalStore` fallback khi IndexedDB bị chặn hoặc thiếu.
+  - Tạo `syncEngine.ts`: `createBlockSyncEngine`, `createProtocolSyncEngine` (bật `allowSameRevHigherSeq: true`), và `createNeuroGuideGraphSyncEngine` điều phối 2 tầng + `applyLocalBlockWrite` tự động tính lại `protocolHash` cho các protocol tham chiếu block vừa sửa mà không tăng `lastSeq`.
+  - Tạo `realtime.ts`: `createNeuroGuideRealtimeBridge` lắng nghe `postgres_changes` trên `neuroguide_sync_state` (`debounceMs = 300`, `pollIntervalMs = 60_000`), lọc tín hiệu cũ.
+- **React Sync Hook (`src/hooks/useNeuroGuideSync.ts`):**
+  - Xuất `deriveNeuroGuideStoreFromGraphSnapshot` (tái hợp `guidelines`, `conferences`, `scenarios`, `pivotalTrials`, `recommendationAtoms` ở 0-network) và `useNeuroGuideSync` kèm `queryFacets()`, `applyLocalBlockWrite()`, `applyLocalProtocolWrite()`, `refresh()`.
+- **Kiểm thử Phase 8.5 (`tests/neuroguideSyncEngine.test.mjs`):**
+  - Kiểm chứng `AC8.5.1–AC8.5.4`: khởi động offline phát cache trước khi `pull()` fail, hội tụ same-rev higher-seq trên protocol + `304`, coalescing 5 `pull()` đồng thời + `hasMore` + `reset`, `applyLocalBlockWrite`, Realtime debounce trên `neuroguide_sync_state` và `IdbLocalStore` + P12 fallback.
+
+### Evaluation Log (Phase 8.5)
+- **Trạng thái hoàn tất:** Hoàn thành tầng đồng bộ client offline-first 2 tầng và React hook `useNeuroGuideSync`.
+- **Next step:** Sau khi user xác nhận, chuyển sang **Phase 8.6** (Nối UI NeuroGuide Lookup/Navigator & Admin v2 với Draft Auto-Save, 3-Mode ConflictDialog, HistoryPanel).
+
+---
+
+## Phase 8.6 — Execution Log (2026-11-18)
+
+### Thay đổi đã thực hiện
+- **Client Lookup & Reconstruction Helpers (`src/lib/neuroguide/sync/lookupHelpers.ts`):**
+  - `formatNeuroGuideSyncStatusView` (các trạng thái `"Updating…"`, `"Offline — showing saved data"`, `"Sync issue — showing saved data"`, `"Up to date · HH:MM · seq #N"`, change toast `"1 block updated"` / `"N blocks updated"`).
+  - `buildNeuroGuideSelectionSearchParams` (deep link shallow History API), `stripRuntimeBlockMeta`, `reconstructGuidelineDocFromGraph`, `resolveRecommendationBlockForPracticeChange`, và `reconstructCatalogFromSyncGraph` (0-network catalog derivation).
+  - Bổ sung `blockChangeCount`, `graph`, `derived` (tương thích ngược) vào `src/lib/neuroguide/sync/syncEngine.ts` và `src/hooks/useNeuroGuideSync.ts`.
+- **Admin Sync v2 Helpers (`src/lib/neuroguide/sync/adminHelpers.ts`):**
+  - Tự động lưu nháp local mỗi `3000ms` (`NEUROGUIDE_DRAFT_AUTOSAVE_INTERVAL_MS = 3000`, `saveLocalBlockDraft`, `loadLocalBlockDraft`, `findLatestLocalBlockDraftForUid`, `clearLocalBlockDraft`, `clearLocalBlockDraftsForUid`).
+  - Merge 3 chiều theo section Merkle (`threeWayMergeBlock`, `buildBlockConflictSummary`) tự động gộp các thay đổi đa trục không chồng lấn trên `facetIndex` (`domains`, `timeWindowIds`, `interventionTags`, v.v.), `resolveBlockConflictChoice` cho 3 chế độ (`use_cloud`, `smart_merge`, `force_overwrite`), và `formatBlockRevisionDiffEntries` phân loại diff theo section (`payload` / `facetIndex` / `meta` / `top`).
+- **Server Sync v2 Adapter & Storage Flag (`src/lib/neuroguide/sync/serverAdapter.ts`, `src/lib/neuroguide/guidelineStorage.ts`):**
+  - `loadNeuroGuideCatalogFromSyncV2` đọc toàn bộ live protocols, blocks, protocol edges và cross-link edges qua phân trang, tính `lastUpdatedAt` xác định.
+  - `syncGuidelineDocToV2Repo` & `mirrorStorePayloadToV2Repo`: chỉ `updateBlock` khi `contentHash` thay đổi (giữ nguyên `rev`/`changeSeq` các block anh em không sửa), `syncDeleteGuidelineInV2Repo`, `syncPivotalTrialToV2Repo`, `syncDeletePivotalTrialInV2Repo`, `syncCustomRecLabelToV2Repo`.
+  - Bật đọc & dual-write Sync v2 sau cờ `NEXT_PUBLIC_NEUROGUIDE_SYNC_V2 === "1"` trong `guidelineStorage.ts` kèm fallback an toàn về Supabase cũ / local disk.
+- **UI Sync v2 & Tích hợp `/neuroguide` (`src/components/neuroguide/sync/*`, `EditGuidelineModal.tsx`, `src/app/neuroguide/page.tsx`):**
+  - Tạo `NeuroGuideSyncStatusBadge.tsx`, `BlockConflictDialog.tsx`, `BlockHistoryPanel.tsx`.
+  - Tích hợp vào `EditGuidelineModal.tsx` (banner `"Unsaved local draft found"` Restore/Discard, auto-save 3s, nút `History (rev N)` & `Save Block` cho từng block cả ESO PICO lẫn AHA/Standard, xử lý `409 REV_CONFLICT` qua `BlockConflictDialog`, xóa draft chỉ sau HTTP `200`).
+  - Nối `useNeuroGuideSync({ enabled: isSyncV2 })`, `<NeuroGuideSyncStatusBadge />`, và cập nhật realtime từ `reconstructCatalogFromSyncGraph(syncState.derived)` vào `src/app/neuroguide/page.tsx`.
+- **Kiểm thử Phase 8.6 (`tests/neuroguideAdminV2.test.mjs`, `tests/neuroguideE2EB1B6.test.mjs`):**
+  - `tests/neuroguideAdminV2.test.mjs`: `5/5` tests pass (draft 3s, 3-way merge & 3 conflict modes, history & restore draft, lookup helpers, granular `syncGuidelineDocToV2Repo` giữ nguyên `rev=1` cho block anh em).
+  - `tests/neuroguideE2EB1B6.test.mjs`: ma trận hồi quy B1–B6 qua `handlers.ts`, `createNeuroGuideGraphSyncEngine`, `createNeuroGuideRealtimeBridge`, `adminHelpers.ts`, `lookupHelpers.ts`, chạy trên cả `MemoryNeuroGuideRepo` lẫn `SupabaseNeuroGuideRepo` live (`NEUROGUIDE_SYNC_IT=1`).
+
+### Evaluation Log (Phase 8.6)
+- **Commands & Observed Results:**
+  - `node --experimental-strip-types --test tests/neuroguideAdminV2.test.mjs tests/neuroguideE2EB1B6.test.mjs tests/neuroguideSyncEngine.test.mjs` → **PASS** (`10` tests / `3` suites: `10` pass, `0` fail, `0` skipped)
+  - Live Supabase E2E (`NEXT_PUBLIC_NEUROGUIDE_SYNC_V2=1 NEUROGUIDE_SYNC_IT=1 node --use-system-ca --experimental-strip-types --test tests/neuroguideE2EB1B6.test.mjs`) → **PASS** (`2/2` suites: Memory + Live Supabase RPCs; post-cleanup xác nhận `22` protocols, `1112` protocol-block edges, `4878` cross-link edges, `rootHash = bf52b4c6c3526015fdad729a8623b3d6e84b354526928d3adf178ec031e73cc7`)
+  - `G-HYGIENE` (trên `src/lib/sync, src/lib/neurorx, src/lib/neuroguide, src/hooks, src/components/neuroguide/sync, src/app/api/neuroguide/sync, scripts/neuroguide, scripts/neurorx, tests`) → **PASS** (`0 matches`)
+  - `npm test` → **PASS** (`254` tests / `55` suites: `254` pass, `0` fail, `0` skipped; `validate.ts`, `check-quotes.ts` 4225 quotes, `check-no-clinical-constants.ts` pass)
+  - `npm run build` → **PASS** (`exit 0`, Next.js 16.4.3 Turbopack)
+  - `npx tsc --noEmit` → **PASS** (`exit 0`)
+- **Trạng thái hoàn tất:** **Phase 8 (8.0–8.6) ĐÃ HOÀN TẤT** sau cờ `NEXT_PUBLIC_NEUROGUIDE_SYNC_V2=1`. Sẵn sàng theo dõi / kiểm thử UI trực tiếp với `NEXT_PUBLIC_NEUROGUIDE_SYNC_V2=1` trước cutover.

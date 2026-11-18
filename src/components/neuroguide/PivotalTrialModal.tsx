@@ -13,6 +13,13 @@ import {
   EXCLUDED_TRIAL_TAG_IDS,
   type OntologyValueDef,
 } from "../../lib/neuroguide/ontologyValidator";
+import {
+  getConditionsForSubspecialtiesV3,
+  getConditionSubTagsForScopesV3,
+  compareConditionLabelsV3,
+  getTagLabelByIdV3,
+} from "../../data/clinicalNavigatorTaxonomyV3";
+import { classifyPivotalTrialV3 } from "../../lib/neuroguide/clinicalNavigatorV3Classifier";
 import { getAdminHeaders } from "@/utils/clientAuth";
 
 interface PivotalTrialModalProps {
@@ -125,11 +132,16 @@ function FacetMultiSelect({
   const sortedOptions = React.useMemo(() => {
     const filtered = options.filter((v) => !EXCLUDED_TRIAL_TAG_IDS.has(v.id));
     if (preserveOrder) return filtered;
-    return [...filtered].sort((a, b) =>
-      (a.label_en || a.id).localeCompare(b.label_en || b.id, undefined, {
+    return [...filtered].sort((a, b) => {
+      const aLabel = a.label_en || a.id;
+      const bLabel = b.label_en || b.id;
+      const aOther = /^(other\b|unspecified\b)/i.test(aLabel.trim());
+      const bOther = /^(other\b|unspecified\b)/i.test(bLabel.trim());
+      if (aOther !== bOther) return aOther ? 1 : -1;
+      return aLabel.localeCompare(bLabel, undefined, {
         sensitivity: "base",
-      })
-    );
+      });
+    });
   }, [options, preserveOrder]);
 
   const filteredOptions = React.useMemo(() => {
@@ -291,6 +303,8 @@ export function PivotalTrialModal({
   const [ontologyTags, setOntologyTags] = useState<
     Partial<Record<OntologyFacetId, string[]>>
   >({});
+  const [v3ConditionIds, setV3ConditionIds] = useState<string[]>([]);
+  const [v3ConditionSubTags, setV3ConditionSubTags] = useState<string[]>([]);
 
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -322,6 +336,9 @@ export function PivotalTrialModal({
       setSafetyNote(initialTrial.safetyEndpoint?.note || "");
       setBottomLine(initialTrial.bottomLine || "");
       setOntologyTags(filterAndSanitizeTags(initialTrial.ontologyTags || defaultOntologyTags));
+      const initialV3 = classifyPivotalTrialV3(initialTrial);
+      setV3ConditionIds(initialV3.conditionIds || []);
+      setV3ConditionSubTags(initialV3.conditionSubTags || []);
     } else {
       setAcronym("");
       setTitle("");
@@ -345,6 +362,8 @@ export function PivotalTrialModal({
       setSafetyNote("");
       setBottomLine("");
       setOntologyTags(filterAndSanitizeTags(defaultOntologyTags));
+      setV3ConditionIds([]);
+      setV3ConditionSubTags([]);
     }
   }, [isOpen, initialTrial, defaultOntologyTags]);
 
@@ -486,6 +505,13 @@ export function PivotalTrialModal({
         bottomLine.trim() ||
         `${acronym.trim()} (${journal.trim()} ${year}): ${primaryStats.trim()}`,
       ontologyTags,
+    };
+
+    const autoV3 = classifyPivotalTrialV3({ ...record, v3Tags: undefined });
+    record.v3Tags = {
+      ...autoV3,
+      conditionIds: v3ConditionIds.length > 0 ? v3ConditionIds : autoV3.conditionIds,
+      conditionSubTags: v3ConditionSubTags.length > 0 ? v3ConditionSubTags : autoV3.conditionSubTags,
     };
 
     setIsSaving(true);
@@ -869,6 +895,108 @@ export function PivotalTrialModal({
                 />
               </div>
             </div>
+          </div>
+
+          {/* Navigator V3 Clinical Condition & Sub-tags */}
+          <div className="p-4 sm:p-5 rounded-xl bg-sky-50/60 dark:bg-sky-950/20 border border-sky-200 dark:border-sky-900/50 space-y-3">
+            <div className="flex items-center justify-between">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-sky-900 dark:text-sky-300">
+                Navigator Classification (Clinical Condition &amp; Sub-tags)
+              </h3>
+              {(v3ConditionIds.length > 0 || v3ConditionSubTags.length > 0) && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setV3ConditionIds([]);
+                    setV3ConditionSubTags([]);
+                  }}
+                  className="text-[11px] font-semibold text-rose-600 dark:text-rose-400 hover:underline"
+                >
+                  Clear V3 Tags
+                </button>
+              )}
+            </div>
+
+            <div>
+              <span className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+                Clinical Condition ({subspecialty})
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {[...getConditionsForSubspecialtiesV3([subspecialty])]
+                  .sort((a, b) => compareConditionLabelsV3(a.label, b.label))
+                  .map((cond) => {
+                    const active = v3ConditionIds.includes(cond.id);
+                    return (
+                      <button
+                        key={cond.id}
+                        type="button"
+                        onClick={() =>
+                          setV3ConditionIds((prev) =>
+                            prev.includes(cond.id)
+                              ? prev.filter((id) => id !== cond.id)
+                              : [...prev, cond.id]
+                          )
+                        }
+                        className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold border transition ${
+                          active
+                            ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                            : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
+                        }`}
+                      >
+                        {cond.label}
+                      </button>
+                    );
+                  })}
+              </div>
+            </div>
+
+            {(() => {
+              const subTagGroups = getConditionSubTagsForScopesV3(v3ConditionIds);
+              if (subTagGroups.length === 0) return null;
+              return (
+                <div className="pt-2 border-t border-sky-200/70 dark:border-sky-800/50 space-y-2">
+                  <span className="block text-[11px] font-semibold text-sky-900 dark:text-sky-300">
+                    Condition Sub-tags
+                  </span>
+                  {subTagGroups.map((group) => (
+                    <div key={group.conditionId} className="space-y-1">
+                      {subTagGroups.length > 1 && (
+                        <span className="block text-[10px] font-bold text-slate-500 dark:text-slate-400">
+                          {group.conditionLabel}
+                        </span>
+                      )}
+                      <div className="flex flex-wrap gap-1.5">
+                        {[...group.subTags]
+                          .sort((a, b) => compareConditionLabelsV3(a.label, b.label))
+                          .map((st) => {
+                            const active = v3ConditionSubTags.includes(st.id);
+                            return (
+                              <button
+                                key={st.id}
+                                type="button"
+                                onClick={() =>
+                                  setV3ConditionSubTags((prev) =>
+                                    prev.includes(st.id)
+                                      ? prev.filter((id) => id !== st.id)
+                                      : [...prev, st.id]
+                                  )
+                                }
+                                className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold border transition ${
+                                  active
+                                    ? "bg-sky-600 text-white border-sky-600 shadow-sm"
+                                    : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-sky-400"
+                                }`}
+                              >
+                                {st.label}
+                              </button>
+                            );
+                          })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
           </div>
 
           {/* Ontology Tag Bridge */}

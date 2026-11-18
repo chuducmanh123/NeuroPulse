@@ -26,6 +26,12 @@ export interface TaxonomyTagV3 {
     label: string;
 }
 
+export interface ConditionSubTagV3 {
+    id: string;
+    label: string;
+    aliases?: string[];
+}
+
 export interface DiagnosisCategoryV3 {
     id: string;
     label: string;
@@ -50,6 +56,7 @@ export interface ClinicalConditionV3 {
     id: string;
     label: string;
     subspecialties: Subspecialty[];
+    subTags?: ConditionSubTagV3[];
     treatment: ConditionTreatmentSchemaV3;
     prevention: ConditionPreventionSchemaV3;
 }
@@ -109,6 +116,7 @@ function defineCondition(
     label: string,
     subspecialties: Subspecialty[],
     raw: {
+        subTags?: ConditionSubTagV3[];
         timeWindows: string[];
         drugs: string[];
         interventions: string[];
@@ -122,6 +130,7 @@ function defineCondition(
         id,
         label,
         subspecialties,
+        ...(raw.subTags && raw.subTags.length > 0 ? { subTags: raw.subTags } : {}),
         treatment: {
             timeWindows: timeWindows(id, raw.timeWindows),
             drugs: tags(raw.drugs),
@@ -219,6 +228,19 @@ export const CLINICAL_CONDITIONS_V3: ClinicalConditionV3[] = [
     // 4.1. STROKE (7 Conditions)
     // ------------------------------------------------------------------------
     defineCondition('cond_ischemic_stroke', 'Ischemic Stroke', ['Stroke'], {
+        subTags: [
+            { id: 'subtag_lvo', label: 'Large Vessel Occlusion (LVO)', aliases: ['LVO', 'large vessel occlusion', 'large-vessel occlusion'] },
+            { id: 'subtag_bao', label: 'Basilar Artery Occlusion (BAO)', aliases: ['BAO', 'basilar artery occlusion', 'basilar occlusion'] },
+            { id: 'subtag_mevo_dmvo', label: 'Medium / Distal Vessel Occlusion (MeVO/DMVO)', aliases: ['MeVO', 'DMVO', 'medium vessel occlusion', 'distal vessel occlusion'] },
+            { id: 'subtag_large_ischemic_core', label: 'Large Ischemic Core (ASPECTS 3–5)', aliases: ['large core', 'larger ischemic core', 'ASPECTS 3-5', 'ASPECTS 3–5', 'extensive baseline ischemic'] },
+            { id: 'subtag_cerebellar_infarction', label: 'Cerebellar Infarction', aliases: ['cerebellar infarction', 'cerebellar stroke', 'cerebellar infarct'] },
+            { id: 'subtag_suspected_stroke', label: 'Suspected Stroke', aliases: ['suspected stroke', 'suspected AIS', 'stroke mimics'] },
+            { id: 'subtag_malignant_mca', label: 'Large Hemispheric / Malignant MCA Infarction', aliases: ['malignant MCA', 'large hemispheric infarction', 'LHI'] },
+            { id: 'subtag_afib', label: 'Atrial Fibrillation (AFib)', aliases: ['AFib', 'AF', 'atrial fibrillation', 'cardioembolic'] },
+            { id: 'subtag_post_stroke_aphasia', label: 'Post-Stroke Aphasia', aliases: ['aphasia', 'post-stroke aphasia'] },
+            { id: 'subtag_post_stroke_motor', label: 'Post-Stroke Motor Impairment', aliases: ['motor impairment', 'motor rehabilitation', 'arm paresis', 'gait impairment'] },
+            { id: 'subtag_post_stroke_visual', label: 'Post-Stroke Visual Impairment', aliases: ['visual impairment', 'hemianopia', 'visual field loss'] },
+        ],
         timeWindows: ['Early Window (≤ 4.5h)', 'Extended Window (4.5h–24h)', 'Unknown Onset', 'Beyond 24h'],
         drugs: ['Tenecteplase', 'Alteplase', 'SAPT', 'DAPT', 'DOAC', 'VKA', 'Statin', 'Blood Pressure Control', 'Heparin'],
         interventions: ['Mechanical Thrombectomy', 'Basilar Thrombectomy', 'Intra-arterial Thrombolysis', 'Carotid Stenting', 'Angioplasty', 'Hemicraniectomy'],
@@ -264,6 +286,9 @@ export const CLINICAL_CONDITIONS_V3: ClinicalConditionV3[] = [
         lifestyleRehabMonitoring: ['Thrombophilia Surveillance', 'Contraceptive Cessation', 'Weight Optimization', 'Visual Field Tracking'],
     }),
     defineCondition('cond_carotid', 'Carotid Disease', ['Stroke'], {
+        subTags: [
+            { id: 'subtag_icas', label: 'Intracranial Stenosis (ICAS)', aliases: ['ICAS', 'intracranial atherosclerosis', 'intracranial stenosis'] },
+        ],
         timeWindows: ['Emergency (< 48h)', 'Early Phase (Day 2–14)', 'Elective (> 14 Days)'],
         drugs: ['SAPT', 'DAPT', 'Statin', 'Blood Pressure Control'],
         interventions: ['Carotid Endarterectomy', 'Carotid Stenting', 'TCAR'],
@@ -1057,6 +1082,9 @@ function ensureTagCache() {
         }
     }
     for (const cond of CLINICAL_CONDITIONS_V3) {
+        if (cond.subTags) {
+            for (const st of cond.subTags) TAG_LABEL_CACHE.set(st.id, st.label);
+        }
         for (const tw of cond.treatment.timeWindows) TAG_LABEL_CACHE.set(tw.id, tw.label);
         for (const d of cond.treatment.drugs) TAG_LABEL_CACHE.set(d.id, d.label);
         for (const i of cond.treatment.interventions) TAG_LABEL_CACHE.set(i.id, i.label);
@@ -1070,4 +1098,39 @@ function ensureTagCache() {
 export function getTagLabelByIdV3(tagId: string): string {
     ensureTagCache();
     return TAG_LABEL_CACHE.get(tagId) || tagId;
+}
+
+/**
+ * Alphabetical sort that always places "Other..." labels at the end.
+ */
+export function compareConditionLabelsV3(aLabel: string, bLabel: string): number {
+    const aIsOther = /^other\b/i.test(aLabel.trim());
+    const bIsOther = /^other\b/i.test(bLabel.trim());
+    if (aIsOther !== bIsOther) return aIsOther ? 1 : -1;
+    return aLabel.localeCompare(bLabel);
+}
+
+/**
+ * Returns grouped sub-tags for the selected condition IDs (only for conditions that define subTags).
+ */
+export function getConditionSubTagsForScopesV3(
+    conditionIds: string[]
+): { conditionId: string; conditionLabel: string; subTags: ConditionSubTagV3[] }[] {
+    const validIds = conditionIds.filter((c) => c && c !== 'all');
+    const result: { conditionId: string; conditionLabel: string; subTags: ConditionSubTagV3[] }[] = [];
+    for (const cid of validIds) {
+        const cond = CLINICAL_CONDITIONS_V3.find((c) => c.id === cid);
+        if (cond && cond.subTags && cond.subTags.length > 0) {
+            result.push({
+                conditionId: cond.id,
+                conditionLabel: cond.label,
+                subTags: cond.subTags,
+            });
+        }
+    }
+    return result;
+}
+
+export function getSubTagParentConditionV3(subTagId: string): ClinicalConditionV3 | undefined {
+    return CLINICAL_CONDITIONS_V3.find((c) => c.subTags?.some((st) => st.id === subTagId));
 }

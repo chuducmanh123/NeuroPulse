@@ -89,11 +89,13 @@ export interface PracticeChangeDetail {
   approvalStatus?: "human_approved" | "ai_checked" | "needs_review" | "rejected";
   ontologyLabels?: RecommendationLabelOutput;
   v3Labels?: RecommendationV3Labels;
+  sharedBlockKey?: string;
 }
 
 export interface RecommendationV3Labels {
   subspecialties: SubspecialtyType[];
   conditionIds: string[];
+  conditionSubTags?: string[];
   domains: ("diagnosis" | "treatment" | "prevention")[];
   diagnosisTags: string[];
   timeWindowIds: string[];
@@ -350,6 +352,7 @@ export interface PivotalTrialRecord {
   ontologyTags: Partial<Record<OntologyFacetId, string[]>>;
   v3Tags?: {
     conditionIds: string[];
+    conditionSubTags?: string[];
     domains: ("diagnosis" | "treatment" | "prevention")[];
     diagnosisTags?: string[];
     timeWindowIds?: string[];
@@ -364,6 +367,7 @@ export interface NavigatorQuery {
   subspecialties?: (SubspecialtyType | string)[];
   conditionId?: string | "all";
   conditionIds?: string[];
+  conditionSubTags?: string[];
   domain?: "all" | "diagnosis" | "treatment" | "prevention";
   domains?: ("all" | "diagnosis" | "treatment" | "prevention")[];
   diagnosisTags?: string[];

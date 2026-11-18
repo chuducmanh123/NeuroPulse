@@ -25,6 +25,9 @@ import {
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../../components/ecosystem/AdminButton";
 import { MEDICAL_DISCLAIMER_TEXT } from "../../components/ecosystem/MedicalDisclaimerFooter";
+import { NeuroGuideSyncStatusBadge } from "../../components/neuroguide/sync/NeuroGuideSyncStatusBadge";
+import { useNeuroGuideSync } from "../../hooks/useNeuroGuideSync";
+import { reconstructCatalogFromSyncGraph } from "../../lib/neuroguide/sync/lookupHelpers";
 import dynamic from "next/dynamic";
 
 const ClinicalNavigatorTab = dynamic(
@@ -309,6 +312,8 @@ export default function NeuroGuidePage() {
   const [navigatorSeedQuery, setNavigatorSeedQuery] = useState<NavigatorQuery | null>(null);
 
   const SWR_STORAGE_KEY = "neuroguide_swr_store_v3";
+  const isSyncV2 = process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2 === "1";
+  const syncState = useNeuroGuideSync({ enabled: isSyncV2 });
 
   const filterValidGuidelines = (list: GuidelineDoc[], deletedIds: string[] = []): GuidelineDoc[] => {
     if (!Array.isArray(list)) return [];
@@ -863,6 +868,44 @@ export default function NeuroGuidePage() {
       });
   }, []);
 
+  // Reconstruct UI catalogs in real time whenever Sync v2 2-tier graph updates
+  useEffect(() => {
+    if (!isSyncV2) return;
+    if (syncState.blocksByUid.size === 0 && syncState.protocolsByUid.size === 0) {
+      return;
+    }
+
+    const catalog = reconstructCatalogFromSyncGraph(syncState.derived, {
+      guidelines: MOCK_GUIDELINE_DOCS,
+      recommendationAtoms: MOCK_RECOMMENDATION_ATOMS,
+      pivotalTrials: PIVOTAL_TRIALS_SEED,
+    });
+    const valid = filterValidGuidelines(catalog.guidelines, catalog.deletedGuidelineIds);
+    setGuidelineDocs(valid);
+    if (catalog.recommendationAtoms.length > 0) {
+      setRecommendationAtoms(catalog.recommendationAtoms);
+    }
+    if (catalog.pivotalTrials.length > 0 || catalog.deletedTrialIds.length > 0) {
+      setDeletedTrialIds(catalog.deletedTrialIds);
+      setPivotalTrials((prev) =>
+        mergePivotalTrialsWithConferences(
+          catalog.pivotalTrials.length > 0 ? catalog.pivotalTrials : prev,
+          conferences,
+          catalog.deletedTrialIds,
+        ),
+      );
+    }
+    if (Object.keys(catalog.customRecLabels).length > 0) {
+      setCustomRecLabels((prev) => ({ ...prev, ...catalog.customRecLabels }));
+    }
+    setIsInitialLoading(false);
+  }, [
+    isSyncV2,
+    syncState.derived,
+    syncState.blocksByUid.size,
+    syncState.protocolsByUid.size,
+  ]);
+
   // Sync dark mode with ecosystem standards (both neuro_dark_mode and neuropulse_theme)
   useEffect(() => {
     const savedDark =
@@ -1073,6 +1116,19 @@ export default function NeuroGuidePage() {
 
           {/* Quick Header Badges & Actions */}
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 self-start sm:self-auto">
+            {isSyncV2 && (
+              <NeuroGuideSyncStatusBadge
+                syncStatus={syncState.status}
+                lastSyncAt={syncState.lastSyncAt}
+                lastChangeCount={syncState.blockChangeCount}
+                lastSeq={syncState.lastSeq}
+                rootHash={syncState.rootHash}
+                protocolCount={syncState.protocolsByUid.size}
+                blockCount={syncState.blocksByUid.size}
+                darkMode={darkMode}
+                onRefresh={syncState.refresh}
+              />
+            )}
             <button
               onClick={toggleDarkMode}
               className={`px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 ${
@@ -2025,6 +2081,11 @@ export default function NeuroGuidePage() {
             item={editingPracticeChange}
             guidelineDoc={editingGuidelineDoc}
             adminToken={getStoredAdminToken()}
+            syncV2Enabled={isSyncV2}
+            blocksByUid={syncState.blocksByUid}
+            blocksBySlug={syncState.blocksBySlug}
+            protocolsBySlug={syncState.protocolsBySlug}
+            onApplyLocalBlockWrite={syncState.applyLocalBlockWrite}
             onSuccess={(updatedDoc) => {
               if (updatedDoc) {
                 const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -2039,6 +2100,9 @@ export default function NeuroGuidePage() {
                   return [updatedDoc, ...prev];
                 });
                 setSyncMessage(`✓ Đã lưu thay đổi guideline "${updatedDoc.title}" lên Cloud.`);
+              }
+              if (isSyncV2) {
+                void syncState.refresh();
               }
               reloadGuidelines(true);
             }}
