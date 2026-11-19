@@ -38,11 +38,11 @@ export function CaseChallenge({
   const wrongList = wrongAttemptsMap[currentCase.id] || [];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* 2-COLUMN SPLIT VIEW: LEFT = NEUROIMAGING FIGURES | RIGHT = VIGNETTE & MCQ */}
-      <div className="p-5 sm:p-7 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+      <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-7 items-start">
         {/* LEFT COLUMN: STICKY NEUROIMAGING VIEWER */}
-        <div className="lg:col-span-7 lg:sticky lg:top-6">
+        <div className="lg:col-span-5 lg:sticky lg:top-4">
           <NeuroImagingViewer
             imagingList={currentCase.presentation.imaging}
             isSolved={isSolved}
@@ -51,7 +51,7 @@ export function CaseChallenge({
         </div>
 
         {/* RIGHT COLUMN: CLINICAL VIGNETTE + MULTI-ATTEMPT MCQ + ACTION BUTTONS */}
-        <div className="lg:col-span-5 space-y-5">
+        <div className="lg:col-span-7 space-y-4">
           {/* Clinical Vignette Paragraph (NEJM Style) */}
           <div className="space-y-3 text-sm sm:text-[15px] leading-relaxed">
             <p className={darkMode ? "text-slate-200 font-normal" : "text-slate-800 font-normal"}>
@@ -168,7 +168,7 @@ export function CaseChallenge({
                       onSelectOption(currentCase, opt.id);
                     }
                   }}
-                  className={`py-3.5 px-2 transition-colors ${
+                  className={`py-2.5 px-2.5 transition-colors ${
                     isSolved || isWrongAttempt
                       ? "cursor-default"
                       : "cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50"
@@ -264,7 +264,7 @@ export function CaseChallenge({
 
       {/* UNLOCKED RESOLUTION */}
       {isSolved && (
-        <div className="p-5 sm:p-7 border-t border-slate-200 dark:border-slate-800 space-y-6 animate-fadeIn">
+        <div className="p-4 sm:p-6 border-t border-slate-200 dark:border-slate-800 space-y-5 animate-fadeIn">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h3 className="text-sm font-black uppercase tracking-wider text-emerald-500">
               Final Diagnosis, Teaching Points &amp; Clinical Pitfalls

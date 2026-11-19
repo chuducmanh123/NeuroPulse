@@ -699,13 +699,13 @@ export default function NeuroCasePage() {
 
   return (
     <main
-      className={`min-h-screen py-8 px-4 sm:px-8 transition-colors duration-200 ${
+      className={`min-h-screen py-4 sm:py-5 px-3 sm:px-6 lg:px-8 transition-colors duration-200 ${
         darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-100 text-slate-900"
       }`}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-screen-2xl mx-auto">
         {/* NEUROCASE HEADER */}
-        <header className="mb-6 pt-1 flex flex-wrap items-end justify-between gap-4">
+        <header className="mb-4 pt-1 flex flex-wrap items-end justify-between gap-4">
           <div>
             <div className="flex items-center gap-2.5 mb-2">
               <span className="relative flex h-3 w-3">
@@ -761,7 +761,7 @@ export default function NeuroCasePage() {
 
         {/* NAVIGATION BAR: GitHub-style Underline Tabs with NeuroCase Indigo Accent */}
         <nav
-          className={`mb-6 border-b ${
+          className={`mb-4 border-b ${
             darkMode ? "border-slate-800" : "border-slate-200"
           }`}
         >

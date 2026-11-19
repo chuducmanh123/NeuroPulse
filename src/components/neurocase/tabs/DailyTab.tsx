@@ -39,10 +39,10 @@ export function DailyTab({
   relatedPulseArticles = [],
 }: DailyTabProps) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Quick Case Selector Strip */}
       <div
-        className={`p-3 rounded-xl border flex items-center justify-between gap-2 overflow-x-auto ${
+        className={`px-3 py-2 rounded-xl border flex items-center justify-between gap-2 overflow-x-auto ${
           darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
         }`}
       >
@@ -95,11 +95,11 @@ export function DailyTab({
       >
         {/* Centered Challenge Date Header */}
         <div
-          className={`px-6 py-5 border-b text-center ${
+          className={`px-5 py-3.5 border-b text-center ${
             darkMode ? "border-slate-800 bg-slate-900/60" : "border-slate-100 bg-slate-50/50"
           }`}
         >
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-1.5">
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-1">
             <span className="text-[11px] font-black uppercase tracking-[0.2em] text-rose-600 dark:text-rose-400">
               CLINICAL &amp; IMAGING CHALLENGE
             </span>
@@ -115,7 +115,7 @@ export function DailyTab({
               {currentCase.difficulty}
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight">
             {formatChallengeDate(currentCase.published_date)}
           </h2>
         </div>

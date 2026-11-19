@@ -139,52 +139,36 @@ export function NeuroRxShell({
 
   const navTabs: Array<{
     id: NeuroRxTab;
-    icon: React.ReactNode;
+    icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
     mobileLabel: string;
     desktopLabel: string;
-    activeClass: string;
     badge?: number;
-    badgeClass?: string;
   }> = [
     {
       id: "lookup",
-      icon: <Pill className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-500 shrink-0" />,
+      icon: Pill,
       mobileLabel: "Drug Lookup",
       desktopLabel: "Drug Lookup",
-      activeClass: darkMode
-        ? "bg-slate-800 text-cyan-300 border border-cyan-500/30 shadow-sm"
-        : "bg-white text-cyan-700 border border-cyan-500/30 shadow-sm",
       badge: verifiedCount,
-      badgeClass: "bg-cyan-500/15 text-cyan-600 dark:text-cyan-400",
     },
     {
       id: "interactions",
-      icon: <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 shrink-0" />,
+      icon: Zap,
       mobileLabel: "Interactions",
       desktopLabel: "Interactions",
-      activeClass: darkMode
-        ? "bg-slate-800 text-amber-300 border border-amber-500/30 shadow-sm"
-        : "bg-white text-amber-700 border border-amber-500/30 shadow-sm",
     },
     {
       id: "pregnancy",
-      icon: <Baby className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-500 shrink-0" />,
+      icon: Baby,
       mobileLabel: "Pregnancy & Lact.",
       desktopLabel: "Pregnancy & Lactation",
-      activeClass: darkMode
-        ? "bg-slate-800 text-rose-300 border border-rose-500/30 shadow-sm"
-        : "bg-white text-rose-700 border border-rose-500/30 shadow-sm",
     },
     {
       id: "novel",
-      icon: <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-500 shrink-0" />,
+      icon: Sparkles,
       mobileLabel: "Novel Therapies",
       desktopLabel: "Novel Therapies",
-      activeClass: darkMode
-        ? "bg-slate-800 text-indigo-300 border border-indigo-500/30 shadow-sm"
-        : "bg-white text-indigo-700 border border-indigo-500/30 shadow-sm",
       badge: novelCount,
-      badgeClass: "bg-indigo-500/15 text-indigo-600 dark:text-indigo-400",
     },
   ];
 
@@ -266,42 +250,79 @@ export function NeuroRxShell({
         </header>
 
         {/* =========================================================================
-            NAVIGATION: 4 Clean Clinical Pill Tabs (2x2 grid on mobile, row on >= sm)
+            NAVIGATION BAR: GitHub-style Underline Tabs with NeuroRx Cyan Accent
            ========================================================================= */}
-        <nav className="mb-4 sm:mb-6">
+        <nav
+          className={`mb-4 sm:mb-6 border-b ${
+            darkMode ? "border-slate-800" : "border-slate-200"
+          }`}
+        >
           <div
-            className={`p-1.5 rounded-2xl border transition-all grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-1.5 sm:gap-2 ${
-              darkMode ? "bg-slate-900/90 border-slate-800" : "bg-slate-200/60 border-slate-300/70"
-            }`}
+            className="flex items-center gap-1 overflow-x-auto no-scrollbar -mb-px"
             role="tablist"
           >
             {navTabs.map((tab) => {
               const isActive = activeTab === tab.id;
+              const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
+                  type="button"
                   onClick={() => handleTabChange(tab.id)}
                   role="tab"
                   aria-selected={isActive}
-                  className={`flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all min-h-[42px] sm:min-h-[44px] min-w-0 ${
+                  className={`group relative shrink-0 pb-2.5 pt-1 text-[12px] sm:text-[13px] transition-colors ${
                     isActive
-                      ? tab.activeClass
+                      ? darkMode
+                        ? "font-semibold text-white"
+                        : "font-semibold text-slate-900"
                       : darkMode
-                      ? "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 border border-transparent"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-white/50 border border-transparent"
+                      ? "font-medium text-slate-400 hover:text-slate-200"
+                      : "font-medium text-slate-600 hover:text-slate-900"
                   }`}
                 >
-                  {tab.icon}
-                  <span className="truncate">
-                    <span className="sm:hidden">{tab.mobileLabel}</span>
-                    <span className="hidden sm:inline">{tab.desktopLabel}</span>
+                  <span
+                    className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1.5 rounded-md transition-colors ${
+                      darkMode ? "group-hover:bg-slate-800/80" : "group-hover:bg-slate-200/70"
+                    }`}
+                  >
+                    <Icon
+                      size={15}
+                      strokeWidth={1.75}
+                      className={
+                        isActive
+                          ? darkMode
+                            ? "text-cyan-400"
+                            : "text-cyan-600"
+                          : darkMode
+                          ? "text-slate-500 group-hover:text-slate-300"
+                          : "text-slate-400 group-hover:text-slate-600"
+                      }
+                    />
+                    <span className="sm:hidden whitespace-nowrap">{tab.mobileLabel}</span>
+                    <span className="hidden sm:inline whitespace-nowrap">{tab.desktopLabel}</span>
+                    {tab.badge !== undefined && tab.badge > 0 && (
+                      <span
+                        className={`px-2 py-0.5 rounded-full text-[11px] font-semibold leading-none ${
+                          isActive
+                            ? darkMode
+                              ? "bg-cyan-500/20 text-cyan-300"
+                              : "bg-cyan-50 text-cyan-700"
+                            : darkMode
+                            ? "bg-slate-800 text-slate-300"
+                            : "bg-slate-200/80 text-slate-700"
+                        }`}
+                      >
+                        {tab.badge}
+                      </span>
+                    )}
                   </span>
-                  {tab.badge !== undefined && tab.badge > 0 && (
+                  {isActive && (
                     <span
-                      className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full font-extrabold shrink-0 ${tab.badgeClass}`}
-                    >
-                      {tab.badge}
-                    </span>
+                      className={`absolute inset-x-1 bottom-0 h-[2px] rounded-full ${
+                        darkMode ? "bg-cyan-400" : "bg-cyan-600"
+                      }`}
+                    />
                   )}
                 </button>
               );

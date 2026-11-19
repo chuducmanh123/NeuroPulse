@@ -268,49 +268,67 @@ export function ExamTab({
                 </div>
               </div>
 
-              {/* Imaging Viewer in Exam Mode */}
-              {currentExamCase.presentation.imaging.length > 0 && (
-                <NeuroImagingViewer
-                  imagingList={currentExamCase.presentation.imaging}
-                  isSolved={false}
-                  darkMode={darkMode}
-                />
-              )}
+              {/* Split View in Exam Mode when imaging is present */}
+              <div
+                className={
+                  currentExamCase.presentation.imaging.length > 0
+                    ? "grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
+                    : "space-y-5"
+                }
+              >
+                {currentExamCase.presentation.imaging.length > 0 && (
+                  <div className="lg:col-span-5 lg:sticky lg:top-4">
+                    <NeuroImagingViewer
+                      imagingList={currentExamCase.presentation.imaging}
+                      isSolved={false}
+                      darkMode={darkMode}
+                    />
+                  </div>
+                )}
 
-              {/* Clinical Vignette */}
-              <div className="space-y-2 text-xs sm:text-sm leading-relaxed">
-                <p>
-                  {currentExamCase.presentation.history_of_present_illness}{" "}
-                  {currentExamCase.presentation.neuro_exam}{" "}
-                  {currentExamCase.presentation.key_labs_csf}
-                </p>
-                <p className="font-bold pt-1">{currentExamCase.challenge.question}</p>
-              </div>
+                <div
+                  className={
+                    currentExamCase.presentation.imaging.length > 0
+                      ? "lg:col-span-7 space-y-4"
+                      : "space-y-4"
+                  }
+                >
+                  {/* Clinical Vignette */}
+                  <div className="space-y-2 text-sm sm:text-[15px] leading-relaxed">
+                    <p>
+                      {currentExamCase.presentation.history_of_present_illness}{" "}
+                      {currentExamCase.presentation.neuro_exam}{" "}
+                      {currentExamCase.presentation.key_labs_csf}
+                    </p>
+                    <p className="font-bold pt-1">{currentExamCase.challenge.question}</p>
+                  </div>
 
-              {/* Options */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {currentExamCase.challenge.options.map((opt) => {
-                  const isSelected = examAnswers[currentExamCase.id] === opt.id;
-                  return (
-                    <button
-                      key={opt.id}
-                      type="button"
-                      onClick={() => onAnswerExamQuestion(currentExamCase.id, opt.id)}
-                      className={`p-3.5 rounded-xl border text-left text-xs font-bold transition-all flex items-start gap-2.5 ${
-                        isSelected
-                          ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
-                          : darkMode
-                          ? "bg-slate-800/60 border-slate-700 text-slate-200 hover:bg-slate-800"
-                          : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100"
-                      }`}
-                    >
-                      <span className="w-5 h-5 rounded-full border border-current flex items-center justify-center shrink-0 mt-0.5">
-                        {opt.id}
-                      </span>
-                      <span>{opt.text}</span>
-                    </button>
-                  );
-                })}
+                  {/* Options */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {currentExamCase.challenge.options.map((opt) => {
+                      const isSelected = examAnswers[currentExamCase.id] === opt.id;
+                      return (
+                        <button
+                          key={opt.id}
+                          type="button"
+                          onClick={() => onAnswerExamQuestion(currentExamCase.id, opt.id)}
+                          className={`p-3.5 rounded-xl border text-left text-xs font-bold transition-all flex items-start gap-2.5 ${
+                            isSelected
+                              ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                              : darkMode
+                              ? "bg-slate-800/60 border-slate-700 text-slate-200 hover:bg-slate-800"
+                              : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100"
+                          }`}
+                        >
+                          <span className="w-5 h-5 rounded-full border border-current flex items-center justify-center shrink-0 mt-0.5">
+                            {opt.id}
+                          </span>
+                          <span>{opt.text}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
 
               <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
