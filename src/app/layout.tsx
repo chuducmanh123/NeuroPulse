@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin", "vietnamese"],
-  display: "swap",
-});
+import { EcosystemRail } from "@/components/ecosystem/EcosystemRail";
 
 export const metadata: Metadata = {
-  title: "Neurology & Stroke Journal Monitor | Multi-Journal Clinical Tracker",
+  title: "Neuro Ecosystem — Clinical & Research Suite",
   description:
-    "Automated clinical research aggregator for Neurology & Stroke from NEJM, The Lancet, Lancet Neurology, JAMA, JAMA Neurology, Stroke, Neurology, and Annals of Neurology.",
+    "Unified clinical & research suite for Neurology & Stroke: NeuroPulse Journal Monitor, NeuroCase, NeuroGuide, NeuroRx, and NeuroVision.",
 };
 
 export default function RootLayout({
@@ -21,6 +16,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap"
+          rel="stylesheet"
+        />
         <link rel="preconnect" href="https://europepmc.org" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.ncbi.nlm.nih.gov" crossOrigin="anonymous" />
         <script
@@ -29,17 +30,28 @@ export default function RootLayout({
               (function() {
                 try {
                   var isDark = localStorage.getItem('neuro_dark_mode') === 'true' ||
-                               localStorage.getItem('neuropulse_theme') === 'dark';
+                               localStorage.getItem('neuropulse_theme') === 'dark' ||
+                               localStorage.getItem('neurorx_theme') === 'dark' ||
+                               localStorage.getItem('neurocase_theme') === 'dark';
                   if (isDark) {
-                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.add('dark', 'night-shift');
                   } else {
-                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.remove('dark', 'night-shift');
                   }
                 } catch (e) {}
                 window.tailwind = {
                   darkMode: 'class',
                   config: {
-                    darkMode: 'class'
+                    darkMode: 'class',
+                    theme: {
+                      extend: {
+                        fontFamily: {
+                          sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+                          serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                          mono: ['"JetBrains Mono"', 'monospace'],
+                        }
+                      }
+                    }
                   }
                 };
               })();
@@ -53,13 +65,24 @@ export default function RootLayout({
               if (typeof tailwind !== 'undefined') {
                 tailwind.config = {
                   darkMode: 'class',
+                  theme: {
+                    extend: {
+                      fontFamily: {
+                        sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                      }
+                    }
+                  }
                 };
               }
             `,
           }}
         />
       </head>
-      <body className={`${inter.className} antialiased text-slate-900 bg-slate-100 dark:bg-slate-950 dark:text-slate-100`}>{children}</body>
+      <body className="font-sans antialiased bg-[var(--bg-paper)] text-[var(--text-ink)]">
+        <EcosystemRail>{children}</EcosystemRail>
+      </body>
     </html>
   );
 }

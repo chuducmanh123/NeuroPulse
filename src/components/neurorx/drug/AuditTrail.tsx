@@ -102,27 +102,23 @@ export function AuditTrail({
   const hashShort = storedHash ? `${storedHash.slice(0, 8)}…` : "Not sealed";
 
   return (
-    <div
-      className={`p-5 sm:p-6 rounded-2xl border border-l-4 border-l-slate-400 dark:border-l-slate-600 transition-colors mt-8 space-y-4 ${
-        darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200/90 shadow-sm"
-      }`}
-    >
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-200/60 dark:border-slate-800">
+    <div className="p-5 sm:p-6 rounded-2xl border border-[var(--border-hairline)] border-l-4 border-l-stone-400 dark:border-l-stone-600 bg-[var(--bg-surface)] shadow-xs transition-colors mt-8 space-y-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[var(--border-hairline)]">
         <div className="flex items-center gap-2">
-          <Lock className="w-4 h-4 text-sky-500" />
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+          <Lock className="w-4 h-4 text-[#2F855A] dark:text-emerald-400" />
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
             Clinical Provenance &amp; Cryptographic Audit Trail
           </h3>
         </div>
 
         {/* Effective Status Badge */}
         {isVerified ? (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>Cryptographically Verified</span>
           </span>
         ) : (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
             <AlertTriangle className="w-3.5 h-3.5" />
             <span>Unverified Draft</span>
           </span>
@@ -132,33 +128,33 @@ export function AuditTrail({
       {/* Verification metadata grid */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
         {/* Reviewer */}
-        <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 flex items-center gap-2.5">
-          <UserCheck className="w-4 h-4 text-slate-400 shrink-0" />
+        <div className="p-3 rounded-xl bg-[var(--bg-subtle)]/70 border border-[var(--border-hairline)] flex items-center gap-2.5">
+          <UserCheck className="w-4 h-4 text-[var(--text-muted)] shrink-0" />
           <div>
-            <span className="text-xs uppercase font-semibold tracking-wider text-slate-500 dark:text-slate-400 block">Verified By</span>
-            <span className="font-semibold text-slate-800 dark:text-slate-200">
+            <span className="text-xs uppercase font-semibold tracking-wider text-[var(--text-muted)] block">Verified By</span>
+            <span className="font-semibold text-[var(--text-ink)]">
               {drug.verification?.verified_by || "Pending review"}
             </span>
           </div>
         </div>
 
         {/* Date */}
-        <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 flex items-center gap-2.5">
-          <Calendar className="w-4 h-4 text-slate-400 shrink-0" />
+        <div className="p-3 rounded-xl bg-[var(--bg-subtle)]/70 border border-[var(--border-hairline)] flex items-center gap-2.5">
+          <Calendar className="w-4 h-4 text-[var(--text-muted)] shrink-0" />
           <div>
-            <span className="text-xs uppercase font-semibold tracking-wider text-slate-500 dark:text-slate-400 block">Verification Date</span>
-            <span className="font-semibold text-slate-800 dark:text-slate-200">
+            <span className="text-xs uppercase font-semibold tracking-wider text-[var(--text-muted)] block">Verification Date</span>
+            <span className="font-semibold text-[var(--text-ink)]">
               {drug.verification?.verified_at || "—"}
             </span>
           </div>
         </div>
 
         {/* Content Hash */}
-        <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 flex items-center gap-2.5">
-          <Hash className="w-4 h-4 text-slate-400 shrink-0" />
+        <div className="p-3 rounded-xl bg-[var(--bg-subtle)]/70 border border-[var(--border-hairline)] flex items-center gap-2.5">
+          <Hash className="w-4 h-4 text-[var(--text-muted)] shrink-0" />
           <div>
-            <span className="text-xs uppercase font-semibold tracking-wider text-slate-500 dark:text-slate-400 block">SHA-256 Hash Seal</span>
-            <span className="font-mono font-semibold text-slate-800 dark:text-slate-200" title={storedHash || undefined}>
+            <span className="text-xs uppercase font-semibold tracking-wider text-[var(--text-muted)] block">SHA-256 Hash Seal</span>
+            <span className="font-mono font-semibold text-[var(--text-ink)]" title={storedHash || undefined}>
               {hashShort}
             </span>
           </div>
@@ -167,7 +163,7 @@ export function AuditTrail({
 
       {/* Registered Sources Cited */}
       <div className="space-y-2 pt-2">
-        <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
+        <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] block">
           Primary Source Registrations Cited in this Monograph:
         </span>
         <div className="space-y-2">
@@ -176,15 +172,15 @@ export function AuditTrail({
             return (
               <div
                 key={sourceId}
-                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs"
+                className="p-3 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs"
               >
                 <div className="flex items-center gap-2">
-                  <BookOpen className="w-4 h-4 text-sky-500 shrink-0" />
+                  <BookOpen className="w-4 h-4 text-[#2F855A] dark:text-emerald-400 shrink-0" />
                   <div>
-                    <span className="font-semibold text-slate-800 dark:text-slate-200">
+                    <span className="font-semibold text-[var(--text-ink)]">
                       {sourceMeta?.title || sourceId}
                     </span>
-                    <span className="text-slate-500 dark:text-slate-400 text-xs block sm:inline sm:ml-2">
+                    <span className="text-[var(--text-muted)] text-xs block sm:inline sm:ml-2">
                       ({sourceMeta?.publisher || "Registered Source"} • {count} verbatim quote{count > 1 ? "s" : ""})
                     </span>
                   </div>
@@ -195,7 +191,7 @@ export function AuditTrail({
                     href={sourceMeta.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-sky-600 dark:text-sky-400 hover:underline shrink-0"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-[#2F855A] dark:text-emerald-400 hover:underline shrink-0"
                   >
                     <span>Official FDA Label</span>
                     <ExternalLink className="w-3 h-3" />

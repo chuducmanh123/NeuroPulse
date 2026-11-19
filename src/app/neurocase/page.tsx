@@ -18,6 +18,11 @@ import { ExamTab } from "../../components/neurocase/tabs/ExamTab";
 import { SubmitTab } from "../../components/neurocase/tabs/SubmitTab";
 import { AdminTab } from "../../components/neurocase/tabs/AdminTab";
 import { SUBSPECIALTY_TABS } from "../../constants/subspecialties";
+import {
+  getEcosystemDarkMode,
+  setEcosystemDarkMode,
+  subscribeEcosystemDarkMode,
+} from "../../utils/themeSync";
 
 function getLocalTodayIso(): string {
   const d = new Date();
@@ -47,8 +52,8 @@ export function getSpecialtyTheme(subspecialty: string): SpecialtyTheme {
   if (norm.includes("stroke") || norm.includes("vascular")) {
     return {
       borderLeft: "border-l-rose-500",
-      cardBg: "bg-rose-50/40 dark:bg-rose-950/20",
-      cardBorder: "border-rose-200 dark:border-rose-900/60 hover:border-rose-400 dark:hover:border-rose-500",
+      cardBg: "bg-[var(--bg-surface)]",
+      cardBorder: "border-[var(--border-hairline)] hover:border-rose-400 dark:hover:border-rose-500",
       badge: "bg-rose-100 text-rose-700 border-rose-300 dark:bg-rose-900/50 dark:text-rose-300 dark:border-rose-800",
       accentText: "text-rose-600 dark:text-rose-400",
       dotColor: "bg-rose-500",
@@ -57,8 +62,8 @@ export function getSpecialtyTheme(subspecialty: string): SpecialtyTheme {
   if (norm.includes("critical") || norm.includes("neurocritical") || norm.includes("icu") || norm.includes("trauma") || norm.includes("tbi")) {
     return {
       borderLeft: "border-l-amber-500",
-      cardBg: "bg-amber-50/40 dark:bg-amber-950/20",
-      cardBorder: "border-amber-200 dark:border-amber-900/60 hover:border-amber-400 dark:hover:border-amber-500",
+      cardBg: "bg-[var(--bg-surface)]",
+      cardBorder: "border-[var(--border-hairline)] hover:border-amber-400 dark:hover:border-amber-500",
       badge: "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-900/50 dark:text-amber-300 dark:border-amber-800",
       accentText: "text-amber-600 dark:text-amber-400",
       dotColor: "bg-amber-500",
@@ -67,8 +72,8 @@ export function getSpecialtyTheme(subspecialty: string): SpecialtyTheme {
   if (norm.includes("epilepsy") || norm.includes("seizure")) {
     return {
       borderLeft: "border-l-purple-500",
-      cardBg: "bg-purple-50/40 dark:bg-purple-950/20",
-      cardBorder: "border-purple-200 dark:border-purple-900/60 hover:border-purple-400 dark:hover:border-purple-500",
+      cardBg: "bg-[var(--bg-surface)]",
+      cardBorder: "border-[var(--border-hairline)] hover:border-purple-400 dark:hover:border-purple-500",
       badge: "bg-purple-100 text-purple-700 border-purple-300 dark:bg-purple-900/50 dark:text-purple-300 dark:border-purple-800",
       accentText: "text-purple-600 dark:text-purple-400",
       dotColor: "bg-purple-500",
@@ -77,8 +82,8 @@ export function getSpecialtyTheme(subspecialty: string): SpecialtyTheme {
   if (norm.includes("immuno") || norm.includes("neuroimmunology") || norm.includes("sclerosis")) {
     return {
       borderLeft: "border-l-emerald-500",
-      cardBg: "bg-emerald-50/40 dark:bg-emerald-950/20",
-      cardBorder: "border-emerald-200 dark:border-emerald-900/60 hover:border-emerald-400 dark:hover:border-emerald-500",
+      cardBg: "bg-[var(--bg-surface)]",
+      cardBorder: "border-[var(--border-hairline)] hover:border-emerald-400 dark:hover:border-emerald-500",
       badge: "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-900/50 dark:text-emerald-300 dark:border-emerald-800",
       accentText: "text-emerald-600 dark:text-emerald-400",
       dotColor: "bg-emerald-500",
@@ -87,8 +92,8 @@ export function getSpecialtyTheme(subspecialty: string): SpecialtyTheme {
   if (norm.includes("dementia") || norm.includes("cognit") || norm.includes("memory") || norm.includes("alzheimer")) {
     return {
       borderLeft: "border-l-cyan-500",
-      cardBg: "bg-cyan-50/40 dark:bg-cyan-950/20",
-      cardBorder: "border-cyan-200 dark:border-cyan-900/60 hover:border-cyan-400 dark:hover:border-cyan-500",
+      cardBg: "bg-[var(--bg-surface)]",
+      cardBorder: "border-[var(--border-hairline)] hover:border-cyan-400 dark:hover:border-cyan-500",
       badge: "bg-cyan-100 text-cyan-800 border-cyan-300 dark:bg-cyan-900/50 dark:text-cyan-300 dark:border-cyan-800",
       accentText: "text-cyan-600 dark:text-cyan-400",
       dotColor: "bg-cyan-500",
@@ -96,19 +101,19 @@ export function getSpecialtyTheme(subspecialty: string): SpecialtyTheme {
   }
   if (norm.includes("movement") || norm.includes("parkinson") || norm.includes("tremor") || norm.includes("ataxia")) {
     return {
-      borderLeft: "border-l-indigo-500",
-      cardBg: "bg-indigo-50/40 dark:bg-indigo-950/20",
-      cardBorder: "border-indigo-200 dark:border-indigo-900/60 hover:border-indigo-400 dark:hover:border-indigo-500",
-      badge: "bg-indigo-100 text-indigo-700 border-indigo-300 dark:bg-indigo-900/50 dark:text-indigo-300 dark:border-indigo-800",
-      accentText: "text-indigo-600 dark:text-indigo-400",
-      dotColor: "bg-indigo-500",
+      borderLeft: "border-l-[#6D28D9]",
+      cardBg: "bg-[var(--bg-surface)]",
+      cardBorder: "border-[var(--border-hairline)] hover:border-[#6D28D9] dark:hover:border-violet-500",
+      badge: "bg-violet-100 text-violet-700 border-violet-300 dark:bg-violet-900/50 dark:text-violet-300 dark:border-violet-800",
+      accentText: "text-[#6D28D9] dark:text-violet-400",
+      dotColor: "bg-[#6D28D9]",
     };
   }
   if (norm.includes("neuromuscular") || norm.includes("myasthenia") || norm.includes("neuropathy") || norm.includes("als")) {
     return {
       borderLeft: "border-l-fuchsia-500",
-      cardBg: "bg-fuchsia-50/40 dark:bg-fuchsia-950/20",
-      cardBorder: "border-fuchsia-200 dark:border-fuchsia-900/60 hover:border-fuchsia-400 dark:hover:border-fuchsia-500",
+      cardBg: "bg-[var(--bg-surface)]",
+      cardBorder: "border-[var(--border-hairline)] hover:border-fuchsia-400 dark:hover:border-fuchsia-500",
       badge: "bg-fuchsia-100 text-fuchsia-800 border-fuchsia-300 dark:bg-fuchsia-900/50 dark:text-fuchsia-300 dark:border-fuchsia-800",
       accentText: "text-fuchsia-600 dark:text-fuchsia-400",
       dotColor: "bg-fuchsia-500",
@@ -117,8 +122,8 @@ export function getSpecialtyTheme(subspecialty: string): SpecialtyTheme {
   if (norm.includes("oncol") || norm.includes("tumor") || norm.includes("glioma") || norm.includes("cancer")) {
     return {
       borderLeft: "border-l-red-600",
-      cardBg: "bg-red-50/40 dark:bg-red-950/20",
-      cardBorder: "border-red-200 dark:border-red-900/60 hover:border-red-400 dark:hover:border-red-500",
+      cardBg: "bg-[var(--bg-surface)]",
+      cardBorder: "border-[var(--border-hairline)] hover:border-red-400 dark:hover:border-red-500",
       badge: "bg-red-100 text-red-800 border-red-300 dark:bg-red-900/50 dark:text-red-300 dark:border-red-800",
       accentText: "text-red-600 dark:text-red-400",
       dotColor: "bg-red-600",
@@ -127,8 +132,8 @@ export function getSpecialtyTheme(subspecialty: string): SpecialtyTheme {
   if (norm.includes("headache") || norm.includes("migraine") || norm.includes("pain")) {
     return {
       borderLeft: "border-l-yellow-500",
-      cardBg: "bg-yellow-50/40 dark:bg-yellow-950/20",
-      cardBorder: "border-yellow-200 dark:border-yellow-900/60 hover:border-yellow-400 dark:hover:border-yellow-500",
+      cardBg: "bg-[var(--bg-surface)]",
+      cardBorder: "border-[var(--border-hairline)] hover:border-yellow-400 dark:hover:border-yellow-500",
       badge: "bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/50 dark:text-yellow-300 dark:border-yellow-800",
       accentText: "text-yellow-600 dark:text-yellow-400",
       dotColor: "bg-yellow-500",
@@ -137,20 +142,20 @@ export function getSpecialtyTheme(subspecialty: string): SpecialtyTheme {
   if (norm.includes("infection") || norm.includes("meningit") || norm.includes("cns infection") || norm.includes("abscess")) {
     return {
       borderLeft: "border-l-teal-500",
-      cardBg: "bg-teal-50/40 dark:bg-teal-950/20",
-      cardBorder: "border-teal-200 dark:border-teal-900/60 hover:border-teal-400 dark:hover:border-teal-500",
+      cardBg: "bg-[var(--bg-surface)]",
+      cardBorder: "border-[var(--border-hairline)] hover:border-teal-400 dark:hover:border-teal-500",
       badge: "bg-teal-100 text-teal-800 border-teal-300 dark:bg-teal-900/50 dark:text-teal-300 dark:border-teal-800",
       accentText: "text-teal-600 dark:text-teal-400",
       dotColor: "bg-teal-500",
     };
   }
   return {
-    borderLeft: "border-l-slate-400",
-    cardBg: "bg-slate-50/40 dark:bg-slate-800/30",
-    cardBorder: "border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-600",
-    badge: "bg-slate-100 text-slate-700 border-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700",
-    accentText: "text-slate-500",
-    dotColor: "bg-slate-400",
+    borderLeft: "border-l-stone-400",
+    cardBg: "bg-[var(--bg-surface)]",
+    cardBorder: "border-[var(--border-hairline)] hover:border-[#6D28D9] dark:hover:border-violet-500",
+    badge: "bg-[var(--bg-subtle)] text-[var(--text-secondary)] border-[var(--border-hairline)]",
+    accentText: "text-[#6D28D9] dark:text-violet-400",
+    dotColor: "bg-stone-400",
   };
 }
 
@@ -213,14 +218,11 @@ export default function NeuroCasePage() {
 
 
   useEffect(() => {
-    const savedDark = localStorage.getItem("neuro_dark_mode");
-    if (savedDark === "true") {
-      setDarkMode(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    setDarkMode(getEcosystemDarkMode());
+    return subscribeEcosystemDarkMode(setDarkMode);
+  }, []);
 
+  useEffect(() => {
     const savedAdmin = Boolean(sessionStorage.getItem("neurocase_admin_token") || localStorage.getItem("neurocase_admin_token"));
     if (savedAdmin) setIsAdminVerified(true);
 
@@ -359,16 +361,9 @@ export default function NeuroCasePage() {
   }, [examStarted, examFinished]);
 
   const toggleDarkMode = () => {
-    setDarkMode((prev) => {
-      const next = !prev;
-      localStorage.setItem("neuro_dark_mode", String(next));
-      if (next) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-      return next;
-    });
+    const next = !darkMode;
+    setDarkMode(next);
+    setEcosystemDarkMode(next);
   };
 
   const approvedCases = useMemo(
@@ -698,154 +693,118 @@ export default function NeuroCasePage() {
   };
 
   return (
-    <main
-      className={`min-h-screen py-4 sm:py-5 px-3 sm:px-6 lg:px-8 transition-colors duration-200 ${
-        darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-100 text-slate-900"
-      }`}
-    >
-      <div className="max-w-screen-2xl mx-auto">
-        {/* NEUROCASE HEADER */}
-        <header className="mb-4 pt-1 flex flex-wrap items-end justify-between gap-4">
+    <main className="min-h-screen bg-[var(--bg-paper)] text-[var(--text-ink)] transition-colors duration-200 pb-10">
+      {/* Unified Sticky App Header */}
+      <header className="sticky top-0 z-30 border-b border-[var(--border-hairline)] bg-[var(--bg-paper)]/95 px-4 py-3.5 backdrop-blur-md sm:px-8">
+        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-3">
           <div>
-            <div className="flex items-center gap-2.5 mb-2">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-600 shadow-sm shadow-indigo-500/50"></span>
+            <div className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-widest text-[var(--text-muted)]">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6D28D9] opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#6D28D9]"></span>
               </span>
-              <span
-                className={`text-xs font-bold uppercase tracking-widest ${
-                  darkMode ? "text-indigo-400" : "text-indigo-600"
-                }`}
-              >
-                INTERACTIVE CLINICAL REASONING SUITE
+              <span>INTERACTIVE CLINICAL REASONING SUITE</span>
+            </div>
+            <div className="mt-0.5 flex items-center gap-2.5">
+              <h1 className="text-xl font-extrabold tracking-tight text-[var(--text-ink)] sm:text-2xl">
+                NEUROCASE
+              </h1>
+              <span className="rounded-md bg-[#6D28D9] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+                NEW
               </span>
             </div>
-            <h1
-              className={`text-2xl sm:text-3xl font-black uppercase tracking-tight ${
-                darkMode ? "text-white" : "text-slate-900"
-              }`}
-            >
-              NEUROCASE
-            </h1>
           </div>
 
-          {/* Gamification Streak + Night Shift + 9-Dots App Switcher */}
           <div className="flex flex-wrap items-center gap-2">
             <div
-              className={`px-3 py-2 rounded-lg text-xs font-bold border flex items-center gap-1.5 ${
-                darkMode
-                  ? "bg-slate-900 border-slate-700 text-amber-300"
-                  : "bg-white border-slate-200 text-slate-800"
-              }`}
+              className="px-3 py-1.5 rounded-xl text-xs font-semibold border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[#6D28D9] dark:text-violet-300 flex items-center gap-1.5"
               title="Daily Case Streak"
             >
               <span>🔥 {streakDays}d Streak</span>
             </div>
 
-            <button
-              onClick={toggleDarkMode}
-              className={`px-3 py-2 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 ${
-                darkMode
-                  ? "bg-indigo-950 text-amber-300 border-indigo-800 hover:bg-indigo-900"
-                  : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
-              }`}
-            >
-              <span>{darkMode ? "☀️ Light" : "🌙 Night Shift"}</span>
-            </button>
-
-            <AdminButton darkMode={darkMode} />
+            {/* Mobile-only Night Shift & Admin controls (Desktop uses Left Rail) */}
+            <div className="flex items-center gap-1.5 sm:hidden">
+              <button
+                type="button"
+                onClick={toggleDarkMode}
+                className="px-2.5 py-1.5 rounded-xl text-xs font-bold border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-ink)] flex items-center gap-1"
+                title="Toggle Night-Shift / Dark Mode"
+              >
+                <span>{darkMode ? "☀️" : "🌙"}</span>
+              </button>
+              <AdminButton darkMode={darkMode} />
+            </div>
 
             <AppSwitcher currentApp="neurocase" darkMode={darkMode} />
           </div>
-        </header>
+        </div>
+      </header>
 
-        {/* NAVIGATION BAR: GitHub-style Underline Tabs with NeuroCase Indigo Accent */}
-        <nav
-          className={`mb-4 border-b ${
-            darkMode ? "border-slate-800" : "border-slate-200"
-          }`}
-        >
-          <div className="flex items-center gap-1 overflow-x-auto no-scrollbar -mb-px">
-            {[
-              { id: "daily", label: "Daily Challenge", icon: Flame, badge: undefined },
-              { id: "archive", label: "Case Archive", icon: Layers, badge: `${approvedCases.length}` },
-              { id: "exam", label: "Exam Mode", icon: Timer, badge: undefined },
-              { id: "submit", label: "Submit Case", icon: PlusCircle, badge: undefined },
-            ].map((tab) => {
-              const active = activeTab === tab.id;
-              const Icon = tab.icon;
-              return (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => {
-                    setActiveTab(tab.id as typeof activeTab);
-                    if (tab.id === "daily") {
-                      setActiveCaseId("");
-                      setShowDetailedWorkup(false);
+      {/* Unified Underline Tabs (Plum Violet #6D28D9 Accent) */}
+      <nav className="border-b border-[var(--border-hairline)] bg-[var(--bg-paper)] px-4 sm:px-8">
+        <div className="mx-auto flex max-w-[1440px] items-center gap-2 overflow-x-auto scrollbar-none -mb-px">
+          {[
+            { id: "daily", label: "Daily Challenge", icon: Flame, badge: undefined },
+            { id: "archive", label: "Case Archive", icon: Layers, badge: `${approvedCases.length}` },
+            { id: "exam", label: "Exam Mode", icon: Timer, badge: undefined },
+            { id: "submit", label: "Submit Case", icon: PlusCircle, badge: undefined },
+          ].map((tab) => {
+            const active = activeTab === tab.id;
+            const Icon = tab.icon;
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => {
+                  setActiveTab(tab.id as typeof activeTab);
+                  if (tab.id === "daily") {
+                    setActiveCaseId("");
+                    setShowDetailedWorkup(false);
+                  }
+                }}
+                className={`group relative shrink-0 pb-2.5 pt-2 text-[13px] transition-colors ${
+                  active
+                    ? "font-semibold text-[#6D28D9] dark:text-violet-400"
+                    : "font-medium text-[var(--text-muted)] hover:text-[var(--text-ink)]"
+                }`}
+              >
+                <span className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg transition-colors group-hover:bg-[var(--bg-subtle)]">
+                  <Icon
+                    size={15}
+                    strokeWidth={1.75}
+                    className={
+                      active
+                        ? "text-[#6D28D9] dark:text-violet-400"
+                        : "text-[var(--text-muted)] group-hover:text-[var(--text-ink)]"
                     }
-                  }}
-                  className={`group relative shrink-0 pb-2.5 pt-1 text-[13px] transition-colors ${
-                    active
-                      ? darkMode
-                        ? "font-semibold text-white"
-                        : "font-semibold text-slate-900"
-                      : darkMode
-                      ? "font-medium text-slate-400 hover:text-slate-200"
-                      : "font-medium text-slate-600 hover:text-slate-900"
-                  }`}
-                >
-                  <span
-                    className={`flex items-center gap-2 px-2.5 py-1.5 rounded-md transition-colors ${
-                      darkMode ? "group-hover:bg-slate-800/80" : "group-hover:bg-slate-200/70"
-                    }`}
-                  >
-                    <Icon
-                      size={15}
-                      strokeWidth={1.75}
-                      className={
-                        active
-                          ? darkMode
-                            ? "text-indigo-400"
-                            : "text-indigo-600"
-                          : darkMode
-                          ? "text-slate-500 group-hover:text-slate-300"
-                          : "text-slate-400 group-hover:text-slate-600"
-                      }
-                    />
-                    <span className="whitespace-nowrap">{tab.label}</span>
-                    {tab.badge && (
-                      <span
-                        className={`px-2 py-0.5 rounded-full text-[11px] font-semibold leading-none ${
-                          active
-                            ? darkMode
-                              ? "bg-indigo-500/20 text-indigo-300"
-                              : "bg-indigo-50 text-indigo-700"
-                            : darkMode
-                            ? "bg-slate-800 text-slate-300"
-                            : "bg-slate-200/80 text-slate-700"
-                        }`}
-                      >
-                        {tab.badge}
-                      </span>
-                    )}
-                  </span>
-                  {active && (
+                  />
+                  <span className="whitespace-nowrap">{tab.label}</span>
+                  {tab.badge && (
                     <span
-                      className={`absolute inset-x-1 bottom-0 h-[2px] rounded-full ${
-                        darkMode ? "bg-indigo-400" : "bg-indigo-600"
+                      className={`px-2 py-0.5 rounded-full text-[11px] font-semibold leading-none ${
+                        active
+                          ? "bg-[#6D28D9]/15 text-[#6D28D9] dark:bg-violet-500/20 dark:text-violet-300"
+                          : "bg-[var(--bg-subtle)] text-[var(--text-secondary)]"
                       }`}
-                    />
+                    >
+                      {tab.badge}
+                    </span>
                   )}
-                </button>
-              );
-            })}
-          </div>
-        </nav>
+                </span>
+                {active && (
+                  <span className="absolute inset-x-1 bottom-0 h-[2px] rounded-full bg-[#6D28D9] dark:bg-violet-400" />
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
 
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 pt-5">
         {loading && (
-          <div className="p-12 text-center rounded-2xl border border-slate-200 dark:border-slate-800">
-            <p className="text-sm font-bold animate-pulse">
+          <div className="p-12 text-center rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)]">
+            <p className="text-sm font-bold animate-pulse text-[var(--text-muted)]">
               Loading Neurology &amp; Stroke Clinical Cases...
             </p>
           </div>

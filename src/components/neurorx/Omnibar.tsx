@@ -118,16 +118,14 @@ export function Omnibar({
     <div ref={containerRef} className="relative w-full">
       {/* 1. Main Search Bar */}
       <div
-        className={`relative flex items-center w-full rounded-2xl border transition-all ${
+        className={`relative flex items-center w-full min-h-[44px] rounded-2xl border transition-all ${
           isOpen
-            ? "border-cyan-500 ring-2 ring-cyan-500/20 shadow-md shadow-cyan-500/10"
-            : darkMode
-            ? "border-slate-800 hover:border-slate-700 bg-slate-900/90"
-            : "border-slate-200 hover:border-slate-300 bg-white shadow-xs"
+            ? "border-[#2F855A] bg-[var(--bg-surface)] ring-2 ring-[#2F855A]/15 shadow-sm"
+            : "border-[var(--border-hairline)] bg-[var(--bg-surface)] hover:border-stone-400 dark:hover:border-stone-600 shadow-2xs"
         }`}
       >
-        <div className="pl-4 pr-2 text-slate-400">
-          <Search className="w-5 h-5 text-cyan-500" />
+        <div className="pl-3.5 pr-2.5 text-[#2F855A] dark:text-emerald-400">
+          <Search className="w-4 h-4" />
         </div>
 
         <input
@@ -141,7 +139,7 @@ export function Omnibar({
           onFocus={() => setIsOpen(true)}
           onKeyDown={handleKeyDown}
           placeholder="Search drug, brand, class, reverse AE or type 'keppra 60kg crcl 35'..."
-          className="w-full py-3.5 pr-10 text-sm sm:text-base bg-transparent focus:outline-none placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-900 dark:text-slate-100 font-medium"
+          className="w-full py-2.5 pr-10 text-xs font-medium bg-transparent focus:outline-none placeholder:text-[var(--text-muted)] text-[var(--text-ink)]"
           role="combobox"
           aria-expanded={isOpen}
           aria-haspopup="listbox"
@@ -156,11 +154,11 @@ export function Omnibar({
           <button
             type="button"
             onClick={handleClear}
-            className="p-1.5 mr-3 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-1.5 mr-2.5 rounded-full text-[var(--text-muted)] hover:text-[var(--text-ink)] hover:bg-[var(--bg-subtle)] transition-colors"
             title="Clear search"
             aria-label="Clear search"
           >
-            <X className="w-4 h-4" />
+            <X className="w-3.5 h-3.5" />
           </button>
         )}
       </div>
@@ -168,17 +166,17 @@ export function Omnibar({
       {/* 2. Parsed Patient Context Chips */}
       {hasPatientParams && (
         <div className="flex flex-wrap items-center gap-1.5 mt-2 px-1">
-          <span className="text-xs font-bold tracking-wider uppercase text-slate-600 dark:text-slate-400 mr-1">
+          <span className="text-xs font-bold tracking-wider uppercase text-[var(--text-muted)] mr-1">
             Parsed:
           </span>
 
           {parsed.patient.weightKg !== undefined && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/60">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#2F855A]/10 text-[#2F855A] dark:text-emerald-300 border border-[#2F855A]/25">
               <span>⚖️ {parsed.patient.weightKg} kg</span>
               <button
                 type="button"
                 onClick={() => removePatientParam("weight")}
-                className="hover:text-cyan-900 dark:hover:text-white p-0.5 rounded-full"
+                className="hover:opacity-75 p-0.5 rounded-full"
                 aria-label="Remove weight parameter"
               >
                 <X className="w-3 h-3" />
@@ -253,14 +251,10 @@ export function Omnibar({
         <div
           id={listboxId}
           role="listbox"
-          className={`absolute z-30 w-full mt-2 rounded-2xl border shadow-xl overflow-hidden max-h-96 overflow-y-auto transition-colors ${
-            darkMode
-              ? "bg-slate-900 border-slate-700/80 divide-slate-800"
-              : "bg-white border-slate-200 divide-slate-100"
-          } divide-y`}
+          className="absolute z-30 w-full mt-2 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] divide-y divide-[var(--border-hairline)] shadow-xl overflow-hidden max-h-96 overflow-y-auto transition-colors"
         >
           {results.length === 0 ? (
-            <div className="p-6 text-center text-slate-500 dark:text-slate-400 text-sm">
+            <div className="p-6 text-center text-[var(--text-muted)] text-xs font-medium">
               No matching drugs found for &ldquo;{query.trim()}&rdquo;.
             </div>
           ) : (
@@ -282,17 +276,13 @@ export function Omnibar({
                   }}
                   className={`p-3.5 sm:p-4 cursor-pointer transition-colors flex items-center justify-between gap-3 ${
                     isSelected
-                      ? darkMode
-                        ? "bg-slate-800/90 text-white"
-                        : "bg-cyan-50/90 text-slate-900"
-                      : darkMode
-                      ? "hover:bg-slate-800/50 text-slate-200"
-                      : "hover:bg-slate-50 text-slate-800"
+                      ? "bg-[#2F855A]/10 text-[var(--text-ink)]"
+                      : "hover:bg-[var(--bg-subtle)] text-[var(--text-ink)]"
                   }`}
                 >
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2.5 flex-wrap">
-                      <span className="font-extrabold text-sm sm:text-base tracking-tight text-slate-900 dark:text-white">
+                      <span className="font-extrabold text-sm sm:text-base tracking-tight text-[var(--text-ink)]">
                         {tallManName}
                       </span>
 
@@ -304,19 +294,19 @@ export function Omnibar({
 
                       {/* Brand Match or Product Hint */}
                       {drug.vn_products?.value && drug.vn_products.value.length > 0 && (
-                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold">
+                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-[var(--bg-subtle)] border border-[var(--border-hairline)] text-[var(--text-secondary)] font-semibold">
                           Brand: {drug.vn_products.value.map((p) => p.brand).join(", ")}
                         </span>
                       )}
 
                       {/* Verification Status Badge */}
                       {isVerified ? (
-                        <span className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/20">
+                        <span className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20">
                           <ShieldCheck className="w-3.5 h-3.5" />
                           <span>Verified</span>
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold border border-amber-500/20">
+                        <span className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400 font-bold border border-amber-500/20">
                           <AlertTriangle className="w-3.5 h-3.5" />
                           <span>Pending verification</span>
                         </span>
@@ -324,7 +314,7 @@ export function Omnibar({
                     </div>
 
                     {/* Classes & Match Reason */}
-                    <div className="flex items-center gap-2 mt-1.5 flex-wrap text-xs text-slate-500 dark:text-slate-400">
+                    <div className="flex items-center gap-2 mt-1.5 flex-wrap text-xs text-[var(--text-muted)]">
                       <span>{drug.classes.join(" • ")}</span>
 
                       {res.matchedBy === "ae_tag" && (
@@ -335,7 +325,7 @@ export function Omnibar({
                     </div>
                   </div>
 
-                  <div className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 whitespace-nowrap pl-2">
+                  <div className="text-xs font-semibold text-[#2F855A] dark:text-emerald-400 whitespace-nowrap pl-2">
                     Open &rarr;
                   </div>
                 </div>

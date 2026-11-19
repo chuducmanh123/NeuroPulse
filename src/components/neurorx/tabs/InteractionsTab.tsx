@@ -221,23 +221,17 @@ export function InteractionsTab({
 
       {/* 2. Empty State (≥ 2 drugs, 0 alerts found) */}
       {selectedDrugIds.length >= 2 && totalAlertsCount === 0 && (
-        <div
-          className={`p-6 rounded-2xl border transition-colors ${
-            darkMode
-              ? "bg-slate-900/40 border-slate-800 text-slate-300"
-              : "bg-white border-slate-200 shadow-sm text-slate-700"
-          }`}
-        >
+        <div className="p-6 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] shadow-2xs transition-colors">
           <div className="flex items-start gap-3">
             <ShieldAlert className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
             <div className="space-y-1">
-              <h4 className="text-sm font-bold text-slate-900 dark:text-slate-100">
+              <h4 className="text-sm font-bold text-[var(--text-ink)]">
                 Analysis Complete
               </h4>
-              <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">
+              <p className="text-xs text-[var(--text-secondary)] font-medium">
                 No curated interaction found in NeuroRx data — this is not proof of safety.
               </p>
-              <p className="text-[11px] text-slate-500 dark:text-slate-500 leading-relaxed pt-1">
+              <p className="text-[11px] text-[var(--text-muted)] leading-relaxed pt-1">
                 NeuroRx checks verified official prescribing information within its ingested dataset. Clinicians must exercise clinical judgment and verify against comprehensive tertiary compendia before co-prescribing.
               </p>
             </div>
@@ -322,27 +316,25 @@ export function InteractionsTab({
       {swapDialog.isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-150">
           <div
-            className={`w-full max-w-lg rounded-2xl border p-5 sm:p-6 shadow-2xl transition-all ${
-              darkMode ? "bg-slate-900 border-slate-700 text-slate-100" : "bg-white border-slate-200 text-slate-900"
-            }`}
+            className="w-full max-w-lg rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-ink)] p-5 sm:p-6 shadow-2xl transition-all"
             role="dialog"
             aria-modal="true"
           >
             <div className="flex items-start justify-between gap-3 mb-4">
               <div className="flex items-center gap-2">
-                <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-500">
+                <div className="p-2 rounded-xl bg-[#2F855A]/10 text-[#2F855A] dark:text-emerald-400">
                   <ArrowRightLeft className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-base font-bold">Simulate Regimen Modification</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <h4 className="text-base font-bold text-[var(--text-ink)]">Simulate Regimen Modification</h4>
+                  <p className="text-xs text-[var(--text-muted)]">
                     Replace interacting medication with curated alternative
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setSwapDialog((prev) => ({ ...prev, isOpen: false }))}
-                className="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400"
+                className="p-1 rounded-lg hover:bg-[var(--bg-subtle)] text-[var(--text-muted)]"
                 aria-label="Close dialog"
               >
                 <X className="w-5 h-5" />
@@ -350,60 +342,56 @@ export function InteractionsTab({
             </div>
 
             <div className="space-y-3 text-xs sm:text-sm">
-              <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+              <div className="p-3 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border-hairline)] flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-slate-400 block">
+                  <span className="text-[10px] uppercase font-bold text-[var(--text-muted)] block">
                     Current Agent
                   </span>
-                  <span className="font-extrabold text-slate-900 dark:text-slate-100">
+                  <span className="font-extrabold text-[var(--text-ink)]">
                     {getDrugName(swapDialog.fromId)}
                   </span>
                 </div>
-                <ArrowRightLeft className="w-4 h-4 text-indigo-500 shrink-0" />
+                <ArrowRightLeft className="w-4 h-4 text-[#2F855A] dark:text-emerald-400 shrink-0" />
                 <div className="text-right">
-                  <span className="text-[10px] uppercase font-bold text-slate-400 block">
+                  <span className="text-[10px] uppercase font-bold text-[var(--text-muted)] block">
                     Proposed Alternative
                   </span>
-                  <span className="font-extrabold text-indigo-600 dark:text-indigo-400">
+                  <span className="font-extrabold text-[#2F855A] dark:text-emerald-400">
                     {getDrugName(swapDialog.toId)}
                   </span>
                 </div>
               </div>
 
               <div>
-                <span className="font-bold block mb-0.5 text-slate-800 dark:text-slate-200">
+                <span className="font-bold block mb-0.5 text-[var(--text-ink)]">
                   Clinical Rationale:
                 </span>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-[var(--text-secondary)] leading-relaxed">
                   {swapDialog.alternative.rationale}
                 </p>
               </div>
 
               <div>
-                <span className="font-bold block mb-0.5 text-slate-800 dark:text-slate-200">
+                <span className="font-bold block mb-0.5 text-[var(--text-ink)]">
                   Switching Guidance:
                 </span>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                <p className="text-[var(--text-secondary)] leading-relaxed italic">
                   {swapDialog.alternative.switch_note ||
                     "No switching guidance in sources."}
                 </p>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-end gap-2.5">
+            <div className="mt-6 pt-4 border-t border-[var(--border-hairline)] flex items-center justify-end gap-2.5">
               <button
                 onClick={() => setSwapDialog((prev) => ({ ...prev, isOpen: false }))}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold border transition-colors ${
-                  darkMode
-                    ? "border-slate-700 hover:bg-slate-800 text-slate-300"
-                    : "border-slate-200 hover:bg-slate-100 text-slate-700"
-                }`}
+                className="px-4 py-2 rounded-xl text-xs font-semibold border border-[var(--border-hairline)] hover:bg-[var(--bg-subtle)] text-[var(--text-secondary)] transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={handleConfirmSwap}
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition-colors"
+                className="px-4 py-2 rounded-xl text-xs font-bold bg-[#2F855A] hover:bg-[#276749] text-white shadow-sm transition-colors"
               >
                 Confirm Modification
               </button>

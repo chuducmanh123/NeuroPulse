@@ -41,11 +41,7 @@ export function DailyTab({
   return (
     <div className="space-y-4">
       {/* Quick Case Selector Strip */}
-      <div
-        className={`px-3 py-2 rounded-xl border flex items-center justify-between gap-2 overflow-x-auto ${
-          darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-        }`}
-      >
+      <div className="px-4 py-2.5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] flex items-center justify-between gap-2 overflow-x-auto">
         <div className="flex items-center gap-1.5 shrink-0">
           {dailyChallengeCases.slice(0, 7).map((c, idx) => {
             const prog = progressMap[c.id];
@@ -55,9 +51,9 @@ export function DailyTab({
                 key={c.id}
                 type="button"
                 onClick={() => onSelectCase(c.id)}
-                className={`px-2.5 py-1.5 rounded-lg text-xs font-bold border transition-all flex items-center gap-1 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1 ${
                   isSelected
-                    ? "bg-indigo-600 text-white border-indigo-500 shadow-xs"
+                    ? "bg-[#6D28D9] text-white border-[#6D28D9] shadow-xs"
                     : prog
                     ? prog.isCorrect
                       ? darkMode
@@ -66,12 +62,10 @@ export function DailyTab({
                       : darkMode
                       ? "bg-rose-950/60 text-rose-300 border-rose-800"
                       : "bg-rose-50 text-rose-800 border-rose-200"
-                    : darkMode
-                    ? "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700"
-                    : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                    : "border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]"
                 }`}
               >
-                <span>{idx === 0 ? "⭐ Daily" : c.published_date}</span>
+                <span>{idx === 0 ? "★ Daily" : c.published_date}</span>
                 {prog && <span>{prog.isCorrect ? "✓" : "✗"}</span>}
               </button>
             );
@@ -81,30 +75,22 @@ export function DailyTab({
         <button
           type="button"
           onClick={onBrowseArchive}
-          className="text-xs font-bold text-indigo-500 hover:underline shrink-0"
+          className="text-xs font-bold text-[#6D28D9] dark:text-violet-400 hover:underline shrink-0"
         >
           Browse Archive ({approvedCases.length}) →
         </button>
       </div>
 
-      {/* MAIN NEJM-STYLE CLINICAL & IMAGING CHALLENGE CARD */}
-      <article
-        className={`rounded-2xl border shadow-sm overflow-hidden ${
-          darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-        }`}
-      >
+      {/* MAIN CLINICAL & IMAGING CHALLENGE CARD */}
+      <article className="rounded-3xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] shadow-xs overflow-hidden">
         {/* Centered Challenge Date Header */}
-        <div
-          className={`px-5 py-3.5 border-b text-center ${
-            darkMode ? "border-slate-800 bg-slate-900/60" : "border-slate-100 bg-slate-50/50"
-          }`}
-        >
+        <div className="px-5 py-4 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/40 text-center">
           <div className="flex flex-wrap items-center justify-center gap-2 mb-1">
-            <span className="text-[11px] font-black uppercase tracking-[0.2em] text-rose-600 dark:text-rose-400">
+            <span className="text-[10.5px] font-bold uppercase tracking-[0.18em] text-[#B91C1C] dark:text-rose-400">
               CLINICAL &amp; IMAGING CHALLENGE
             </span>
-            <span className="text-slate-300 dark:text-slate-700">•</span>
-            <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400">
+            <span className="text-[var(--text-muted)]">•</span>
+            <span className="text-[11px] font-bold text-[#6D28D9] dark:text-violet-400">
               {currentCase.subspecialty}
             </span>
             <span
@@ -115,7 +101,7 @@ export function DailyTab({
               {currentCase.difficulty}
             </span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight">
+          <h2 className="font-editorial text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-ink)]">
             {formatChallengeDate(currentCase.published_date)}
           </h2>
         </div>

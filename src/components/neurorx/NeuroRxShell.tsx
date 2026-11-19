@@ -14,6 +14,11 @@ import { MedicalDisclaimerFooter } from "@/components/ecosystem/MedicalDisclaime
 import { OfflineStatus } from "@/components/neurorx/OfflineStatus";
 import { useNeuroRxDrugs } from "@/hooks/useNeuroRxDrugs";
 import { getStoredAdminToken } from "@/utils/clientAuth";
+import {
+  getEcosystemDarkMode,
+  setEcosystemDarkMode,
+  subscribeEcosystemDarkMode,
+} from "@/utils/themeSync";
 import type { Source, Interaction } from "@/types/neurorx";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import { LookupTab } from "./tabs/LookupTab";
@@ -58,29 +63,19 @@ export function NeuroRxShell({
   }, []);
 
   useEffect(() => {
-    const isDark =
-      localStorage.getItem("neurorx_theme") === "dark" ||
-      localStorage.getItem("neurocase_theme") === "dark" ||
+    const initialDark =
+      getEcosystemDarkMode() ||
       window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setDarkMode(isDark);
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    setDarkMode(initialDark);
+    document.documentElement.classList.toggle("dark", initialDark);
+    document.documentElement.classList.toggle("night-shift", initialDark);
+    return subscribeEcosystemDarkMode(setDarkMode);
   }, []);
 
   const toggleDarkMode = () => {
-    setDarkMode((prev) => {
-      const next = !prev;
-      localStorage.setItem("neurorx_theme", next ? "dark" : "light");
-      if (next) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-      return next;
-    });
+    const next = !darkMode;
+    setDarkMode(next);
+    setEcosystemDarkMode(next);
   };
 
   // Tab State synced with ?tab= query parameter
@@ -173,46 +168,32 @@ export function NeuroRxShell({
   ];
 
   return (
-    <div
-      className={`min-h-screen transition-colors duration-200 ${
-        darkMode ? "bg-slate-950 text-slate-100" : "bg-[#F8FAFC] text-slate-900"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
-        {/* =========================================================================
-            HEADER: Thiết kế chuẩn đồng bộ với NeuroPulse & NeuroGuide
-           ========================================================================= */}
-        <header className="mb-4 sm:mb-6 pt-1 flex flex-col sm:flex-row sm:items-end justify-between gap-2.5 sm:gap-4">
+    <div className="min-h-screen bg-[var(--bg-paper)] text-[var(--text-ink)] transition-colors duration-200 pb-10">
+      {/* Unified Sticky App Header (Sage Emerald #2F855A Accent) */}
+      <header className="sticky top-0 z-30 border-b border-[var(--border-hairline)] bg-[var(--bg-paper)]/95 px-4 py-3.5 backdrop-blur-md transition-colors sm:px-8">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
           <div>
-            <div className="flex items-center gap-2 mb-1 sm:mb-2">
-              <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-cyan-500 shadow-sm shadow-cyan-500/50"></span>
+            <div className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-widest text-[var(--text-muted)]">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2F855A] opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#2F855A]"></span>
               </span>
-              <span
-                className={`text-[10px] sm:text-xs font-bold uppercase tracking-widest ${
-                  darkMode ? "text-cyan-400" : "text-cyan-600"
-                }`}
-              >
+              <span className="text-[#2F855A] dark:text-emerald-400">
                 CLINICAL PHARMACOLOGY &amp; BEDSIDE DOSING SUITE
               </span>
             </div>
-            <div className="flex items-center gap-2">
-              <h1
-                className={`text-xl sm:text-3xl font-black uppercase tracking-tight ${
-                  darkMode ? "text-white" : "text-slate-900"
-                }`}
-              >
+            <div className="mt-0.5 flex items-center gap-2.5">
+              <h1 className="text-xl font-extrabold tracking-tight text-[var(--text-ink)] sm:text-2xl">
                 NEURORX
               </h1>
-              <span className="px-2 py-0.5 rounded text-[10px] sm:text-xs font-bold uppercase bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30">
+              <span className="rounded-md bg-[#2F855A] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
                 BETA
               </span>
             </div>
           </div>
 
           {/* Quick Header Badges & Actions */}
-          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 self-start sm:self-auto">
+          <div className="flex flex-wrap items-center gap-2">
             {isAdmin && (
               <OfflineStatus
                 dataHash={dataVersionHash}
@@ -226,128 +207,95 @@ export function NeuroRxShell({
               />
             )}
 
-            {/* Night Shift Toggle */}
-            <button
-              onClick={toggleDarkMode}
-              className={`min-h-[36px] sm:min-h-[44px] px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 ${
-                darkMode
-                  ? "bg-cyan-950/70 text-cyan-300 border-cyan-800 hover:bg-cyan-900/80"
-                  : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
-              }`}
-              title="Toggle Night Shift Mode"
-              aria-label="Toggle Night Shift Mode"
-            >
-              <span>{darkMode ? "☀️" : "🌙"}</span>
-              <span className="hidden sm:inline">{darkMode ? "Light" : "Night Shift"}</span>
-            </button>
-
-            {/* Admin Button */}
-            <AdminButton darkMode={darkMode} />
+            {/* Mobile-only Night Shift & Admin controls (Desktop uses Left Rail) */}
+            <div className="flex items-center gap-1.5 sm:hidden">
+              <button
+                onClick={toggleDarkMode}
+                className="px-2.5 py-1.5 rounded-xl text-xs font-bold border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-ink)] flex items-center gap-1"
+                title="Toggle Night Shift Mode"
+                aria-label="Toggle Night Shift Mode"
+              >
+                <span>{darkMode ? "☀️" : "🌙"}</span>
+              </button>
+              <AdminButton darkMode={darkMode} />
+            </div>
 
             {/* 9-Dots Ecosystem App Switcher */}
             <AppSwitcher currentApp="neurorx" darkMode={darkMode} />
           </div>
-        </header>
+        </div>
+      </header>
 
-        {/* =========================================================================
-            NAVIGATION BAR: GitHub-style Underline Tabs with NeuroRx Cyan Accent
-           ========================================================================= */}
-        <nav
-          className={`mb-4 sm:mb-6 border-b ${
-            darkMode ? "border-slate-800" : "border-slate-200"
-          }`}
+      {/* Unified Underline Tabs (Sage Emerald #2F855A Accent) */}
+      <nav className="border-b border-[var(--border-hairline)] bg-[var(--bg-paper)] px-4 transition-colors sm:px-8">
+        <div
+          className="mx-auto flex max-w-7xl items-center gap-2 overflow-x-auto no-scrollbar -mb-px"
+          role="tablist"
         >
-          <div
-            className="flex items-center gap-1 overflow-x-auto no-scrollbar -mb-px"
-            role="tablist"
-          >
-            {navTabs.map((tab) => {
-              const isActive = activeTab === tab.id;
-              const Icon = tab.icon;
-              return (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => handleTabChange(tab.id)}
-                  role="tab"
-                  aria-selected={isActive}
-                  className={`group relative shrink-0 pb-2.5 pt-1 text-[12px] sm:text-[13px] transition-colors ${
-                    isActive
-                      ? darkMode
-                        ? "font-semibold text-white"
-                        : "font-semibold text-slate-900"
-                      : darkMode
-                      ? "font-medium text-slate-400 hover:text-slate-200"
-                      : "font-medium text-slate-600 hover:text-slate-900"
-                  }`}
-                >
-                  <span
-                    className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1.5 rounded-md transition-colors ${
-                      darkMode ? "group-hover:bg-slate-800/80" : "group-hover:bg-slate-200/70"
-                    }`}
-                  >
-                    <Icon
-                      size={15}
-                      strokeWidth={1.75}
-                      className={
-                        isActive
-                          ? darkMode
-                            ? "text-cyan-400"
-                            : "text-cyan-600"
-                          : darkMode
-                          ? "text-slate-500 group-hover:text-slate-300"
-                          : "text-slate-400 group-hover:text-slate-600"
-                      }
-                    />
-                    <span className="sm:hidden whitespace-nowrap">{tab.mobileLabel}</span>
-                    <span className="hidden sm:inline whitespace-nowrap">{tab.desktopLabel}</span>
-                    {tab.badge !== undefined && tab.badge > 0 && (
-                      <span
-                        className={`px-2 py-0.5 rounded-full text-[11px] font-semibold leading-none ${
-                          isActive
-                            ? darkMode
-                              ? "bg-cyan-500/20 text-cyan-300"
-                              : "bg-cyan-50 text-cyan-700"
-                            : darkMode
-                            ? "bg-slate-800 text-slate-300"
-                            : "bg-slate-200/80 text-slate-700"
-                        }`}
-                      >
-                        {tab.badge}
-                      </span>
-                    )}
-                  </span>
-                  {isActive && (
+          {navTabs.map((tab) => {
+            const isActive = activeTab === tab.id;
+            const Icon = tab.icon;
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => handleTabChange(tab.id)}
+                role="tab"
+                aria-selected={isActive}
+                className={`group relative shrink-0 pb-2.5 pt-2 text-[12px] sm:text-[13px] transition-colors ${
+                  isActive
+                    ? "font-semibold text-[#2F855A] dark:text-emerald-400"
+                    : "font-medium text-[var(--text-muted)] hover:text-[var(--text-ink)]"
+                }`}
+              >
+                <span className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1.5 rounded-lg transition-colors group-hover:bg-[var(--bg-subtle)]">
+                  <Icon
+                    size={15}
+                    strokeWidth={1.75}
+                    className={
+                      isActive
+                        ? "text-[#2F855A] dark:text-emerald-400"
+                        : "text-[var(--text-muted)] group-hover:text-[var(--text-ink)]"
+                    }
+                  />
+                  <span className="sm:hidden whitespace-nowrap">{tab.mobileLabel}</span>
+                  <span className="hidden sm:inline whitespace-nowrap">{tab.desktopLabel}</span>
+                  {tab.badge !== undefined && tab.badge > 0 && (
                     <span
-                      className={`absolute inset-x-1 bottom-0 h-[2px] rounded-full ${
-                        darkMode ? "bg-cyan-400" : "bg-cyan-600"
+                      className={`px-2 py-0.5 rounded-full text-[11px] font-semibold leading-none ${
+                        isActive
+                          ? "bg-[#2F855A]/15 text-[#2F855A] dark:bg-emerald-500/20 dark:text-emerald-300"
+                          : "bg-[var(--bg-subtle)] text-[var(--text-secondary)]"
                       }`}
-                    />
+                    >
+                      {tab.badge}
+                    </span>
                   )}
-                </button>
-              );
-            })}
-          </div>
-        </nav>
+                </span>
+                {isActive && (
+                  <span className="absolute inset-x-1 bottom-0 h-[2px] rounded-full bg-[#2F855A] dark:bg-emerald-400" />
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 pt-6">
         {/* =========================================================================
             TAB CONTENT PANES
            ========================================================================= */}
         <main className="min-h-[500px]">
           {syncState.status === "loading" && activeDrugs.length === 0 ? (
             <div role="status" aria-live="polite" className="space-y-4">
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
                 Loading drug directory…
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                 {[0, 1, 2, 3, 4, 5].map((idx) => (
                   <div
                     key={idx}
-                    className={`h-28 rounded-2xl border animate-pulse ${
-                      darkMode
-                        ? "bg-slate-900/60 border-slate-800"
-                        : "bg-white border-slate-200"
-                    }`}
+                    className="h-28 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] animate-pulse"
                   />
                 ))}
               </div>

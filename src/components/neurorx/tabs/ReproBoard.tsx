@@ -49,13 +49,9 @@ export function ReproBoard({
         key={drug.id}
         type="button"
         onClick={() => onSelectDrug(drugItem)}
-        className={`w-full px-3.5 py-2.5 rounded-xl border text-left cursor-pointer transition-all hover:scale-[1.01] hover:shadow-md flex items-center justify-between gap-2 ${
-          darkMode
-            ? "bg-slate-900/80 border-slate-700/80 hover:border-slate-600"
-            : "bg-white border-slate-200/90 hover:border-slate-300 shadow-sm"
-        }`}
+        className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] hover:border-[#2F855A] text-left cursor-pointer transition-all hover:scale-[1.01] hover:shadow-sm flex items-center justify-between gap-2"
       >
-        <span className="font-bold text-xs sm:text-sm text-slate-900 dark:text-slate-100">
+        <span className="font-bold text-xs sm:text-sm text-[var(--text-ink)]">
           {displayName}
         </span>
         {isDraft && (
@@ -156,19 +152,13 @@ export function ReproBoard({
 
       {/* Row: Not Classified in Sources */}
       {unclassifiedDrugs.length > 0 && (
-        <div
-          className={`p-4 sm:p-5 rounded-2xl border transition-colors ${
-            darkMode
-              ? "bg-slate-900/40 border-slate-800 text-slate-300"
-              : "bg-white border-slate-200 shadow-sm text-slate-700"
-          }`}
-        >
-          <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-100 dark:border-slate-800">
-            <h3 className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">
+        <div className="p-4 sm:p-5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] shadow-2xs transition-colors">
+          <div className="flex items-center justify-between mb-3 pb-2 border-b border-[var(--border-hairline)]">
+            <h3 className="text-xs sm:text-sm font-bold text-[var(--text-ink)]">
               Not classified in sources ({unclassifiedDrugs.length})
             </h3>
-            <span className="text-[11px] text-slate-400 italic">
-              Click any medication for available pharmacokinetic & lactation guidance
+            <span className="text-[11px] text-[var(--text-muted)] italic">
+              Click any medication for available pharmacokinetic &amp; lactation guidance
             </span>
           </div>
 
@@ -179,11 +169,7 @@ export function ReproBoard({
                 <button
                   key={item.drug.id}
                   onClick={() => onSelectDrug(item)}
-                  className={`p-2.5 rounded-xl border text-left text-xs font-semibold flex items-center justify-between transition-colors ${
-                    darkMode
-                      ? "bg-slate-800/60 border-slate-700 text-slate-300 hover:bg-slate-800"
-                      : "bg-slate-50 border-slate-200 text-slate-800 hover:bg-slate-100"
-                  }`}
+                  className="p-2.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] hover:border-[#2F855A] hover:bg-[var(--bg-subtle)] text-left text-xs font-semibold text-[var(--text-ink)] flex items-center justify-between transition-colors"
                 >
                   <span>{displayName}</span>
                   {item.effectiveStatus === "draft" && (

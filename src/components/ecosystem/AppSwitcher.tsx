@@ -87,9 +87,9 @@ export function AppSwitcher({
       id: "neuropulse",
       name: "NeuroPulse",
       subtitle: "Journal Monitor",
-      href: "/",
+      href: "/neuropulse",
       badge: "LIVE",
-      gradient: "from-red-500 to-rose-700",
+      gradient: "from-red-600 to-rose-700",
       isCurrent: currentApp === "neuropulse",
       icon: (
         <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
@@ -103,7 +103,7 @@ export function AppSwitcher({
       subtitle: "Clinical Cases",
       href: "/neurocase",
       badge: "NEW",
-      gradient: "from-indigo-500 to-violet-700",
+      gradient: "from-violet-600 to-purple-800",
       isCurrent: currentApp === "neurocase",
       icon: (
         <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -117,7 +117,7 @@ export function AppSwitcher({
       subtitle: "Clinical Scales",
       href: "#",
       badge: "SOON",
-      gradient: "from-emerald-500 to-teal-700",
+      gradient: "from-amber-600 to-amber-800",
       isComingSoon: true,
       icon: (
         <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -131,7 +131,7 @@ export function AppSwitcher({
       subtitle: "ASPECTS & Imaging",
       href: "/neurovision",
       badge: "BETA",
-      gradient: "from-blue-500 to-indigo-700",
+      gradient: "from-blue-600 to-indigo-700",
       isCurrent: currentApp === "neurovision",
       icon: (
         <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -145,8 +145,8 @@ export function AppSwitcher({
       name: "NeuroGuide",
       subtitle: "Guidelines & Conf",
       href: "/neuroguide",
-      badge: "Beta",
-      gradient: "from-amber-500 to-orange-600",
+      badge: "BETA",
+      gradient: "from-orange-600 to-amber-700",
       isCurrent: currentApp === "neuroguide",
       icon: (
         <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -160,7 +160,7 @@ export function AppSwitcher({
       subtitle: "Drugs & Dosing",
       href: "/neurorx",
       badge: "BETA",
-      gradient: "from-sky-500 to-cyan-700",
+      gradient: "from-emerald-600 to-teal-700",
       isCurrent: currentApp === "neurorx",
       icon: (
         <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -223,22 +223,26 @@ export function AppSwitcher({
               : "bg-white border-slate-200 text-slate-900 shadow-slate-400/30"
           }`}
         >
-          <div
-            className={`px-4 py-2.5 border-b flex items-center justify-between ${
-              darkMode ? "border-slate-800 bg-slate-950/60" : "border-slate-100 bg-slate-50"
+          <Link
+            href="/"
+            onClick={() => setOpen(false)}
+            className={`px-4 py-3 border-b flex items-center justify-between transition-colors ${
+              darkMode
+                ? "border-slate-800 bg-slate-950/70 hover:bg-slate-800/80"
+                : "border-slate-100 bg-stone-50 hover:bg-stone-100"
             }`}
           >
-            <span className="text-[11px] font-black uppercase tracking-wider text-indigo-500">
+            <span className="font-mono-tech text-[11px] font-extrabold uppercase tracking-widest text-indigo-500">
               NEURO ECOSYSTEM
             </span>
             <span
-              className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-200 text-slate-700"
+              className={`font-mono-tech text-[10px] font-semibold px-2.5 py-0.5 rounded-full ${
+                darkMode ? "bg-slate-800 text-slate-200" : "bg-white border border-stone-200 text-stone-700"
               }`}
             >
-              6 Apps
+              Home Hub ↗
             </span>
-          </div>
+          </Link>
 
           <div className="p-3 sm:p-3.5 grid grid-cols-3 gap-2 sm:gap-2.5">
             {ecosystemApps.map((app) => (
@@ -272,16 +276,18 @@ export function AppSwitcher({
                   </div>
                   {app.badge && (
                     <span
-                      className={`absolute -top-1.5 -right-2.5 px-1.5 py-0.5 rounded-full text-[8px] font-black uppercase leading-none shadow-xs ${
+                      className={`font-mono-tech absolute -top-1.5 -right-2.5 px-1.5 py-0.5 rounded-full text-[8px] font-black uppercase leading-none shadow-xs ${
                         app.badge === "LIVE"
                           ? "bg-red-600 text-white"
                           : app.badge === "NEW"
-                          ? "bg-amber-400 text-slate-950"
+                          ? "bg-violet-600 text-white"
                           : app.badge.toUpperCase() === "BETA"
                           ? app.id === "neuroguide"
-                            ? "bg-amber-500 text-slate-950"
+                            ? "bg-orange-600 text-white"
+                            : app.id === "neurorx"
+                            ? "bg-emerald-600 text-white"
                             : "bg-blue-600 text-white"
-                          : "bg-slate-600 text-white"
+                          : "bg-amber-700 text-white"
                       }`}
                     >
                       {app.badge}
@@ -289,7 +295,7 @@ export function AppSwitcher({
                   )}
                 </div>
 
-                <span className="text-[11px] sm:text-xs font-bold leading-tight whitespace-nowrap">
+                <span className="font-editorial text-[14px] sm:text-[15px] leading-tight whitespace-nowrap">
                   {app.name}
                 </span>
                 <span

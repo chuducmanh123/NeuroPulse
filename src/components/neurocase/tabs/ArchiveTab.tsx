@@ -61,25 +61,23 @@ export function ArchiveTab({
 }: ArchiveTabProps) {
   if (archiveViewingCase) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-5">
         {/* Archive Navigation & Back Header */}
-        <div
-          className={`p-4 rounded-2xl border flex flex-wrap items-center justify-between gap-3 ${
-            darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-          }`}
-        >
+        <div className="p-4 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
               onClick={() => onSelectCaseToView(null)}
-              className="px-3.5 py-1.5 rounded-xl text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700 flex items-center gap-1.5 transition-all shadow-xs"
+              className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#6D28D9] text-white hover:bg-[#5B21B6] flex items-center gap-1.5 transition-all shadow-xs"
             >
               <span>←</span>
               <span>Back to Case Archive</span>
             </button>
-            <span className="text-slate-400">|</span>
-            <span className="text-xs font-black text-indigo-500">{archiveViewingCase.case_code}</span>
-            <span className="text-xs font-bold px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800">
+            <span className="text-[var(--text-muted)]">|</span>
+            <span className="text-xs font-bold text-[#6D28D9] dark:text-violet-400">
+              {archiveViewingCase.case_code}
+            </span>
+            <span className="text-xs font-semibold px-2 py-0.5 rounded-md bg-[var(--bg-subtle)] text-[var(--text-secondary)]">
               {archiveViewingCase.subspecialty}
             </span>
             <span
@@ -101,11 +99,11 @@ export function ArchiveTab({
                   onSelectCaseToView(filteredArchiveCases[archiveCurrentIdx - 1].id);
                 }
               }}
-              className="px-2.5 py-1 rounded-lg text-xs font-bold border border-slate-300 dark:border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="px-2.5 py-1 rounded-lg text-xs font-semibold border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[var(--bg-subtle)] transition-colors"
             >
               ← Prev Case
             </button>
-            <span className="text-xs font-semibold text-slate-400">
+            <span className="text-xs font-semibold text-[var(--text-muted)]">
               {archiveCurrentIdx >= 0 ? `${archiveCurrentIdx + 1} / ${filteredArchiveCases.length}` : ""}
             </span>
             <button
@@ -116,30 +114,22 @@ export function ArchiveTab({
                   onSelectCaseToView(filteredArchiveCases[archiveCurrentIdx + 1].id);
                 }
               }}
-              className="px-2.5 py-1 rounded-lg text-xs font-bold border border-slate-300 dark:border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="px-2.5 py-1 rounded-lg text-xs font-semibold border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[var(--bg-subtle)] transition-colors"
             >
               Next Case →
             </button>
           </div>
         </div>
 
-        {/* NEJM-STYLE CLINICAL & IMAGING CHALLENGE CARD (ARCHIVE MODE) */}
-        <article
-          className={`rounded-2xl border shadow-sm overflow-hidden ${
-            darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-          }`}
-        >
-          <div
-            className={`px-6 py-5 border-b text-center ${
-              darkMode ? "border-slate-800 bg-slate-900/60" : "border-slate-100 bg-slate-50/50"
-            }`}
-          >
+        {/* CLINICAL & IMAGING CHALLENGE CARD (ARCHIVE MODE) */}
+        <article className="rounded-3xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] shadow-xs overflow-hidden">
+          <div className="px-6 py-5 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/40 text-center">
             <div className="flex flex-wrap items-center justify-center gap-2 mb-1.5">
-              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-rose-600 dark:text-rose-400">
+              <span className="text-[10.5px] font-bold uppercase tracking-[0.18em] text-[#B91C1C] dark:text-rose-400">
                 CASE ARCHIVE CHALLENGE
               </span>
-              <span className="text-slate-300 dark:text-slate-700">•</span>
-              <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400">
+              <span className="text-[var(--text-muted)]">•</span>
+              <span className="text-[11px] font-bold text-[#6D28D9] dark:text-violet-400">
                 {archiveViewingCase.subspecialty}
               </span>
               <span
@@ -150,7 +140,7 @@ export function ArchiveTab({
                 {archiveViewingCase.difficulty}
               </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight">
+            <h2 className="font-editorial text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-ink)]">
               {archiveViewingCase.title}
             </h2>
           </div>
@@ -180,11 +170,7 @@ export function ArchiveTab({
 
   return (
     <div className="space-y-5">
-      <div
-        className={`p-4 rounded-2xl border space-y-4 ${
-          darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-        }`}
-      >
+      <div className="p-4 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-4">
         <div className="flex flex-wrap gap-1.5">
           {subspecialtyTabs.map((tab) => {
             const active = selectedSub === tab.value;
@@ -193,12 +179,10 @@ export function ArchiveTab({
                 key={tab.value}
                 type="button"
                 onClick={() => onSelectSub(tab.value)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
                   active
-                    ? "bg-indigo-600 text-white shadow-xs"
-                    : darkMode
-                    ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                    ? "bg-[#6D28D9] text-white border-[#6D28D9] shadow-xs"
+                    : "border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]"
                 }`}
               >
                 {tab.label}
@@ -207,7 +191,7 @@ export function ArchiveTab({
           })}
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-200 dark:border-slate-800">
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[var(--border-hairline)]">
           <div className="flex flex-wrap items-center gap-2">
             <CustomSelect
               value={selectedDifficulty}
@@ -247,11 +231,7 @@ export function ArchiveTab({
             value={searchQuery}
             onChange={(e) => onSearchQueryChange(e.target.value)}
             placeholder="Search symptoms, syndromes, case ID..."
-            className={`px-3 py-1.5 rounded-lg text-xs border w-full sm:w-64 ${
-              darkMode
-                ? "bg-slate-800 border-slate-700 text-white placeholder-slate-400"
-                : "bg-slate-50 border-slate-200 text-slate-900"
-            }`}
+            className="px-3 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[#6D28D9] w-full sm:w-64"
           />
         </div>
       </div>
@@ -264,14 +244,14 @@ export function ArchiveTab({
             <div
               key={c.id}
               onClick={() => onSelectCaseToView(c.id)}
-              className={`p-5 rounded-2xl border border-l-4 cursor-pointer transition-all flex flex-col justify-between shadow-xs hover:shadow-md ${
+              className={`group p-5 rounded-2xl border border-l-4 cursor-pointer transition-all flex flex-col justify-between shadow-2xs hover:shadow-md ${
                 theme.borderLeft
               } ${theme.cardBorder} ${theme.cardBg}`}
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2.5">
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="text-[10px] font-black px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-500">
+                    <span className="text-[10px] font-black px-2 py-0.5 rounded bg-[#6D28D9]/15 text-[#6D28D9] dark:text-violet-300">
                       {c.case_code}
                     </span>
                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${theme.badge}`}>
@@ -285,7 +265,7 @@ export function ArchiveTab({
                       {c.difficulty}
                     </span>
                     {c.is_daily_challenge && (
-                      <span className="text-[10px] font-black px-2 py-0.5 rounded bg-amber-500/15 text-amber-500 border border-amber-500/30">
+                      <span className="text-[10px] font-black px-2 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
                         ⭐ Daily ({c.published_date})
                       </span>
                     )}
@@ -294,25 +274,27 @@ export function ArchiveTab({
                   {prog ? (
                     <span
                       className={`text-xs font-black ${
-                        prog.isCorrect ? "text-emerald-500" : "text-rose-500"
+                        prog.isCorrect ? "text-emerald-600 dark:text-emerald-400" : "text-rose-500"
                       }`}
                     >
                       {prog.isCorrect ? "✓ Solved" : "✗ Review"}
                     </span>
                   ) : (
-                    <span className="text-[11px] font-bold text-slate-400">Unsolved</span>
+                    <span className="text-[11px] font-bold text-[var(--text-muted)]">Unsolved</span>
                   )}
                 </div>
 
-                <h3 className="text-sm font-black mb-1.5 leading-snug">{c.title}</h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">
+                <h3 className="text-sm font-black mb-1.5 leading-snug text-[var(--text-ink)] group-hover:text-[#6D28D9] dark:group-hover:text-violet-400 transition-colors">
+                  {c.title}
+                </h3>
+                <p className="text-xs text-[var(--text-muted)] line-clamp-2">
                   {c.presentation.chief_complaint}
                 </p>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between text-xs">
-                <span className="text-slate-400">{c.presentation.demographics}</span>
-                <span className={`font-black flex items-center gap-1 ${theme.accentText}`}>
+              <div className="mt-4 pt-3 border-t border-[var(--border-hairline)] flex items-center justify-between text-xs">
+                <span className="text-[var(--text-muted)]">{c.presentation.demographics}</span>
+                <span className="font-black flex items-center gap-1 text-[#6D28D9] dark:text-violet-400">
                   <span>Solve Case</span>
                   <span>→</span>
                 </span>

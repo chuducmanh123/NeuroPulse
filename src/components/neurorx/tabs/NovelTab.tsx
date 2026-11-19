@@ -36,7 +36,7 @@ export function NovelTab({
         <div className="space-y-6">
           {/* Subspecialty Filter Dropdown */}
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <span className="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400">
+            <span className="text-xs font-semibold tracking-wider uppercase text-[var(--text-muted)]">
               Novel Therapies ({displayedDrugs.length})
             </span>
 

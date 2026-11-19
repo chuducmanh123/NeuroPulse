@@ -689,7 +689,7 @@ export default function AdminCommandCenter() {
                 href="/"
                 className="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
               >
-                ← Back to NeuroPulse Home
+                ← Back to Neuro Ecosystem Hub
               </Link>
             </div>
           </form>
@@ -1261,7 +1261,7 @@ export default function AdminCommandCenter() {
                   <span>🤖</span>
                   <span>Aggregator workflow bot: <code className="font-mono text-blue-600 dark:text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded">python scripts/fetch_nejm.py</code></span>
                 </span>
-                <Link href="/" className="font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+                <Link href="/neuropulse" className="font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
                   <span>Open NeuroPulse Reader</span>
                   <span>→</span>
                 </Link>

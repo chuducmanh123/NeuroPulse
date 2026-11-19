@@ -111,19 +111,13 @@ export function RegimenTagInput({
   return (
     <div
       ref={containerRef}
-      className={`p-4 sm:p-5 rounded-2xl border transition-colors shadow-sm ${
-        darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200"
-      }`}
+      className="p-4 sm:p-5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] transition-colors shadow-2xs"
     >
       {selectedDrugIds.length > 0 && (
         <div className="flex items-center justify-end mb-2.5">
           <button
             onClick={onClearAll}
-            className={`text-xs font-semibold px-2.5 py-1.5 rounded-lg border transition-all ${
-              darkMode
-                ? "border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-300"
-                : "border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700"
-            }`}
+            className="text-xs font-semibold px-2.5 py-1.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-subtle)] hover:bg-stone-200/70 dark:hover:bg-stone-800 text-[var(--text-secondary)] transition-all"
           >
             Clear all
           </button>
@@ -141,11 +135,7 @@ export function RegimenTagInput({
             return (
               <span
                 key={id}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all shadow-sm ${
-                  darkMode
-                    ? "bg-slate-800 border-slate-700 text-slate-200"
-                    : "bg-slate-100 border-slate-200 text-slate-800"
-                }`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border border-[#2F855A]/30 bg-[#2F855A]/10 text-[#2F855A] dark:text-emerald-300 transition-all shadow-2xs"
               >
                 <span>{name}</span>
                 {isDraft && (
@@ -158,7 +148,7 @@ export function RegimenTagInput({
                 )}
                 <button
                   onClick={() => onRemoveDrug(id)}
-                  className="p-0.5 rounded-md hover:bg-slate-300/60 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors ml-0.5"
+                  className="p-0.5 rounded-md hover:bg-[#2F855A]/20 text-current opacity-75 hover:opacity-100 transition-colors ml-0.5"
                   aria-label={`Remove ${name}`}
                 >
                   <X className="w-3.5 h-3.5" />
@@ -172,7 +162,7 @@ export function RegimenTagInput({
       {/* Autocomplete Input */}
       <div className="relative">
         <div className="relative flex items-center">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 pointer-events-none" />
+          <Search className="w-4 h-4 text-[#2F855A] dark:text-emerald-400 absolute left-3 pointer-events-none" />
           <input
             ref={inputRef}
             type="text"
@@ -187,25 +177,15 @@ export function RegimenTagInput({
             }}
             onKeyDown={handleKeyDown}
             placeholder="Type drug name (e.g., Warfarin, Aspirin, Phenobarbital, Apixaban)..."
-            className={`w-full pl-9 pr-4 py-2.5 rounded-xl border text-xs sm:text-sm font-medium transition-colors outline-none focus:ring-2 focus:ring-indigo-500/30 ${
-              darkMode
-                ? "bg-slate-950/60 border-slate-700 text-slate-100 placeholder-slate-500 focus:border-indigo-500"
-                : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-indigo-500"
-            }`}
+            className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-xs font-medium text-[var(--text-ink)] placeholder-[var(--text-muted)] transition-colors outline-none focus:border-[#2F855A] focus:ring-2 focus:ring-[#2F855A]/20"
           />
         </div>
 
         {/* Dropdown Results */}
         {isOpen && query.trim() && (
-          <div
-            className={`absolute left-0 right-0 mt-1.5 max-h-60 overflow-y-auto rounded-xl border z-30 shadow-xl scrollbar-thin transition-colors ${
-              darkMode
-                ? "bg-slate-900 border-slate-700 divide-slate-800"
-                : "bg-white border-slate-200 divide-slate-100 shadow-slate-200/50"
-            }`}
-          >
+          <div className="absolute left-0 right-0 mt-1.5 max-h-60 overflow-y-auto rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] divide-y divide-[var(--border-hairline)] z-30 shadow-xl scrollbar-thin transition-colors">
             {filteredDrugs.length === 0 ? (
-              <div className="p-3 text-center text-xs text-slate-500 dark:text-slate-400">
+              <div className="p-3 text-center text-xs text-[var(--text-muted)]">
                 No matching medications found
               </div>
             ) : (
@@ -221,12 +201,8 @@ export function RegimenTagInput({
                     onClick={() => handleSelect(item.drug.id)}
                     className={`w-full text-left px-3.5 py-2.5 flex items-center justify-between text-xs transition-colors ${
                       isSelected
-                        ? darkMode
-                          ? "bg-indigo-950/50 text-indigo-300"
-                          : "bg-indigo-50/80 text-indigo-900"
-                        : darkMode
-                        ? "text-slate-200 hover:bg-slate-800/60"
-                        : "text-slate-800 hover:bg-slate-50"
+                        ? "bg-[#2F855A]/10 text-[#2F855A] dark:text-emerald-300"
+                        : "text-[var(--text-ink)] hover:bg-[var(--bg-subtle)]"
                     }`}
                   >
                     <div>
@@ -238,11 +214,11 @@ export function RegimenTagInput({
                           </span>
                         )}
                       </div>
-                      <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                      <div className="text-[11px] text-[var(--text-muted)]">
                         {classes}
                       </div>
                     </div>
-                    <Plus className="w-4 h-4 text-slate-400" />
+                    <Plus className="w-4 h-4 text-[var(--text-muted)]" />
                   </button>
                 );
               })

@@ -36,140 +36,140 @@ export interface JournalTheme {
 
 export const JOURNAL_THEMES: Record<string, JournalTheme> = {
   "the lancet": {
-    headerBg: "bg-gradient-to-r from-blue-700 to-blue-800",
+    headerBg: "bg-[#1B3A57]",
     headerText: "text-blue-100",
-    badgeBg: "bg-white text-blue-900",
-    badgeText: "text-blue-950 font-black",
-    borderCard: "border-blue-200 hover:border-blue-400",
-    darkBorderCard: "border-blue-900/70 hover:border-blue-600",
-    takeawayBorder: "border-l-blue-600",
-    takeawayBg: "bg-blue-50/70",
-    darkTakeawayBg: "bg-blue-950/40",
+    badgeBg: "bg-white/15 text-white",
+    badgeText: "text-white font-bold",
+    borderCard: "border-[var(--border-hairline)] hover:border-blue-400/70",
+    darkBorderCard: "border-[var(--border-hairline)] hover:border-blue-500/60",
+    takeawayBorder: "border-l-[#1B3A57]",
+    takeawayBg: "bg-[var(--bg-subtle)]/75",
+    darkTakeawayBg: "bg-[var(--bg-subtle)]/75",
     takeawayTitle: "text-blue-900",
     darkTakeawayTitle: "text-blue-300",
-    groupDot: "bg-blue-600",
-    groupBorder: "border-blue-200",
-    groupBg: "bg-blue-50/80 text-blue-900",
-    darkGroupBg: "bg-blue-950/60 text-blue-200 border-blue-800",
+    groupDot: "bg-[#1B3A57]",
+    groupBorder: "border-blue-200/80",
+    groupBg: "bg-blue-50/70 text-blue-950",
+    darkGroupBg: "bg-blue-950/50 text-blue-200 border-blue-800/70",
   },
   "lancet neurol": {
-    headerBg: "bg-gradient-to-r from-cyan-800 to-teal-800",
+    headerBg: "bg-[#1B434B]",
     headerText: "text-cyan-100",
-    badgeBg: "bg-white text-teal-900",
-    badgeText: "text-teal-950 font-black",
-    borderCard: "border-cyan-200 hover:border-cyan-400",
-    darkBorderCard: "border-cyan-900/70 hover:border-cyan-600",
-    takeawayBorder: "border-l-cyan-600",
-    takeawayBg: "bg-cyan-50/70",
-    darkTakeawayBg: "bg-cyan-950/40",
-    takeawayTitle: "text-cyan-900",
-    darkTakeawayTitle: "text-cyan-300",
-    groupDot: "bg-cyan-700",
-    groupBorder: "border-cyan-200",
-    groupBg: "bg-cyan-50/80 text-cyan-900",
-    darkGroupBg: "bg-cyan-950/60 text-cyan-200 border-cyan-800",
+    badgeBg: "bg-white/15 text-white",
+    badgeText: "text-white font-bold",
+    borderCard: "border-[var(--border-hairline)] hover:border-teal-500/70",
+    darkBorderCard: "border-[var(--border-hairline)] hover:border-teal-500/60",
+    takeawayBorder: "border-l-[#1B434B]",
+    takeawayBg: "bg-[var(--bg-subtle)]/75",
+    darkTakeawayBg: "bg-[var(--bg-subtle)]/75",
+    takeawayTitle: "text-teal-900",
+    darkTakeawayTitle: "text-teal-300",
+    groupDot: "bg-[#1B434B]",
+    groupBorder: "border-teal-200/80",
+    groupBg: "bg-teal-50/70 text-teal-950",
+    darkGroupBg: "bg-teal-950/50 text-teal-200 border-teal-800/70",
   },
   nejm: {
-    headerBg: "bg-gradient-to-r from-orange-600 to-amber-700",
+    headerBg: "bg-[#7C2D12]",
     headerText: "text-orange-100",
-    badgeBg: "bg-white text-orange-950",
-    badgeText: "text-orange-950 font-black",
-    borderCard: "border-orange-200 hover:border-orange-400",
-    darkBorderCard: "border-orange-900/70 hover:border-orange-600",
-    takeawayBorder: "border-l-orange-600",
-    takeawayBg: "bg-orange-50/70",
-    darkTakeawayBg: "bg-orange-950/40",
+    badgeBg: "bg-white/15 text-white",
+    badgeText: "text-white font-bold",
+    borderCard: "border-[var(--border-hairline)] hover:border-orange-400/70",
+    darkBorderCard: "border-[var(--border-hairline)] hover:border-orange-500/60",
+    takeawayBorder: "border-l-[#9A3412]",
+    takeawayBg: "bg-[var(--bg-subtle)]/75",
+    darkTakeawayBg: "bg-[var(--bg-subtle)]/75",
     takeawayTitle: "text-orange-950",
     darkTakeawayTitle: "text-orange-300",
-    groupDot: "bg-orange-600",
-    groupBorder: "border-orange-200",
-    groupBg: "bg-orange-50/80 text-orange-900",
-    darkGroupBg: "bg-orange-950/60 text-orange-200 border-orange-800",
+    groupDot: "bg-[#9A3412]",
+    groupBorder: "border-orange-200/80",
+    groupBg: "bg-orange-50/70 text-orange-950",
+    darkGroupBg: "bg-orange-950/50 text-orange-200 border-orange-800/70",
   },
   jama: {
-    headerBg: "bg-gradient-to-r from-red-600 to-red-700",
-    headerText: "text-red-100",
-    badgeBg: "bg-white text-red-950",
-    badgeText: "text-red-950 font-black",
-    borderCard: "border-red-200 hover:border-red-400",
-    darkBorderCard: "border-red-900/70 hover:border-red-600",
-    takeawayBorder: "border-l-red-600",
-    takeawayBg: "bg-red-50/70",
-    darkTakeawayBg: "bg-red-950/40",
-    takeawayTitle: "text-red-950",
-    darkTakeawayTitle: "text-red-300",
-    groupDot: "bg-red-600",
-    groupBorder: "border-red-200",
-    groupBg: "bg-red-50/80 text-red-900",
-    darkGroupBg: "bg-red-950/60 text-red-200 border-red-800",
-  },
-  "jama neurol": {
-    headerBg: "bg-gradient-to-r from-rose-600 to-pink-700",
+    headerBg: "bg-[#881337]",
     headerText: "text-rose-100",
-    badgeBg: "bg-white text-rose-950",
-    badgeText: "text-rose-950 font-black",
-    borderCard: "border-rose-200 hover:border-rose-400",
-    darkBorderCard: "border-rose-900/70 hover:border-rose-600",
-    takeawayBorder: "border-l-rose-600",
-    takeawayBg: "bg-rose-50/70",
-    darkTakeawayBg: "bg-rose-950/40",
+    badgeBg: "bg-white/15 text-white",
+    badgeText: "text-white font-bold",
+    borderCard: "border-[var(--border-hairline)] hover:border-rose-400/70",
+    darkBorderCard: "border-[var(--border-hairline)] hover:border-rose-500/60",
+    takeawayBorder: "border-l-[#9F1239]",
+    takeawayBg: "bg-[var(--bg-subtle)]/75",
+    darkTakeawayBg: "bg-[var(--bg-subtle)]/75",
     takeawayTitle: "text-rose-950",
     darkTakeawayTitle: "text-rose-300",
-    groupDot: "bg-rose-600",
-    groupBorder: "border-rose-200",
-    groupBg: "bg-rose-50/80 text-rose-900",
-    darkGroupBg: "bg-rose-950/60 text-rose-200 border-rose-800",
+    groupDot: "bg-[#9F1239]",
+    groupBorder: "border-rose-200/80",
+    groupBg: "bg-rose-50/70 text-rose-950",
+    darkGroupBg: "bg-rose-950/50 text-rose-200 border-rose-800/70",
+  },
+  "jama neurol": {
+    headerBg: "bg-[#6D1B3B]",
+    headerText: "text-rose-100",
+    badgeBg: "bg-white/15 text-white",
+    badgeText: "text-white font-bold",
+    borderCard: "border-[var(--border-hairline)] hover:border-pink-400/70",
+    darkBorderCard: "border-[var(--border-hairline)] hover:border-pink-500/60",
+    takeawayBorder: "border-l-[#831843]",
+    takeawayBg: "bg-[var(--bg-subtle)]/75",
+    darkTakeawayBg: "bg-[var(--bg-subtle)]/75",
+    takeawayTitle: "text-rose-950",
+    darkTakeawayTitle: "text-rose-300",
+    groupDot: "bg-[#831843]",
+    groupBorder: "border-pink-200/80",
+    groupBg: "bg-pink-50/70 text-rose-950",
+    darkGroupBg: "bg-pink-950/50 text-rose-200 border-pink-800/70",
   },
   stroke: {
-    headerBg: "bg-gradient-to-r from-red-800 to-red-950",
+    headerBg: "bg-[#7F1D1D]",
     headerText: "text-red-100",
-    badgeBg: "bg-white text-red-950",
-    badgeText: "text-red-950 font-black",
-    borderCard: "border-red-300 hover:border-red-500",
-    darkBorderCard: "border-red-900/80 hover:border-red-600",
-    takeawayBorder: "border-l-red-800",
-    takeawayBg: "bg-red-50/70",
-    darkTakeawayBg: "bg-red-950/40",
+    badgeBg: "bg-white/15 text-white",
+    badgeText: "text-white font-bold",
+    borderCard: "border-[var(--border-hairline)] hover:border-red-500/70",
+    darkBorderCard: "border-[var(--border-hairline)] hover:border-red-500/60",
+    takeawayBorder: "border-l-[#991B1B]",
+    takeawayBg: "bg-[var(--bg-subtle)]/75",
+    darkTakeawayBg: "bg-[var(--bg-subtle)]/75",
     takeawayTitle: "text-red-950",
     darkTakeawayTitle: "text-red-300",
-    groupDot: "bg-red-800",
-    groupBorder: "border-red-300",
-    groupBg: "bg-red-50/80 text-red-950",
-    darkGroupBg: "bg-red-950/60 text-red-200 border-red-800",
+    groupDot: "bg-[#991B1B]",
+    groupBorder: "border-red-200/80",
+    groupBg: "bg-red-50/70 text-red-950",
+    darkGroupBg: "bg-red-950/50 text-red-200 border-red-800/70",
   },
   neurology: {
-    headerBg: "bg-gradient-to-r from-emerald-700 to-green-800",
+    headerBg: "bg-[#14532D]",
     headerText: "text-emerald-100",
-    badgeBg: "bg-white text-emerald-950",
-    badgeText: "text-emerald-950 font-black",
-    borderCard: "border-emerald-200 hover:border-emerald-400",
-    darkBorderCard: "border-emerald-900/70 hover:border-emerald-600",
-    takeawayBorder: "border-l-emerald-600",
-    takeawayBg: "bg-emerald-50/70",
-    darkTakeawayBg: "bg-emerald-950/40",
+    badgeBg: "bg-white/15 text-white",
+    badgeText: "text-white font-bold",
+    borderCard: "border-[var(--border-hairline)] hover:border-emerald-500/70",
+    darkBorderCard: "border-[var(--border-hairline)] hover:border-emerald-500/60",
+    takeawayBorder: "border-l-[#166534]",
+    takeawayBg: "bg-[var(--bg-subtle)]/75",
+    darkTakeawayBg: "bg-[var(--bg-subtle)]/75",
     takeawayTitle: "text-emerald-950",
     darkTakeawayTitle: "text-emerald-300",
-    groupDot: "bg-emerald-700",
-    groupBorder: "border-emerald-200",
-    groupBg: "bg-emerald-50/80 text-emerald-900",
-    darkGroupBg: "bg-emerald-950/60 text-emerald-200 border-emerald-800",
+    groupDot: "bg-[#166534]",
+    groupBorder: "border-emerald-200/80",
+    groupBg: "bg-emerald-50/70 text-emerald-950",
+    darkGroupBg: "bg-emerald-950/50 text-emerald-200 border-emerald-800/70",
   },
   "ann neurol": {
-    headerBg: "bg-gradient-to-r from-violet-700 to-purple-800",
+    headerBg: "bg-[#4C1D95]",
     headerText: "text-violet-100",
-    badgeBg: "bg-white text-violet-950",
-    badgeText: "text-violet-950 font-black",
-    borderCard: "border-violet-200 hover:border-violet-400",
-    darkBorderCard: "border-violet-900/70 hover:border-violet-600",
-    takeawayBorder: "border-l-violet-600",
-    takeawayBg: "bg-violet-50/70",
-    darkTakeawayBg: "bg-violet-950/40",
+    badgeBg: "bg-white/15 text-white",
+    badgeText: "text-white font-bold",
+    borderCard: "border-[var(--border-hairline)] hover:border-violet-400/70",
+    darkBorderCard: "border-[var(--border-hairline)] hover:border-violet-500/60",
+    takeawayBorder: "border-l-[#5B21B6]",
+    takeawayBg: "bg-[var(--bg-subtle)]/75",
+    darkTakeawayBg: "bg-[var(--bg-subtle)]/75",
     takeawayTitle: "text-violet-950",
     darkTakeawayTitle: "text-violet-300",
-    groupDot: "bg-violet-700",
-    groupBorder: "border-violet-200",
-    groupBg: "bg-violet-50/80 text-violet-950",
-    darkGroupBg: "bg-violet-950/60 text-violet-200 border-violet-800",
+    groupDot: "bg-[#5B21B6]",
+    groupBorder: "border-violet-200/80",
+    groupBg: "bg-violet-50/70 text-violet-950",
+    darkGroupBg: "bg-violet-950/50 text-violet-200 border-violet-800/70",
   },
 };
 
@@ -478,7 +478,7 @@ function ArticleCardComponent({
 
     if (!showFullAbstract) {
       return (
-        <p className={`leading-relaxed line-clamp-3 ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
+        <p className="leading-relaxed line-clamp-3 text-[var(--text-secondary)]">
           {highlightClinicalStats(text, darkMode)}
         </p>
       );
@@ -488,7 +488,7 @@ function ArticleCardComponent({
 
     if (sections.length <= 1 && !sections[0]?.header) {
       return (
-        <p className={`leading-relaxed ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
+        <p className="leading-relaxed text-[var(--text-secondary)]">
           {highlightClinicalStats(text, darkMode)}
         </p>
       );
@@ -498,18 +498,14 @@ function ArticleCardComponent({
       <div className="space-y-2.5">
         {sections.map((sec, idx) =>
           sec.header ? (
-            <div key={idx} className={`leading-relaxed ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
-              <span
-                className={`font-bold uppercase text-[11px] tracking-wide px-1.5 py-0.5 rounded mr-1.5 inline-block ${
-                  darkMode ? "bg-slate-700 text-slate-100" : "bg-slate-200/70 text-slate-900"
-                }`}
-              >
+            <div key={idx} className="leading-relaxed text-[var(--text-secondary)]">
+              <span className="font-bold uppercase text-[10.5px] tracking-wide px-1.5 py-0.5 rounded mr-1.5 inline-block bg-[var(--bg-surface)] text-[var(--text-ink)] border border-[var(--border-hairline)]">
                 {sec.header}:
               </span>
               <span>{highlightClinicalStats(sec.body, darkMode)}</span>
             </div>
           ) : (
-            <p key={idx} className={`leading-relaxed ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
+            <p key={idx} className="leading-relaxed text-[var(--text-secondary)]">
               {highlightClinicalStats(sec.body, darkMode)}
             </p>
           )
@@ -522,16 +518,14 @@ function ArticleCardComponent({
   if (compactMode && !expandedInCompact) {
     return (
       <div
-        className={`rounded-xl border transition-all duration-150 px-4 py-3 flex flex-col gap-1.5 ${
-          darkMode
-            ? `bg-slate-900 ${theme.darkBorderCard}`
-            : `bg-white ${theme.borderCard} shadow-xs hover:shadow-sm`
+        className={`rounded-2xl border bg-[var(--bg-surface)] transition-all duration-150 px-4 py-3 flex flex-col gap-1.5 shadow-2xs hover:border-stone-400 dark:hover:border-stone-600 ${
+          darkMode ? theme.darkBorderCard : theme.borderCard
         }`}
       >
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex flex-wrap items-center gap-1.5">
             <span
-              className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider"
+              className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
               style={{
                 backgroundColor: article.journal.badge_bg,
                 color: article.journal.badge_text,
@@ -540,15 +534,13 @@ function ArticleCardComponent({
               {article.journal.short_name || article.journal.name}
             </span>
             {isNew && (
-              <span className="px-1.5 py-0.5 rounded-full text-[9px] font-black uppercase bg-emerald-500 text-white">
+              <span className="px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase bg-emerald-600 text-white">
                 NEW
               </span>
             )}
             <span
               onClick={() => onStudyTypeClick?.(article.article_type)}
-              className={`cursor-pointer text-[11px] font-semibold px-2 py-0.5 rounded ${
-                darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-100 text-slate-700"
-              }`}
+              className="cursor-pointer text-[10.5px] font-semibold px-2 py-0.5 rounded bg-[var(--bg-subtle)] text-[var(--text-secondary)] border border-[var(--border-hairline)]"
             >
               {article.article_type}
             </span>
@@ -556,11 +548,7 @@ function ArticleCardComponent({
               <span
                 key={i}
                 onClick={() => onSubspecialtyClick?.(sub)}
-                className={`cursor-pointer text-[11px] font-medium px-2 py-0.5 rounded ${
-                  darkMode
-                    ? "bg-slate-800/70 text-slate-400 hover:text-slate-200"
-                    : "bg-slate-50 text-slate-500 hover:bg-slate-100"
-                }`}
+                className="cursor-pointer text-[10.5px] font-medium px-2 py-0.5 rounded bg-[var(--bg-paper)] text-[var(--text-muted)] hover:text-[var(--text-ink)] border border-[var(--border-hairline)]"
               >
                 {sub}
               </span>
@@ -570,11 +558,7 @@ function ArticleCardComponent({
           <div className="flex items-center gap-2.5">
             <button
               onClick={() => setExpandedInCompact(true)}
-              className={`text-[11px] font-bold px-2 py-0.5 rounded ${
-                darkMode
-                  ? "text-blue-400 hover:bg-slate-800"
-                  : "text-blue-600 hover:bg-blue-50"
-              }`}
+              className="text-[11px] font-bold px-2 py-0.5 rounded text-[#B91C1C] dark:text-rose-400 hover:bg-[var(--bg-subtle)]"
             >
               Details ▼
             </button>
@@ -583,7 +567,7 @@ function ArticleCardComponent({
                 type="button"
                 onClick={() => onToggleBookmark(article.id)}
                 aria-label={isBookmarked ? "Remove from bookmarks" : "Save article to bookmarks"}
-                className={`text-sm ${isBookmarked ? "text-amber-400" : "text-slate-400"}`}
+                className={`text-sm ${isBookmarked ? "text-amber-400" : "text-[var(--text-muted)]"}`}
               >
                 {isBookmarked ? "★" : "☆"}
               </button>
@@ -591,11 +575,7 @@ function ArticleCardComponent({
           </div>
         </div>
 
-        <h3
-          className={`text-sm sm:text-base font-bold leading-snug ${
-            darkMode ? "text-slate-100 hover:text-blue-400" : "text-slate-900 hover:text-blue-600"
-          }`}
-        >
+        <h3 className="text-sm sm:text-base font-bold leading-snug text-[var(--text-ink)] hover:text-[#B91C1C] dark:hover:text-rose-400 transition-colors">
           <a href={article.doi_url} target="_blank" rel="noopener noreferrer">
             {cleanTitle}
           </a>
@@ -603,9 +583,7 @@ function ArticleCardComponent({
 
         {takeawayText && (
           <p
-            className={`text-xs pl-2.5 border-l-2 ${theme.takeawayBorder} ${
-              darkMode ? "text-slate-300" : "text-slate-700"
-            }`}
+            className={`text-xs pl-2.5 border-l-2 ${theme.takeawayBorder} text-[var(--text-secondary)]`}
           >
             {highlightClinicalStats(takeawayText, darkMode)}
           </p>
@@ -616,25 +594,23 @@ function ArticleCardComponent({
 
   return (
     <div
-      className={`rounded-xl border overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 ${
-        darkMode
-          ? `bg-slate-900 ${theme.darkBorderCard}`
-          : `bg-white ${theme.borderCard}`
+      className={`rounded-2xl border bg-[var(--bg-surface)] overflow-hidden shadow-2xs hover:shadow-md hover:border-stone-400 dark:hover:border-stone-600 transition-all duration-200 ${
+        darkMode ? theme.darkBorderCard : theme.borderCard
       }`}
     >
       {/* KHỐI HEADER ĐẦU BÀI BÁO */}
       <div
-        className={`${theme.headerBg} px-5 py-2.5 text-white flex flex-wrap items-center justify-between gap-2 shadow-inner`}
+        className={`${theme.headerBg} px-4 py-2 text-white flex flex-wrap items-center justify-between gap-2`}
       >
         <div className="flex flex-wrap items-center gap-2">
           <span
-            className={`px-2.5 py-0.5 rounded shadow-sm text-xs font-black uppercase tracking-wider ${theme.badgeBg}`}
+            className={`px-2 py-0.5 rounded text-[10.5px] font-bold uppercase tracking-wider ${theme.badgeBg}`}
           >
             {article.journal.short_name || article.journal.name}
           </span>
 
           {isNew && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-500 text-white shadow-sm ring-1 ring-white/50">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-emerald-500/25 text-emerald-100 ring-1 ring-emerald-300/40">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
@@ -647,10 +623,10 @@ function ArticleCardComponent({
             <span
               key={st}
               onClick={() => onStudyTypeClick?.(st)}
-              className={`cursor-pointer text-xs font-semibold px-2 py-0.5 rounded transition-colors ${
+              className={`cursor-pointer text-[10.5px] font-semibold px-2 py-0.5 rounded transition-colors ${
                 idx === 0
-                  ? `bg-black/25 text-white hover:bg-black/35`
-                  : `bg-black/15 ${theme.headerText} hover:bg-black/25 text-[11px]`
+                  ? "bg-white/15 text-white hover:bg-white/25"
+                  : `bg-black/15 ${theme.headerText} hover:bg-black/25`
               }`}
               title={`Filter by study type: ${st}`}
             >
@@ -663,13 +639,13 @@ function ArticleCardComponent({
           {compactMode && expandedInCompact && (
             <button
               onClick={() => setExpandedInCompact(false)}
-              className="text-[11px] font-bold px-2 py-0.5 rounded bg-black/25 text-white hover:bg-black/40"
+              className="text-[10.5px] font-bold px-2 py-0.5 rounded bg-black/25 text-white hover:bg-black/40"
             >
-              Collapse Card ▲
+              Collapse ▲
             </button>
           )}
           {formattedDate && (
-            <span className={`text-xs font-medium ${theme.headerText} tracking-wide`}>
+            <span className={`text-[11px] font-medium ${theme.headerText} tracking-wide`}>
               {formattedDate}
             </span>
           )}
@@ -679,7 +655,9 @@ function ArticleCardComponent({
               onClick={() => onToggleBookmark(article.id)}
               title={isBookmarked ? "Remove from saved" : "Save article for later"}
               aria-label={isBookmarked ? "Remove from saved" : "Save article for later"}
-              className="text-sm hover:scale-110 transition-transform focus:outline-none"
+              className={`text-sm hover:scale-110 transition-transform focus:outline-none ${
+                isBookmarked ? "text-amber-300" : "text-white/75 hover:text-white"
+              }`}
             >
               {isBookmarked ? "★" : "☆"}
             </button>
@@ -688,21 +666,15 @@ function ArticleCardComponent({
       </div>
 
       {/* THÂN THẺ BÀI BÁO */}
-      <div className="p-5">
-        <h3
-          className={`text-base sm:text-lg font-bold leading-snug mb-2 transition-colors ${
-            darkMode
-              ? "text-slate-100 hover:text-blue-400"
-              : "text-slate-900 hover:text-blue-600"
-          }`}
-        >
+      <div className="p-4 sm:p-5">
+        <h3 className="text-base sm:text-[17px] font-bold leading-snug mb-1.5 text-[var(--text-ink)] hover:text-[#B91C1C] dark:hover:text-rose-400 transition-colors">
           <a href={article.doi_url} target="_blank" rel="noopener noreferrer">
             {cleanTitle}
           </a>
         </h3>
 
         {article.authors && article.authors.length > 0 && (
-          <p className="text-xs text-slate-500 mb-3 line-clamp-1 font-medium">
+          <p className="text-xs text-[var(--text-muted)] mb-2.5 line-clamp-1 font-medium">
             {article.authors.join(", ")}
           </p>
         )}
@@ -713,14 +685,10 @@ function ArticleCardComponent({
             <span
               key={sub}
               onClick={() => onSubspecialtyClick?.(sub)}
-              className={`cursor-pointer text-[11px] font-bold px-2.5 py-0.5 rounded-md transition-colors ${
+              className={`cursor-pointer text-[10.5px] font-semibold px-2 py-0.5 rounded transition-colors ${
                 idx === 0
-                  ? darkMode
-                    ? "bg-blue-950/80 text-blue-300 border border-blue-800/70 hover:bg-blue-900"
-                    : "bg-slate-800 text-white hover:bg-slate-700"
-                  : darkMode
-                  ? "bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700"
-                  : "bg-slate-200/80 text-slate-800 hover:bg-slate-300"
+                  ? "bg-[#1C1917] text-[#FAF8F5] hover:bg-[#2C2825] dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-white"
+                  : "bg-[var(--bg-subtle)] text-[var(--text-secondary)] border border-[var(--border-hairline)] hover:border-stone-400"
               }`}
               title={`Filter by subspecialty: ${sub}`}
             >
@@ -731,11 +699,7 @@ function ArticleCardComponent({
             <span
               key={i}
               onClick={() => onTagClick?.(topic)}
-              className={`cursor-pointer text-[11px] px-2 py-0.5 rounded-md border transition-colors ${
-                darkMode
-                  ? "bg-slate-800/50 text-slate-300 border-slate-700 hover:bg-slate-800"
-                  : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100"
-              }`}
+              className="cursor-pointer text-[10.5px] px-2 py-0.5 rounded border border-[var(--border-hairline)] bg-[var(--bg-subtle)] text-[var(--text-secondary)] hover:border-stone-400 transition-colors"
             >
               #{topic}
             </span>
@@ -747,11 +711,11 @@ function ArticleCardComponent({
           <div
             className={`${
               darkMode ? theme.darkTakeawayBg : theme.takeawayBg
-            } border-l-4 ${theme.takeawayBorder} rounded-r-lg p-3.5 mb-3`}
+            } border border-[var(--border-hairline)] border-l-4 ${theme.takeawayBorder} rounded-xl p-3.5 mb-3`}
           >
             <div className="flex items-center justify-between mb-1">
               <span
-                className={`text-[11px] font-bold uppercase tracking-wider ${
+                className={`text-[10.5px] font-bold uppercase tracking-wider ${
                   darkMode ? theme.darkTakeawayTitle : theme.takeawayTitle
                 }`}
               >
@@ -762,18 +726,14 @@ function ArticleCardComponent({
                   className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
                     darkMode
                       ? "bg-indigo-950/80 text-indigo-300 border-indigo-800"
-                      : "bg-white/80 text-indigo-700 border-indigo-200"
+                      : "bg-[var(--bg-surface)] text-indigo-700 border-indigo-200"
                   }`}
                 >
                   ✨ Gemini AI
                 </span>
               )}
             </div>
-            <p
-              className={`text-xs sm:text-sm leading-relaxed font-medium ${
-                darkMode ? "text-slate-200" : "text-slate-800"
-              }`}
-            >
+            <p className="text-xs sm:text-sm leading-relaxed font-medium text-[var(--text-ink)]">
               {highlightClinicalStats(takeawayText, darkMode)}
             </p>
           </div>
@@ -782,20 +742,20 @@ function ArticleCardComponent({
         {/* GHI CHÚ LÂM SÀNG CÁ NHÂN (PERSONAL CLINICAL NOTE) */}
         {(isBookmarked || clinicalNote) && onSaveNote && (
           <div
-            className={`mb-3 p-3 rounded-lg border text-xs ${
+            className={`mb-3 p-3 rounded-xl border text-xs ${
               darkMode
-                ? "bg-amber-950/30 border-amber-800/60 text-amber-200"
-                : "bg-amber-50/70 border-amber-200 text-slate-800"
+                ? "bg-amber-950/25 border-amber-800/60 text-amber-200"
+                : "bg-[#FFFDF7] border-amber-200/90 text-[var(--text-ink)]"
             }`}
           >
             <div className="flex items-center justify-between mb-1.5">
-              <span className="font-bold text-[11px] uppercase tracking-wider text-amber-600 dark:text-amber-400">
+              <span className="font-bold text-[10.5px] uppercase tracking-wider text-amber-700 dark:text-amber-400">
                 📝 Personal Clinical Note
               </span>
               {!isEditingNote && (
                 <button
                   onClick={() => setIsEditingNote(true)}
-                  className="text-[11px] font-semibold text-blue-600 hover:underline"
+                  className="text-[11px] font-semibold text-[#B91C1C] dark:text-rose-400 hover:underline"
                 >
                   {clinicalNote ? "Edit Note" : "+ Add Note"}
                 </button>
@@ -809,11 +769,7 @@ function ArticleCardComponent({
                   value={noteInput}
                   onChange={(e) => setNoteInput(e.target.value)}
                   placeholder="Ghi chú lâm sàng (VD: Báo cáo giao ban thứ 5, áp dụng cho BN rung nhĩ + tiền sử XHN)..."
-                  className={`w-full p-2 rounded border text-xs focus:outline-none focus:ring-2 focus:ring-amber-500 ${
-                    darkMode
-                      ? "bg-slate-900 border-slate-700 text-slate-100"
-                      : "bg-white border-amber-300 text-slate-900"
-                  }`}
+                  className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-xs text-[var(--text-ink)] focus:outline-none focus:ring-2 focus:ring-amber-500"
                 />
                 <div className="flex justify-end gap-2">
                   <button
@@ -821,7 +777,7 @@ function ArticleCardComponent({
                       setNoteInput(clinicalNote);
                       setIsEditingNote(false);
                     }}
-                    className="px-2.5 py-1 rounded text-[11px] font-semibold text-slate-500 hover:bg-slate-200/50"
+                    className="px-2.5 py-1 rounded text-[11px] font-semibold text-[var(--text-muted)] hover:bg-[var(--bg-subtle)]"
                   >
                     Cancel
                   </button>
@@ -830,7 +786,7 @@ function ArticleCardComponent({
                       onSaveNote(article.id, noteInput);
                       setIsEditingNote(false);
                     }}
-                    className="px-3 py-1 rounded text-[11px] font-bold bg-amber-500 text-white hover:bg-amber-600"
+                    className="px-3 py-1 rounded text-[11px] font-bold bg-amber-600 text-white hover:bg-amber-700"
                   >
                     Save Note
                   </button>
@@ -841,7 +797,7 @@ function ArticleCardComponent({
             ) : (
               <p
                 onClick={() => setIsEditingNote(true)}
-                className="cursor-pointer text-slate-400 italic"
+                className="cursor-pointer text-[var(--text-muted)] italic"
               >
                 Click &quot;+ Add Note&quot; to attach a personal clinical memo for this saved study...
               </p>
@@ -851,22 +807,14 @@ function ArticleCardComponent({
 
         {/* Structured Abstract */}
         {hasRealAbstract ? (
-          <div
-            className={`mt-3 text-xs p-3.5 rounded-lg border ${
-              darkMode
-                ? "bg-slate-800/50 border-slate-700/80"
-                : "bg-slate-50/80 border-slate-200/80"
-            }`}
-          >
+          <div className="mt-3 text-xs p-3.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/75">
             <div className="flex items-center justify-between mb-2">
-              <span className="font-bold text-slate-500 uppercase tracking-wider text-[11px]">
+              <span className="font-bold text-[var(--text-muted)] uppercase tracking-wider text-[10.5px]">
                 Structured Abstract
               </span>
               <button
                 onClick={() => setShowFullAbstract(!showFullAbstract)}
-                className={`text-[11px] font-semibold transition-colors ${
-                  darkMode ? "text-blue-400 hover:text-blue-300" : "text-blue-600 hover:text-blue-800"
-                }`}
+                className="text-[11px] font-semibold text-[#B91C1C] dark:text-rose-400 hover:underline transition-colors"
               >
                 {showFullAbstract ? "Collapse ▲" : "Expand Full Abstract ▼"}
               </button>
@@ -875,21 +823,15 @@ function ArticleCardComponent({
             {formatStructuredAbstract(cleanAbs)}
           </div>
         ) : (
-          <div
-            className={`mt-2 py-2.5 px-3.5 rounded-lg border border-dashed text-[11px] flex items-center justify-between gap-2 ${
-              darkMode
-                ? "bg-slate-800/30 border-slate-700 text-slate-400"
-                : "bg-slate-50 border-slate-200 text-slate-500"
-            }`}
-          >
+          <div className="mt-2 py-2.5 px-3.5 rounded-xl border border-dashed border-[var(--border-hairline)] bg-[var(--bg-subtle)]/50 text-[var(--text-muted)] text-[11px] flex items-center justify-between gap-2">
             {article.article_type === "Editorial / Perspective" ? (
               <span>
                 💬{" "}
-                <strong className={darkMode ? "text-slate-300" : "text-slate-700"}>
+                <strong className="text-[var(--text-secondary)]">
                   Expert Commentary / Editorial
                 </strong>{" "}
                 — Invited clinical perspective &amp; appraisal on{" "}
-                <strong className={darkMode ? "text-slate-300" : "text-slate-700"}>
+                <strong className="text-[var(--text-secondary)]">
                   {article.journal.short_name || article.journal.name}
                 </strong>{" "}
                 (no structured abstract issued by publisher).
@@ -897,11 +839,11 @@ function ArticleCardComponent({
             ) : article.article_type === "Case Report" ? (
               <span>
                 🖼️{" "}
-                <strong className={darkMode ? "text-slate-300" : "text-slate-700"}>
+                <strong className="text-[var(--text-secondary)]">
                   Clinical Case / NeuroImage
                 </strong>{" "}
                 — Diagnostic neuroimaging &amp; bedside case discussion available on{" "}
-                <strong className={darkMode ? "text-slate-300" : "text-slate-700"}>
+                <strong className="text-[var(--text-secondary)]">
                   {article.journal.short_name || article.journal.name}
                 </strong>
                 .
@@ -909,7 +851,7 @@ function ArticleCardComponent({
             ) : (
               <span>
                 📄 Full manuscript &amp; study details available on{" "}
-                <strong className={darkMode ? "text-slate-300" : "text-slate-700"}>
+                <strong className="text-[var(--text-secondary)]">
                   {article.journal.short_name || article.journal.name}
                 </strong>
                 .
@@ -919,24 +861,18 @@ function ArticleCardComponent({
         )}
 
         {/* Bottom Action */}
-        <div
-          className={`mt-4 pt-3 border-t flex flex-wrap items-center justify-between gap-2 ${
-            darkMode ? "border-slate-800" : "border-slate-100"
-          }`}
-        >
-          <span className="text-[11px] text-slate-400 font-mono truncate max-w-[40%]">
+        <div className="mt-3.5 pt-3 border-t border-[var(--border-hairline)] flex flex-wrap items-center justify-between gap-2">
+          <span className="font-mono-tech text-[10.5px] text-[var(--text-muted)] truncate max-w-[45%]">
             DOI: {article.id}
           </span>
 
-          <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={handleCopyForJournalClub}
-              className={`px-2.5 py-1 rounded-md text-[11px] font-bold border transition-all flex items-center gap-1 ${
+              className={`px-2.5 py-1 rounded-lg text-[11px] font-medium border transition-all flex items-center gap-1 ${
                 copied
                   ? "bg-emerald-600 text-white border-emerald-600 shadow-xs"
-                  : darkMode
-                  ? "bg-slate-800 text-slate-200 border-slate-700 hover:bg-slate-700"
-                  : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                  : "border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]"
               }`}
               title="Copy formatted summary & citation for Zalo, Telegram, or Journal Club slides"
             >
@@ -947,11 +883,7 @@ function ArticleCardComponent({
               href={pubmedSearchUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`px-2 py-1 rounded-md text-[11px] font-semibold border transition-colors ${
-                darkMode
-                  ? "bg-slate-800/60 text-slate-300 border-slate-700 hover:bg-slate-800"
-                  : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
-              }`}
+              className="px-2.5 py-1 rounded-lg text-[11px] font-medium border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] transition-colors"
               title="Search this article on PubMed"
             >
               PubMed ↗
@@ -961,9 +893,7 @@ function ArticleCardComponent({
               href={article.doi_url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-xs font-semibold flex items-center gap-1 group ${
-                darkMode ? "text-blue-400 hover:text-blue-300" : "text-blue-600 hover:text-blue-800"
-              }`}
+              className="text-[11px] font-bold text-[#B91C1C] dark:text-rose-400 hover:underline flex items-center gap-1 group ml-1"
             >
               View Article
               <span className="transition-transform group-hover:translate-x-0.5">→</span>

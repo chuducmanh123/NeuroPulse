@@ -461,20 +461,16 @@ export function SubmitTab({
 
   return (
 
-          <div
-            className={`p-6 rounded-2xl border space-y-6 ${
-              darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-            }`}
-          >
+          <div className="p-6 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-ink)] shadow-2xs space-y-6">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <h2 className="text-xl font-black">Submit Clinical Case</h2>
+                <h2 className="text-xl font-black text-[var(--text-ink)]">Submit Clinical Case</h2>
               </div>
 
               <button
                 type="button"
                 onClick={() => setShowAiExtractor((prev) => !prev)}
-                className="px-3.5 py-2 rounded-xl text-xs font-black bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-sm hover:opacity-95 shrink-0"
+                className="px-3.5 py-2 rounded-xl text-xs font-black bg-[#6D28D9] hover:bg-[#5B21B6] text-white shadow-sm transition-colors shrink-0"
               >
                 {showAiExtractor
                   ? "✕ Close AI Importer"
@@ -484,29 +480,25 @@ export function SubmitTab({
 
             {/* 1-CLICK AI CASE EXTRACTOR FOR PAYWALLED / TOP JOURNALS (.pdf, .docx, .doc, .txt) */}
             {showAiExtractor && (
-              <div
-                className={`p-4 rounded-xl border-2 border-indigo-500/40 space-y-3 ${
-                  darkMode ? "bg-indigo-950/25" : "bg-indigo-50/50"
-                }`}
-              >
+              <div className="p-4 rounded-xl border-2 border-[#6D28D9]/40 bg-[#6D28D9]/5 space-y-3">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
-                    <span className="text-[11px] font-black uppercase tracking-wider text-indigo-500">
+                    <span className="text-[11px] font-black uppercase tracking-wider text-[#6D28D9] dark:text-violet-400">
                       ✨ SEMI-AUTOMATED HIGH-IMPACT JOURNAL IMPORTER
                     </span>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                    <p className="text-xs text-[var(--text-muted)]">
                       Upload a journal article file (<code>.pdf</code>, <code>.docx</code>, <code>.doc</code>, <code>.txt</code>, <code>.md</code>) or paste the Case Presentation &amp; Discussion from{" "}
-                      <strong>NEJM</strong>, <strong>JAMA Neurology</strong>,{" "}
-                      <strong>Neurology</strong>, or <strong>The Lancet Neurology</strong> to auto-populate all fields below.
+                      <strong className="text-[var(--text-ink)]">NEJM</strong>, <strong className="text-[var(--text-ink)]">JAMA Neurology</strong>,{" "}
+                      <strong className="text-[var(--text-ink)]">Neurology</strong>, or <strong className="text-[var(--text-ink)]">The Lancet Neurology</strong> to auto-populate all fields below.
                     </p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2 shrink-0">
                     {uploadedDocName && (
-                      <span className="px-2 py-1 rounded bg-emerald-500/15 text-emerald-500 text-[11px] font-bold">
+                      <span className="px-2 py-1 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold">
                         {isReadingDoc ? "⏳ Reading..." : `✓ ${uploadedDocName}`}
                       </span>
                     )}
-                    <label className="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-white cursor-pointer hover:bg-slate-700 shrink-0">
+                    <label className="px-3 py-1.5 rounded-lg text-xs font-bold bg-[var(--text-ink)] text-[var(--bg-surface)] cursor-pointer hover:opacity-90 shrink-0">
                       📄 Upload Article (.pdf, .docx, .doc, .txt)
                       <input
                         ref={docFileInputRef}
@@ -524,11 +516,7 @@ export function SubmitTab({
                   value={aiRawText}
                   onChange={(e) => setAiRawText(e.target.value)}
                   placeholder="Paste full case presentation, MRI findings, discussion, and DOI (or upload a .pdf / .docx / .doc file above)..."
-                  className={`w-full p-3 rounded-lg border text-xs leading-relaxed ${
-                    darkMode
-                      ? "bg-slate-900 border-slate-700 text-slate-100"
-                      : "bg-white border-slate-300 text-slate-900"
-                  }`}
+                  className="w-full p-3 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs leading-relaxed focus:outline-none focus:border-[#6D28D9]"
                 />
 
                 <div className="flex flex-wrap items-center justify-between gap-3">
@@ -537,17 +525,13 @@ export function SubmitTab({
                     value={geminiApiKey}
                     onChange={(e) => setGeminiApiKey(e.target.value)}
                     placeholder="Optional: Gemini API Key (AIza...) for LLM Board-Style MCQ & PDF parsing"
-                    className={`px-3 py-2 rounded-lg border text-xs flex-1 min-w-[240px] ${
-                      darkMode
-                        ? "bg-slate-900 border-slate-700 text-slate-200"
-                        : "bg-white border-slate-300 text-slate-800"
-                    }`}
+                    className="px-3 py-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs flex-1 min-w-[240px] focus:outline-none focus:border-[#6D28D9]"
                   />
                   <button
                     type="button"
                     disabled={isExtractingAi || isReadingDoc || (!aiRawText.trim() && !aiPdfBase64)}
                     onClick={handleRunAiExtraction}
-                    className="px-4 py-2 rounded-lg text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50"
+                    className="px-4 py-2 rounded-lg text-xs font-black bg-[#6D28D9] text-white hover:bg-[#5B21B6] disabled:opacity-50 transition-colors"
                   >
                     {isExtractingAi
                       ? "⏳ Structuring Clinical Case..."
@@ -576,26 +560,22 @@ export function SubmitTab({
               {/* CORE ESSENTIAL FIELDS (ALWAYS VISIBLE) */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="sm:col-span-2">
-                  <label className="font-bold block mb-1">Case Title *</label>
+                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Case Title *</label>
                   <input
                     required
                     value={subTitle}
                     onChange={(e) => setSubTitle(e.target.value)}
                     placeholder="e.g., Acute Isolated Oculomotor Nerve Palsy with Thunderclap Headache in a 52-Year-Old..."
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                   />
                 </div>
                 <div>
-                  <label className="font-bold block mb-1">Subspecialty</label>
+                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Subspecialty</label>
                   <select
                     value={subSpecialty}
                     onChange={(e) => setSubSpecialty(e.target.value)}
                     aria-label="Select subspecialty"
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                   >
                     {subspecialtyTabs.filter((t) => t.value !== "All").map((t) => (
                       <option key={t.value} value={t.value}>
@@ -608,25 +588,21 @@ export function SubmitTab({
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="font-bold block mb-1">Demographics</label>
+                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Demographics</label>
                   <input
                     value={subDemographics}
                     onChange={(e) => setSubDemographics(e.target.value)}
                     placeholder="e.g., 58-year-old right-handed male"
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                   />
                 </div>
                 <div>
-                  <label className="font-bold block mb-1">Difficulty</label>
+                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Difficulty</label>
                   <select
                     value={subDifficulty}
                     onChange={(e) => setSubDifficulty(e.target.value as CaseDifficulty)}
                     aria-label="Select difficulty"
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                   >
                     <option value="Resident">Resident</option>
                     <option value="Fellow">Fellow</option>
@@ -634,14 +610,12 @@ export function SubmitTab({
                   </select>
                 </div>
                 <div>
-                  <label className="font-bold block mb-1">Past Medical History</label>
+                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Past Medical History</label>
                   <input
                     value={subPmh}
                     onChange={(e) => setSubPmh(e.target.value)}
                     placeholder="Hypertension, diabetes, prior surgeries..."
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                   />
                 </div>
               </div>
@@ -649,113 +623,93 @@ export function SubmitTab({
               {/* Vital Signs */}
               <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
                 <div>
-                  <label className="font-bold block mb-1">BP</label>
+                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">BP</label>
                   <input
                     value={subVitalBp}
                     onChange={(e) => setSubVitalBp(e.target.value)}
                     placeholder="130/80 mmHg"
-                    className={`w-full p-2 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                   />
                 </div>
                 <div>
-                  <label className="font-bold block mb-1">HR</label>
+                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">HR</label>
                   <input
                     value={subVitalHr}
                     onChange={(e) => setSubVitalHr(e.target.value)}
                     placeholder="80 bpm"
-                    className={`w-full p-2 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                   />
                 </div>
                 <div>
-                  <label className="font-bold block mb-1">RR</label>
+                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">RR</label>
                   <input
                     value={subVitalRr}
                     onChange={(e) => setSubVitalRr(e.target.value)}
                     placeholder="18 /min"
-                    className={`w-full p-2 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                   />
                 </div>
                 <div>
-                  <label className="font-bold block mb-1">Temp</label>
+                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Temp</label>
                   <input
                     value={subVitalTemp}
                     onChange={(e) => setSubVitalTemp(e.target.value)}
                     placeholder="36.8 °C"
-                    className={`w-full p-2 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                   />
                 </div>
                 <div>
-                  <label className="font-bold block mb-1">SpO2</label>
+                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">SpO2</label>
                   <input
                     value={subVitalSpo2}
                     onChange={(e) => setSubVitalSpo2(e.target.value)}
                     placeholder="98%"
-                    className={`w-full p-2 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="font-bold block mb-1">History of Present Illness (HPI)</label>
+                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">History of Present Illness (HPI)</label>
                   <textarea
                     rows={3}
                     value={subHistory}
                     onChange={(e) => setSubHistory(e.target.value)}
                     placeholder="Describe symptom onset, progression, and relevant timeline..."
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                   />
                 </div>
                 <div>
-                  <label className="font-bold block mb-1">Neurological Examination</label>
+                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Neurological Examination</label>
                   <textarea
                     rows={3}
                     value={subNeuroExam}
                     onChange={(e) => setSubNeuroExam(e.target.value)}
                     placeholder="GCS, NIHSS, cranial nerves, motor/sensory/cerebellar findings..."
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                   />
                 </div>
                 <div>
-                  <label className="font-bold block mb-1">Key Labs, CSF &amp; Workup</label>
+                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Key Labs, CSF &amp; Workup</label>
                   <textarea
                     rows={3}
                     value={subLabsCsf}
                     onChange={(e) => setSubLabsCsf(e.target.value)}
                     placeholder="CSF cell count/protein, autoimmune panel, EEG/EMG, or labs..."
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                   />
                 </div>
               </div>
 
               {/* CLIENT-SIDE PHI DE-IDENTIFICATION & WEBP COMPRESSION STUDIO */}
-              <div
-                className={`p-4 rounded-xl border ${
-                  darkMode ? "bg-slate-950 border-slate-800" : "bg-slate-50 border-slate-200"
-                }`}
-              >
+              <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/60">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <span className="text-xs font-black uppercase text-indigo-500">
+                  <span className="text-xs font-black uppercase text-[#6D28D9] dark:text-violet-400">
                     CLINICAL &amp; IMAGING
                   </span>
                   {subImageSizeKb > 0 && (
-                    <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[11px] font-black">
+                    <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-black">
                       ✓ EXIF Stripped • WebP Size: {subImageSizeKb} KB
                     </span>
                   )}
@@ -763,12 +717,12 @@ export function SubmitTab({
 
                 {/* Auto-extracted candidate figures from uploaded document (.pdf, .docx) */}
                 {aiExtractedImages.length > 0 && (
-                  <div className="mb-3 p-3 rounded-xl border border-indigo-500/30 bg-indigo-500/10 space-y-2">
+                  <div className="mb-3 p-3 rounded-xl border border-[#6D28D9]/30 bg-[#6D28D9]/10 space-y-2">
                     <div className="flex flex-wrap items-center justify-between gap-1">
-                      <span className="text-xs font-bold text-indigo-400 flex items-center gap-1.5">
+                      <span className="text-xs font-bold text-[#6D28D9] dark:text-violet-400 flex items-center gap-1.5">
                         <span>💡</span> Auto-extracted {aiExtractedImages.length} clinical figure{aiExtractedImages.length > 1 ? "s" : ""} from uploaded document:
                       </span>
-                      <span className="text-[11px] text-slate-400">Click a figure to load into form</span>
+                      <span className="text-[11px] text-[var(--text-muted)]">Click a figure to load into form</span>
                     </div>
                     <div className="flex items-center gap-2 overflow-x-auto py-1">
                       {aiExtractedImages.map((imgUrl, idx) => {
@@ -807,8 +761,8 @@ export function SubmitTab({
                             }}
                             className={`relative rounded-lg overflow-hidden border-2 transition-all shrink-0 ${
                               isCurrent
-                                ? "border-indigo-500 ring-2 ring-indigo-500/40"
-                                : "border-slate-700 opacity-60 hover:opacity-100"
+                                ? "border-[#6D28D9] ring-2 ring-[#6D28D9]/40"
+                                : "border-[var(--border-hairline)] opacity-60 hover:opacity-100"
                             }`}
                           >
                             <img src={imgUrl} alt={`Figure ${idx + 1}`} className="w-16 h-16 object-cover" />
@@ -829,28 +783,28 @@ export function SubmitTab({
                     accept="image/*"
                     aria-label="Upload CT or MRI image for de-identification"
                     onChange={handleImageUploadForDeidentification}
-                    className="text-xs"
+                    className="text-xs text-[var(--text-secondary)]"
                   />
                   {subImageWebpUrl && (
                     <>
                       <button
                         type="button"
                         onClick={() => applyPhiBlackoutMask("top")}
-                        className="px-2.5 py-1 rounded bg-slate-800 text-white text-xs font-bold hover:bg-slate-700"
+                        className="px-2.5 py-1 rounded bg-[var(--text-ink)] text-[var(--bg-surface)] text-xs font-bold hover:opacity-90"
                       >
                         ⬛ Mask Top Banner
                       </button>
                       <button
                         type="button"
                         onClick={() => applyPhiBlackoutMask("corners")}
-                        className="px-2.5 py-1 rounded bg-slate-800 text-white text-xs font-bold hover:bg-slate-700"
+                        className="px-2.5 py-1 rounded bg-[var(--text-ink)] text-[var(--bg-surface)] text-xs font-bold hover:opacity-90"
                       >
                         ⬛ Mask 4 DICOM Corners
                       </button>
                       <button
                         type="button"
                         onClick={() => applyPhiBlackoutMask("bottom")}
-                        className="px-2.5 py-1 rounded bg-slate-800 text-white text-xs font-bold hover:bg-slate-700"
+                        className="px-2.5 py-1 rounded bg-[var(--text-ink)] text-[var(--bg-surface)] text-xs font-bold hover:opacity-90"
                       >
                         ⬛ Mask Bottom Banner
                       </button>
@@ -860,58 +814,50 @@ export function SubmitTab({
 
                 <canvas
                   ref={canvasRef}
-                  className={`max-h-52 rounded border border-slate-700 mx-auto ${
+                  className={`max-h-52 rounded border border-[var(--border-hairline)] mx-auto ${
                     subImageWebpUrl ? "block" : "hidden"
                   }`}
                 />
 
                 {/* Figure Modality, Caption & Key Findings directly inside CLINICAL & IMAGING */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 mt-3 border-t border-slate-200 dark:border-slate-800">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 mt-3 border-t border-[var(--border-hairline)]">
                   <div>
-                    <label className="font-bold block mb-1">Figure Modality / Type</label>
+                    <label className="font-bold block mb-1 text-[var(--text-secondary)]">Figure Modality / Type</label>
                     <input
                       value={subModality}
                       onChange={(e) => setSubModality(e.target.value)}
                       placeholder="e.g., Clinical photo, Brain MRI, CT, EEG"
-                      className={`w-full p-2 rounded-lg border ${
-                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
-                      }`}
+                      className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                     />
                   </div>
                   <div>
-                    <label className="font-bold block mb-1">Figure Caption / Description</label>
+                    <label className="font-bold block mb-1 text-[var(--text-secondary)]">Figure Caption / Description</label>
                     <input
                       value={subFigCaption}
                       onChange={(e) => setSubFigCaption(e.target.value)}
                       placeholder="Description of clinical finding or view..."
-                      className={`w-full p-2 rounded-lg border ${
-                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
-                      }`}
+                      className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                     />
                   </div>
                   <div>
-                    <label className="font-bold block mb-1">Key Findings Summary</label>
+                    <label className="font-bold block mb-1 text-[var(--text-secondary)]">Key Findings Summary</label>
                     <input
                       value={subFindings}
                       onChange={(e) => setSubFindings(e.target.value)}
                       placeholder="Abnormal findings interpretation..."
-                      className={`w-full p-2 rounded-lg border ${
-                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
-                      }`}
+                      className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                     />
                   </div>
                 </div>
               </div>
 
               <div>
-                <label className="font-bold block mb-1">Final Clinical Diagnosis</label>
+                <label className="font-bold block mb-1 text-[var(--text-secondary)]">Final Clinical Diagnosis</label>
                 <input
                   value={subDiagnosis}
                   onChange={(e) => setSubDiagnosis(e.target.value)}
                   placeholder="Definitive diagnosis (e.g., Percheron Artery Bilateral Paramedian Thalamic Infarction)..."
-                  className={`w-full p-2.5 rounded-lg border ${
-                    darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                  }`}
+                  className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                 />
               </div>
 
@@ -920,59 +866,43 @@ export function SubmitTab({
                  =============================================================== */}
               <div className="space-y-3 pt-1">
                 {/* 1. COLLAPSIBLE: MULTIPLE-CHOICE QUESTION, 4 OPTIONS, PEER % & RATIONALES */}
-                <div
-                  className={`rounded-xl border overflow-hidden ${
-                    darkMode ? "border-slate-800 bg-slate-900/50" : "border-slate-200 bg-slate-50/60"
-                  }`}
-                >
+                <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/60 overflow-hidden">
                   <button
                     type="button"
                     onClick={() => setShowSubMcqSection((prev) => !prev)}
-                    className="w-full px-4 py-3 text-left flex items-center justify-between gap-2 text-xs font-black uppercase tracking-wide hover:bg-indigo-500/5 transition-colors"
+                    className="w-full px-4 py-3 text-left flex items-center justify-between gap-2 text-xs font-black uppercase tracking-wide hover:bg-[#6D28D9]/5 transition-colors"
                   >
-                    <span className="text-indigo-500">
+                    <span className="text-[#6D28D9] dark:text-violet-400">
                       {showSubMcqSection ? "▼" : "▶"} Optional: Multiple-Choice Question Prompt, 4 Options (A–D), Peer % &amp; Rationales
                     </span>
-                    <span className="text-[11px] font-semibold text-slate-400">
+                    <span className="text-[11px] font-semibold text-[var(--text-muted)]">
                       {showSubMcqSection ? "Click to collapse" : "Collapsed (Optional)"}
                     </span>
                   </button>
 
                   {showSubMcqSection && (
-                    <div
-                      className={`p-4 border-t space-y-3 text-xs ${
-                        darkMode ? "border-slate-800" : "border-slate-200"
-                      }`}
-                    >
+                    <div className="p-4 border-t border-[var(--border-hairline)] space-y-3 text-xs">
                       <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
                         <div className="sm:col-span-3">
-                          <label className="font-bold block mb-1">
+                          <label className="font-bold block mb-1 text-[var(--text-secondary)]">
                             Multiple-Choice Question Prompt (Optional)
                           </label>
                           <input
                             value={subQuestion}
                             onChange={(e) => setSubQuestion(e.target.value)}
                             placeholder="What is the most likely diagnosis or next best management step?"
-                            className={`w-full p-2 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700"
-                                : "bg-white border-slate-300"
-                            }`}
+                            className="w-full p-2 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
                           />
                         </div>
                         <div>
-                          <label className="font-bold block mb-1">Correct Option</label>
+                          <label className="font-bold block mb-1 text-[var(--text-secondary)]">Correct Option</label>
                           <select
                             value={subCorrect}
                             onChange={(e) =>
                               setSubCorrect(e.target.value as "A" | "B" | "C" | "D")
                             }
                             aria-label="Select correct option"
-                            className={`w-full p-2 rounded border font-black ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-emerald-400"
-                                : "bg-white border-slate-300 text-emerald-700"
-                            }`}
+                            className="w-full p-2 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-emerald-700 dark:text-emerald-400 text-xs font-black focus:outline-none focus:border-[#6D28D9]"
                           >
                             <option value="A">Option A</option>
                             <option value="B">Option B</option>
@@ -1026,15 +956,13 @@ export function SubmitTab({
                             className={`p-3 rounded-lg border space-y-1.5 ${
                               subCorrect === item.id
                                 ? "border-emerald-500/60 bg-emerald-500/5"
-                                : darkMode
-                                ? "border-slate-800 bg-slate-950"
-                                : "border-slate-200 bg-white"
+                                : "border-[var(--border-hairline)] bg-[var(--bg-surface)]"
                             }`}
                           >
                             <div className="flex items-center justify-between">
-                              <span className="font-black">Option {item.id} Text</span>
+                              <span className="font-black text-[var(--text-ink)]">Option {item.id} Text</span>
                               {subCorrect === item.id && (
-                                <span className="text-[10px] font-bold text-emerald-500">
+                                <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
                                   ✓ Correct Option
                                 </span>
                               )}
@@ -1043,22 +971,14 @@ export function SubmitTab({
                               value={item.val}
                               onChange={(e) => item.setVal(e.target.value)}
                               placeholder={`Option ${item.id} choice...`}
-                              className={`w-full p-1.5 rounded border ${
-                                darkMode
-                                  ? "bg-slate-900 border-slate-700 text-white"
-                                  : "bg-slate-50 border-slate-300"
-                              }`}
+                              className="w-full p-1.5 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
                             />
                             <textarea
                               rows={2}
                               value={item.rat}
                               onChange={(e) => item.setRat(e.target.value)}
                               placeholder={`Rationale / explanation for Option ${item.id} (Optional)...`}
-                              className={`w-full p-1.5 rounded border ${
-                                darkMode
-                                  ? "bg-slate-900 border-slate-700 text-slate-300"
-                                  : "bg-slate-50 border-slate-300"
-                              }`}
+                              className="w-full p-1.5 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-secondary)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
                             />
                           </div>
                         ))}
@@ -1068,48 +988,36 @@ export function SubmitTab({
                 </div>
 
                 {/* 2. COLLAPSIBLE: CLINICAL DISCUSSION, HIGH-YIELD TEACHING POINTS & PITFALLS */}
-                <div
-                  className={`rounded-xl border overflow-hidden ${
-                    darkMode ? "border-slate-800 bg-slate-900/50" : "border-slate-200 bg-slate-50/60"
-                  }`}
-                >
+                <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/60 overflow-hidden">
                   <button
                     type="button"
                     onClick={() => setShowSubResolutionSection((prev) => !prev)}
-                    className="w-full px-4 py-3 text-left flex items-center justify-between gap-2 text-xs font-black uppercase tracking-wide hover:bg-indigo-500/5 transition-colors"
+                    className="w-full px-4 py-3 text-left flex items-center justify-between gap-2 text-xs font-black uppercase tracking-wide hover:bg-[#6D28D9]/5 transition-colors"
                   >
-                    <span className="text-indigo-500">
+                    <span className="text-[#6D28D9] dark:text-violet-400">
                       {showSubResolutionSection ? "▼" : "▶"} Optional: Clinical Discussion, High-Yield Teaching Points &amp; Pitfalls
                     </span>
-                    <span className="text-[11px] font-semibold text-slate-400">
+                    <span className="text-[11px] font-semibold text-[var(--text-muted)]">
                       {showSubResolutionSection ? "Click to collapse" : "Collapsed (Optional)"}
                     </span>
                   </button>
 
                   {showSubResolutionSection && (
-                    <div
-                      className={`p-4 border-t space-y-3 text-xs ${
-                        darkMode ? "border-slate-800" : "border-slate-200"
-                      }`}
-                    >
+                    <div className="p-4 border-t border-[var(--border-hairline)] space-y-3 text-xs">
                       <div>
-                        <label className="font-bold block mb-1">Clinical Discussion</label>
+                        <label className="font-bold block mb-1 text-[var(--text-secondary)]">Clinical Discussion</label>
                         <textarea
                           rows={4}
                           value={subDiscussion}
                           onChange={(e) => setSubDiscussion(e.target.value)}
                           placeholder="Pathophysiology, neuroimaging correlation, and evidence-based management..."
-                          className={`w-full p-2 rounded border ${
-                            darkMode
-                              ? "bg-slate-800 border-slate-700 text-white"
-                              : "bg-white border-slate-300"
-                          }`}
+                          className="w-full p-2 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
                         />
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                          <label className="font-bold block mb-1">
+                          <label className="font-bold block mb-1 text-[var(--text-secondary)]">
                             High-Yield Teaching Points
                           </label>
                           <textarea
@@ -1117,15 +1025,11 @@ export function SubmitTab({
                             value={subTeachingPoint}
                             onChange={(e) => setSubTeachingPoint(e.target.value)}
                             placeholder="Key board-style clinical takeaways..."
-                            className={`w-full p-2 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-white"
-                                : "bg-white border-slate-300"
-                            }`}
+                            className="w-full p-2 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
                           />
                         </div>
                         <div>
-                          <label className="font-bold block mb-1">
+                          <label className="font-bold block mb-1 text-[var(--text-secondary)]">
                             Clinical Pitfalls to Avoid
                           </label>
                           <textarea
@@ -1133,11 +1037,7 @@ export function SubmitTab({
                             value={subPitfall}
                             onChange={(e) => setSubPitfall(e.target.value)}
                             placeholder="Diagnostic or management pitfalls to avoid..."
-                            className={`w-full p-2 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-white"
-                                : "bg-white border-slate-300"
-                            }`}
+                            className="w-full p-2 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
                           />
                         </div>
                       </div>
@@ -1147,65 +1047,53 @@ export function SubmitTab({
               </div>
 
               {/* SOURCE & REFERENCE */}
-              <div
-                className={`p-4 rounded-xl border space-y-3 ${
-                  darkMode ? "bg-slate-950 border-slate-800" : "bg-slate-50 border-slate-200"
-                }`}
-              >
-                <span className="text-xs font-black uppercase text-indigo-500 block">
+              <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/60 space-y-3">
+                <span className="text-xs font-black uppercase text-[#6D28D9] dark:text-violet-400 block">
                   SOURCE &amp; REFERENCE
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
                   <div>
-                    <label className="font-bold block mb-1">Source / Journal</label>
+                    <label className="font-bold block mb-1 text-[var(--text-secondary)]">Source / Journal</label>
                     <input
                       value={subJournalName}
                       onChange={(e) => setSubJournalName(e.target.value)}
                       placeholder="e.g., NEJM, JAMA, Lancet"
-                      className={`w-full p-2 rounded-lg border ${
-                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
-                      }`}
+                      className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
                     />
                   </div>
                   <div className="sm:col-span-2">
-                    <label className="font-bold block mb-1">Source DOI / URL</label>
+                    <label className="font-bold block mb-1 text-[var(--text-secondary)]">Source DOI / URL</label>
                     <input
                       value={subDoiUrl}
                       onChange={(e) => setSubDoiUrl(e.target.value)}
                       placeholder="https://doi.org/10.1212/..."
-                      className={`w-full p-2 rounded-lg border ${
-                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
-                      }`}
+                      className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
                     />
                   </div>
                   <div>
-                    <label className="font-bold block mb-1">Published Date</label>
+                    <label className="font-bold block mb-1 text-[var(--text-secondary)]">Published Date</label>
                     <input
                       type="date"
                       value={subPublishedDate}
                       onChange={(e) => setSubPublishedDate(e.target.value)}
-                      className={`w-full p-2 rounded-lg border ${
-                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
-                      }`}
+                      className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] text-xs focus:outline-none focus:border-[#6D28D9]"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="font-bold block mb-1 text-xs">Author / Institution</label>
+                  <label className="font-bold block mb-1 text-xs text-[var(--text-secondary)]">Author / Institution</label>
                   <input
                     value={subAuthor}
                     onChange={(e) => setSubAuthor(e.target.value)}
                     placeholder="e.g., Dr. Jane Doe • Stroke Center"
-                    className={`w-full p-2 rounded-lg border text-xs ${
-                      darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
-                    }`}
+                    className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
                   />
                 </div>
               </div>
 
               <button
                 type="submit"
-                className="px-6 py-3 rounded-xl text-xs font-black uppercase bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm"
+                className="px-6 py-3 rounded-xl text-xs font-black uppercase bg-[#6D28D9] text-white hover:bg-[#5B21B6] shadow-sm transition-colors"
               >
                 Submit Case
               </button>

@@ -124,7 +124,7 @@ export function AhaGuidelineTable({
   let mobileRunningIndex = 0;
 
   return (
-    <div className={`w-full font-sans overflow-hidden rounded-xl border ${darkMode ? "border-slate-800 bg-slate-950" : "border-slate-300 bg-white"} shadow-sm ${className}`}>
+    <div className={`w-full font-sans overflow-hidden rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] shadow-2xs ${className}`}>
       {/* 1. TOP HEADER BANNER (AHA Signature Red Header) */}
       <div className="bg-[#b91c1c] text-white px-4 py-3 sm:px-5 sm:py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
         <div className="min-w-0 flex-1">

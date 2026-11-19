@@ -349,7 +349,7 @@ function MultiSelectFilterDropdown({
   return (
     <div className="relative" ref={dropdownRef}>
       <div className="flex items-center justify-between mb-1.5">
-        <span className="text-[11px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+        <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#C25934] dark:text-orange-400">
           {label} ({options.length})
         </span>
         {selectedIds.length > 0 && (
@@ -368,19 +368,19 @@ function MultiSelectFilterDropdown({
         onClick={() => setIsOpen((prev) => !prev)}
         className={`w-full px-3 py-2 rounded-xl text-xs font-semibold border transition flex items-center justify-between gap-2 text-left ${
           selectedIds.length > 0
-            ? "bg-indigo-50/80 dark:bg-indigo-950/50 border-indigo-400 dark:border-indigo-600 text-slate-900 dark:text-white shadow-2xs"
-            : "bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
+            ? "bg-[#C25934]/10 border-[#C25934]/50 text-[var(--text-ink)] shadow-2xs"
+            : "bg-[var(--bg-paper)] text-[var(--text-secondary)] border-[var(--border-hairline)] hover:border-[#C25934]"
         }`}
       >
         <div className="flex items-center gap-1.5 min-w-0">
           {selectedIds.length > 0 && (
-            <span className="w-2 h-2 rounded-full bg-indigo-600 shrink-0" />
+            <span className="w-2 h-2 rounded-full bg-[#C25934] shrink-0" />
           )}
           <span className="truncate">{summaryText}</span>
         </div>
-        <div className="flex items-center gap-1.5 shrink-0 text-slate-400">
+        <div className="flex items-center gap-1.5 shrink-0 text-[var(--text-muted)]">
           {selectedIds.length > 0 && totalSelectedCount > 0 && (
-            <span className="text-[10px] px-1.5 py-0.5 rounded-full font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300">
+            <span className="text-[10px] px-1.5 py-0.5 rounded-full font-bold bg-[#C25934]/15 text-[#C25934] dark:text-orange-300">
               {totalSelectedCount}
             </span>
           )}
@@ -389,7 +389,7 @@ function MultiSelectFilterDropdown({
       </button>
 
       {isOpen && (
-        <div className="mt-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xs p-2 space-y-2">
+        <div className="mt-1.5 bg-[var(--bg-surface)] border border-[var(--border-hairline)] rounded-xl shadow-xs p-2 space-y-2">
           {enableSearch && (
             <div className="relative">
               <input
@@ -397,14 +397,14 @@ function MultiSelectFilterDropdown({
                 value={innerSearch}
                 onChange={(e) => setInnerSearch(e.target.value)}
                 placeholder={`Search ${label.toLowerCase()}...`}
-                className="w-full pl-2.5 pr-6 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                className="w-full pl-2.5 pr-6 py-1.5 text-xs font-medium rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[#C25934]"
                 autoFocus
               />
               {innerSearch && (
                 <button
                   type="button"
                   onClick={() => setInnerSearch("")}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--text-muted)] hover:text-[var(--text-ink)] text-xs"
                 >
                   ✕
                 </button>
@@ -412,11 +412,11 @@ function MultiSelectFilterDropdown({
             </div>
           )}
 
-          <div className="flex items-center justify-between px-1 text-[10px] font-bold text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-1">
+          <div className="flex items-center justify-between px-1 text-[10px] font-bold text-[var(--text-muted)] border-b border-[var(--border-hairline)] pb-1">
             <button
               type="button"
               onClick={onClear}
-              className={`hover:text-indigo-600 ${selectedIds.length === 0 ? "text-indigo-600 font-extrabold" : ""}`}
+              className={`hover:text-[#C25934] ${selectedIds.length === 0 ? "text-[#C25934] dark:text-orange-400 font-extrabold" : ""}`}
             >
               All ({options.length})
             </button>
@@ -425,7 +425,7 @@ function MultiSelectFilterDropdown({
 
           <div className="max-h-56 overflow-y-auto space-y-0.5 pr-0.5">
             {filteredOptions.length === 0 ? (
-              <div className="py-3 text-center text-xs text-slate-400">
+              <div className="py-3 text-center text-xs text-[var(--text-muted)]">
                 No matches found
               </div>
             ) : (
@@ -438,16 +438,16 @@ function MultiSelectFilterDropdown({
                     onClick={() => onToggle(opt.id)}
                     className={`w-full px-2 py-1.5 rounded-lg text-xs font-medium flex items-center justify-between transition text-left ${
                       isSelected
-                        ? "bg-indigo-50 dark:bg-indigo-950/60 text-indigo-900 dark:text-indigo-200"
-                        : "hover:bg-slate-50 dark:hover:bg-slate-800/80 text-slate-700 dark:text-slate-300"
+                        ? "bg-[#C25934]/10 text-[#C25934] dark:text-orange-300"
+                        : "hover:bg-[var(--bg-subtle)] text-[var(--text-secondary)]"
                     }`}
                   >
                     <div className="flex items-center gap-2 min-w-0">
                       <span
                         className={`w-3.5 h-3.5 rounded flex items-center justify-center border text-[9px] shrink-0 ${
                           isSelected
-                            ? "bg-indigo-600 border-indigo-600 text-white font-bold"
-                            : "border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800"
+                            ? "bg-[#C25934] border-[#C25934] text-white font-bold"
+                            : "border-[var(--border-hairline)] bg-[var(--bg-paper)]"
                         }`}
                       >
                         {isSelected ? "✓" : ""}
@@ -460,8 +460,8 @@ function MultiSelectFilterDropdown({
                       <span
                         className={`text-[10px] px-1.5 py-0.2 rounded font-bold shrink-0 ml-1.5 ${
                           isSelected
-                            ? "bg-indigo-200/60 dark:bg-indigo-900/80 text-indigo-900 dark:text-indigo-200"
-                            : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
+                            ? "bg-[#C25934]/20 text-[#C25934] dark:text-orange-300"
+                            : "bg-[var(--bg-subtle)] text-[var(--text-muted)]"
                         }`}
                       >
                         {opt.count}
@@ -1330,35 +1330,35 @@ export function ClinicalNavigatorTab({
 
   const renderFilterControls = () => (
     <div className="space-y-4">
-                {/* Filter Tag Quick-Search with Autocomplete Popover (Requirement 4) */}
+                {/* Filter Tag Quick-Search with Autocomplete Popover */}
                 <div className="relative">
                   <input
                     type="text"
                     value={filterSearchTerm}
                     onChange={(e) => setFilterSearchTerm(e.target.value)}
                     placeholder="Filter tags..."
-                    className="w-full pl-3.5 pr-8 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full pl-3.5 pr-8 py-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#C25934]"
                   />
                   {filterSearchTerm && (
                     <button
                       type="button"
                       onClick={() => setFilterSearchTerm("")}
-                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs"
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] hover:text-[var(--text-ink)] text-xs"
                       title="Clear filter search"
                     >
                       ✕
                     </button>
                   )}
 
-                  {/* Autocomplete dropdown popover to select tags directly (Requirement 4) */}
+                  {/* Autocomplete dropdown popover */}
                   {filterSearchTerm.trim().length > 0 && (
-                    <div className="mt-1.5 max-h-60 overflow-y-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-md p-2 space-y-1">
-                      <div className="flex items-center justify-between px-2 py-1 text-[10px] font-bold text-slate-400 border-b border-slate-100 dark:border-slate-800">
+                    <div className="mt-1.5 max-h-60 overflow-y-auto bg-[var(--bg-surface)] border border-[var(--border-hairline)] rounded-xl shadow-md p-2 space-y-1">
+                      <div className="flex items-center justify-between px-2 py-1 text-[10px] font-bold text-[var(--text-muted)] border-b border-[var(--border-hairline)]">
                         <span>{quickSearchMatchingTags.length} matching tags</span>
-                        <span className="text-[9px] text-indigo-600 dark:text-indigo-400">Click to toggle</span>
+                        <span className="text-[9px] text-[#C25934] dark:text-orange-400">Click to toggle</span>
                       </div>
                       {quickSearchMatchingTags.length === 0 ? (
-                        <div className="p-3 text-center text-xs text-slate-400">
+                        <div className="p-3 text-center text-xs text-[var(--text-muted)]">
                           No tags match &ldquo;{filterSearchTerm}&rdquo;
                         </div>
                       ) : (
@@ -1369,16 +1369,16 @@ export function ClinicalNavigatorTab({
                             onClick={tag.onToggle}
                             className={`w-full text-left px-2 py-1.5 rounded-lg text-xs flex items-center justify-between transition cursor-pointer ${
                               tag.isSelected
-                                ? "bg-indigo-50 dark:bg-indigo-950/60 text-indigo-900 dark:text-indigo-200"
-                                : "hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
+                                ? "bg-[#C25934]/10 text-[#C25934] dark:text-orange-300"
+                                : "hover:bg-[var(--bg-subtle)] text-[var(--text-secondary)]"
                             }`}
                           >
                             <div className="flex items-center gap-2 min-w-0">
                               <span
                                 className={`w-3.5 h-3.5 rounded flex items-center justify-center border text-[9px] shrink-0 ${
                                   tag.isSelected
-                                    ? "bg-indigo-600 border-indigo-600 text-white font-bold"
-                                    : "border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800"
+                                    ? "bg-[#C25934] border-[#C25934] text-white font-bold"
+                                    : "border-[var(--border-hairline)] bg-[var(--bg-paper)]"
                                 }`}
                               >
                                 {tag.isSelected ? "✓" : ""}
@@ -1392,7 +1392,7 @@ export function ClinicalNavigatorTab({
                                 {tag.category}
                               </span>
                               {tag.count !== undefined && tag.count > 0 && (
-                                <span className="text-[10px] px-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">
+                                <span className="text-[10px] px-1 rounded bg-[var(--bg-subtle)] text-[var(--text-muted)]">
                                   {tag.count}
                                 </span>
                               )}
@@ -1404,7 +1404,7 @@ export function ClinicalNavigatorTab({
                   )}
                 </div>
 
-                {/* SUBSPECIALTY DROPDOWN (Requirement 1 & 5: Alphabetical, Multi-select checkboxes, No Axis 1A) */}
+                {/* SUBSPECIALTY DROPDOWN */}
                 <MultiSelectFilterDropdown
                   label="Subspecialty"
                   options={sortedSubspecialties.map((sub) => ({
@@ -1418,7 +1418,7 @@ export function ClinicalNavigatorTab({
                   allLabel="All Subspecialties"
                 />
 
-                {/* CLINICAL CONDITION DROPDOWN (Requirement 1, 2, 3, 5: Alphabetical with Other last, Multi-select checkboxes, auto-select subspecialty, auto-filter, No Axis 1B) */}
+                {/* CLINICAL CONDITION DROPDOWN */}
                 <MultiSelectFilterDropdown
                   label="Clinical Condition"
                   options={availableConditions.map((cond) => ({
@@ -1438,7 +1438,7 @@ export function ClinicalNavigatorTab({
                   enableSearch={true}
                 />
 
-                {/* CLINICAL CONDITION SUB-TAGS (Secondary layer when selected condition has sub-tags) */}
+                {/* CLINICAL CONDITION SUB-TAGS */}
                 {availableConditionSubTags.length > 0 && (
                   <div className="p-3 rounded-xl bg-sky-50/50 dark:bg-sky-950/20 border border-sky-200/80 dark:border-sky-900/50 space-y-2">
                     <div className="flex items-center justify-between">
@@ -1462,7 +1462,7 @@ export function ClinicalNavigatorTab({
                       return (
                         <div key={group.conditionId} className="space-y-1.5">
                           {availableConditionSubTags.length > 1 && (
-                            <span className="block text-[10px] font-bold text-slate-500 dark:text-slate-400">
+                            <span className="block text-[10px] font-bold text-[var(--text-muted)]">
                               {group.conditionLabel}
                             </span>
                           )}
@@ -1477,14 +1477,14 @@ export function ClinicalNavigatorTab({
                                   onClick={() => handleToggleConditionSubTag(st.id)}
                                   className={`inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-semibold border transition-colors ${
                                     isActive
-                                      ? "bg-sky-600 text-white border-sky-600 shadow-sm"
-                                      : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-sky-400 dark:hover:border-sky-600"
+                                      ? "bg-[#C25934] text-white border-[#C25934] shadow-sm"
+                                      : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border-[var(--border-hairline)] hover:border-[#C25934]/60"
                                   }`}
                                 >
                                   <span>{st.label}</span>
                                   <span
                                     className={`text-[10px] font-mono ${
-                                      isActive ? "text-sky-100" : "text-slate-400 dark:text-slate-500"
+                                      isActive ? "text-orange-100" : "text-[var(--text-muted)]"
                                     }`}
                                   >
                                     ({count})
@@ -1499,7 +1499,7 @@ export function ClinicalNavigatorTab({
                   </div>
                 )}
 
-                {/* CLINICAL DOMAIN DROPDOWN (Requirement 1 & 5: Alphabetical, Multi-select checkboxes, No Axis 2) */}
+                {/* CLINICAL DOMAIN DROPDOWN */}
                 <MultiSelectFilterDropdown
                   label="Clinical Domain"
                   options={sortedDomains.map((dom) => ({
@@ -1514,8 +1514,8 @@ export function ClinicalNavigatorTab({
                 />
 
                 {/* DYNAMIC SUB-FILTERS FOR CLINICAL DOMAINS */}
-                <div className="pt-2 border-t border-slate-200 dark:border-slate-800 space-y-3">
-                  {/* BRANCH 1: 1. DIAGNOSIS (System-Wide Canonical 5 Modalities) */}
+                <div className="pt-2 border-t border-[var(--border-hairline)] space-y-3">
+                  {/* BRANCH 1: 1. DIAGNOSIS */}
                   {(selectedDomains.includes("diagnosis") ||
                     (selectedDomains.length === 0 &&
                       (normalizedFilterSearch.length > 0 || selectedDiagnosisTags.length > 0))) && (
@@ -1528,7 +1528,7 @@ export function ClinicalNavigatorTab({
                         if (visibleItems.length === 0) return null;
                         return (
                           <div key={cat.id} className="space-y-1">
-                            <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                            <span className="block text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
                               {cat.label}
                             </span>
                             <div className="flex flex-wrap gap-1.5">
@@ -1544,8 +1544,8 @@ export function ClinicalNavigatorTab({
                                       active
                                         ? "bg-cyan-700 text-white border-cyan-700 shadow-sm"
                                         : count > 0
-                                        ? "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-cyan-400"
-                                        : "bg-white/60 dark:bg-slate-900 text-slate-400 dark:text-slate-500 border-slate-100 dark:border-slate-800"
+                                        ? "bg-[var(--bg-surface)] text-[var(--text-ink)] border-[var(--border-hairline)] hover:border-cyan-400"
+                                        : "bg-[var(--bg-paper)] text-[var(--text-muted)] border-[var(--border-hairline)] opacity-70"
                                     }`}
                                   >
                                     <span>{item.label}</span>
@@ -1554,7 +1554,7 @@ export function ClinicalNavigatorTab({
                                         className={`text-[10px] px-1 rounded ${
                                           active
                                             ? "bg-cyan-600 text-white"
-                                            : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
+                                            : "bg-[var(--bg-subtle)] text-[var(--text-secondary)]"
                                         }`}
                                       >
                                         {count}
@@ -1570,7 +1570,7 @@ export function ClinicalNavigatorTab({
                     </div>
                   )}
 
-                  {/* BRANCH 2: 2. TREATMENT (Condition-Specific Time Window + Drug / Surgical / Other) */}
+                  {/* BRANCH 2: 2. TREATMENT */}
                   {(selectedDomains.includes("treatment") ||
                     (selectedDomains.length === 0 &&
                       (selectedConditionIds.length > 0 ||
@@ -1582,7 +1582,6 @@ export function ClinicalNavigatorTab({
                         💊 2. Treatment &amp; Acute Management
                       </span>
 
-                      {/* Condition-Specific Time Window Filter */}
                       {treatmentSchema.timeWindows.length > 0 && (
                         <div className="space-y-1.5">
                           <span className="block text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
@@ -1594,8 +1593,8 @@ export function ClinicalNavigatorTab({
                               onClick={() => setSelectedTimeWindowId("all")}
                               className={`px-2 py-1 rounded-lg text-[11px] font-bold border transition ${
                                 selectedTimeWindowId === "all"
-                                  ? "bg-amber-600 text-white border-amber-600"
-                                  : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                                  ? "bg-[#C25934] text-white border-[#C25934]"
+                                  : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border-[var(--border-hairline)]"
                               }`}
                             >
                               All Phases
@@ -1612,8 +1611,8 @@ export function ClinicalNavigatorTab({
                                   }
                                   className={`px-2 py-1 rounded-lg text-[11px] font-semibold border transition flex items-center gap-1 ${
                                     active
-                                      ? "bg-amber-600 text-white border-amber-600 shadow-sm"
-                                      : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-amber-400"
+                                      ? "bg-[#C25934] text-white border-[#C25934] shadow-sm"
+                                      : "bg-[var(--bg-surface)] text-[var(--text-ink)] border-[var(--border-hairline)] hover:border-[#C25934]"
                                   }`}
                                 >
                                   <span>{tw.label}</span>
@@ -1637,12 +1636,12 @@ export function ClinicalNavigatorTab({
                       {renderInterventionGroup(
                         "Intervention Category (Surgical / Endovascular)",
                         treatmentSchema.interventions,
-                        "bg-indigo-600 text-white border-indigo-600"
+                        "bg-[#C25934] text-white border-[#C25934]"
                       )}
                       {renderInterventionGroup(
                         "Other (ICU, Care & Monitoring)",
                         treatmentSchema.otherCare,
-                        "bg-slate-800 text-white border-slate-800 dark:bg-slate-200 dark:text-slate-900"
+                        "bg-stone-800 text-white border-stone-800 dark:bg-stone-200 dark:text-stone-900"
                       )}
                     </div>
                   )}
@@ -1665,7 +1664,7 @@ export function ClinicalNavigatorTab({
                       {renderInterventionGroup(
                         "Procedural & Device Interventions",
                         preventionSchema.proceduralDevice,
-                        "bg-indigo-600 text-white border-indigo-600"
+                        "bg-[#C25934] text-white border-[#C25934]"
                       )}
                       {renderInterventionGroup(
                         "Lifestyle, Rehab & Monitoring",
@@ -1676,9 +1675,7 @@ export function ClinicalNavigatorTab({
                   )}
                 </div>
 
-                {/* =========================================================
-                    MORE FILTERS (Collapsible: Outcome Target, Direction, Society, New/Upgraded, Verification)
-                   ========================================================= */}
+                {/* MORE FILTERS */}
                 {(() => {
                   const activeMoreCount =
                     selectedOutcomeTargets.length +
@@ -1687,28 +1684,27 @@ export function ClinicalNavigatorTab({
                     (onlyPracticeChanges ? 1 : 0) +
                     (verificationFilter !== "all" ? 1 : 0);
                   return (
-                    <div className="pt-2.5 border-t border-slate-200 dark:border-slate-800 space-y-3">
+                    <div className="pt-2.5 border-t border-[var(--border-hairline)] space-y-3">
                       <button
                         type="button"
                         onClick={() => setShowMoreFilters((prev) => !prev)}
-                        className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/70 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 transition"
+                        className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-[var(--bg-paper)] hover:bg-[var(--bg-subtle)] border border-[var(--border-hairline)] text-xs font-bold text-[var(--text-secondary)] transition"
                       >
                         <span className="flex items-center gap-2">
                           <span>More Filters</span>
                           {activeMoreCount > 0 && (
-                            <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
+                            <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-[#C25934] text-white">
                               {activeMoreCount}
                             </span>
                           )}
                         </span>
-                        <span className="text-[10px] text-slate-400">
+                        <span className="text-[10px] text-[var(--text-muted)]">
                           {showMoreFilters ? "▲" : "▼"}
                         </span>
                       </button>
 
                       {showMoreFilters && (
                         <div className="space-y-3 pt-1">
-                  {/* Outcome Target Filter */}
                   {STROKE_ONTOLOGY.facets.outcome_target && (
                     <MultiSelectFilterDropdown
                       label="Outcome Target"
@@ -1727,9 +1723,8 @@ export function ClinicalNavigatorTab({
                     />
                   )}
 
-                  {/* Recommendation Direction / Harm Filter (Rule 5) */}
                   <div>
-                    <span className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1.5">
+                    <span className="block text-[11px] font-bold text-[var(--text-muted)] mb-1.5">
                       Recommendation Direction / Harm Filter
                     </span>
                     <div className="grid grid-cols-2 gap-1.5">
@@ -1756,7 +1751,7 @@ export function ClinicalNavigatorTab({
                                 ? d.id === "harm"
                                   ? "bg-rose-600 text-white border-rose-600 shadow-sm"
                                   : "bg-emerald-600 text-white border-emerald-600 shadow-sm"
-                                : "bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                                : "bg-[var(--bg-paper)] text-[var(--text-secondary)] border-[var(--border-hairline)]"
                             }`}
                           >
                             <span className="truncate">{d.label}</span>
@@ -1771,9 +1766,8 @@ export function ClinicalNavigatorTab({
                     </div>
                   </div>
 
-                  {/* Society Filter */}
                   <div>
-                    <span className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1.5">
+                    <span className="block text-[11px] font-bold text-[var(--text-muted)] mb-1.5">
                       Society
                     </span>
                     <div className="flex flex-wrap gap-1.5">
@@ -1782,8 +1776,8 @@ export function ClinicalNavigatorTab({
                         onClick={() => setSelectedSocieties([])}
                         className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
                           selectedSocieties.length === 0
-                            ? "bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900"
-                            : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                            ? "bg-[#C25934] text-white border-[#C25934]"
+                            : "bg-[var(--bg-paper)] text-[var(--text-secondary)] border-[var(--border-hairline)]"
                         }`}
                       >
                         ALL ({navResult.availableSocieties.length})
@@ -1797,8 +1791,8 @@ export function ClinicalNavigatorTab({
                             onClick={() => handleToggleSociety(soc)}
                             className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
                               active
-                                ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
-                                : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
+                                ? "bg-[#C25934] text-white border-[#C25934] shadow-sm"
+                                : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border-[var(--border-hairline)] hover:border-[#C25934]"
                             }`}
                           >
                             {soc}
@@ -1808,23 +1802,21 @@ export function ClinicalNavigatorTab({
                     </div>
                   </div>
 
-                  {/* Practice Changes Filter Checkbox */}
-                  <label className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between cursor-pointer">
-                    <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
+                  <label className="pt-2 border-t border-[var(--border-hairline)] flex items-center justify-between cursor-pointer">
+                    <span className="text-[11px] font-semibold text-[var(--text-secondary)]">
                       Only New / Upgraded Recs
                     </span>
                     <input
                       type="checkbox"
                       checked={onlyPracticeChanges}
                       onChange={(e) => setOnlyPracticeChanges(e.target.checked)}
-                      className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5 cursor-pointer"
+                      className="rounded border-[var(--border-hairline)] text-[#C25934] focus:ring-[#C25934] h-3.5 w-3.5 cursor-pointer"
                     />
                   </label>
 
-                  {/* Labeling & Verification Status Filter (Requirement 7: English translation) */}
-                  <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 space-y-1.5">
+                  <div className="pt-2 border-t border-[var(--border-hairline)] space-y-1.5">
                     <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
+                      <span className="text-[11px] font-semibold text-[var(--text-secondary)]">
                         Verification &amp; Labeling Status:
                       </span>
                       {navResult.unlabeledCount > 0 && (
@@ -1839,8 +1831,8 @@ export function ClinicalNavigatorTab({
                         onClick={() => setVerificationFilter("all")}
                         className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center cursor-pointer ${
                           verificationFilter === "all"
-                            ? "bg-slate-800 text-white border-slate-800 dark:bg-slate-200 dark:text-slate-900"
-                            : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-slate-400"
+                            ? "bg-[var(--text-ink)] text-[var(--bg-surface)] border-[var(--text-ink)]"
+                            : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border-[var(--border-hairline)] hover:border-stone-400"
                         }`}
                       >
                         All
@@ -1851,7 +1843,7 @@ export function ClinicalNavigatorTab({
                         className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center cursor-pointer ${
                           verificationFilter === "approved"
                             ? "bg-emerald-600 text-white border-emerald-600 shadow-sm"
-                            : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-emerald-400"
+                            : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border-[var(--border-hairline)] hover:border-emerald-400"
                         }`}
                       >
                         ✓ Approved
@@ -1862,7 +1854,7 @@ export function ClinicalNavigatorTab({
                         className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center cursor-pointer ${
                           verificationFilter === "unlabeled_or_review"
                             ? "bg-amber-600 text-white border-amber-600 shadow-sm"
-                            : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-amber-400"
+                            : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border-[var(--border-hairline)] hover:border-amber-400"
                         }`}
                         title="Filter recommendations requiring full labeling or expert review"
                       >
@@ -1904,7 +1896,7 @@ export function ClinicalNavigatorTab({
         {/* LEFT PANE: 1. V3.0 Dual-Primary Axis Filter -> 2. High-Yield Clinical Topics */}
         <aside className="hidden lg:block lg:col-span-4 space-y-4 lg:sticky lg:top-20">
           {/* 1. V3.0 DUAL-PRIMARY AXIS FILTER CARD */}
-          <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
+          <div className="p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-hairline)] shadow-2xs space-y-3.5">
             <div className="flex items-center justify-between">
               <button
                 type="button"
@@ -1912,11 +1904,11 @@ export function ClinicalNavigatorTab({
                 className="flex-1 flex items-center justify-between text-left"
               >
                 <div className="flex items-center gap-2">
-                  <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+                  <h3 className="text-xs font-extrabold uppercase tracking-wider text-[var(--text-ink)]">
                     🧭 Clinical Filter
                   </h3>
                   {isQueryActive && (
-                    <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
+                    <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-[#C25934] text-white">
                       {activeFilterSummaryChips.length +
                         selectedSocieties.length +
                         (searchText.trim().length >= 2 ? 1 : 0) +
@@ -1924,7 +1916,7 @@ export function ClinicalNavigatorTab({
                     </span>
                   )}
                 </div>
-                <span className="text-xs text-slate-400 ml-2">
+                <span className="text-xs text-[var(--text-muted)] ml-2">
                   {isFilterExpanded ? "▾" : "▸"}
                 </span>
               </button>
@@ -1941,12 +1933,12 @@ export function ClinicalNavigatorTab({
 
             {/* Active Query Chips Summary */}
             {isQueryActive && (
-              <div className="p-2.5 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/60 space-y-1.5">
+              <div className="p-2.5 rounded-xl bg-[#C25934]/5 border border-[#C25934]/25 space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#C25934] dark:text-orange-400">
                     Active Filter Matrix
                   </span>
-                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400">
+                  <span className="text-[10px] font-bold text-[var(--text-muted)]">
                     {navResult.coreRecommendations.length} Core Recs
                   </span>
                 </div>
@@ -1981,7 +1973,7 @@ export function ClinicalNavigatorTab({
                   {selectedSocieties.map((soc) => (
                     <span
                       key={soc}
-                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-200"
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[var(--bg-subtle)] text-[var(--text-ink)] border border-[var(--border-hairline)]"
                     >
                       {soc}
                       <button
@@ -2010,34 +2002,34 @@ export function ClinicalNavigatorTab({
             )}
 
             {isFilterExpanded && (
-              <div className="space-y-4 pt-2 border-t border-slate-100 dark:border-slate-800/80 max-h-[75vh] overflow-y-auto pr-1">
+              <div className="space-y-4 pt-2 border-t border-[var(--border-hairline)] max-h-[75vh] overflow-y-auto pr-1">
                 {renderFilterControls()}
               </div>
             )}
           </div>
 
           {/* 2. HIGH-YIELD CLINICAL TOPICS (1-Click Presets) */}
-          <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2.5">
+          <div className="p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-hairline)] shadow-2xs space-y-2.5">
             <button
               type="button"
               onClick={() => setIsTopicsExpanded((prev) => !prev)}
               className="w-full flex items-center justify-between text-left"
             >
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--text-ink)]">
                 ⚡ High-Yield Clinical Topics
               </h3>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-semibold text-slate-400">
+                <span className="text-[10px] font-semibold text-[var(--text-muted)]">
                   1-Click Presets
                 </span>
-                <span className="text-xs text-slate-400">
+                <span className="text-xs text-[var(--text-muted)]">
                   {isTopicsExpanded ? "▾" : "▸"}
                 </span>
               </div>
             </button>
 
             {isTopicsExpanded && (
-              <div className="space-y-1.5 pt-2 border-t border-slate-100 dark:border-slate-800/80">
+              <div className="space-y-1.5 pt-2 border-t border-[var(--border-hairline)]">
                 {NAVIGATOR_QUICK_PRESETS.map((preset) => {
                   const isSelected = activePresetId === preset.id;
                   return (
@@ -2047,19 +2039,19 @@ export function ClinicalNavigatorTab({
                       onClick={() => handleApplyPreset(preset.id)}
                       className={`w-full text-left p-2.5 rounded-xl border transition flex flex-col gap-1 ${
                         isSelected
-                          ? "bg-indigo-50/90 dark:bg-indigo-950/50 border-indigo-400 dark:border-indigo-500 shadow-sm"
-                          : "bg-slate-50/60 dark:bg-slate-800/40 border-slate-200/80 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700"
+                          ? "bg-[#C25934]/10 border-[#C25934] shadow-2xs"
+                          : "bg-[var(--bg-paper)] border-[var(--border-hairline)] hover:border-[#C25934]/60"
                       }`}
                     >
                       <div className="flex items-center justify-between gap-2">
-                        <span className="text-xs font-bold text-slate-900 dark:text-white leading-snug">
+                        <span className="text-xs font-bold text-[var(--text-ink)] leading-snug">
                           {preset.title}
                         </span>
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-900/60 dark:text-indigo-300 shrink-0">
+                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#C25934]/15 text-[#C25934] dark:text-orange-300 shrink-0">
                           {preset.badge}
                         </span>
                       </div>
-                      <span className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">
+                      <span className="text-[11px] text-[var(--text-muted)] line-clamp-1">
                         {preset.subtitle}
                       </span>
                     </button>
@@ -2072,7 +2064,7 @@ export function ClinicalNavigatorTab({
 
         {/* RIGHT PANE: Persistent Content Search Bar + Evidence Synthesis Dashboard */}
         <section className="col-span-1 lg:col-span-8 space-y-5">
-          {/* Mobile-Only Quick Control Bar (Compact Search & Filter Drawer Trigger) */}
+          {/* Mobile-Only Quick Control Bar */}
           <div className="block lg:hidden space-y-2.5">
             <div className="flex items-center gap-2">
               <div className="relative flex-1">
@@ -2084,16 +2076,16 @@ export function ClinicalNavigatorTab({
                     setVisibleCountBySociety({});
                   }}
                   placeholder="Search guidelines, trials..."
-                  className="w-full pl-8 pr-7 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-2xs"
+                  className="w-full pl-8 pr-7 py-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#C25934] shadow-2xs"
                 />
-                <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs">
+                <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] text-xs">
                   🔍
                 </span>
                 {searchText && (
                   <button
                     type="button"
                     onClick={() => setSearchText("")}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs font-bold"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--text-muted)] hover:text-[var(--text-ink)] text-xs font-bold"
                   >
                     ✕
                   </button>
@@ -2104,15 +2096,15 @@ export function ClinicalNavigatorTab({
               <button
                 type="button"
                 onClick={() => setIsMobileFilterOpen(true)}
-                className={`px-3 py-2.5 rounded-xl text-xs font-bold border transition flex items-center gap-1.5 shrink-0 shadow-2xs cursor-pointer ${
+                className={`px-3 py-2 rounded-xl text-xs font-bold border transition flex items-center gap-1.5 shrink-0 shadow-2xs cursor-pointer ${
                   isQueryActive
-                    ? "bg-indigo-600 text-white border-indigo-600 shadow-indigo-500/20"
-                    : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-indigo-400"
+                    ? "bg-[#C25934] text-white border-[#C25934]"
+                    : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border-[var(--border-hairline)] hover:border-[#C25934]"
                 }`}
               >
                 <span>🧭 Filters</span>
                 {isQueryActive && (
-                  <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-white text-indigo-700">
+                  <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-white text-[#C25934]">
                     {activeFilterSummaryChips.length +
                       selectedSocieties.length +
                       (searchText.trim().length >= 2 ? 1 : 0) +
@@ -2125,7 +2117,7 @@ export function ClinicalNavigatorTab({
             {/* Horizontal Scroll Active Filter Chips (Mobile) */}
             {isQueryActive && (
               <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-0.5 text-xs">
-                <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 shrink-0">
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--text-muted)] shrink-0">
                   Active ({navResult.coreRecommendations.length}):
                 </span>
                 {activeFilterSummaryChips.map((chip) => (
@@ -2146,7 +2138,7 @@ export function ClinicalNavigatorTab({
                 {selectedSocieties.map((soc) => (
                   <span
                     key={soc}
-                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[11px] font-bold bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-200 whitespace-nowrap shrink-0"
+                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[11px] font-bold bg-[var(--bg-subtle)] text-[var(--text-ink)] border border-[var(--border-hairline)] whitespace-nowrap shrink-0"
                   >
                     <span>{soc}</span>
                     <button
@@ -2170,16 +2162,16 @@ export function ClinicalNavigatorTab({
           </div>
 
           {/* PERSISTENT RIGHT-PANE CONTENT SEARCH BAR (Desktop Only) */}
-          <div className="hidden lg:block p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+          <div className="hidden lg:block p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-hairline)] shadow-2xs space-y-2">
             <div className="flex items-center justify-between gap-2">
               <label
                 htmlFor="navigator-right-content-search"
-                className="text-xs font-extrabold uppercase tracking-wider text-slate-700 dark:text-slate-200 flex items-center gap-1.5"
+                className="text-xs font-extrabold uppercase tracking-wider text-[var(--text-ink)] flex items-center gap-1.5"
               >
                 <span>🔍 Search Guidelines, Trials &amp; Dosing</span>
               </label>
               {isQueryActive && (
-                <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400">
+                <span className="text-[11px] font-bold text-[#C25934] dark:text-orange-400">
                   {navResult.coreRecommendations.length} recommendations •{" "}
                   {navResult.pivotalTrials.length + navResult.lateBreakingTrials.length} trials
                 </span>
@@ -2195,13 +2187,13 @@ export function ClinicalNavigatorTab({
                   setVisibleCountBySociety({});
                 }}
                 placeholder="Search recommendations, dosing, targets, or trials..."
-                className="w-full pl-4 pr-20 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/90 text-slate-900 dark:text-white text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full pl-4 pr-20 py-2.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#C25934]"
               />
               {searchText && (
                 <button
                   type="button"
                   onClick={() => setSearchText("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-0.5 rounded-md text-xs font-bold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-rose-100 hover:text-rose-700 transition"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-0.5 rounded-md text-xs font-bold bg-[var(--bg-subtle)] text-[var(--text-secondary)] hover:bg-rose-100 hover:text-rose-700 transition"
                 >
                   Clear ✕
                 </button>
@@ -2211,17 +2203,17 @@ export function ClinicalNavigatorTab({
 
           {!isQueryActive ? (
             /* ZERO-QUERY EMPTY STATE WITH AUTO-DISPLAYED HIGH-YIELD TOPICS */
-            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 shadow-sm space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div className="p-6 sm:p-8 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] shadow-2xs space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-[var(--border-hairline)]">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-[#C25934]/10 text-[#C25934] dark:text-orange-400 flex items-center justify-center text-xl shrink-0">
                     🧭
                   </div>
                   <div>
-                    <h3 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white">
+                    <h3 className="text-base sm:text-lg font-extrabold text-[var(--text-ink)]">
                       High-Yield Clinical Topics
                     </h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                    <p className="text-xs text-[var(--text-muted)]">
                       Explore featured practice-changing trials, guidelines, and international concordance
                     </p>
                   </div>
@@ -2233,14 +2225,14 @@ export function ClinicalNavigatorTab({
                       setEditingTrial(null);
                       setIsTrialModalOpen(true);
                     }}
-                    className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-xs transition flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
+                    className="px-3.5 py-2 rounded-xl bg-[#C25934] hover:bg-[#A64827] text-white text-xs font-bold shadow-xs transition flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
                   >
                     <span>＋</span> Add Pivotal Trial
                   </button>
                 )}
               </div>
 
-              {/* High-Yield Clinical Topics Cards (Requirement 8) */}
+              {/* High-Yield Clinical Topics Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                 {NAVIGATOR_QUICK_PRESETS.map((preset) => {
                   const isSelected = activePresetId === preset.id;
@@ -2251,29 +2243,29 @@ export function ClinicalNavigatorTab({
                       onClick={() => handleApplyPreset(preset.id)}
                       className={`text-left p-4 rounded-xl border transition-all flex flex-col justify-between gap-2.5 group hover:shadow-md cursor-pointer ${
                         isSelected
-                          ? "bg-indigo-50/90 dark:bg-indigo-950/50 border-indigo-400 dark:border-indigo-500 ring-2 ring-indigo-500/20"
-                          : "bg-white dark:bg-slate-800/60 border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-600"
+                          ? "bg-[#C25934]/10 border-[#C25934] ring-2 ring-[#C25934]/20"
+                          : "bg-[var(--bg-paper)] border-[var(--border-hairline)] hover:border-[#C25934]/60"
                       }`}
                     >
                       <div className="space-y-1.5">
                         <div className="flex items-center justify-between gap-2">
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-900/60 dark:text-indigo-300">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#C25934]/15 text-[#C25934] dark:text-orange-300">
                             ⚡ {preset.badge}
                           </span>
-                          <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+                          <span className="text-[11px] font-bold text-[#C25934] dark:text-orange-400 group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
                             Explore <span>→</span>
                           </span>
                         </div>
-                        <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                        <h4 className="text-xs sm:text-sm font-bold text-[var(--text-ink)] group-hover:text-[#C25934] dark:group-hover:text-orange-400 transition-colors">
                           {preset.title}
                         </h4>
-                        <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                        <p className="text-[11px] text-[var(--text-muted)] line-clamp-2 leading-relaxed">
                           {preset.subtitle}
                         </p>
                       </div>
-                      <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[10px] text-slate-400">
-                        <span>Subspecialty: <strong className="text-slate-600 dark:text-slate-300">{preset.query.subspecialty || "All"}</strong></span>
-                        <span className="text-slate-400">1-Click Preset</span>
+                      <div className="pt-2 border-t border-[var(--border-hairline)] flex items-center justify-between text-[10px] text-[var(--text-muted)]">
+                        <span>Subspecialty: <strong className="text-[var(--text-secondary)]">{preset.query.subspecialty || "All"}</strong></span>
+                        <span>1-Click Preset</span>
                       </div>
                     </button>
                   );
@@ -2283,13 +2275,13 @@ export function ClinicalNavigatorTab({
           ) : (
             <>
               {/* Section View Switcher Bar + Ecosystem Links + Admin Actions */}
-              <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden space-y-0">
+              <div className="bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-hairline)] shadow-2xs overflow-hidden space-y-0">
                 {/* Cross-Ecosystem & Admin Utility Bar */}
                 {(navResult.ecosystemLinks.length > 0 || isAdminVerified) && (
-                  <div className="px-4 py-2.5 bg-slate-50/70 dark:bg-slate-800/40 border-b border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2.5">
+                  <div className="px-4 py-2.5 bg-[var(--bg-subtle)]/50 border-b border-[var(--border-hairline)] flex flex-wrap items-center justify-between gap-2.5">
                     {/* Cross-Ecosystem Quick Tools */}
                     <div className="flex flex-wrap items-center gap-1.5 text-xs">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 flex items-center gap-1 mr-1 shrink-0">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-[var(--text-muted)] flex items-center gap-1 mr-1 shrink-0">
                         <span>🔗</span> Cross-Ecosystem:
                       </span>
                       {navResult.ecosystemLinks.slice(0, 3).map((link, idx) => (
@@ -2297,9 +2289,9 @@ export function ClinicalNavigatorTab({
                           key={`${link.app}-${idx}`}
                           href={link.href}
                           title={link.description || link.label}
-                          className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-teal-500 hover:text-teal-600 dark:hover:text-teal-400 transition-all flex items-center gap-1 shadow-2xs whitespace-nowrap shrink-0"
+                          className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-xs font-semibold bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-hairline)] hover:border-[#C25934] hover:text-[#C25934] dark:hover:text-orange-400 transition-all flex items-center gap-1 shadow-2xs whitespace-nowrap shrink-0"
                         >
-                          <span className="font-bold text-teal-600 dark:text-teal-400">{link.app}:</span>
+                          <span className="font-bold text-[#C25934] dark:text-orange-400">{link.app}:</span>
                           <span>{link.label}</span>
                         </Link>
                       ))}
@@ -2314,7 +2306,7 @@ export function ClinicalNavigatorTab({
                             setEditingTrial(null);
                             setIsTrialModalOpen(true);
                           }}
-                          className="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-xs cursor-pointer"
+                          className="px-3 py-1.5 rounded-xl bg-[#C25934] hover:bg-[#A64827] text-white text-xs font-bold transition flex items-center gap-1.5 shadow-2xs cursor-pointer"
                         >
                           <span>＋</span> Add Trial
                         </button>
@@ -2324,7 +2316,7 @@ export function ClinicalNavigatorTab({
                 )}
 
                 {/* Modern Clean Tab Navigation */}
-                <div className="px-4 sm:px-6 border-b border-slate-200 dark:border-slate-800 flex items-center gap-2 sm:gap-4 md:gap-6 overflow-x-auto scrollbar-none">
+                <div className="px-4 sm:px-6 border-b border-[var(--border-hairline)] flex items-center gap-2 sm:gap-4 md:gap-6 overflow-x-auto scrollbar-none">
                   {(
                     [
                       {
@@ -2373,10 +2365,10 @@ export function ClinicalNavigatorTab({
                         type="button"
                         title={tab.fullTitle}
                         onClick={() => setSectionView(tab.id as RightSectionFilter)}
-                        className={`pb-3 pt-3 px-1 text-xs sm:text-sm font-bold border-b-2 whitespace-nowrap transition-all flex items-center gap-1.5 sm:gap-2 -mb-px shrink-0 ${
+                        className={`pb-3 pt-3 px-1 text-xs font-bold border-b-2 whitespace-nowrap transition-all flex items-center gap-1.5 sm:gap-2 -mb-px shrink-0 ${
                           active
-                            ? "border-amber-500 text-amber-600 dark:text-amber-400"
-                            : "border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-700"
+                            ? "border-[#C25934] text-[#C25934] dark:text-orange-400"
+                            : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-ink)] hover:border-stone-300 dark:hover:border-stone-700"
                         }`}
                       >
                         <span className="text-base leading-none">{tab.icon}</span>
@@ -2385,8 +2377,8 @@ export function ClinicalNavigatorTab({
                           <span
                             className={`text-[10px] sm:text-xs px-2 py-0.5 rounded-full font-bold transition-all ${
                               active
-                                ? "bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300"
-                                : "bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
+                                ? "bg-[#C25934]/15 text-[#C25934] dark:bg-orange-500/20 dark:text-orange-300"
+                                : "bg-[var(--bg-subtle)] text-[var(--text-secondary)]"
                             }`}
                           >
                             {tab.count}
@@ -2402,20 +2394,20 @@ export function ClinicalNavigatorTab({
                   SECTION 1: GUIDELINE RECOMMENDATIONS (With Per-Society Pagination)
                  ===================================================================== */}
               {sectionView === "MATRIX" && (
-                <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-                  <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300">
+                <div className="p-5 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-hairline)] shadow-2xs space-y-4">
+                  <div className="flex items-center justify-between border-b border-[var(--border-hairline)] pb-3">
+                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-[#C25934]/15 text-[#C25934] dark:text-orange-300">
                       {navResult.coreRecommendations.length} Core •{" "}
                       {navResult.supportingRecommendations.length} Supporting
                     </span>
                   </div>
 
                   {navResult.crossSocietyMatrix.length === 0 ? (
-                    <div className="p-8 text-center rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-dashed border-slate-300 dark:border-slate-700">
-                      <p className="text-sm font-bold text-slate-700 dark:text-slate-300">
+                    <div className="p-8 text-center rounded-xl bg-[var(--bg-paper)] border border-dashed border-[var(--border-hairline)]">
+                      <p className="text-sm font-bold text-[var(--text-ink)]">
                         No core guideline recommendations matched this filter combination.
                       </p>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                      <p className="text-xs text-[var(--text-muted)] mt-1">
                         Try removing one filter tag in the left panel.
                       </p>
                     </div>
@@ -2443,7 +2435,7 @@ export function ClinicalNavigatorTab({
                         return (
                           <div
                             key={socGroup.society}
-                            className={`rounded-2xl border-2 border-l-[6px] overflow-hidden shadow-xs transition-all ${theme.cardBorder} ${theme.accentLeft} bg-white dark:bg-slate-900`}
+                            className={`rounded-2xl border border-l-[6px] overflow-hidden shadow-2xs transition-all ${theme.cardBorder} ${theme.accentLeft} bg-[var(--bg-surface)]`}
                           >
                             {/* Society Group Header */}
                             <div
@@ -2451,7 +2443,7 @@ export function ClinicalNavigatorTab({
                             >
                               <div className="flex flex-wrap items-center gap-2">
                                 <span
-                                  className={`px-3 py-1 rounded-lg text-xs font-black border shadow-xs ${theme.badge}`}
+                                  className={`px-3 py-1 rounded-lg text-xs font-black border shadow-2xs ${theme.badge}`}
                                 >
                                   🏛️ {socGroup.society}
                                 </span>
@@ -2472,14 +2464,14 @@ export function ClinicalNavigatorTab({
                                 >
                                   Highest: Tier {tierMeta.tier}
                                 </span>
-                                <span className="text-xs font-semibold text-slate-500">
+                                <span className="text-xs font-semibold text-[var(--text-muted)]">
                                   {socGroup.coreRecommendations.length} Core Recs
                                 </span>
                               </div>
                             </div>
 
                             {/* Paginated Core Recommendations List */}
-                            <div className="divide-y divide-slate-100 dark:divide-slate-800/80">
+                            <div className="divide-y divide-[var(--border-hairline)]">
                               {visibleCoreRecs.map((rec) => (
                                 <RecommendationMatrixCard
                                   key={rec.recId}
@@ -2489,9 +2481,9 @@ export function ClinicalNavigatorTab({
                               ))}
                             </div>
 
-                            {/* Load More Core Recommendations Button (Prevents DOM lag on large result sets) */}
+                            {/* Load More Core Recommendations Button */}
                             {remainingCount > 0 && (
-                              <div className="px-4 py-2.5 bg-slate-50/90 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 text-center">
+                              <div className="px-4 py-2.5 bg-[var(--bg-subtle)]/70 border-t border-[var(--border-hairline)] text-center">
                                 <button
                                   type="button"
                                   onClick={() =>
@@ -2511,7 +2503,7 @@ export function ClinicalNavigatorTab({
 
                             {/* Supporting Context Recommendations Toggle */}
                             {socGroup.supportingRecommendations.length > 0 && (
-                              <div className="bg-slate-50/70 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800 px-4 py-2.5">
+                              <div className="bg-[var(--bg-subtle)]/50 border-t border-[var(--border-hairline)] px-4 py-2.5">
                                 <button
                                   type="button"
                                   onClick={() =>
@@ -2520,7 +2512,7 @@ export function ClinicalNavigatorTab({
                                       [socGroup.society]: !prev[socGroup.society],
                                     }))
                                   }
-                                  className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5"
+                                  className="text-xs font-bold text-[#C25934] dark:text-orange-400 hover:underline flex items-center gap-1.5"
                                 >
                                   <span>{showSupporting ? "▾" : "▸"}</span>
                                   <span>
@@ -2555,15 +2547,15 @@ export function ClinicalNavigatorTab({
                   SECTION 2: GUIDELINE UPDATES & PRACTICE SHIFTS
                  ===================================================================== */}
               {sectionView === "DIFF" && (
-                <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-                  <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300">
+                <div className="p-5 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-hairline)] shadow-2xs space-y-4">
+                  <div className="flex items-center justify-between border-b border-[var(--border-hairline)] pb-3">
+                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-[#C25934]/15 text-[#C25934] dark:text-orange-300">
                       {navResult.intraSocietyDiffs.length} Practice Shifts
                     </span>
                   </div>
 
                   {navResult.intraSocietyDiffs.length === 0 ? (
-                    <p className="text-xs text-slate-500 italic py-4">
+                    <p className="text-xs text-[var(--text-muted)] italic py-4">
                       No intra-society version upgrades or revisions recorded for this filter selection.
                     </p>
                   ) : (
@@ -2573,7 +2565,7 @@ export function ClinicalNavigatorTab({
                           diff.shiftDirection === "UPGRADED"
                             ? "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-950/60 dark:text-emerald-300"
                             : diff.shiftDirection === "NEW"
-                            ? "bg-indigo-100 text-indigo-800 border-indigo-300 dark:bg-indigo-950/60 dark:text-indigo-300"
+                            ? "bg-[#C25934]/15 text-[#C25934] border-[#C25934]/30 dark:text-orange-300"
                             : diff.shiftDirection === "DOWNGRADED"
                             ? "bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-950/60 dark:text-rose-300"
                             : "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-950/60 dark:text-amber-300";
@@ -2581,7 +2573,7 @@ export function ClinicalNavigatorTab({
                         return (
                           <div
                             key={diff.id}
-                            className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30 space-y-2.5"
+                            className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] space-y-2.5"
                           >
                             <div className="flex flex-wrap items-center justify-between gap-2">
                               <div className="flex flex-wrap items-center gap-2">
@@ -2597,44 +2589,44 @@ export function ClinicalNavigatorTab({
                                 >
                                   {diff.shiftDirection}
                                 </span>
-                                <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                                <span className="text-xs font-bold text-[var(--text-ink)]">
                                   {diff.topic}
                                 </span>
                               </div>
-                              <span className="text-[11px] font-mono text-slate-400">
+                              <span className="text-[11px] font-mono text-[var(--text-muted)]">
                                 [{diff.sourceRecId}]
                               </span>
                             </div>
 
                             {/* Grade Evolution Bar */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-                              <div className="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                              <div className="p-3 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-hairline)]">
                                 <div className="flex items-center justify-between mb-1">
-                                  <span className="text-[11px] font-bold uppercase text-slate-400">
+                                  <span className="text-[11px] font-bold uppercase text-[var(--text-muted)]">
                                     {diff.previousYear
                                       ? `Previous Edition (${diff.previousYear})`
                                       : "Previous Guideline Stance"}
                                   </span>
-                                  <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                                  <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-[var(--bg-subtle)] text-[var(--text-secondary)]">
                                     {diff.previousGrade}
                                   </span>
                                 </div>
-                                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
                                   {diff.previousText ||
                                     "Not previously established or carried a lower/conditional recommendation."}
                                 </p>
                               </div>
 
-                              <div className="p-3 rounded-lg bg-indigo-50/40 dark:bg-indigo-950/25 border border-indigo-200 dark:border-indigo-900/60">
+                              <div className="p-3 rounded-lg bg-[#C25934]/5 border border-[#C25934]/30">
                                 <div className="flex items-center justify-between mb-1">
-                                  <span className="text-[11px] font-bold uppercase text-indigo-700 dark:text-indigo-300">
+                                  <span className="text-[11px] font-bold uppercase text-[#C25934] dark:text-orange-300">
                                     Current Edition ({diff.currentYear})
                                   </span>
-                                  <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-indigo-600 text-white">
+                                  <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-[#C25934] text-white">
                                     {diff.currentGrade}
                                   </span>
                                 </div>
-                                <p className="text-xs text-slate-800 dark:text-slate-200 font-medium leading-relaxed">
+                                <p className="text-xs text-[var(--text-ink)] font-medium leading-relaxed">
                                   {diff.currentText}
                                 </p>
                               </div>
@@ -2667,8 +2659,8 @@ export function ClinicalNavigatorTab({
                   SECTION 3: CLINICAL TRIALS & LATE-BREAKING EVIDENCE
                  ===================================================================== */}
               {sectionView === "TRIALS" && (
-                <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
-                  <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+                <div className="p-5 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-hairline)] shadow-2xs space-y-5">
+                  <div className="flex items-center justify-between border-b border-[var(--border-hairline)] pb-3">
                     <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">
                       {navResult.pivotalTrials.length} Published •{" "}
                       {navResult.lateBreakingTrials.length} Late-Breaking
@@ -2691,16 +2683,16 @@ export function ClinicalNavigatorTab({
                       ))}
                     </div>
                   ) : (
-                    <p className="text-xs text-slate-500 italic">
+                    <p className="text-xs text-[var(--text-muted)] italic">
                       No peer-reviewed pivotal trials matched the active filter tags.
                     </p>
                   )}
 
                   {/* 3B. Conference Late-Breaking Trials */}
                   {navResult.lateBreakingTrials.length > 0 && (
-                    <div className="pt-3 border-t border-slate-100 dark:border-slate-800 space-y-3">
+                    <div className="pt-3 border-t border-[var(--border-hairline)] space-y-3">
                       <div className="flex items-center gap-2">
-                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold uppercase bg-amber-100 text-amber-800 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
+                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold uppercase bg-[#C25934]/15 text-[#C25934] dark:text-orange-300 border border-[#C25934]/30">
                           🎙️ Conference / Late-Breaking Evidence (Pre-Guideline Integration)
                         </span>
                       </div>
@@ -2726,7 +2718,7 @@ export function ClinicalNavigatorTab({
                   SECTION 4: CONSENSUS & DIVERGENCE SUMMARY
                  ===================================================================== */}
               {sectionView === "CONCORDANCE" && (
-                <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                <div className="p-5 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-hairline)] shadow-2xs space-y-4">
                   {/* Concordance Headline Banner */}
                   <div
                     className={`p-4 rounded-xl border ${concordanceTheme.bg} flex flex-col sm:flex-row sm:items-center justify-between gap-3`}
@@ -2738,7 +2730,7 @@ export function ClinicalNavigatorTab({
                         >
                           {concordanceTheme.badge}
                         </span>
-                        <span className="text-xs font-extrabold text-slate-700 dark:text-slate-200">
+                        <span className="text-xs font-extrabold text-[var(--text-ink)]">
                           Concordance Score: {navResult.concordanceAppraisal.concordanceScore}%
                         </span>
                       </div>
@@ -2750,10 +2742,10 @@ export function ClinicalNavigatorTab({
 
                   {/* Society Stance Comparison Table */}
                   {navResult.concordanceAppraisal.societyStances.length > 0 && (
-                    <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+                    <div className="overflow-x-auto rounded-xl border border-[var(--border-hairline)]">
                       <table className="w-full text-left border-collapse text-xs">
                         <thead>
-                          <tr className="bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
+                          <tr className="bg-[var(--bg-subtle)] text-[var(--text-secondary)] border-b border-[var(--border-hairline)]">
                             <th className="py-2.5 px-3 font-bold">Society</th>
                             <th className="py-2.5 px-3 font-bold">Latest Year</th>
                             <th className="py-2.5 px-3 font-bold">Core Recs</th>
@@ -2762,7 +2754,7 @@ export function ClinicalNavigatorTab({
                             <th className="py-2.5 px-3 font-bold">Original Grades Present</th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                        <tbody className="divide-y divide-[var(--border-hairline)]">
                           {navResult.concordanceAppraisal.societyStances.map((st) => {
                             const dirMeta = getDirectionBadge(st.dominantDirection);
                             const tierMeta =
@@ -2770,7 +2762,7 @@ export function ClinicalNavigatorTab({
                             return (
                               <tr
                                 key={st.society}
-                                className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40"
+                                className="hover:bg-[var(--bg-subtle)]/60"
                               >
                                 <td className="py-2.5 px-3 font-extrabold">
                                   <span
@@ -2781,10 +2773,10 @@ export function ClinicalNavigatorTab({
                                     {st.society}
                                   </span>
                                 </td>
-                                <td className="py-2.5 px-3 font-semibold text-slate-700 dark:text-slate-300">
+                                <td className="py-2.5 px-3 font-semibold text-[var(--text-secondary)]">
                                   {st.latestYear}
                                 </td>
-                                <td className="py-2.5 px-3 font-bold text-slate-800 dark:text-slate-200">
+                                <td className="py-2.5 px-3 font-bold text-[var(--text-ink)]">
                                   {st.recCount}
                                 </td>
                                 <td className="py-2.5 px-3">
@@ -2801,7 +2793,7 @@ export function ClinicalNavigatorTab({
                                     Tier {tierMeta.tier}
                                   </span>
                                 </td>
-                                <td className="py-2.5 px-3 text-slate-600 dark:text-slate-400 font-medium">
+                                <td className="py-2.5 px-3 text-[var(--text-muted)] font-medium">
                                   {st.rawGradesSummary.slice(0, 3).join(" • ")}
                                 </td>
                               </tr>
@@ -2817,11 +2809,11 @@ export function ClinicalNavigatorTab({
                     navResult.concordanceAppraisal.topicClusters.length > 0 && (
                       <div className="space-y-3 pt-2">
                         <div className="flex items-center justify-between">
-                          <h4 className="text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2">
+                          <h4 className="text-xs font-black uppercase tracking-wider text-[var(--text-secondary)] flex items-center gap-2">
                             <span>🎯</span>
                             <span>Topic-by-Topic Consensus Matrix ({navResult.concordanceAppraisal.topicClusters.length} Clinical Clusters)</span>
                           </h4>
-                          <span className="text-[11px] text-slate-500 font-medium">
+                          <span className="text-[11px] text-[var(--text-muted)] font-medium">
                             Grouped by PICO Clinical Fingerprint
                           </span>
                         </div>
@@ -2831,7 +2823,7 @@ export function ClinicalNavigatorTab({
                             return (
                               <div
                                 key={cluster.clusterId}
-                                className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/30 hover:border-slate-300 dark:hover:border-slate-700 transition space-y-3"
+                                className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] hover:border-[#C25934]/50 transition space-y-3"
                               >
                                 <div className="flex flex-wrap items-center justify-between gap-2">
                                   <div className="flex flex-wrap items-center gap-2">
@@ -2841,12 +2833,12 @@ export function ClinicalNavigatorTab({
                                       <span>{cluster.statusBadge.icon}</span>
                                       <span>{cluster.statusBadge.label}</span>
                                     </span>
-                                    <h5 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100">
+                                    <h5 className="text-xs sm:text-sm font-bold text-[var(--text-ink)]">
                                       {cluster.topicTitle}
                                     </h5>
                                   </div>
                                   {cluster.timeWindowLabel && (
-                                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-200/80 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
+                                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-[var(--bg-subtle)] border border-[var(--border-hairline)] text-[var(--text-secondary)]">
                                       ⏱️ {cluster.timeWindowLabel}
                                     </span>
                                   )}
@@ -2859,7 +2851,7 @@ export function ClinicalNavigatorTab({
                                     return (
                                       <div
                                         key={`${pos.society}-${pos.recId}`}
-                                        className="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5"
+                                        className="p-2.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-hairline)] space-y-1.5"
                                       >
                                         <div className="flex items-center justify-between gap-1">
                                           <span
@@ -2875,10 +2867,10 @@ export function ClinicalNavigatorTab({
                                             {dirMeta.label}
                                           </span>
                                         </div>
-                                        <div className="text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                                        <div className="text-[11px] font-bold text-[var(--text-ink)]">
                                           {pos.grade}
                                         </div>
-                                        <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                                        <p className="text-[11px] text-[var(--text-muted)] line-clamp-2 leading-relaxed">
                                           {pos.excerpt}
                                         </p>
                                       </div>
@@ -2887,14 +2879,14 @@ export function ClinicalNavigatorTab({
                                 </div>
 
                                 {/* Clinical Consensus Synthesis */}
-                                <div className="p-2.5 rounded-lg bg-indigo-50/60 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/40 text-xs text-indigo-950 dark:text-indigo-200 font-medium leading-relaxed">
-                                  <span className="font-bold text-indigo-700 dark:text-indigo-400">Clinical Synthesis: </span>
+                                <div className="p-2.5 rounded-lg bg-[#C25934]/5 border border-[#C25934]/25 text-xs text-[var(--text-ink)] font-medium leading-relaxed">
+                                  <span className="font-bold text-[#C25934] dark:text-orange-400">Clinical Synthesis: </span>
                                   {cluster.consensusSynthesis}
                                 </div>
 
                                 {cluster.keyDrivingTrials.length > 0 && (
                                   <div className="flex flex-wrap items-center gap-1.5">
-                                    <span className="text-[10px] font-bold text-slate-400 uppercase">Evidence Trials:</span>
+                                    <span className="text-[10px] font-bold text-[var(--text-muted)] uppercase">Evidence Trials:</span>
                                     {cluster.keyDrivingTrials.map((tr) => (
                                       <span
                                         key={tr}
@@ -2919,11 +2911,11 @@ export function ClinicalNavigatorTab({
                         ✓ Points of Cross-Society Agreement
                       </h4>
                       {navResult.concordanceAppraisal.agreementPoints.length === 0 ? (
-                        <p className="text-xs text-slate-500 italic">
+                        <p className="text-xs text-[var(--text-muted)] italic">
                           Single society or insufficient multi-society overlap.
                         </p>
                       ) : (
-                        <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 list-disc pl-4">
+                        <ul className="space-y-1.5 text-xs text-[var(--text-secondary)] list-disc pl-4">
                           {navResult.concordanceAppraisal.agreementPoints.map((pt, i) => (
                             <li key={i} className="leading-relaxed">
                               {pt}
@@ -2935,14 +2927,14 @@ export function ClinicalNavigatorTab({
 
                     <div className="p-4 rounded-xl bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 space-y-2">
                       <h4 className="text-xs font-extrabold uppercase tracking-wider text-amber-800 dark:text-amber-300">
-                        ⚡ Nuances & Cross-Society Divergence
+                        ⚡ Nuances &amp; Cross-Society Divergence
                       </h4>
                       {navResult.concordanceAppraisal.divergencePoints.length === 0 ? (
-                        <p className="text-xs text-slate-500 italic">
+                        <p className="text-xs text-[var(--text-muted)] italic">
                           No directional conflicts detected across matched guidelines.
                         </p>
                       ) : (
-                        <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 list-disc pl-4">
+                        <ul className="space-y-1.5 text-xs text-[var(--text-secondary)] list-disc pl-4">
                           {navResult.concordanceAppraisal.divergencePoints.map((pt, i) => (
                             <li key={i} className="leading-relaxed">
                               {pt}
@@ -2954,11 +2946,11 @@ export function ClinicalNavigatorTab({
                   </div>
 
                   {/* Clinical Bottom Line */}
-                  <div className="p-4 rounded-xl bg-slate-900 text-white space-y-1.5">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-indigo-300">
+                  <div className="p-4 rounded-xl bg-[#141824] text-white space-y-1.5 border border-stone-800">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-orange-300">
                       🎯 Grounded Clinical Bottom Line
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-100 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-stone-100 leading-relaxed">
                       {navResult.concordanceAppraisal.clinicalBottomLine}
                     </p>
                   </div>
@@ -2969,21 +2961,21 @@ export function ClinicalNavigatorTab({
                   SECTION 5: RELATED LITERATURE
                  ===================================================================== */}
               {sectionView === "LITERATURE" && (
-                <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-                  <div className="border-b border-slate-100 dark:border-slate-800 pb-3 flex items-center justify-between">
-                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-300">
+                <div className="p-5 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-hairline)] shadow-2xs space-y-4">
+                  <div className="border-b border-[var(--border-hairline)] pb-3 flex items-center justify-between">
+                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-[#C25934]/15 text-[#C25934] dark:text-orange-300">
                       {navResult.relatedArticles.length} Articles Matched
                     </span>
                     <Link
-                      href="/"
-                      className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline shrink-0"
+                      href="/neuropulse"
+                      className="text-xs font-bold text-[#C25934] dark:text-orange-400 hover:underline shrink-0"
                     >
                       Open NeuroPulse Feed →
                     </Link>
                   </div>
 
                   {navResult.relatedArticles.length === 0 ? (
-                    <p className="text-xs text-slate-500 italic py-4">
+                    <p className="text-xs text-[var(--text-muted)] italic py-4">
                       No matching articles found in the local NeuroPulse feed for this filter combination.
                     </p>
                   ) : (
@@ -2991,30 +2983,30 @@ export function ClinicalNavigatorTab({
                       {navResult.relatedArticles.map(({ article, matchReasons }) => (
                         <div
                           key={article.id}
-                          className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-800/30 hover:border-indigo-300 dark:hover:border-indigo-700 transition flex flex-col justify-between gap-3"
+                          className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] hover:border-[#C25934]/60 transition flex flex-col justify-between gap-3"
                         >
                           <div className="space-y-2">
                             <div className="flex flex-wrap items-center justify-between gap-1.5">
-                              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300">
+                              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#C25934]/15 text-[#C25934] dark:text-orange-300">
                                 {article.journal?.short_name || article.journal?.name || "Journal"}
                               </span>
-                              <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+                              <span className="text-[11px] text-[var(--text-muted)] font-medium">
                                 {article.pub_date} • {article.article_type}
                               </span>
                             </div>
 
-                            <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-snug">
+                            <h4 className="text-xs sm:text-sm font-bold text-[var(--text-ink)] leading-snug">
                               {article.title}
                             </h4>
 
                             {(article.ai_takeaways?.clinical_significance || article.abstract) && (
-                              <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
+                              <p className="text-xs text-[var(--text-secondary)] line-clamp-2 leading-relaxed">
                                 {article.ai_takeaways?.clinical_significance || article.abstract}
                               </p>
                             )}
                           </div>
 
-                          <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                          <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[var(--border-hairline)]">
                             <div className="flex flex-wrap gap-1">
                               {matchReasons.map((reason) => (
                                 <span
@@ -3030,7 +3022,7 @@ export function ClinicalNavigatorTab({
                                 href={article.doi_url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
+                                className="text-[11px] font-bold text-[#C25934] dark:text-orange-400 hover:underline"
                               >
                                 DOI / Source ↗
                               </a>
@@ -3072,20 +3064,20 @@ export function ClinicalNavigatorTab({
           />
 
           {/* Sheet Panel */}
-          <div className="relative z-10 w-full max-h-[88vh] bg-white dark:bg-slate-900 rounded-t-3xl shadow-2xl flex flex-col border-t border-slate-200 dark:border-slate-800 overflow-hidden animate-in slide-in-from-bottom duration-200">
+          <div className="relative z-10 w-full max-h-[88vh] bg-[var(--bg-surface)] rounded-t-3xl shadow-2xl flex flex-col border-t border-[var(--border-hairline)] overflow-hidden animate-in slide-in-from-bottom duration-200">
             {/* Grab Handle */}
             <div className="pt-3 pb-1 flex justify-center shrink-0">
-              <div className="w-12 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full" />
+              <div className="w-12 h-1.5 bg-[var(--border-hairline)] rounded-full" />
             </div>
 
             {/* Sheet Header */}
-            <div className="px-5 py-3 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between shrink-0">
+            <div className="px-5 py-3 border-b border-[var(--border-hairline)] flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2">
-                <h3 className="text-sm font-extrabold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
+                <h3 className="text-sm font-extrabold uppercase tracking-wider text-[var(--text-ink)] flex items-center gap-1.5">
                   <span>🧭</span> Clinical Filters
                 </h3>
                 {isQueryActive && (
-                  <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
+                  <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-[#C25934] text-white">
                     {activeFilterSummaryChips.length +
                       selectedSocieties.length +
                       (searchText.trim().length >= 2 ? 1 : 0) +
@@ -3106,7 +3098,7 @@ export function ClinicalNavigatorTab({
                 <button
                   type="button"
                   onClick={() => setIsMobileFilterOpen(false)}
-                  className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-800 dark:hover:text-white flex items-center justify-center text-sm font-bold transition cursor-pointer"
+                  className="w-8 h-8 rounded-full bg-[var(--bg-subtle)] text-[var(--text-muted)] hover:text-[var(--text-ink)] flex items-center justify-center text-sm font-bold transition cursor-pointer"
                 >
                   ✕
                 </button>
@@ -3119,11 +3111,11 @@ export function ClinicalNavigatorTab({
             </div>
 
             {/* Sheet Sticky Bottom CTA */}
-            <div className="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-900/90 backdrop-blur-sm shrink-0">
+            <div className="p-4 border-t border-[var(--border-hairline)] bg-[var(--bg-paper)]/95 backdrop-blur-sm shrink-0">
               <button
                 type="button"
                 onClick={() => setIsMobileFilterOpen(false)}
-                className="w-full py-3 px-4 rounded-xl font-extrabold text-sm text-white bg-indigo-600 hover:bg-indigo-500 shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3 px-4 rounded-xl font-extrabold text-sm text-white bg-[#C25934] hover:bg-[#A64827] shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>View {navResult.coreRecommendations.length} Recommendations</span>
                 <span>→</span>
@@ -3156,15 +3148,15 @@ function RecommendationMatrixCard({
     <div
       className={`p-4 space-y-2.5 max-w-full overflow-hidden break-words ${
         isSupporting
-          ? "rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800"
-          : "bg-white dark:bg-slate-900"
+          ? "rounded-xl bg-[var(--bg-surface)] border border-[var(--border-hairline)]"
+          : "bg-[var(--bg-surface)]"
       }`}
     >
       {/* Top Meta Row */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex flex-wrap items-center gap-1.5">
           {/* Original Grade Badge */}
-          <span className="px-2.5 py-0.5 rounded-md text-xs font-extrabold bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900">
+          <span className="px-2.5 py-0.5 rounded-md text-xs font-extrabold bg-[var(--text-ink)] text-[var(--bg-surface)]">
             {rec.rawGrade}
           </span>
 
@@ -3233,18 +3225,18 @@ function RecommendationMatrixCard({
       )}
 
       {/* Section / PICO Provenance */}
-      <div className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 flex flex-wrap items-center gap-1.5">
+      <div className="text-[11px] font-semibold text-[var(--text-muted)] flex flex-wrap items-center gap-1.5">
         <span>
           {rec.guidelineTitle} ({rec.year})
         </span>
         <span>•</span>
-        <span className="text-slate-700 dark:text-slate-300">
+        <span className="text-[var(--text-secondary)]">
           {rec.sectionPath}
         </span>
         {rec.picoNumber && (
           <>
             <span>•</span>
-            <span className="text-indigo-600 dark:text-indigo-400 font-bold">
+            <span className="text-[#C25934] dark:text-orange-400 font-bold">
               PICO #{rec.picoNumber}
             </span>
           </>
@@ -3254,22 +3246,22 @@ function RecommendationMatrixCard({
       {/* Verbatim Recommendation Statement */}
       <blockquote
         className={`pl-3 border-l-4 ${
-          theme?.quoteBorder || "border-l-indigo-500"
-        } text-xs sm:text-sm text-slate-900 dark:text-slate-100 font-medium leading-relaxed break-words`}
+          theme?.quoteBorder || "border-l-[#C25934]"
+        } text-xs sm:text-sm text-[var(--text-ink)] font-medium leading-relaxed break-words`}
       >
         &ldquo;{rec.text}&rdquo;
       </blockquote>
 
       {rec.expertConsensusStatement && (
-        <div className="p-2.5 rounded-lg bg-indigo-50/50 dark:bg-indigo-950/20 border border-indigo-200/70 dark:border-indigo-900/50 text-xs text-slate-700 dark:text-slate-300">
-          <span className="font-bold text-indigo-700 dark:text-indigo-300">
+        <div className="p-2.5 rounded-lg bg-[#C25934]/5 border border-[#C25934]/25 text-xs text-[var(--text-secondary)]">
+          <span className="font-bold text-[#C25934] dark:text-orange-400">
             Expert Consensus Companion:{" "}
           </span>
           {rec.expertConsensusStatement}
         </div>
       )}
 
-      {/* Cited Trials & Official Guideline Link (Tags/labels hidden to avoid visual clutter) */}
+      {/* Cited Trials & Official Guideline Link */}
       {(rec.drivingTrials.length > 0 || rec.officialUrl) && (
         <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
           <div className="flex flex-wrap items-center gap-1.5">
@@ -3288,7 +3280,7 @@ function RecommendationMatrixCard({
               href={rec.officialUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 hover:underline shrink-0"
+              className="text-[11px] font-bold text-[#C25934] dark:text-orange-400 hover:underline shrink-0"
             >
               Official Guideline ↗
             </a>
@@ -3321,20 +3313,20 @@ function PivotalTrialCard({
       : "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-950/60 dark:text-amber-300";
 
   return (
-    <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-800/30 flex flex-col justify-between gap-3">
+    <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] flex flex-col justify-between gap-3">
       <div className="space-y-2.5">
         {/* Header */}
         <div className="flex items-start justify-between gap-2">
           <div>
             <div className="flex flex-wrap items-center gap-1.5">
-              <span className="text-sm font-extrabold text-indigo-700 dark:text-indigo-300">
+              <span className="text-sm font-extrabold text-[#C25934] dark:text-orange-400">
                 {trial.acronym}
               </span>
-              <span className="text-xs font-bold text-slate-600 dark:text-slate-400">
+              <span className="text-xs font-bold text-[var(--text-muted)]">
                 ({trial.journal} {trial.year})
               </span>
               {trial.sampleSize && (
-                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-200/80 dark:bg-slate-700 text-slate-700 dark:text-slate-200">
+                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--bg-subtle)] border border-[var(--border-hairline)] text-[var(--text-secondary)]">
                   N={trial.sampleSize.toLocaleString()}
                 </span>
               )}
@@ -3344,7 +3336,7 @@ function PivotalTrialCard({
                 </span>
               )}
             </div>
-            <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 mt-0.5 line-clamp-2">
+            <p className="text-xs font-semibold text-[var(--text-ink)] mt-0.5 line-clamp-2">
               {trial.title}
             </p>
           </div>
@@ -3357,26 +3349,26 @@ function PivotalTrialCard({
         </div>
 
         {/* Compact PICO Box */}
-        <div className="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-[11px] space-y-1">
+        <div className="p-2.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-hairline)] text-[11px] space-y-1">
           <div>
-            <strong className="text-slate-500">P:</strong>{" "}
-            <span className="text-slate-800 dark:text-slate-200">
+            <strong className="text-[var(--text-muted)]">P:</strong>{" "}
+            <span className="text-[var(--text-ink)]">
               {trial.pico.population}
             </span>
           </div>
           <div>
-            <strong className="text-indigo-600 dark:text-indigo-400">I:</strong>{" "}
-            <span className="text-slate-800 dark:text-slate-200 font-medium">
+            <strong className="text-[#C25934] dark:text-orange-400">I:</strong>{" "}
+            <span className="text-[var(--text-ink)] font-medium">
               {trial.pico.intervention}
             </span>{" "}
-            <strong className="text-slate-400">vs. C:</strong>{" "}
-            <span className="text-slate-600 dark:text-slate-400">
+            <strong className="text-[var(--text-muted)]">vs. C:</strong>{" "}
+            <span className="text-[var(--text-secondary)]">
               {trial.pico.comparator}
             </span>
           </div>
           {trial.pico.timeWindow && (
-            <div className="pt-1 border-t border-slate-100 dark:border-slate-800/80 text-slate-600 dark:text-slate-400">
-              <strong className="text-slate-600 dark:text-slate-300">Window:</strong>{" "}
+            <div className="pt-1 border-t border-[var(--border-hairline)] text-[var(--text-muted)]">
+              <strong className="text-[var(--text-secondary)]">Window:</strong>{" "}
               {trial.pico.timeWindow}
             </div>
           )}
@@ -3388,7 +3380,7 @@ function PivotalTrialCard({
             <span className="font-bold text-emerald-800 dark:text-emerald-300">
               Primary outcome ({trial.primaryEndpoint.metric}):{" "}
             </span>
-            <span className="font-semibold text-slate-900 dark:text-slate-100">
+            <span className="font-semibold text-[var(--text-ink)]">
               {trial.primaryEndpoint.resultStats}
             </span>
           </div>
@@ -3398,14 +3390,14 @@ function PivotalTrialCard({
               <span className="font-bold text-amber-800 dark:text-amber-300">
                 Primary safety outcome:{" "}
               </span>
-              <span className="font-semibold text-slate-900 dark:text-slate-100">
+              <span className="font-semibold text-[var(--text-ink)]">
                 {trial.safetyEndpoint.sICH}
               </span>
             </div>
           )}
 
           {(trial.safetyEndpoint.mortality90d || trial.safetyEndpoint.note) && (
-            <div className="px-2 py-0.5 text-[11px] text-slate-600 dark:text-slate-400 flex flex-wrap gap-x-3 gap-y-0.5">
+            <div className="px-2 py-0.5 text-[11px] text-[var(--text-muted)] flex flex-wrap gap-x-3 gap-y-0.5">
               {trial.safetyEndpoint.mortality90d && (
                 <span>
                   <strong>Mortality:</strong>{" "}
@@ -3420,20 +3412,20 @@ function PivotalTrialCard({
         </div>
 
         {/* Bottom Line */}
-        <p className="text-xs text-slate-700 dark:text-slate-300 font-medium leading-relaxed">
+        <p className="text-xs text-[var(--text-secondary)] font-medium leading-relaxed">
           💡 {trial.bottomLine}
         </p>
       </div>
 
       {/* Footer Links */}
-      <div className="flex items-center justify-between pt-2 border-t border-slate-200/70 dark:border-slate-800 text-[11px]">
+      <div className="flex items-center justify-between pt-2 border-t border-[var(--border-hairline)] text-[11px]">
         <div className="flex items-center gap-3">
           {trial.pmid && (
             <a
               href={`https://pubmed.ncbi.nlm.nih.gov/${trial.pmid}/`}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
+              className="font-bold text-[#C25934] dark:text-orange-400 hover:underline"
             >
               PMID: {trial.pmid} ↗
             </a>
@@ -3443,7 +3435,7 @@ function PivotalTrialCard({
               href={`https://doi.org/${trial.doi.replace(/^https?:\/\/(dx\.)?doi\.org\//i, "")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-slate-600 dark:text-slate-400 hover:underline"
+              className="font-bold text-[var(--text-muted)] hover:text-[var(--text-ink)] hover:underline"
             >
               DOI ↗
             </a>
@@ -3454,7 +3446,7 @@ function PivotalTrialCard({
           <button
             type="button"
             onClick={() => onEdit(trial)}
-            className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
+            className="text-xs font-bold text-[#C25934] dark:text-orange-400 hover:underline"
           >
             ✎ Edit Trial
           </button>

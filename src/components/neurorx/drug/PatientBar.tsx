@@ -115,18 +115,12 @@ export function PatientBar({
     patientInput.onHemodialysis;
 
   return (
-    <div
-      className={`p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border border-l-4 border-l-cyan-500 transition-colors ${
-        darkMode
-          ? "bg-gradient-to-b from-cyan-950/20 via-slate-900 to-slate-900 border-cyan-900/40"
-          : "bg-gradient-to-b from-cyan-50/30 via-white to-white border-cyan-200/80 shadow-sm"
-      }`}
-    >
+    <div className="p-4 sm:p-5 rounded-2xl border border-[var(--border-hairline)] border-l-4 border-l-[#2F855A] bg-[var(--bg-surface)] shadow-xs transition-colors">
       {/* Header & Reset Button */}
-      <div className="flex items-center justify-between pb-3 border-b border-slate-200/60 dark:border-slate-800">
+      <div className="flex items-center justify-between pb-3 border-b border-[var(--border-hairline)]">
         <div className="flex items-center gap-2.5 min-w-0">
-          <Activity className="w-5 h-5 text-cyan-500 shrink-0" />
-          <h3 className="text-sm sm:text-base font-extrabold uppercase tracking-wide text-slate-900 dark:text-slate-100 truncate">
+          <Activity className="w-5 h-5 text-[#2F855A] dark:text-emerald-400 shrink-0" />
+          <h3 className="text-sm sm:text-base font-extrabold uppercase tracking-wide text-[var(--text-ink)] truncate">
             Bedside Patient Variables
           </h3>
         </div>
@@ -135,7 +129,7 @@ export function PatientBar({
           <button
             type="button"
             onClick={clearPatient}
-            className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-rose-500 hover:text-rose-600 transition-colors p-1 shrink-0"
+            className="flex items-center gap-1.5 text-xs font-bold text-rose-500 hover:text-rose-600 transition-colors p-1 shrink-0"
             title="Reset all patient inputs"
           >
             <RotateCcw className="w-4 h-4 shrink-0" />
@@ -148,7 +142,7 @@ export function PatientBar({
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 pt-3">
         {/* 1. Weight */}
         <div>
-          <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5 truncate">
+          <label className="block text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-1.5 truncate">
             Weight (kg)
           </label>
           <div className="relative">
@@ -163,13 +157,9 @@ export function PatientBar({
                 const val = parseFloat(e.target.value);
                 setField("weightKg", isNaN(val) ? undefined : val);
               }}
-              className={`w-full pl-3 pr-8 py-2 text-sm sm:text-base font-bold rounded-xl border transition-all focus:outline-none focus:ring-2 focus:ring-sky-500/20 ${
-                darkMode
-                  ? "bg-slate-800 border-slate-700 text-white"
-                  : "bg-slate-50 border-slate-300 text-slate-900"
-              }`}
+              className="w-full pl-3 pr-8 py-2 text-xs font-bold rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] transition-all focus:outline-none focus:border-[#2F855A] focus:ring-2 focus:ring-[#2F855A]/20"
             />
-            <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400 pointer-events-none">
+            <span className="absolute right-3 top-2 text-xs font-bold text-[var(--text-muted)] pointer-events-none">
               kg
             </span>
           </div>
@@ -177,7 +167,7 @@ export function PatientBar({
 
         {/* 2. Age */}
         <div>
-          <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5 truncate">
+          <label className="block text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-1.5 truncate">
             Age (years)
           </label>
           <div className="relative">
@@ -191,13 +181,9 @@ export function PatientBar({
                 const val = parseInt(e.target.value, 10);
                 setField("ageYears", isNaN(val) ? undefined : val);
               }}
-              className={`w-full pl-3 pr-8 py-2 text-sm sm:text-base font-bold rounded-xl border transition-all focus:outline-none focus:ring-2 focus:ring-sky-500/20 ${
-                darkMode
-                  ? "bg-slate-800 border-slate-700 text-white"
-                  : "bg-slate-50 border-slate-300 text-slate-900"
-              }`}
+              className="w-full pl-3 pr-8 py-2 text-xs font-bold rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] transition-all focus:outline-none focus:border-[#2F855A] focus:ring-2 focus:ring-[#2F855A]/20"
             />
-            <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400 pointer-events-none">
+            <span className="absolute right-3 top-2 text-xs font-bold text-[var(--text-muted)] pointer-events-none">
               y
             </span>
           </div>
@@ -205,17 +191,17 @@ export function PatientBar({
 
         {/* 3. Biological Sex */}
         <div>
-          <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5 truncate">
+          <label className="block text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-1.5 truncate">
             Biological Sex
           </label>
-          <div className="grid grid-cols-2 gap-1 p-0.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800">
+          <div className="grid grid-cols-2 gap-1 p-0.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]">
             <button
               type="button"
               onClick={() => setField("sex", "male")}
-              className={`py-2 text-xs sm:text-sm font-bold rounded-lg transition-all ${
+              className={`py-1.5 text-xs font-bold rounded-lg transition-all ${
                 patientInput.sex === "male"
-                  ? "bg-sky-500 text-white shadow-xs"
-                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                  ? "bg-[#2F855A] text-white shadow-2xs"
+                  : "text-[var(--text-muted)] hover:text-[var(--text-ink)]"
               }`}
             >
               Male
@@ -223,10 +209,10 @@ export function PatientBar({
             <button
               type="button"
               onClick={() => setField("sex", "female")}
-              className={`py-2 text-xs sm:text-sm font-bold rounded-lg transition-all ${
+              className={`py-1.5 text-xs font-bold rounded-lg transition-all ${
                 patientInput.sex === "female"
-                  ? "bg-sky-500 text-white shadow-xs"
-                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                  ? "bg-[#2F855A] text-white shadow-2xs"
+                  : "text-[var(--text-muted)] hover:text-[var(--text-ink)]"
               }`}
             >
               Female
@@ -236,7 +222,7 @@ export function PatientBar({
 
         {/* 4. Height (cm) */}
         <div>
-          <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5 truncate">
+          <label className="block text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-1.5 truncate">
             Height (cm)
           </label>
           <div className="relative">
@@ -251,13 +237,9 @@ export function PatientBar({
                 const val = parseFloat(e.target.value);
                 setField("heightCm", isNaN(val) ? undefined : val);
               }}
-              className={`w-full pl-3 pr-8 py-2 text-sm sm:text-base font-bold rounded-xl border transition-all focus:outline-none focus:ring-2 focus:ring-sky-500/20 ${
-                darkMode
-                  ? "bg-slate-800 border-slate-700 text-white"
-                  : "bg-slate-50 border-slate-300 text-slate-900"
-              }`}
+              className="w-full pl-3 pr-8 py-2 text-xs font-bold rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] transition-all focus:outline-none focus:border-[#2F855A] focus:ring-2 focus:ring-[#2F855A]/20"
             />
-            <span className="absolute right-3 top-2.5 text-xs font-bold text-slate-400 pointer-events-none">
+            <span className="absolute right-3 top-2 text-xs font-bold text-[var(--text-muted)] pointer-events-none">
               cm
             </span>
           </div>
@@ -266,14 +248,14 @@ export function PatientBar({
         {/* 5. Serum Creatinine (with Unit Toggle) */}
         <div>
           <div className="flex items-center justify-between gap-1 mb-1.5">
-            <label className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 truncate">
+            <label className="text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] truncate">
               <span className="hidden sm:inline">Serum Creatinine</span>
               <span className="sm:hidden">Serum Cr</span>
             </label>
             <button
               type="button"
               onClick={handleScrUnitToggle}
-              className="text-xs font-extrabold text-sky-600 dark:text-sky-400 hover:underline shrink-0"
+              className="text-xs font-extrabold text-[#2F855A] dark:text-emerald-400 hover:underline shrink-0"
               title="Toggle unit between µmol/L and mg/dL"
             >
               [{currentScrUnit === "umol/L" ? "µmol/L" : "mg/dL"}]
@@ -287,13 +269,9 @@ export function PatientBar({
               placeholder={currentScrUnit === "umol/L" ? "e.g. 110" : "e.g. 1.2"}
               value={patientInput.scr?.value ?? ""}
               onChange={handleScrValueChange}
-              className={`w-full pl-3 pr-14 py-2 text-sm sm:text-base font-bold rounded-xl border transition-all focus:outline-none focus:ring-2 focus:ring-sky-500/20 ${
-                darkMode
-                  ? "bg-slate-800 border-slate-700 text-white"
-                  : "bg-slate-50 border-slate-300 text-slate-900"
-              }`}
+              className="w-full pl-3 pr-14 py-2 text-xs font-bold rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] transition-all focus:outline-none focus:border-[#2F855A] focus:ring-2 focus:ring-[#2F855A]/20"
             />
-            <span className="absolute right-2.5 top-2.5 text-xs font-bold text-slate-400 pointer-events-none">
+            <span className="absolute right-2.5 top-2 text-xs font-bold text-[var(--text-muted)] pointer-events-none">
               {currentScrUnit === "umol/L" ? "µmol/L" : "mg/dL"}
             </span>
           </div>
@@ -301,7 +279,7 @@ export function PatientBar({
 
         {/* 6. CrCl Override (mL/min) */}
         <div>
-          <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5 truncate">
+          <label className="block text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-1.5 truncate">
             <span className="hidden sm:inline">CrCl Manual</span>
             <span className="sm:hidden">CrCl Override</span>
           </label>
@@ -317,13 +295,9 @@ export function PatientBar({
                 const val = parseFloat(e.target.value);
                 setField("crclManual", isNaN(val) ? undefined : val);
               }}
-              className={`w-full pl-3 pr-14 py-2 text-sm sm:text-base font-bold rounded-xl border transition-all focus:outline-none focus:ring-2 focus:ring-sky-500/20 ${
-                darkMode
-                  ? "bg-slate-800 border-slate-700 text-white"
-                  : "bg-slate-50 border-slate-300 text-slate-900"
-              }`}
+              className="w-full pl-3 pr-14 py-2 text-xs font-bold rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] transition-all focus:outline-none focus:border-[#2F855A] focus:ring-2 focus:ring-[#2F855A]/20"
             />
-            <span className="absolute right-2.5 top-2.5 text-xs font-bold text-slate-400 pointer-events-none">
+            <span className="absolute right-2.5 top-2 text-xs font-bold text-[var(--text-muted)] pointer-events-none">
               mL/min
             </span>
           </div>
@@ -331,18 +305,16 @@ export function PatientBar({
 
         {/* 7. Hemodialysis Toggle */}
         <div className="col-span-2 sm:col-span-3 md:col-span-1 lg:col-span-1 flex flex-col justify-between">
-          <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5 truncate">
+          <label className="block text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-1.5 truncate">
             Hemodialysis
           </label>
           <button
             type="button"
             onClick={() => setField("onHemodialysis", !patientInput.onHemodialysis)}
-            className={`w-full py-2 px-3 rounded-xl border text-xs sm:text-sm font-extrabold transition-all min-h-[38px] flex items-center justify-center gap-1.5 ${
+            className={`w-full py-2 px-3 rounded-xl border text-xs font-extrabold transition-all min-h-[34px] flex items-center justify-center gap-1.5 ${
               patientInput.onHemodialysis
-                ? "bg-rose-500 text-white border-rose-600 shadow-xs"
-                : darkMode
-                ? "bg-slate-800 border-slate-700 text-slate-400 hover:text-white"
-                : "bg-slate-50 border-slate-300 text-slate-600 hover:text-slate-900"
+                ? "bg-rose-600 text-white border-rose-600 shadow-2xs"
+                : "bg-[var(--bg-paper)] border-[var(--border-hairline)] text-[var(--text-secondary)] hover:text-[var(--text-ink)]"
             }`}
           >
             <span>{patientInput.onHemodialysis ? "ON DIALYSIS" : "No"}</span>
@@ -370,12 +342,12 @@ export function PatientBar({
 
       {/* Derived Renal Function Callout - Tự động hiển thị khi đã nhập đủ thông tin */}
       {renalResult.value !== null && (
-        <div className="mt-4 pt-3.5 border-t border-slate-200/60 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs sm:text-sm">
+        <div className="mt-4 pt-3.5 border-t border-[var(--border-hairline)] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs sm:text-sm">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="font-extrabold uppercase tracking-wide text-slate-700 dark:text-slate-300">
+            <span className="font-extrabold uppercase tracking-wide text-[var(--text-secondary)]">
               Resolved Renal Clearance:
             </span>
-            <span className="font-extrabold text-cyan-600 dark:text-cyan-400 text-sm sm:text-base">
+            <span className="font-extrabold text-[#2F855A] dark:text-emerald-400 text-sm sm:text-base">
               {renalResult.label}
             </span>
           </div>
@@ -389,11 +361,11 @@ export function PatientBar({
       )}
 
       {/* 8. COMPUTED DOSAGE SECTION */}
-      <div className="mt-4 sm:mt-5 pt-4 sm:pt-5 border-t border-slate-200/80 dark:border-slate-800 space-y-3 sm:space-y-4">
+      <div className="mt-4 sm:mt-5 pt-4 sm:pt-5 border-t border-[var(--border-hairline)] space-y-3 sm:space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div className="flex items-center gap-2 min-w-0">
-            <Calculator className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-            <h4 className="text-sm sm:text-base font-extrabold uppercase tracking-wide text-slate-900 dark:text-slate-100 truncate">
+            <Calculator className="w-5 h-5 text-[#2F855A] dark:text-emerald-400 shrink-0" />
+            <h4 className="text-sm sm:text-base font-extrabold uppercase tracking-wide text-[var(--text-ink)] truncate">
               Computed Dosage (Bedside Calculation)
             </h4>
           </div>
@@ -401,7 +373,7 @@ export function PatientBar({
           {/* Indication selector if multiple regimens exist */}
           {regimens.length > 1 && (
             <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2 w-full sm:w-auto">
-              <span className="text-xs sm:text-sm font-bold uppercase tracking-wide text-slate-700 dark:text-slate-300 whitespace-nowrap shrink-0">
+              <span className="text-xs font-bold uppercase tracking-wide text-[var(--text-secondary)] whitespace-nowrap shrink-0">
                 Indication:
               </span>
               <IndicationDropdown

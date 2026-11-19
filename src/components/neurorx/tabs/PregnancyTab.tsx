@@ -59,9 +59,7 @@ export function PregnancyTab({
       {/* 1. Sub-tab Switcher (Pregnancy vs Lactation), Drug Search & Subspecialty Dropdown */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div
-          className={`inline-flex p-1 rounded-xl border ${
-            darkMode ? "bg-slate-900 border-slate-800" : "bg-slate-100/80 border-slate-200"
-          }`}
+          className="inline-flex p-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]"
           role="tablist"
           aria-label="Pregnancy and Lactation sections"
         >
@@ -70,12 +68,10 @@ export function PregnancyTab({
             role="tab"
             aria-selected={activeSubTab === "pregnancy"}
             onClick={() => setActiveSubTab("pregnancy")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
               activeSubTab === "pregnancy"
-                ? darkMode
-                  ? "bg-rose-950/70 text-rose-300 shadow-sm border border-rose-800/60"
-                  : "bg-white text-rose-700 shadow-sm border border-rose-200/80"
-                : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200"
+                ? "bg-[var(--bg-surface)] text-[#2F855A] dark:text-emerald-300 shadow-2xs border border-[var(--border-hairline)]"
+                : "text-[var(--text-muted)] hover:text-[var(--text-ink)]"
             }`}
           >
             <Baby className="w-4 h-4" />
@@ -87,12 +83,10 @@ export function PregnancyTab({
             role="tab"
             aria-selected={activeSubTab === "lactation"}
             onClick={() => setActiveSubTab("lactation")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
               activeSubTab === "lactation"
-                ? darkMode
-                  ? "bg-amber-950/70 text-amber-300 shadow-sm border border-amber-800/60"
-                  : "bg-white text-amber-700 shadow-sm border border-amber-200/80"
-                : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200"
+                ? "bg-[var(--bg-surface)] text-[#2F855A] dark:text-emerald-300 shadow-2xs border border-[var(--border-hairline)]"
+                : "text-[var(--text-muted)] hover:text-[var(--text-ink)]"
             }`}
           >
             <Milk className="w-4 h-4" />
@@ -102,7 +96,7 @@ export function PregnancyTab({
 
         <div className="relative flex-1 min-w-[200px] order-last sm:order-none">
           <Search
-            className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+            className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#2F855A] dark:text-emerald-400 pointer-events-none"
             aria-hidden="true"
           />
           <input
@@ -111,11 +105,7 @@ export function PregnancyTab({
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search drug, brand, or class..."
             aria-label="Search drugs in Pregnancy and Lactation"
-            className={`w-full min-h-[44px] pl-10 pr-9 py-2 rounded-xl border text-xs sm:text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500/40 ${
-              darkMode
-                ? "bg-slate-900 border-slate-700/80 text-slate-100 placeholder:text-slate-500 hover:border-slate-600"
-                : "bg-white border-slate-200 text-slate-800 placeholder:text-slate-400 hover:border-slate-300 shadow-sm"
-            }`}
+            className="w-full min-h-[38px] pl-10 pr-9 py-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-xs font-medium text-[var(--text-ink)] placeholder:text-[var(--text-muted)] hover:border-stone-400 transition-colors focus:outline-none focus:border-[#2F855A] focus:ring-2 focus:ring-[#2F855A]/20"
           />
           {searchQuery.trim().length > 0 && (
             <button
@@ -123,7 +113,7 @@ export function PregnancyTab({
               onClick={() => setSearchQuery("")}
               aria-label="Clear search"
               title="Clear search"
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text-ink)] hover:bg-[var(--bg-subtle)] transition-colors cursor-pointer"
             >
               <X className="w-3.5 h-3.5" />
             </button>

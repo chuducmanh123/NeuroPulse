@@ -37,32 +37,28 @@ export function NovelCard({
   if (!novel) return null;
 
   return (
-    <div
-      className={`p-5 sm:p-6 rounded-2xl border transition-all shadow-sm space-y-5 ${
-        darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200"
-      }`}
-    >
+    <div className="p-5 sm:p-6 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] hover:border-[#2F855A]/50 transition-all shadow-2xs space-y-5">
       {/* Header */}
-      <div className="flex items-start justify-between gap-3 border-b border-slate-200/60 dark:border-slate-800/60 pb-3.5">
+      <div className="flex items-start justify-between gap-3 border-b border-[var(--border-hairline)] pb-3.5">
         <div>
           <div className="flex items-center gap-2">
-            <span className="p-2 rounded-xl bg-indigo-500/10 text-indigo-500">
+            <span className="p-2 rounded-xl bg-[#2F855A]/10 text-[#2F855A] dark:text-emerald-400">
               <Sparkles className="w-5 h-5" />
             </span>
-            <h3 className="text-base sm:text-lg font-black tracking-tight text-slate-900 dark:text-slate-100">
+            <h3 className="text-base sm:text-lg font-black tracking-tight text-[var(--text-ink)]">
               {displayName}
             </h3>
             {isDraft ? (
-              <span className="text-xs px-2 py-0.5 rounded-full font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+              <span className="text-xs px-2 py-0.5 rounded-full font-bold bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/20">
                 Pending verification
               </span>
             ) : (
-              <span className="text-xs px-2 py-0.5 rounded-full font-bold bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+              <span className="text-xs px-2 py-0.5 rounded-full font-bold bg-[#2F855A]/15 text-[#2F855A] dark:text-emerald-400 border border-[#2F855A]/25">
                 Verified Protocol
               </span>
             )}
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-xs text-[var(--text-muted)] mt-1">
             {drug.classes.join(" • ")}
           </p>
         </div>
@@ -140,19 +136,15 @@ export function NovelCard({
             {novel.approvals.value.map((app, idx) => (
               <div
                 key={idx}
-                className={`p-3 rounded-xl border text-xs ${
-                  darkMode
-                    ? "bg-slate-950/40 border-slate-800"
-                    : "bg-slate-50 border-slate-200"
-                }`}
+                className="p-3 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-xs"
               >
-                <div className="font-bold text-slate-900 dark:text-slate-100 flex items-center justify-between">
+                <div className="font-bold text-[var(--text-ink)] flex items-center justify-between">
                   <span>{app.agency}</span>
-                  <span className="text-[11px] font-normal text-slate-400">
+                  <span className="text-[11px] font-normal text-[var(--text-muted)]">
                     {app.date}
                   </span>
                 </div>
-                <p className="text-slate-600 dark:text-slate-400 mt-1">
+                <p className="text-[var(--text-secondary)] mt-1">
                   {app.indication}
                 </p>
               </div>
@@ -206,7 +198,7 @@ export function NovelCard({
               />
             )}
           </div>
-          <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium p-3 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800">
+          <p className="text-xs text-[var(--text-ink)] leading-relaxed font-medium p-3 rounded-xl bg-[var(--bg-paper)] border border-[var(--border-hairline)]">
             {novel.administration.value}
           </p>
         </div>

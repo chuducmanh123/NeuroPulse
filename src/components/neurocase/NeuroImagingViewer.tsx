@@ -26,15 +26,11 @@ export function NeuroImagingViewer({
   const zoomedImg = zoomIndex !== null ? imagingList[zoomIndex] : null;
 
   return (
-    <div
-      className={`rounded-xl border overflow-hidden ${
-        darkMode ? "bg-slate-900 border-slate-800" : "bg-slate-950 border-slate-800 text-white"
-      }`}
-    >
+    <div className="rounded-2xl border border-slate-800 bg-[#0D111A] text-white overflow-hidden">
       {/* Minimal NEJM-Style Viewer Toolbar */}
-      <div className="px-3.5 py-2 bg-slate-950 border-b border-slate-800/90 flex flex-wrap items-center justify-between gap-2">
+      <div className="px-4 py-2.5 bg-[#0D111A] border-b border-slate-800 flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+          <span className="text-[10.5px] font-bold uppercase tracking-wider text-slate-300">
             {imagingList.length > 1
               ? `${imagingList.length} Clinical Figures`
               : imagingList[0].modality || "Clinical & Imaging"}
@@ -47,7 +43,7 @@ export function NeuroImagingViewer({
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[11px] font-bold text-sky-400 hover:text-sky-300 underline"
+              className="text-[11px] font-bold text-indigo-300 hover:text-indigo-200 underline"
             >
               Source: {imagingList[0].pmcid} ↗
             </a>
@@ -58,7 +54,7 @@ export function NeuroImagingViewer({
           <button
             type="button"
             onClick={() => setZoomIndex(0)}
-            className="px-2.5 py-1 rounded text-[11px] font-bold bg-slate-800 text-slate-200 hover:bg-slate-700"
+            className="px-2.5 py-1 rounded-lg text-[10.5px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition-colors"
           >
             🔍 Enlarge
           </button>
@@ -66,14 +62,14 @@ export function NeuroImagingViewer({
       </div>
 
       {/* Stacked / Multi-Panel Clinical & Imaging Figures with Captions Directly Underneath */}
-      <div className="p-2.5 bg-black space-y-3">
+      <div className="p-3 bg-black space-y-3">
         {imagingList.map((img, idx) => {
           const isCaptionRevealed = isSolved || Boolean(revealedCaptions[idx]);
 
           return (
             <div
               key={idx}
-              className="rounded-lg bg-slate-950 border border-slate-800/80 overflow-hidden flex flex-col"
+              className="rounded-xl bg-[#0D111A] border border-slate-800/80 overflow-hidden flex flex-col"
             >
               {/* Figure Image with reserved aspect ratio & min-height to eliminate CLS */}
               <div
@@ -91,16 +87,16 @@ export function NeuroImagingViewer({
                 </span>
               </div>
 
-              {/* Caption Directly Underneath the Image (Hidden by default during challenge, revealed on click or when solved) */}
+              {/* Caption Directly Underneath the Image */}
               {(img.caption || img.figure_label || img.modality) && (
-                <div className="p-3 bg-slate-900/90 border-t border-slate-800 text-xs space-y-2">
+                <div className="p-3 bg-[#0D111A] border-t border-slate-800 text-xs space-y-2">
                   <div className="flex items-center justify-between gap-2 flex-wrap">
                     <div className="flex items-center gap-2">
-                      <span className="text-[11px] font-black uppercase tracking-wider text-indigo-400">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-300">
                         {img.figure_label || (imagingList.length > 1 ? `Figure ${idx + 1}` : "Figure")}
                       </span>
                       {img.modality && (
-                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">
+                        <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">
                           {img.modality}
                         </span>
                       )}
@@ -115,9 +111,9 @@ export function NeuroImagingViewer({
                             [idx]: !prev[idx],
                           }))
                         }
-                        className="px-2.5 py-1 rounded text-[11px] font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors flex items-center gap-1 border border-slate-700/60"
+                        className="px-2.5 py-1 rounded-lg text-[10.5px] font-medium bg-slate-800 hover:bg-slate-700 text-indigo-300 transition-colors flex items-center gap-1"
                       >
-                        <span>{isCaptionRevealed ? "🙈 Hide Caption" : "👁️ Show Caption Hint"}</span>
+                        <span>{isCaptionRevealed ? "👁 Hide Caption Hint" : "👁 Show Caption Hint"}</span>
                       </button>
                     )}
                   </div>

@@ -120,17 +120,13 @@ export function DrugAccordions({
 
   return (
     <div className="space-y-4 pt-2">
-      <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 px-1">
+      <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)] px-1">
         Clinical Reference &amp; Pharmacology Accordions
       </h3>
 
       {/* Accordion 1: Pregnancy & Lactation (Rose Theme) */}
       {hasPregnancyData && rep && (
-        <div
-          className={`rounded-2xl border border-l-4 border-l-rose-500 transition-colors overflow-hidden ${
-            darkMode ? "bg-slate-900/80 border-rose-900/40" : "bg-white border-rose-200/80 shadow-sm"
-          }`}
-        >
+        <div className="rounded-2xl border border-[var(--border-hairline)] border-l-4 border-l-rose-500 bg-[var(--bg-surface)] shadow-xs transition-colors overflow-hidden">
           <button
             type="button"
             onClick={() => toggleSection("pregnancy")}
@@ -332,11 +328,7 @@ export function DrugAccordions({
 
       {/* Accordion 2: Neuro Clinical Notes & Pharmacogenomics (Amber Theme) */}
       {hasNeuroNotes && (
-        <div
-          className={`rounded-2xl border border-l-4 border-l-amber-500 transition-colors overflow-hidden ${
-            darkMode ? "bg-slate-900/80 border-amber-900/40" : "bg-white border-amber-200/80 shadow-sm"
-          }`}
-        >
+        <div className="rounded-2xl border border-[var(--border-hairline)] border-l-4 border-l-amber-500 bg-[var(--bg-surface)] shadow-xs transition-colors overflow-hidden">
           <button
             type="button"
             onClick={() => toggleSection("neuro")}
@@ -457,11 +449,7 @@ export function DrugAccordions({
 
       {/* Accordion 3: Pharmacokinetics & Hepatic (Sky Theme) */}
       {hasPkData && (
-        <div
-          className={`rounded-2xl border border-l-4 border-l-sky-500 transition-colors overflow-hidden ${
-            darkMode ? "bg-slate-900/80 border-sky-900/40" : "bg-white border-sky-200/80 shadow-sm"
-          }`}
-        >
+        <div className="rounded-2xl border border-[var(--border-hairline)] border-l-4 border-l-sky-500 bg-[var(--bg-surface)] shadow-xs transition-colors overflow-hidden">
           <button
             type="button"
             onClick={() => toggleSection("pk")}
@@ -686,11 +674,7 @@ export function DrugAccordions({
 
       {/* Accordion 4: Drug Interactions (FDA Prescribing Information) (Purple Theme) */}
       {hasInteractionsData && fdaInteractions && fdaInteractions.value && (
-        <div
-          className={`rounded-2xl border border-l-4 border-l-purple-500 transition-colors overflow-hidden ${
-            darkMode ? "bg-slate-900/80 border-purple-900/40" : "bg-white border-purple-200/80 shadow-sm"
-          }`}
-        >
+        <div className="rounded-2xl border border-[var(--border-hairline)] border-l-4 border-l-purple-500 bg-[var(--bg-surface)] shadow-xs transition-colors overflow-hidden">
           <button
             type="button"
             onClick={() => toggleSection("interactions")}
@@ -790,73 +774,65 @@ export function DrugAccordions({
 
       {/* Accordion 5: Ecosystem Links (Indigo Theme) */}
       {hasLinks && links && (
-        <div
-          className={`rounded-2xl border border-l-4 border-l-indigo-500 transition-colors overflow-hidden ${
-            darkMode ? "bg-slate-900/80 border-indigo-900/40" : "bg-white border-indigo-200/80 shadow-sm"
-          }`}
-        >
+        <div className="rounded-2xl border border-[var(--border-hairline)] border-l-4 border-l-indigo-500 bg-[var(--bg-surface)] shadow-xs transition-colors overflow-hidden">
           <button
             type="button"
             onClick={() => toggleSection("ecosystem")}
             className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base transition-colors ${
               openSections.ecosystem
-                ? darkMode
-                  ? "bg-indigo-950/25 text-indigo-300"
-                  : "bg-indigo-50/60 text-indigo-900"
-                : darkMode
-                ? "hover:bg-indigo-950/20 text-slate-800 dark:text-slate-200"
-                : "hover:bg-indigo-50/40 text-slate-800"
+                ? "bg-indigo-50/60 dark:bg-indigo-950/25 text-indigo-900 dark:text-indigo-300"
+                : "hover:bg-[var(--bg-subtle)] text-[var(--text-ink)]"
             }`}
           >
             <div className="flex items-center gap-2.5 min-w-0 flex-1">
               <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-500 shrink-0">
                 <LinkIcon className="w-5 h-5" />
               </div>
-              <span className="text-slate-900 dark:text-white font-bold text-sm sm:text-base break-words">
+              <span className="text-[var(--text-ink)] font-bold text-sm sm:text-base break-words">
                 NeuroPulse Ecosystem Integration
               </span>
             </div>
-            {openSections.ecosystem ? <ChevronUp className="w-5 h-5 text-slate-400 shrink-0" /> : <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />}
+            {openSections.ecosystem ? <ChevronUp className="w-5 h-5 text-[var(--text-muted)] shrink-0" /> : <ChevronDown className="w-5 h-5 text-[var(--text-muted)] shrink-0" />}
           </button>
 
           {openSections.ecosystem && (
-            <div className="p-4 sm:p-5 pt-0 grid grid-cols-1 sm:grid-cols-2 gap-3 border-t border-slate-100 dark:border-slate-800/80">
+            <div className="p-4 sm:p-5 pt-0 grid grid-cols-1 sm:grid-cols-2 gap-3 border-t border-[var(--border-hairline)]">
               {links.neuroguide && (
                 <a
                   href={`/neuroguide?q=${encodeURIComponent(drug.generic_name)}`}
-                  className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-amber-400 transition-colors flex items-center justify-between mt-3"
+                  className="p-3.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] hover:border-[#C25934] transition-colors flex items-center justify-between mt-3"
                 >
                   <div>
-                    <span className="font-extrabold text-slate-900 dark:text-slate-100 text-sm sm:text-base block">NeuroGuide</span>
-                    <span className="text-slate-500 text-xs sm:text-sm font-medium">Clinical practice guidelines</span>
+                    <span className="font-extrabold text-[var(--text-ink)] text-sm sm:text-base block">NeuroGuide</span>
+                    <span className="text-[var(--text-muted)] text-xs sm:text-sm font-medium">Clinical practice guidelines</span>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-amber-500" />
+                  <ExternalLink className="w-4 h-4 text-[#C25934]" />
                 </a>
               )}
 
               {links.neurocase && (
                 <a
                   href={`/neurocase?q=${encodeURIComponent(drug.generic_name)}`}
-                  className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 transition-colors flex items-center justify-between mt-3"
+                  className="p-3.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] hover:border-[#6D28D9] transition-colors flex items-center justify-between mt-3"
                 >
                   <div>
-                    <span className="font-extrabold text-slate-900 dark:text-slate-100 text-sm sm:text-base block">NeuroCase</span>
-                    <span className="text-slate-500 text-xs sm:text-sm font-medium">Real-world case discussions</span>
+                    <span className="font-extrabold text-[var(--text-ink)] text-sm sm:text-base block">NeuroCase</span>
+                    <span className="text-[var(--text-muted)] text-xs sm:text-sm font-medium">Real-world case discussions</span>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-indigo-500" />
+                  <ExternalLink className="w-4 h-4 text-[#6D28D9]" />
                 </a>
               )}
 
               {links.neuropulse && (
                 <a
-                  href={`/?q=${encodeURIComponent(drug.generic_name)}`}
-                  className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-rose-400 transition-colors flex items-center justify-between"
+                  href={`/neuropulse?q=${encodeURIComponent(drug.generic_name)}`}
+                  className="p-3.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] hover:border-[#B91C1C] transition-colors flex items-center justify-between mt-3"
                 >
                   <div>
-                    <span className="font-bold text-slate-800 dark:text-slate-200 block">NeuroPulse Monitor</span>
-                    <span className="text-slate-500 text-xs">Pivotal trials &amp; literature</span>
+                    <span className="font-extrabold text-[var(--text-ink)] text-sm sm:text-base block">NeuroPulse Monitor</span>
+                    <span className="text-[var(--text-muted)] text-xs sm:text-sm font-medium">Pivotal trials &amp; literature</span>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-rose-500" />
+                  <ExternalLink className="w-4 h-4 text-[#B91C1C]" />
                 </a>
               )}
             </div>

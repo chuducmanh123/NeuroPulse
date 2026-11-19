@@ -89,7 +89,7 @@ export function GuidelinePresentationRenderer({
       {/* View Switcher Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-1">
         <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          <span className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-[var(--text-muted)]">
             Format:
           </span>
           <span className={`px-2 py-0.5 rounded text-[10.5px] sm:text-[11px] font-bold ${
@@ -97,21 +97,21 @@ export function GuidelinePresentationRenderer({
               ? "bg-red-500/15 text-red-700 dark:text-red-400 border border-red-500/30"
               : isEso
               ? "bg-blue-500/15 text-blue-700 dark:text-blue-400 border border-blue-500/30"
-              : "bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
+              : "bg-[var(--bg-subtle)] text-[var(--text-secondary)] border border-[var(--border-hairline)]"
           }`}>
             <span className="sm:hidden">{isAha ? "AHA Standard" : isEso ? "ESO GRADE Standard" : "Standard"}</span>
             <span className="hidden sm:inline">{isAha ? "AHA/ASA Official Standard (Figures 1 & 2)" : isEso ? "ESO Official GRADE Standard (Figure 3)" : "Standard Format"}</span>
           </span>
         </div>
 
-        <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900 p-0.5 rounded-lg border border-slate-200 dark:border-slate-800 self-start sm:self-auto">
+        <div className="flex items-center gap-1 bg-[var(--bg-subtle)] p-0.5 rounded-lg border border-[var(--border-hairline)] self-start sm:self-auto">
           <button
             type="button"
             onClick={() => setViewMode("society")}
             className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === "society"
-                ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs"
-                : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+                ? "bg-[var(--bg-surface)] text-[#C25934] dark:text-orange-400 shadow-2xs"
+                : "text-[var(--text-muted)] hover:text-[var(--text-ink)]"
             }`}
           >
             📋 <span className="sm:hidden">Standard ({isAha ? "AHA" : isEso ? "ESO" : "Table"})</span><span className="hidden sm:inline">Society Standard ({isAha ? "AHA" : isEso ? "ESO" : "Table"})</span>
@@ -121,8 +121,8 @@ export function GuidelinePresentationRenderer({
             onClick={() => setViewMode("card")}
             className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === "card"
-                ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs"
-                : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+                ? "bg-[var(--bg-surface)] text-[#C25934] dark:text-orange-400 shadow-2xs"
+                : "text-[var(--text-muted)] hover:text-[var(--text-ink)]"
             }`}
           >
             🗂️ Summary Cards
@@ -179,17 +179,15 @@ export function GuidelinePresentationRenderer({
           {doc.allPracticeChanges.map((change) => (
             <div
               key={change.id}
-              className={`p-3.5 rounded-xl border text-xs leading-relaxed transition-all ${
-                darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200"
-              }`}
+              className="p-3.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-xs leading-relaxed transition-all"
             >
               <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
-                <span className="font-bold text-slate-900 dark:text-slate-100">{change.topic}</span>
-                <span className="font-mono text-[10.5px] font-black px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                <span className="font-bold text-[var(--text-ink)]">{change.topic}</span>
+                <span className="font-mono text-[10.5px] font-black px-2 py-0.5 rounded bg-[#C25934]/10 text-[#C25934] dark:text-orange-400 border border-[#C25934]/20">
                   {change.currentGrade}
                 </span>
               </div>
-              <p className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">{change.currentText}</p>
+              <p className="text-[var(--text-secondary)] leading-relaxed whitespace-pre-line">{change.currentText}</p>
             </div>
           ))}
         </div>

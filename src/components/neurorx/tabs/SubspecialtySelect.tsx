@@ -67,12 +67,13 @@ export function SubspecialtySelect({
       options={selectOptions}
       ariaLabel="Filter by subspecialty"
       darkMode={darkMode}
-      accent="cyan"
+      accent="teal"
       align="right"
+      compact={true}
       className={className}
       icon={
         <Layers
-          className={`w-4 h-4 ${darkMode ? "text-cyan-400" : "text-cyan-600"}`}
+          className="w-4 h-4 text-[#2F855A] dark:text-emerald-400"
           aria-hidden="true"
         />
       }

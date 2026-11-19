@@ -42,7 +42,7 @@ export function CaseChallenge({
       {/* 2-COLUMN SPLIT VIEW: LEFT = NEUROIMAGING FIGURES | RIGHT = VIGNETTE & MCQ */}
       <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-7 items-start">
         {/* LEFT COLUMN: STICKY NEUROIMAGING VIEWER */}
-        <div className="lg:col-span-5 lg:sticky lg:top-4">
+        <div className="lg:col-span-5 lg:sticky lg:top-20">
           <NeuroImagingViewer
             imagingList={currentCase.presentation.imaging}
             isSolved={isSolved}
@@ -52,9 +52,9 @@ export function CaseChallenge({
 
         {/* RIGHT COLUMN: CLINICAL VIGNETTE + MULTI-ATTEMPT MCQ + ACTION BUTTONS */}
         <div className="lg:col-span-7 space-y-4">
-          {/* Clinical Vignette Paragraph (NEJM Style) */}
-          <div className="space-y-3 text-sm sm:text-[15px] leading-relaxed">
-            <p className={darkMode ? "text-slate-200 font-normal" : "text-slate-800 font-normal"}>
+          {/* Clinical Vignette Paragraph */}
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p className="text-[var(--text-secondary)] font-normal">
               {currentCase.presentation.history_of_present_illness}{" "}
               {currentCase.presentation.neuro_exam}{" "}
               {currentCase.presentation.key_labs_csf}
@@ -66,7 +66,7 @@ export function CaseChallenge({
                 <button
                   type="button"
                   onClick={() => setShowDetailedWorkup((prev) => !prev)}
-                  className="text-xs font-bold text-indigo-500 hover:underline flex items-center gap-1"
+                  className="text-xs font-bold text-[#6D28D9] dark:text-violet-400 hover:underline flex items-center gap-1"
                 >
                   <span>
                     {showDetailedWorkup
@@ -80,62 +80,56 @@ export function CaseChallenge({
                 </button>
 
                 {showDetailedWorkup && (
-                  <div
-                    className={`mt-2.5 p-3.5 rounded-xl border text-xs space-y-2.5 ${
-                      darkMode
-                        ? "bg-slate-800/60 border-slate-700 text-slate-200"
-                        : "bg-slate-50 border-slate-200 text-slate-700"
-                    }`}
-                  >
+                  <div className="mt-2.5 p-3.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/70 text-[var(--text-secondary)] text-xs space-y-2.5">
                     {currentCase.presentation.demographics && (
                       <div>
-                        <strong className="font-bold">Demographics: </strong>
+                        <strong className="font-bold text-[var(--text-ink)]">Demographics: </strong>
                         {currentCase.presentation.demographics}
                       </div>
                     )}
                     {currentCase.presentation.past_medical_history && (
                       <div>
-                        <strong className="font-bold">Past Medical History: </strong>
+                        <strong className="font-bold text-[var(--text-ink)]">Past Medical History: </strong>
                         {currentCase.presentation.past_medical_history}
                       </div>
                     )}
                     {hasVitals(currentCase.presentation.vitals) && (
                       <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5 pt-1 text-center">
                         {currentCase.presentation.vitals?.bp && (
-                          <div className="p-1.5 rounded bg-slate-900 text-white">
-                            <span className="text-[9px] text-slate-400 block">BP</span>
+                          <div className="p-1.5 rounded-lg bg-[#1C1917] text-white">
+                            <span className="text-[9px] text-stone-400 block">BP</span>
                             <span className="font-bold text-[11px] text-emerald-400">
                               {currentCase.presentation.vitals.bp}
                             </span>
                           </div>
                         )}
                         {currentCase.presentation.vitals?.hr && (
-                          <div className="p-1.5 rounded bg-slate-900 text-white">
-                            <span className="text-[9px] text-slate-400 block">HR</span>
+                          <div className="p-1.5 rounded-lg bg-[#1C1917] text-white">
+                            <span className="text-[9px] text-stone-400 block">HR</span>
                             <span className="font-bold text-[11px] text-amber-300">
                               {currentCase.presentation.vitals.hr}
                             </span>
                           </div>
                         )}
                         {currentCase.presentation.vitals?.rr && (
-                          <div className="p-1.5 rounded bg-slate-900 text-white">
-                            <span className="text-[9px] text-slate-400 block">RR</span>
+                          <div className="p-1.5 rounded-lg bg-[#1C1917] text-white">
+                            <span className="text-[9px] text-stone-400 block">RR</span>
                             <span className="font-bold text-[11px] text-sky-300">
                               {currentCase.presentation.vitals.rr}
                             </span>
                           </div>
                         )}
                         {currentCase.presentation.vitals?.temp && (
-                          <div className="p-1.5 rounded bg-slate-900 text-white">
-                            <span className="text-[9px] text-slate-400 block">Temp</span>
+                          <div className="p-1.5 rounded-lg bg-[#1C1917] text-white">
+                            <span className="text-[9px] text-stone-400 block">Temp</span>
                             <span className="font-bold text-[11px]">
                               {currentCase.presentation.vitals.temp}
                             </span>
                           </div>
                         )}
                         {currentCase.presentation.vitals?.spo2 && (
-                          <div className="p-1.5 rounded bg-slate-900 text-white">
-                            <span className="text-[9px] text-slate-400 block">SpO2</span>
+                          <div className="p-1.5 rounded-lg bg-[#1C1917] text-white">
+                            <span className="text-[9px] text-stone-400 block">SpO2</span>
                             <span className="font-bold text-[11px] text-cyan-300">
                               {currentCase.presentation.vitals.spo2}
                             </span>
@@ -149,16 +143,27 @@ export function CaseChallenge({
             )}
 
             {/* Question Prompt */}
-            <p className={`font-bold pt-1 ${darkMode ? "text-white" : "text-slate-900"}`}>
+            <p className="font-bold pt-2 border-t border-[var(--border-hairline)] text-[var(--text-ink)]">
               {currentCase.challenge.question}
             </p>
           </div>
 
           {/* Option List */}
-          <div className="divide-y divide-slate-200 dark:divide-slate-800 border-t border-b border-slate-200 dark:border-slate-800">
-            {currentCase.challenge.options.map((opt) => {
+          <div className="space-y-2">
+            {currentCase.challenge.options.map((opt, idx) => {
               const isWrongAttempt = wrongList.includes(opt.id);
               const isCorrectOption = opt.id === currentCase.challenge.correct_option;
+              const letter = String.fromCharCode(65 + idx);
+
+              let cardClasses =
+                "border-[var(--border-hairline)] bg-[var(--bg-paper)] hover:border-[#6D28D9]";
+              if (isSolved && isCorrectOption) {
+                cardClasses =
+                  "border-emerald-600 bg-emerald-50/90 dark:bg-emerald-950/40 dark:border-emerald-500";
+              } else if (isWrongAttempt) {
+                cardClasses =
+                  "border-rose-500 bg-rose-50/90 dark:bg-rose-950/40 dark:border-rose-500";
+              }
 
               return (
                 <div
@@ -168,40 +173,34 @@ export function CaseChallenge({
                       onSelectOption(currentCase, opt.id);
                     }
                   }}
-                  className={`py-2.5 px-2.5 transition-colors ${
-                    isSolved || isWrongAttempt
-                      ? "cursor-default"
-                      : "cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                  className={`rounded-xl border px-4 py-3 transition-all ${cardClasses} ${
+                    isSolved || isWrongAttempt ? "cursor-default" : "cursor-pointer"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-start gap-3">
                       {isSolved && isCorrectOption ? (
-                        <span className="w-5 h-5 rounded-full bg-emerald-600 text-white text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
+                        <span className="w-5 h-5 rounded-full bg-emerald-600 text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">
                           ✓
                         </span>
                       ) : isWrongAttempt ? (
-                        <span className="w-5 h-5 rounded-full bg-rose-600 text-white text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
+                        <span className="w-5 h-5 rounded-full bg-rose-600 text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">
                           ✕
                         </span>
                       ) : (
-                        <span
-                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 mt-0.5 ${
-                            darkMode ? "border-slate-600" : "border-slate-300"
-                          }`}
-                        />
+                        <span className="w-5 h-5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
+                          {letter}
+                        </span>
                       )}
 
                       <div className="space-y-1">
                         <span
-                          className={`text-sm leading-snug block ${
+                          className={`text-xs sm:text-sm leading-snug block ${
                             isSolved && isCorrectOption
-                              ? "font-black text-emerald-600 dark:text-emerald-400"
+                              ? "font-bold text-emerald-900 dark:text-emerald-300"
                               : isWrongAttempt
-                              ? "font-bold text-rose-600 dark:text-rose-400"
-                              : darkMode
-                              ? "font-medium text-slate-200"
-                              : "font-medium text-slate-700"
+                              ? "font-semibold text-rose-800 dark:text-rose-300"
+                              : "font-medium text-[var(--text-ink)]"
                           }`}
                         >
                           {opt.text}
@@ -209,7 +208,7 @@ export function CaseChallenge({
 
                         {isWrongAttempt && !isSolved && (
                           <p className="text-xs text-rose-600 dark:text-rose-400 animate-fadeIn">
-                            <strong className="font-black">Try again!</strong> That is not the correct answer.
+                            <strong className="font-bold">Try again!</strong> That is not the correct answer.
                           </p>
                         )}
                       </div>
@@ -219,8 +218,14 @@ export function CaseChallenge({
                   {/* Option Rationale */}
                   {isSolved && (
                     <div className="mt-2 pl-8 space-y-1">
-                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                        <strong className={`font-black ${isCorrectOption ? "text-emerald-600 dark:text-emerald-400" : ""}`}>
+                      <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
+                        <strong
+                          className={`font-bold ${
+                            isCorrectOption
+                              ? "text-emerald-700 dark:text-emerald-400"
+                              : "text-[var(--text-ink)]"
+                          }`}
+                        >
                           {isCorrectOption ? "Correct Answer: " : "Differential Note: "}
                         </strong>
                         {opt.rationale}
@@ -238,11 +243,7 @@ export function CaseChallenge({
               <button
                 type="button"
                 onClick={onNextChallenge}
-                className={`flex-1 py-2.5 px-4 rounded-lg border text-xs font-black uppercase tracking-wider transition-colors ${
-                  darkMode
-                    ? "border-slate-700 text-slate-200 hover:bg-slate-800"
-                    : "border-slate-300 text-slate-800 hover:bg-slate-100"
-                }`}
+                className="flex-1 py-2.5 px-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-xs font-bold uppercase tracking-wider text-[var(--text-ink)] hover:bg-[var(--bg-subtle)] transition-colors"
               >
                 NEXT CHALLENGE
               </button>
@@ -252,7 +253,7 @@ export function CaseChallenge({
               <button
                 type="button"
                 onClick={() => onResetAttempt(currentCase.id)}
-                className="py-2.5 px-5 rounded-lg text-xs font-black uppercase tracking-wider bg-sky-800 hover:bg-sky-900 text-white transition-colors flex items-center gap-1.5"
+                className="py-2.5 px-5 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#6D28D9] hover:bg-[#5B21B6] text-white transition-colors flex items-center gap-1.5"
               >
                 <span>↻</span>
                 <span>TRY AGAIN</span>
@@ -264,9 +265,9 @@ export function CaseChallenge({
 
       {/* UNLOCKED RESOLUTION */}
       {isSolved && (
-        <div className="p-4 sm:p-6 border-t border-slate-200 dark:border-slate-800 space-y-5 animate-fadeIn">
+        <div className="p-4 sm:p-6 border-t border-[var(--border-hairline)] space-y-5 animate-fadeIn">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <h3 className="text-sm font-black uppercase tracking-wider text-emerald-500">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
               Final Diagnosis, Teaching Points &amp; Clinical Pitfalls
             </h3>
 
@@ -275,7 +276,7 @@ export function CaseChallenge({
                 href={currentCase.source_journal.doi_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-bold text-indigo-500 hover:underline"
+                className="text-xs font-bold text-[#6D28D9] dark:text-violet-400 hover:underline"
               >
                 Published Source: {currentCase.source_journal.name} (
                 {currentCase.source_journal.pmcid || currentCase.source_journal.pub_year}) ↗
@@ -284,45 +285,39 @@ export function CaseChallenge({
           </div>
 
           {/* Final Diagnosis Box */}
-          <div className="p-4 rounded-xl bg-gradient-to-r from-emerald-950 via-slate-900 to-indigo-950 text-white border border-emerald-600/50">
-            <span className="text-[10px] font-black uppercase tracking-wider text-emerald-400 block mb-1">
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-[#141824] via-[#1E192B] to-[#1A2922] text-white border border-emerald-600/40">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 block mb-1">
               FINAL CLINICAL DIAGNOSIS • {currentCase.case_code}
             </span>
-            <p className="text-base sm:text-lg font-black">{currentCase.resolution.final_diagnosis}</p>
+            <p className="text-base sm:text-lg font-bold">{currentCase.resolution.final_diagnosis}</p>
           </div>
 
           {/* Clinical Discussion */}
-          <div className="text-xs sm:text-sm leading-relaxed space-y-2 whitespace-pre-line">
-            <h4 className="font-black uppercase text-xs text-indigo-500">📖 Clinical Discussion:</h4>
+          <div className="text-xs sm:text-sm leading-relaxed space-y-2 whitespace-pre-line text-[var(--text-secondary)]">
+            <h4 className="font-bold uppercase text-xs text-[#6D28D9] dark:text-violet-400">
+              📖 Clinical Discussion:
+            </h4>
             <p>{currentCase.resolution.clinical_discussion}</p>
           </div>
 
           {/* Teaching Points & Clinical Pitfalls */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div
-              className={`p-4 rounded-xl border ${
-                darkMode ? "bg-emerald-950/30 border-emerald-800/70" : "bg-emerald-50/70 border-emerald-200"
-              }`}
-            >
-              <h4 className="text-xs font-black uppercase text-emerald-600 dark:text-emerald-400 mb-2">
+            <div className="p-4 rounded-2xl border border-emerald-200 dark:border-emerald-800/70 bg-emerald-50/75 dark:bg-emerald-950/30">
+              <h4 className="text-xs font-bold uppercase text-emerald-700 dark:text-emerald-400 mb-2">
                 💡 High-Yield Teaching Points
               </h4>
-              <ul className="space-y-2 text-xs leading-relaxed list-disc pl-4">
+              <ul className="space-y-2 text-xs leading-relaxed list-disc pl-4 text-[var(--text-ink)]">
                 {currentCase.resolution.teaching_points.map((tp, i) => (
                   <li key={i}>{tp}</li>
                 ))}
               </ul>
             </div>
 
-            <div
-              className={`p-4 rounded-xl border ${
-                darkMode ? "bg-rose-950/30 border-rose-800/70" : "bg-rose-50/70 border-rose-200"
-              }`}
-            >
-              <h4 className="text-xs font-black uppercase text-rose-600 dark:text-rose-400 mb-2">
+            <div className="p-4 rounded-2xl border border-rose-200 dark:border-rose-800/70 bg-rose-50/75 dark:bg-rose-950/30">
+              <h4 className="text-xs font-bold uppercase text-rose-700 dark:text-rose-400 mb-2">
                 ⚠️ Clinical Pitfalls to Avoid
               </h4>
-              <ul className="space-y-2 text-xs leading-relaxed list-disc pl-4">
+              <ul className="space-y-2 text-xs leading-relaxed list-disc pl-4 text-[var(--text-ink)]">
                 {currentCase.resolution.clinical_pitfalls.map((pf, i) => (
                   <li key={i}>{pf}</li>
                 ))}
@@ -332,16 +327,15 @@ export function CaseChallenge({
 
           {/* Related Pulse Articles */}
           {relatedPulseArticles.length > 0 && (
-            <div
-              className={`p-4 rounded-xl border ${
-                darkMode ? "bg-slate-800/70 border-slate-700" : "bg-slate-50 border-slate-200"
-              }`}
-            >
+            <div className="p-4 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/65">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-black uppercase text-indigo-500 flex items-center gap-1.5">
+                <span className="text-xs font-bold uppercase text-[#6D28D9] dark:text-violet-400 flex items-center gap-1.5">
                   <span>🔗 Related Literature on NeuroPulse</span>
                 </span>
-                <Link href="/" className="text-xs font-bold text-indigo-500 hover:underline">
+                <Link
+                  href="/neuropulse"
+                  className="text-xs font-bold text-[#6D28D9] dark:text-violet-400 hover:underline"
+                >
                   Open NeuroPulse →
                 </Link>
               </div>
@@ -352,15 +346,11 @@ export function CaseChallenge({
                     href={art.doi_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`p-3 rounded-lg border block transition-all ${
-                      darkMode
-                        ? "bg-slate-900 border-slate-700 hover:border-indigo-500"
-                        : "bg-white border-slate-200 hover:border-indigo-400"
-                    }`}
+                    className="p-3 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] hover:border-[#6D28D9] block transition-all"
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <span
-                        className="px-1.5 py-0.5 rounded text-[9px] font-black uppercase"
+                        className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase"
                         style={{
                           backgroundColor: art.journal.badge_bg,
                           color: art.journal.badge_text,
@@ -368,9 +358,9 @@ export function CaseChallenge({
                       >
                         {art.journal.short_name}
                       </span>
-                      <span className="text-[10px] text-slate-400">{art.pub_date}</span>
+                      <span className="text-[10px] text-[var(--text-muted)]">{art.pub_date}</span>
                     </div>
-                    <p className="text-xs font-bold leading-snug">{art.title}</p>
+                    <p className="text-xs font-bold leading-snug text-[var(--text-ink)]">{art.title}</p>
                   </a>
                 ))}
               </div>

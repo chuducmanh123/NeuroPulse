@@ -130,12 +130,12 @@ export function CustomSelect<T extends string = string>({
           ACCENT_RING[accent]
         } ${
           compact
-            ? "min-h-[34px] px-2.5 py-1 rounded-lg text-xs font-semibold"
+            ? "min-h-[34px] px-2.5 py-1.5 rounded-lg text-xs font-medium"
             : "min-h-[44px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold"
         } ${
           darkMode
-            ? "bg-slate-900 border-slate-700/80 text-slate-100 hover:border-slate-600"
-            : "bg-white border-slate-200 text-slate-800 hover:border-slate-300 shadow-xs"
+            ? "bg-[var(--bg-surface)] border-[var(--border-hairline)] text-[var(--text-ink)] hover:border-stone-600"
+            : "bg-[var(--bg-surface)] border-[var(--border-hairline)] text-[var(--text-ink)] hover:border-stone-300 shadow-xs"
         } ${buttonClassName}`}
       >
         <span className="flex items-center gap-2 min-w-0">
@@ -149,7 +149,7 @@ export function CustomSelect<T extends string = string>({
           </span>
         </span>
         <ChevronDown
-          className={`w-4 h-4 shrink-0 text-slate-400 transition-transform duration-150 ${
+          className={`w-4 h-4 shrink-0 text-[var(--text-muted)] transition-transform duration-150 ${
             isOpen ? "rotate-180" : ""
           }`}
           aria-hidden="true"
@@ -161,12 +161,12 @@ export function CustomSelect<T extends string = string>({
           id={listboxId}
           role="listbox"
           aria-label={ariaLabel}
-          className={`absolute z-50 mt-1.5 min-w-full w-max max-w-[min(22rem,calc(100vw-1.5rem))] rounded-xl border p-1.5 max-h-72 overflow-y-auto shadow-xl ${
+          className={`custom-scrollbar absolute z-50 mt-1.5 min-w-full w-max max-w-[min(22rem,calc(100vw-1.5rem))] rounded-xl border p-1.5 max-h-72 overflow-y-auto shadow-xl ${
             align === "right" ? "right-0" : "left-0"
           } ${
             darkMode
-              ? "bg-slate-900 border-slate-700/90 shadow-black/50"
-              : "bg-white border-slate-200 shadow-slate-900/10"
+              ? "bg-[var(--bg-surface)] border-[var(--border-hairline)] shadow-black/50"
+              : "bg-[var(--bg-surface)] border-[var(--border-hairline)] shadow-stone-900/10"
           } ${menuClassName}`}
         >
           {options.map((opt) => {
@@ -181,7 +181,9 @@ export function CustomSelect<T extends string = string>({
                   onChange(opt.value);
                   setIsOpen(false);
                 }}
-                className={`w-full flex items-center justify-between gap-2.5 px-2.5 py-2 rounded-lg text-left text-xs sm:text-sm transition-colors cursor-pointer ${
+                className={`w-full flex items-center justify-between gap-2.5 rounded-lg text-left transition-colors cursor-pointer ${
+                  compact ? "px-2.5 py-1.5 text-xs" : "px-2.5 py-2 text-xs sm:text-sm"
+                } ${
                   isSelected
                     ? `${darkMode ? accentStyle.dark : accentStyle.light} font-bold`
                     : darkMode

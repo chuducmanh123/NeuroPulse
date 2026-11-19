@@ -171,23 +171,19 @@ export function LookupTab({
           onChange={setSelectedSubspecialty}
           drugs={searchResults}
           darkMode={darkMode}
-          className="w-full sm:w-auto shrink-0 sm:mt-0.5"
+          className="w-full sm:w-auto shrink-0 sm:mt-1"
         />
       </div>
 
       {/* 2. Drug Cards Grid */}
       <div className="space-y-3">
         {filteredResults.length === 0 ? (
-          <div
-            className={`p-10 rounded-2xl border text-center ${
-              darkMode ? "bg-slate-900/40 border-slate-800" : "bg-white border-slate-200 shadow-sm"
-            }`}
-          >
-            <Pill className="w-8 h-8 mx-auto text-slate-400 mb-2" />
-            <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+          <div className="p-10 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-center shadow-2xs">
+            <Pill className="w-8 h-8 mx-auto text-[var(--text-muted)] mb-2" />
+            <p className="text-sm font-semibold text-[var(--text-ink)]">
               No drugs found matching criteria
             </p>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            <p className="text-xs text-[var(--text-muted)] mt-1">
               Try adjusting your search terms or filter selection.
             </p>
           </div>
@@ -210,15 +206,11 @@ export function LookupTab({
                       handleSelectDrug(drug.id);
                     }
                   }}
-                  className={`group min-h-[44px] p-4 sm:p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-4 hover:-translate-y-0.5 ${
-                    darkMode
-                      ? "bg-slate-900/70 border-slate-800/90 hover:border-cyan-500/50 hover:bg-slate-900 hover:shadow-lg hover:shadow-cyan-950/20"
-                      : "bg-white border-slate-200/90 hover:border-cyan-400 hover:shadow-md hover:shadow-cyan-100/40"
-                  }`}
+                  className="group min-h-[44px] p-4 sm:p-5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] hover:border-[#2F855A] dark:hover:border-emerald-500/60 hover:shadow-md transition-all cursor-pointer flex items-center justify-between gap-4 hover:-translate-y-0.5"
                 >
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2.5 flex-wrap">
-                      <span className="font-extrabold text-base sm:text-xl tracking-tight text-slate-900 dark:text-white">
+                      <span className="font-extrabold text-base sm:text-xl tracking-tight text-[var(--text-ink)] group-hover:text-[#2F855A] dark:group-hover:text-emerald-400 transition-colors">
                         {tallManName}
                       </span>
 
@@ -230,7 +222,7 @@ export function LookupTab({
 
                       {/* Brand tags */}
                       {drug.vn_products?.value && drug.vn_products.value.length > 0 && (
-                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold border border-slate-200/60 dark:border-slate-700/60">
+                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-[var(--bg-subtle)] text-[var(--text-secondary)] font-semibold border border-[var(--border-hairline)]">
                           Brand: {drug.vn_products.value.map((p) => p.brand).join(", ")}
                         </span>
                       )}
@@ -245,7 +237,7 @@ export function LookupTab({
                           <ShieldCheck className="w-4 h-4" />
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold border border-amber-500/20">
+                        <span className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400 font-bold border border-amber-500/20">
                           <AlertTriangle className="w-3.5 h-3.5" />
                           <span>Pending verification</span>
                         </span>
@@ -253,7 +245,7 @@ export function LookupTab({
                     </div>
 
                     {/* Classes */}
-                    <p className="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">
+                    <p className="text-xs sm:text-sm font-medium text-[var(--text-muted)] mt-1">
                       {drug.classes.join(" • ")}
                     </p>
 
@@ -262,7 +254,7 @@ export function LookupTab({
                       {drug.subspecialties?.map((sub) => (
                         <span
                           key={sub}
-                          className="px-2.5 py-0.5 rounded text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 uppercase tracking-wide border border-slate-200/50 dark:border-slate-700/50"
+                          className="px-2.5 py-0.5 rounded text-xs font-bold bg-[var(--bg-subtle)]/80 text-[var(--text-secondary)] uppercase tracking-wide border border-[var(--border-hairline)]"
                         >
                           {sub.replace(/_/g, " ")}
                         </span>
@@ -270,7 +262,7 @@ export function LookupTab({
                     </div>
                   </div>
 
-                  <div className="flex items-center text-slate-400 group-hover:text-cyan-500 pl-2">
+                  <div className="flex items-center text-[var(--text-muted)] group-hover:text-[#2F855A] dark:group-hover:text-emerald-400 pl-2">
                     <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5" />
                   </div>
                 </div>
