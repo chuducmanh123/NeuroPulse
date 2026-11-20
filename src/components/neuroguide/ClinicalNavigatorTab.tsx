@@ -2,6 +2,23 @@
 
 import React, { useState, useMemo, useDeferredValue, useEffect } from "react";
 import Link from "next/link";
+import {
+  SlidersHorizontal,
+  Search,
+  Link2,
+  Scale,
+  History,
+  FlaskConical,
+  Zap,
+  Library,
+  Pill,
+  ShieldCheck,
+  Landmark,
+  Mic,
+  Target,
+  Lightbulb,
+  Clock,
+} from "lucide-react";
 import type {
   GuidelineDoc,
   RecommendationAtom,
@@ -1520,8 +1537,9 @@ export function ClinicalNavigatorTab({
                     (selectedDomains.length === 0 &&
                       (normalizedFilterSearch.length > 0 || selectedDiagnosisTags.length > 0))) && (
                     <div className="p-3 rounded-xl bg-cyan-50/40 dark:bg-cyan-950/20 border border-cyan-200/70 dark:border-cyan-900/50 space-y-2.5">
-                      <span className="block text-[11px] font-extrabold text-cyan-800 dark:text-cyan-300">
-                        🔬 1. Diagnosis Modalities (System-Wide Canonical)
+                      <span className="flex items-center gap-1.5 text-[11px] font-extrabold text-cyan-800 dark:text-cyan-300">
+                        <FlaskConical size={13} strokeWidth={1.75} className="shrink-0" />
+                        <span>1. Diagnosis Modalities (System-Wide Canonical)</span>
                       </span>
                       {DIAGNOSIS_CATEGORIES_V3.map((cat) => {
                         const visibleItems = filterTagsBySearch(cat.items);
@@ -1578,14 +1596,16 @@ export function ClinicalNavigatorTab({
                         selectedInterventionTags.length > 0 ||
                         selectedTimeWindowId !== "all"))) && (
                     <div className="p-3 rounded-xl bg-teal-50/40 dark:bg-teal-950/20 border border-teal-200/70 dark:border-teal-900/50 space-y-3">
-                      <span className="block text-[11px] font-extrabold text-teal-800 dark:text-teal-300">
-                        💊 2. Treatment &amp; Acute Management
+                      <span className="flex items-center gap-1.5 text-[11px] font-extrabold text-teal-800 dark:text-teal-300">
+                        <Pill size={13} strokeWidth={1.75} className="shrink-0" />
+                        <span>2. Treatment &amp; Acute Management</span>
                       </span>
 
                       {treatmentSchema.timeWindows.length > 0 && (
                         <div className="space-y-1.5">
-                          <span className="block text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
-                            ⏱ Time Window
+                          <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
+                            <Clock size={11} strokeWidth={2} className="shrink-0" />
+                            <span>Time Window</span>
                           </span>
                           <div className="flex flex-wrap gap-1.5">
                             <button
@@ -1653,8 +1673,9 @@ export function ClinicalNavigatorTab({
                         normalizedFilterSearch.length > 0 ||
                         selectedInterventionTags.length > 0))) && (
                     <div className="p-3 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/70 dark:border-emerald-900/50 space-y-3">
-                      <span className="block text-[11px] font-extrabold text-emerald-800 dark:text-emerald-300">
-                        🛡️ 3. Prevention &amp; Secondary Care
+                      <span className="flex items-center gap-1.5 text-[11px] font-extrabold text-emerald-800 dark:text-emerald-300">
+                        <ShieldCheck size={13} strokeWidth={1.75} className="shrink-0" />
+                        <span>3. Prevention &amp; Secondary Care</span>
                       </span>
                       {renderInterventionGroup(
                         "Pharmacological Prophylaxis",
@@ -1904,8 +1925,9 @@ export function ClinicalNavigatorTab({
                 className="flex-1 flex items-center justify-between text-left"
               >
                 <div className="flex items-center gap-2">
-                  <h3 className="text-xs font-extrabold uppercase tracking-wider text-[var(--text-ink)]">
-                    🧭 Clinical Filter
+                  <h3 className="text-xs font-extrabold uppercase tracking-wider text-[var(--text-ink)] flex items-center gap-1.5">
+                    <SlidersHorizontal size={14} strokeWidth={1.75} className="text-[var(--text-muted)] shrink-0" />
+                    <span>Clinical Filter</span>
                   </h3>
                   {isQueryActive && (
                     <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-[#C25934] text-white">
@@ -1945,7 +1967,8 @@ export function ClinicalNavigatorTab({
                 <div className="flex flex-wrap gap-1">
                   {searchText.trim().length >= 2 && (
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-amber-100 text-amber-900 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
-                      🔍 &ldquo;{searchText.trim()}&rdquo;
+                      <Search size={11} strokeWidth={2} className="shrink-0" />
+                      <span>&ldquo;{searchText.trim()}&rdquo;</span>
                       <button
                         type="button"
                         onClick={() => setSearchText("")}
@@ -2015,8 +2038,9 @@ export function ClinicalNavigatorTab({
               onClick={() => setIsTopicsExpanded((prev) => !prev)}
               className="w-full flex items-center justify-between text-left"
             >
-              <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--text-ink)]">
-                ⚡ High-Yield Clinical Topics
+              <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--text-ink)] flex items-center gap-1.5">
+                <Zap size={14} strokeWidth={1.75} className="text-[var(--text-muted)] shrink-0" />
+                <span>High-Yield Clinical Topics</span>
               </h3>
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-semibold text-[var(--text-muted)]">
@@ -2078,8 +2102,8 @@ export function ClinicalNavigatorTab({
                   placeholder="Search guidelines, trials..."
                   className="w-full pl-8 pr-7 py-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#C25934] shadow-2xs"
                 />
-                <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] text-xs">
-                  🔍
+                <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-[var(--text-muted)]">
+                  <Search size={13} strokeWidth={1.75} />
                 </span>
                 {searchText && (
                   <button
@@ -2102,7 +2126,10 @@ export function ClinicalNavigatorTab({
                     : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border-[var(--border-hairline)] hover:border-[#C25934]"
                 }`}
               >
-                <span>🧭 Filters</span>
+                <span className="flex items-center gap-1.5">
+                  <SlidersHorizontal size={13} strokeWidth={1.75} />
+                  <span>Filters</span>
+                </span>
                 {isQueryActive && (
                   <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-white text-[#C25934]">
                     {activeFilterSummaryChips.length +
@@ -2168,7 +2195,8 @@ export function ClinicalNavigatorTab({
                 htmlFor="navigator-right-content-search"
                 className="text-xs font-extrabold uppercase tracking-wider text-[var(--text-ink)] flex items-center gap-1.5"
               >
-                <span>🔍 Search Guidelines, Trials &amp; Dosing</span>
+                <Search size={14} strokeWidth={1.75} className="text-[var(--text-muted)] shrink-0" />
+                <span>Search Guidelines, Trials &amp; Dosing</span>
               </label>
               {isQueryActive && (
                 <span className="text-[11px] font-bold text-[#C25934] dark:text-orange-400">
@@ -2201,88 +2229,16 @@ export function ClinicalNavigatorTab({
             </div>
           </div>
 
-          {!isQueryActive ? (
-            /* ZERO-QUERY EMPTY STATE WITH AUTO-DISPLAYED HIGH-YIELD TOPICS */
-            <div className="p-6 sm:p-8 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] shadow-2xs space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-[var(--border-hairline)]">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#C25934]/10 text-[#C25934] dark:text-orange-400 flex items-center justify-center text-xl shrink-0">
-                    🧭
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-extrabold text-[var(--text-ink)]">
-                      High-Yield Clinical Topics
-                    </h3>
-                    <p className="text-xs text-[var(--text-muted)]">
-                      Explore featured practice-changing trials, guidelines, and international concordance
-                    </p>
-                  </div>
-                </div>
-                {isAdminVerified && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setEditingTrial(null);
-                      setIsTrialModalOpen(true);
-                    }}
-                    className="px-3.5 py-2 rounded-xl bg-[#C25934] hover:bg-[#A64827] text-white text-xs font-bold shadow-xs transition flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
-                  >
-                    <span>＋</span> Add Pivotal Trial
-                  </button>
-                )}
-              </div>
-
-              {/* High-Yield Clinical Topics Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                {NAVIGATOR_QUICK_PRESETS.map((preset) => {
-                  const isSelected = activePresetId === preset.id;
-                  return (
-                    <button
-                      key={preset.id}
-                      type="button"
-                      onClick={() => handleApplyPreset(preset.id)}
-                      className={`text-left p-4 rounded-xl border transition-all flex flex-col justify-between gap-2.5 group hover:shadow-md cursor-pointer ${
-                        isSelected
-                          ? "bg-[#C25934]/10 border-[#C25934] ring-2 ring-[#C25934]/20"
-                          : "bg-[var(--bg-paper)] border-[var(--border-hairline)] hover:border-[#C25934]/60"
-                      }`}
-                    >
-                      <div className="space-y-1.5">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#C25934]/15 text-[#C25934] dark:text-orange-300">
-                            ⚡ {preset.badge}
-                          </span>
-                          <span className="text-[11px] font-bold text-[#C25934] dark:text-orange-400 group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
-                            Explore <span>→</span>
-                          </span>
-                        </div>
-                        <h4 className="text-xs sm:text-sm font-bold text-[var(--text-ink)] group-hover:text-[#C25934] dark:group-hover:text-orange-400 transition-colors">
-                          {preset.title}
-                        </h4>
-                        <p className="text-[11px] text-[var(--text-muted)] line-clamp-2 leading-relaxed">
-                          {preset.subtitle}
-                        </p>
-                      </div>
-                      <div className="pt-2 border-t border-[var(--border-hairline)] flex items-center justify-between text-[10px] text-[var(--text-muted)]">
-                        <span>Subspecialty: <strong className="text-[var(--text-secondary)]">{preset.query.subspecialty || "All"}</strong></span>
-                        <span>1-Click Preset</span>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          ) : (
-            <>
-              {/* Section View Switcher Bar + Ecosystem Links + Admin Actions */}
-              <div className="bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-hairline)] shadow-2xs overflow-hidden space-y-0">
+          {/* Section View Switcher Bar + Ecosystem Links + Admin Actions */}
+          <div className="bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-hairline)] shadow-2xs overflow-hidden space-y-0">
                 {/* Cross-Ecosystem & Admin Utility Bar */}
                 {(navResult.ecosystemLinks.length > 0 || isAdminVerified) && (
                   <div className="px-4 py-2.5 bg-[var(--bg-subtle)]/50 border-b border-[var(--border-hairline)] flex flex-wrap items-center justify-between gap-2.5">
                     {/* Cross-Ecosystem Quick Tools */}
                     <div className="flex flex-wrap items-center gap-1.5 text-xs">
                       <span className="text-[10px] font-black uppercase tracking-wider text-[var(--text-muted)] flex items-center gap-1 mr-1 shrink-0">
-                        <span>🔗</span> Cross-Ecosystem:
+                        <Link2 size={12} strokeWidth={1.75} className="shrink-0" />
+                        <span>Cross-Ecosystem:</span>
                       </span>
                       {navResult.ecosystemLinks.slice(0, 3).map((link, idx) => (
                         <Link
@@ -2323,21 +2279,21 @@ export function ClinicalNavigatorTab({
                         id: "MATRIX",
                         label: "Recommendations",
                         fullTitle: "Guideline Recommendations",
-                        icon: "⚖️",
+                        icon: Scale,
                         count: navResult.coreRecommendations.length,
                       },
                       {
                         id: "DIFF",
                         label: "Updates",
                         fullTitle: "Guideline Updates & Shifts",
-                        icon: "⏳",
+                        icon: History,
                         count: navResult.intraSocietyDiffs.length,
                       },
                       {
                         id: "TRIALS",
                         label: "Trials",
                         fullTitle: "Pivotal & Late-Breaking Clinical Trials",
-                        icon: "🔬",
+                        icon: FlaskConical,
                         count:
                           navResult.pivotalTrials.length +
                           navResult.lateBreakingTrials.length,
@@ -2346,32 +2302,41 @@ export function ClinicalNavigatorTab({
                         id: "CONCORDANCE",
                         label: "Consensus",
                         fullTitle: "Consensus & Divergence Matrix",
-                        icon: "⚡",
+                        icon: Zap,
                         count: navResult.concordanceAppraisal.societyStances.length,
                       },
                       {
                         id: "LITERATURE",
                         label: "Literature",
                         fullTitle: "Related Literature Articles",
-                        icon: "📚",
+                        icon: Library,
                         count: navResult.relatedArticles.length,
                       },
                     ] as const
                   ).map((tab) => {
                     const active = sectionView === tab.id;
+                    const TabIcon = tab.icon;
                     return (
                       <button
                         key={tab.id}
                         type="button"
                         title={tab.fullTitle}
                         onClick={() => setSectionView(tab.id as RightSectionFilter)}
-                        className={`pb-3 pt-3 px-1 text-xs font-bold border-b-2 whitespace-nowrap transition-all flex items-center gap-1.5 sm:gap-2 -mb-px shrink-0 ${
+                        className={`group pb-3 pt-3 px-1 text-xs font-bold border-b-2 whitespace-nowrap transition-all flex items-center gap-1.5 sm:gap-2 -mb-px shrink-0 ${
                           active
                             ? "border-[#C25934] text-[#C25934] dark:text-orange-400"
                             : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-ink)] hover:border-stone-300 dark:hover:border-stone-700"
                         }`}
                       >
-                        <span className="text-base leading-none">{tab.icon}</span>
+                        <TabIcon
+                          size={15}
+                          strokeWidth={1.75}
+                          className={
+                            active
+                              ? "text-[#C25934] dark:text-orange-400 shrink-0"
+                              : "text-[var(--text-muted)] group-hover:text-[var(--text-ink)] shrink-0"
+                          }
+                        />
                         <span>{tab.label}</span>
                         {tab.count !== null && (
                           <span
@@ -2443,9 +2408,10 @@ export function ClinicalNavigatorTab({
                             >
                               <div className="flex flex-wrap items-center gap-2">
                                 <span
-                                  className={`px-3 py-1 rounded-lg text-xs font-black border shadow-2xs ${theme.badge}`}
+                                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-black border shadow-2xs ${theme.badge}`}
                                 >
-                                  🏛️ {socGroup.society}
+                                  <Landmark size={13} strokeWidth={1.75} className="shrink-0" />
+                                  <span>{socGroup.society}</span>
                                 </span>
                                 <span
                                   className={`px-2 py-0.5 rounded-md text-xs font-bold ${theme.yearBadge}`}
@@ -2640,9 +2606,10 @@ export function ClinicalNavigatorTab({
                                 {diff.drivingTrials.map((tr) => (
                                   <span
                                     key={tr}
-                                    className="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300"
+                                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300"
                                   >
-                                    🔬 {tr}
+                                    <FlaskConical size={11} strokeWidth={1.75} className="shrink-0" />
+                                    <span>{tr}</span>
                                   </span>
                                 ))}
                               </div>
@@ -2692,8 +2659,9 @@ export function ClinicalNavigatorTab({
                   {navResult.lateBreakingTrials.length > 0 && (
                     <div className="pt-3 border-t border-[var(--border-hairline)] space-y-3">
                       <div className="flex items-center gap-2">
-                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold uppercase bg-[#C25934]/15 text-[#C25934] dark:text-orange-300 border border-[#C25934]/30">
-                          🎙️ Conference / Late-Breaking Evidence (Pre-Guideline Integration)
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold uppercase bg-[#C25934]/15 text-[#C25934] dark:text-orange-300 border border-[#C25934]/30">
+                          <Mic size={12} strokeWidth={1.75} className="shrink-0" />
+                          <span>Conference / Late-Breaking Evidence (Pre-Guideline Integration)</span>
                         </span>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -2809,8 +2777,8 @@ export function ClinicalNavigatorTab({
                     navResult.concordanceAppraisal.topicClusters.length > 0 && (
                       <div className="space-y-3 pt-2">
                         <div className="flex items-center justify-between">
-                          <h4 className="text-xs font-black uppercase tracking-wider text-[var(--text-secondary)] flex items-center gap-2">
-                            <span>🎯</span>
+                          <h4 className="text-xs font-black uppercase tracking-wider text-[var(--text-secondary)] flex items-center gap-1.5">
+                            <Target size={14} strokeWidth={1.75} className="text-[var(--text-muted)] shrink-0" />
                             <span>Topic-by-Topic Consensus Matrix ({navResult.concordanceAppraisal.topicClusters.length} Clinical Clusters)</span>
                           </h4>
                           <span className="text-[11px] text-[var(--text-muted)] font-medium">
@@ -2890,9 +2858,10 @@ export function ClinicalNavigatorTab({
                                     {cluster.keyDrivingTrials.map((tr) => (
                                       <span
                                         key={tr}
-                                        className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
+                                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
                                       >
-                                        🔬 {tr}
+                                        <FlaskConical size={10} strokeWidth={1.75} className="shrink-0" />
+                                        <span>{tr}</span>
                                       </span>
                                     ))}
                                   </div>
@@ -2926,8 +2895,9 @@ export function ClinicalNavigatorTab({
                     </div>
 
                     <div className="p-4 rounded-xl bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 space-y-2">
-                      <h4 className="text-xs font-extrabold uppercase tracking-wider text-amber-800 dark:text-amber-300">
-                        ⚡ Nuances &amp; Cross-Society Divergence
+                      <h4 className="text-xs font-extrabold uppercase tracking-wider text-amber-800 dark:text-amber-300 flex items-center gap-1.5">
+                        <Zap size={13} strokeWidth={1.75} className="shrink-0" />
+                        <span>Nuances &amp; Cross-Society Divergence</span>
                       </h4>
                       {navResult.concordanceAppraisal.divergencePoints.length === 0 ? (
                         <p className="text-xs text-[var(--text-muted)] italic">
@@ -2947,8 +2917,9 @@ export function ClinicalNavigatorTab({
 
                   {/* Clinical Bottom Line */}
                   <div className="p-4 rounded-xl bg-[#141824] text-white space-y-1.5 border border-stone-800">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-orange-300">
-                      🎯 Grounded Clinical Bottom Line
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-orange-300 flex items-center gap-1.5">
+                      <Target size={13} strokeWidth={1.75} className="shrink-0" />
+                      <span>Grounded Clinical Bottom Line</span>
                     </div>
                     <p className="text-xs sm:text-sm text-stone-100 leading-relaxed">
                       {navResult.concordanceAppraisal.clinicalBottomLine}
@@ -3034,8 +3005,6 @@ export function ClinicalNavigatorTab({
                   )}
                 </div>
               )}
-            </>
-          )}
         </section>
       </div>
 
@@ -3073,7 +3042,8 @@ export function ClinicalNavigatorTab({
             <div className="px-5 py-3 border-b border-[var(--border-hairline)] flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2">
                 <h3 className="text-sm font-extrabold uppercase tracking-wider text-[var(--text-ink)] flex items-center gap-1.5">
-                  <span>🧭</span> Clinical Filters
+                  <SlidersHorizontal size={15} strokeWidth={1.75} className="text-[var(--text-muted)] shrink-0" />
+                  <span>Clinical Filters</span>
                 </h3>
                 {isQueryActive && (
                   <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-[#C25934] text-white">
@@ -3267,9 +3237,10 @@ function RecommendationMatrixCard({
             {rec.drivingTrials.map((tr) => (
               <span
                 key={tr}
-                className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
               >
-                🔬 {tr}
+                <FlaskConical size={10} strokeWidth={1.75} className="shrink-0" />
+                <span>{tr}</span>
               </span>
             ))}
           </div>
@@ -3411,8 +3382,9 @@ function PivotalTrialCard({
         </div>
 
         {/* Bottom Line */}
-        <p className="text-xs text-[var(--text-secondary)] font-medium leading-relaxed">
-          💡 {trial.bottomLine}
+        <p className="text-xs text-[var(--text-secondary)] font-medium leading-relaxed flex items-start gap-1.5">
+          <Lightbulb size={13} strokeWidth={1.75} className="text-amber-500 shrink-0 mt-0.5" />
+          <span>{trial.bottomLine}</span>
         </p>
       </div>
 

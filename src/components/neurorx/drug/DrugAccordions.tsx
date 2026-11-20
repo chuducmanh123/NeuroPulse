@@ -524,9 +524,9 @@ export function DrugAccordions({
                       {drug.renal_impairment.bands.map((b, idx) => (
                         <div
                           key={idx}
-                          className="py-2 flex items-center justify-between gap-3 text-sm"
+                          className="py-2 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 text-sm text-left"
                         >
-                          <span className="font-bold text-slate-900 dark:text-slate-100">
+                          <span className="font-bold text-slate-900 dark:text-slate-100 sm:w-44 shrink-0">
                             {b.min === null
                               ? `< ${b.max}`
                               : b.max === null
@@ -534,7 +534,7 @@ export function DrugAccordions({
                               : `${b.min} – ${b.max}`}{" "}
                             mL/min:
                           </span>
-                          <span className="font-normal text-slate-700 dark:text-slate-300 text-right">
+                          <span className="font-normal text-slate-700 dark:text-slate-300 text-left">
                             {b.dose_text}
                           </span>
                         </div>
@@ -545,11 +545,11 @@ export function DrugAccordions({
 
                 {/* Hemodialysis note */}
                 {drug.renal_impairment?.hemodialysis?.value && (
-                  <div className="pt-1 flex items-baseline justify-between gap-3 text-sm">
-                    <span className="font-bold text-slate-800 dark:text-slate-200 shrink-0">
+                  <div className="pt-1 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 text-sm text-left">
+                    <span className="font-bold text-slate-800 dark:text-slate-200 sm:w-44 shrink-0">
                       Hemodialysis / ESRD:
                     </span>
-                    <span className="font-normal text-slate-700 dark:text-slate-300 text-right">
+                    <span className="font-normal text-slate-700 dark:text-slate-300 text-left">
                       {drug.renal_impairment.hemodialysis.value}
                     </span>
                   </div>

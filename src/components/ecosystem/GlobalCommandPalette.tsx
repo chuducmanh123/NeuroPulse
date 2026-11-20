@@ -90,7 +90,7 @@ const APP_ITEMS: PaletteItem[] = [
   {
     id: "app-neurocalc",
     tag: "NEUROCALC",
-    color: "#B45309",
+    color: "#0E7490",
     title: "NeuroCalc — Clinical Scales",
     subtitle: "SOON • Đang được thiết kế",
     isComingSoon: true,

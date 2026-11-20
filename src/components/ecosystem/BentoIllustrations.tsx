@@ -188,7 +188,7 @@ export function NeuroCalcIllustration() {
       viewBox="0 0 330 160"
       className="ink-draw h-16 w-auto sm:h-32 lg:h-40 landscape:max-lg:h-20"
       fill="none"
-      stroke="#B45309"
+      stroke="#0E7490"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
@@ -201,14 +201,14 @@ export function NeuroCalcIllustration() {
           width="226"
           height="16"
           rx="2.5"
-          fill="#B45309"
+          fill="#0E7490"
           fillOpacity="0.1"
           strokeWidth="1.9"
         />
         <path
           pathLength={1}
           d="M46 48 V20 L60 31 V48 M46 64 V106 L62 91 V64"
-          fill="#B45309"
+          fill="#0E7490"
           fillOpacity="0.16"
           strokeWidth="1.9"
         />
@@ -216,11 +216,11 @@ export function NeuroCalcIllustration() {
         <path
           pathLength={1}
           d="M116 43 V23 L127 32 V43 M116 69 V102 L129 89 V69"
-          fill="#B45309"
+          fill="#0E7490"
           fillOpacity="0.16"
           strokeWidth="1.8"
         />
-        <circle className="ink-fade" cx="125" cy="38" r="2.5" fill="#B45309" stroke="none" />
+        <circle className="ink-fade" cx="125" cy="38" r="2.5" fill="#0E7490" stroke="none" />
         <rect pathLength={1} x="113" y="51" width="24" height="10" rx="1" strokeWidth="1.1" />
         <path
           pathLength={1}
@@ -237,7 +237,7 @@ export function NeuroCalcIllustration() {
           width="164"
           height="24"
           rx="3"
-          fill="#B45309"
+          fill="#0E7490"
           fillOpacity="0.08"
           strokeWidth="1.8"
         />
@@ -246,13 +246,13 @@ export function NeuroCalcIllustration() {
           d="M104 112 V121 M114 112 V117 M124 112 V120 M134 112 V117 M144 112 V122 M154 112 V117 M164 112 V120 M174 112 V117 M184 112 V122 M194 112 V117 M204 112 V120 M214 112 V117 M224 112 V122 M234 112 V117 M244 112 V121"
           strokeWidth="1.25"
         />
-        <text className="ink-fade" x="101" y="131" fill="#B45309" fontFamily="monospace" fontSize="8.5" fontWeight="bold" stroke="none">
+        <text className="ink-fade" x="101" y="131" fill="#0E7490" fontFamily="monospace" fontSize="8.5" fontWeight="bold" stroke="none">
           0
         </text>
-        <text className="ink-fade" x="160" y="131" fill="#B45309" fontFamily="monospace" fontSize="8.5" fontWeight="bold" stroke="none">
+        <text className="ink-fade" x="160" y="131" fill="#0E7490" fontFamily="monospace" fontSize="8.5" fontWeight="bold" stroke="none">
           15
         </text>
-        <text className="ink-fade" x="234" y="131" fill="#B45309" fontFamily="monospace" fontSize="8.5" fontWeight="bold" stroke="none">
+        <text className="ink-fade" x="234" y="131" fill="#0E7490" fontFamily="monospace" fontSize="8.5" fontWeight="bold" stroke="none">
           30
         </text>
       </g>

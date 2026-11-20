@@ -117,7 +117,7 @@ export function AppSwitcher({
       subtitle: "Clinical Scales",
       href: "#",
       badge: "SOON",
-      gradient: "from-amber-600 to-amber-800",
+      gradient: "from-cyan-600 to-teal-700",
       isComingSoon: true,
       icon: (
         <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
