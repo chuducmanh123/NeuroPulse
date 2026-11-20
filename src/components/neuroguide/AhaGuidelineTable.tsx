@@ -128,7 +128,7 @@ export function AhaGuidelineTable({
       {/* 1. TOP HEADER BANNER (AHA Signature Red Header) */}
       <div className="bg-[#b91c1c] text-white px-4 py-3 sm:px-5 sm:py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
         <div className="min-w-0 flex-1">
-          <h2 className="text-xs sm:text-base font-extrabold tracking-wide uppercase leading-snug">
+          <h2 className="font-journal text-sm sm:text-base font-bold tracking-wide uppercase leading-snug">
             {cleanGuidelineTitle(title)}
           </h2>
           {subSupplementText && (

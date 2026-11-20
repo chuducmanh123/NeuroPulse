@@ -464,7 +464,7 @@ export function SubmitTab({
           <div className="p-6 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-ink)] shadow-2xs space-y-6">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <h2 className="text-xl font-black text-[var(--text-ink)]">Submit Clinical Case</h2>
+                <h2 className="font-journal text-2xl font-bold text-[var(--text-ink)]">Submit Clinical Case</h2>
               </div>
 
               <button

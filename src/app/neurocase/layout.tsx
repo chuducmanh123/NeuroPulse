@@ -16,5 +16,5 @@ export default function NeuroCaseLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <div className="medical-journal-app">{children}</div>;
 }

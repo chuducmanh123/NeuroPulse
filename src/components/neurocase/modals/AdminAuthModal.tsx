@@ -75,7 +75,7 @@ export function AdminAuthModal({ show, onClose, darkMode, onSuccess }: AdminAuth
 
   const modalContent = (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-150"
+      className="medical-journal-app fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-150"
       onClick={onClose}
       role="dialog"
       aria-modal="true"

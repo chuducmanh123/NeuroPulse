@@ -183,7 +183,7 @@ export function NeuroRxShell({
               </span>
             </div>
             <div className="mt-0.5 flex items-center gap-2.5">
-              <h1 className="text-xl font-extrabold tracking-tight text-[var(--text-ink)] sm:text-2xl">
+              <h1 className="font-journal text-xl font-bold tracking-tight text-[var(--text-ink)] sm:text-2xl">
                 NEURORX
               </h1>
               <span className="rounded-md bg-[#2F855A] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">

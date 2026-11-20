@@ -575,7 +575,7 @@ function ArticleCardComponent({
           </div>
         </div>
 
-        <h3 className="text-sm sm:text-base font-bold leading-snug text-[var(--text-ink)] hover:text-[#B91C1C] dark:hover:text-rose-400 transition-colors">
+        <h3 className="font-journal text-[15px] sm:text-[17px] font-semibold leading-snug text-[var(--text-ink)] hover:text-[#B91C1C] dark:hover:text-rose-400 transition-colors">
           <a href={article.doi_url} target="_blank" rel="noopener noreferrer">
             {cleanTitle}
           </a>
@@ -667,7 +667,7 @@ function ArticleCardComponent({
 
       {/* THÂN THẺ BÀI BÁO */}
       <div className="p-4 sm:p-5">
-        <h3 className="text-base sm:text-[17px] font-bold leading-snug mb-1.5 text-[var(--text-ink)] hover:text-[#B91C1C] dark:hover:text-rose-400 transition-colors">
+        <h3 className="font-journal text-[17px] sm:text-[19px] font-semibold leading-snug mb-1.5 text-[var(--text-ink)] hover:text-[#B91C1C] dark:hover:text-rose-400 transition-colors">
           <a href={article.doi_url} target="_blank" rel="noopener noreferrer">
             {cleanTitle}
           </a>

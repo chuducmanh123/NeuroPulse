@@ -831,7 +831,7 @@ export default function HomePage() {
               <span className="truncate">MULTI-JOURNAL LIVE MONITOR</span>
             </div>
             <div className="mt-0.5 flex items-center gap-2">
-              <h1 className="text-base sm:text-2xl font-extrabold tracking-tight leading-tight text-[var(--text-ink)]">
+              <h1 className="font-journal text-lg sm:text-2xl font-bold tracking-tight leading-tight text-[var(--text-ink)]">
                 NEUROLOGY &amp; STROKE JOURNAL MONITOR
               </h1>
               <span className="shrink-0 rounded-md bg-[#B91C1C] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">

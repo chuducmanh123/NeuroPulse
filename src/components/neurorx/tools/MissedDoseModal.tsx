@@ -81,7 +81,7 @@ export function MissedDoseModal({
               <HelpCircle className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-base font-bold flex items-center gap-2">
+              <h2 className="font-journal text-lg font-bold flex items-center gap-2">
                 <span>❓ Missed Dose Protocol</span>
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400">

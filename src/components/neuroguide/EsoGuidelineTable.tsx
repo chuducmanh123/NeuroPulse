@@ -235,7 +235,7 @@ export function EsoGuidelineTable({
             <div className="text-[10px] sm:text-[11px] font-bold text-blue-200 uppercase tracking-wider">
               Synoptic table of all recommendations and expert consensus statements
             </div>
-            <h2 className="text-xs sm:text-base font-extrabold tracking-wide uppercase leading-snug mt-0.5">
+            <h2 className="font-journal text-sm sm:text-base font-bold tracking-wide uppercase leading-snug mt-0.5">
               {cleanGuidelineTitle(title)}
             </h2>
           </div>

@@ -217,7 +217,7 @@ export function ConferenceEditModal({
       >
         <div className="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-slate-200/70 dark:border-slate-800">
           <div>
-            <h2 className="text-base sm:text-lg font-black">
+            <h2 className="font-journal text-lg sm:text-xl font-bold">
               {isEditing ? `✏️ Chỉnh sửa Conference: ${conference?.acronym}` : "➕ Thêm Conference mới"}
             </h2>
             <p className="text-xs text-slate-400 mt-0.5">

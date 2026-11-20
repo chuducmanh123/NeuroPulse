@@ -12,5 +12,5 @@ export default function NeuroPulseLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <div className="medical-journal-app">{children}</div>;
 }

@@ -575,7 +575,7 @@ export function PivotalTrialModal({
               <span className="px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300">
                 Compact PICO Schema (~700B)
               </span>
-              <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+              <h2 className="font-journal text-xl font-bold text-slate-900 dark:text-white">
                 {initialTrial ? `Edit Pivotal Trial: ${initialTrial.acronym}` : "Add Landmark / Pivotal Clinical Trial"}
               </h2>
             </div>

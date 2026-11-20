@@ -58,7 +58,7 @@ export function ExamTab({
             <span className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#6D28D9]/10 text-[#6D28D9] dark:text-violet-400 border border-[#6D28D9]/20 text-3xl">
               ⏱️
             </span>
-            <h2 className="text-xl font-black text-[var(--text-ink)]">Exam Simulation Mode</h2>
+            <h2 className="font-journal text-2xl font-bold text-[var(--text-ink)]">Exam Simulation Mode</h2>
             <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed max-w-lg mx-auto">
               Timed clinical vignettes with a <strong className="text-[var(--text-ink)]">90-second per case</strong> countdown timer.
               Select one or multiple subspecialty domains below to customize your board exam block.
@@ -155,7 +155,7 @@ export function ExamTab({
         <div className="text-center max-w-xl mx-auto py-8 space-y-6">
           <div className="space-y-2">
             <span className="text-5xl">🏆</span>
-            <h2 className="text-2xl font-black text-[var(--text-ink)]">Exam Results</h2>
+            <h2 className="font-journal text-2xl sm:text-3xl font-bold text-[var(--text-ink)]">Exam Results</h2>
           </div>
 
           {(() => {
