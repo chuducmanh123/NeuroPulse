@@ -1,5 +1,605 @@
 [
   {
+    "id": "10.1016/s0140-6736(26)02345-7",
+    "title": "Multiple sclerosis: beyond controlling relapses",
+    "journal": {
+      "name": "The Lancet",
+      "short_name": "The Lancet",
+      "badge_bg": "#DBEAFE",
+      "badge_text": "#1E40AF"
+    },
+    "pub_date": "2026-11-19T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "The Lancet"
+    ],
+    "doi_url": "https://doi.org/10.1016/s0140-6736(26)02345-7",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at The Lancet via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s0140-6736(26)02240-3",
+    "title": "Remibrutinib: a high-efficacy disease-modifying drug for relapsing multiple sclerosis?",
+    "journal": {
+      "name": "The Lancet",
+      "short_name": "The Lancet",
+      "badge_bg": "#DBEAFE",
+      "badge_text": "#1E40AF"
+    },
+    "pub_date": "2026-11-19T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Edan Gilles",
+      "Page Emmanuelle Le"
+    ],
+    "doi_url": "https://doi.org/10.1016/s0140-6736(26)02240-3",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at The Lancet via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jama.2026.20441",
+    "title": "Medical Imaging and Pediatric and Adolescent Brain Tumor Risk",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-11-19T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Miglioretti Diana L.",
+      "Alber Susan A.",
+      "Kwan Marilyn L.",
+      "Pequeno Priscila",
+      "Bowles Erin J. A.",
+      "Greenlee Robert T.",
+      "Stout Natasha K.",
+      "Weinmann Sheila",
+      "Mahendra Malini",
+      "Francisco Melanie",
+      "Moy Lisa M.",
+      "Stewart Carly",
+      "Bolch Wesley E.",
+      "Duncan James R.",
+      "Pole Jason D.",
+      "Smith-Bindman Rebecca"
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.20441",
+    "neurology_classification": {
+      "subspecialty": "Neuro-Oncology",
+      "subspecialties": [
+        "Neuro-Oncology"
+      ],
+      "topics": [
+        "Brain tumor",
+        "Brain"
+      ]
+    },
+    "abstract": "Importance: Ionizing radiation from medical imaging may increase brain tumor risk. Objective: To quantify brain tumor risk associated with radiation exposure from medical imaging in children and adolescents. Design, Setting, and Participants: Retrospective cohort study of children born from 1996 through 2016 who were enrolled from birth in 6 US health care systems or Ontario, Canada, and were alive and cancer-free at age 2 years, with follow-up through December 31, 2017 (US sites), and December 31, 2024 (Ontario). Exposures: Cumulative radiation dose to the brain from medical imaging, lagged by 2 years. Main Outcomes and Measures: Incident brain or other central nervous system tumors. Hazard ratios (HRs) were estimated using Cox proportional hazards models for categorical dose, and excess relative risks (ERRs) were estimated using linear dose-response models for continuous dose. Results: Among 3 704 860 children (1 900 285 [51.3%] male) followed up for 45 671 641 person-years (mean follow-up, 12.3 years), 1536 brain tumors were diagnosed. Mean radiation dose from 1 head computed tomography (CT) examination was 66.2 mGy (SD, 22.2). Among children with cumulative dose of 1 mGy or greater, mean cumulative dose was 73 mGy (SD, 95) overall and 100 mGy (SD, 105) among those diagnosed with brain tumors. Compared with no exposure, brain tumor risk increased with cumulative dose (>0 to <1 mGy: HR, 1.12 [95% CI, 1.01-1.26]; 1 to <5 mGy: HR, 1.71 [95% CI, 0.88-2.96]; 5 to <50 mGy: HR, 1.86 [95% CI, 1.16-2.81]; 50 to <75 mGy: HR, 2.30 [95% CI, 1.64-3.12]; 75 to <100 mGy: HR, 2.02 [95% CI, 1.13-3.30]; 100 to <150 mGy: HR, 2.81 [95% CI, 1.53-4.66]; ≥150 mGy: HR, 3.85 [95% CI, 2.43-5.75]). Cumulative dose was associated with brain tumor risk overall (ERR per 100 mGy, 1.27 [95% CI, 0.83-1.77]; P < .001), with stronger associations for aggressive histologies (ERR per 100 mGy, 1.51 [95% CI, 1.00-2.11]; P < .001). By age 21 years, exposure comparable to 1 head CT was associated with 7.9 excess brain tumors per 10 000 children, or approximately 1 excess tumor per 1266 head CT examinations. The estimated population-attributable fraction was 10.1% (95% CI, 5.8%-14.2%). Conclusions and Relevance: Medical imaging in children and adolescents was associated with a dose-related increase in brain tumor risk. These findings support careful clinical justification and dose minimization when pediatric imaging using ionizing radiation is indicated.",
+    "ai_takeaways": {
+      "conclusion_vi": "In pediatric and adolescent patients, cumulative radiation dose from medical imaging is associated with a dose-dependent increase in brain tumor risk (ERR per 100 mGy, 1.27 [95% CI, 0.83-1.77]; p < .001). Exposure comparable to 1 head CT conferred approximately 1 excess brain tumor per 1266 examinations by age 21.",
+      "clinical_significance": "Clinical significance for Neuro-Oncology practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1001/jama.2026.20669",
+    "title": "Pediatric Medical Imaging and Brain Tumor Risk",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-11-19T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Persiani Federica",
+      "Boldrini Luca",
+      "De Maria Ruggero"
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.20669",
+    "neurology_classification": {
+      "subspecialty": "Neuro-Oncology",
+      "subspecialties": [
+        "Neuro-Oncology"
+      ],
+      "topics": [
+        "Brain tumor",
+        "Brain"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuro-Oncology practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jama.2026.24780",
+    "title": "Plasma eMTBR-tau as a Biomarker for Chronic Traumatic Encephalopathy Tau Tangle Neuropathology",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-11-19T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Miner Annalise E.",
+      "Stein Thor D.",
+      "McKee Ann C.",
+      "Mez Jesse",
+      "Asken Breton M.",
+      "Singh Alpana",
+      "Hanley Davron",
+      "Zetterberg Henrik",
+      "Goostrey Kelsey",
+      "Nosek Sophia B.",
+      "Labonte Jacob",
+      "Nowinski Christopher J.",
+      "Daneshvar Daniel H.",
+      "Tanner Jeremy A.",
+      "Tripodis Yorghos",
+      "Young Abigail",
+      "Abdolmohammadi Bobak",
+      "Morisaki Keaden",
+      "Roebuck Matthew",
+      "Palmisano Joseph N.",
+      "Martin Brett",
+      "Nosheny Rachel",
+      "Shenton Martha E.",
+      "Cummings Jeffrey L.",
+      "Reiman Eric M.",
+      "Stern Robert A.",
+      "Rabinovici Gil D.",
+      "Ashton Nicholas J.",
+      "Alosco Michael L."
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.24780",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia",
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Alzheimer",
+        "Brain",
+        "Neurodegenerative",
+        "Tau"
+      ]
+    },
+    "abstract": "Importance: Chronic traumatic encephalopathy (CTE) is a neurodegenerative disease that cannot accurately be diagnosed during life due to the absence of in vivo biomarkers for CTE neuropathology. Objective: To evaluate plasma endogenously cleaved microtubule-binding region tau (eMTBR-tau) as a candidate biomarker for CTE tau tangle neuropathology. Design, Setting, and Participants: This case series included 21 former American-style football players who completed a blood draw as part of participation in clinical research at Boston University beginning April 17, 2008, and who subsequently died, donated their brain, and had completed autopsy by October 9, 2026. Exposures: Plasma eMTBR-tau nucleic acid–linked immunosandwich assay single-plex immunoassay and plasma phosphorylated tau 217 (p-tau217) (SP-X n = 20; Elecsys n = 1). Main Outcomes and Measures: CTE status and stage. Cumulative neuropathologic tau burden scores ranged from 0 to 33 (higher scores indicate tau burden; 0, no tau burden). Results: Among 21 male brain donors (median age at blood draw, CTE positive: 68 years [IQR, 61-77]; CTE negative: 49 years [IQR, 47-56]), 18 had a neuropathologic diagnosis of CTE. Of these participants, 16 had a diagnosis of high-stage CTE (stage IV = 8, stage III = 8); and 2, of low-stage CTE (stage II = 1, stage I = 1). Five CTE-positive participants had intermediate or high Alzheimer disease neuropathologic change (ADNC). Plasma eMTBR-tau concentration was significantly higher in CTE-positive participants (median, 0.019 pg/mL [IQR, 0.004-0.030]) compared with CTE-negative participants (0.001 pg/mL [IQR, 0.001-0.001]; β = 1.61 [95% CI, 0.51-2.70]). Plasma eMTBR-tau concentrations were highest among CTE-positive participants with comorbid ADNC (0.082 pg/mL [IQR, 0.059-0.131]) and intermediate among those with high-stage CTE without ADNC (n = 11; median, 0.009 pg/mL [IQR, 0.004-0.021]). Plasma eMTBR-tau concentration was significantly higher in high-stage CTE (median, 0.021 pg/mL [IQR, 0.006-0.038]) compared with low-stage CTE (median, 0.001 pg/mL [IQR, 0.001-0.002]; β = 1.79 [95% CI, 0.45-3.13]) or no CTE (median, 0.001 pg/mL [IQR, 0.001-0.001]; β = 1.78 [95% CI, 0.85-2.71]). Differences remained significant after exclusion of 5 cases with comorbid ADNC. Plasma eMTBR-tau concentration was associated with higher cumulative neuropathologic tau burden score across 11 brain regions (β = 0.71 [95% CI, 0.38-1.05]). Plasma p-tau217 concentration was positively associated with eMTBR-tau (β = 0.68 [95% CI, 0.32-1.04]) but was not associated with CTE. P-tau217 concentrations were in the negative range (n = 11) or intermediate range (n = 5) for participants without ADNC copathology. Four participants with ADNC had p-tau217 concentrations in the positive range; and 1, in the intermediate range. Conclusions and Relevance: Participants with high-stage CTE had higher concentrations of plasma eMTBR-tau than those with low-stage or no CTE; concentrations were highest among those with CTE and comorbid ADNC. Plasma eMTBR-tau may represent a feasible biomarker candidate for high-stage CTE tau tangle neuropathology. Larger autopsy and clinical validation studies are needed to establish overall diagnostic accuracy and specificity of plasma eMTBR-tau for CTE neuropathology, in addition to the associated prognostic and clinical implications.",
+    "ai_takeaways": {
+      "conclusion_vi": "Plasma eMTBR-tau is significantly elevated in high-stage CTE compared to low-stage or no CTE (β = 1.78 [95% CI, 0.85-2.71]) and correlates with cumulative tau neuropathology (β = 0.71 [95% CI, 0.38-1.05]). Conversely, plasma p-tau217 was not associated with CTE, highlighting eMTBR-tau as a novel biomarker candidate.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.053678",
+    "title": "Defining Analytic Populations in Randomized Trials: Revisiting the Role of Intention to Treat",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-19T00:00:00Z",
+    "article_type": "Review",
+    "article_types": [
+      "Review"
+    ],
+    "authors": [
+      "McCabe Megan E.",
+      "Zhou Xiaoxiao",
+      "Cutter Gary",
+      "Howard George",
+      "Reeves Mathew J."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.053678",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "The primary goal of randomized controlled trials is typically to understand the impact of a treatment on an outcome(s) of interest. Randomization is a critical design component for making these types of cause-and-effect inferences, as it ensures balance between the treatment groups in terms of both known and unknown confounders (factors related to both exposure and outcome), which can introduce bias when imbalanced across exposure (treatment) groups. When comparing treatment groups in the primary analysis of a randomized controlled trial, participants are typically included with the group to which they were randomized, following a framework referred to as intention to treat (ITT). ITT intentionally does not account for postrandomization events (eg, protocol nonadherence) in order to maintain the integrity of the randomization. There are other non-ITT frameworks for randomized controlled trial analyses, including the common per-protocol, as-treated, and modified ITT analyses. This article summarizes ITT and non-ITT frameworks and the research questions which they address, discusses their trade-offs, and provides information about operationalizing randomized controlled trial analyses, including discussion of the available topical guidance, considerations for conducting analyses in the face of missing data, and evolving statistical methods for non-ITT analyses.",
+    "ai_takeaways": {
+      "conclusion_vi": "Intention-to-treat (ITT) analyses preserve randomization to establish causal effect estimates without bias from post-randomization events, whereas non-ITT approaches (per-protocol, as-treated, modified ITT) answer distinct research questions regarding treatment efficacy but introduce potential confounding and require advanced statistical methods to handle missing data and non-adherence.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true,
+      "study_type": "Review"
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.057084",
+    "title": "Prestroke and Poststroke Physical Activity and Depression, Anxiety, and Fatigue After Ischemic Stroke: A Cohort Study",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-19T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Karisik Anel",
+      "Moelgg Kurt",
+      "Buergi Lucie",
+      "Scherer Lukas",
+      "Delazer Luisa",
+      "Unterberger Walter",
+      "Dejakum Benjamin",
+      "Felicetti Silvia",
+      "Boehme Christian",
+      "Toell Thomas",
+      "Pechlaner Raimund",
+      "Eller Michael Thomas",
+      "Meier Patricia",
+      "Kiechl Stefan",
+      "Knoflach Michael",
+      "Mayer-Suess Lukas",
+      "Broessner Gregor",
+      "Ferrari Julia",
+      "Granna Julian",
+      "Hanel Ton",
+      "Kaltseis Katharina",
+      "Köhler Theresa",
+      "Krebs Stefan",
+      "Krismer Florian",
+      "Mueller Christoph",
+      "Nachbauer Wolfgang",
+      "Neuner Anna",
+      "Perfler Anja",
+      "Schneider Theresa",
+      "Wagner Eva",
+      "Span Christine"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.057084",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke",
+        "Dementia"
+      ],
+      "topics": [
+        "Stroke",
+        "Ischemic",
+        "Thrombolysis"
+      ]
+    },
+    "abstract": "BACKGROUND: Depression, anxiety, and fatigue are common and disabling long-term sequelae of stroke. Whether habitual physical activity before stroke and engagement in physical activity during recovery are associated with poststroke psychological outcomes remains incompletely understood. We investigated associations between physical activity patterns and psychological outcomes during the first year after ischemic stroke. METHODS: In this prospective cohort study, consecutive patients with ischemic stroke enrolled in the STROKE-CARD Registry were assessed for depression, anxiety, and fatigue at either 3- or 12-month follow-up after stroke using the Hospital Anxiety and Depression Scale and Fatigue Severity Scale. Physical activity was assessed before and after stroke with the Baecke Questionnaire. Associations between physical activity and psychological outcomes were assessed using multivariable logistic regression adjusted for age, sex, body mass index, prestroke and poststroke disability, stroke severity and localization, thrombolysis, prestroke depression, and cognitive impairment. RESULTS: Within 1050 patients (median age, 70 years; 35% female), 35.3% were screened positive for depression, 29.9% for anxiety, and 53.2% for fatigue at either 3 or 12 months after stroke. Both prestroke and poststroke physical activity were associated with lower odds of depression (adjusted odds ratio, 0.47 [95% CI, 0.36–0.62] and 0.45 [95% CI, 0.34–0.59]; P <0.001) and fatigue (adjusted odds ratio, 0.49 [95% CI, 0.38–0.64] and 0.49 [95% CI, 0.38–0.64]; P <0.001), and with lower odds of anxiety (adjusted odds ratio, 0.75 [95% CI, 0.57–1.00]; P =0.050) and (adjusted odds ratio, 0.71 [95% CI, 0.53–0.94]; P =0.016). High-intensity and high-volume activities were associated with the lowest prevalence of depression and fatigue (depression, 24.5%–25.7%; fatigue, 40.8%–44.1%). Endurance sports were associated with lower rates of depression (22.2%; P <0.001) and fatigue (40.6%; P <0.001), whereas strength training was associated with lower anxiety (12.8%; P =0.003). CONCLUSIONS: Physical activity before and after stroke was associated with lower odds of depression, anxiety, and fatigue. These findings identify physical activity as a potentially modifiable behavioral factor associated with psychological well-being after stroke and support further evaluation in intervention studies.",
+    "ai_takeaways": {
+      "conclusion_vi": "In this prospective cohort (n=1050), both prestroke and poststroke physical activity were independently associated with lower odds of poststroke depression (aOR 0.47 and 0.45, P<0.001), fatigue (aOR 0.49 for both, P<0.001), and anxiety (aOR 0.75, P=0.050 and 0.71, P=0.016) at 3–12 months.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218770",
+    "title": "Risk of Idiopathic Intracranial Hypertension Following Anemia in Young Adults",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-19T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Butt Fahad R.",
+      "Dhivagaran Thanansayan",
+      "Sachdeva Kyran",
+      "Ahmed Yusuf",
+      "Muayad Jawad",
+      "Tao Brendan K.",
+      "Sundaram Arun N.E.",
+      "Mollan Susan P.",
+      "Sharma Rahul A."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218770",
+    "neurology_classification": {
+      "subspecialty": "Headache & Pain",
+      "subspecialties": [
+        "Headache & Pain"
+      ],
+      "topics": [
+        "Intracranial"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: Anemia has been associated with idiopathic intracranial hypertension (IIH) in small studies, but whether severity modulates IIH risk remains unclear. This study evaluated the hazard of incident IIH after mild, moderate, and severe anemia in young adults. METHODS: Using the TriNetX Research Network (111) health care organizations), adults aged 18-50 years with persistent anemia (≥2 hemoglobin values) were stratified as mild (11.0-12.9 g/dL), moderate (8.0-10.9 g/dL), or severe (<8.0 g/dL) and matched 1:1 to controls (Hb ≥ 13.0 g/dL) by propensity score matching on demographics, body mass index, comorbidities, and socioeconomic factors. The primary outcome was incident IIH; Cox proportional hazards models estimated hazard ratios (HRs) at 6 months, 1 year, and 3 years. Sensitivity analyses applied the World Health Organization (WHO) women's mild threshold and compared patients with vs without iron supplementation. RESULTS: After matching, 1,240,670 mild anemia patients (mean age 29.0 ± 8.7 years, 83.4% female), 666,515 moderate (29.7 ± 8.1, 86.3% female), and 114,785 severe (31.0 ± 8.9, 75.4% female) were compared with equal-sized control cohorts. Hazard of incident IIH was elevated at every severity and time interval. At 6 months, HRs were 1.45 (95% CI 1.29-1.63), 1.61 (1.39-1.86), and 2.53 (1.82-3.52) for mild, moderate, and severe anemia. At 1 year, HRs were 1.35 (1.22-1.49), 1.33 (1.17-1.51), and 1.94 (1.46-2.58). At 3 years, HRs were 1.17 (1.08-1.26), 1.15 (1.04-1.27), and 1.40 (1.11-1.76); all estimates remained significantly elevated, although CIs overlapped across severity bands. The WHO women's threshold sensitivity yielded concordant, modestly stronger estimates (6 months: HR 1.99 [1.73-2.30]; 3 years: 1.43 [1.31-1.58]). Iron supplementation was associated with reduced IIH hazard (HR 0.75, 95% CI 0.62-0.93; n = 340,660 per group). DISCUSSION: Anemia is associated with elevated hazard of incident IIH in young adults across all severity bands. Point estimates were higher with greater anemia severity and at earlier follow-up, but CIs overlapped across severity bands, so a severity gradient could not be established. Iron supplementation was associated with reduced hazard. Findings are limited by observational design, administrative case identification, and low absolute incidence; anemia represents a potentially modifiable factor warranting evaluation in patients with papilledema.",
+    "ai_takeaways": {
+      "conclusion_vi": "In young adults, mild, moderate, and severe anemia are associated with increased 6-month (HR 1.45, 1.61, and 2.53, respectively) and 3-year (HR 1.17, 1.15, and 1.40) hazards of incident idiopathic intracranial hypertension. Iron supplementation was associated with reduced IIH hazard (HR 0.75, 95% CI 0.62-0.93).",
+      "clinical_significance": "Clinical significance for Headache & Pain practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218786",
+    "title": "Relative Pericentral Tau Distribution in Cerebral Amyloid Angiopathy Compared With Alzheimer Disease",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-19T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Su Ya",
+      "Lu Jiaying",
+      "Xu Jiajie",
+      "Fu Jiayu",
+      "Xu Feifan",
+      "Tang Han",
+      "Yan Tingmeng",
+      "Le Shijia",
+      "Zhang Huiwei",
+      "Dong Qiang",
+      "Charidimou Andreas",
+      "Tsai Hsin-Hsi",
+      "Zuo Chuantao",
+      "Cheng Xin"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218786",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke",
+        "Dementia"
+      ],
+      "topics": [
+        "Alzheimer",
+        "Cerebral",
+        "Amyloid",
+        "Tau"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: Differentiating cerebral amyloid angiopathy (CAA) from Alzheimer disease (AD) is essential for prognosis and clinical management. However, pathophysiology-based molecular biomarkers are lacking. Tau deposition may offer discriminative signals: It occurs late in primary cortices including pericentral cortex in AD but may emerge earlier and more diffusely in CAA. We investigated whether a pericentral-predominant pattern of tau deposition distinguishes CAA from AD and characterize its cortical spatial distribution and contributing factors in CAA. METHODS: We consecutively enrolled healthy controls and patients with CAA and AD with amyloid (18F-florbetapir) and tau (18F-florzolotau) PET. We compared pericentral tau-PET retention (both standardized uptake value ratios [SUVRs] and regional-to-global ratios) between CAA, AD, and controls and identified optimal cutoffs differentiating CAA from AD. We validated the discriminative performance using 18F-flortaucipir tau-PET in an external cohort. We assessed correlates of tau deposition in multivariable regression analyses and analyzed hierarchical patterns of tau involvement using conditional probability analyses in CAA. RESULTS: The derivation cohort included 22 controls, 80 CAA, and 64 AD (mean age 60.1, 68.4, and 66.3 years; 50.0%, 38.8%, and 50.0% female). The validation cohort included 65 CAA and 19 AD (mean age 74.1 and 73.6 years; 53.8% and 68.4% female). Patients with CAA showed higher global and pericentral tau SUVRs compared with controls but lower than AD. However, pericentral-to-global tau ratios were significantly higher in CAA than AD (0.93 ± 0.07 vs 0.82 ± 0.08, p < 0.001). A cutoff of 0.90 yielded 68.9% (95% CI 58.6-79.6) sensitivity and 87.1% (95% CI 79.1-96.1) specificity in the derivation cohort (AUC = 0.836, 95% CI 0.768-0.904) and 63.1% (95% CI 54.8-71.7) and 94.7% (95% CI 89.5-100), respectively, in the validation cohort (AUC = 0.844, 95% CI 0.747-0.940) for differentiating CAA from AD. In CAA, pericentral tau deposition correlated with regional amyloid deposition (coefficient 0.680, 95% CI 0.489-0.870, p < 0.001) and white matter hyperintensities volume (coefficient 0.001, 95% CI 0.00003-0.001, p = 0.040) and followed parieto-occipital cortices but preceded medial cortex involvement. DISCUSSION: Higher pericentral-to-global tau ratio differentiates CAA from AD and may reflect spatial distribution patterns potentially influenced by both amyloid and vascular pathology.",
+    "ai_takeaways": {
+      "conclusion_vi": "A higher pericentral-to-global tau-PET ratio (≥0.90) differentiates cerebral amyloid angiopathy (CAA) from Alzheimer disease (AD) (0.93 ± 0.07 vs 0.82 ± 0.08, p < 0.001), achieving AUCs of 0.836 (derivation) and 0.844 (validation) with 87.1% and 94.7% specificity, respectively.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218771",
+    "title": "Ninety-Day Acute Ischemic Stroke Readmission in People Hospitalized With Migraine With Aura",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-19T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Strelecky Lukas",
+      "Shu Liqi",
+      "Spears Roderick",
+      "Bakradze Ekaterina",
+      "Salehi Omran Setareh",
+      "Field Thalia S.",
+      "Nguyen Thanh N.",
+      "Siegler James Ernest",
+      "Stretz Christoph",
+      "Furie Karen",
+      "Yaghi Shadi"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218771",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke",
+        "Headache & Pain"
+      ],
+      "topics": [
+        "Stroke",
+        "Ischemic",
+        "Migraine"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: Migraine with aura is recognized as a risk factor for acute ischemic stroke (AIS). However, the short-term risk of stroke, particularly within 90 days of hospitalization for migraine, has not been thoroughly evaluated on a national scale. This study aims to address this gap by examining the association between migraine with aura during admission and 90-day AIS readmission. METHODS: Using the Healthcare Cost and Utilization Project's Nationwide Readmissions Database between 2016 and 2019, we identified patients in the United States who received a diagnosis of migraine during admission, either principal or nonprincipal. The reference group for analysis contained all adult patients admitted during the study period without a principal or nonprincipal diagnosis of migraine. The primary outcome was subsequent admission for AIS within 90 days. Diagnoses were identified using standard and validated ICD-10-CM codes. Three patient groups were delineated: migraine with aura, migraine without aura, and unspecified migraine. Inverse probability of treatment weighting and multivariable Cox regression models were used to assess the risk of AIS across these 3 patient groups, adjusted for risk factors. RESULTS: Among 64,808,935 patients (mean age 56.19 years, 60.0% female) admitted during the study period, 1,257,671 (1.94%) patients were admitted with any migraine diagnosis, of which 78,650 (6.25% of migraine cohort) were admitted with a principal diagnosis of migraine. In total, 75,460 (0.12%) were admitted with migraine with aura. Within 90 days, 272,812 (0.42%) patients were readmitted with AIS. After adjusting for cardiovascular risk factors, migraine with aura was associated with an elevated risk for 90-day AIS (adjusted hazard ratio [aHR] 1.98, 95% CI 1.68-2.35, p < 0.001). In the primary analysis, similar risk was not demonstrated in the overall migraine group (aHR 1.00, 95% CI 0.94-1.06, p = 0.960), migraine without aura group (aHR 0.86, 95% CI 0.62-1.21, p = 0.392), and unspecified migraine group (aHR 0.96, 95% CI 0.90-1.03, p = 0.257); however, modest associations emerged in sensitivity analyses. DISCUSSION: Among hospitalized patients, migraine with aura was associated with an increased risk of AIS within 90 days. These findings underscore the importance of careful vascular risk assessment in this population. Future research should investigate the pathomechanisms underlying this association.",
+    "ai_takeaways": {
+      "conclusion_vi": "Among hospitalized patients, migraine with aura is independently associated with an increased risk of 90-day acute ischemic stroke readmission (aHR 1.98, 95% CI 1.68-2.35, p < 0.001), whereas migraine without aura is not (aHR 0.86, 95% CI 0.62-1.21, p = 0.392), emphasizing the need for targeted vascular risk evaluation.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218793",
+    "title": "Teaching Video NeuroImage: Female Presentation of Fragile X-Associated Tremor/Ataxia Syndrome",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-19T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Braza Samuel",
+      "Eickholt Lynn",
+      "Paul Rachel A.",
+      "Aamodt Whitley W."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218793",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Ataxia",
+        "Tremor"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218773",
+    "title": "Efficacy and Safety of 2 Rimegepant Dosing Regimens for the Prevention of Episodic Migraine",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-19T00:00:00Z",
+    "article_type": "RCT",
+    "article_types": [
+      "RCT",
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Goadsby Peter J.",
+      "Tassorelli Cristina",
+      "Fountaine Robert J.",
+      "Antinew Jeremias",
+      "de Besi Patrizia",
+      "Dubrovin Sergey",
+      "Russell Kim",
+      "Kopf Silvia Rosalia",
+      "Hughes Jim H.",
+      "Loprinzo Vittorio",
+      "Fullerton Terence"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218773",
+    "neurology_classification": {
+      "subspecialty": "Headache & Pain",
+      "subspecialties": [
+        "Headache & Pain"
+      ],
+      "topics": [
+        "Migraine"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: Traditional preventive treatments for migraine have limitations (e.g., efficacy, adverse events [AEs], contraindications, and interactions). The aim of this study was to evaluate the efficacy and safety of 2 rimegepant dosing regimens relative to placebo as preventive treatment for episodic migraine. METHODS: This was a phase 4, randomized, placebo-controlled study. Adults with a ≥1-year history of episodic migraine (with or without aura) and 4-14 migraine attacks/month were enrolled from outpatient/research sites in 10 countries. After a 28-day observation phase, participants were randomly assigned to placebo once daily, rimegepant 75 mg every other day/alternating placebo, or rimegepant 75 mg once daily for 12-weeks of double-blind treatment. The primary end point was mean reduction from the observation phase in monthly migraine days over the entire 12-week double-blind phase analyzed using linear mixed effects modeling. Hierarchical testing was used for key secondary end points to control type I error. Safety assessments included AEs. RESULTS: Participants (n = 692; median age 44.0 years, 86.7% female) were treated double blind with rimegepant every other day (n = 232), rimegepant once daily (n = 229), or placebo (n = 231). The primary end point was met for both rimegepant dosing regimens, with significantly greater reductions from the observation phase in monthly migraine days over the entire double-blind phase vs placebo (least squares mean change difference [97.5% CI]) for rimegepant every other day (-0.6 [-1.22 to -0.01], p = 0.0220) and rimegepant once daily (-1.8 [-2.35 to -1.19], p < 0.0001). All 5 key secondary end points were significant vs placebo for rimegepant once daily (p < 0.0001), while for rimegepant every other day, the first key secondary end point in the hierarchy was not significant vs placebo. Most AEs were mild or moderate. DISCUSSION: Both rimegepant dosing regimens were superior to placebo for the preventive treatment of migraine and were well tolerated. This study demonstrates the efficacy and safety of rimegepant 75 mg QD in a double-blind study. The study was not designed to directly compare the rimegepant EOD and QD dosing regimens. TRIAL REGISTRATION INFORMATION: ClinicalTrials.gov NCT05217927 (clinicaltrials.gov/study/NCT05217927); registered January 20, 2022; first enrollment March 4, 2022. CLASSIFICATION OF EVIDENCE: This study provides Class I evidence that in adults with more than 1-year history of episodic migraine and 4-14 migraine attacks/month, both rimegepant 75 mg every other day and rimegepant 75 mg daily were superior to placebo in reducing monthly migraine days up to 12 weeks of follow-up.",
+    "ai_takeaways": {
+      "conclusion_vi": "In adults with episodic migraine, both rimegepant 75 mg every other day (LSM change difference -0.6 days, p = 0.0220) and 75 mg once daily (-1.8 days, p < 0.0001) significantly reduced monthly migraine days over 12 weeks compared to placebo, with daily dosing showing consistent superiority across all key secondary endpoints and good tolerability.",
+      "clinical_significance": "Clinical significance for Headache & Pain practice.",
+      "ai_verified": true,
+      "study_type": "RCT"
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218890",
+    "title": "Quantifying Disease Progression in Patients With Charcot-Marie-Tooth Neuropathy Type 1A Using Quantitative Muscle MRI and Clinical Outcomes",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-19T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Iterbeke Louise",
+      "Huysmans Lotte",
+      "Bamps Kobe",
+      "Peeters Ronald",
+      "Goosens Veerle",
+      "Maes Frederik",
+      "Dupont Patrick",
+      "Claeys Kristl G."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218890",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Neuropathy"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1016/s1474-4422(26)00360-1",
     "title": "Early middle meningeal artery embolisation plus standard treatment versus standard treatment alone for chronic subdural haematoma in France (OTEMACS): a randomised, open-label, controlled trial",
     "journal": {
@@ -102,11 +702,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "abstract": "BACKGROUND: Middle meningeal artery (MMA) embolisation has emerged as an adjunctive treatment for chronic subdural haematoma, but evidence from randomised clinical trials remains heterogeneous. We aimed to assess whether early adjunctive MMA embolisation can reduce recurrence of subdural haematoma after standard management. METHODS: OTEMACS was a multicentre, open-label, randomised controlled trial conducted at six hospitals in France. Adults with symptomatic chronic subdural haematoma were randomly assigned (1:1) via a centralised web-based system to receive standard treatment plus early MMA embolisation with the Onyx liquid embolic system (within 5 days of surgery, when performed) or standard treatment alone. Outcome assessors were masked to treatment allocation. The primary efficacy outcome was a composite of reoperation or surgical rescue, residual chronic subdural haematoma thickness greater than 10 mm, or death at 90 days. The primary safety outcome was all-cause mortality at 90 days. The primary analysis was done in a modified intention-to-treat population (all randomly assigned patients with an assessable primary outcome). Safety outcomes were analysed according to randomised allocation. This trial is registered with ClinicalTrials.gov (NCT04742920) and is closed to recruitment. FINDINGS: Between Oct 12, 2021, and March 12, 2025, 247 patients were randomly assigned (122 in the embolisation group and 116 in the control group); after nine post-randomisation exclusions, 238 patients were retained in the analysis population (57 [23·9%] female and 181 [76·1%] male), of whom 214 were included in the modified intention-to-treat analysis (110 in the embolisation group and 104 in the control group). Enrolment was stopped early on the recommendation of the data safety monitoring board (DSMB), although the prespecified Haybittle-Peto efficacy boundary (two-sided p<0·001) was not crossed. The composite primary outcome occurred in 36 (32·7%) of 110 patients in the embolisation group and 51 (49·0%) of 104 in the control group (absolute risk difference -16·31 percentage points [95% CI -29·32 to -3·30]; nominal p=0·015). Reoperation occurred in eight (7·3%) of 110 patients in the embolisation group versus 19 (18·3%) of 104 in the control group. At 90 days deaths were reported in five (4·5%) of 110 patients in the embolisation group and four (3·8%) of 104 patients in the control group. Procedure-related serious adverse events occurred in ten (9·1%) of 110 patients in the embolisation group and nine of (8·7%) 104 in the control group; six (5·5%) of 110 patients in the embolisation group had transient embolisation-related adverse events. No embolisation-related deaths or ischaemic strokes occurred. INTERPRETATION: In patients with symptomatic chronic subdural haematoma, early adjunctive MMA embolisation reduced reoperation without increasing mortality or major complications. However, because enrolment stopped early outside the prespecified efficacy boundary and the primary analysis excluded patients without an assessable outcome, the nominal p value is not confirmatory, and the benefit might be overestimated. These findings require further confirmation before routine adoption of early postoperative MMA embolisation. FUNDING: Medtronic and Montpellier University Medical Center.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In patients with symptomatic chronic subdural haematoma, early adjunctive middle meningeal artery (MMA) embolisation reduced the composite 90-day primary outcome (32·7% vs 49·0%; risk difference -16·31 percentage points [95% CI -29·32 to -3·30]; p=0·015) and reoperation rates (7·3% vs 18·3%) compared to standard treatment alone, without increasing mortality.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "RCT"
     }
   },
   {
@@ -328,9 +929,9 @@
       "badge_text": "#0E7490"
     },
     "pub_date": "2026-11-18T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Review",
     "article_types": [
-      "Editorial / Perspective"
+      "Review"
     ],
     "authors": [
       "Vollert Jan",
@@ -351,11 +952,12 @@
         "Neuropathic pain"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "abstract": "Neuropathic pain is chronic pain resulting from a lesion or disease of the peripheral or central somatosensory nervous system. It is distinct from nociceptive pain, which develops through the activation of nociceptors. Common examples include painful polyneuropathy (such as diabetic or chemotherapy-induced peripheral neuropathy), trigeminal neuralgia, postherpetic neuralgia, and lumbosacral radiculopathy. Symptoms such as shooting or burning pain and allodynia can be screened for by using questionnaires, and neurophysiological, histological, or imaging assessments can establish the presence of a lesion. Pathophysiological mechanisms differ widely between patients and disorders, and bridging the gap between understanding mechanisms and identifying these in individual patients remains a challenge for improving personalised treatment. Optimal management uses an interdisciplinary, individualised approach that addresses all components of the biopsychosocial model. In the future, identifying and targeting specific mechanisms in individual patients will be crucial to improve treatment efficacy, and disease-modifying treatments might enable a move away from purely symptomatic management.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Neuropathic pain arises from somatosensory nervous system lesions and is distinct from nociceptive pain, requiring screening questionnaires alongside neurophysiological, histological, or imaging confirmation. Optimal management relies on an interdisciplinary, individualized biopsychosocial approach, with future care aiming to target patient-specific mechanisms and disease-modifying therapies.",
       "clinical_significance": "Clinical significance for Neuromuscular practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Review"
     }
   },
   {
@@ -385,38 +987,6 @@
       ],
       "topics": [
         "Hydrocephalus"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00408-4",
-    "title": "Heela Hareer",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-11-18T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00408-4",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
@@ -508,9 +1078,9 @@
       "badge_text": "#0E7490"
     },
     "pub_date": "2026-11-18T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Review",
     "article_types": [
-      "Editorial / Perspective"
+      "Review"
     ],
     "authors": [
       "Scheffer Ingrid E"
@@ -525,11 +1095,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "abstract": "Dravet syndrome is a prototypical genetic developmental and epileptic encephalopathy, caused by pathogenic variants in the sodium channel alpha-1 subunit gene (SCN1A) in 95% of individuals. The classic presentation of Dravet syndrome is a baby aged about 6 months, with typical development, who presents with a prolonged febrile generalised tonic-clonic or hemiclonic seizure, and frequent seizures ensue. Individuals with Dravet syndrome usually develop multiple seizure types alongside developmental slowing, and sometimes regression, and a range of morbidities emerge. Dravet syndrome is associated with a poor prognosis and a high risk of mortality. De novo SCN1A pathogenic variants typically cause Dravet syndrome, but parental mosaicism might occur, with implications for reproductive counselling. Early diagnosis is essential to guide prompt, optimal selection of antiseizure medications to control seizures and improve long-term outcomes. Natural history studies are crucial for interpreting the outcomes of trials of novel therapies. Newer antiseizure medications show improved efficacy in controlling seizures, often associated with developmental gains. Pivotal antisense oligonucleotide and genetic therapy trials show promise to transform this devastating disease.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Dravet syndrome is typically caused by SCN1A variants and presents around 6 months of age with prolonged febrile seizures. Early diagnosis is critical for selecting optimal antiseizure medications and avoiding contraindicated agents, while emerging antisense oligonucleotides and gene therapies hold potential to transform clinical outcomes across the lifespan.",
       "clinical_significance": "Clinical significance for Epilepsy practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Review"
     }
   },
   {
@@ -743,11 +1314,12 @@
         "Multiple sclerosis"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "abstract": "BACKGROUND: The 2024 McDonald criteria for multiple sclerosis incorporate optic nerve lesions as a fifth topography for dissemination in space, and other additional diagnostic features. We evaluated their performance in patients with acute optic neuritis, a common first manifestation of multiple sclerosis. METHODS: In this cross-sectional cohort analysis from the prospective, multicentre Acute Optic Neuritis Network (ACON) study, we compared the 2024 and 2017 McDonald criteria for multiple sclerosis in patients with a first documented presentation of optic neuritis from 25 centres in 17 countries across six continents. The cohort included patients with idiopathic optic neuritis, clinically isolated syndrome (CIS) according to 2017 McDonald criteria, multiple sclerosis according to 2017 McDonald criteria, aquaporin-4-IgG-positive neuromyelitis optica spectrum disorder (AQP4-IgG-positive NMOSD), or myelin oligodendrocyte glycoprotein antibody-associated disease (MOGAD). We assessed the sensitivity of the 2017 and 2024 McDonald criteria for diagnosis of multiple sclerosis using data from patients diagnosed, according to the 2017 McDonald criteria, with CIS (defined by presence of MRI lesions in typical locations suggestive of multiple sclerosis or presence of oligoclonal bands) or multiple sclerosis. Specificity was measured with data from the AQP4-IgG-positive NMOSD and MOGAD cohorts. FINDINGS: Between Aug 21, 2020, and Dec 31, 2025, 421 patients were enrolled in ACON. After exclusion of patients with missing information on diagnosis and MRI data, 310 were included in this analysis (59 with idiopathic optic neuritis, 85 with CIS according to 2017 criteria, 85 with multiple sclerosis according to 2017 criteria, 22 with AQP4-IgG-positive NMOSD, and 59 with MOGAD). All patients with multiple sclerosis according to the 2017 McDonald criteria (85 [100%] of 85) fulfilled the 2024 criteria and 27 (32%) of 85 patients with CIS according to the 2017 McDonald criteria were diagnosed as having multiple sclerosis according to the 2024 criteria. Additionally, three (14%) of 22 people with AQP4-IgG-positive NMOSD and six (10%) of 59 people with MOGAD met the 2024 McDonald criteria for multiple sclerosis. The sensitivity of the 2017 criteria was 50% (95% CI 42-58), compared with 66% (95% CI 58-73) for the 2024 criteria, for identification of people with multiple sclerosis among those presenting with a first episode of optic neuritis attributed to multiple sclerosis or CIS according to the 2017 criteria. Specificity of the 2017 criteria was 100% (95% CI 96-100) and that of the 2024 criteria was 89% (95% CI 80-95); diagnostic accuracy of the 2017 criteria was 66% (95% CI 60-72) and that of the 2024 criteria was 73% (95% CI 67-79). INTERPRETATION: In our cohort of patients with a first episode of optic neuritis attributed to multiple sclerosis or CIS according to the 2017 McDonald criteria, the 2024 McDonald criteria enhanced diagnostic sensitivity for multiple sclerosis in people with optic-neuritis-related CIS, potentially enabling earlier diagnosis of multiple sclerosis. However, the criteria reduced specificity in people with optic neuritis related to AQP4-IgG-positive NMOSD and MOGAD, highlighting the need for careful exclusion of alternative diagnoses and further real-world validation. FUNDING: Roche.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In patients presenting with a first episode of acute optic neuritis, the 2024 McDonald criteria increased diagnostic sensitivity for multiple sclerosis (66%, 95% CI 58-73 vs 50%, 95% CI 42-58) but reduced specificity (89%, 95% CI 80-95 vs 100%, 95% CI 96-100) due to misclassifying some AQP4-IgG-positive NMOSD and MOGAD cases.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Original Article"
     }
   },
   {
@@ -867,11 +1439,12 @@
         "Amyotrophic lateral sclerosis"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "abstract": "BACKGROUND: Oxidative stress, resulting from excessive production of reactive oxygen species, is implicated in the pathogenesis of amyotrophic lateral sclerosis. Edaravone is a free-radical scavenger that has been shown to reduce functional decline over 24 weeks in a subset of patients with amyotrophic lateral sclerosis and is approved for its treatment in several countries. We investigated the safety and efficacy of edaravone (FNP122), a novel once-daily oral formulation of edaravone, in a broader population of patients with amyotrophic lateral sclerosis over a longer period. METHODS: This multicentre, double-blind, phase 3, randomised controlled trial was done in 37 hospitals in Belgium, France, Germany, Ireland, Italy, the Netherlands, Poland, Portugal, Russia, Spain, Sweden, and the UK. Eligible patients were adults aged 18-80 years, with amyotrophic lateral sclerosis, 24 months or less since symptom onset, vital capacity at least 70%, and rate of change in amyotrophic lateral sclerosis Functional Rating Scale-Revised (ALSFRS-R) score between 0·35 and 1·50 points per month (both inclusive). Eligible patients were randomly assigned 2:1 using a central web-based allocation system to oral edaravone (100 mg per day) or placebo. Participants, investigators, study staff, outcome assessors, and the sponsor remained masked to treatment allocation throughout the study. The primary endpoint was the mean difference in change from baseline in ALSFRS-R total score at week 48 between edaravone and placebo, assessed in patients who received at least one dose of study drug. This trial was registered with ClinicalTrials.gov (NCT05178810) and is complete. FINDINGS: Between Oct 18, 2021, and Nov 30, 2022, 370 individuals were screened, of whom 313 were randomly assigned to receive edaravone (n=209) or placebo (n=104). One site was found to be noncompliant with Good Clinical Practice and nine individuals from that site were excluded (three in the edaravone group and six in the placebo group). One patient in each group did not receive any treatment; thus, 302 individuals were treated and analysed (205 in the edaravone group and 97 in the placebo group). Median age at baseline was 59 years (IQR 53-68). 185 (61%) of 302 patients were male and 117 (39%) were female. 275 (91%) of 302 patients were White. At 48 weeks, least squares mean change from baseline in ALSFRS-R total score was not significantly different between the edaravone group (-12·6 points [SE 0·7]) and placebo group (-13·4 points [1·0], least squares mean difference 0·78 points; 95% CI -1·44 to 3·00, p=0·49). Edaravone was well tolerated, with no between-group difference in the incidence of treatment-emergent adverse events (180 [88%] of 205 patients in the edaravone group vs 82 [85%] of 97 patients in the placebo group). No deaths were considered related to study treatment. INTERPRETATION: Oral edaravone was well tolerated but did not significantly slow functional decline versus placebo over 48 weeks. These results do not support its use at the tested dose for modifying disease progression in the general amyotrophic lateral sclerosis population and highlight the need for the development of more effective therapeutic strategies. FUNDING: Ferrer.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In a broad ALS population, daily oral edaravone (100 mg) was well tolerated but failed to significantly slow functional decline over 48 weeks compared with placebo (ALSFRS-R mean difference 0.78 points, 95% CI -1.44 to 3.00, p=0.49), not supporting its use for disease modification.",
       "clinical_significance": "Clinical significance for Neuromuscular practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "RCT"
     }
   },
   {
@@ -1007,6 +1580,38 @@
     }
   },
   {
+    "id": "10.1016/s1474-4422(26)00408-4",
+    "title": "Heela Hareer",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-18T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00408-4",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1001/jama.2026.23534",
     "title": "Blood-Based Biomarker Testing for Alzheimer Disease in US Clinical Practice",
     "journal": {
@@ -1132,7 +1737,9 @@
         "Movement Disorders"
       ],
       "topics": [
+        "Alzheimer",
         "Dementia",
+        "Cerebral",
         "Tremor"
       ]
     },
@@ -1177,6 +1784,7 @@
       ],
       "topics": [
         "Stroke",
+        "Ischemic",
         "Migraine"
       ]
     },
@@ -1212,10 +1820,15 @@
     "neurology_classification": {
       "subspecialty": "Dementia",
       "subspecialties": [
-        "Dementia"
+        "Dementia",
+        "Epilepsy",
+        "Movement Disorders"
       ],
       "topics": [
-        "Dementia"
+        "Epilepsy",
+        "Dementia",
+        "Brain",
+        "Ataxia"
       ]
     },
     "abstract": "A 33-year-old woman with a medical history of polycystic ovary syndrome on combined oral contraceptive pills, insulin resistance, and bilateral silicone breast implants (SBIs) placed 10 years prior presented with a 2-month history of intermittent myoclonic jerks involving the head, trunk, and lower limbs; polyarthralgia; and cognitive and functional decline (compared with being previously independent in her activities of daily living). Family history was significant for epilepsy in her mother and 2 brothers. Neurologic examination revealed disorientation, significantly impaired short-term recall, visuospatial memory impairment, and a limited attention span. Her speech was characterized by frequent paraphasic errors and anomia; she also exhibited mild gait ataxia. Diagnostic studies ruled out common autoimmune diseases. Brain MRI and electroencephalography revealed no abnormalities, and CSF analysis was normal. Genetic testing for inherited prion disease and Huntington disease was negative, and serum and urinary copper levels were unremarkable. As part of a paraneoplastic workup, breast MRI revealed intracapsular rupture of both SBIs. The implants were surgically removed with complete capsulectomy. The patient's symptoms resolved completely by the seventh postoperative day. At the 6-month follow-up, she remained asymptomatic and had returned to her baseline functional status. Given the temporal association between implant rupture, explantation, and symptom resolution, the presentation was considered most consistent with a case of reversible rapidly progressive dementia secondary to the autoimmune/inflammatory syndrome induced by adjuvants.",
@@ -1267,11 +1880,12 @@
         "Dementia"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "BACKGROUND AND OBJECTIVES: Several observational studies have reported a lower risk of dementia in statin users compared with nonusers, but these findings may be susceptible to bias. Whether statins prevent dementia would ideally be studied in a large, randomized trial that includes older adults followed for a long follow-up period. In the absence of such a trial, we can explicitly emulate a target trial of statins and risk of dementia using observational data. METHODS: Using electronic health records from the US Department of Veterans Affairs, we emulated a target trial of statin therapy and 10-year risk of dementia. Eligible individuals were men aged 60 years or older with no history of dementia, cardiovascular disease, chronic renal disease, diabetes, or statin use in the past year. The treatment strategies to be compared were initiation of any statin and continuation over follow-up (until the development of a contraindication or serious health condition) vs no statin initiation. The outcome of interest was diagnosis of any dementia. Risks were estimated through a pooled logistic regression model adjusted for baseline and time-varying covariates. RESULTS: A total of 81,599 statin initiators and 843,615 noninitiators were eligible for this study. The median age (interquartile range) was 64.3 years (61.2-70.3), and 11.7% were Black. The estimated 10-year dementia risks were 9.4% (95% CI 8.5-9.9) for statins and 9.6% (95% CI 8.9-10.3) for no statins. The corresponding risk difference was -0.2% (95% CI -0.9 to 0.4), and the risk ratio was 0.98 (95% CI 0.89-1.15). Estimates were similar within subgroups defined at baseline according to age, race, and frailty status based on deficit accumulation. CONCLUSION: Although the possibility of unmeasured confounding or misclassification cannot be entirely excluded, as in any observational study, this study involving a nationwide cohort of older male US veterans without prior cardiovascular disease suggests that statin therapy does not meaningfully influence dementia incidence over 10 years. CLASSIFICATION OF EVIDENCE: Per American Academy of Neurology Class of Evidence Classification, this study provides Class III evidence that statins do not reduce the incidence of dementia in men aged 60 years or older.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In older male veterans without prior cardiovascular disease, statin initiation did not significantly reduce 10-year dementia risk compared with non-initiation (9.4% vs 9.6%; risk difference -0.2%, 95% CI -0.9 to 0.4; RR 0.98, 95% CI 0.89-1.15), providing Class III evidence that statins do not meaningfully reduce dementia incidence.",
       "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Original Article"
     }
   },
   {
@@ -1489,7 +2103,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218787",
-    "title": "Teaching NeuroImage: Postoperative Aphasia Secondary to Xenoemboli.",
+    "title": "Teaching NeuroImage: Postoperative Aphasia Secondary to Xenoemboli",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -1502,12 +2116,12 @@
       "Case Report"
     ],
     "authors": [
-      "Mishra M",
-      "Bedoya-Sommerkamp M",
-      "Nahhas MI",
-      "Sheth SA",
-      "Migdady I",
-      "Regenhardt RW."
+      "Mishra Murli",
+      "Bedoya-Sommerkamp Marcelo",
+      "Nahhas Michael I.",
+      "Sheth Sunil A.",
+      "Migdady Ibrahim",
+      "Regenhardt Robert W."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218787",
     "neurology_classification": {
@@ -1519,11 +2133,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "For multiple-choice questions relevant to Teaching NeuroImages and Teaching Video NeuroImages, find @greenjournal on X using the hashtag #NeurologyRF",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Postoperative aphasia can occur as a rare neurological complication resulting from xenoemboli, highlighting the need for prompt neuroimaging evaluation in unexpected post-surgical focal deficits.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Case Report"
     }
   },
   {
@@ -1575,7 +2190,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218871",
-    "title": "Predicting Epilepsy Trajectory After Infantile Epileptic Spasms Syndrome: The BASED Score and Beyond.",
+    "title": "Predicting Epilepsy Trajectory After Infantile Epileptic Spasms Syndrome",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -1588,7 +2203,7 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Hussain SA."
+      "Hussain Shaun A."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218871",
     "neurology_classification": {
@@ -1707,7 +2322,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4218",
-    "title": "Agent Orange and Parkinson Disease-The War Ended, the Exposure: Did Not.",
+    "title": "Agent Orange and Parkinson Disease—The War Ended, the Exposure: Did Not",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -1720,9 +2335,9 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Goldman SM",
-      "Dorsey ER",
-      "Okun MS."
+      "Goldman Samuel M.",
+      "Dorsey E. Ray",
+      "Okun Michael S."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4218",
     "neurology_classification": {
@@ -2971,7 +3586,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218748",
-    "title": "From Research Cohorts to Clinical Practice: Bringing Alzheimer Disease Genetic and Biomarker Discoveries Into the Memory Clinic.",
+    "title": "From Research Cohorts to Clinical Practice",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -2984,22 +3599,22 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Pichet Binette A."
+      "Pichet Binette Alexa"
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218748",
     "neurology_classification": {
-      "subspecialty": "Dementia",
+      "subspecialty": "Other",
       "subspecialties": [
-        "Dementia"
+        "Other"
       ],
       "topics": [
-        "Alzheimer"
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Dementia practice.",
+      "clinical_significance": "Clinical significance for Other practice.",
       "ai_verified": false
     }
   },
@@ -3189,7 +3804,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218863",
-    "title": "α-Synuclein Seed Amplification Assays in Routine Clinical Settings: Simplifying Diagnosis or Uncovering Complexity?",
+    "title": "α-Synuclein Seed Amplification Assays in Routine Clinical Settings",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -3202,8 +3817,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Bendetowicz D",
-      "Meissner WG."
+      "Bendetowicz David",
+      "Meissner Wassilios G."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218863",
     "neurology_classification": {
@@ -4581,7 +5196,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218815",
-    "title": "Cerebral Amyloid Angiopathy Brain MRI Boston Criteria v2.0: Are We Ready to Implement Them in the Study of Patients With Alzheimer Disease?",
+    "title": "Cerebral Amyloid Angiopathy Brain MRI Boston Criteria v2.0",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -4594,7 +5209,7 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Oliveira TG."
+      "Oliveira Tiago Gil"
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218815",
     "neurology_classification": {
@@ -4604,7 +5219,6 @@
         "Dementia"
       ],
       "topics": [
-        "Alzheimer",
         "Cerebral",
         "Brain",
         "Amyloid"
@@ -4705,7 +5319,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218864",
-    "title": "<i>Neurology</i> at 75: The Educational Mission-Cultivating Authors, Reviewers, and Editors.",
+    "title": "Neurology at 75",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -4718,14 +5332,14 @@
       "Original Article"
     ],
     "authors": [
-      "Worrall BB",
-      "Aamodt WW",
-      "Elkind MSV",
-      "Fu KA",
-      "Johnston KC",
-      "Pieper KM",
-      "Strowd RE",
-      "Lyons-Warren AM."
+      "Worrall Bradford B.",
+      "Aamodt Whitley W.",
+      "Elkind Mitchell S.V.",
+      "Fu Katherine A.",
+      "Johnston Karen C.",
+      "Pieper Kathleen M.",
+      "Strowd Roy E.",
+      "Lyons-Warren Ariel M."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218864",
     "neurology_classification": {
@@ -4988,7 +5602,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218749",
-    "title": "Sensitive Detection of Misfolded α-Synuclein in Submandibular Gland Biopsy Using RT-QuIC Testing in Parkinson Disease.",
+    "title": "Sensitive Detection of Misfolded α-Synuclein in Submandibular Gland Biopsy Using RT-QuIC Testing in Parkinson Disease",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -5001,7 +5615,7 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Witt K."
+      "Witt Karsten"
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218749",
     "neurology_classification": {
@@ -6087,7 +6701,8 @@
         "Other"
       ],
       "topics": [
-        "Encephalitis"
+        "Encephalitis",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -6099,7 +6714,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218819",
-    "title": "Teaching NeuroImage: Gelsolin Amyloidosis: A Cause of Familial Progressive Facial and Bulbar Palsy.",
+    "title": "Teaching NeuroImage: Gelsolin Amyloidosis",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -6112,13 +6727,13 @@
       "Case Report"
     ],
     "authors": [
-      "Ganguly J",
-      "Dutta D",
-      "Chowdhury SR",
-      "Mukherjee S",
-      "Singh N",
-      "Basu P",
-      "Kumar H."
+      "Ganguly Jacky",
+      "Dutta Debayan",
+      "Chowdhury Sayoni Roy",
+      "Mukherjee Soumava",
+      "Singh Nilam",
+      "Basu Purba",
+      "Kumar Hrishikesh"
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218819",
     "neurology_classification": {
@@ -6918,7 +7533,8 @@
         "Neuromuscular"
       ],
       "topics": [
-        "Myasthenia"
+        "Myasthenia",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -10441,7 +11057,8 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Multiple sclerosis"
+        "Multiple sclerosis",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -11219,9 +11836,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Case Report",
+    "article_type": "Original Article",
     "article_types": [
-      "Case Report"
+      "Original Article"
     ],
     "authors": [
       "High Cassity",
@@ -11231,12 +11848,16 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001267780.58782.f4",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Neurocritical Care",
       "subspecialties": [
-        "Other"
+        "Neurocritical Care",
+        "Headache & Pain"
       ],
       "topics": [
-        "Intracranial"
+        "Intracranial",
+        "Encephalitis",
+        "Cerebral",
+        "Headache"
       ]
     },
     "abstract": "Objective: To describe a case of neuropsychiatric systemic lupus erythematosus (NPSLE) presenting predominantly as intracranial hypertension (IH) with diffuse leukoencephalopathy, acquired cerebellar tonsillar herniation, and severe bilateral papilledema without systemic manifestations of systemic lupus erythematosus (SLE). Background: IH occurs in 1–5.4% of SLE patients, typically presenting as idiopathic intracranial hypertension without parenchymal lesions. Diffuse cerebral edema with leukoencephalopathy as a manifestation of SLE is exceedingly rare, with prior reports describing fatal outcomes. NPSLE presenting as the sole manifestation of SLE, without systemic features, poses a significant diagnostic challenge. Design/Methods A 29-year-old woman presented with progressive occipital headaches, visual loss, nausea, and vomiting over 6 months. Initial MRI revealed symmetric, non-enhancing T2/FLAIR hyperintensities in the deep gray and white matter, brainstem, and cerebellar white matter, initially attributed to viral encephalitis. CSF showed mildly elevated protein (51 mg/dL) with negative infectious and paraneoplastic workup. Mild headache improvement was demonstrated with acetazolamide, but the patient self-discontinued, subsequently developing severe bilateral papilledema with progressive visual loss. Repeat MRI demonstrated worsening leukoencephalopathy, diffuse cerebral edema, ventricular effacement, and acquired cerebellar tonsillar herniation precluding repeat lumbar puncture. Serologies revealed ANA >1:2560 (speckled), anti-dsDNA 1:160, positive anti-Smith/RNP, SSA, SSB, and low C3. AQP4 and MOG antibodies were negative. She had no mucocutaneous, renal, or other systemic SLE features. She was treated with pulse-dose IV methylprednisolone, rituximab induction, and right optic nerve sheath fenestration for her vision-threatening papilledema. She demonstrated significant clinical improvement with resolution of headaches, vertigo, and improved mentation. Results: NA. Conclusions: This case highlights a rare phenotypic presentation in the spectrum of NPSLE by demonstrating manifestations of IH (diffuse leukoencephalopathy with cerebral edema, acquired Chiari malformation, and vision-threatening papilledema) as the isolated presenting manifestation. Clinicians should consider SLE serologies in unexplained leukoencephalopathy with IH, even without systemic features. Aggressive immunosuppression combined with surgical management of papilledema can yield favorable outcomes.",
@@ -11270,10 +11891,14 @@
     "neurology_classification": {
       "subspecialty": "Neuroimmunology",
       "subspecialties": [
-        "Neuroimmunology"
+        "Neuroimmunology",
+        "Neurocritical Care",
+        "Epilepsy"
       ],
       "topics": [
-        "Encephalitis"
+        "Seizure",
+        "Encephalitis",
+        "Encephalopathy"
       ]
     },
     "abstract": "Objective: The goal of our study was to investigate the relationship between autoimmune encephalitis (AE) phenotype domains and in-hospital and discharge outcomes. Background: AE is a rare cause of subacute encephalopathy, presenting with amnesia, behavioral changes, and psychiatric manifestations. Despite advancements in neuronal autoantibody identification, diagnosis often relies on phenotypic presentation due to delays in antibody confirmation. Phenotypic features present early and may help determine urgency of treatment; however, there is insufficient literature defining the relationship between predominant phenotypes and inpatient outcomes. We hypothesized that phenotype-based presentation in AE would be associated with distinct patterns of inpatient severity, resource utilization, and discharge outcomes. Design/Methods Hospitalizations for AE were abstracted from the 2016-2022 National Inpatient Sample and categorized based on non-mutually exclusive phenotype groups of seizure, cognitive change/confusion, movement, or new-onset psychosis. Specific phenotype combinations were also examined. Outcomes investigated included in-hospital mortality, hospital length of stay (LOS) and cost, discharge disposition, and in-hospital severe events (shock, mechanical ventilation). Results: There were an estimated 19,175 hospitalizations for AE; of those, seizure was the most frequent phenotype (Weighted N: 8,405), followed by cognitive/confusion (Weighted N: 6,495). The cognitive/confusion phenotype had the worst clinical outcomes, with an inpatient mortality rate of 3.85%, mechanical ventilation was performed in 19.5% of hospitalizations, and the average LOS and hospital cost were 20.26 days (SD: 0.73 days), and 77,735 (SD 3,647), respectively. Rare phenotype combinations demonstrated greatest hospital burden, with movement and new psychosis combination group having the longest average LOS (47.64 ± 6.27 days) and highest average cost ($161,324 ± 8,501). Conclusions: Amongst phenotypic groups, seizure and cognitive/confusion traits were most prevalent, whereas cognitive/confusion phenotypes were associated with the worst outcomes. Phenotype combinations were linked to increased hospital burden. These findings suggest that clinical phenotypes may serve as important prognostic factors in AE.",
@@ -11294,9 +11919,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Case Report",
+    "article_type": "Original Article",
     "article_types": [
-      "Case Report"
+      "Original Article"
     ],
     "authors": [
       "Ghurye Nirbha",
@@ -11307,10 +11932,15 @@
     "neurology_classification": {
       "subspecialty": "CNS Infections",
       "subspecialties": [
-        "CNS Infections"
+        "CNS Infections",
+        "Neurocritical Care",
+        "Epilepsy"
       ],
       "topics": [
-        "Cerebral"
+        "Epilepsy",
+        "Cerebral",
+        "Brain",
+        "Headache"
       ]
     },
     "abstract": "Objective: To present a case of acute cerebral malaria with an unusual clinico-radiological discrepancy, in which prominent diffusion-restricted white-matter abnormalities contrasted with relatively mild neurologic findings. Background: Cerebral malaria (CM) represents the most severe neurologic complication of Plasmodium falciparum infection, with clinical presentations ranging from headache and encephalopathy to seizures and coma. Adults with CM are at risk for significant multi-system involvement, including renal, hepatic, and pulmonary dysfunction. Design/Methods NA. Results: A 37-year-old man with well-controlled HIV on HAART returned from Nigeria with 1 week of fever and headaches. Laboratory testing revealed leukocytosis, thrombocytopenia, and elevated lactate. A peripheral smear demonstrated P. falciparum parasitemia of 15.7% with ring forms on Giemsa stain. He was treated with atovaquone-proguanil, followed by a course of artemether-lumefantrine. Neurologically, he exhibited fluctuating mentation characterized by irritability and slowed processing speed but no focal deficits. A non-contrast CT head demonstrated age-indeterminate lacunar infarcts. MRI brain confirmed chronic lacunar infarcts but also revealed striking bilateral, symmetric subcortical white-matter diffusion restriction without corresponding FLAIR or post-contrast abnormalities. CSF analysis was normal, with no pleocytosis, normal protein levels, and negative microbiologic PCR testing results. The autoimmune disease workup carried out was also unremarkable. Conclusions: Cerebral malaria is an underrecognized cause of reversible neuroinflammation. Isolated subcortical white-matter diffusion restriction has been described in pediatric CM, and is often associated with milder disease and favorable outcomes. This case highlights a similar radiologic pattern in an adult with only mild encephalopathy, suggesting that early antimalarial therapy and limited microvascular injury may underlie the clinico-radiological mismatch. White-matter vulnerability in CM is thought to result from reversible microvascular sequestration, cytokine-mediated inflammation, and hematologic dysfunction leading to impaired perfusion. Long-term neurologic sequelae of cerebral malaria include cognitive, motor, behavioral deficits, and epilepsy. This case highlights the importance of early recognition and treatment in reducing the risk of unfavorable neurologic outcomes.",
@@ -11342,12 +11972,17 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001268540.24451.c5",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Other"
+        "Stroke",
+        "Epilepsy",
+        "Neuroimmunology"
       ],
       "topics": [
-        "Neurology"
+        "Stroke",
+        "Seizure",
+        "Neuropathy",
+        "Meningitis"
       ]
     },
     "abstract": "Objective: To identify and classify neurological disorders associated with elevated cerebrospinal fluid (CSF) angiotensin-converting enzyme (ACE). Background: CSF ACE is most associated with neurosarcoidosis. However, diagnostic utility is debatable as literature has shown varying specificity and sensitivity. We aimed to investigate what diagnoses are associated with elevated CSF ACE. Design/Methods Single-center retrospective electronic medical record (EMR) review of adult patients who underwent CSF ACE testing from 1/1/12 to 12/31/25. Patients identified using IRB-approved institutional analytic tools. EMRs of identified patients were manually reviewed to ensure exclusion/inclusion criteria were met. Demographical data were recorded. Patients with elevated CSF ACE (>2.5 U/L) underwent additional analysis, and relevant diagnoses categorized. Results: 1186 patients underwent CSF ACE testing; elevated in 66 (median level: 4.4 U/L, range 2.6-40.0 U/L). Mean age 55.7 ±14.2, 40 females, 26 males. Diagnoses included: meningitis (n=13; 6 aseptic, 2 bacterial, 3 fungal, 1 viral, 1 parasitic), miscellaneous neurologic presentations (n=10; 3 headache, 3 encephalopathy, 2 seizure, 1 spinocerebellar ataxia, 1 acute stroke), neurosarcoidosis (n=9; 8 probable, 1 possible), CNS malignancy (n=10; 5 primary, 5 secondary), structural (n=7; 3 CSF leak, 2 hydrocephalus, 2 compressive myelopathy), autoimmune/inflammatory (n=7; 5 CNS demyelination, 2 Guillain Barre Syndrome), unclassified (n=7; 5 incomplete workup, 2 lost to follow-up), neuromuscular (n=5; 4 peripheral neuropathy, 1 myopathy), idiopathic meningeal enhancement (n=4). Neuroleptic use found in 2 secondary CNS malignancy, 2 encephalopathy, 1 aseptic meningitis, 1 headache (n=6). 24/66 (36.4%) demonstrated meningeal enhancement on MRI (10 leptomeningeal, 10 pachymeningeal, 4 both). Conclusions: Elevated CSF ACE was seen in association with a variety of neurologic diagnoses demonstrating elevated CSF ACE is not specific for sarcoidosis and actually may be more associated with meningitis (19.7%) than sarcoidosis (13.6%). Across diagnoses, meningeal enhancement was a relatively common finding, 36.4% of cases, indicating CSF ACE may be a more common marker of meningeal pathology than of sarcoidosis.",
@@ -11368,9 +12003,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Case Report",
+    "article_type": "Original Article",
     "article_types": [
-      "Case Report"
+      "Original Article"
     ],
     "authors": [
       "Álvarez Falcón María de los Ángeles",
@@ -11383,10 +12018,13 @@
     "neurology_classification": {
       "subspecialty": "Neuromuscular",
       "subspecialties": [
-        "Neuromuscular"
+        "Neuromuscular",
+        "Neuro-Oncology"
       ],
       "topics": [
-        "Myasthenia"
+        "Myasthenia",
+        "Glioma",
+        "Brain"
       ]
     },
     "abstract": "Objective: To describe a case of bulbar-predominant myasthenia gravis (MG) that mimicked a structural brainstem lesion emphasizing clinical-radiological dissociation to prevent misdiagnosis. Background: Miastenia Gravis is an autoimmune disorder of the neuromuscular junction characterized by fluctuating weakness and muscle fatigability, with a classic ocular presentation. However, in some cases, bulbar involvement may predominate. The presence of incidental neuroimaging findings, such as brainstem lesions, can delay diagnosis and lead to misinterpretation. This scenario represents a diagnostic challenge, particularly in young patients with progressive symptoms. Design/Methods N/A. Results: A 23-year-old woman with autoimmune thyroiditis came in with a four-month history of worsening asymmetric ptosis, diplopia, dysphonia, and severe dysphagia. The examination showed diplegia facialis, palatal droop, an absent gag reflex, and lingual weakness (2/5) with fasciculations, as well as proximal limb fatigability and respiratory insufficiency (Single Breath Count (SBC): 3). A brain MRI showed a non-enhancing tectal cystic lesion that looked like a low-grade glioma at first. However, the absence of long-tract signs and the fact that symptoms changed over time pointed to a neuromuscular junction disorder. The presence of anti-AChR antibodies confirmed the diagnosis of generalised Myasthenia Gravis. Even though the patient was stable at first, a respiratory infection caused a crisis that needed ICU admission and intravenous immunoglobulin. After aggressive immunotherapy and corticosteroids, she achieved significant recovery (SBC >20). During follow-up, she experienced intermittent diplopia, demonstrating a favourable response to immunomodulatory treatment and a gradual decrease in corticosteroid dosage. Conclusions: This case underscores the significant risk of misdiagnosis in bulbar-predominant MG, which can resemble brainstem structural lesions, particularly when incidental neuroimaging findings are present. Clinical-radiological dissociation, symptom variability, and fatigue are essential diagnostic indicators. Early diagnosis prevents unnecessary interventions and enhances outcomes through suitable immunomodulatory therapy. This case underscores the statement that “not all imaging findings elucidate the clinical presentation.”",
@@ -11407,9 +12045,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Case Report",
+    "article_type": "Original Article",
     "article_types": [
-      "Case Report"
+      "Original Article"
     ],
     "authors": [
       "Sanivarapu Anusha",
@@ -11425,7 +12063,10 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Multiple sclerosis"
+        "Seizure",
+        "Multiple sclerosis",
+        "Encephalitis",
+        "Brain"
       ]
     },
     "abstract": "Objective: To highlight diagnostic challenges of tumefactive multiple sclerosis presenting with seizures and leptomeningeal enhancement mimicking neoplasm, and emphasize the role of steroid responsiveness and CSF findings in guiding management. Background: Tumefactive multiple sclerosis (TMS) is a rare demyelinating variant that can mimic neoplasm or infection, particularly when associated with mass effect or atypical imaging features such as leptomeningeal enhancement. Design/Methods A 49-year-old female with a history of multiple sclerosis (off disease-modifying therapy) and untreated focal seizures presented with a generalized tonic-clonic seizure. Prehospital hypoglycemia (glucose 54 mg/dL) was corrected. In the emergency department, she had recurrent seizures requiring benzodiazepines and was noted to be obtunded with vomiting and inability to follow commands. CT head revealed left parietal cortical thickening and sulcal effacement. CTA/CTV were negative. EEG demonstrated focal slowing in the left temporoparietal region. MRI brain showed diffuse left parietal and occipital leptomeningeal enhancement, proteinaceous sulcal material, and extensive T2 hyperintense white matter lesions concerning for demyelination versus neoplasm or encephalitis. CSF demonstrated elevated oligoclonal bands; spinal MRI showed non-enhancing T2 lesions. Given broad differential including malignancy and infection, neurosurgical biopsy was considered but deferred. The patient was treated with corticosteroids and levetiracetam with rapid clinical improvement. Initiation of ocrelizumab was delayed due to recurrent flares, medication nonadherence, and breakthrough seizures. The patient developed neuropsychiatric symptoms, including mood lability and behavioral changes, complicating adherence and requiring multiple readmissions. She was managed with dimethyl fumarate and extended-release levetiracetam. Results: N/A Conclusions: TMS can present with atypical features such as leptomeningeal enhancement, closely mimicking neoplasm. Recognition of steroid responsiveness and supportive CSF findings can help avoid unnecessary biopsy. Early initiation of high-efficacy therapy is critical, though adherence and neuropsychiatric comorbidities may significantly impact management.",
@@ -11437,8 +12078,171 @@
     }
   },
   {
+    "id": "10.1212/01.wnl.0001268080.79493.17",
+    "title": "Rescue Therapy Handling and Treatment Effect Estimates: A Post Hoc Analysis From the PREVAIL Trial of Gefurulimab in gMG",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-10T00:00:00Z",
+    "article_type": "Clinical Trial",
+    "article_types": [
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Vu Tuan",
+      "Shang Shulian",
+      "Sacca Francesco"
+    ],
+    "doi_url": "https://doi.org/10.1212/01.wnl.0001268080.79493.17",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Objective: To explore the impact of different strategies for handling rescue therapy on the treatment effect using data from the phase 3 PREVAIL trial (NCT05556096). Background: Generalized myasthenia gravis (gMG) trials commonly allow rescue therapy for clinical deteriorations or exacerbations. As patients are likely to benefit from rescue therapy, treatment effect estimates for the investigational treatment can potentially be confounded, especially when the frequency, duration, and timing of rescue therapy are not balanced across arms. Different strategies have been employed to address rescue therapy use and its impact on estimated treatment effects. Design/Methods Adults with anti-acetylcholine receptor antibody-positive gMG were randomized 1:1 to weekly subcutaneous self-administration of gefurulimab or placebo. The primary analysis estimated treatment effects using a treatment policy strategy. This post hoc analysis compared treatment effects in Myasthenia Gravis Activities of Daily Living (MG-ADL) and Quantitative Myasthenia Gravis (QMG) total scores at week 26 using 3 methods to account for patients receiving rescue therapy: (1) imputation with the worst score of the same subject before rescue; (2) multiple imputations with the bottom 10% scores of the same treatment group; or (3) censored after rescue. Results: 260 patients were randomized (gefurulimab, n=131; placebo, n=129). Demographics and baseline disease characteristics were balanced; rescue therapy was used by 5.3% and 12.4% of patients receiving gefurulimab and placebo, respectively. The primary analysis included all data in the analysis regardless of rescue therapy use; mean (SD) treatment difference was -1.6 (0.40) and -2.1 (0.50) for MG-ADL and QMG scores, respectively. The treatment difference varied with strategies 1-3 (mean [SD]: MG-ADL, -1.9 [0.42], -2.0 [0.42], and -1.9 [0.42]; QMG, -2.3 [0.51], -2.0 [0.52], and -2.1 [0.51]), all remained statistically significant. Conclusions: Estimated treatment effects varied with rescue therapy handling methodology, highlighting the need to account for rescue therapies when interpreting trial results to prevent bias and inappropriate conclusions.",
+    "ai_takeaways": {
+      "conclusion_vi": "In a post hoc analysis of the PREVAIL trial, accounting for rescue therapy using different statistical strategies yielded varying treatment differences (MG-ADL -1.9 to -2.0; QMG -2.0 to -2.3 vs primary analysis -1.6 and -2.1), though all remained significant, highlighting how rescue therapy handling influences effect estimates in gMG trials.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true,
+      "study_type": "Clinical Trial"
+    }
+  },
+  {
+    "id": "10.1212/01.wnl.0001267884.04083.69",
+    "title": "Clinical Characteristics of Multiple Sclerosis Patients with Seropositive MOG Antibody Test",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-10T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Plaza-Jennings Amara",
+      "Bilodeau Phillippe",
+      "Vishnevetsky Anastasia",
+      "Levy Michael",
+      "Burton Jodie"
+    ],
+    "doi_url": "https://doi.org/10.1212/01.wnl.0001267884.04083.69",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis"
+      ]
+    },
+    "abstract": "Objective: To determine if multiple sclerosis (MS) patients who test positive for the myelin oligodendrocyte glycoprotein (MOG) antibody test have different disease characteristics than typically seen in MS. Background: MS and MOG associated-antibody disease (MOGAD) are distinct CNS demyelinating disorders with different courses and treatments but can be difficult to distinguish from each other. Some patients who meet McDonald criteria for MS also have MOG antibodies, the significance of which is unknown. Design/MethodsPatients at Mass General Brigham with MOG IgG1 antibodies in serum by cell-based assay (n=295) who did not meet criteria for a diagnosis of MOGAD (n=59) underwent chart review to extract patients who met current McDonald diagnostic criteria for MS as determined by a consensus of 3 MS neurologists. Ten such patients were identified. Results: Of these 10 patients, 70% (n=7) were female and had a mean age at onset of 27.4 years (SD=10.5). All had MOG IgG1 titers of ≤1:20 except one with a titer of 1:100. Of the 5 patients with repeat antibody testing, only one sero-reverted. Phenotypically, one had perineural optic nerve enhancement while another had a longitudinally extensive optic nerve lesion on MRI. Six of ten patients developed new MRI lesions while on high efficacy MS therapies for ≥6 months. Conclusions: We studied the course of 10 patients who met criteria for MS who had positive MOG antibodies. Overall, clinical, radiological, and serum and CSF biomarker findings conformed to expectations for MS patients. However, some radiological features of optic neuritis more consistent with MOGAD were seen, and interestingly, 60% had MRI lesion accrual on high-efficacy MS therapy, much greater than would be expected. Our findings raise the hypothesis that the presence of MOG antibodies in MS impacts disease course. A larger prospective study is needed to confirm our findings.",
+    "ai_takeaways": {
+      "conclusion_vi": "Patients meeting McDonald MS criteria with seropositive MOG antibodies (mostly titers ≤1:20) generally display typical MS features, but 60% (n=6/10) experienced MRI lesion accrual despite high-efficacy MS therapy for ≥6 months. The presence of low-titer MOG antibodies in MS may impact disease course and therapeutic response.",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1212/01.wnl.0001268196.91291.98",
+    "title": "White Matter Microstructural Damage in Neuromyelitis Optica Spectrum Disorders: A Systematic Review and Meta-analysis of Diffusion Tensor Imaging Studies",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-10T00:00:00Z",
+    "article_type": "Meta-Analysis",
+    "article_types": [
+      "Meta-Analysis",
+      "Review",
+      "Original Article"
+    ],
+    "authors": [
+      "Reddy Atla Sai Sahithi",
+      "Kuraku Dileep Raja",
+      "Desai Bhavya",
+      "Pallapothu Manoj",
+      "Keshapogu Nagarjuna",
+      "Nair Athira",
+      "Maqbool Farkhanda",
+      "Kaur Navjoth",
+      "Sreeram Anugraha",
+      "Shaikh Juber",
+      "Kintali Srikar",
+      "Gangireddy Hasmitha"
+    ],
+    "doi_url": "https://doi.org/10.1212/01.wnl.0001268196.91291.98",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Neuromyelitis"
+      ]
+    },
+    "abstract": "Objective: To evaluate white matter microstructural changes in NMOSD using diffusion tensor imaging (DTI) across brain and spinal cord regions, and to identify DTI parameters most suitable as disease-monitoring biomarkers. Background: NMOSD primarily affects optic nerves & spinal cord, but evidence increasingly supports broader CNS involvement. DTI enables detection of microstructural abnormalities beyond conventional MRI-visible lesions by quantifying fractional anisotropy (FA), mean diffusivity (MD), and radial diffusivity (RD). Comprehensive synthesis across anatomical regions is needed to identify optimal DTI biomarkers Design/Methods Systemic review was conducted searching PubMed, Europe PMC, and ClinicalTrials.gov (2015–2025) for studies comparing DTI parameters between NMOSD patients and healthy controls (HCs). Studies reporting extractable DTI metrics from defined anatomical regions were included. Pooled Hedges' g was calculated using inverse-variance weighted random-effects meta-analysis where ≥2 studies provided extractable means and SDs; single-study regions were reported&Risk of bias was assessed using a modified Newcastle-Ottawa Scale. Results: Nine studies (159 NMOSD, 157 HCs; 2012–2022) were included; risk of bias was low-moderate. Pooled meta-analysis across three regions showed: cervical spinal cord had the largest FA reduction (3 studies; g = −1.80, p<0.001)optic radiation demonstrated robust FA reduction (3 studies; g = −0.84, p<0.001) and corpus callosum showed moderate FA reduction (2 studies; g = −0.58, p=0.03). MD and RD were consistently elevated across all regions, consistent with demyelination. In single-study analyses, normal-appearing white matter (g = −0.84) and association tracts/thalamic radiation also showed significant DTI abnormalities, indicating subclinical network-level involvement beyond visible lesions. Conclusions: NMOSD causes microstructural white matter damage extending well beyond MRI-visible lesions. Cervical spinal cord & optic radiation show the most reproducible and largest pooled DTI abnormalities, supporting their use as sensitive, region-specific biomarkers for monitoring. NAWM involvement across multiple tracts suggests subclinical network damage that warrants prospective longitudinal investigation. Future studies with larger cohorts&standardized acquisition protocols are needed to enable robust multi-region meta-analysis.",
+    "ai_takeaways": {
+      "conclusion_vi": "NMOSD causes microstructural white matter damage beyond conventional MRI lesions. Meta-analysis shows significant fractional anisotropy (FA) reductions in the cervical spinal cord (g = −1.80, p<0.001), optic radiation (g = −0.84, p<0.001), and corpus callosum (g = −0.58, p=0.03), supporting cervical cord and optic radiation DTI parameters as sensitive monitoring biomarkers.",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": true,
+      "study_type": "Meta-Analysis"
+    }
+  },
+  {
+    "id": "10.1212/01.wnl.0001268156.36837.c3",
+    "title": "From Fragmentation to Standardization: Developing an Outpatient Autoimmune Neurology Clinic",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-10T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Fredrich Sarah",
+      "Ahmad Haroon",
+      "Pham Lily",
+      "Benavides David"
+    ],
+    "doi_url": "https://doi.org/10.1212/01.wnl.0001268156.36837.c3",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Objective: To describe the development of a rapid-access outpatient autoimmune neurology clinic using scalable workflows and clinical scoring tools, and to evaluate its impact on timeliness, diagnostic accuracy, and standardization of care for suspected autoimmune encephalitis (AE) and paraneoplastic neurologic syndromes (PNS). Background: Care for patients with suspected AE and PNS is often fragmented, leading to delayed diagnosis, unnecessary testing, and inconsistent use of validated diagnostic frameworks. Dedicated subspecialty clinics may improve efficiency and diagnostic accuracy, but practical models and implementation strategies remain underreported. Design/Methods We established a rapid-access outpatient autoimmune neurology clinic using structured referral triage, templated documentation, and coordinated diagnostic pathways. Standardization included systematic application of APE2 and PNS-CAREs scores to guide diagnostic testing and antibody interpretation. We retrospectively analyzed 50 consecutive patients, evaluating the time to evaluation, time to diagnostic studies (MRI, EEG, lumbar puncture, malignancy screening) using clinic workflows versus pre-referral timelines, antibody panel utilization, and concordance between referral and final diagnoses. Results: Fifty patients were evaluated following screening of 77 referrals. The mean time to first appointment was 17 days. Most patients had extensive prior workup, including neuroimaging and antibody testing. The clinic model enabled systematic reinterpretation of prior results and reduced time to key diagnostic studies including MRI Brain, EEG, and lumbar puncture. Twenty-two percent of serum and 25% of CSF antibody panels required repeat testing for gold-standard assessment. The application of APE2 and PNS-CAREs scores improved diagnostic stratification and reduced unnecessary testing. Referral diagnoses were frequently revised following standardized evaluation, highlighting variability in pre-referral diagnostic accuracy. Conclusions: A structured autoimmune neurology clinic model enables standardized, high-value evaluation of suspected AE and PNS. Integration of clinical scoring systems, centralized data review, and coordinated diagnostic workflows improved consistency in antibody testing and diagnostic decision-making. This model provides a scalable framework for other centers seeking to develop subspecialty autoimmune neurology programs.",
+    "ai_takeaways": {
+      "conclusion_vi": "Establishing a rapid-access outpatient autoimmune neurology clinic utilizing structured referral triage, coordinated pathways, and standardized clinical scores (APE2 and PNS-CAREs) improves care timeliness, reduces unnecessary diagnostic testing, and enhances diagnostic accuracy for suspected autoimmune encephalitis and paraneoplastic neurologic syndromes.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
     "id": "10.1001/jamaneurol.2026.4165",
-    "title": "Arrival of CAR T-Cell Therapies for Stiff Person Syndrome.",
+    "title": "Arrival of CAR T-Cell Therapies for Stiff Person Syndrome",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -11451,8 +12255,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Gupta S",
-      "Gelfand JM."
+      "Gupta Sasha",
+      "Gelfand Jeffrey M."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4165",
     "neurology_classification": {
@@ -11769,7 +12573,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4491",
-    "title": "Azetukalner in Adults With Focal Seizures: Research Summary.",
+    "title": "Azetukalner in Adults With Focal Seizures",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -12125,7 +12929,8 @@
       ],
       "topics": [
         "Stroke",
-        "Thrombectomy"
+        "Thrombectomy",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -12203,7 +13008,8 @@
         "Stroke"
       ],
       "topics": [
-        "Ischemic"
+        "Ischemic",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -12288,7 +13094,8 @@
         "Dementia"
       ],
       "topics": [
-        "Dementia"
+        "Dementia",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -12553,7 +13360,8 @@
         "Neuromuscular"
       ],
       "topics": [
-        "Myasthenia"
+        "Myasthenia",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -12931,6 +13739,7 @@
       ],
       "topics": [
         "Cerebral",
+        "Neurology",
         "Migraine"
       ]
     },
@@ -14563,42 +15372,6 @@
     "ai_takeaways": {
       "conclusion_vi": "",
       "clinical_significance": "Clinical significance for Epilepsy practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1001/jamaneurol.2026.3048",
-    "title": "Exhaled Carbon Monoxide Levels May Offer Clues on the Etiology of Parkinson Disease.",
-    "journal": {
-      "name": "JAMA Neurology",
-      "short_name": "JAMA Neurol",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#E11D48"
-    },
-    "pub_date": "2026-11-01T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Darweesh SKL",
-      "Remz MA",
-      "Goldman SM."
-    ],
-    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.3048",
-    "neurology_classification": {
-      "subspecialty": "Movement Disorders",
-      "subspecialties": [
-        "Movement Disorders"
-      ],
-      "topics": [
-        "Parkinson"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Movement Disorders practice.",
       "ai_verified": false
     }
   },
@@ -26578,6 +27351,42 @@
     }
   },
   {
+    "id": "10.1001/jamaneurol.2026.3048",
+    "title": "Exhaled Carbon Monoxide Levels May Offer Clues on the Etiology of Parkinson Disease",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-09-08T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Darweesh Sirwan K.L.",
+      "Remz Matthew A.",
+      "Goldman Samuel M."
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.3048",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1161/strokeaha.126.055839",
     "title": "Social Determinants of Health in Early to Mid-Adulthood and Risk of Early-Onset Stroke",
     "journal": {
@@ -30470,12 +31279,12 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.107.502153",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Other"
+        "Stroke"
       ],
       "topics": [
-        "Neurology"
+        "Stroke"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
