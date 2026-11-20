@@ -140,7 +140,6 @@ export default function AdminCommandCenter() {
 
   // Landmark Clinical Trials Registry & Edit
   const [pivotalTrials, setPivotalTrials] = useState<PivotalTrialRecord[]>(PIVOTAL_TRIALS_SEED);
-  const [isLoadingTrials, setIsLoadingTrials] = useState<boolean>(false);
   const [editingTrial, setEditingTrial] = useState<PivotalTrialRecord | null>(null);
   const [showTrialModal, setShowTrialModal] = useState<boolean>(false);
 
@@ -365,7 +364,6 @@ export default function AdminCommandCenter() {
   }, [guidelineDocs, repoSearchQuery, repoSocietyFilter]);
 
   const fetchPivotalTrials = async () => {
-    setIsLoadingTrials(true);
     try {
       const res = await fetch("/api/neuroguide/navigator", { cache: "no-store" });
       if (res.ok) {
@@ -377,8 +375,6 @@ export default function AdminCommandCenter() {
       }
     } catch (err) {
       console.error("Failed to load pivotal trials in admin:", err);
-    } finally {
-      setIsLoadingTrials(false);
     }
   };
 
@@ -426,7 +422,6 @@ export default function AdminCommandCenter() {
   const [deleteLoadingId, setDeleteLoadingId] = useState<string | null>(null);
 
   const fetchGuidelinesList = async () => {
-    setIsLoadingTrials(true);
     try {
       const res = await fetch("/api/neuroguide/sync-guidelines", { cache: "no-store" });
       if (res.ok) {
@@ -482,9 +477,7 @@ export default function AdminCommandCenter() {
           }
         }
       }
-    } catch {} finally {
-      setIsLoadingTrials(false);
-    }
+    } catch {}
   };
 
   const handleDeleteGuideline = async (doc: GuidelineDoc) => {
@@ -1415,11 +1408,6 @@ export default function AdminCommandCenter() {
                     }`}
                   >
                     {pivotalTrials.length}
-                    {isLoadingTrials && (
-                      <span className="ml-1 inline-block animate-spin opacity-70" title="Syncing trials...">
-                        ⟳
-                      </span>
-                    )}
                   </span>
                 </button>
               </div>

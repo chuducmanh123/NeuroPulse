@@ -887,6 +887,7 @@ export async function saveNeuroGuideToActiveStorage(payload: {
   customRecLabels?: Record<string, RecommendationLabelOutput>;
   deletedGuidelineIds?: string[];
   deletedTrialIds?: string[];
+  skipV2Mirror?: boolean;
 }): Promise<{
   success: boolean;
   storage: "supabase" | "local-disk" | "failed";
@@ -973,7 +974,7 @@ export async function saveNeuroGuideToActiveStorage(payload: {
       }
     }
     const sbRes = await setToSupabase(fullPayload);
-    if (sbRes.ok && isNeuroGuideSyncV2Enabled()) {
+    if (sbRes.ok && isNeuroGuideSyncV2Enabled() && !payload.skipV2Mirror) {
       try {
         await mirrorStorePayloadToV2Repo(new SupabaseNeuroGuideRepo(), {
           guidelines: fullPayload.guidelines,

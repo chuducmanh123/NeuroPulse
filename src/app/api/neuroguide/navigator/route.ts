@@ -1,8 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
+  isNeuroGuideSyncV2Enabled,
   loadMergedNeuroGuideData,
   saveNeuroGuideToActiveStorage,
 } from "@/lib/neuroguide/guidelineStorage";
+import { hasSupabaseConfig } from "@/lib/supabase";
+import { SupabaseNeuroGuideRepo } from "@/lib/neuroguide/sync/repoSupabase";
+import {
+  syncCustomRecLabelToV2Repo,
+  syncDeletePivotalTrialInV2Repo,
+  syncPivotalTrialToV2Repo,
+} from "@/lib/neuroguide/sync/serverAdapter";
 import { STROKE_ONTOLOGY } from "@/lib/neuroguide/ontologyValidator";
 import {
   labelRecommendationWithGemini,
@@ -137,7 +145,16 @@ export async function POST(request: NextRequest) {
         customRecLabels: currentStore.customRecLabels,
         deletedGuidelineIds: currentStore.deletedGuidelineIds,
         deletedTrialIds: updatedDeletedTrialIds,
+        skipV2Mirror: true,
       });
+
+      if (saveRes.success && isNeuroGuideSyncV2Enabled() && hasSupabaseConfig()) {
+        try {
+          await syncPivotalTrialToV2Repo(new SupabaseNeuroGuideRepo(), trial, "admin");
+        } catch (v2Err) {
+          console.warn("NeuroGuide Sync v2 pivotal trial upsert warning:", v2Err);
+        }
+      }
 
       return NextResponse.json({
         ok: saveRes.success,
@@ -180,7 +197,16 @@ export async function POST(request: NextRequest) {
         customRecLabels: currentStore.customRecLabels,
         deletedGuidelineIds: currentStore.deletedGuidelineIds,
         deletedTrialIds: updatedDeletedTrialIds,
+        skipV2Mirror: true,
       });
+
+      if (saveRes.success && isNeuroGuideSyncV2Enabled() && hasSupabaseConfig()) {
+        try {
+          await syncDeletePivotalTrialInV2Repo(new SupabaseNeuroGuideRepo(), trialId, "admin");
+        } catch (v2Err) {
+          console.warn("NeuroGuide Sync v2 pivotal trial delete warning:", v2Err);
+        }
+      }
 
       return NextResponse.json({
         ok: saveRes.success,
@@ -214,7 +240,21 @@ export async function POST(request: NextRequest) {
         customRecLabels: updatedLabels,
         deletedGuidelineIds: currentStore.deletedGuidelineIds,
         deletedTrialIds: currentStore.deletedTrialIds,
+        skipV2Mirror: true,
       });
+
+      if (saveRes.success && isNeuroGuideSyncV2Enabled() && hasSupabaseConfig()) {
+        try {
+          await syncCustomRecLabelToV2Repo(
+            new SupabaseNeuroGuideRepo(),
+            input.rec_id,
+            labeled.record,
+            "admin"
+          );
+        } catch (v2Err) {
+          console.warn("NeuroGuide Sync v2 custom label upsert warning:", v2Err);
+        }
+      }
 
       return NextResponse.json({
         ok: saveRes.success,

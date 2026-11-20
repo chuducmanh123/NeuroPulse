@@ -556,6 +556,8 @@ export function PivotalTrialModal({
     };
 
     setIsSaving(true);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000);
     try {
       const res = await fetch("/api/neuroguide/navigator", {
         method: "POST",
@@ -567,6 +569,7 @@ export function PivotalTrialModal({
           action: "upsert_trial",
           trial: record,
         }),
+        signal: controller.signal,
       });
       const data = await res.json();
       if (!res.ok || !data.ok) {
@@ -576,8 +579,13 @@ export function PivotalTrialModal({
         onClose();
       }
     } catch (err: any) {
-      setSaveError(err?.message || "Network error while saving Pivotal Trial.");
+      if (err?.name === "AbortError") {
+        setSaveError("Request timed out while saving Pivotal Trial. Please try again.");
+      } else {
+        setSaveError(err?.message || "Network error while saving Pivotal Trial.");
+      }
     } finally {
+      clearTimeout(timeoutId);
       setIsSaving(false);
     }
   };
