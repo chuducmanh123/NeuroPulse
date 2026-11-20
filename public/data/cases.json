@@ -1,5 +1,210 @@
 [
   {
+    "id": "nc-2026-057",
+    "case_code": "NC-2026-057",
+    "title": "Postpartum Periorbital Pain and Color Vision Loss",
+    "subspecialty": "Neuroimmunology",
+    "subspecialties": [
+      "Neuroimmunology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-20",
+    "status": "approved",
+    "author_credit": "Neurology(R) neuroimmunology & neuroinflammation • PMC13676278",
+    "source_journal": {
+      "name": "Neurology(R) neuroimmunology & neuroinflammation",
+      "short_name": "Neurology(R) neuroimmunology & neuroinflammation",
+      "doi_url": "https://doi.org/10.1212/nxi.0000000000200652",
+      "pmcid": "PMC13676278",
+      "pmid": "42854177",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "32-year-old female",
+      "chief_complaint": "Right eye pain on movement, color vision loss, and episodic vertigo 12 weeks postpartum.",
+      "history_of_present_illness": "A 32-year-old woman (G3P3) presented 12 weeks after an uncomplicated full-term vaginal delivery of her third child with right-sided periorbital pain exacerbated by eye movements, subjective red color desaturation, and a transient episode of vertigo. At age 19, she experienced an episode of painful, subacute left-sided vision loss with near-complete functional recovery despite receiving no acute immunotherapy. Over the subsequent 8 years, she reported intermittent, self-resolving episodes of binocular diplopia and widespread sensory allodynia without lasting deficits, and she remained clinically quiescent throughout three pregnancies without maintenance immunotherapy.",
+      "past_medical_history": "Prior episode of painful left-sided vision loss at age 19; G3P3; no chronic medical conditions.",
+      "vitals": {
+        "bp": "118/74 mmHg",
+        "hr": "72 bpm",
+        "rr": "14 breaths/min",
+        "temp": "36.7 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "On examination, visual acuity was 20/20 bilaterally, though bedside testing confirmed right-sided red desaturation and mild pain elicited by extraocular movements. Fundoscopy revealed left optic disc pallor and mild right optic disc edema. The remainder of the cranial nerve, motor, sensory, deep tendon reflex, and cerebellar examinations was unremarkable.",
+      "key_labs_csf": "Initial serum laboratory testing—including a comprehensive metabolic panel, complete blood count, erythrocyte sedimentation rate, and C-reactive protein—was within normal limits.",
+      "imaging": [
+        {
+          "modality": "MRI Brain and Orbits (Post-Contrast T1 & T2-weighted)",
+          "sequence_badge": "Figure 1 • Neurology(R) neuroimmunology & neuroinflammation (PMC13676278)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13676278_fig1.webp",
+          "pmcid": "PMC13676278",
+          "doi_url": "https://doi.org/10.1212/nxi.0000000000200652",
+          "caption": "(A) Coronal postcontrast T1-weighted image showing enhancement of the intraocular segment of the right optic nerve and coronal T2-weighted image showing a small amount of edema surrounding the intraocular segment of the right optic nerve. (B) Optical coherence tomography showed mild right retinal nerve fiber layer thickening. RNFL = retinal nerve fiber layer.",
+          "findings_summary": "Coronal T1-weighted post-contrast MRI demonstrated prominent enhancement of the anterior intraorbital segment of the right optic nerve and the surrounding optic nerve sheath, accompanied by perineural edema on T2-weighted sequences."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following autoantibodies is most characteristically associated with this patient's clinical presentation and neuroimaging findings?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Anti-Aquaporin-4 (AQP4) IgG",
+          "peer_percentage": 18,
+          "rationale": "Incorrect. AQP4-IgG neuromyelitis optica spectrum disorder typically causes longitudinally extensive, posterior optic nerve and chiasmal lesions with poor visual recovery, contrasting with this patient's anterior optic perineuritis and preserved 20/20 acuity despite prior untreated optic neuritis."
+        },
+        {
+          "id": "B",
+          "text": "Anti-Myelin Oligodendrocyte Glycoprotein (MOG) IgG",
+          "peer_percentage": 70,
+          "rationale": "Correct! Anti-MOG IgG defines MOG antibody-associated disease (MOGAD), which classically presents with anterior optic neuritis, optic disc edema, and peri-optic nerve sheath enhancement (optic perineuritis), often with favorable visual recovery and a propensity for postpartum relapse."
+        },
+        {
+          "id": "C",
+          "text": "Anti-Glial Fibrillary Acidic Protein (GFAP) IgG",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Anti-GFAP IgG is associated with autoimmune GFAP astrocytopathy, which classically manifests as subacute meningoencephalomyelitis with linear perivascular radial brain enhancement and bilateral disc edema rather than recurrent isolated optic perineuritis."
+        },
+        {
+          "id": "D",
+          "text": "Anti-Myelin Basic Protein (MBP) IgG",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. Serum anti-MBP antibodies lack diagnostic sensitivity and specificity for central nervous system demyelinating disorders or optic perineuritis in clinical practice."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Myelin Oligodendrocyte Glycoprotein Antibody-Associated Disease (MOGAD)",
+      "clinical_discussion": "In a postpartum woman presenting with recurrent optic neuritis, transient brainstem symptoms, and orbital MRI evidence of anterior optic nerve and perineural sheath enhancement, the differential diagnosis includes myelin oligodendrocyte glycoprotein antibody-associated disease (MOGAD), aquaporin-4 (AQP4)-IgG neuromyelitis optica spectrum disorder (NMOSD), multiple sclerosis, neurosarcoidosis, and infectious optic perineuritis (such as syphilis or tuberculosis). Both MOGAD and NMOSD frequently relapse during the postpartum period, and inflammatory or granulomatous mimics such as neurosarcoidosis can produce prominent optic nerve sheath enhancement. However, AQP4-IgG NMOSD classically targets the posterior optic nerve and chiasm and results in severe residual visual impairment, whereas multiple sclerosis typically causes shorter, non-perineural intraorbital lesions. This patient's near-complete spontaneous recovery after prior left optic neuritis alongside acute right optic disc edema and perineuritis strongly favored MOGAD.\n\nThe diagnosis was established by serum live cell-based assay (CBA) demonstrating high-titer anti-MOG IgG, while serum AQP4-IgG, syphilis serology, and serum angiotensin-converting enzyme were negative, excluding NMOSD and infectious or granulomatous optic perineuritis. Pathophysiologically, MOGAD is an antibody-mediated central nervous system demyelinating disorder targeting myelin oligodendrocyte glycoprotein, a surface protein expressed exclusively on oligodendrocytes and the outermost lamellae of myelin sheaths. Unlike AQP4-IgG astrocytopathy, MOG-IgG induces complement- and cell-mediated demyelination and prominent perineural inflammation without primary astrocyte destruction, accounting for the characteristic anterior optic disc swelling, perineuritis, and relatively preserved long-term visual acuity. In pregnant and postpartum patients with persistent high-titer MOG-IgG, maternal IgG crosses the placenta during late gestation and both MOG-IgG and MOG-IgA can be detected in breast milk, yet exposed neonates almost invariably remain clinically asymptomatic.\n\nAcute management of MOGAD optic neuritis consists of high-dose intravenous methylprednisolone (1 g/day for 3–5 days), followed by a gradual oral corticosteroid taper over several weeks to reduce the risk of early rebound relapse; refractory attacks may require plasma exchange or intravenous immunoglobulin (IVIG). Given this patient's relapsing clinical course and postpartum vulnerability, initiation of maintenance immunotherapy—such as scheduled IVIG, azathioprine, mycophenolate mofetil, or rituximab—is warranted to prevent future disabling attacks. With prompt corticosteroid therapy, patients typically experience rapid resolution of periorbital pain and optic disc edema with preservation of 20/20 visual acuity, and uninterrupted breastfeeding can be safely supported.",
+      "teaching_points": [
+        "MOGAD optic neuritis classically involves the anterior intraorbital optic nerve with prominent optic disc edema and peri-optic nerve sheath enhancement (optic perineuritis) on orbital MRI.",
+        "Compared with AQP4-IgG NMOSD, MOGAD optic neuritis carries a significantly better visual prognosis, even when prior attacks have caused residual optic disc pallor.",
+        "Live cell-based assays (CBA) represent the diagnostic gold standard for serum MOG-IgG detection, whereas fixed CBAs and ELISAs carry higher false-positive rates.",
+        "Although maternal MOG-IgG crosses the placenta and MOG antibodies are excreted in breast milk, transplacental and lactational transfer does not typically cause clinical neurologic disease in the infant."
+      ],
+      "clinical_pitfalls": [
+        "Attributing optic nerve sheath enhancement (optic perineuritis) exclusively to neurosarcoidosis, idiopathic orbital inflammatory disease, or infection, thereby failing to test for serum MOG-IgG.",
+        "Discontinuing corticosteroids abruptly after a 3- to 5-day intravenous pulse in MOGAD, which predisposes patients to early steroid-withdrawal rebound relapses.",
+        "Advising postpartum patients with MOGAD against breastfeeding due to theoretical concerns regarding antibody transfer in breast milk."
+      ],
+      "related_keywords": [
+        "MOGAD",
+        "Optic perineuritis",
+        "Postpartum relapse",
+        "Live cell-based assay"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-058",
+    "case_code": "NC-2026-058",
+    "title": "Subacute Cognitive Decline and Unremitting Seizures in a Healthy Young Woman",
+    "subspecialty": "Epilepsy",
+    "subspecialties": [
+      "Epilepsy"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-20",
+    "status": "approved",
+    "author_credit": "Epilepsia open • PMC12014908",
+    "source_journal": {
+      "name": "Epilepsia open",
+      "short_name": "Epilepsia open",
+      "doi_url": "https://doi.org/10.1002/epi4.13096",
+      "pmcid": "PMC12014908",
+      "pmid": "39801479",
+      "pub_year": "2025"
+    },
+    "presentation": {
+      "demographics": "37-year-old right-handed woman",
+      "chief_complaint": "Subacute cognitive decline and persistent seizures",
+      "history_of_present_illness": "A previously healthy 37-year-old right-handed woman was transferred to a tertiary care center for evaluation of subacutely progressive cognitive decline. Prior to transfer, she developed persistent seizures refractory to initial benzodiazepines and parenteral antiseizure medications. She had no history of epilepsy, febrile seizures, head trauma, or known malignancy.",
+      "past_medical_history": "Previously healthy; no prior history of epilepsy or chronic medical conditions.",
+      "vitals": {
+        "bp": "126/78 mmHg",
+        "hr": "92 bpm",
+        "rr": "18 breaths/min",
+        "temp": "37.1 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "On arrival, neurological examination revealed marked encephalopathy with fluctuating alertness and impaired attention, without lateralizing pyramidal deficits or meningismus.",
+      "key_labs_csf": "Urgent electroencephalography confirmed ongoing nonconvulsive status epilepticus. Routine serum chemistries, complete blood count, and toxicology screening were unremarkable. Initial cerebrospinal fluid Gram stain was negative, and infectious polymerase chain reaction panels and extended diagnostic studies remained pending.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (T2 FLAIR)",
+          "sequence_badge": "Figure 1 • Epilepsia open (PMC12014908)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12014908_fig1.jpg",
+          "pmcid": "PMC12014908",
+          "doi_url": "https://doi.org/10.1002/epi4.13096",
+          "caption": "Brain MRI T2 FLAIR sequence (A–C) Initial MRI showed significant hyperintensity in bilateral orbitofrontal, temporal opercula, medial temporal, and cingulate cortex on axial and coronal view. (D–F) Follow‐up MRI showed resolution of hyperintensity from previous areas and no significant atrophy.",
+          "findings_summary": "Initial axial and coronal T2-weighted FLAIR sequences demonstrate prominent hyperintensity involving the bilateral orbitofrontal, temporal opercular, medial temporal, and cingulate cortices."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Alongside continuous EEG monitoring, antiseizure medication escalation, and anesthetic infusion titration, what is the most appropriate next step in acute management?",
+      "question_type": "Acute Management",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Continue antiseizure medications and anesthetic infusions alone until confirmatory diagnostic and antibody results return",
+          "peer_percentage": 18,
+          "rationale": "Incorrect. Deferring disease-modifying therapy until confirmatory antibody panels return causes critical delays, as autoimmune etiologies account for a substantial proportion of new-onset refractory status epilepticus and early immunosuppression improves neurological outcomes."
+        },
+        {
+          "id": "B",
+          "text": "Initiate empiric antiviral therapy and withhold immunomodulatory agents until viral PCR results are finalized",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Although empiric antiviral coverage is appropriate while infectious PCR panels are pending, withholding immunotherapy in suspected autoimmune or cryptogenic new-onset refractory status epilepticus risks prolonged seizures and worse long-term neurological outcomes."
+        },
+        {
+          "id": "C",
+          "text": "Initiate early empiric first-line immunotherapy, such as intravenous immunoglobulin or plasma exchange",
+          "peer_percentage": 68,
+          "rationale": "Correct! In new-onset refractory status epilepticus with bilateral limbic-orbitofrontal MRI abnormalities and unremarkable initial toxic-metabolic screening, early initiation of first-line immunotherapy (such as intravenous immunoglobulin or plasma exchange) alongside antiseizure medications and empiric infectious coverage is indicated without waiting for delayed antibody confirmation."
+        },
+        {
+          "id": "D",
+          "text": "Proceed immediately to vagus nerve stimulator implantation prior to trialing immunomodulatory therapies",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. Vagus nerve stimulation is reserved as an adjunctive neuromodulatory intervention for super-refractory status epilepticus that fails medical, anesthetic, and immunotherapeutic regimens rather than as an initial alternative to immunotherapy."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "New-Onset Refractory Status Epilepticus (NORSE) Secondary to Anti-GAD65 Antibody-Positive Autoimmune Encephalitis",
+      "clinical_discussion": "New-onset refractory status epilepticus (NORSE) is a severe clinical syndrome rather than a single disease, defined by refractory or super-refractory status epilepticus in patients without a prior history of epilepsy. The differential diagnosis encompasses central nervous system viral or bacterial infections—such as herpes simplex encephalitis, which similarly targets the medial temporal, orbitofrontal, and cingulate regions—as well as toxic-metabolic encephalopathies, cryptogenic NORSE, and autoimmune or paraneoplastic encephalitis. In this patient, unremarkable toxic-metabolic screening combined with symmetric T2-weighted FLAIR hyperintensities across the bilateral medial temporal lobes, cingulate cortex, temporal opercula, and orbitofrontal cortices strongly favored an infectious or inflammatory limbic encephalitis over structural mimics.\n\nSubsequent diagnostic evaluation excluded infectious etiologies with negative cerebrospinal fluid viral and bacterial PCR panels and identified a high titer of anti-glutamic acid decarboxylase 65 (anti-GAD65) antibodies, confirming non-paraneoplastic autoimmune encephalitis as the underlying cause. Autoimmune etiologies account for up to 36.2% of NORSE cases, the majority of which are non-paraneoplastic. Pathophysiologically, prolonged status epilepticus and NORSE are driven by overproduction of proinflammatory cytokines in serum and cerebrospinal fluid alongside internalization of inhibitory GABA-A receptors and upregulation of excitatory NMDA receptors, perpetuating self-sustaining ictal activity.\n\nEarly initiation of first-line immunotherapy (such as intravenous immunoglobulin or plasma exchange) and timely escalation to second-line immunosuppressants are essential to improve outcomes in suspected autoimmune or cryptogenic NORSE. Despite aggressive multimodal therapy—including multiple antiseizure medications, anesthetic infusions, immunotherapies, a ketogenic diet, and electroconvulsive therapy—this patient experienced two seizure recurrences during anesthetic weaning before achieving seizure control on hospital day 32. To maintain seizure suppression and enable anesthetic withdrawal, a vagus nerve stimulator (VNS) was implanted using a rapid titration protocol, which may accelerate anti-inflammatory signaling and restore GABA-A receptor density, allowing complete anesthetic discontinuation by hospital day 50. Follow-up brain MRI demonstrated resolution of the prior T2-weighted FLAIR signal abnormalities without significant atrophy, and the patient remained seizure-free at 9-month follow-up.",
+      "teaching_points": [
+        "New-onset refractory status epilepticus (NORSE) is a clinical syndrome rather than a specific diagnosis; autoimmune etiologies account for more than one-third of cases and are predominantly non-paraneoplastic.",
+        "In suspected autoimmune or cryptogenic NORSE, early empiric first-line immunotherapy (e.g., intravenous immunoglobulin or plasma exchange) and escalation to second-line immunosuppressants when needed are critical to improving neurological outcomes.",
+        "Super-refractory status epilepticus is sustained by proinflammatory cytokine overproduction, reduced inhibitory GABA-A receptor density, and increased excitatory NMDA receptor activity.",
+        "Adjunctive vagus nerve stimulation with a rapid titration protocol may help consolidate seizure control and facilitate successful anesthetic weaning in super-refractory NORSE."
+      ],
+      "clinical_pitfalls": [
+        "Delaying empiric immunotherapy in NORSE while awaiting confirmatory autoimmune antibody panels worsens prognosis despite aggressive antiseizure and anesthetic management.",
+        "Failing to escalate to second-line immunosuppressants or multimodal adjunctive therapies when first-line immunotherapies yield incomplete control risks prolonged super-refractory status epilepticus and recurrent seizures during anesthetic tapering."
+      ],
+      "related_keywords": [
+        "New-onset refractory status epilepticus",
+        "Anti-GAD65 encephalitis",
+        "Super-refractory status epilepticus",
+        "Vagus nerve stimulation"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-055",
     "case_code": "NC-2026-055",
     "title": "Progressive Thoracic Spinal Cord Syndrome and Severe Sphincter Dysfunction in a Young Adult",
