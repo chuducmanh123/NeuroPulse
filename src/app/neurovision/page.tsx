@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { ViewTransition, useState, useEffect } from "react";
 import { useNeuroVisionStore } from "../../store/useNeuroVisionStore";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { MEDICAL_DISCLAIMER_TEXT } from "../../components/ecosystem/MedicalDisclaimerFooter";
@@ -42,7 +42,8 @@ export default function NeuroVisionPage() {
 
   return (
     <NeuroViewerProvider>
-      <div className="h-[100dvh] max-h-[100dvh] w-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none overflow-hidden relative">
+      <ViewTransition name="app-neurovision" share="app-morph" default="none">
+        <div className="h-[100dvh] max-h-[100dvh] w-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none overflow-hidden relative">
         {/* 1. Global Navigation Bar */}
         <header className="bg-slate-900 border-b border-slate-800 px-3 py-2 flex items-center justify-between shrink-0 shadow-md z-40">
           <div className="flex items-center gap-2.5">
@@ -221,7 +222,8 @@ export default function NeuroVisionPage() {
 
         {/* 4. Interactive ASPECTS & pc-ASPECTS Modal */}
         <AspectsScoreModal />
-      </div>
+        </div>
+      </ViewTransition>
     </NeuroViewerProvider>
   );
 }

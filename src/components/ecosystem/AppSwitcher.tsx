@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import React, { ViewTransition, useState, useRef, useEffect, useLayoutEffect } from "react";
 import Link from "next/link";
 
 interface AppSwitcherProps {
@@ -246,69 +246,86 @@ export function AppSwitcher({
           </Link>
 
           <div className="p-3 sm:p-3.5 grid grid-cols-3 gap-2 sm:gap-2.5">
-            {ecosystemApps.map((app) => (
-              <Link
-                key={app.id}
-                href={app.href}
-                transitionTypes={["nav-switch"]}
-                onClick={(e) => {
-                  if (app.isComingSoon) {
-                    e.preventDefault();
-                    return;
-                  }
-                  setOpen(false);
-                }}
-                className={`group relative px-1 py-2.5 sm:px-1.5 sm:py-3 rounded-xl flex flex-col items-center text-center transition-all ${
-                  app.isComingSoon
-                    ? "opacity-65 cursor-not-allowed"
-                    : app.isCurrent
-                    ? darkMode
-                      ? "bg-indigo-950/70 ring-1 ring-indigo-500/60"
-                      : "bg-indigo-50/90 ring-1 ring-indigo-300"
-                    : darkMode
-                    ? "hover:bg-slate-800/80"
-                    : "hover:bg-slate-100/90"
-                }`}
-              >
-                <div className="relative mb-2 sm:mb-2.5">
-                  <div
-                    className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br ${app.gradient} flex items-center justify-center shadow-md group-hover:scale-105 transition-transform`}
-                  >
-                    {app.icon}
-                  </div>
-                  {app.badge && (
-                    <span
-                      className={`font-mono-tech absolute -top-1.5 -right-2 px-1.5 py-0.5 rounded-full text-[7.5px] font-black uppercase leading-none shadow-xs ${
-                        app.badge === "LIVE"
-                          ? "bg-red-600 text-white"
-                          : app.badge === "NEW"
-                          ? "bg-violet-600 text-white"
-                          : app.badge.toUpperCase() === "BETA"
-                          ? app.id === "neuroguide"
-                            ? "bg-orange-600 text-white"
-                            : app.id === "neurorx"
-                            ? "bg-emerald-600 text-white"
-                            : "bg-blue-600 text-white"
-                          : "bg-amber-700 text-white"
-                      }`}
-                    >
-                      {app.badge}
-                    </span>
-                  )}
-                </div>
-
-                <span className="font-editorial text-[12.5px] sm:text-[13px] leading-tight whitespace-nowrap">
-                  {app.name}
-                </span>
-                <span
-                  className={`text-[8.5px] sm:text-[9px] leading-tight mt-0.5 whitespace-nowrap ${
-                    darkMode ? "text-slate-400" : "text-slate-500"
+            {ecosystemApps.map((app) => {
+              const tile = (
+                <Link
+                  key={app.id}
+                  href={app.href}
+                  transitionTypes={["nav-switch"]}
+                  onClick={(e) => {
+                    if (app.isComingSoon) {
+                      e.preventDefault();
+                      return;
+                    }
+                    setOpen(false);
+                  }}
+                  className={`group relative px-1 py-2.5 sm:px-1.5 sm:py-3 rounded-xl flex flex-col items-center text-center transition-all ${
+                    app.isComingSoon
+                      ? "opacity-65 cursor-not-allowed"
+                      : app.isCurrent
+                      ? darkMode
+                        ? "bg-indigo-950/70 ring-1 ring-indigo-500/60"
+                        : "bg-indigo-50/90 ring-1 ring-indigo-300"
+                      : darkMode
+                      ? "hover:bg-slate-800/80"
+                      : "hover:bg-slate-100/90"
                   }`}
                 >
-                  {app.subtitle}
-                </span>
-              </Link>
-            ))}
+                  <div className="relative mb-2 sm:mb-2.5">
+                    <div
+                      className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br ${app.gradient} flex items-center justify-center shadow-md group-hover:scale-105 transition-transform`}
+                    >
+                      {app.icon}
+                    </div>
+                    {app.badge && (
+                      <span
+                        className={`font-mono-tech absolute -top-1.5 -right-2 px-1.5 py-0.5 rounded-full text-[7.5px] font-black uppercase leading-none shadow-xs ${
+                          app.badge === "LIVE"
+                            ? "bg-red-600 text-white"
+                            : app.badge === "NEW"
+                            ? "bg-violet-600 text-white"
+                            : app.badge.toUpperCase() === "BETA"
+                            ? app.id === "neuroguide"
+                              ? "bg-orange-600 text-white"
+                              : app.id === "neurorx"
+                              ? "bg-emerald-600 text-white"
+                              : "bg-blue-600 text-white"
+                            : "bg-amber-700 text-white"
+                        }`}
+                      >
+                        {app.badge}
+                      </span>
+                    )}
+                  </div>
+
+                  <span className="font-editorial text-[12.5px] sm:text-[13px] leading-tight whitespace-nowrap">
+                    {app.name}
+                  </span>
+                  <span
+                    className={`text-[8.5px] sm:text-[9px] leading-tight mt-0.5 whitespace-nowrap ${
+                      darkMode ? "text-slate-400" : "text-slate-500"
+                    }`}
+                  >
+                    {app.subtitle}
+                  </span>
+                </Link>
+              );
+
+              if (app.isCurrent || app.isComingSoon) {
+                return tile;
+              }
+
+              return (
+                <ViewTransition
+                  key={app.id}
+                  name={`app-${app.id}`}
+                  share="app-morph"
+                  default="none"
+                >
+                  {tile}
+                </ViewTransition>
+              );
+            })}
           </div>
         </div>
       )}

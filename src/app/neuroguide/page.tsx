@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useEffect, useRef } from "react";
+import React, { ViewTransition, useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import {
   BookOpen,
@@ -1084,7 +1084,8 @@ export default function NeuroGuidePage() {
   }, [conferences, selectedConfStatus, selectedSubspecialty, searchQuery]);
 
   return (
-    <main className="min-h-screen bg-[var(--bg-paper)] text-[var(--text-ink)] transition-colors duration-200 pb-10 overflow-x-hidden">
+    <ViewTransition name="app-neuroguide" share="app-morph" default="none">
+      <main className="min-h-screen bg-[var(--bg-paper)] text-[var(--text-ink)] transition-colors duration-200 pb-10 overflow-x-hidden">
       {/* Unified Sticky App Header */}
       <header className="sticky top-0 z-30 border-b border-[var(--border-hairline)] bg-[var(--bg-paper)]/95 px-4 py-3.5 backdrop-blur-md sm:px-8">
         <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-3">
@@ -2220,6 +2221,7 @@ export default function NeuroGuidePage() {
           </div>
         </footer>
       </div>
-    </main>
+      </main>
+    </ViewTransition>
   );
 }

@@ -209,7 +209,7 @@ html.night-shift .bento-card:hover {
   }
 }
 
-/* Smooth View Transitions between Hub & Apps */
+/* Smooth Zoom / Morph View Transitions between Hub & Apps */
 ::view-transition {
   pointer-events: none;
 }
@@ -227,83 +227,85 @@ html.night-shift .bento-card:hover {
   animation: none;
 }
 
+::view-transition-group(.app-morph) {
+  animation-duration: 380ms;
+  animation-timing-function: var(--apple-ease);
+  z-index: 60;
+}
+
+::view-transition-old(.app-morph),
+::view-transition-new(.app-morph) {
+  height: 100%;
+  width: 100%;
+  animation-duration: 380ms;
+  animation-timing-function: var(--apple-ease);
+}
+
 @keyframes vtFade {
   from {
     opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes vtZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
     filter: blur(2px);
   }
   to {
     opacity: 1;
+    transform: scale(1);
     filter: blur(0);
   }
 }
 
-@keyframes vtSlideX {
+@keyframes vtZoomOut {
   from {
-    translate: var(--vt-offset-x, 28px);
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
   }
   to {
-    translate: 0;
-  }
-}
-
-@keyframes vtSlideY {
-  from {
-    translate: 0 var(--vt-offset-y, 12px);
-  }
-  to {
-    translate: 0 0;
+    opacity: 0;
+    transform: scale(0.95);
+    filter: blur(2px);
   }
 }
 
 ::view-transition-old(.nav-forward) {
-  --vt-offset-x: -28px;
-  animation:
-    160ms var(--apple-ease) both vtFade reverse,
-    300ms var(--apple-ease) both vtSlideX reverse;
+  animation: 180ms var(--apple-ease) both vtFade reverse;
 }
 
 ::view-transition-new(.nav-forward) {
-  --vt-offset-x: 28px;
-  animation:
-    240ms var(--apple-ease) 70ms both vtFade,
-    340ms var(--apple-ease) both vtSlideX;
+  animation: 300ms var(--apple-ease) 40ms both vtZoomIn;
 }
 
 ::view-transition-old(.nav-back) {
-  --vt-offset-x: 28px;
-  animation:
-    160ms var(--apple-ease) both vtFade reverse,
-    300ms var(--apple-ease) both vtSlideX reverse;
+  animation: 200ms var(--apple-ease) both vtZoomOut;
 }
 
 ::view-transition-new(.nav-back) {
-  --vt-offset-x: -28px;
-  animation:
-    240ms var(--apple-ease) 70ms both vtFade,
-    340ms var(--apple-ease) both vtSlideX;
+  animation: 260ms var(--apple-ease) 50ms both vtFade;
 }
 
 ::view-transition-old(.nav-switch) {
-  --vt-offset-y: -10px;
-  animation:
-    150ms var(--apple-ease) both vtFade reverse,
-    260ms var(--apple-ease) both vtSlideY reverse;
+  animation: 180ms var(--apple-ease) both vtZoomOut;
 }
 
 ::view-transition-new(.nav-switch) {
-  --vt-offset-y: 12px;
-  animation:
-    240ms var(--apple-ease) 60ms both vtFade,
-    300ms var(--apple-ease) both vtSlideY;
+  animation: 280ms var(--apple-ease) 40ms both vtZoomIn;
 }
 
 ::view-transition-old(.page-crossfade) {
-  animation: 150ms var(--apple-ease) both vtFade reverse;
+  animation: 160ms var(--apple-ease) both vtFade reverse;
 }
 
 ::view-transition-new(.page-crossfade) {
-  animation: 220ms var(--apple-ease) 50ms both vtFade;
+  animation: 240ms var(--apple-ease) 40ms both vtFade;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { ViewTransition, useEffect, useState } from "react";
 import Link from "next/link";
 import {
   NeuroPulseIllustration,
@@ -264,17 +264,23 @@ export default function EcosystemHubPage() {
           }
 
           return (
-            <Link
+            <ViewTransition
               key={app.id}
-              href={app.href}
-              transitionTypes={["nav-forward"]}
-              style={cardStyle}
-              onMouseMove={handleCardMouseMove}
-              onMouseLeave={handleCardMouseLeave}
-              className={sharedClassName}
+              name={`app-${app.id}`}
+              share="app-morph"
+              default="none"
             >
-              {cardInner}
-            </Link>
+              <Link
+                href={app.href}
+                transitionTypes={["nav-forward"]}
+                style={cardStyle}
+                onMouseMove={handleCardMouseMove}
+                onMouseLeave={handleCardMouseLeave}
+                className={sharedClassName}
+              >
+                {cardInner}
+              </Link>
+            </ViewTransition>
           );
         })}
       </div>

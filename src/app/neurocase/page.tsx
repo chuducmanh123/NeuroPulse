@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { ViewTransition, useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import { Flame, Layers, PlusCircle, Timer } from "lucide-react";
 import { ClinicalCase, CaseDifficulty, CaseStatus, CaseNeuroImaging } from "../../types/clinicalCase";
@@ -693,7 +693,8 @@ export default function NeuroCasePage() {
   };
 
   return (
-    <main className="min-h-screen bg-[var(--bg-paper)] text-[var(--text-ink)] transition-colors duration-200 pb-10">
+    <ViewTransition name="app-neurocase" share="app-morph" default="none">
+      <main className="min-h-screen bg-[var(--bg-paper)] text-[var(--text-ink)] transition-colors duration-200 pb-10">
       {/* Unified Sticky App Header */}
       <header className="sticky top-0 z-30 border-b border-[var(--border-hairline)] bg-[var(--bg-paper)]/95 px-4 py-3.5 backdrop-blur-md sm:px-8">
         <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-3">
@@ -950,6 +951,7 @@ export default function NeuroCasePage() {
 
         <MedicalDisclaimerFooter darkMode={darkMode} />
       </div>
-    </main>
+      </main>
+    </ViewTransition>
   );
 }
