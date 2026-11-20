@@ -644,7 +644,7 @@ export default function AdminCommandCenter() {
             <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-tr from-amber-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 text-3xl">
               🛡️
             </div>
-            <h1 className="text-2xl font-black tracking-tight">Neuro Admin Command Center</h1>
+            <h1 className="font-journal text-2xl font-bold tracking-tight">Neuro Admin Command Center</h1>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
               Unified ecosystem operations &amp; moderation across all 6 clinical modules
             </p>
@@ -716,7 +716,7 @@ export default function AdminCommandCenter() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-lg sm:text-xl font-black tracking-tight">Neuro Admin Command Center</h1>
+                <h1 className="font-journal text-lg sm:text-2xl font-bold tracking-tight">Neuro Admin Command Center</h1>
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                   Online
                 </span>
@@ -1005,7 +1005,7 @@ export default function AdminCommandCenter() {
                 <div>
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-lg">📰</span>
-                    <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                    <h3 className="font-journal text-lg font-bold text-slate-900 dark:text-white">
                       Multi-Journal Feed Engine Monitoring
                     </h3>
                     <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/30 flex items-center gap-1">
@@ -1457,7 +1457,7 @@ export default function AdminCommandCenter() {
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
                   <div>
-                    <h3 className="text-base font-bold flex items-center gap-2">
+                    <h3 className="font-journal text-lg font-bold flex items-center gap-2">
                       <span>Clinical Guideline Repository</span>
                       <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                         {filteredRepoDocs.length} / {guidelineDocs.length} Active
@@ -1637,7 +1637,7 @@ export default function AdminCommandCenter() {
                 <div>
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-lg">⚙️</span>
-                    <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                    <h3 className="font-journal text-lg font-bold text-slate-900 dark:text-white">
                       Cloud Architecture &amp; Ecosystem Security
                     </h3>
                     <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/30 flex items-center gap-1">
@@ -1871,7 +1871,7 @@ export default function AdminCommandCenter() {
         {/* TAB 5: NEURORX CDSS & PROVENANCE HUB */}
         {adminTab === "neurorx" && (
           <div className="space-y-4">
-            <NeuroRxAdminSection darkMode={darkMode} />
+            <NeuroRxAdminSection darkMode={darkMode} syncState={neuroRxSync} />
           </div>
         )}
 

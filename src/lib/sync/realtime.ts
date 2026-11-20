@@ -219,16 +219,34 @@ export function createRealtimeSyncBridge<TRow extends SyncRowLike>(
   }
 
   if (activeClient) {
-    activeChannel = activeClient
-      .channel(channelName)
-      .on(
-        "postgres_changes",
-        { event: "UPDATE", schema, table },
-        (payload) => {
-          triggerSignal(payload);
-        },
-      )
-      .subscribe();
+    const subscribeToChannel = (name: string): MinimalRealtimeChannel => {
+      const ch = activeClient!.channel(name);
+      const state = (ch as { state?: string }).state;
+      if (state === "joined" || state === "joining") {
+        throw new Error(`Channel ${name} is already subscribed`);
+      }
+      return ch
+        .on(
+          "postgres_changes",
+          { event: "UPDATE", schema, table },
+          (payload) => {
+            triggerSignal(payload);
+          },
+        )
+        .subscribe();
+    };
+
+    try {
+      activeChannel = subscribeToChannel(channelName);
+    } catch {
+      const fallbackName = `${channelName}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
+      try {
+        activeChannel = subscribeToChannel(fallbackName);
+      } catch {
+        // Realtime is optional; periodic polling and visibility listeners remain active.
+        activeChannel = null;
+      }
+    }
   }
 
   function stop(): void {

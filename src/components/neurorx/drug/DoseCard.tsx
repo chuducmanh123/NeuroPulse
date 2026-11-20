@@ -9,6 +9,7 @@ import {
   FileText,
   ChevronDown,
   Check,
+  Activity,
 } from "lucide-react";
 import type { DrugRecord, Regimen } from "@/types/neurorx";
 import type { PatientParsed, RenalResolutionResult } from "@/lib/neurorx/patient";
@@ -183,6 +184,8 @@ interface DoseCardProps {
   renal: RenalResolutionResult;
   selectedIndex?: number;
   onSelectIndex?: (index: number) => void;
+  showPatientVars?: boolean;
+  onTogglePatientVars?: () => void;
   darkMode?: boolean;
 }
 
@@ -194,6 +197,8 @@ export function DoseCard({
   renal,
   selectedIndex,
   onSelectIndex,
+  showPatientVars = false,
+  onTogglePatientVars,
   darkMode = false,
 }: DoseCardProps) {
   // If multiple regimens for this setting, allow user to toggle between indications
@@ -236,28 +241,76 @@ export function DoseCard({
           }`}
         >
           <div className="flex items-center justify-between gap-2 flex-wrap">
-            <span
-              className={`inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-sm sm:text-base font-extrabold uppercase tracking-wide ${
-                isAcute
-                  ? "bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/20"
-                  : isMaintenance
-                  ? "bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/20"
-                  : "bg-[#2F855A]/15 text-[#2F855A] dark:text-emerald-300 border border-[#2F855A]/30"
-              }`}
-            >
-              {isAcute ? (
-                <Zap className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-              ) : (
-                <Pill className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-              )}
-              <span className="truncate">
-                {isAcute
-                  ? "Acute / Inpatient"
-                  : isMaintenance
-                  ? "Maintenance / Outpatient"
-                  : "Clinical Dosing Regimen"}
+            <div className="flex items-center gap-2 flex-wrap">
+              <span
+                className={`inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-sm sm:text-base font-extrabold uppercase tracking-wide ${
+                  isAcute
+                    ? "bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/20"
+                    : isMaintenance
+                    ? "bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/20"
+                    : "bg-[#2F855A]/15 text-[#2F855A] dark:text-emerald-300 border border-[#2F855A]/30"
+                }`}
+              >
+                {isAcute ? (
+                  <Zap className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                ) : (
+                  <Pill className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                )}
+                <span className="truncate">
+                  {isAcute
+                    ? "Acute / Inpatient"
+                    : isMaintenance
+                    ? "Maintenance / Outpatient"
+                    : "Clinical Dosing Regimen"}
+                </span>
               </span>
-            </span>
+
+              {onTogglePatientVars && (
+                <button
+                  type="button"
+                  onClick={onTogglePatientVars}
+                  aria-expanded={showPatientVars}
+                  title="Enter patient variables (Weight, Age, Sex, Creatinine, CrCl) & view computed dosage"
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all cursor-pointer ${
+                    showPatientVars
+                      ? "bg-[#2F855A] text-white border-[#2F855A] shadow-xs"
+                      : darkMode
+                      ? "bg-slate-900/70 border-emerald-700/50 text-emerald-300 hover:bg-emerald-950/50 hover:border-emerald-500/60"
+                      : "bg-white/90 border-[#2F855A]/35 text-[#2F855A] hover:bg-[#2F855A]/10 hover:border-[#2F855A]"
+                  }`}
+                >
+                  <Activity className="w-4 h-4 shrink-0" />
+                  <span>Bedside Variables &amp; Dosage</span>
+                  {renal.value !== null && (
+                    <span
+                      className={`text-[11px] px-1.5 py-0.5 rounded-full font-bold ${
+                        showPatientVars
+                          ? "bg-white/20 text-white"
+                          : "bg-[#2F855A]/15 text-[#2F855A] dark:text-emerald-300"
+                      }`}
+                    >
+                      CrCl {renal.value}
+                    </span>
+                  )}
+                  {patient.weightKg !== undefined && (
+                    <span
+                      className={`text-[11px] px-1.5 py-0.5 rounded-full font-bold ${
+                        showPatientVars
+                          ? "bg-white/20 text-white"
+                          : "bg-[var(--bg-subtle)] text-[var(--text-ink)] border border-[var(--border-hairline)]"
+                      }`}
+                    >
+                      {patient.weightKg} kg
+                    </span>
+                  )}
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
+                      showPatientVars ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+              )}
+            </div>
 
             {/* Route Badge */}
             <span className="px-3 py-1 rounded-md text-xs sm:text-sm font-extrabold bg-[var(--bg-subtle)] border border-[var(--border-hairline)] text-[var(--text-ink)] shrink-0">

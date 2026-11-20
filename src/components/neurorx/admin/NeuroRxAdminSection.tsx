@@ -22,7 +22,7 @@ import {
   History,
 } from "lucide-react";
 import { getStoredAdminToken } from "@/utils/clientAuth";
-import { useNeuroRxDrugs } from "@/hooks/useNeuroRxDrugs";
+import { useNeuroRxDrugs, type UseNeuroRxDrugsResult } from "@/hooks/useNeuroRxDrugs";
 import type { SyncRow } from "@/lib/neurorx/sync/types";
 import { DataHealth } from "./DataHealth";
 import { UpdateQueueList } from "./UpdateQueueList";
@@ -33,6 +33,7 @@ import type { UpdateQueueItem, DrugRecord } from "@/types/neurorx";
 
 interface NeuroRxAdminSectionProps {
   darkMode?: boolean;
+  syncState?: UseNeuroRxDrugsResult;
 }
 
 interface AdminDataResponse {
@@ -50,8 +51,9 @@ interface AdminDataResponse {
   all_drugs?: DrugRecord[];
 }
 
-export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionProps) {
-  const syncState = useNeuroRxDrugs({ enabled: true });
+export function NeuroRxAdminSection({ darkMode = false, syncState: externalSyncState }: NeuroRxAdminSectionProps) {
+  const localSyncState = useNeuroRxDrugs({ enabled: !externalSyncState });
+  const syncState = externalSyncState ?? localSyncState;
 
   const [activeSubTab, setActiveSubTab] = useState<"dashboard" | "extractor">("dashboard");
   const [loading, setLoading] = useState(true);

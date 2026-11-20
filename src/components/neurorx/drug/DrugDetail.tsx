@@ -11,8 +11,6 @@ import {
   FileText,
   Layers,
   HelpCircle,
-  Activity,
-  ChevronDown,
   Edit,
 } from "lucide-react";
 import type { DrugRecord, Source } from "@/types/neurorx";
@@ -239,8 +237,23 @@ export function DrugDetail({
           renal={renalResult}
           selectedIndex={selectedRegimenIndex}
           onSelectIndex={setSelectedRegimenIndex}
+          showPatientVars={showPatientVars}
+          onTogglePatientVars={() => setShowPatientVars((prev) => !prev)}
           darkMode={darkMode}
         />
+
+        {/* Bedside Patient Variables & Computed Dosage (toggled from button next to Clinical Dosing Regimen) */}
+        {showPatientVars && (
+          <div className="animate-in fade-in slide-in-from-top-1 duration-200">
+            <PatientBar
+              drug={drug}
+              regimens={drug.regimens || []}
+              selectedRegimenIndex={selectedRegimenIndex}
+              onSelectRegimenIndex={setSelectedRegimenIndex}
+              darkMode={darkMode}
+            />
+          </div>
+        )}
 
         {/* Myasthenia Gravis Safety & Nasogastric Tube Administration */}
         {(mgSafety || ngTube) && (
@@ -333,71 +346,7 @@ export function DrugDetail({
         )}
       </div>
 
-      {/* 4. Bedside Patient Variables & Computed Dosage (Thông số bệnh nhân & Liều tính toán tại giường) */}
-      <div className="space-y-3">
-        <button
-          type="button"
-          onClick={() => setShowPatientVars((prev) => !prev)}
-          className={`w-full p-4 sm:p-5 rounded-2xl border border-l-4 border-l-[#2F855A] transition-all flex items-center justify-between gap-3 text-left ${
-            showPatientVars
-              ? "bg-emerald-50/45 dark:bg-emerald-950/20 border-[#2F855A]/60 shadow-sm ring-1 ring-[#2F855A]/20"
-              : "bg-[var(--bg-surface)] border-[var(--border-hairline)] hover:border-[#2F855A] shadow-2xs"
-          }`}
-        >
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="p-2 rounded-xl shrink-0 bg-[#2F855A]/10 text-[#2F855A] dark:bg-emerald-500/15 dark:text-emerald-400">
-              <Activity className="w-5 h-5" />
-            </div>
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-sm sm:text-base font-extrabold uppercase tracking-wide text-[var(--text-ink)] truncate">
-                  Bedside Patient Variables &amp; Computed Dosage
-                </span>
-                {renalResult.value !== null && (
-                  <span className="text-xs sm:text-sm px-2.5 py-0.5 rounded-full font-bold bg-[#2F855A]/15 text-[#2F855A] dark:text-emerald-300 border border-[#2F855A]/30 shrink-0">
-                    CrCl: {renalResult.value} mL/min
-                  </span>
-                )}
-                {patientParsed.weightKg !== undefined && (
-                  <span className="text-xs sm:text-sm px-2.5 py-0.5 rounded-full font-bold bg-[var(--bg-subtle)] border border-[var(--border-hairline)] text-[var(--text-ink)] shrink-0">
-                    {patientParsed.weightKg} kg
-                  </span>
-                )}
-              </div>
-              <p className="text-xs sm:text-sm font-medium text-[var(--text-muted)] mt-1 line-clamp-1 sm:line-clamp-none">
-                {showPatientVars
-                  ? "Click to collapse patient variables & computed dosage"
-                  : "Click to enter patient variables (Weight, Age, Sex, Creatinine, CrCl...) & view computed dosage"}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-1.5 shrink-0">
-            <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-[#2F855A]/10 text-[#2F855A] dark:bg-emerald-500/15 dark:text-emerald-300 hidden sm:inline">
-              {showPatientVars ? "Collapse" : "Adjust"}
-            </span>
-            <ChevronDown
-              className={`w-5 h-5 text-[var(--text-muted)] transition-transform duration-200 ${
-                showPatientVars ? "rotate-180" : ""
-              }`}
-            />
-          </div>
-        </button>
-
-        {showPatientVars && (
-          <div className="animate-in fade-in slide-in-from-top-1 duration-200">
-            <PatientBar
-              drug={drug}
-              regimens={drug.regimens || []}
-              selectedRegimenIndex={selectedRegimenIndex}
-              onSelectRegimenIndex={setSelectedRegimenIndex}
-              darkMode={darkMode}
-            />
-          </div>
-        )}
-      </div>
-
-          {/* 5. Tier 3: Contextual Tools Row */}
+          {/* 4. Tier 3: Contextual Tools Row */}
           <ToolsRow
             drug={drug}
             sources={sources}
