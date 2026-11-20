@@ -1448,7 +1448,7 @@ export default function HomePage() {
             {groupedByDate.map((dateGroup) => (
               <section key={dateGroup.dateKey} className="space-y-4">
                 {/* KHỐI HEADER NGÀY XUẤT BẢN (DATE HEADER) */}
-                <div className="sticky top-[74px] z-20 bg-[#1C1917]/95 dark:bg-[#24201C]/95 backdrop-blur-sm text-[#FAF8F5] px-4 py-2.5 rounded-2xl shadow-md flex flex-wrap items-center justify-between gap-2 border border-[#322E29]">
+                <div className="sticky top-[74px] z-20 bg-[#1C1917]/95 dark:bg-[#2E2924]/95 backdrop-blur-sm text-[#FAF8F5] px-4 py-2.5 rounded-2xl shadow-md dark:shadow-lg dark:shadow-black/50 flex flex-wrap items-center justify-between gap-2 border border-[#322E29] dark:border-[#575049] dark:ring-1 dark:ring-white/10">
                   <div className="flex items-center gap-2.5">
                     <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
                     <h2 className="text-sm sm:text-base font-extrabold tracking-wide">

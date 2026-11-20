@@ -134,7 +134,7 @@ export function CustomSelect<T extends string = string>({
             : "min-h-[44px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold"
         } ${
           darkMode
-            ? "bg-[var(--bg-surface)] border-[var(--border-hairline)] text-[var(--text-ink)] hover:border-stone-600"
+            ? "bg-slate-900 border-slate-700 text-slate-100 hover:border-slate-500"
             : "bg-[var(--bg-surface)] border-[var(--border-hairline)] text-[var(--text-ink)] hover:border-stone-300 shadow-xs"
         } ${buttonClassName}`}
       >
@@ -165,7 +165,7 @@ export function CustomSelect<T extends string = string>({
             align === "right" ? "right-0" : "left-0"
           } ${
             darkMode
-              ? "bg-[var(--bg-surface)] border-[var(--border-hairline)] shadow-black/50"
+              ? "bg-slate-900 border-slate-700 shadow-black/60"
               : "bg-[var(--bg-surface)] border-[var(--border-hairline)] shadow-stone-900/10"
           } ${menuClassName}`}
         >

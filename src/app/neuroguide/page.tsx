@@ -1261,7 +1261,7 @@ export default function NeuroGuidePage() {
             </aside>
 
             {/* Right Column: Search, Mobile Dropdowns & Guideline List (9 cols) */}
-            <div className="lg:col-span-9 space-y-4 min-w-0">
+            <div className="lg:col-span-9 flex flex-col gap-4 min-w-0">
               {/* Search & Mobile Dropdown Filters */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
                 <div className="relative flex-1 min-w-0">

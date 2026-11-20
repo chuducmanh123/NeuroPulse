@@ -1891,10 +1891,10 @@ export function ClinicalNavigatorTab({
         </div>
       )}
 
-      {/* Main 12-Column Split Layout: Left V3.0 Dual-Primary Axis Filter (4 cols) | Right Search + Evidence Synthesis (8 cols) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      {/* Main 12-Column Split Layout: Left V3.0 Dual-Primary Axis Filter (3 cols) | Right Search + Evidence Synthesis (9 cols) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         {/* LEFT PANE: 1. V3.0 Dual-Primary Axis Filter -> 2. High-Yield Clinical Topics */}
-        <aside className="hidden lg:block lg:col-span-4 space-y-4 lg:sticky lg:top-20">
+        <aside className="hidden lg:block lg:col-span-3 space-y-4 lg:sticky lg:top-20">
           {/* 1. V3.0 DUAL-PRIMARY AXIS FILTER CARD */}
           <div className="p-4 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-hairline)] shadow-2xs space-y-3.5">
             <div className="flex items-center justify-between">
@@ -2063,7 +2063,7 @@ export function ClinicalNavigatorTab({
         </aside>
 
         {/* RIGHT PANE: Persistent Content Search Bar + Evidence Synthesis Dashboard */}
-        <section className="col-span-1 lg:col-span-8 space-y-5">
+        <section className="col-span-1 lg:col-span-9 flex flex-col gap-5 min-w-0">
           {/* Mobile-Only Quick Control Bar */}
           <div className="block lg:hidden space-y-2.5">
             <div className="flex items-center gap-2">

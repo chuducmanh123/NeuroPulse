@@ -70,7 +70,7 @@ export function EcosystemRail({ children }: EcosystemRailProps) {
         sessionStorage.getItem("neurocase_admin_token") ||
         localStorage.getItem("neurocase_admin_token");
       if (token) {
-        router.push("/admin");
+        router.push("/admin", { transitionTypes: ["nav-forward"] });
         return;
       }
     } catch {
@@ -82,7 +82,7 @@ export function EcosystemRail({ children }: EcosystemRailProps) {
   const handleAdminAuthSuccess = () => {
     setIsAdminVerified(true);
     setShowAdminModal(false);
-    router.push("/admin");
+    router.push("/admin", { transitionTypes: ["nav-forward"] });
   };
 
   return (
@@ -90,12 +90,14 @@ export function EcosystemRail({ children }: EcosystemRailProps) {
       {/* Desktop Slim Vertical Navigation Rail (44px) */}
       <aside
         aria-label="Neuro Ecosystem Navigation Rail"
+        style={{ viewTransitionName: "ecosystem-rail" }}
         className="vertical-rail fixed inset-y-0 left-0 z-50 hidden flex-col items-center justify-between py-3 select-none sm:flex"
       >
         <div className="flex flex-col items-center gap-2.5">
           {/* Anatomical Brain Logo Button -> Returns to Homepage Hub (/) */}
           <Link
             href="/"
+            transitionTypes={["nav-back"]}
             title="Neuro Ecosystem Home"
             aria-label="Return to Neuro Ecosystem Home"
             className={`group relative flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 ${
@@ -198,7 +200,7 @@ export function EcosystemRail({ children }: EcosystemRailProps) {
       {/* Mobile Slim Top Bar on Homepage Hub (subpages retain their own headers on mobile) */}
       {isHub && (
         <div className="sticky top-0 z-40 flex h-11 items-center justify-between border-b border-[var(--rail-border)] bg-[var(--rail-bg)] px-4 text-[#FAF8F5] sm:hidden">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" transitionTypes={["nav-back"]} className="flex items-center gap-2">
             <svg
               viewBox="0 0 36 36"
               className="h-4 w-4 text-[#FAF8F5]"

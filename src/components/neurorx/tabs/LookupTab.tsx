@@ -125,8 +125,7 @@ export function LookupTab({
     }
   };
 
-  // Back to directory
-  const handleBackToDirectory = () => {
+  const handleClearSelection = () => {
     const currentSearch =
       typeof window !== "undefined" ? window.location.search : searchParams.toString();
     const nextQuery = buildDrugSelectionSearchParams(currentSearch, null);
@@ -137,26 +136,15 @@ export function LookupTab({
     }
   };
 
-  // If a drug is selected, render full Tier 1 & Tier 2 DrugDetail
-  if (selectedDrugItem) {
-    return (
-      <DrugDetail
-        drugItem={selectedDrugItem}
-        sources={sources}
-        onBack={handleBackToDirectory}
-        darkMode={darkMode}
-        syncRow={syncRowsBySlug?.get(selectedDrugItem.drug.id) ?? null}
-        onApplyLocalWrite={onApplyLocalWrite}
-      />
-    );
-  }
-
-  // Drug Directory List View
   return (
-    <div className="space-y-6">
-      {/* 1. Clinical Omnibar & Subspecialty Filter */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-start gap-3">
-        <div className="flex-1 min-w-0">
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
+      {/* Left Column: Search, Subspecialty Filter & Drug Names Only */}
+      <aside
+        className={`md:col-span-4 lg:col-span-3 md:sticky md:top-20 ${
+          selectedDrugItem ? "hidden md:block" : "block"
+        }`}
+      >
+        <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 shadow-2xs flex flex-col gap-3">
           <Omnibar
             query={query}
             onQueryChange={setQuery}
@@ -165,112 +153,88 @@ export function LookupTab({
             onSelectDrug={handleSelectDrug}
             darkMode={darkMode}
           />
-        </div>
-        <SubspecialtySelect
-          value={selectedSubspecialty}
-          onChange={setSelectedSubspecialty}
-          drugs={searchResults}
-          darkMode={darkMode}
-          className="w-full sm:w-auto shrink-0 sm:mt-1"
-        />
-      </div>
 
-      {/* 2. Drug Cards Grid */}
-      <div className="space-y-3">
-        {filteredResults.length === 0 ? (
-          <div className="p-10 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-center shadow-2xs">
-            <Pill className="w-8 h-8 mx-auto text-[var(--text-muted)] mb-2" />
-            <p className="text-sm font-semibold text-[var(--text-ink)]">
-              No drugs found matching criteria
-            </p>
-            <p className="text-xs text-[var(--text-muted)] mt-1">
-              Try adjusting your search terms or filter selection.
-            </p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-            {filteredResults.map((res) => {
-              const drug = res.drug;
-              const isVerified = res.effectiveStatus === "verified";
-              const tallManName = drug.tall_man?.value || drug.generic_name;
+          <SubspecialtySelect
+            value={selectedSubspecialty}
+            onChange={setSelectedSubspecialty}
+            drugs={searchResults}
+            darkMode={darkMode}
+            className="w-full"
+          />
 
-              return (
-                <div
-                  key={drug.id}
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => handleSelectDrug(drug.id)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      handleSelectDrug(drug.id);
-                    }
-                  }}
-                  className="group min-h-[44px] p-4 sm:p-5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] hover:border-[#2F855A] dark:hover:border-emerald-500/60 hover:shadow-md transition-all cursor-pointer flex items-center justify-between gap-4 hover:-translate-y-0.5"
-                >
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2.5 flex-wrap">
-                      <span className="font-extrabold text-base sm:text-xl tracking-tight text-[var(--text-ink)] group-hover:text-[#2F855A] dark:group-hover:text-emerald-400 transition-colors">
-                        {tallManName}
-                      </span>
+          <div className="border-t border-[var(--border-hairline)] pt-2.5">
+            <div className="px-1 pb-1.5 flex items-center justify-between text-[10.5px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+              <span>Medications</span>
+              <span>{filteredResults.length}</span>
+            </div>
 
-                      <TallManHint
-                        tallMan={drug.tall_man}
-                        genericName={drug.generic_name}
-                        darkMode={darkMode}
+            {filteredResults.length === 0 ? (
+              <div className="py-8 px-3 text-center">
+                <Pill className="w-6 h-6 mx-auto text-[var(--text-muted)] mb-1.5" />
+                <p className="text-xs font-semibold text-[var(--text-ink)]">
+                  No drugs found
+                </p>
+              </div>
+            ) : (
+              <div className="max-h-[58vh] md:max-h-[calc(100vh-290px)] overflow-y-auto custom-scrollbar space-y-1 pr-1">
+                {filteredResults.map((res) => {
+                  const drug = res.drug;
+                  const tallManName = drug.tall_man?.value || drug.generic_name;
+                  const isSelected = selectedDrugItem?.drug.id === drug.id;
+
+                  return (
+                    <button
+                      key={drug.id}
+                      type="button"
+                      onClick={() => handleSelectDrug(drug.id)}
+                      className={`w-full text-left px-3 py-2 rounded-xl text-xs transition-colors flex items-center justify-between gap-2 cursor-pointer ${
+                        isSelected
+                          ? "bg-[#2F855A] text-white font-semibold shadow-2xs"
+                          : "font-medium text-[var(--text-ink)] hover:bg-[var(--bg-subtle)]"
+                      }`}
+                    >
+                      <span className="truncate">{tallManName}</span>
+                      <ChevronRight
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          isSelected ? "text-white/90" : "text-[var(--text-muted)] opacity-60"
+                        }`}
                       />
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+      </aside>
 
-                      {/* Brand tags */}
-                      {drug.vn_products?.value && drug.vn_products.value.length > 0 && (
-                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-[var(--bg-subtle)] text-[var(--text-secondary)] font-semibold border border-[var(--border-hairline)]">
-                          Brand: {drug.vn_products.value.map((p) => p.brand).join(", ")}
-                        </span>
-                      )}
-
-                      {/* Verification Badge */}
-                      {isVerified ? (
-                        <span
-                          className="inline-flex items-center text-emerald-600 dark:text-emerald-400 shrink-0"
-                          title="Verified"
-                          aria-label="Verified"
-                        >
-                          <ShieldCheck className="w-4 h-4" />
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400 font-bold border border-amber-500/20">
-                          <AlertTriangle className="w-3.5 h-3.5" />
-                          <span>Pending verification</span>
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Classes */}
-                    <p className="text-xs sm:text-sm font-medium text-[var(--text-muted)] mt-1">
-                      {drug.classes.join(" • ")}
-                    </p>
-
-                    {/* Subspecialties pills */}
-                    <div className="flex flex-wrap gap-1.5 mt-2.5">
-                      {drug.subspecialties?.map((sub) => (
-                        <span
-                          key={sub}
-                          className="px-2.5 py-0.5 rounded text-xs font-bold bg-[var(--bg-subtle)]/80 text-[var(--text-secondary)] uppercase tracking-wide border border-[var(--border-hairline)]"
-                        >
-                          {sub.replace(/_/g, " ")}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex items-center text-[var(--text-muted)] group-hover:text-[#2F855A] dark:group-hover:text-emerald-400 pl-2">
-                    <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5" />
-                  </div>
-                </div>
-              );
-            })}
+      {/* Right Column: Selected Drug Detail */}
+      <section
+        className={`md:col-span-8 lg:col-span-9 min-w-0 ${
+          selectedDrugItem ? "block" : "hidden md:block"
+        }`}
+      >
+        {selectedDrugItem ? (
+          <DrugDetail
+            drugItem={selectedDrugItem}
+            sources={sources}
+            onBack={handleClearSelection}
+            darkMode={darkMode}
+            syncRow={syncRowsBySlug?.get(selectedDrugItem.drug.id) ?? null}
+            onApplyLocalWrite={onApplyLocalWrite}
+          />
+        ) : (
+          <div className="rounded-2xl border border-dashed border-[var(--border-hairline)] bg-[var(--bg-surface)]/70 p-12 text-center">
+            <Pill className="w-9 h-9 mx-auto text-[#2F855A] dark:text-emerald-400 mb-3 opacity-80" />
+            <h3 className="text-sm font-bold text-[var(--text-ink)]">
+              Select a medication from the left list
+            </h3>
+            <p className="text-xs text-[var(--text-muted)] mt-1 max-w-md mx-auto">
+              Choose any drug to view bedside dosing, renal/hepatic adjustments, contraindications, and monitoring protocols.
+            </p>
           </div>
         )}
-      </div>
+      </section>
     </div>
   );
 }

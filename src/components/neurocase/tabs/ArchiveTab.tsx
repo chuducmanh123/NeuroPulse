@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { ChevronRight, Layers, Search, X } from "lucide-react";
 import { ClinicalCase, CaseDifficulty, UserCaseProgress } from "@/types/clinicalCase";
 import { Article } from "@/types/article";
 import { CaseChallenge } from "@/components/neurocase/CaseChallenge";
@@ -50,7 +51,6 @@ export function ArchiveTab({
   progressMap,
   wrongAttemptsMap,
   archiveRelatedArticles = [],
-  getSpecialtyTheme,
   onSelectSub,
   onSelectDifficulty,
   onSelectSolvedFilter,
@@ -59,145 +59,61 @@ export function ArchiveTab({
   onSelectOption,
   onResetCaseAttempt,
 }: ArchiveTabProps) {
-  if (archiveViewingCase) {
-    return (
-      <div className="space-y-5">
-        {/* Archive Navigation & Back Header */}
-        <div className="p-4 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] flex flex-wrap items-center justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-2">
-            <button
-              type="button"
-              onClick={() => onSelectCaseToView(null)}
-              className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#6D28D9] text-white hover:bg-[#5B21B6] flex items-center gap-1.5 transition-all shadow-xs"
-            >
-              <span>←</span>
-              <span>Back to Case Archive</span>
-            </button>
-            <span className="text-[var(--text-muted)]">|</span>
-            <span className="text-xs font-bold text-[#6D28D9] dark:text-violet-400">
-              {archiveViewingCase.case_code}
-            </span>
-            <span className="text-xs font-semibold px-2 py-0.5 rounded-md bg-[var(--bg-subtle)] text-[var(--text-secondary)]">
-              {archiveViewingCase.subspecialty}
-            </span>
-            <span
-              className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
-                difficultyBadges[archiveViewingCase.difficulty]
-              }`}
-            >
-              {archiveViewingCase.difficulty}
-            </span>
-          </div>
-
-          {/* Sequential Case Browsing within Filtered Archive */}
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              disabled={archiveCurrentIdx <= 0}
-              onClick={() => {
-                if (archiveCurrentIdx > 0) {
-                  onSelectCaseToView(filteredArchiveCases[archiveCurrentIdx - 1].id);
-                }
-              }}
-              className="px-2.5 py-1 rounded-lg text-xs font-semibold border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[var(--bg-subtle)] transition-colors"
-            >
-              ← Prev Case
-            </button>
-            <span className="text-xs font-semibold text-[var(--text-muted)]">
-              {archiveCurrentIdx >= 0 ? `${archiveCurrentIdx + 1} / ${filteredArchiveCases.length}` : ""}
-            </span>
-            <button
-              type="button"
-              disabled={archiveCurrentIdx >= filteredArchiveCases.length - 1}
-              onClick={() => {
-                if (archiveCurrentIdx < filteredArchiveCases.length - 1) {
-                  onSelectCaseToView(filteredArchiveCases[archiveCurrentIdx + 1].id);
-                }
-              }}
-              className="px-2.5 py-1 rounded-lg text-xs font-semibold border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[var(--bg-subtle)] transition-colors"
-            >
-              Next Case →
-            </button>
-          </div>
-        </div>
-
-        {/* CLINICAL & IMAGING CHALLENGE CARD (ARCHIVE MODE) */}
-        <article className="rounded-3xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] shadow-xs overflow-hidden">
-          <div className="px-6 py-5 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/40 text-center">
-            <div className="flex flex-wrap items-center justify-center gap-2 mb-1.5">
-              <span className="text-[10.5px] font-bold uppercase tracking-[0.18em] text-[#B91C1C] dark:text-rose-400">
-                CASE ARCHIVE CHALLENGE
-              </span>
-              <span className="text-[var(--text-muted)]">•</span>
-              <span className="text-[11px] font-bold text-[#6D28D9] dark:text-violet-400">
-                {archiveViewingCase.subspecialty}
-              </span>
-              <span
-                className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
-                  difficultyBadges[archiveViewingCase.difficulty]
-                }`}
-              >
-                {archiveViewingCase.difficulty}
-              </span>
-            </div>
-            <h2 className="font-editorial text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-ink)]">
-              {archiveViewingCase.title}
-            </h2>
-          </div>
-
-          {/* Case Challenge (Shared Component for Archive View) */}
-          <CaseChallenge
-            currentCase={archiveViewingCase}
-            darkMode={darkMode}
-            progressMap={progressMap}
-            wrongAttemptsMap={wrongAttemptsMap}
-            onSelectOption={onSelectOption}
-            onNextChallenge={() => {
-              if (archiveCurrentIdx >= 0 && archiveCurrentIdx < filteredArchiveCases.length - 1) {
-                onSelectCaseToView(filteredArchiveCases[archiveCurrentIdx + 1].id);
-              } else {
-                onSelectCaseToView(null);
-              }
-            }}
-            onResetAttempt={onResetCaseAttempt}
-            relatedPulseArticles={archiveRelatedArticles}
-            showNextChallengeButton={true}
-          />
-        </article>
-      </div>
-    );
-  }
-
   return (
-    <div className="space-y-5">
-      <div className="p-4 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-4">
-        <div className="flex flex-wrap gap-1.5">
-          {subspecialtyTabs.map((tab) => {
-            const active = selectedSub === tab.value;
-            return (
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
+      {/* Left Column: Search, Subspecialty/Filters & Case Titles Only */}
+      <aside
+        className={`md:col-span-4 lg:col-span-3 md:sticky md:top-20 ${
+          archiveViewingCase ? "hidden md:block" : "block"
+        }`}
+      >
+        <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 shadow-2xs flex flex-col gap-3">
+          {/* Search Input */}
+          <div className="relative">
+            <Search
+              className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#6D28D9] dark:text-violet-400 pointer-events-none"
+              aria-hidden="true"
+            />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => onSearchQueryChange(e.target.value)}
+              placeholder="Search cases, ID..."
+              aria-label="Search clinical cases"
+              className="w-full min-h-[38px] pl-9 pr-8 py-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-xs font-medium text-[var(--text-ink)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[#6D28D9]"
+            />
+            {searchQuery.trim().length > 0 && (
               <button
-                key={tab.value}
                 type="button"
-                onClick={() => onSelectSub(tab.value)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
-                  active
-                    ? "bg-[#6D28D9] text-white border-[#6D28D9] shadow-xs"
-                    : "border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]"
-                }`}
+                onClick={() => onSearchQueryChange("")}
+                aria-label="Clear search"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text-ink)] hover:bg-[var(--bg-subtle)] transition-colors cursor-pointer"
               >
-                {tab.label}
+                <X className="w-3.5 h-3.5" />
               </button>
-            );
-          })}
-        </div>
+            )}
+          </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[var(--border-hairline)]">
-          <div className="flex flex-wrap items-center gap-2">
+          {/* Subspecialty Dropdown */}
+          <CustomSelect
+            value={selectedSub}
+            onChange={onSelectSub}
+            options={subspecialtyTabs.map((t) => ({ value: t.value, label: t.label }))}
+            ariaLabel="Filter by subspecialty"
+            darkMode={darkMode}
+            accent="teal"
+            compact={true}
+            className="w-full"
+            icon={<Layers className="w-3.5 h-3.5 text-[#6D28D9] dark:text-violet-400" />}
+          />
+
+          {/* Difficulty & Completion Filters */}
+          <div className="grid grid-cols-2 gap-2">
             <CustomSelect
               value={selectedDifficulty}
               onChange={onSelectDifficulty}
               options={[
-                { value: "All", label: "All Difficulty Levels" },
+                { value: "All", label: "All Levels" },
                 { value: "Resident", label: "Resident" },
                 { value: "Fellow", label: "Fellow" },
                 { value: "Attending", label: "Attending" },
@@ -206,103 +122,206 @@ export function ArchiveTab({
               darkMode={darkMode}
               accent="teal"
               compact={true}
-              className="min-w-[165px]"
+              className="w-full"
             />
 
             <CustomSelect
               value={selectedSolvedFilter}
               onChange={(val) => onSelectSolvedFilter(val as typeof selectedSolvedFilter)}
               options={[
-                { value: "All", label: "All Statuses" },
-                { value: "Unsolved", label: "Unsolved Only" },
-                { value: "Solved", label: "Completed" },
+                { value: "All", label: "All Status" },
+                { value: "Unsolved", label: "Unsolved" },
+                { value: "Solved", label: "Solved" },
               ]}
               ariaLabel="Filter by completion status"
               darkMode={darkMode}
               accent="teal"
               align="right"
               compact={true}
-              className="min-w-[140px]"
+              className="w-full"
             />
           </div>
 
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => onSearchQueryChange(e.target.value)}
-            placeholder="Search symptoms, syndromes, case ID..."
-            className="px-3 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[#6D28D9] w-full sm:w-64"
-          />
-        </div>
-      </div>
+          {/* Case Names List */}
+          <div className="border-t border-[var(--border-hairline)] pt-2.5">
+            <div className="px-1 pb-1.5 flex items-center justify-between text-[10.5px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+              <span>Clinical Cases</span>
+              <span>{filteredArchiveCases.length}</span>
+            </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {filteredArchiveCases.map((c) => {
-          const prog = progressMap[c.id];
-          const theme = getSpecialtyTheme(c.subspecialty);
-          return (
-            <div
-              key={c.id}
-              onClick={() => onSelectCaseToView(c.id)}
-              className={`group p-5 rounded-2xl border border-l-4 cursor-pointer transition-all flex flex-col justify-between shadow-2xs hover:shadow-md ${
-                theme.borderLeft
-              } ${theme.cardBorder} ${theme.cardBg}`}
-            >
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-2.5">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="text-[10px] font-black px-2 py-0.5 rounded bg-[#6D28D9]/15 text-[#6D28D9] dark:text-violet-300">
-                      {c.case_code}
-                    </span>
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${theme.badge}`}>
-                      {c.subspecialty}
-                    </span>
-                    <span
-                      className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
-                        difficultyBadges[c.difficulty]
-                      }`}
-                    >
-                      {c.difficulty}
-                    </span>
-                    {c.is_daily_challenge && (
-                      <span className="text-[10px] font-black px-2 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
-                        ⭐ Daily ({c.published_date})
-                      </span>
-                    )}
-                  </div>
-
-                  {prog ? (
-                    <span
-                      className={`text-xs font-black ${
-                        prog.isCorrect ? "text-emerald-600 dark:text-emerald-400" : "text-rose-500"
-                      }`}
-                    >
-                      {prog.isCorrect ? "✓ Solved" : "✗ Review"}
-                    </span>
-                  ) : (
-                    <span className="text-[11px] font-bold text-[var(--text-muted)]">Unsolved</span>
-                  )}
-                </div>
-
-                <h3 className="text-sm font-black mb-1.5 leading-snug text-[var(--text-ink)] group-hover:text-[#6D28D9] dark:group-hover:text-violet-400 transition-colors">
-                  {c.title}
-                </h3>
-                <p className="text-xs text-[var(--text-muted)] line-clamp-2">
-                  {c.presentation.chief_complaint}
+            {filteredArchiveCases.length === 0 ? (
+              <div className="py-8 px-3 text-center">
+                <p className="text-xs font-semibold text-[var(--text-ink)]">
+                  No cases match filters
                 </p>
               </div>
+            ) : (
+              <div className="max-h-[58vh] md:max-h-[calc(100vh-335px)] overflow-y-auto custom-scrollbar space-y-1 pr-1">
+                {filteredArchiveCases.map((c) => {
+                  const isSelected = archiveViewingCase?.id === c.id;
+                  const prog = progressMap[c.id];
 
-              <div className="mt-4 pt-3 border-t border-[var(--border-hairline)] flex items-center justify-between text-xs">
-                <span className="text-[var(--text-muted)]">{c.presentation.demographics}</span>
-                <span className="font-black flex items-center gap-1 text-[#6D28D9] dark:text-violet-400">
-                  <span>Solve Case</span>
-                  <span>→</span>
+                  return (
+                    <button
+                      key={c.id}
+                      type="button"
+                      onClick={() => onSelectCaseToView(c.id)}
+                      className={`w-full text-left px-3 py-2 rounded-xl text-xs transition-colors flex items-center justify-between gap-2 cursor-pointer ${
+                        isSelected
+                          ? "bg-[#6D28D9] text-white font-semibold shadow-2xs"
+                          : "font-medium text-[var(--text-ink)] hover:bg-[var(--bg-subtle)]"
+                      }`}
+                    >
+                      <span className="truncate">{c.title}</span>
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        {prog && (
+                          <span
+                            className={`h-1.5 w-1.5 rounded-full ${
+                              isSelected
+                                ? "bg-white"
+                                : prog.isCorrect
+                                ? "bg-emerald-500"
+                                : "bg-rose-500"
+                            }`}
+                            title={prog.isCorrect ? "Solved" : "Reviewed"}
+                          />
+                        )}
+                        <ChevronRight
+                          className={`w-3.5 h-3.5 ${
+                            isSelected ? "text-white/90" : "text-[var(--text-muted)] opacity-60"
+                          }`}
+                        />
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+      </aside>
+
+      {/* Right Column: Selected Case Challenge */}
+      <section
+        className={`md:col-span-8 lg:col-span-9 min-w-0 ${
+          archiveViewingCase ? "block" : "hidden md:block"
+        }`}
+      >
+        {archiveViewingCase ? (
+          <div className="flex flex-col gap-5">
+            {/* Archive Navigation & Back Header */}
+            <div className="p-4 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] flex flex-wrap items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => onSelectCaseToView(null)}
+                  className="md:hidden px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#6D28D9] text-white hover:bg-[#5B21B6] flex items-center gap-1.5 transition-all shadow-xs"
+                >
+                  <span>←</span>
+                  <span>Back to Cases</span>
+                </button>
+                <span className="text-xs font-bold text-[#6D28D9] dark:text-violet-400">
+                  {archiveViewingCase.case_code}
+                </span>
+                <span className="text-xs font-semibold px-2 py-0.5 rounded-md bg-[var(--bg-subtle)] text-[var(--text-secondary)]">
+                  {archiveViewingCase.subspecialty}
+                </span>
+                <span
+                  className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
+                    difficultyBadges[archiveViewingCase.difficulty]
+                  }`}
+                >
+                  {archiveViewingCase.difficulty}
                 </span>
               </div>
+
+              {/* Sequential Case Browsing within Filtered Archive */}
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  disabled={archiveCurrentIdx <= 0}
+                  onClick={() => {
+                    if (archiveCurrentIdx > 0) {
+                      onSelectCaseToView(filteredArchiveCases[archiveCurrentIdx - 1].id);
+                    }
+                  }}
+                  className="px-2.5 py-1 rounded-lg text-xs font-semibold border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[var(--bg-subtle)] transition-colors"
+                >
+                  ← Prev Case
+                </button>
+                <span className="text-xs font-semibold text-[var(--text-muted)]">
+                  {archiveCurrentIdx >= 0 ? `${archiveCurrentIdx + 1} / ${filteredArchiveCases.length}` : ""}
+                </span>
+                <button
+                  type="button"
+                  disabled={archiveCurrentIdx >= filteredArchiveCases.length - 1}
+                  onClick={() => {
+                    if (archiveCurrentIdx < filteredArchiveCases.length - 1) {
+                      onSelectCaseToView(filteredArchiveCases[archiveCurrentIdx + 1].id);
+                    }
+                  }}
+                  className="px-2.5 py-1 rounded-lg text-xs font-semibold border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[var(--bg-subtle)] transition-colors"
+                >
+                  Next Case →
+                </button>
+              </div>
             </div>
-          );
-        })}
-      </div>
+
+            {/* CLINICAL & IMAGING CHALLENGE CARD (ARCHIVE MODE) */}
+            <article className="rounded-3xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] shadow-xs overflow-hidden">
+              <div className="px-6 py-5 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/40 text-center">
+                <div className="flex flex-wrap items-center justify-center gap-2 mb-1.5">
+                  <span className="text-[10.5px] font-bold uppercase tracking-[0.18em] text-[#B91C1C] dark:text-rose-400">
+                    CASE ARCHIVE CHALLENGE
+                  </span>
+                  <span className="text-[var(--text-muted)]">•</span>
+                  <span className="text-[11px] font-bold text-[#6D28D9] dark:text-violet-400">
+                    {archiveViewingCase.subspecialty}
+                  </span>
+                  <span
+                    className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
+                      difficultyBadges[archiveViewingCase.difficulty]
+                    }`}
+                  >
+                    {archiveViewingCase.difficulty}
+                  </span>
+                </div>
+                <h2 className="font-editorial text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-ink)]">
+                  {archiveViewingCase.title}
+                </h2>
+              </div>
+
+              <CaseChallenge
+                currentCase={archiveViewingCase}
+                darkMode={darkMode}
+                progressMap={progressMap}
+                wrongAttemptsMap={wrongAttemptsMap}
+                onSelectOption={onSelectOption}
+                onNextChallenge={() => {
+                  if (archiveCurrentIdx >= 0 && archiveCurrentIdx < filteredArchiveCases.length - 1) {
+                    onSelectCaseToView(filteredArchiveCases[archiveCurrentIdx + 1].id);
+                  } else {
+                    onSelectCaseToView(null);
+                  }
+                }}
+                onResetAttempt={onResetCaseAttempt}
+                relatedPulseArticles={archiveRelatedArticles}
+                showNextChallengeButton={true}
+              />
+            </article>
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-dashed border-[var(--border-hairline)] bg-[var(--bg-surface)]/70 p-12 text-center">
+            <Layers className="w-9 h-9 mx-auto text-[#6D28D9] dark:text-violet-400 mb-3 opacity-80" />
+            <h3 className="text-sm font-bold text-[var(--text-ink)]">
+              Select a clinical case from the left list
+            </h3>
+            <p className="text-xs text-[var(--text-muted)] mt-1 max-w-md mx-auto">
+              Filter by subspecialty, difficulty, or completion status, then click any case title to open its imaging and clinical challenge.
+            </p>
+          </div>
+        )}
+      </section>
     </div>
   );
 }

@@ -287,7 +287,9 @@ export function GlobalCommandPalette() {
       return;
     }
     setOpen(false);
-    router.push(item.href);
+    router.push(item.href, {
+      transitionTypes: [item.href === "/" ? "nav-back" : "nav-switch"],
+    });
   };
 
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

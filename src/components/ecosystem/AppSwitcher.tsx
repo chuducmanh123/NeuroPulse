@@ -225,18 +225,19 @@ export function AppSwitcher({
         >
           <Link
             href="/"
+            transitionTypes={["nav-back"]}
             onClick={() => setOpen(false)}
-            className={`px-4 py-3 border-b flex items-center justify-between transition-colors ${
+            className={`px-4 py-2.5 border-b flex items-center justify-between transition-colors ${
               darkMode
                 ? "border-slate-800 bg-slate-950/70 hover:bg-slate-800/80"
                 : "border-slate-100 bg-stone-50 hover:bg-stone-100"
             }`}
           >
-            <span className="font-mono-tech text-[11px] font-extrabold uppercase tracking-widest text-indigo-500">
+            <span className="font-mono-tech text-[10px] font-extrabold uppercase tracking-widest text-indigo-500">
               NEURO ECOSYSTEM
             </span>
             <span
-              className={`font-mono-tech text-[10px] font-semibold px-2.5 py-0.5 rounded-full ${
+              className={`font-mono-tech text-[9.5px] font-semibold px-2 py-0.5 rounded-full ${
                 darkMode ? "bg-slate-800 text-slate-200" : "bg-white border border-stone-200 text-stone-700"
               }`}
             >
@@ -249,6 +250,7 @@ export function AppSwitcher({
               <Link
                 key={app.id}
                 href={app.href}
+                transitionTypes={["nav-switch"]}
                 onClick={(e) => {
                   if (app.isComingSoon) {
                     e.preventDefault();
@@ -276,7 +278,7 @@ export function AppSwitcher({
                   </div>
                   {app.badge && (
                     <span
-                      className={`font-mono-tech absolute -top-1.5 -right-2.5 px-1.5 py-0.5 rounded-full text-[8px] font-black uppercase leading-none shadow-xs ${
+                      className={`font-mono-tech absolute -top-1.5 -right-2 px-1.5 py-0.5 rounded-full text-[7.5px] font-black uppercase leading-none shadow-xs ${
                         app.badge === "LIVE"
                           ? "bg-red-600 text-white"
                           : app.badge === "NEW"
@@ -295,11 +297,11 @@ export function AppSwitcher({
                   )}
                 </div>
 
-                <span className="font-editorial text-[14px] sm:text-[15px] leading-tight whitespace-nowrap">
+                <span className="font-editorial text-[12.5px] sm:text-[13px] leading-tight whitespace-nowrap">
                   {app.name}
                 </span>
                 <span
-                  className={`text-[9.5px] sm:text-[10px] leading-tight mt-1 whitespace-nowrap ${
+                  className={`text-[8.5px] sm:text-[9px] leading-tight mt-0.5 whitespace-nowrap ${
                     darkMode ? "text-slate-400" : "text-slate-500"
                   }`}
                 >

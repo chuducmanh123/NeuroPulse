@@ -155,34 +155,163 @@ html.night-shift .bento-card:hover {
   transform: translateY(0);
 }
 
-/* SVG Stroke Draw-in Animation */
+/* SVG Stroke Draw-in Animation (Normalized via pathLength="1") */
 @keyframes drawInk {
-  to {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
     stroke-dashoffset: 0;
   }
 }
 
-.ink-draw path,
-.ink-draw circle,
-.ink-draw rect,
-.ink-draw line,
-.ink-draw ellipse,
-.ink-draw polygon {
-  stroke-dasharray: 460;
-  stroke-dashoffset: 460;
-  animation: drawInk 0.85s var(--apple-ease) forwards;
+@keyframes fadeInk {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.ink-draw :is(path, circle, rect, line, ellipse, polygon):not(.ink-fade) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: drawInk 0.9s var(--apple-ease) 0.04s both;
+}
+
+.ink-draw .ink-part-2 :is(path, circle, rect, line, ellipse, polygon):not(.ink-fade) {
+  animation-delay: 0.28s;
+}
+
+.ink-draw .ink-fade {
+  animation: fadeInk 0.45s var(--apple-ease) 0.35s both;
+}
+
+.ink-draw .ink-part-2 .ink-fade {
+  animation-delay: 0.58s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ink-draw path,
-  .ink-draw circle,
-  .ink-draw rect,
-  .ink-draw line,
-  .ink-draw ellipse,
-  .ink-draw polygon {
+  .ink-draw :is(path, circle, rect, line, ellipse, polygon):not(.ink-fade),
+  .ink-draw .ink-part-2 :is(path, circle, rect, line, ellipse, polygon):not(.ink-fade),
+  .ink-draw .ink-fade,
+  .ink-draw .ink-part-2 .ink-fade {
     stroke-dasharray: none;
     stroke-dashoffset: 0;
+    opacity: 1;
     animation: none;
+  }
+}
+
+/* Smooth View Transitions between Hub & Apps */
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-group(ecosystem-rail) {
+  animation: none;
+  z-index: 100;
+}
+
+::view-transition-old(ecosystem-rail) {
+  display: none;
+}
+
+::view-transition-new(ecosystem-rail) {
+  animation: none;
+}
+
+@keyframes vtFade {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes vtSlideX {
+  from {
+    translate: var(--vt-offset-x, 28px);
+  }
+  to {
+    translate: 0;
+  }
+}
+
+@keyframes vtSlideY {
+  from {
+    translate: 0 var(--vt-offset-y, 12px);
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+::view-transition-old(.nav-forward) {
+  --vt-offset-x: -28px;
+  animation:
+    160ms var(--apple-ease) both vtFade reverse,
+    300ms var(--apple-ease) both vtSlideX reverse;
+}
+
+::view-transition-new(.nav-forward) {
+  --vt-offset-x: 28px;
+  animation:
+    240ms var(--apple-ease) 70ms both vtFade,
+    340ms var(--apple-ease) both vtSlideX;
+}
+
+::view-transition-old(.nav-back) {
+  --vt-offset-x: 28px;
+  animation:
+    160ms var(--apple-ease) both vtFade reverse,
+    300ms var(--apple-ease) both vtSlideX reverse;
+}
+
+::view-transition-new(.nav-back) {
+  --vt-offset-x: -28px;
+  animation:
+    240ms var(--apple-ease) 70ms both vtFade,
+    340ms var(--apple-ease) both vtSlideX;
+}
+
+::view-transition-old(.nav-switch) {
+  --vt-offset-y: -10px;
+  animation:
+    150ms var(--apple-ease) both vtFade reverse,
+    260ms var(--apple-ease) both vtSlideY reverse;
+}
+
+::view-transition-new(.nav-switch) {
+  --vt-offset-y: 12px;
+  animation:
+    240ms var(--apple-ease) 60ms both vtFade,
+    300ms var(--apple-ease) both vtSlideY;
+}
+
+::view-transition-old(.page-crossfade) {
+  animation: 150ms var(--apple-ease) both vtFade reverse;
+}
+
+::view-transition-new(.page-crossfade) {
+  animation: 220ms var(--apple-ease) 50ms both vtFade;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
   }
 }
 

@@ -196,8 +196,8 @@ export default function EcosystemHubPage() {
   };
 
   return (
-    <main className="flex min-h-[calc(100vh-44px)] sm:min-h-screen flex-col justify-center px-4 py-5 sm:px-8 sm:py-6 lg:px-10 lg:py-7">
-      <div className="mx-auto grid w-full max-w-[1440px] flex-1 grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2">
+    <main className="flex min-h-[calc(100dvh-44px)] sm:min-h-screen flex-col justify-center px-3 py-2.5 sm:px-8 sm:py-6 lg:px-10 lg:py-7">
+      <div className="mx-auto grid w-full max-w-[1440px] flex-1 grid-cols-2 grid-rows-3 gap-2.5 sm:gap-5 sm:grid-cols-2 sm:grid-rows-3 landscape:max-lg:grid-cols-3 landscape:max-lg:grid-rows-2 lg:grid-cols-3 lg:grid-rows-2">
         {BENTO_APPS.map((app) => {
           const cardStyle = {
             "--accent": app.accent,
@@ -209,12 +209,12 @@ export default function EcosystemHubPage() {
 
           const cardInner = (
             <>
-              <div className="relative z-10 flex w-full items-center justify-between gap-2">
-                <h2 className="bento-title font-editorial text-4xl sm:text-[42px] leading-none">
+              <div className="relative z-10 flex w-full items-center justify-between gap-1.5 sm:gap-2">
+                <h2 className="bento-title font-editorial text-[20px] sm:text-3xl lg:text-[42px] leading-none truncate">
                   {app.name}
                 </h2>
                 <span
-                  className="font-mono-tech inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10.5px] font-bold tracking-widest text-white shadow-sm"
+                  className="font-mono-tech inline-flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 sm:px-3 sm:py-1 text-[8px] sm:text-[10.5px] font-bold tracking-widest text-white shadow-sm"
                   style={{ backgroundColor: app.accent }}
                 >
                   {app.hasPing && (
@@ -224,16 +224,16 @@ export default function EcosystemHubPage() {
                 </span>
               </div>
 
-              <div className="bento-art relative z-10 my-auto flex w-full items-center justify-center py-2">
+              <div className="bento-art relative z-10 my-auto flex w-full items-center justify-center py-0.5 sm:py-2">
                 {app.illustration}
               </div>
 
-              <div className="relative z-10 flex w-full items-center justify-between gap-2 pt-1">
-                <span className="font-mono-tech truncate text-[10px] uppercase tracking-wider text-[var(--text-muted)] opacity-85">
+              <div className="relative z-10 flex w-full items-center justify-between gap-1.5 sm:gap-2 pt-0.5 sm:pt-1">
+                <span className="font-mono-tech truncate text-[8.5px] sm:text-[10px] uppercase tracking-wider text-[var(--text-muted)] opacity-85">
                   {getMicroSignal(app.id)}
                 </span>
                 <span
-                  className="bento-launch-pill font-mono-tech inline-flex shrink-0 items-center gap-1 rounded-full px-3.5 py-1 text-[10.5px] font-semibold tracking-wider text-white shadow-sm"
+                  className="bento-launch-pill font-mono-tech hidden sm:inline-flex shrink-0 items-center gap-1 rounded-full px-3.5 py-1 text-[10.5px] font-semibold tracking-wider text-white shadow-sm"
                   style={{ backgroundColor: app.accent }}
                 >
                   {app.pillText}
@@ -243,7 +243,7 @@ export default function EcosystemHubPage() {
           );
 
           const sharedClassName =
-            "bento-card group flex min-h-[240px] sm:min-h-[255px] flex-col justify-between p-6 text-left sm:p-7 focus-visible:outline-2 focus-visible:outline-offset-2";
+            "bento-card group flex min-h-0 sm:min-h-[210px] lg:min-h-[255px] landscape:max-lg:min-h-0 flex-col justify-between p-3 sm:p-6 lg:p-7 landscape:max-lg:p-3.5 text-left focus-visible:outline-2 focus-visible:outline-offset-2";
 
           if (app.isComingSoon || !app.href) {
             return (
@@ -267,6 +267,7 @@ export default function EcosystemHubPage() {
             <Link
               key={app.id}
               href={app.href}
+              transitionTypes={["nav-forward"]}
               style={cardStyle}
               onMouseMove={handleCardMouseMove}
               onMouseLeave={handleCardMouseLeave}

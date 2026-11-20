@@ -20,6 +20,7 @@ interface ReproDetailProps {
   sources?: Source[];
   onClose: () => void;
   darkMode?: boolean;
+  inline?: boolean;
 }
 
 export function ReproDetail({
@@ -28,6 +29,7 @@ export function ReproDetail({
   sources = [],
   onClose,
   darkMode = false,
+  inline = false,
 }: ReproDetailProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const { drug, effectiveStatus } = drugItem;
@@ -37,12 +39,13 @@ export function ReproDetail({
   const lactationTier = classifyLactationTier(repro);
 
   useEffect(() => {
+    if (inline) return;
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
     }
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
+  }, [onClose, inline]);
 
   const displayName = drug.tall_man?.value || drug.generic_name;
 
@@ -81,15 +84,18 @@ export function ReproDetail({
     );
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-150">
+  const card = (
       <div
         ref={modalRef}
-        className={`w-full max-w-2xl min-h-[540px] max-h-[90vh] flex flex-col overflow-hidden rounded-2xl border shadow-2xl transition-all ${
+        className={`${
+          inline
+            ? "w-full flex flex-col overflow-hidden rounded-2xl border shadow-2xs transition-all"
+            : "w-full max-w-2xl min-h-[540px] max-h-[90vh] flex flex-col overflow-hidden rounded-2xl border shadow-2xl transition-all"
+        } ${
           darkMode ? "bg-slate-900 border-slate-700 text-slate-100" : "bg-white border-slate-200 text-slate-900"
         }`}
-        role="dialog"
-        aria-modal="true"
+        role={inline ? "region" : "dialog"}
+        aria-modal={inline ? undefined : "true"}
       >
         {/* Header */}
         <div className="flex items-start justify-between gap-3 border-b border-slate-200 dark:border-slate-800 px-5 sm:px-6 pt-5 sm:pt-6 pb-4 shrink-0">
@@ -313,10 +319,19 @@ export function ReproDetail({
                 : "border-slate-200 hover:bg-slate-100 text-slate-700"
             }`}
           >
-            Close
+            {inline ? "Back to Overview" : "Close"}
           </button>
         </div>
       </div>
+  );
+
+  if (inline) {
+    return card;
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-150">
+      {card}
     </div>
   );
 }

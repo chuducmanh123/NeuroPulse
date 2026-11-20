@@ -176,7 +176,7 @@ export default function ViewerToolbar() {
             ariaLabel="Chọn lớp phủ bản đồ não"
             darkMode={true}
             accent="sky"
-            align="right"
+            align="left"
             compact={true}
             showIndicator="none"
             className="w-full sm:max-w-[220px] lg:max-w-[240px]"
