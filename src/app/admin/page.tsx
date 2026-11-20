@@ -18,6 +18,7 @@ import { EditGuidelineModal } from "@/components/neuroguide/EditGuidelineModal";
 import { PivotalTrialsAdminTab } from "@/components/neuroguide/PivotalTrialsAdminTab";
 import { PivotalTrialModal } from "@/components/neuroguide/PivotalTrialModal";
 import { getStoredAdminToken } from "@/utils/clientAuth";
+import { useNeuroRxDrugs } from "@/hooks/useNeuroRxDrugs";
 import { NeuroRxAdminSection } from "@/components/neurorx/admin/NeuroRxAdminSection";
 
 function getLocalTodayIso(): string {
@@ -125,6 +126,8 @@ export default function AdminCommandCenter() {
   // ADMIN SECTION TABS
   // =========================================================================
   const [adminTab, setAdminTab] = useState<"neuropulse" | "neurocase" | "guidelines" | "system" | "neurorx">("neuropulse");
+  const neuroRxSync = useNeuroRxDrugs({ enabled: isAdminVerified });
+  const neuroRxDrugCount = neuroRxSync.drugs.length;
 
   // Guideline Review & Radar Combined State
   const [guidelineSubTab, setGuidelineSubTab] = useState<"queue" | "repository" | "trials">("queue");
@@ -844,7 +847,9 @@ export default function AdminCommandCenter() {
               </span>
               <span className="w-2 h-2 rounded-full bg-rose-500"></span>
             </div>
-            <div className="text-base font-black mt-1 text-slate-900 dark:text-white">69 Drugs</div>
+            <div className="text-base font-black mt-1 text-slate-900 dark:text-white">
+              {neuroRxSync.status === "syncing" && neuroRxDrugCount === 0 ? "—" : neuroRxDrugCount} Drugs
+            </div>
             <div className="text-[10px] text-rose-600 dark:text-rose-400 font-medium">Dosing &amp; Interactions</div>
           </button>
 
@@ -936,7 +941,7 @@ export default function AdminCommandCenter() {
               {
                 id: "neurorx" as const,
                 label: "💊 NeuroRx",
-                badge: "69",
+                badge: String(neuroRxDrugCount),
                 activeClass: "bg-rose-600 text-white shadow-md shadow-rose-500/25 ring-1 ring-rose-400/40",
                 inactiveClass: darkMode
                   ? "text-slate-300 hover:bg-rose-950/40 hover:text-rose-300"

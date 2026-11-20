@@ -252,7 +252,13 @@ export function EcosystemRail({ children }: EcosystemRailProps) {
       )}
 
       {/* Main Content Container offset by Left Rail on Desktop */}
-      <div className="min-h-screen sm:pl-[44px]">{children}</div>
+      <div
+        className={`${
+          isHub ? "min-h-[calc(100dvh-44px)] sm:min-h-screen" : "min-h-screen"
+        } sm:pl-[44px]`}
+      >
+        {children}
+      </div>
 
       <GlobalCommandPalette />
 

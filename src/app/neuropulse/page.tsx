@@ -1,6 +1,6 @@
 "use client";
 
-import { ViewTransition, useEffect, useState, useMemo, useDeferredValue } from "react";
+import { ViewTransition, startTransition, useEffect, useState, useMemo, useDeferredValue } from "react";
 import { Article } from "@/types/article";
 import {
   ArticleCard,
@@ -432,36 +432,56 @@ export default function HomePage() {
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
 
+    let cancelled = false;
+    let deferTimer: ReturnType<typeof setTimeout> | null = null;
+    const mountTime = typeof performance !== "undefined" ? performance.now() : Date.now();
+
     fetch("/data/articles.json")
       .then((res) => {
         const lastMod = res.headers.get("last-modified");
-        if (lastMod) {
-          setLastUpdated(
-            new Date(lastMod).toLocaleString("en-US", {
+        const formattedTime = lastMod
+          ? new Date(lastMod).toLocaleString("en-US", {
               dateStyle: "medium",
               timeStyle: "short",
             })
-          );
-        } else {
-          setLastUpdated(
-            new Date().toLocaleString("en-US", {
+          : new Date().toLocaleString("en-US", {
               dateStyle: "medium",
               timeStyle: "short",
-            })
-          );
+            });
+        if (!cancelled) {
+          setLastUpdated(formattedTime);
         }
         return res.json();
       })
       .then((data: Article[]) => {
-        setArticles(normalizeAndCleanArticles(data));
-        setLoading(false);
+        if (cancelled) return;
+        const elapsed =
+          (typeof performance !== "undefined" ? performance.now() : Date.now()) - mountTime;
+        const remainingMorphMs = Math.max(0, 390 - elapsed);
+
+        const applyArticles = () => {
+          if (cancelled) return;
+          const cleaned = normalizeAndCleanArticles(data);
+          startTransition(() => {
+            setArticles(cleaned);
+            setLoading(false);
+          });
+        };
+
+        if (remainingMorphMs > 16) {
+          deferTimer = setTimeout(applyArticles, remainingMorphMs);
+        } else {
+          applyArticles();
+        }
       })
       .catch((err) => {
         console.error("Error loading articles:", err);
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       });
 
     return () => {
+      cancelled = true;
+      if (deferTimer !== null) clearTimeout(deferTimer);
       unsubscribeTheme();
       window.removeEventListener("scroll", handleScroll);
     };
@@ -801,37 +821,26 @@ export default function HomePage() {
       <main className="min-h-screen bg-[var(--bg-paper)] text-[var(--text-ink)] transition-colors duration-200 pb-10">
       {/* Unified Sticky App Header */}
       <header className="sticky top-0 z-30 border-b border-[var(--border-hairline)] bg-[var(--bg-paper)]/95 px-4 py-3.5 backdrop-blur-md sm:px-8">
-        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-3">
-          <div>
-            <div className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-widest text-[var(--text-muted)]">
-              <span className="relative flex h-2 w-2">
+        <div className="mx-auto flex max-w-[1440px] items-start sm:items-center justify-between gap-2.5 sm:gap-3">
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2 text-[10px] sm:text-[10.5px] font-bold uppercase tracking-widest text-[var(--text-muted)]">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B91C1C] opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#B91C1C]"></span>
               </span>
-              <span>MULTI-JOURNAL LIVE MONITOR</span>
+              <span className="truncate">MULTI-JOURNAL LIVE MONITOR</span>
             </div>
-            <div className="mt-0.5 flex items-center gap-2.5">
-              <h1 className="text-xl font-extrabold tracking-tight text-[var(--text-ink)] sm:text-2xl">
+            <div className="mt-0.5 flex items-center gap-2">
+              <h1 className="text-base sm:text-2xl font-extrabold tracking-tight leading-tight text-[var(--text-ink)]">
                 NEUROLOGY &amp; STROKE JOURNAL MONITOR
               </h1>
-              <span className="rounded-md bg-[#B91C1C] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+              <span className="shrink-0 rounded-md bg-[#B91C1C] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
                 LIVE
               </span>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
-            {/* Live Sync Status Pill */}
-            <div className="hidden items-center gap-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 py-1.5 text-[11px] text-[var(--text-secondary)] md:flex">
-              <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/15 text-[10px] text-emerald-600 dark:text-emerald-400">
-                ✓
-              </span>
-              <span>
-                {loading ? "Syncing feed..." : `${articles.length} articles`}
-                {lastUpdated ? ` • ${lastUpdated}` : ""}
-              </span>
-            </div>
-
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             {/* Mobile-only Night Shift & Admin controls (Desktop uses Left Rail) */}
             <div className="flex items-center gap-1.5 sm:hidden">
               <button
@@ -1441,8 +1450,16 @@ export default function HomePage() {
 
         {/* Articles Grouped by Date -> Grouped by Journal */}
         {loading ? (
-          <div className="p-12 text-center rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-sm text-[var(--text-muted)]">
-            Loading articles...
+          <div className="space-y-4">
+            <div className="h-11 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] animate-pulse" />
+            <div className="space-y-3">
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  className="h-32 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 animate-pulse"
+                />
+              ))}
+            </div>
           </div>
         ) : groupedByDate.length > 0 ? (
           <div className="space-y-8">

@@ -196,8 +196,8 @@ export default function EcosystemHubPage() {
   };
 
   return (
-    <main className="flex min-h-[calc(100dvh-44px)] sm:min-h-screen flex-col justify-center px-3 py-2.5 sm:px-8 sm:py-6 lg:px-10 lg:py-7">
-      <div className="mx-auto grid w-full max-w-[1440px] flex-1 grid-cols-2 grid-rows-3 gap-2.5 sm:gap-5 sm:grid-cols-2 sm:grid-rows-3 landscape:max-lg:grid-cols-3 landscape:max-lg:grid-rows-2 lg:grid-cols-3 lg:grid-rows-2">
+    <main className="flex h-[calc(100dvh-44px)] overflow-hidden sm:h-auto sm:min-h-screen sm:overflow-visible flex-col justify-center px-3 py-2.5 sm:px-8 sm:py-6 lg:px-10 lg:py-7">
+      <div className="mx-auto grid w-full max-w-[1440px] flex-1 min-h-0 grid-cols-2 grid-rows-3 gap-2.5 sm:gap-5 sm:grid-cols-2 sm:grid-rows-3 landscape:max-lg:grid-cols-3 landscape:max-lg:grid-rows-2 lg:grid-cols-3 lg:grid-rows-2">
         {BENTO_APPS.map((app) => {
           const cardStyle = {
             "--accent": app.accent,
@@ -209,12 +209,12 @@ export default function EcosystemHubPage() {
 
           const cardInner = (
             <>
-              <div className="relative z-10 flex w-full items-center justify-between gap-1.5 sm:gap-2">
-                <h2 className="bento-title font-editorial text-[20px] sm:text-3xl lg:text-[42px] leading-none truncate">
+              <div className="relative z-10 flex w-full items-center justify-between gap-1 sm:gap-2">
+                <h2 className="bento-title font-editorial text-[17px] sm:text-3xl lg:text-[42px] leading-none truncate">
                   {app.name}
                 </h2>
                 <span
-                  className="font-mono-tech inline-flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 sm:px-3 sm:py-1 text-[8px] sm:text-[10.5px] font-bold tracking-widest text-white shadow-sm"
+                  className="font-mono-tech inline-flex shrink-0 items-center gap-1 rounded-full px-1.5 py-0.5 sm:px-3 sm:py-1 text-[7.5px] sm:text-[10.5px] font-bold tracking-widest text-white shadow-sm"
                   style={{ backgroundColor: app.accent }}
                 >
                   {app.hasPing && (
