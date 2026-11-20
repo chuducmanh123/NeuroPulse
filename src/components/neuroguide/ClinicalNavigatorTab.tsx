@@ -3044,7 +3044,6 @@ export function ClinicalNavigatorTab({
         isOpen={isTrialModalOpen}
         onClose={() => setIsTrialModalOpen(false)}
         initialTrial={editingTrial}
-        defaultOntologyTags={{}}
         onSaved={(updatedTrials, saved) => {
           onPivotalTrialsUpdated(updatedTrials);
           setStatusBanner({

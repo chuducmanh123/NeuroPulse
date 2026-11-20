@@ -315,8 +315,25 @@ export function PivotalTrialModal({
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
 
+  const wasOpenRef = useRef(false);
+  const initializedTrialKeyRef = useRef<string | null>(null);
+
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      wasOpenRef.current = false;
+      initializedTrialKeyRef.current = null;
+      return;
+    }
+
+    // Only initialize form state when the modal opens or switches to a different trial;
+    // parent re-renders (e.g. on tab/window focus sync) must not wipe in-progress edits.
+    const trialKey = initialTrial?.id ?? "__new__";
+    if (wasOpenRef.current && initializedTrialKeyRef.current === trialKey) {
+      return;
+    }
+    wasOpenRef.current = true;
+    initializedTrialKeyRef.current = trialKey;
+
     setLookupStatus(null);
     setSaveError(null);
     if (initialTrial) {

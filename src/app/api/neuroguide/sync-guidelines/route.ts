@@ -159,6 +159,7 @@ export async function GET(request: NextRequest) {
         conferences: mergedData.conferences,
         scenarios: mergedData.scenarios,
         recommendationAtoms: mergedData.recommendationAtoms,
+        pivotalTrials: mergedData.pivotalTrials,
         deletedGuidelineIds,
       },
       {

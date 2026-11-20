@@ -140,8 +140,15 @@ export default function AdminCommandCenter() {
 
   // Landmark Clinical Trials Registry & Edit
   const [pivotalTrials, setPivotalTrials] = useState<PivotalTrialRecord[]>(PIVOTAL_TRIALS_SEED);
+  const [isLoadingTrials, setIsLoadingTrials] = useState<boolean>(false);
   const [editingTrial, setEditingTrial] = useState<PivotalTrialRecord | null>(null);
   const [showTrialModal, setShowTrialModal] = useState<boolean>(false);
+
+  const persistTrialsCache = (trials: PivotalTrialRecord[]) => {
+    try {
+      localStorage.setItem("neuroguide_cached_pivotal_trials", JSON.stringify(trials));
+    } catch {}
+  };
 
   // Published Guideline Edit & Unpublish
   const [editingPublishedDoc, setEditingPublishedDoc] = useState<GuidelineDoc | null>(null);
@@ -234,7 +241,6 @@ export default function AdminCommandCenter() {
       fetchReviewQueueCount();
       fetchHealthDiagnostics();
       fetchGuidelinesList();
-      fetchPivotalTrials();
     }
   }, [isAdminVerified]);
 
@@ -359,16 +365,20 @@ export default function AdminCommandCenter() {
   }, [guidelineDocs, repoSearchQuery, repoSocietyFilter]);
 
   const fetchPivotalTrials = async () => {
+    setIsLoadingTrials(true);
     try {
       const res = await fetch("/api/neuroguide/navigator", { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
         if (data && data.ok && Array.isArray(data.pivotalTrials) && data.pivotalTrials.length > 0) {
           setPivotalTrials(data.pivotalTrials);
+          persistTrialsCache(data.pivotalTrials);
         }
       }
     } catch (err) {
       console.error("Failed to load pivotal trials in admin:", err);
+    } finally {
+      setIsLoadingTrials(false);
     }
   };
 
@@ -396,8 +406,13 @@ export default function AdminCommandCenter() {
       if (data.ok) {
         if (Array.isArray(data.pivotalTrials)) {
           setPivotalTrials(data.pivotalTrials);
+          persistTrialsCache(data.pivotalTrials);
         } else {
-          setPivotalTrials((prev) => prev.filter((t) => t.id !== trial.id));
+          setPivotalTrials((prev) => {
+            const next = prev.filter((t) => t.id !== trial.id);
+            persistTrialsCache(next);
+            return next;
+          });
         }
         setRadarMessage(`🗑️ Deleted trial "${trial.acronym} (${trial.year})" from NeuroGuide storage.`);
       } else {
@@ -411,11 +426,16 @@ export default function AdminCommandCenter() {
   const [deleteLoadingId, setDeleteLoadingId] = useState<string | null>(null);
 
   const fetchGuidelinesList = async () => {
+    setIsLoadingTrials(true);
     try {
       const res = await fetch("/api/neuroguide/sync-guidelines", { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
         if (data && data.status === "success") {
+          if (Array.isArray(data.pivotalTrials) && data.pivotalTrials.length > 0) {
+            setPivotalTrials(data.pivotalTrials);
+            persistTrialsCache(data.pivotalTrials);
+          }
           if (Array.isArray(data.guidelines)) {
           const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
           let deletedSet = new Set<string>();
@@ -462,7 +482,9 @@ export default function AdminCommandCenter() {
           }
         }
       }
-    } catch {}
+    } catch {} finally {
+      setIsLoadingTrials(false);
+    }
   };
 
   const handleDeleteGuideline = async (doc: GuidelineDoc) => {
@@ -580,13 +602,18 @@ export default function AdminCommandCenter() {
           setGuidelineDocs(valid);
         }
       }
+      const cachedTrials = localStorage.getItem("neuroguide_cached_pivotal_trials");
+      if (cachedTrials) {
+        const parsedTrials = JSON.parse(cachedTrials);
+        if (Array.isArray(parsedTrials) && parsedTrials.length > 0) {
+          setPivotalTrials(parsedTrials);
+        }
+      }
       const lastSync = localStorage.getItem("neuroguide_last_sync_timestamp");
       if (lastSync) {
         setLastSyncedTime(new Date(parseInt(lastSync, 10)).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }));
       }
     } catch {}
-    fetchGuidelinesList();
-    fetchPivotalTrials();
   }, []);
 
   const triggerRadarSync = async () => {
@@ -1388,6 +1415,11 @@ export default function AdminCommandCenter() {
                     }`}
                   >
                     {pivotalTrials.length}
+                    {isLoadingTrials && (
+                      <span className="ml-1 inline-block animate-spin opacity-70" title="Syncing trials...">
+                        ⟳
+                      </span>
+                    )}
                   </span>
                 </button>
               </div>
@@ -1952,19 +1984,22 @@ export default function AdminCommandCenter() {
               setEditingTrial(null);
             }}
             initialTrial={editingTrial}
-            defaultOntologyTags={{}}
             onSaved={(updatedTrials, savedTrial) => {
               if (Array.isArray(updatedTrials) && updatedTrials.length > 0) {
                 setPivotalTrials(updatedTrials);
+                persistTrialsCache(updatedTrials);
               } else {
                 setPivotalTrials((prev) => {
                   const idx = prev.findIndex((t) => t.id === savedTrial.id);
+                  let next: PivotalTrialRecord[];
                   if (idx >= 0) {
-                    const next = [...prev];
+                    next = [...prev];
                     next[idx] = savedTrial;
-                    return next;
+                  } else {
+                    next = [savedTrial, ...prev];
                   }
-                  return [savedTrial, ...prev];
+                  persistTrialsCache(next);
+                  return next;
                 });
               }
               setRadarMessage(`🎉 Successfully saved pivotal trial "${savedTrial.acronym} (${savedTrial.year})"!`);
