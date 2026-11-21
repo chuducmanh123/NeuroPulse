@@ -1,5 +1,223 @@
 [
   {
+    "id": "nc-2026-059",
+    "case_code": "NC-2026-059",
+    "title": "Hyperacute Neurologic Deficits and Unexplained Lactic Acidosis",
+    "subspecialty": "Neurocritical Care",
+    "subspecialties": [
+      "Neurocritical Care"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-21",
+    "status": "approved",
+    "author_credit": "Journal of neurology • PMC13754989",
+    "source_journal": {
+      "name": "Journal of neurology",
+      "short_name": "Journal of neurology",
+      "doi_url": "https://doi.org/10.1007/s00415-026-14250-w",
+      "pmcid": "PMC13754989",
+      "pmid": "43013119",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "64-year-old man",
+      "chief_complaint": "Acute onset of dysphasia, right-sided weakness, and lethargy.",
+      "history_of_present_illness": "A 64-year-old man was brought to the emergency department 90 minutes after the acute onset of neurological symptoms. His illness began with a single episode of emesis followed by transient expressive speech difficulty, progressive psychomotor slowing, and mild right-sided weakness. Earlier that morning, he had experienced a brief, self-limited episode of mild mid-sternal chest discomfort that he dismissed. He reported no prior neurological events, head trauma, or fever.",
+      "past_medical_history": "Essential hypertension, chronic lumbar spondylosis.",
+      "vitals": {
+        "bp": "110/60 mmHg (symmetric in both upper extremities)",
+        "hr": "105 bpm",
+        "rr": "18 /min",
+        "temp": "36.6 °C",
+        "spo2": "97% on room air"
+      },
+      "neuro_exam": "Neurological examination demonstrated prominent psychomotor slowing and mild disorientation. Cranial nerve assessment revealed a mild right central facial paresis without dysarthria or fluent aphasia. Motor examination demonstrated a right pronator drift and 4+/5 strength in the right arm and leg. Deep tendon reflexes were brisk and symmetric bilaterally, with flexor plantar responses. Peripheral examination revealed cool extremities with threadlike, weak, symmetric distal pulses.",
+      "key_labs_csf": "Venous blood gas analysis revealed a marked metabolic acidosis with pH 7.24, serum bicarbonate 16 mEq/L, and an elevated lactate of 7.0 mmol/L. Complete blood count and basic metabolic panel were otherwise unremarkable. Initial high-sensitivity cardiac troponin I was within normal limits. Electrocardiography revealed sinus tachycardia at 105 bpm without acute ischemic ST-segment or T-wave alterations.",
+      "imaging": [
+        {
+          "modality": "Diffusion-Weighted MRI (DWI)",
+          "sequence_badge": "Figure 1 • Journal of neurology (PMC13754989)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13754989_fig1.webp",
+          "pmcid": "PMC13754989",
+          "doi_url": "https://doi.org/10.1007/s00415-026-14250-w",
+          "caption": "Initial neuroimaging findings (left) and additional diagnostic imaging (right). In Case 1 (top row), diffusion-weighted MR imaging (DWI, left) demonstrated bilateral frontoparietal watershed infarctions. Subsequent thoracic CTA (right) demonstrated aortic dissection. In Case 2 (middle row), DWI and FLAIR imaging (left) showed small parieto-occipital ischemic lesions without a clinical correlate and bilateral thalamostriatal edema. MR venography (right) showed thrombosis of the straight sinus and vein of Rosenthal. In Case 3 (bottom row), non-contrast CT (left) showed symmetric bilateral thalam",
+          "findings_summary": "Bilateral hyperintense signal alterations predominantly localized to the frontoparietal watershed (boundary-zone) arterial territories without focal main-stem arterial occlusion."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most appropriate next step in management?",
+      "question_type": "Next Best Step",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Administer intravenous tissue plasminogen activator (tPA)",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Although the patient presents within the standard intravenous thrombolysis time window (<4.5 hours), administering tPA is strictly contraindicated. The combination of symmetric bilateral watershed territorial ischemia, severe unexplained lactic acidosis, cool extremities, and weak peripheral pulses points to central cardiovascular failure secondary to acute aortic dissection. Thrombolysis in unrecognized aortic dissection frequently precipitates fatal hemopericardium, pericardial tamponade, or rapid exsanguination."
+        },
+        {
+          "id": "B",
+          "text": "Perform urgent digital subtraction angiography (DSA) for mechanical thrombectomy",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Mechanical thrombectomy is indicated for acute focal large vessel occlusions (LVO) of the intracranial anterior or posterior circulation. Brain imaging demonstrates bilateral frontoparietal watershed ischemia resulting from severe systemic hypoperfusion rather than an endovascularly accessible focal main-stem arterial thromboembolism."
+        },
+        {
+          "id": "C",
+          "text": "Initiate continuous intravenous unfractionated heparin infusion",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Systemic anticoagulation is indicated for conditions such as acute cerebral venous sinus thrombosis or hypercoagulable cardioembolic disease, but it is strictly contraindicated when acute aortic dissection is suspected, as it risks catastrophic pericardial tamponade and fatal hemorrhage."
+        },
+        {
+          "id": "D",
+          "text": "Perform immediate thoracic computed tomography angiography (CTA)",
+          "peer_percentage": 66,
+          "rationale": "Correct! The presentation of hyperacute neurological deficits alongside symmetric bilateral frontoparietal watershed infarctions, severe unexplained lactic acidosis, sinus tachycardia, cool extremities, and weak distal pulses indicates systemic hemodynamic failure. These key findings strongly suggest a central cardiovascular origin, specifically acute Stanford Type A aortic dissection. Immediate thoracic CTA is essential to establish the diagnosis and prevent inappropriate administration of thrombolytic or anticoagulant therapy."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Acute painless Stanford Type A aortic dissection presenting as global cerebral hypoperfusion and bilateral frontoparietal watershed infarctions.",
+      "clinical_discussion": "Hyperacute neurological deficits in the setting of acute ischemic stroke activation routinely prompt evaluation for focal, asymmetric neurovascular arterial occlusions. In this clinical context, differential considerations initially included acute thromboembolic stroke, cardioembolic stroke secondary to atrial fibrillation or acute coronary syndrome, and systemic toxic-metabolic encephalopathy. However, the presence of bilateral, symmetric boundary-zone signal hyperintensities on diffusion-weighted imaging (DWI) defies single-territory thromboembolic stroke patterns, signaling systemic global hemodynamic collapse rather than localized vessel thromboembolism.\n\nThe diagnostic inflection point rests on synthesizing the neuroimaging pattern with systemic clinical clues: profound lactic acidosis (7.0 mmol/L), sinus tachycardia, cool extremities, weak distal pulses, and a transient prodrome of chest discomfort. Stanford Type A aortic dissection is painless in 7% to 18% of cases, with primary neurological symptoms driving presentation in up to one-third of painless cases. Dissection originating in the ascending aorta or aortic arch can cause transient or sustained occlusion of the innominate and left common carotid arteries, or induce acute cardiogenic shock from aortic valve insufficiency or pericardial effusion, yielding global cerebral watershed ischemia.\n\nRecognizing these critical systemic red flags necessitates immediate thoracic CTA to visualize the dissection flap and assess branch vessel involvement while withholding all thrombolytic and anticoagulant therapies. Emergency cardiovascular surgical consultation must be obtained immediately. In this patient, immediate thoracic CTA confirmed a Stanford Type A aortic dissection extending from the aortic root to the descending aorta; prompt surgical repair with a synthetic graft restored aortic perfusion and stabilized his neurological and metabolic parameters.",
+      "teaching_points": [
+        "Bilateral symmetric frontoparietal watershed (border-zone) infarctions on neuroimaging signify global cerebral hypoperfusion and systemic hemodynamic collapse, not focal main-stem thromboembolic occlusion.",
+        "Painless Stanford Type A aortic dissection presents primarily with neurological symptoms in up to one-third of cases; unexplained severe lactic acidosis, cool extremities, and weak peripheral pulses are crucial diagnostic clues.",
+        "Automated stroke evaluation software and clinical algorithms rely heavily on hemispheric asymmetry; symmetric bilateral ischemic lesions represent a diagnostic trap for automated tools and clinicians alike.",
+        "Thrombolytic and anticoagulant therapies are strictly contraindicated when aortic dissection is suspected, as administration carries a high mortality rate from fatal hemopericardium and aortic rupture."
+      ],
+      "clinical_pitfalls": [
+        "Administering intravenous thrombolytic therapy based solely on hyperacute neurological deficits and onset time without recognizing systemic signs of hemodynamic collapse.",
+        "Over-relying on visual or software-based asymmetry assessments that fail to flag bilateral, symmetric watershed ischemic lesions.",
+        "Dismissing painless or minimally painful acute aortic dissection in patients presenting with primary acute stroke syndromes."
+      ],
+      "related_keywords": [
+        "Aortic dissection",
+        "Watershed infarction",
+        "Systemic hypoperfusion",
+        "Lactic acidosis",
+        "Stroke mimic"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-060",
+    "case_code": "NC-2026-060",
+    "title": "Subacute Enhancing Brain Lesions Following Extracranial Carotid Artery Stenting",
+    "subspecialty": "Vascular Neurology",
+    "subspecialties": [
+      "Vascular Neurology",
+      "Interventional Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-21",
+    "status": "approved",
+    "author_credit": "Therapeutic advances in neurological disorders • PMC13775478",
+    "source_journal": {
+      "name": "Therapeutic advances in neurological disorders",
+      "short_name": "Therapeutic advances in neurological disorders",
+      "doi_url": "https://doi.org/10.1177/17562864261491046",
+      "pmcid": "PMC13775478",
+      "pmid": "43048245",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "36-year-old woman",
+      "chief_complaint": "Subacute headache and right upper extremity paresthesias following carotid artery stenting",
+      "history_of_present_illness": "A 36-year-old woman with a history of quiescent Takayasu arteritis presented with a subacute global headache and transient right upper extremity paresthesias. Eighteen days prior to presentation, she underwent elective, long-segment extracranial left common and internal carotid artery stenting with three overlapping self-expanding stents for severe, asymptomatic post-vasculitic stenosis. On post-procedure day 18, she developed a persistent, dull global headache. On post-procedure day 24, she experienced a cluster of brief, episodic tingling sensations involving her right hand and forearm, each lasting less than 2 minutes, concerning for focal sensory seizures. She denied fevers, chills, neck stiffness, visual disturbance, motor weakness, or speech impairment.",
+      "past_medical_history": "Takayasu arteritis (quiescent for >4 years off immunosuppressive therapy); asymptomatic post-vasculitic stenosis of the left common and internal carotid arteries.",
+      "vitals": {
+        "bp": "128/78 mmHg",
+        "hr": "72 bpm",
+        "rr": "14 /min",
+        "temp": "36.7 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "On examination, she was alert, oriented, and in no acute distress. Speech was fluent without dysarthria or aphasia. Cranial nerves II through XII were intact. Motor strength was 5/5 throughout all limb groups. Primary sensory modalities—including light touch, pinprick, and joint position sense—were intact bilaterally without asymmetry. Deep tendon reflexes were 2+ throughout with flexor plantar responses. Coordination and gait were normal.",
+      "key_labs_csf": "Laboratory evaluation revealed an erythrocyte sedimentation rate (ESR) of 10 mm/hr (reference <20) and a C-reactive protein (CRP) level of 1.1 mg/L (reference <5.0). Lumbar puncture demonstrated clear, colorless CSF with an opening pressure of 15 cmH2O, 2 white blood cells/µL, 4 red blood cells/µL, glucose of 64 mg/dL, and total protein of 36 mg/dL.",
+      "imaging": [
+        {
+          "modality": "Catheter Angiography / CT Angiography",
+          "sequence_badge": "Figure 1 • Therapeutic advances in neurological disorders (PMC13775478)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13775478_fig1.webp",
+          "pmcid": "PMC13775478",
+          "doi_url": "https://doi.org/10.1177/17562864261491046",
+          "caption": "Pre- and post-interventional vascular and brain imaging. (A) Coronal (A.1) and axial (A.2) reconstructions demonstrating circumferential wall thickening of the proximal left CCA, consistent with post-vasculitic stenosis (arrow). (B) Coronal (B.1) and axial (B.2) images showing a short-segment subtotal stenosis of the proximal left ICA. (B.1) Yellow arrow indicates the left ICA. (B.2) Yellow arrow indicates the left ICA; blue arrow shows the contralateral ICA for reference. (C.1) Pre- and (C.2) post-interventional DSA of the left CCA and ICA. Yellow arrow indicates the short-segment subtotal st",
+          "findings_summary": "Demonstrates successful placement of overlapping left common and internal carotid arterial stents with a widely patent vessel lumen and no residual stenosis, arterial dissection, or active wall enhancement."
+        },
+        {
+          "modality": "Brain MRI (T2/FLAIR and T1 Post-Contrast)",
+          "sequence_badge": "Figure 2 • Therapeutic advances in neurological disorders (PMC13775478)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13775478_fig2.webp",
+          "pmcid": "PMC13775478",
+          "doi_url": "https://doi.org/10.1177/17562864261491046",
+          "caption": "Comparison of 3-Tesla MRI 18 (A) and 42 (B) days post-intervention illustrating the heterogeneous evolution of NICE lesions. (A) Axial T2/FLAIR at 18 days showing left frontal (A.1) and left occipital (A.3) hyperintense lesions; corresponding T1-weighted post-contrast images (A.2 and A.4) demonstrate nodular enhancement. (B.1) Axial T2/FLAIR and (B.2) T1-weighted post-contrast at 42 days with partial regression of the left frontal lesion and simultaneous appearance of new occipital lesions. (B.3) Axial T2/FLAIR and (B.4) T1-weighted post-contrast at 42 days demonstrating ipsilateral progressio",
+          "findings_summary": "Axial T2/FLAIR and post-contrast T1-weighted sequences show multiple nodular contrast-enhancing subcortical parenchymal foci with surrounding vasogenic edema without restricted diffusion."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Non-ischemic cerebral enhancing (NICE) lesions",
+          "peer_percentage": 74,
+          "rationale": "Correct! Non-ischemic cerebral enhancing (NICE) lesions are rare neurovascular procedural complications linked to microembolization of polymer or hydrophilic catheter coatings, triggering localized delayed granulomatous cerebral inflammation. On MRI, they manifest as subacute T2/FLAIR hyperintensities with punctate or nodular enhancement and vasogenic edema without diffusion restriction. Although primarily reported after intracranial interventions, they can follow extracranial carotid stenting."
+        },
+        {
+          "id": "B",
+          "text": "Central nervous system flare of Takayasu arteritis",
+          "peer_percentage": 16,
+          "rationale": "Incorrect. Central nervous system involvement in Takayasu arteritis predominantly presents as ischemic strokes (arterio-arterial thromboembolism or hemodynamic failure) or occasionally PRES, rather than non-territorial, asynchronous, nodular parenchymal enhancing lesions. Normal systemic inflammatory markers, unremarkable basic CSF profile, and absence of active vessel wall inflammation argue strongly against a Takayasu relapse."
+        },
+        {
+          "id": "C",
+          "text": "Acute thromboembolic cerebral infarction with hemorrhagic transformation",
+          "peer_percentage": 6,
+          "rationale": "Incorrect. Acute cerebral infarction displays restricted diffusion on DWI with cytotoxic edema in a vascular territory and sudden focal neurological deficits. The lesions in this patient lack restricted diffusion, exhibit vasogenic edema, follow a non-ischemic morphology, and emerge asynchronously weeks to months post-procedure."
+        },
+        {
+          "id": "D",
+          "text": "Progressive multifocal leukoencephalopathy (PML)",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. PML occurs almost exclusively in severely immunocompromised individuals and features progressive, patchy subcortical white matter T2 hyperintensities with demyelination. PML lesions characteristically lack contrast enhancement and mass effect, making it an unlikely cause in an immunocompetent patient presenting shortly after carotid stenting."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Non-ischemic cerebral enhancing (NICE) lesions secondary to extracranial carotid artery stenting",
+      "clinical_discussion": "In a patient with a history of Takayasu arteritis presenting with subacute neurological symptoms post-carotid stenting, the primary diagnostic considerations include a central nervous system flare of vasculitis, acute or subacute thromboembolic stroke, intracranial infection, and neuroendovascular procedural complications. Active Takayasu arteritis typically manifests with cerebral ischemic events due to branch vessel stenosis or arterial-to-arterial embolization, rather than multiple non-territorial subcortical parenchymal enhancing lesions. Acute thromboembolic infarction was rendered unlikely by the subacute timing, non-vascular distribution, and absence of cytotoxic edema or restricted diffusion on diffusion-weighted imaging (DWI).\n\nThe combination of recent neurointerventional device deployment, normal systemic inflammatory markers (ESR, CRP), benign CSF indices, and characteristic neuroimaging findings established the diagnosis of non-ischemic cerebral enhancing (NICE) lesions. Microembolization of hydrophilic, silicone, or polymer coatings shed from intravascular catheters and stents to distal cerebral microvessels induces a delayed-type hypersensitivity or foreign-body granulomatous reaction. Extensive infectious workup, autoimmune serologies, and CSF oligoclonal band testing performed post-presentation were unremarkable, and follow-up high-resolution vessel wall MRI confirmed quiescent vasculitis without active stent-site inflammation. A defining neuroimaging hallmark of NICE lesions is their asynchronous temporal evolution, demonstrating simultaneous emergence, persistence, and regression of multifocal parenchymal lesions over several months.\n\nManagement of NICE lesions focuses on symptomatic control while avoiding unnecessary, aggressive systemic immunosuppression or invasive brain biopsy. Given the marked discordance between prominent imaging changes and a relatively benign clinical course, treatment is tailored to patient symptoms. In this patient, short-term corticosteroid therapy was initiated for headache control alongside low-dose antiseizure medication (lamotrigine) for focal sensory seizures. Over a 10-month follow-up period, her neurological symptoms completely resolved, and surveillance neuroimaging demonstrated gradual, spontaneous regression of the parenchymal enhancing lesions.",
+      "teaching_points": [
+        "Non-ischemic cerebral enhancing (NICE) lesions represent delayed granulomatous or foreign-body hypersensitivity reactions triggered by foreign polymer or hydrophilic coating microemboli shed during neuroendovascular procedures, including extracranial carotid artery stenting.",
+        "Neuroimaging classically reveals subacute, non-territorial T2/FLAIR hyperintensities with punctate or nodular contrast enhancement and vasogenic edema in the absence of restricted diffusion on diffusion-weighted imaging (DWI).",
+        "NICE lesions characteristically exhibit asynchronous evolution on longitudinal neuroimaging, with dynamic emergence and spontaneous regression of individual lesions occurring over months.",
+        "Clinical management should be symptom-driven (e.g., short-term corticosteroids or antiseizure medications) rather than guided solely by radiologic burden, avoiding unnecessary systemic immunosuppression or brain biopsy."
+      ],
+      "clinical_pitfalls": [
+        "Misdiagnosing NICE lesions as a relapse of underlying systemic vasculitis or an infectious process, leading to high-dose immunosuppressive escalation or empiric broad-spectrum antimicrobial therapy.",
+        "Performing invasive interventions such as brain biopsy or escalating medical therapy based on dynamic, persistent neuroimaging changes in an otherwise clinically stable patient."
+      ],
+      "related_keywords": [
+        "Non-ischemic cerebral enhancing lesions",
+        "NICE lesions",
+        "Carotid artery stenting",
+        "Polymer microembolization",
+        "Takayasu arteritis mimic"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-057",
     "case_code": "NC-2026-057",
     "title": "Postpartum Periorbital Pain and Color Vision Loss",
