@@ -21,10 +21,13 @@ import {
 } from "../src/lib/neuroguide/sync/blockGraph.ts";
 import {
   handleCreateBlock,
+  handleDeleteBlock,
   handleGetBlockHistory,
+  handlePurgeNeuroGuide,
   handleRestoreBlockRevision,
   handleUpdateBlock,
 } from "../src/lib/neuroguide/sync/handlers.ts";
+import { isNeuroGuideSyncV2Enabled } from "../src/lib/neuroguide/guidelineStorage.ts";
 import {
   buildNeuroGuideSelectionSearchParams,
   formatNeuroGuideSyncStatusView,
@@ -493,5 +496,71 @@ describe("Phase 8.6 — NeuroGuide Admin & Lookup Sync v2 Helpers", () => {
     assert.equal(delRes.deletedBlockUids.length, 3);
     const afterDel = await loadNeuroGuideCatalogFromSyncV2(repo);
     assert.equal(afterDel.guidelines.length, 0);
+  });
+
+  it("Test 6: isNeuroGuideSyncV2Enabled defaults to true at cutover & handlePurgeNeuroGuide cleans aged tombstones/revisions", async () => {
+    const prevEnv = process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2;
+    try {
+      delete process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2;
+      assert.equal(isNeuroGuideSyncV2Enabled(), true);
+
+      process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2 = "0";
+      assert.equal(isNeuroGuideSyncV2Enabled(), false);
+
+      process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2 = "1";
+      assert.equal(isNeuroGuideSyncV2Enabled(), true);
+    } finally {
+      if (prevEnv === undefined) {
+        delete process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2;
+      } else {
+        process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2 = prevEnv;
+      }
+    }
+
+    const repo = new MemoryNeuroGuideRepo();
+    const deps = { repo, isAdmin: true, actor: "purge-cron" };
+
+    // Unauthenticated purge rejected (401)
+    const unauth = await handlePurgeNeuroGuide({ repo, isAdmin: false });
+    assert.equal(unauth.status, 401);
+
+    // 1) Create block & generate 7 revisions, backdate oldest rev 1..2 beyond 90d
+    const liveData = makeSampleBlockRow("unused", 1, "Rev 1").data;
+    const createdLive = await handleCreateBlock(deps, { data: liveData });
+    assert.equal(createdLive.status, 201);
+    const liveUid = createdLive.body.row.uid;
+
+    for (let r = 2; r <= 7; r++) {
+      const nextData = structuredClone(liveData);
+      nextData.payload.practiceChange.currentText = `Rev ${r}`;
+      const upd = await handleUpdateBlock(deps, liveUid, {
+        expectedRev: r - 1,
+        data: nextData,
+      });
+      assert.equal(upd.status, 200);
+    }
+
+    const oldDate = new Date(Date.now() - 120 * 86_400_000);
+    repo.backdateRevision(liveUid, 1, oldDate);
+    repo.backdateRevision(liveUid, 2, oldDate);
+
+    // 2) Create another block, soft-delete it, and backdate tombstone beyond 90d
+    const tombData = makeSampleBlockRow("unused-tomb", 1, "Will purge").data;
+    tombData.blockKey = "rec:g-old:0:tomb-1";
+    const createdTomb = await handleCreateBlock(deps, { data: tombData });
+    const tombUid = createdTomb.body.row.uid;
+    const deletedTomb = await handleDeleteBlock(deps, tombUid, { expectedRevParam: 1 });
+    assert.equal(deletedTomb.status, 200);
+    repo.backdateBlockTombstone(tombUid, oldDate);
+
+    const purgeRes = await handlePurgeNeuroGuide(deps);
+    assert.equal(purgeRes.status, 200);
+    assert.equal(purgeRes.body.tombstones_purged, 1);
+    assert.equal(purgeRes.body.revisions_purged, 2);
+    assert.ok(purgeRes.body.purge_horizon_seq >= deletedTomb.body.row.changeSeq);
+
+    // Keeps at least revisionKeepMinPerUid = 5 revisions on live block
+    const remainingHistory = await repo.history(liveUid);
+    assert.equal(remainingHistory.length, 5);
   });
 });

@@ -328,7 +328,7 @@ export default function NeuroGuidePage() {
   const [navigatorSeedQuery, setNavigatorSeedQuery] = useState<NavigatorQuery | null>(null);
 
   const SWR_STORAGE_KEY = "neuroguide_swr_store_v3";
-  const isSyncV2 = process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2 === "1";
+  const isSyncV2 = process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2 !== "0";
   const syncState = useNeuroGuideSync({ enabled: isSyncV2 });
 
   const filterValidGuidelines = (list: GuidelineDoc[], deletedIds: string[] = []): GuidelineDoc[] => {

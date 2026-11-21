@@ -532,3 +532,27 @@ Hướng dẫn chạy (khi Phase 8.1 hoàn thành):
   - `npm run build` → **PASS** (`exit 0`, Next.js 16.4.3 Turbopack)
   - `npx tsc --noEmit` → **PASS** (`exit 0`)
 - **Trạng thái hoàn tất:** **Phase 8 (8.0–8.6) ĐÃ HOÀN TẤT** sau cờ `NEXT_PUBLIC_NEUROGUIDE_SYNC_V2=1`. Sẵn sàng theo dõi / kiểm thử UI trực tiếp với `NEXT_PUBLIC_NEUROGUIDE_SYNC_V2=1` trước cutover.
+
+---
+
+## Phase 8.7 — Default Cutover & Weekly Retention Purge Log (2026-11-21)
+
+### Thay đổi đã thực hiện
+- **Default Cutover (`Sync v2` bật mặc định):**
+  - `src/lib/neuroguide/guidelineStorage.ts`: `isNeuroGuideSyncV2Enabled()` chuyển sang `process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2 !== "0"` (mặc định bật Sync v2 trên mọi môi trường; vẫn hỗ trợ tắt khẩn cấp bằng `NEXT_PUBLIC_NEUROGUIDE_SYNC_V2=0` cùng fallback an toàn).
+  - `src/app/neuroguide/page.tsx`: `isSyncV2` chuyển sang `process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2 !== "0"`.
+  - `src/components/neuroguide/EditGuidelineModal.tsx`: mặc định `syncV2Enabled = true`.
+- **Tự động dọn tombstone & revision cũ (`neuroguide_purge`):**
+  - Tạo `supabase/migrations/20261121_neuroguide_purge_cron.sql`: đặt lịch `pg_cron` `neuroguide_purge_weekly` vào `15 3 * * 0` UTC (Chủ Nhật 03:15 UTC) chạy `select public.neuroguide_purge()`, bọc `DO $$` an toàn.
+  - Tạo `.github/workflows/neuroguide_purge.yml`: workflow fallback chạy cùng lịch `15 3 * * 0` UTC + `workflow_dispatch`, gọi `POST /api/neuroguide/sync/purge` kèm `x-admin-token` (tự nhận `NEUROGUIDE_APP_URL || NEURORX_APP_URL` và `NEUROGUIDE_ADMIN_TOKEN || NEURORX_ADMIN_TOKEN || ADMIN_TOKEN`).
+  - Tạo `supabase/migrations/LATER_drop_legacy_neuroguide.sql`: script dọn bản ghi NeuroGuide cũ trên `public.neuroguide_docs` sau `>= 30` ngày ổn định.
+- **Kiểm thử bổ sung (`tests/neuroguideAdminV2.test.mjs` — Test 6):**
+  - Xác nhận `isNeuroGuideSyncV2Enabled()` mặc định `true` khi biến môi trường unset, `false` chỉ khi `"0"`.
+  - Xác nhận `handlePurgeNeuroGuide` chặn `401` khi chưa xác thực, dọn tombstone block > 90 ngày, nâng `purge_horizon_seq`, dọn revision cũ > 90 ngày và giữ tối thiểu `5` revision gần nhất trên block còn sống.
+
+### Evaluation Log (Phase 8.7)
+- `node --experimental-strip-types --test tests/neuroguideAdminV2.test.mjs` → **PASS** (`6/6` tests pass, `0` failed, `0` skipped)
+- `G-HYGIENE` → **PASS** (`0 matches`)
+- `npm test` → **PASS** (`255/255` tests qua `55` suites, `0` failed, `0` skipped; cùng `validate.ts`, `check-quotes.ts` 4225 quotes, `check-no-clinical-constants.ts`)
+- `npm run build` → **PASS** (`exit 0`, Next.js 16.4.3 Turbopack)
+- `npx tsc --noEmit` → **PASS** (`exit 0`)

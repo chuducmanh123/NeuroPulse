@@ -361,7 +361,7 @@ export function EditGuidelineModal({
   onSuccess,
   darkMode,
   adminToken,
-  syncV2Enabled = false,
+  syncV2Enabled = true,
   blocksByUid,
   blocksBySlug,
   protocolsBySlug,

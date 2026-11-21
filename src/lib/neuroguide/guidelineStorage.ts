@@ -35,7 +35,7 @@ import {
 } from "./sync/serverAdapter.ts";
 
 export function isNeuroGuideSyncV2Enabled(): boolean {
-  return process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2 === "1";
+  return process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2 !== "0";
 }
 
 const LOCAL_STORAGE_PATH = path.join(process.cwd(), "public", "data", "neuroguide_cloud.json");
