@@ -32,6 +32,7 @@ import { SupabaseNeuroGuideRepo } from "./sync/repoSupabase.ts";
 import {
   loadNeuroGuideCatalogFromSyncV2,
   mirrorStorePayloadToV2Repo,
+  syncGuidelineDocToV2Repo,
 } from "./sync/serverAdapter.ts";
 
 export function isNeuroGuideSyncV2Enabled(): boolean {
@@ -250,15 +251,30 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
 /**
  * Saves dynamic NeuroGuide data to Supabase
  */
-export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ ok: boolean; error?: string }> {
+export async function setToSupabase(
+  payload: NeuroGuideBlobPayload,
+  options?: { onlyGuidelineIds?: string[] },
+): Promise<{ ok: boolean; error?: string }> {
   if (!hasSupabaseConfig()) return { ok: false, error: "No Supabase config" };
   try {
     const guidelines = Array.isArray(payload.guidelines) ? payload.guidelines : [];
+    const targetOnlySet =
+      Array.isArray(options?.onlyGuidelineIds) && options!.onlyGuidelineIds.length > 0
+        ? new Set(
+            options!.onlyGuidelineIds
+              .map((id) => String(id || "").toLowerCase().trim())
+              .filter(Boolean),
+          )
+        : null;
     const nowIso = new Date().toISOString();
     const activeIds = new Set<string>();
 
-    if (guidelines.length > 0) {
-      const rows = guidelines.map((g) => {
+    const guidelinesToUpsert = targetOnlySet
+      ? guidelines.filter((g) => targetOnlySet.has((g.id || "").toLowerCase().trim()))
+      : guidelines;
+
+    if (guidelinesToUpsert.length > 0) {
+      const rows = guidelinesToUpsert.map((g) => {
         activeIds.add(g.id);
         const cleanData = { ...g, status: (g as any).status || "approved" };
         if ((cleanData as any)._reviewRecord && ((cleanData as any)._reviewRecord.pending_count || 0) === 0) {
@@ -284,12 +300,13 @@ export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ o
     }
 
     if (
-      payload.conferences !== undefined ||
-      (payload.scenarios && payload.scenarios.length > 0) ||
-      (payload.pivotalTrials && payload.pivotalTrials.length > 0) ||
-      (payload.customRecLabels && Object.keys(payload.customRecLabels).length > 0) ||
-      (payload.deletedGuidelineIds && payload.deletedGuidelineIds.length > 0) ||
-      (payload.deletedTrialIds && payload.deletedTrialIds.length > 0)
+      !targetOnlySet &&
+      (payload.conferences !== undefined ||
+        (payload.scenarios && payload.scenarios.length > 0) ||
+        (payload.pivotalTrials && payload.pivotalTrials.length > 0) ||
+        (payload.customRecLabels && Object.keys(payload.customRecLabels).length > 0) ||
+        (payload.deletedGuidelineIds && payload.deletedGuidelineIds.length > 0) ||
+        (payload.deletedTrialIds && payload.deletedTrialIds.length > 0))
     ) {
       try {
         await supabaseAdmin.from("neuroguide_docs").upsert(
@@ -317,28 +334,30 @@ export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ o
       }
     }
 
-    // Dọn dẹp các bản ghi "approved" cũ đã bị gỡ hoặc trùng lặp (giữ nguyên các bản ghi "pending", "deleted" và toàn bộ dữ liệu NeuroRx)
-    try {
-      const { data: existingRows } = await supabaseAdmin
-        .from("neuroguide_docs")
-        .select("id, status");
-      if (Array.isArray(existingRows)) {
-        const staleApprovedIds = existingRows
-          .filter((r: any) => {
-            const st = String(r.status || "approved").toLowerCase().trim();
-            const idStr = String(r.id || "");
-            return st === "approved" && !activeIds.has(r.id) && idStr !== "system_clinical_scenarios" && !idStr.startsWith("neurorx_");
-          })
-          .map((r: any) => r.id);
-        if (staleApprovedIds.length > 0) {
-          await supabaseAdmin
-            .from("neuroguide_docs")
-            .delete()
-            .in("id", staleApprovedIds);
+    // Dọn dẹp các bản ghi "approved" cũ đã bị gỡ hoặc trùng lặp (chỉ khi đồng bộ toàn phần)
+    if (!targetOnlySet) {
+      try {
+        const { data: existingRows } = await supabaseAdmin
+          .from("neuroguide_docs")
+          .select("id, status");
+        if (Array.isArray(existingRows)) {
+          const staleApprovedIds = existingRows
+            .filter((r: any) => {
+              const st = String(r.status || "approved").toLowerCase().trim();
+              const idStr = String(r.id || "");
+              return st === "approved" && !activeIds.has(r.id) && idStr !== "system_clinical_scenarios" && !idStr.startsWith("neurorx_");
+            })
+            .map((r: any) => r.id);
+          if (staleApprovedIds.length > 0) {
+            await supabaseAdmin
+              .from("neuroguide_docs")
+              .delete()
+              .in("id", staleApprovedIds);
+          }
         }
+      } catch (cleanErr) {
+        console.warn("Supabase cleanup warning:", cleanErr);
       }
-    } catch (cleanErr) {
-      console.warn("Supabase cleanup warning:", cleanErr);
     }
 
     return { ok: true };
@@ -888,6 +907,7 @@ export async function saveNeuroGuideToActiveStorage(payload: {
   deletedGuidelineIds?: string[];
   deletedTrialIds?: string[];
   skipV2Mirror?: boolean;
+  onlyGuidelineIds?: string[];
 }): Promise<{
   success: boolean;
   storage: "supabase" | "local-disk" | "failed";
@@ -963,7 +983,12 @@ export async function saveNeuroGuideToActiveStorage(payload: {
   const localOk = await setToLocalDisk(fullPayload);
 
   if (hasSupabaseConfig()) {
-    if (effectiveDeletedIds && effectiveDeletedIds.length > 0) {
+    const targetOnlyIds =
+      Array.isArray(payload.onlyGuidelineIds) && payload.onlyGuidelineIds.length > 0
+        ? payload.onlyGuidelineIds
+        : undefined;
+
+    if (!targetOnlyIds && effectiveDeletedIds && effectiveDeletedIds.length > 0) {
       try {
         await supabaseAdmin
           .from("neuroguide_docs")
@@ -973,19 +998,31 @@ export async function saveNeuroGuideToActiveStorage(payload: {
         console.warn("Could not mark deleted docs in Supabase:", e);
       }
     }
-    const sbRes = await setToSupabase(fullPayload);
+    const sbRes = await setToSupabase(fullPayload, { onlyGuidelineIds: targetOnlyIds });
     if (sbRes.ok && isNeuroGuideSyncV2Enabled() && !payload.skipV2Mirror) {
       try {
-        await mirrorStorePayloadToV2Repo(new SupabaseNeuroGuideRepo(), {
-          guidelines: fullPayload.guidelines,
-          conferences: fullPayload.conferences,
-          scenarios: fullPayload.scenarios,
-          recommendationAtoms: fullPayload.recommendationAtoms,
-          pivotalTrials: fullPayload.pivotalTrials,
-          customRecLabels: fullPayload.customRecLabels,
-          deletedGuidelineIds: fullPayload.deletedGuidelineIds,
-          deletedTrialIds: fullPayload.deletedTrialIds,
-        });
+        const v2Repo = new SupabaseNeuroGuideRepo();
+        if (targetOnlyIds) {
+          const targetSet = new Set(
+            targetOnlyIds.map((id) => String(id || "").toLowerCase().trim()).filter(Boolean),
+          );
+          for (const g of fullPayload.guidelines) {
+            if (targetSet.has((g.id || "").toLowerCase().trim())) {
+              await syncGuidelineDocToV2Repo(v2Repo, g);
+            }
+          }
+        } else {
+          await mirrorStorePayloadToV2Repo(v2Repo, {
+            guidelines: fullPayload.guidelines,
+            conferences: fullPayload.conferences,
+            scenarios: fullPayload.scenarios,
+            recommendationAtoms: fullPayload.recommendationAtoms,
+            pivotalTrials: fullPayload.pivotalTrials,
+            customRecLabels: fullPayload.customRecLabels,
+            deletedGuidelineIds: fullPayload.deletedGuidelineIds,
+            deletedTrialIds: fullPayload.deletedTrialIds,
+          });
+        }
       } catch (v2WriteErr) {
         console.warn("NeuroGuide Sync v2 dual-write warning:", v2WriteErr);
       }

@@ -1,5 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
+import { performance } from "node:perf_hooks";
 import { deriveNeuroGuideStoreFromGraphSnapshot } from "../src/hooks/useNeuroGuideSync.ts";
 import {
   NEUROGUIDE_BLOCK_DRAFT_KEY_PREFIX,
@@ -29,6 +30,7 @@ import {
 } from "../src/lib/neuroguide/sync/handlers.ts";
 import { isNeuroGuideSyncV2Enabled } from "../src/lib/neuroguide/guidelineStorage.ts";
 import {
+  buildDeterministicFallbackBlockForPracticeChange,
   buildNeuroGuideSelectionSearchParams,
   formatNeuroGuideSyncStatusView,
   reconstructCatalogFromSyncGraph,
@@ -562,5 +564,81 @@ describe("Phase 8.6 — NeuroGuide Admin & Lookup Sync v2 Helpers", () => {
     // Keeps at least revisionKeepMinPerUid = 5 revisions on live block
     const remainingHistory = await repo.history(liveUid);
     assert.equal(remainingHistory.length, 5);
+  });
+
+  it("Test 7: syncGuidelineDocToV2Repo fast-path updates 1 modified rec out of 202 in <100ms leaving 201 siblings unchanged", async () => {
+    const repo = new MemoryNeuroGuideRepo();
+    const base = makeSampleGuideline("ahaasa-2026-early-ischemic-stroke-f6bx");
+    base.allPracticeChanges = Array.from({ length: 202 }, (_, i) => ({
+      id: `chg-ahaasa-${i + 1}`,
+      category: `Section ${(i % 5) + 1}`,
+      topic: `Recommendation topic ${i + 1}`,
+      changeType: "STANDARD",
+      currentText: `Clinical recommendation text #${i + 1} for acute ischemic stroke.`,
+      currentGrade: "Class I, Level B-R",
+      cor: "1",
+      loe: "B-R",
+      drivingTrials: [],
+    }));
+
+    const seedRes = await syncGuidelineDocToV2Repo(repo, base, { actor: "seed" });
+    assert.equal(seedRes.createdBlockUids.length, 202);
+
+    const editedDoc = structuredClone(base);
+    editedDoc.allPracticeChanges[42].currentText =
+      "Updated recommendation #43 wording only.";
+
+    const t0 = performance.now();
+    const updRes = await syncGuidelineDocToV2Repo(repo, editedDoc, { actor: "editor" });
+    const elapsedMs = performance.now() - t0;
+
+    assert.ok(elapsedMs < 100, `Expected <100ms fast-path update, got ${elapsedMs.toFixed(2)}ms`);
+    assert.equal(updRes.updatedBlockUids.length, 1);
+    assert.equal(updRes.createdBlockUids.length, 0);
+    assert.equal(updRes.deletedBlockUids.length, 0);
+    assert.equal(updRes.unchangedBlockCount, 201);
+
+    // Identical re-save should hit full fast-path and update 0 blocks
+    const noopRes = await syncGuidelineDocToV2Repo(repo, editedDoc, { actor: "editor" });
+    assert.equal(noopRes.updatedBlockUids.length, 0);
+    assert.equal(noopRes.unchangedBlockCount, 202);
+  });
+
+  it("Test 8: buildDeterministicFallbackBlockForPracticeChange & resolveRecommendationBlockForPracticeChange resolve even on empty store or docId alias", () => {
+    const doc = makeSampleGuideline("ahaasa-2026-early-ischemic-stroke-f6bx");
+    const targetRec = doc.allPracticeChanges[1];
+
+    // 1) Even when client blocksByUid is completely empty, fallback produces canonical blockKey & uid
+    const fallback = buildDeterministicFallbackBlockForPracticeChange({
+      docId: doc.id,
+      rec: targetRec,
+      index: 1,
+      guidelineDoc: doc,
+    });
+    const decomposed = decomposeNeuroGuideStoreToGraph({
+      guidelines: [doc],
+      conferences: [],
+      scenarios: [],
+    });
+    const canonicalBlock = decomposed.blocks.find((b) => b.blockKey === `rec:${doc.id}:1:rec-2`);
+    assert.ok(canonicalBlock);
+    assert.equal(fallback.uid, canonicalBlock.uid);
+    assert.equal(fallback.slug, canonicalBlock.slug);
+    assert.equal(fallback.rev, 1);
+
+    // 2) resolveRecommendationBlockForPracticeChange matches by recId even if docId differs from protocol slug
+    const blocksByUid = new Map(decomposed.blocks.map((b) => [b.uid, b]));
+    const blocksBySlug = new Map(decomposed.blocks.map((b) => [b.slug, b]));
+    const emptyProtocolsBySlug = new Map();
+
+    const resolvedViaAlias = resolveRecommendationBlockForPracticeChange({
+      docId: "wrong-alias-doc-id",
+      recId: "rec-2",
+      index: 99,
+      blocksByUid,
+      blocksBySlug,
+      protocolsBySlug: emptyProtocolsBySlug,
+    });
+    assert.equal(resolvedViaAlias?.uid, canonicalBlock.uid);
   });
 });

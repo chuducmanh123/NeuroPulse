@@ -9,8 +9,14 @@ import type {
   RecommendationLabelOutput,
 } from "../../../types/neuroguide.ts";
 import { cloneJson } from "../../sync/jsonPatch.ts";
-import { deterministicUuidFromKey } from "./blockGraph.ts";
+import {
+  computeBlockContentHash,
+  computeBlockSectionHashes,
+  decomposeNeuroGuideStoreToGraph,
+  deterministicUuidFromKey,
+} from "./blockGraph.ts";
 import type {
+  NeuroGuideContentBlockData,
   NeuroGuideContentBlockRow,
   NeuroGuideProtocolRow,
   NeuroGuideStoreInput,
@@ -322,7 +328,124 @@ export function resolveRecommendationBlockForPracticeChange(params: {
     }
   }
 
+  // Fallback across all live blocks when docId differs from protocol slug
+  if (recId) {
+    for (const block of blocksByUid.values()) {
+      if (!block || block.deletedAt !== null) continue;
+      if (
+        block.blockType !== "recommendation" &&
+        block.blockType !== "shared_clinical_block"
+      ) {
+        continue;
+      }
+      const payload = block.data.payload;
+      if (
+        (payload.kind === "recommendation" || payload.kind === "shared_clinical_block") &&
+        payload.practiceChange?.id === recId
+      ) {
+        return block;
+      }
+      if (block.data.facetIndex.recId === recId) {
+        return block;
+      }
+    }
+  }
+
   return null;
+}
+
+/**
+ * Builds a deterministic Tier-3 ContentBlock snapshot directly from a guideline
+ * recommendation item when the client block store is still initializing or the modal
+ * is opened from `/admin` / `ReviewQueueTab`.
+ */
+export function buildDeterministicFallbackBlockForPracticeChange(params: {
+  docId: string;
+  rec: PracticeChangeDetail;
+  index: number;
+  guidelineDoc?: Partial<GuidelineDoc> | null;
+}): NeuroGuideContentBlockRow {
+  const { docId, rec, index, guidelineDoc } = params;
+  const cleanRec = stripRuntimeBlockMeta(rec);
+  const safeDocId = (docId || guidelineDoc?.id || "guideline").trim();
+  const isShared = Boolean(cleanRec.sharedBlockKey && cleanRec.sharedBlockKey.trim());
+  const blockKey = isShared
+    ? cleanRec.sharedBlockKey!.trim()
+    : `rec:${safeDocId}:${index}:${cleanRec.id || `slot-${index}`}`;
+  const uid =
+    (rec as PracticeChangeDetailWithBlockMeta)._blockUid ||
+    deterministicUuidFromKey("ng-block", blockKey);
+  const rev =
+    typeof (rec as PracticeChangeDetailWithBlockMeta)._blockRev === "number" &&
+    (rec as PracticeChangeDetailWithBlockMeta)._blockRev! >= 1
+      ? (rec as PracticeChangeDetailWithBlockMeta)._blockRev!
+      : 1;
+
+  const tempDoc: GuidelineDoc = {
+    id: safeDocId,
+    society: guidelineDoc?.society || "AHA/ASA",
+    year: guidelineDoc?.year || 2026,
+    title: guidelineDoc?.title || safeDocId,
+    officialUrl: guidelineDoc?.officialUrl || "",
+    journalTarget: guidelineDoc?.journalTarget || "",
+    documentType: guidelineDoc?.documentType || "Clinical Practice Guideline",
+    publishDate: guidelineDoc?.publishDate || "2026-01-01",
+    subspecialty: guidelineDoc?.subspecialty || "Stroke",
+    subspecialties: guidelineDoc?.subspecialties,
+    executiveSummary: guidelineDoc?.executiveSummary || "",
+    linkedScenarioIds: guidelineDoc?.linkedScenarioIds || [],
+    allPracticeChanges: [cleanRec],
+  };
+
+  const single = decomposeNeuroGuideStoreToGraph({
+    guidelines: [tempDoc],
+    conferences: [],
+    scenarios: [],
+  });
+  const protoBlock = single.blocks[0];
+  const blockType = isShared ? "shared_clinical_block" : "recommendation";
+  const data: NeuroGuideContentBlockData = {
+    blockKey,
+    blockType,
+    payload: {
+      kind: blockType,
+      practiceChange: cleanRec,
+    },
+    facetIndex: protoBlock
+      ? cloneJson(protoBlock.data.facetIndex)
+      : {
+          recId: cleanRec.id,
+          subspecialties: [tempDoc.subspecialty],
+          conditionIds: [],
+          domains: ["treatment"],
+          diagnosisTags: [],
+          timeWindowIds: [],
+          interventionTags: [],
+          direction: "recommended",
+          ontologyFacets: null,
+          v3Labels: cleanRec.v3Labels ? cloneJson(cleanRec.v3Labels) : null,
+          customLabel: null,
+          citedTrialKeys: cleanRec.drivingTrials || [],
+          linkedScenarioKeys: [],
+          picoKey: cleanRec.picoNumber !== undefined ? String(cleanRec.picoNumber) : null,
+          sectionPath: cleanRec.topic || null,
+        },
+  };
+
+  return {
+    uid,
+    slug: blockKey.toLowerCase(),
+    blockKey,
+    blockType,
+    data,
+    contentHash: computeBlockContentHash(data),
+    sectionHashes: computeBlockSectionHashes(data),
+    rev,
+    changeSeq: rev,
+    updatedAt: new Date().toISOString(),
+    updatedBy: "fallback-client",
+    deletedAt: null,
+  };
 }
 
 /**

@@ -5,7 +5,7 @@ import type {
   RecommendationLabelOutput,
 } from "../../../types/neuroguide.ts";
 import { deriveNeuroGuideStoreFromGraphSnapshot } from "../../../hooks/useNeuroGuideSync.ts";
-import { cloneJson, computeJsonPatch } from "../../sync/jsonPatch.ts";
+import { cloneJson, computeJsonPatch, deepEqualSync } from "../../sync/jsonPatch.ts";
 import {
   computeBlockContentHash,
   computeBlockSectionHashes,
@@ -83,13 +83,14 @@ export async function listAllBlocksMap(
 export async function loadNeuroGuideCatalogFromSyncV2(
   repo: NeuroGuideRepo,
   baseline?: Partial<NeuroGuideStoreInput>,
+  options?: { includeBlockLinks?: boolean },
 ): Promise<LoadedNeuroGuideV2Catalog> {
   const [{ liveBlocksByUid }, liveProtocols, protocolEdges, blockLinks, syncState] =
     await Promise.all([
       listAllBlocksMap(repo),
       repo.listLiveProtocols(),
       repo.listProtocolEdges(),
-      repo.listBlockLinks(),
+      options?.includeBlockLinks ? repo.listBlockLinks() : Promise.resolve([]),
       repo.getSyncState(),
     ]);
 
@@ -188,8 +189,87 @@ export async function syncGuidelineDocToV2Repo(
     (p) => p.slug === targetProtoSlug || p.uid === targetProtoDeterministicUid,
   );
 
+  const liveBySlug = new Map<string, NeuroGuideContentBlockRow>();
+  for (const b of liveBlocksByUid.values()) {
+    liveBySlug.set(b.slug, b);
+  }
+
+  const findExistingBlockForChange = (
+    idx: number,
+    chg: GuidelineDoc["allPracticeChanges"][number],
+  ): NeuroGuideContentBlockRow | undefined => {
+    const hintUid = blockUidHints[idx];
+    if (hintUid) {
+      const byHint = liveBlocksByUid.get(hintUid);
+      if (byHint) return byHint;
+    }
+    const isShared = Boolean(chg.sharedBlockKey && chg.sharedBlockKey.trim());
+    const blockKey = isShared
+      ? chg.sharedBlockKey!.trim()
+      : `rec:${cleanedDoc.id}:${idx}:${chg.id || `slot-${idx}`}`;
+    const detUid = deterministicUuidFromKey("ng-block", blockKey);
+    return liveBlocksByUid.get(detUid) ?? liveBySlug.get(blockKey.toLowerCase());
+  };
+
+  // Fast-path: reuse unchanged blocks whose practiceChange is deeply identical before heavy decomposition
+  const reusedByIdx = new Map<number, NeuroGuideContentBlockRow>();
+  let allBlocksUnchanged = true;
+  for (let idx = 0; idx < cleanedDoc.allPracticeChanges.length; idx++) {
+    const chg = cleanedDoc.allPracticeChanges[idx];
+    const existing = findExistingBlockForChange(idx, chg);
+    if (
+      existing &&
+      existing.deletedAt === null &&
+      (existing.data.payload.kind === "recommendation" ||
+        existing.data.payload.kind === "shared_clinical_block")
+    ) {
+      const existingPc = stripRuntimeBlockMeta(existing.data.payload.practiceChange);
+      if (deepEqualSync(existingPc, chg)) {
+        reusedByIdx.set(idx, existing);
+        continue;
+      }
+    }
+    allBlocksUnchanged = false;
+  }
+
+  if (allBlocksUnchanged && existingProto) {
+    const { allPracticeChanges: _ignoredChanges, ...docMetaOnly } = cleanedDoc;
+    const nextMetaPayload = { kind: "guideline" as const, doc: docMetaOnly };
+    const nextMetaHash = computeProtocolMetadataHash(nextMetaPayload);
+    const nextUids = cleanedDoc.allPracticeChanges.map((_c, idx) => reusedByIdx.get(idx)!.uid);
+    const orderSame =
+      nextUids.length === existingProto.blockOrder.length &&
+      nextUids.every((u, i) => u === existingProto.blockOrder[i]);
+    const unchangedCount = cleanedDoc.allPracticeChanges.length;
+
+    if (orderSame && nextMetaHash === existingProto.metadataHash) {
+      return {
+        protocol: existingProto,
+        updatedBlockUids: [],
+        createdBlockUids: [],
+        deletedBlockUids: [],
+        unchangedBlockCount: unchangedCount,
+      };
+    }
+  }
+
+  const dirtyIndices: number[] = [];
+  for (let idx = 0; idx < cleanedDoc.allPracticeChanges.length; idx++) {
+    if (!reusedByIdx.has(idx)) {
+      dirtyIndices.push(idx);
+    }
+  }
+
+  const useDirtySubset = reusedByIdx.size > 0 && dirtyIndices.length < cleanedDoc.allPracticeChanges.length;
+  const docForDecompose: GuidelineDoc = useDirtySubset
+    ? {
+        ...cleanedDoc,
+        allPracticeChanges: dirtyIndices.map((i) => cleanedDoc.allPracticeChanges[i]),
+      }
+    : cleanedDoc;
+
   const decomposed = decomposeNeuroGuideStoreToGraph({
-    guidelines: [cleanedDoc],
+    guidelines: [docForDecompose],
     conferences: [],
     scenarios: existingScenarios,
     pivotalTrials: existingTrials,
@@ -208,9 +288,45 @@ export async function syncGuidelineDocToV2Repo(
     decomposedBlockByUid.set(b.uid, b);
   }
 
-  const liveBySlug = new Map<string, NeuroGuideContentBlockRow>();
-  for (const b of liveBlocksByUid.values()) {
-    liveBySlug.set(b.slug, b);
+  const targetBlockByIdx = new Map<number, NeuroGuideContentBlockRow>();
+  const decomposedIdxForRealIdx = new Map<number, NeuroGuideContentBlockRow>();
+  if (useDirtySubset) {
+    for (let pos = 0; pos < dirtyIndices.length; pos++) {
+      const realIdx = dirtyIndices[pos];
+      const tempUid = decomposedProto.blockOrder[pos];
+      const rawBlock = tempUid ? decomposedBlockByUid.get(tempUid) : undefined;
+      if (!rawBlock) continue;
+      const chg = cleanedDoc.allPracticeChanges[realIdx];
+      const isShared = Boolean(chg?.sharedBlockKey && chg.sharedBlockKey.trim());
+      const canonicalKey = isShared
+        ? chg.sharedBlockKey!.trim()
+        : `rec:${cleanedDoc.id}:${realIdx}:${chg?.id || `slot-${realIdx}`}`;
+      const fixedData: NeuroGuideContentBlockData = {
+        ...cloneJson(rawBlock.data),
+        blockKey: canonicalKey,
+      };
+      const canonicalUid = deterministicUuidFromKey("ng-block", canonicalKey);
+      const fixedBlock: NeuroGuideContentBlockRow = {
+        ...rawBlock,
+        uid: canonicalUid,
+        slug: canonicalKey.toLowerCase(),
+        blockKey: canonicalKey,
+        data: fixedData,
+        contentHash: computeBlockContentHash(fixedData),
+        sectionHashes: computeBlockSectionHashes(fixedData),
+      };
+      targetBlockByIdx.set(realIdx, fixedBlock);
+      decomposedIdxForRealIdx.set(realIdx, rawBlock);
+    }
+  } else {
+    for (let idx = 0; idx < decomposedProto.blockOrder.length; idx++) {
+      const tempUid = decomposedProto.blockOrder[idx];
+      const b = tempUid ? decomposedBlockByUid.get(tempUid) : undefined;
+      if (b) {
+        targetBlockByIdx.set(idx, b);
+        decomposedIdxForRealIdx.set(idx, b);
+      }
+    }
   }
 
   const updatedBlockUids: string[] = [];
@@ -218,18 +334,62 @@ export async function syncGuidelineDocToV2Repo(
   const deletedBlockUids: string[] = [];
   let unchangedBlockCount = 0;
 
-  const actualBlockUids: string[] = [];
+  const totalCount = cleanedDoc.allPracticeChanges.length;
+  const actualBlockUids: string[] = new Array(totalCount);
   const uidRemap = new Map<string, string>();
-  const nextEdges: NeuroGuideProtocolEdgeInput[] = [];
+  const nextEdges: NeuroGuideProtocolEdgeInput[] = new Array(totalCount);
 
-  for (let idx = 0; idx < decomposedProto.blockOrder.length; idx++) {
-    const tempUid = decomposedProto.blockOrder[idx];
-    const targetBlock = decomposedBlockByUid.get(tempUid);
+  type BlockMutationTask =
+    | {
+        kind: "update";
+        idx: number;
+        tempUid: string;
+        targetSectionPath: string;
+        existingBlock: NeuroGuideContentBlockRow;
+        nextData: NeuroGuideContentBlockData;
+        contentHash: string;
+        sectionHashes: Record<string, string>;
+      }
+    | {
+        kind: "create";
+        idx: number;
+        tempUid: string;
+        targetSectionPath: string;
+        targetUid: string;
+        hadTombstoneAtSlug: boolean;
+        nextData: NeuroGuideContentBlockData;
+        contentHash: string;
+        sectionHashes: Record<string, string>;
+      };
+
+  const pendingTasks: BlockMutationTask[] = [];
+
+  for (let idx = 0; idx < totalCount; idx++) {
+    const fastReused = reusedByIdx.get(idx);
+    if (fastReused) {
+      unchangedBlockCount += 1;
+      uidRemap.set(fastReused.uid, fastReused.uid);
+      actualBlockUids[idx] = fastReused.uid;
+      nextEdges[idx] = {
+        blockUid: fastReused.uid,
+        position: idx,
+        sectionPath: fastReused.data.facetIndex.sectionPath ?? "",
+        role:
+          fastReused.blockType === "shared_clinical_block"
+            ? "shared"
+            : "recommendation",
+      };
+      continue;
+    }
+
+    const targetBlock = targetBlockByIdx.get(idx);
+    const rawDecomposedBlock = decomposedIdxForRealIdx.get(idx);
     if (!targetBlock) continue;
+    const rawTempUid = rawDecomposedBlock?.uid ?? targetBlock.uid;
 
-    const hintUid = blockUidHints[idx];
-    let existingBlock =
-      (hintUid ? liveBlocksByUid.get(hintUid) : undefined) ??
+    const chg = cleanedDoc.allPracticeChanges[idx];
+    const existingBlock =
+      (chg ? findExistingBlockForChange(idx, chg) : undefined) ??
       liveBlocksByUid.get(targetBlock.uid) ??
       liveBySlug.get(targetBlock.slug);
 
@@ -244,62 +404,111 @@ export async function syncGuidelineDocToV2Repo(
     const contentHash = computeBlockContentHash(nextData);
     const sectionHashes = computeBlockSectionHashes(nextData);
 
-    let persistedUid: string;
     if (existingBlock && existingBlock.deletedAt === null) {
-      persistedUid = existingBlock.uid;
       if (existingBlock.contentHash === contentHash) {
         unchangedBlockCount += 1;
+        uidRemap.set(rawTempUid, existingBlock.uid);
+        actualBlockUids[idx] = existingBlock.uid;
+        nextEdges[idx] = {
+          blockUid: existingBlock.uid,
+          position: idx,
+          sectionPath: targetBlock.data.facetIndex.sectionPath ?? "",
+          role:
+            nextData.blockType === "shared_clinical_block"
+              ? "shared"
+              : "recommendation",
+        };
       } else {
-        const patchDiff = computeJsonPatch(existingBlock.data, nextData);
-        const res = await repo.updateBlock(
-          existingBlock.uid,
-          existingBlock.rev,
+        pendingTasks.push({
+          kind: "update",
+          idx,
+          tempUid: rawTempUid,
+          targetSectionPath: targetBlock.data.facetIndex.sectionPath ?? "",
+          existingBlock,
           nextData,
           contentHash,
           sectionHashes,
-          patchDiff,
-          actor,
-        );
-        if (!res.unchanged) {
-          updatedBlockUids.push(existingBlock.uid);
-        } else {
-          unchangedBlockCount += 1;
-        }
+        });
       }
     } else {
-      // Only pass deterministic UID when no tombstoned/historical row already owns that slug/UID
       const hadTombstoneAtSlug = Boolean(
         allBlocksBySlug.get(nextData.blockKey.toLowerCase()),
       );
-      const createOpts = hadTombstoneAtSlug ? undefined : { uid: targetBlock.uid };
-      const created = await repo.createBlock(
+      pendingTasks.push({
+        kind: "create",
+        idx,
+        tempUid: rawTempUid,
+        targetSectionPath: targetBlock.data.facetIndex.sectionPath ?? "",
+        targetUid: targetBlock.uid,
+        hadTombstoneAtSlug,
         nextData,
         contentHash,
         sectionHashes,
-        actor,
-        createOpts,
-      );
-      persistedUid = created.row.uid;
-      createdBlockUids.push(persistedUid);
-      liveBlocksByUid.set(persistedUid, created.row);
+      });
     }
-
-    uidRemap.set(targetBlock.uid, persistedUid);
-    actualBlockUids.push(persistedUid);
-    nextEdges.push({
-      blockUid: persistedUid,
-      position: idx,
-      sectionPath: targetBlock.data.facetIndex.sectionPath ?? "",
-      role:
-        nextData.blockType === "shared_clinical_block"
-          ? "shared"
-          : "recommendation",
-    });
   }
+
+  // Execute changed/new block writes in bounded parallel batches of 8
+  const BATCH_SIZE = 8;
+  for (let start = 0; start < pendingTasks.length; start += BATCH_SIZE) {
+    const chunk = pendingTasks.slice(start, start + BATCH_SIZE);
+    await Promise.all(
+      chunk.map(async (task) => {
+        let persistedUid: string;
+        if (task.kind === "update") {
+          const patchDiff = computeJsonPatch(task.existingBlock.data, task.nextData);
+          const res = await repo.updateBlock(
+            task.existingBlock.uid,
+            task.existingBlock.rev,
+            task.nextData,
+            task.contentHash,
+            task.sectionHashes,
+            patchDiff,
+            actor,
+          );
+          persistedUid = task.existingBlock.uid;
+          if (!res.unchanged) {
+            updatedBlockUids.push(persistedUid);
+          } else {
+            unchangedBlockCount += 1;
+          }
+        } else {
+          const createOpts = task.hadTombstoneAtSlug
+            ? undefined
+            : { uid: task.targetUid };
+          const created = await repo.createBlock(
+            task.nextData,
+            task.contentHash,
+            task.sectionHashes,
+            actor,
+            createOpts,
+          );
+          persistedUid = created.row.uid;
+          createdBlockUids.push(persistedUid);
+          liveBlocksByUid.set(persistedUid, created.row);
+        }
+
+        uidRemap.set(task.tempUid, persistedUid);
+        actualBlockUids[task.idx] = persistedUid;
+        nextEdges[task.idx] = {
+          blockUid: persistedUid,
+          position: task.idx,
+          sectionPath: task.targetSectionPath,
+          role:
+            task.nextData.blockType === "shared_clinical_block"
+              ? "shared"
+              : "recommendation",
+        };
+      }),
+    );
+  }
+
+  const compactedBlockUids = actualBlockUids.filter(Boolean);
+  const compactedEdges = nextEdges.filter(Boolean);
 
   // Soft-delete orphaned blocks once belonging to this guideline protocol (unless shared elsewhere)
   if (existingProto) {
-    const keepSet = new Set(actualBlockUids);
+    const keepSet = new Set(compactedBlockUids);
     const sharedElsewhere = new Set<string>();
     for (const p of liveProtocols) {
       if (p.uid === existingProto.uid || p.deletedAt !== null) continue;
@@ -334,9 +543,9 @@ export async function syncGuidelineDocToV2Repo(
       status: decomposedProto.status,
       subspecialties: decomposedProto.subspecialties,
       metadata: decomposedProto.metadata,
-      blockOrder: actualBlockUids,
+      blockOrder: compactedBlockUids,
       metadataHash: decomposedProto.metadataHash,
-      edges: nextEdges,
+      edges: compactedEdges,
       expectedRev: latestProtoBeforeUpsert?.rev ?? existingProto?.rev,
     },
     actor,

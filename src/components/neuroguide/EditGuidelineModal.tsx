@@ -32,6 +32,7 @@ import {
   type TaxonomyTagV3,
 } from "@/data/clinicalNavigatorTaxonomyV3";
 import { classifyRecommendationV3 } from "@/lib/neuroguide/clinicalNavigatorV3Classifier";
+import { deepEqualSync } from "@/lib/sync/jsonPatch";
 import {
   NEUROGUIDE_DRAFT_AUTOSAVE_INTERVAL_MS,
   clearLocalBlockDraftsForUid,
@@ -43,6 +44,7 @@ import {
   type NeuroGuideBlockWriteInput,
 } from "@/lib/neuroguide/sync/adminHelpers";
 import {
+  buildDeterministicFallbackBlockForPracticeChange,
   resolveRecommendationBlockForPracticeChange,
   stripRuntimeBlockMeta,
   type PracticeChangeDetailWithBlockMeta,
@@ -431,6 +433,10 @@ export function EditGuidelineModal({
     title: string;
     rev: number;
   } | null>(null);
+  const [savedBlockOverrides, setSavedBlockOverrides] = useState<
+    Record<string, NeuroGuideContentBlockRow>
+  >({});
+  const [blockSuccessMessage, setBlockSuccessMessage] = useState<string | null>(null);
   const [conflictState, setConflictState] = useState<{
     base: NeuroGuideContentBlockRow;
     mine: NeuroGuideBlockWriteInput;
@@ -582,6 +588,16 @@ export function EditGuidelineModal({
 
     setErrorMessage(null);
   }, [isOpen, guidelineDoc, item]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setSavedBlockOverrides({});
+      setBlockSuccessMessage(null);
+      return;
+    }
+    setSavedBlockOverrides({});
+    setBlockSuccessMessage(null);
+  }, [isOpen, docId, guidelineDoc?.id]);
 
   // Load a standard / AHA recommendation into flat form fields
   const loadStandardRecIntoForm = (rec: PracticeChangeDetail) => {
@@ -857,29 +873,82 @@ export function EditGuidelineModal({
     };
   };
 
+  const resolveBlockWithSource = (
+    rec: PracticeChangeDetail | undefined,
+    indexHint: number,
+  ): { block: NeuroGuideContentBlockRow | null; isFallback: boolean } => {
+    if (!syncV2Enabled || !rec) {
+      return { block: null, isFallback: false };
+    }
+
+    const fromStore =
+      blocksByUid && blocksBySlug && protocolsBySlug
+        ? resolveRecommendationBlockForPracticeChange({
+            docId: docId || guidelineDoc?.id || "",
+            recId: rec.id,
+            index: indexHint,
+            sharedBlockKey: rec.sharedBlockKey,
+            blockUidHint: (rec as PracticeChangeDetailWithBlockMeta)._blockUid,
+            blocksByUid,
+            blocksBySlug,
+            protocolsBySlug,
+          })
+        : null;
+
+    if (fromStore) {
+      const override = savedBlockOverrides[fromStore.uid];
+      if (override && override.rev >= fromStore.rev) {
+        return { block: override, isFallback: false };
+      }
+      return { block: fromStore, isFallback: false };
+    }
+
+    const fallback = buildDeterministicFallbackBlockForPracticeChange({
+      docId: docId || guidelineDoc?.id || "",
+      rec,
+      index: indexHint,
+      guidelineDoc: guidelineDoc ?? {
+        id: docId,
+        society: docSociety,
+        year: parseInt(docYear, 10) || 2026,
+        title: docTitle,
+        subspecialty: docSubspecialty,
+      },
+    });
+    const override = savedBlockOverrides[fallback.uid];
+    if (override) {
+      return { block: override, isFallback: false };
+    }
+    return { block: fallback, isFallback: true };
+  };
+
   const resolveBlockForRec = (
     rec: PracticeChangeDetail | undefined,
     indexHint: number,
   ): NeuroGuideContentBlockRow | null => {
-    if (!syncV2Enabled || !rec || !blocksByUid || !blocksBySlug || !protocolsBySlug) {
-      return null;
-    }
-    return resolveRecommendationBlockForPracticeChange({
-      docId: docId || guidelineDoc?.id || "",
-      recId: rec.id,
-      index: indexHint,
-      sharedBlockKey: rec.sharedBlockKey,
-      blockUidHint: (rec as PracticeChangeDetailWithBlockMeta)._blockUid,
-      blocksByUid,
-      blocksBySlug,
-      protocolsBySlug,
-    });
+    return resolveBlockWithSource(rec, indexHint).block;
   };
 
-  const activeStandardBlock = useMemo(() => {
-    if (!syncV2Enabled || isEso) return null;
-    return resolveBlockForRec(practiceChanges[selectedRecIndex], selectedRecIndex);
-  }, [syncV2Enabled, isEso, practiceChanges, selectedRecIndex, blocksByUid, blocksBySlug, protocolsBySlug]);
+  const activeStandardBlockInfo = useMemo(() => {
+    if (!syncV2Enabled || isEso) return { block: null, isFallback: false };
+    return resolveBlockWithSource(practiceChanges[selectedRecIndex], selectedRecIndex);
+  }, [
+    syncV2Enabled,
+    isEso,
+    practiceChanges,
+    selectedRecIndex,
+    blocksByUid,
+    blocksBySlug,
+    protocolsBySlug,
+    savedBlockOverrides,
+    docId,
+    guidelineDoc,
+    docSociety,
+    docYear,
+    docTitle,
+    docSubspecialty,
+  ]);
+  const activeStandardBlock = activeStandardBlockInfo.block;
 
   const activeFocusedEsoRecIdx = editingEsoRecIndex ?? 0;
   const activeEsoDraftChange = useMemo(() => {
@@ -907,15 +976,41 @@ export function EditGuidelineModal({
     } as PracticeChangeDetail;
   }, [syncV2Enabled, isEso, esoPicos, selectedPicoIndex, activeFocusedEsoRecIdx]);
 
-  const activeEsoBlock = useMemo(() => {
-    if (!syncV2Enabled || !isEso || !activeEsoDraftChange) return null;
+  const activeEsoBlockInfo = useMemo(() => {
+    if (!syncV2Enabled || !isEso || !activeEsoDraftChange) {
+      return { block: null, isFallback: false };
+    }
     const flatChangesBefore = esoPicos
       .slice(0, selectedPicoIndex)
       .reduce((sum, p) => sum + p.recommendations.length, 0);
-    return resolveBlockForRec(activeEsoDraftChange, flatChangesBefore + activeFocusedEsoRecIdx);
-  }, [syncV2Enabled, isEso, activeEsoDraftChange, esoPicos, selectedPicoIndex, activeFocusedEsoRecIdx, blocksByUid, blocksBySlug, protocolsBySlug]);
+    return resolveBlockWithSource(
+      activeEsoDraftChange,
+      flatChangesBefore + activeFocusedEsoRecIdx,
+    );
+  }, [
+    syncV2Enabled,
+    isEso,
+    activeEsoDraftChange,
+    esoPicos,
+    selectedPicoIndex,
+    activeFocusedEsoRecIdx,
+    blocksByUid,
+    blocksBySlug,
+    protocolsBySlug,
+    savedBlockOverrides,
+    docId,
+    guidelineDoc,
+    docSociety,
+    docYear,
+    docTitle,
+    docSubspecialty,
+  ]);
+  const activeEsoBlock = activeEsoBlockInfo.block;
 
   const activeSyncBlock = isEso ? activeEsoBlock : activeStandardBlock;
+  const activeSyncBlockIsFallback = isEso
+    ? activeEsoBlockInfo.isFallback
+    : activeStandardBlockInfo.isFallback;
 
   const buildBlockWriteInputForChange = (
     block: NeuroGuideContentBlockRow,
@@ -1085,9 +1180,46 @@ export function EditGuidelineModal({
     setFoundLocalDraft(null);
   };
 
+  const buildUpdatedDocAfterBlockSave = (
+    savedRow: NeuroGuideContentBlockRow,
+  ): GuidelineDoc | undefined => {
+    if (!guidelineDoc) return undefined;
+    const payload = savedRow.data.payload;
+    if (payload.kind !== "recommendation" && payload.kind !== "shared_clinical_block") {
+      return undefined;
+    }
+    const savedPc: PracticeChangeDetailWithBlockMeta = {
+      ...structuredClone(payload.practiceChange),
+      ...(savedRow.data.facetIndex.v3Labels
+        ? { v3Labels: structuredClone(savedRow.data.facetIndex.v3Labels) }
+        : {}),
+      _blockUid: savedRow.uid,
+      _blockRev: savedRow.rev,
+      _blockSlug: savedRow.slug,
+    };
+    const baseList = isEso ? esoPicosToChanges(esoPicos) : practiceChanges;
+    let matched = false;
+    const nextList = baseList.map((entry) => {
+      const entryMeta = entry as PracticeChangeDetailWithBlockMeta;
+      if (entryMeta._blockUid === savedRow.uid || entry.id === savedPc.id) {
+        matched = true;
+        return savedPc;
+      }
+      return entry;
+    });
+    if (!matched) {
+      nextList.push(savedPc);
+    }
+    return {
+      ...guidelineDoc,
+      allPracticeChanges: nextList,
+    };
+  };
+
   const handleSaveSingleBlock = async (
     targetBlock: NeuroGuideContentBlockRow,
     changeDraft: PracticeChangeDetail,
+    isFallbackSource = false,
   ) => {
     const token = adminToken || getStoredAdminToken();
     if (!token) {
@@ -1106,7 +1238,9 @@ export function EditGuidelineModal({
 
     setIsLoading(true);
     setErrorMessage(null);
-    try {
+    setBlockSuccessMessage(null);
+
+    const putBlock = async (expectedRev: number) => {
       const res = await fetch(
         `/api/neuroguide/sync/blocks/${encodeURIComponent(targetBlock.uid)}`,
         {
@@ -1117,11 +1251,51 @@ export function EditGuidelineModal({
           },
           body: JSON.stringify({
             data: mineInput,
-            expectedRev: targetBlock.rev,
+            expectedRev,
           }),
         },
       );
       const json = await res.json().catch(() => ({}));
+      return { res, json };
+    };
+
+    try {
+      let { res, json } = await putBlock(targetBlock.rev);
+
+      if (res.status === 409 && json?.code === "REV_CONFLICT" && json.current) {
+        const cloudRow = json.current as NeuroGuideContentBlockRow;
+        const cloudPayload = cloudRow.data?.payload;
+        const origDocChange = guidelineDoc?.allPracticeChanges?.find(
+          (c) =>
+            (c as PracticeChangeDetailWithBlockMeta)._blockUid === targetBlock.uid ||
+            c.id === changeDraft.id,
+        );
+
+        const cloudMatchesOrig =
+          isFallbackSource &&
+          origDocChange &&
+          cloudPayload &&
+          (cloudPayload.kind === "recommendation" ||
+            cloudPayload.kind === "shared_clinical_block") &&
+          deepEqualSync(
+            stripRuntimeBlockMeta(cloudPayload.practiceChange),
+            stripRuntimeBlockMeta(origDocChange),
+          );
+
+        if (cloudMatchesOrig) {
+          ({ res, json } = await putBlock(cloudRow.rev));
+        } else {
+          setConflictState({
+            base: isFallbackSource ? cloudRow : targetBlock,
+            mine: mineInput,
+            cloudRow,
+            submitting: false,
+            error: null,
+          });
+          return;
+        }
+      }
+
       if (res.status === 409 && json?.code === "REV_CONFLICT" && json.current) {
         setConflictState({
           base: targetBlock,
@@ -1132,19 +1306,24 @@ export function EditGuidelineModal({
         });
         return;
       }
+
       if (!res.ok || !json?.row) {
         setErrorMessage(json?.error || `Failed to save block (${res.status}).`);
         return;
       }
 
       const savedRow = json.row as NeuroGuideContentBlockRow;
+      setSavedBlockOverrides((prev) => ({ ...prev, [savedRow.uid]: savedRow }));
       await onApplyLocalBlockWrite?.(savedRow);
       applySavedBlockRowToForm(savedRow);
       if (typeof window !== "undefined") {
         clearLocalBlockDraftsForUid(window.localStorage, targetBlock.uid);
       }
       setFoundLocalDraft(null);
-      onSuccess();
+      setBlockSuccessMessage(
+        `✓ Đã lưu khuyến cáo (rev ${savedRow.rev}) lên Cloud thành công!`,
+      );
+      onSuccess(buildUpdatedDocAfterBlockSave(savedRow));
     } catch {
       setErrorMessage("Network error while saving block to Sync v2.");
     } finally {
@@ -1174,14 +1353,21 @@ export function EditGuidelineModal({
     });
 
     if (mode === "use_cloud") {
+      setSavedBlockOverrides((prev) => ({
+        ...prev,
+        [conflictState.cloudRow.uid]: conflictState.cloudRow,
+      }));
       await onApplyLocalBlockWrite?.(conflictState.cloudRow);
       applySavedBlockRowToForm(conflictState.cloudRow);
       if (typeof window !== "undefined") {
         clearLocalBlockDraftsForUid(window.localStorage, conflictState.cloudRow.uid);
       }
       setFoundLocalDraft(null);
+      setBlockSuccessMessage(
+        `✓ Đã cập nhật theo bản Cloud (rev ${conflictState.cloudRow.rev}).`,
+      );
+      onSuccess(buildUpdatedDocAfterBlockSave(conflictState.cloudRow));
       setConflictState(null);
-      onSuccess();
       return;
     }
 
@@ -1237,6 +1423,7 @@ export function EditGuidelineModal({
       }
 
       const savedRow = json.row as NeuroGuideContentBlockRow;
+      setSavedBlockOverrides((prev) => ({ ...prev, [savedRow.uid]: savedRow }));
       await onApplyLocalBlockWrite?.(savedRow);
       applySavedBlockRowToForm(savedRow);
       if (typeof window !== "undefined") {
@@ -1244,7 +1431,10 @@ export function EditGuidelineModal({
       }
       setFoundLocalDraft(null);
       setConflictState(null);
-      onSuccess();
+      setBlockSuccessMessage(
+        `✓ Đã hợp nhất và lưu khuyến cáo (rev ${savedRow.rev}) lên Cloud thành công!`,
+      );
+      onSuccess(buildUpdatedDocAfterBlockSave(savedRow));
     } catch {
       setConflictState((prev) =>
         prev ? { ...prev, submitting: false, error: "Network error resolving conflict." } : null,
@@ -1821,6 +2011,21 @@ export function EditGuidelineModal({
         {errorMessage && (
           <div className="mx-5 mt-3 p-3 rounded-xl text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-800 flex-shrink-0">
             ⚠️ {errorMessage}
+          </div>
+        )}
+
+        {/* BLOCK SAVE CONFIRMATION NOTIFICATION */}
+        {blockSuccessMessage && (
+          <div className="mx-5 mt-3 p-2.5 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-200 dark:border-emerald-800 flex items-center justify-between gap-2 flex-shrink-0">
+            <span>{blockSuccessMessage}</span>
+            <button
+              type="button"
+              onClick={() => setBlockSuccessMessage(null)}
+              className="text-emerald-700 dark:text-emerald-300 font-extrabold px-1 cursor-pointer"
+              aria-label="Dismiss block notification"
+            >
+              ✕
+            </button>
           </div>
         )}
 
@@ -2487,7 +2692,8 @@ export function EditGuidelineModal({
                                         previousText: rec.expertConsensusStatement?.trim() || undefined,
                                         v3Labels: rec.v3Labels,
                                       };
-                                      const recBlock = resolveBlockForRec(esoBlockChange, priorCount + rIdx);
+                                      const recBlockInfo = resolveBlockWithSource(esoBlockChange, priorCount + rIdx);
+                                      const recBlock = recBlockInfo.block;
                                       if (!recBlock) return null;
                                       return (
                                         <>
@@ -2503,16 +2709,22 @@ export function EditGuidelineModal({
                                             className="px-2 py-1 rounded-lg text-[10.5px] font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20 cursor-pointer"
                                             title="Inspect block revision history & restore"
                                           >
-                                            History (rev {recBlock.rev})
+                                            🕒 History (rev {recBlock.rev})
                                           </button>
                                           <button
                                             type="button"
                                             disabled={isLoading}
-                                            onClick={() => void handleSaveSingleBlock(recBlock, esoBlockChange)}
+                                            onClick={() =>
+                                              void handleSaveSingleBlock(
+                                                recBlock,
+                                                esoBlockChange,
+                                                recBlockInfo.isFallback,
+                                              )
+                                            }
                                             className="px-2 py-1 rounded-lg text-[10.5px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer disabled:opacity-50"
                                             title="Save only this block atomically with optimistic lock"
                                           >
-                                            Save Block
+                                            ⚡ Save Block
                                           </button>
                                         </>
                                       );
@@ -3206,9 +3418,20 @@ export function EditGuidelineModal({
                                   #{realIndex + 1} • {rec.category}
                                 </span>
                               </div>
-                              <span className="px-1.5 py-0.2 rounded font-mono text-[10px] font-black bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
-                                {rec.currentGrade}
-                              </span>
+                              <div className="flex items-center gap-1 flex-shrink-0">
+                                {syncV2Enabled && (() => {
+                                  const cardBlock = resolveBlockForRec(rec, realIndex);
+                                  if (!cardBlock) return null;
+                                  return (
+                                    <span className="px-1.5 py-0.2 rounded font-mono text-[9.5px] font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/25">
+                                      rev {cardBlock.rev}
+                                    </span>
+                                  );
+                                })()}
+                                <span className="px-1.5 py-0.2 rounded font-mono text-[10px] font-black bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+                                  {rec.currentGrade}
+                                </span>
+                              </div>
                             </div>
                             <p className="font-bold text-slate-900 dark:text-slate-100 truncate">
                               {rec.topic}
@@ -3216,6 +3439,44 @@ export function EditGuidelineModal({
                             <p className="text-slate-500 dark:text-slate-400 text-[11px] line-clamp-1 mt-0.5">
                               {rec.currentText || "(No recommendation statement entered)"}
                             </p>
+
+                            {syncV2Enabled && isSelected && activeStandardBlock && (
+                              <div
+                                className="flex flex-wrap items-center gap-1.5 mt-2 pt-1.5 border-t border-amber-200/70 dark:border-amber-800/40"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    setHistoryBlockTarget({
+                                      uid: activeStandardBlock.uid,
+                                      title: recTopic || rec.topic || activeStandardBlock.blockKey,
+                                      rev: activeStandardBlock.rev,
+                                    })
+                                  }
+                                  className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20 cursor-pointer"
+                                >
+                                  🕒 History (rev {activeStandardBlock.rev})
+                                </button>
+                                <button
+                                  type="button"
+                                  disabled={isLoading}
+                                  onClick={() => {
+                                    const draft = buildCurrentStandardChangeDraft();
+                                    if (draft) {
+                                      void handleSaveSingleBlock(
+                                        activeStandardBlock,
+                                        draft,
+                                        activeStandardBlockInfo.isFallback,
+                                      );
+                                    }
+                                  }}
+                                  className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer disabled:opacity-50"
+                                >
+                                  ⚡ Save Block
+                                </button>
+                              </div>
+                            )}
 
                             {rec.v3Labels && (rec.v3Labels.conditionIds?.length > 0 || rec.v3Labels.interventionTags?.length > 0) && (
                               <div className="flex flex-wrap items-center gap-1 mt-1.5 pt-1 border-t border-slate-100 dark:border-slate-800/60">
@@ -3251,15 +3512,21 @@ export function EditGuidelineModal({
                   {/* RIGHT COLUMN: RECOMMENDATION DETAILS */}
                   <div className="md:col-span-7 flex flex-col h-full min-h-0 border rounded-xl dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden">
                     {practiceChanges.length > 0 && selectedRecIndex >= 0 && selectedRecIndex < practiceChanges.length ? (
-                      <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-3.5 custom-scrollbar">
-                        <div className="flex items-center justify-between gap-2 pb-2 border-b dark:border-slate-800 flex-shrink-0">
+                      <>
+                        {/* PINNED STICKY HEADER BAR FOR ACTIVE RECOMMENDATION */}
+                        <div className="px-4 py-2.5 border-b dark:border-slate-800 bg-slate-50/90 dark:bg-slate-950/60 flex flex-wrap items-center justify-between gap-2 flex-shrink-0">
                           <div className="flex items-center gap-2">
                             <span className="w-5 h-5 rounded-full bg-amber-500 text-white font-black flex items-center justify-center text-[10.5px]">
                               {selectedRecIndex + 1}
                             </span>
                             <span className="font-extrabold uppercase text-xs text-amber-600 dark:text-amber-400">
-                              {isAha ? "AHA/ASA Recommendation Structure" : "Standard Recommendation Structure"}
+                              {isAha ? "AHA/ASA Recommendation" : "Standard Recommendation"}
                             </span>
+                            {syncV2Enabled && activeStandardBlock && (
+                              <span className="px-1.5 py-0.5 rounded font-mono text-[10px] font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30">
+                                rev {activeStandardBlock.rev}
+                              </span>
+                            )}
                           </div>
 
                           <div className="flex items-center gap-1.5 flex-wrap">
@@ -3277,7 +3544,7 @@ export function EditGuidelineModal({
                                   className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20 cursor-pointer transition-colors"
                                   title="Inspect block revision history & restore"
                                 >
-                                  History (rev {activeStandardBlock.rev})
+                                  🕒 History (rev {activeStandardBlock.rev})
                                 </button>
                                 <button
                                   type="button"
@@ -3285,13 +3552,17 @@ export function EditGuidelineModal({
                                   onClick={() => {
                                     const draft = buildCurrentStandardChangeDraft();
                                     if (draft) {
-                                      void handleSaveSingleBlock(activeStandardBlock, draft);
+                                      void handleSaveSingleBlock(
+                                        activeStandardBlock,
+                                        draft,
+                                        activeStandardBlockInfo.isFallback,
+                                      );
                                     }
                                   }}
                                   className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer transition-colors disabled:opacity-50"
                                   title="Save only this block atomically with optimistic lock"
                                 >
-                                  Save Block
+                                  {isLoading ? "Saving..." : "⚡ Save Block"}
                                 </button>
                               </>
                             )}
@@ -3305,6 +3576,8 @@ export function EditGuidelineModal({
                             </button>
                           </div>
                         </div>
+
+                        <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-3.5 custom-scrollbar">
 
                         {/* SECTION & TOPIC */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -3928,6 +4201,7 @@ export function EditGuidelineModal({
                           </div>
                         </div>
                       </div>
+                      </>
                     ) : (
                       <div className="flex-1 flex flex-col items-center justify-center p-6 text-slate-400">
                         <span className="text-3xl mb-2">📋</span>
@@ -3951,11 +4225,51 @@ export function EditGuidelineModal({
               <span>🗑️ Delete Guideline</span>
             </button>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               {syncV2Enabled && draftSavedAt && (
-                <span className="hidden sm:inline text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+                <span className="hidden md:inline text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                   Draft auto-saved {draftSavedAt}
                 </span>
+              )}
+              {syncV2Enabled && activeTab === "recommendations" && activeSyncBlock && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setHistoryBlockTarget({
+                        uid: activeSyncBlock.uid,
+                        title: isEso
+                          ? activeEsoDraftChange?.topic || activeSyncBlock.blockKey
+                          : recTopic || activeSyncBlock.blockKey,
+                        rev: activeSyncBlock.rev,
+                      })
+                    }
+                    className="px-3 py-2 rounded-xl text-xs font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20 cursor-pointer transition-colors"
+                    title="Inspect active block revision history"
+                  >
+                    🕒 History (rev {activeSyncBlock.rev})
+                  </button>
+                  <button
+                    type="button"
+                    disabled={isLoading}
+                    onClick={() => {
+                      const draft = isEso
+                        ? activeEsoDraftChange
+                        : buildCurrentStandardChangeDraft();
+                      if (draft) {
+                        void handleSaveSingleBlock(
+                          activeSyncBlock,
+                          draft,
+                          activeSyncBlockIsFallback,
+                        );
+                      }
+                    }}
+                    className="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs cursor-pointer disabled:opacity-50"
+                    title="Save only this active block atomically (~1s)"
+                  >
+                    {isLoading ? "Saving Block..." : "⚡ Save Block"}
+                  </button>
+                </>
               )}
               <button
                 type="button"
@@ -3991,12 +4305,16 @@ export function EditGuidelineModal({
           adminToken={adminToken}
           onClose={() => setHistoryBlockTarget(null)}
           onRestored={async (restoredRow) => {
+            setSavedBlockOverrides((prev) => ({ ...prev, [restoredRow.uid]: restoredRow }));
             await onApplyLocalBlockWrite?.(restoredRow);
             applySavedBlockRowToForm(restoredRow);
             setHistoryBlockTarget((prev) =>
               prev ? { ...prev, rev: restoredRow.rev } : null,
             );
-            onSuccess();
+            setBlockSuccessMessage(
+              `✓ Đã khôi phục khuyến cáo về draft (rev ${restoredRow.rev}).`,
+            );
+            onSuccess(buildUpdatedDocAfterBlockSave(restoredRow));
           }}
           onConflict={(cloudRow) => {
             setHistoryBlockTarget(null);

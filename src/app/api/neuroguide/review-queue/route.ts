@@ -1021,6 +1021,7 @@ export async function POST(request: NextRequest) {
           conferences: activeData.conferences,
           scenarios: activeData.scenarios,
           deletedGuidelineIds: activeData.deletedGuidelineIds,
+          onlyGuidelineIds: [targetDoc.id],
         });
       }
 
@@ -1139,6 +1140,7 @@ export async function POST(request: NextRequest) {
         conferences: activeData.conferences,
         scenarios: activeData.scenarios,
         deletedGuidelineIds: activeData.deletedGuidelineIds,
+        onlyGuidelineIds: [updatedGuideline.id],
       });
 
       // 2. Tìm hoặc tạo file _latest.json trong kho lưu trữ guidelines_store
@@ -1264,10 +1266,6 @@ export async function POST(request: NextRequest) {
 
         rec.updated_at = new Date().toISOString();
         await saveFileSafe(targetFileName, JSON.stringify(rec, null, 2));
-
-        if (rec.approved_count > 0) {
-          await syncGuidelineRecordToActiveLibrary(rec);
-        }
 
         // Cập nhật catalog.json
         const catalogInfo = getFileContent("catalog.json");
