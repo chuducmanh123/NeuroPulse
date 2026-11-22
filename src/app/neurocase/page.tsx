@@ -23,6 +23,10 @@ import {
   setEcosystemDarkMode,
   subscribeEcosystemDarkMode,
 } from "../../utils/themeSync";
+import {
+  getEffectiveStreakDays,
+  computeNextStreakAfterDailySolve,
+} from "../../utils/neurocaseStreak";
 
 function getLocalTodayIso(): string {
   const d = new Date();
@@ -185,7 +189,7 @@ export default function NeuroCasePage() {
     Record<string, ("A" | "B" | "C" | "D")[]>
   >({});
   const [showDetailedWorkup, setShowDetailedWorkup] = useState(false);
-  const [streakDays, setStreakDays] = useState<number>(1);
+  const [streakDays, setStreakDays] = useState<number>(0);
 
   // Archive Filters
   const [selectedSub, setSelectedSub] = useState<string>("All");
@@ -256,10 +260,18 @@ export default function NeuroCasePage() {
       }
     }
 
-    const savedStreak = localStorage.getItem("neurocase_streak_days");
-    if (savedStreak) {
-      setStreakDays(Number(savedStreak) || 1);
+    const effectiveStreak = getEffectiveStreakDays(
+      localStorage.getItem("neurocase_streak_days"),
+      localStorage.getItem("neurocase_last_streak_date")
+    );
+    setStreakDays(effectiveStreak);
+    if (effectiveStreak === 0) {
+      localStorage.setItem("neurocase_streak_days", "0");
     }
+
+    let cancelled = false;
+    let hasLocalCache = false;
+    let hasCloudData = false;
 
     const applyCasesData = (loadedCases: ClinicalCase[]) => {
       const merged = Array.isArray(loadedCases) ? loadedCases : [];
@@ -272,22 +284,27 @@ export default function NeuroCasePage() {
       try {
         const cached = JSON.parse(cachedCasesStr);
         if (Array.isArray(cached) && cached.length > 0) {
+          hasLocalCache = true;
           applyCasesData(cached);
           setLoading(false);
         }
       } catch {}
     }
 
-    // 2. TỐC ĐỘ 30ms: Nạp nhanh từ file tĩnh /data/cases.json của hệ thống (Edge Static)
-    fetch("/data/cases.json")
-      .then((r) => r.json())
-      .then((staticCases: ClinicalCase[]) => {
-        if (Array.isArray(staticCases) && staticCases.length > 0) {
-          applyCasesData(staticCases);
-          setLoading(false);
-        }
-      })
-      .catch(() => {});
+    // 2. TỐC ĐỘ 30ms: Chỉ nạp từ file tĩnh /data/cases.json khi chưa có localStorage cache
+    // Tránh ghi đè dữ liệu mới từ localStorage hoặc cloud bằng file tĩnh cũ
+    if (!hasLocalCache) {
+      fetch("/data/cases.json")
+        .then((r) => r.json())
+        .then((staticCases: ClinicalCase[]) => {
+          if (cancelled || hasCloudData) return;
+          if (Array.isArray(staticCases) && staticCases.length > 0) {
+            applyCasesData(staticCases);
+            setLoading(false);
+          }
+        })
+        .catch(() => {});
+    }
 
     // 3. BACKGROUND REVALIDATION: Đồng bộ ngầm với cloud server (/api/neurocase) không khoá màn hình
     const adminToken =
@@ -296,19 +313,28 @@ export default function NeuroCasePage() {
       "";
     const headers: Record<string, string> = adminToken ? { "x-admin-token": adminToken } : {};
 
-    fetch("/api/neurocase", { headers })
+    fetch("/api/neurocase", { cache: "no-store", headers })
       .then((r) => (r.ok ? r.json() : null))
       .then((cloudCases: ClinicalCase[] | null) => {
+        if (cancelled) return;
         if (Array.isArray(cloudCases) && cloudCases.length > 0) {
+          hasCloudData = true;
           applyCasesData(cloudCases);
-          localStorage.setItem("neurocase_cached_cases_v2", JSON.stringify(cloudCases));
+          try {
+            localStorage.setItem("neurocase_cached_cases_v2", JSON.stringify(cloudCases));
+          } catch {}
         }
         setLoading(false);
       })
       .catch((err) => {
+        if (cancelled) return;
         console.warn("Background server sync skipped, using local data:", err);
         setLoading(false);
       });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const refreshCasesFromServer = async () => {
@@ -441,10 +467,14 @@ export default function NeuroCasePage() {
     setProgressMap(nextProgress);
     localStorage.setItem("neurocase_progress_v1", JSON.stringify(nextProgress));
 
-    const todayKey = new Date().toISOString().slice(0, 10);
-    const lastStreakDate = localStorage.getItem("neurocase_last_streak_date");
-    if (lastStreakDate !== todayKey) {
-      const nextStreak = streakDays + 1;
+    const isActiveDaily = Boolean(
+      dailyChallengeCases[0] && caseItem.id === dailyChallengeCases[0].id
+    );
+    if (isActiveDaily) {
+      const { nextStreak, todayKey } = computeNextStreakAfterDailySolve(
+        streakDays,
+        localStorage.getItem("neurocase_last_streak_date")
+      );
       setStreakDays(nextStreak);
       localStorage.setItem("neurocase_streak_days", String(nextStreak));
       localStorage.setItem("neurocase_last_streak_date", todayKey);
@@ -600,6 +630,9 @@ export default function NeuroCasePage() {
 
   const persistAdminCases = async (nextCases: ClinicalCase[]) => {
     setCases(nextCases);
+    try {
+      localStorage.setItem("neurocase_cached_cases_v2", JSON.stringify(nextCases));
+    } catch {}
 
     const token =
       sessionStorage.getItem("neurocase_admin_token") ||
@@ -916,7 +949,13 @@ export default function NeuroCasePage() {
                   body: JSON.stringify({ action: "submit", newCase }),
                 });
                 if (res.ok) {
-                  setCases((prev) => [newCase, ...prev.filter((c) => c.id !== newCase.id)]);
+                  setCases((prev) => {
+                    const next = [newCase, ...prev.filter((c) => c.id !== newCase.id)];
+                    try {
+                      localStorage.setItem("neurocase_cached_cases_v2", JSON.stringify(next));
+                    } catch {}
+                    return next;
+                  });
                 } else {
                   const errJson = await res.json().catch(() => null);
                   throw new Error(errJson?.error || "Server error");

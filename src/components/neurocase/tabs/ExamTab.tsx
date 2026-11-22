@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { Timer } from "lucide-react";
 import { ClinicalCase } from "@/types/clinicalCase";
 import { NeuroImagingViewer } from "@/components/neurocase/NeuroImagingViewer";
 
@@ -55,8 +56,8 @@ export function ExamTab({
       {!examStarted ? (
         <div className="text-center max-w-2xl mx-auto py-6 space-y-6">
           <div className="space-y-2">
-            <span className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#6D28D9]/10 text-[#6D28D9] dark:text-violet-400 border border-[#6D28D9]/20 text-3xl">
-              ⏱️
+            <span className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#6D28D9]/10 text-[#6D28D9] dark:text-violet-400 border border-[#6D28D9]/20">
+              <Timer className="w-7 h-7" strokeWidth={2} aria-hidden="true" />
             </span>
             <h2 className="font-journal text-2xl font-bold text-[var(--text-ink)]">Exam Simulation Mode</h2>
             <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed max-w-lg mx-auto">

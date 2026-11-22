@@ -94,9 +94,47 @@ EXCLUDED_JOURNALS_REGEX = re.compile(
     re.IGNORECASE
 )
 EXCLUDED_TITLES_REGEX = re.compile(
-    r"\b(systematic review|meta-analysis|randomized|retrospective cohort|prospective cohort|study protocol|registry|bibliometric|mendelian randomization|alluvial|mouse|mice|rat|in vitro)\b",
+    r"\b(systematic review|meta-analysis|randomized|retrospective cohort|prospective cohort|study protocol|registry|bibliometric|mendelian randomization|alluvial|mouse|mice|rat|in vitro|case series|series of (?:cases|patients)|multiple cases|two cases|three cases|four cases|five cases|six cases|\d+\s+cases|\d+\s+patients)\b",
     re.IGNORECASE
 )
+
+CASE_SERIES_ABSTRACT_REGEX = re.compile(
+    r"\b(case series|a series of (?:\d+|two|three|four|five|six|several) (?:cases|patients)|we (?:present|report|describe) (?:\d+|two|three|four|five|six|several) (?:cases|patients)|(?:case|patient)\s*1\b[\s\S]{0,600}\b(?:case|patient)\s*2\b)\b",
+    re.IGNORECASE
+)
+
+CASE_SERIES_CAPTION_REGEX = re.compile(
+    r"\b(?:(?:case|patient)\s*[2-9]\b|(?:cases|patients)\s*\d+\s*[-–&,]\s*\d+)\b",
+    re.IGNORECASE
+)
+
+
+def detect_case_series(title: str = "", abstract_text: str = "", paragraphs: list = None, captions: list = None) -> str:
+    """Trả về lý do nếu bài báo là loạt ca (case series), ngược lại trả về chuỗi rỗng."""
+    if title and EXCLUDED_TITLES_REGEX.search(title):
+        return f"Excluded title pattern: {title[:80]}"
+    if abstract_text and CASE_SERIES_ABSTRACT_REGEX.search(abstract_text):
+        return "Abstract describes a case series / multiple cases"
+
+    if captions:
+        for cap in captions:
+            if CASE_SERIES_CAPTION_REGEX.search(cap):
+                return f"Figure caption references multiple cases: {cap[:80]}"
+
+    if paragraphs:
+        joined = "\n".join(paragraphs)
+        has_case_1_2 = (
+            re.search(r"\bCase\s*1\b", joined, re.IGNORECASE)
+            and re.search(r"\bCase\s*2\b", joined, re.IGNORECASE)
+        )
+        has_patient_1_2 = (
+            re.search(r"\bPatient\s*1\b", joined, re.IGNORECASE)
+            and re.search(r"\bPatient\s*2\b", joined, re.IGNORECASE)
+        )
+        if has_case_1_2 or has_patient_1_2:
+            return "Article body contains multiple numbered cases (Case/Patient 1 & 2)"
+
+    return ""
 EXCLUDED_CAPTIONS_REGEX = re.compile(
     r"\b(flow diagram|flowchart|prisma|forest plot|alluvial|schematic|study protocol|patient inclusion|eligibility|kaplan-meier|roc curve|bar graph|scatter plot|funnel plot|pedigree|timeline of the patient)\b",
     re.IGNORECASE
@@ -352,6 +390,22 @@ def extract_figures_and_text_from_pmc(pmcid: str, doi: str, pmid: str, title: st
 
         # Quét các thẻ <figure> lấy ảnh thật từ cdn.ncbi.nlm.nih.gov
         fig_blocks = re.findall(r"<figure\b[^>]*>([\s\S]*?)</figure>", html_str, flags=re.IGNORECASE)
+        all_captions = [
+            strip_html_tags(m.group(1))
+            for block in fig_blocks
+            for m in [re.search(r"<figcaption[^>]*>([\s\S]*?)</figcaption>", block, flags=re.IGNORECASE)]
+            if m
+        ]
+        series_reason = detect_case_series(
+            title=title,
+            abstract_text=abstract_text,
+            paragraphs=all_paragraphs,
+            captions=all_captions,
+        )
+        if series_reason:
+            print(f"   [skip] {pmcid}: {series_reason}")
+            return None
+
         for block in fig_blocks:
             img_match = re.search(
                 r'<img\b[^>]*src=["\'](https://cdn\.ncbi\.nlm\.nih\.gov/pmc/blobs/[^"\']+)["\']',
@@ -459,7 +513,9 @@ def find_new_pmc_candidate(used_pmcids: set, day_index: int, target_subspecialty
 
             if EXCLUDED_JOURNALS_REGEX.search(journal_title):
                 continue
-            if EXCLUDED_TITLES_REGEX.search(title):
+            skip_reason = detect_case_series(title=title, abstract_text=abstract_text)
+            if skip_reason:
+                print(f"   [skip] {pmcid}: {skip_reason}")
                 continue
 
             candidate = extract_figures_and_text_from_pmc(

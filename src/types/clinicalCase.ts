@@ -11,6 +11,7 @@ export interface CaseNeuroImaging {
   doi_url?: string; // Link to original published article
   caption: string; // Original figure caption from the published article
   findings_summary: string; // Key neuroimaging / electrophysiological takeaway
+  reveal_timing?: "before" | "after"; // "before" (default): show immediately; "after": reveal after correct answer
 }
 
 export interface CaseOption {

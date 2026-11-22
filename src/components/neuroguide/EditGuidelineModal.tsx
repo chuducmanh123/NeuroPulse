@@ -1008,9 +1008,6 @@ export function EditGuidelineModal({
   const activeEsoBlock = activeEsoBlockInfo.block;
 
   const activeSyncBlock = isEso ? activeEsoBlock : activeStandardBlock;
-  const activeSyncBlockIsFallback = isEso
-    ? activeEsoBlockInfo.isFallback
-    : activeStandardBlockInfo.isFallback;
 
   const buildBlockWriteInputForChange = (
     block: NeuroGuideContentBlockRow,
@@ -4230,46 +4227,6 @@ export function EditGuidelineModal({
                 <span className="hidden md:inline text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                   Draft auto-saved {draftSavedAt}
                 </span>
-              )}
-              {syncV2Enabled && activeTab === "recommendations" && activeSyncBlock && (
-                <>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setHistoryBlockTarget({
-                        uid: activeSyncBlock.uid,
-                        title: isEso
-                          ? activeEsoDraftChange?.topic || activeSyncBlock.blockKey
-                          : recTopic || activeSyncBlock.blockKey,
-                        rev: activeSyncBlock.rev,
-                      })
-                    }
-                    className="px-3 py-2 rounded-xl text-xs font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20 cursor-pointer transition-colors"
-                    title="Inspect active block revision history"
-                  >
-                    🕒 History (rev {activeSyncBlock.rev})
-                  </button>
-                  <button
-                    type="button"
-                    disabled={isLoading}
-                    onClick={() => {
-                      const draft = isEso
-                        ? activeEsoDraftChange
-                        : buildCurrentStandardChangeDraft();
-                      if (draft) {
-                        void handleSaveSingleBlock(
-                          activeSyncBlock,
-                          draft,
-                          activeSyncBlockIsFallback,
-                        );
-                      }
-                    }}
-                    className="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs cursor-pointer disabled:opacity-50"
-                    title="Save only this active block atomically (~1s)"
-                  >
-                    {isLoading ? "Saving Block..." : "⚡ Save Block"}
-                  </button>
-                </>
               )}
               <button
                 type="button"

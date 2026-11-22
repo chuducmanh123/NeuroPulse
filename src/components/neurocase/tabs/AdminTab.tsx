@@ -8,6 +8,7 @@ import {
   CaseNeuroImaging,
 } from "@/types/clinicalCase";
 import { getSpecialtyTheme, DIFFICULTY_BADGES } from "../caseTheme";
+import { AutoResizeTextarea } from "../AutoResizeTextarea";
 
 interface AdminTabProps {
   darkMode: boolean;
@@ -22,82 +23,6 @@ interface AdminTabProps {
   onPreviewCase: (c: ClinicalCase) => void;
   getLocalTodayIso: () => string;
   subspecialtyTabs: { label: string; value: string }[];
-}
-
-interface AutoResizeTextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  minRows?: number;
-  maxRows?: number;
-  value: string;
-}
-
-/**
- * Auto-resize textarea that grows and shrinks to fit its content without manual dragging.
- */
-function AutoResizeTextarea({
-  minRows = 2,
-  maxRows,
-  value,
-  onChange,
-  className = "",
-  ...props
-}: AutoResizeTextareaProps) {
-  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
-
-  const adjustHeight = React.useCallback(() => {
-    const el = textareaRef.current;
-    if (!el) return;
-    // Reset to 0px so scrollHeight reflects true text height when shrinking
-    el.style.height = "0px";
-    const computed = window.getComputedStyle(el);
-    const lineHeight = parseFloat(computed.lineHeight) || 20;
-    const paddingTop = parseFloat(computed.paddingTop) || 0;
-    const paddingBottom = parseFloat(computed.paddingBottom) || 0;
-    const borderTop = parseFloat(computed.borderTopWidth) || 0;
-    const borderBottom = parseFloat(computed.borderBottomWidth) || 0;
-    const minH = minRows * lineHeight + paddingTop + paddingBottom + borderTop + borderBottom;
-    const maxH =
-      maxRows !== undefined
-        ? maxRows * lineHeight + paddingTop + paddingBottom + borderTop + borderBottom
-        : Infinity;
-    const contentH = el.scrollHeight + borderTop + borderBottom;
-    const targetH = Math.min(Math.max(contentH, minH), maxH);
-    el.style.height = `${targetH}px`;
-    el.style.overflowY = contentH > maxH ? "auto" : "hidden";
-  }, [minRows, maxRows]);
-
-  React.useLayoutEffect(() => {
-    adjustHeight();
-  }, [value, adjustHeight]);
-
-  React.useEffect(() => {
-    const el = textareaRef.current;
-    if (!el || typeof ResizeObserver === "undefined") return;
-    let lastWidth = el.clientWidth;
-    const observer = new ResizeObserver((entries) => {
-      const nextWidth = entries[0]?.contentRect.width ?? el.clientWidth;
-      if (Math.abs(nextWidth - lastWidth) > 1) {
-        lastWidth = nextWidth;
-        adjustHeight();
-      }
-    });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [adjustHeight]);
-
-  return (
-    <textarea
-      ref={textareaRef}
-      rows={minRows}
-      value={value}
-      onChange={(e) => {
-        onChange?.(e);
-        adjustHeight();
-      }}
-      className={`resize-none ${className}`}
-      {...props}
-    />
-  );
 }
 
 export function AdminTab({
@@ -337,6 +262,7 @@ export function AdminTab({
       image_url: "",
       caption: "",
       findings_summary: "",
+      reveal_timing: "before",
     };
     setEditDraft({
       ...editDraft,
@@ -873,7 +799,8 @@ export function AdminTab({
                           <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
                             <div className="sm:col-span-2">
                               <label className="font-bold block mb-1">Case Title</label>
-                              <input
+                              <AutoResizeTextarea
+                                minRows={1}
                                 value={editDraft.title}
                                 onChange={(e) =>
                                   setEditDraft({ ...editDraft, title: e.target.value })
@@ -1031,10 +958,11 @@ export function AdminTab({
                           </div>
 
                           {/* 2. Clinical Presentation (Demographics, HPI, Exam, Workup) */}
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-start">
                             <div>
                               <label className="font-bold block mb-1">Patient Demographics</label>
-                              <input
+                              <AutoResizeTextarea
+                                minRows={1}
                                 value={editDraft.presentation.demographics}
                                 onChange={(e) =>
                                   setEditDraft({
@@ -1054,7 +982,8 @@ export function AdminTab({
                             </div>
                             <div>
                               <label className="font-bold block mb-1">Past Medical History</label>
-                              <input
+                              <AutoResizeTextarea
+                                minRows={1}
                                 value={editDraft.presentation.past_medical_history}
                                 onChange={(e) =>
                                   setEditDraft({
@@ -1385,31 +1314,64 @@ export function AdminTab({
                                     </div>
                                   </div>
 
-                                  {/* Modality, Caption & Findings */}
+                                  {/* Modality, Display Timing, Caption & Findings */}
                                   <div className="sm:col-span-8 space-y-2">
-                                    <div>
-                                      <label className="block text-[10px] font-bold text-slate-400 mb-0.5">
-                                        Modality (e.g. Brain MRI Axial FLAIR, CTA Head &amp; Neck)
-                                      </label>
-                                      <input
-                                        value={fig.modality}
-                                        onChange={(e) => {
-                                          const nextImgs = [...editDraft.presentation.imaging];
-                                          nextImgs[fIdx] = { ...fig, modality: e.target.value };
-                                          setEditDraft({
-                                            ...editDraft,
-                                            presentation: {
-                                              ...editDraft.presentation,
-                                              imaging: nextImgs,
-                                            },
-                                          });
-                                        }}
-                                        className={`w-full p-1.5 rounded border text-xs ${
-                                          darkMode
-                                            ? "bg-slate-900 border-slate-700 text-white"
-                                            : "bg-slate-50 border-slate-300"
-                                        }`}
-                                      />
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                      <div>
+                                        <label className="block text-[10px] font-bold text-slate-400 mb-0.5">
+                                          Modality (e.g. Brain MRI Axial FLAIR, CTA Head &amp; Neck)
+                                        </label>
+                                        <input
+                                          value={fig.modality}
+                                          onChange={(e) => {
+                                            const nextImgs = [...editDraft.presentation.imaging];
+                                            nextImgs[fIdx] = { ...fig, modality: e.target.value };
+                                            setEditDraft({
+                                              ...editDraft,
+                                              presentation: {
+                                                ...editDraft.presentation,
+                                                imaging: nextImgs,
+                                              },
+                                            });
+                                          }}
+                                          className={`w-full p-1.5 rounded border text-xs ${
+                                            darkMode
+                                              ? "bg-slate-900 border-slate-700 text-white"
+                                              : "bg-slate-50 border-slate-300"
+                                          }`}
+                                        />
+                                      </div>
+                                      <div>
+                                        <label className="block text-[10px] font-bold text-slate-400 mb-0.5">
+                                          Display Timing
+                                        </label>
+                                        <select
+                                          value={fig.reveal_timing || "before"}
+                                          aria-label={`Figure ${fIdx + 1} display timing`}
+                                          onChange={(e) => {
+                                            const nextImgs = [...editDraft.presentation.imaging];
+                                            nextImgs[fIdx] = {
+                                              ...fig,
+                                              reveal_timing: e.target.value as "before" | "after",
+                                            };
+                                            setEditDraft({
+                                              ...editDraft,
+                                              presentation: {
+                                                ...editDraft.presentation,
+                                                imaging: nextImgs,
+                                              },
+                                            });
+                                          }}
+                                          className={`w-full p-1.5 rounded border text-xs ${
+                                            darkMode
+                                              ? "bg-slate-900 border-slate-700 text-white"
+                                              : "bg-slate-50 border-slate-300"
+                                          }`}
+                                        >
+                                          <option value="before">Show Before Answer (Default)</option>
+                                          <option value="after">Reveal After Correct Answer</option>
+                                        </select>
+                                      </div>
                                     </div>
 
                                     <div>
@@ -1484,7 +1446,8 @@ export function AdminTab({
                               <label className="font-bold block mb-1">
                                 Multiple-Choice Question Prompt
                               </label>
-                              <input
+                              <AutoResizeTextarea
+                                minRows={1}
                                 value={editDraft.challenge.question}
                                 onChange={(e) =>
                                   setEditDraft({
@@ -1550,7 +1513,8 @@ export function AdminTab({
                                     </span>
                                   )}
                                 </div>
-                                <input
+                                <AutoResizeTextarea
+                                  minRows={1}
                                   value={opt.text}
                                   onChange={(e) => {
                                     const nextOpts = [...editDraft.challenge.options];
@@ -1591,7 +1555,8 @@ export function AdminTab({
                           {/* 5. Final Diagnosis, Clinical Discussion, Teaching Points & Pitfalls */}
                           <div>
                             <label className="font-bold block mb-1">Final Clinical Diagnosis</label>
-                            <input
+                            <AutoResizeTextarea
+                              minRows={1}
                               value={editDraft.resolution.final_diagnosis}
                               onChange={(e) =>
                                 setEditDraft({

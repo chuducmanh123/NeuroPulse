@@ -10,6 +10,7 @@ import {
   NeuroGuideIllustration,
   NeuroRxIllustration,
 } from "@/components/ecosystem/BentoIllustrations";
+import { getEffectiveStreakDays } from "@/utils/neurocaseStreak";
 
 interface BentoAppConfig {
   id: "neuropulse" | "neurocase" | "neurocalc" | "neurovision" | "neuroguide" | "neurorx";
@@ -118,12 +119,13 @@ export default function EcosystemHubPage() {
     let active = true;
 
     try {
-      const savedStreak = window.localStorage.getItem("neurocase_streak_days");
-      if (savedStreak) {
-        const parsed = Number(savedStreak);
-        if (Number.isFinite(parsed) && parsed > 0) {
-          setCaseStreak(parsed);
-        }
+      const effectiveStreak = getEffectiveStreakDays(
+        window.localStorage.getItem("neurocase_streak_days"),
+        window.localStorage.getItem("neurocase_last_streak_date")
+      );
+      setCaseStreak(effectiveStreak);
+      if (effectiveStreak === 0) {
+        window.localStorage.setItem("neurocase_streak_days", "0");
       }
     } catch {
       // Ignore storage access errors

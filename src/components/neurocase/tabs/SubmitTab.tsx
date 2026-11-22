@@ -6,6 +6,7 @@ import {
   extractClinicalCaseFromArticleText,
   extractTextFromUploadedDocument,
 } from "@/utils/aiCaseExtractor";
+import { AutoResizeTextarea } from "../AutoResizeTextarea";
 
 interface SubmitTabProps {
   darkMode: boolean;
@@ -40,6 +41,7 @@ export function SubmitTab({
   const [subModality, setSubModality] = useState("");
   const [subFigCaption, setSubFigCaption] = useState("");
   const [subFindings, setSubFindings] = useState("");
+  const [subImageRevealTiming, setSubImageRevealTiming] = useState<"before" | "after">("before");
   const [subVitalBp, setSubVitalBp] = useState("");
   const [subVitalHr, setSubVitalHr] = useState("");
   const [subVitalRr, setSubVitalRr] = useState("");
@@ -233,6 +235,7 @@ export function SubmitTab({
     setSubModality("");
     setSubFigCaption("");
     setSubFindings("");
+    setSubImageRevealTiming("before");
     setSubVitalBp("");
     setSubVitalHr("");
     setSubVitalRr("");
@@ -384,6 +387,7 @@ export function SubmitTab({
               "Client-side de-identified clinical neuroimaging figure (.webp).",
             findings_summary:
               subFindings.trim() || "Characteristic neuroimaging abnormality.",
+            reveal_timing: subImageRevealTiming,
           },
         ],
       },
@@ -459,18 +463,19 @@ export function SubmitTab({
     }
   };
 
-  return (
+  const fieldCls =
+    "w-full px-2.5 py-1.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium leading-relaxed focus:outline-none focus:border-[#6D28D9]";
+  const labelCls = "text-[11px] font-bold block mb-1 text-[var(--text-secondary)]";
 
-          <div className="p-6 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-ink)] shadow-2xs space-y-6">
-            <div className="flex flex-wrap items-start justify-between gap-3">
-              <div>
-                <h2 className="font-journal text-2xl font-bold text-[var(--text-ink)]">Submit Clinical Case</h2>
-              </div>
+  return (
+          <div className="p-4 sm:p-5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-ink)] shadow-2xs space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[var(--border-hairline)]">
+              <h2 className="font-journal text-xl sm:text-2xl font-bold text-[var(--text-ink)]">Submit Clinical Case</h2>
 
               <button
                 type="button"
                 onClick={() => setShowAiExtractor((prev) => !prev)}
-                className="px-3.5 py-2 rounded-xl text-xs font-black bg-[#6D28D9] hover:bg-[#5B21B6] text-white shadow-sm transition-colors shrink-0"
+                className="px-3 py-1.5 rounded-xl text-xs font-black bg-[#6D28D9] hover:bg-[#5B21B6] text-white shadow-sm transition-colors shrink-0"
               >
                 {showAiExtractor
                   ? "✕ Close AI Importer"
@@ -480,7 +485,7 @@ export function SubmitTab({
 
             {/* 1-CLICK AI CASE EXTRACTOR FOR PAYWALLED / TOP JOURNALS (.pdf, .docx, .doc, .txt) */}
             {showAiExtractor && (
-              <div className="p-4 rounded-xl border-2 border-[#6D28D9]/40 bg-[#6D28D9]/5 space-y-3">
+              <div className="p-3.5 rounded-xl border-2 border-[#6D28D9]/40 bg-[#6D28D9]/5 space-y-2.5">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
                     <span className="text-[11px] font-black uppercase tracking-wider text-[#6D28D9] dark:text-violet-400">
@@ -511,27 +516,28 @@ export function SubmitTab({
                   </div>
                 </div>
 
-                <textarea
-                  rows={5}
+                <AutoResizeTextarea
+                  minRows={3}
+                  maxRows={10}
                   value={aiRawText}
                   onChange={(e) => setAiRawText(e.target.value)}
                   placeholder="Paste full case presentation, MRI findings, discussion, and DOI (or upload a .pdf / .docx / .doc file above)..."
-                  className="w-full p-3 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs leading-relaxed focus:outline-none focus:border-[#6D28D9]"
+                  className={fieldCls}
                 />
 
-                <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex flex-wrap items-center justify-between gap-2.5">
                   <input
                     type="password"
                     value={geminiApiKey}
                     onChange={(e) => setGeminiApiKey(e.target.value)}
                     placeholder="Optional: Gemini API Key (AIza...) for LLM Board-Style MCQ & PDF parsing"
-                    className="px-3 py-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs flex-1 min-w-[240px] focus:outline-none focus:border-[#6D28D9]"
+                    className={`${fieldCls} flex-1 min-w-[240px]`}
                   />
                   <button
                     type="button"
                     disabled={isExtractingAi || isReadingDoc || (!aiRawText.trim() && !aiPdfBase64)}
                     onClick={handleRunAiExtraction}
-                    className="px-4 py-2 rounded-lg text-xs font-black bg-[#6D28D9] text-white hover:bg-[#5B21B6] disabled:opacity-50 transition-colors"
+                    className="px-4 py-1.5 rounded-lg text-xs font-black bg-[#6D28D9] text-white hover:bg-[#5B21B6] disabled:opacity-50 transition-colors"
                   >
                     {isExtractingAi
                       ? "⏳ Structuring Clinical Case..."
@@ -542,13 +548,13 @@ export function SubmitTab({
             )}
 
             {submitSuccessMsg && (
-              <div className="p-4 rounded-xl bg-emerald-500/15 border border-emerald-500 text-emerald-500 text-xs font-bold flex items-center justify-between">
+              <div className="p-3 rounded-xl bg-emerald-500/15 border border-emerald-500 text-emerald-500 text-xs font-bold flex items-center justify-between gap-2">
                 <span>{submitSuccessMsg}</span>
                 {isAdminVerified && onOpenAdminReview && (
                   <button
                     type="button"
                     onClick={onOpenAdminReview}
-                    className="px-3 py-1 rounded bg-emerald-600 text-white font-black"
+                    className="px-3 py-1 rounded bg-emerald-600 text-white font-black shrink-0"
                   >
                     Open Admin Review →
                   </button>
@@ -556,155 +562,160 @@ export function SubmitTab({
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-4 text-xs sm:text-sm">
-              {/* CORE ESSENTIAL FIELDS (ALWAYS VISIBLE) */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div className="sm:col-span-2">
-                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Case Title *</label>
-                  <input
-                    required
-                    value={subTitle}
-                    onChange={(e) => setSubTitle(e.target.value)}
-                    placeholder="e.g., Acute Isolated Oculomotor Nerve Palsy with Thunderclap Headache in a 52-Year-Old..."
-                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                  />
+            <form onSubmit={handleSubmit} className="space-y-3.5 text-xs">
+              {/* 1. CASE OVERVIEW & CLINICAL VIGNETTE */}
+              <div className="p-3.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/40 space-y-3">
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-start">
+                  <div className="sm:col-span-6">
+                    <label className={labelCls}>Case Title *</label>
+                    <AutoResizeTextarea
+                      required
+                      minRows={1}
+                      value={subTitle}
+                      onChange={(e) => setSubTitle(e.target.value)}
+                      placeholder="e.g., Acute Isolated Oculomotor Nerve Palsy with Thunderclap Headache..."
+                      className={fieldCls}
+                    />
+                  </div>
+                  <div className="sm:col-span-3">
+                    <label className={labelCls}>Subspecialty</label>
+                    <select
+                      value={subSpecialty}
+                      onChange={(e) => setSubSpecialty(e.target.value)}
+                      aria-label="Select subspecialty"
+                      className={fieldCls}
+                    >
+                      {subspecialtyTabs.filter((t) => t.value !== "All").map((t) => (
+                        <option key={t.value} value={t.value}>
+                          {t.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="sm:col-span-3">
+                    <label className={labelCls}>Difficulty</label>
+                    <select
+                      value={subDifficulty}
+                      onChange={(e) => setSubDifficulty(e.target.value as CaseDifficulty)}
+                      aria-label="Select difficulty"
+                      className={fieldCls}
+                    >
+                      <option value="Resident">Resident</option>
+                      <option value="Fellow">Fellow</option>
+                      <option value="Attending">Attending</option>
+                    </select>
+                  </div>
                 </div>
-                <div>
-                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Subspecialty</label>
-                  <select
-                    value={subSpecialty}
-                    onChange={(e) => setSubSpecialty(e.target.value)}
-                    aria-label="Select subspecialty"
-                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                  >
-                    {subspecialtyTabs.filter((t) => t.value !== "All").map((t) => (
-                      <option key={t.value} value={t.value}>
-                        {t.label}
-                      </option>
-                    ))}
-                  </select>
+
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-start">
+                  <div className="sm:col-span-4">
+                    <label className={labelCls}>Demographics</label>
+                    <AutoResizeTextarea
+                      minRows={1}
+                      value={subDemographics}
+                      onChange={(e) => setSubDemographics(e.target.value)}
+                      placeholder="e.g., 58-year-old right-handed male"
+                      className={fieldCls}
+                    />
+                  </div>
+                  <div className="sm:col-span-8">
+                    <label className={labelCls}>Past Medical History</label>
+                    <AutoResizeTextarea
+                      minRows={1}
+                      value={subPmh}
+                      onChange={(e) => setSubPmh(e.target.value)}
+                      placeholder="Hypertension, diabetes, prior surgeries..."
+                      className={fieldCls}
+                    />
+                  </div>
+                </div>
+
+                {/* Compact Vital Signs Row */}
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                  <div>
+                    <label className={labelCls}>BP</label>
+                    <input
+                      value={subVitalBp}
+                      onChange={(e) => setSubVitalBp(e.target.value)}
+                      placeholder="130/80 mmHg"
+                      className={fieldCls}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelCls}>HR</label>
+                    <input
+                      value={subVitalHr}
+                      onChange={(e) => setSubVitalHr(e.target.value)}
+                      placeholder="80 bpm"
+                      className={fieldCls}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelCls}>RR</label>
+                    <input
+                      value={subVitalRr}
+                      onChange={(e) => setSubVitalRr(e.target.value)}
+                      placeholder="18 /min"
+                      className={fieldCls}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelCls}>Temp</label>
+                    <input
+                      value={subVitalTemp}
+                      onChange={(e) => setSubVitalTemp(e.target.value)}
+                      placeholder="36.8 °C"
+                      className={fieldCls}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelCls}>SpO2</label>
+                    <input
+                      value={subVitalSpo2}
+                      onChange={(e) => setSubVitalSpo2(e.target.value)}
+                      placeholder="98%"
+                      className={fieldCls}
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-2.5 items-start">
+                  <div>
+                    <label className={labelCls}>History of Present Illness (HPI)</label>
+                    <AutoResizeTextarea
+                      minRows={2}
+                      value={subHistory}
+                      onChange={(e) => setSubHistory(e.target.value)}
+                      placeholder="Describe symptom onset, progression, and relevant timeline..."
+                      className={fieldCls}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelCls}>Neurological Examination</label>
+                    <AutoResizeTextarea
+                      minRows={2}
+                      value={subNeuroExam}
+                      onChange={(e) => setSubNeuroExam(e.target.value)}
+                      placeholder="GCS, NIHSS, cranial nerves, motor/sensory/cerebellar findings..."
+                      className={fieldCls}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelCls}>Key Labs, CSF &amp; Workup</label>
+                    <AutoResizeTextarea
+                      minRows={2}
+                      value={subLabsCsf}
+                      onChange={(e) => setSubLabsCsf(e.target.value)}
+                      placeholder="CSF cell count/protein, autoimmune panel, EEG/EMG, or labs..."
+                      className={fieldCls}
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div>
-                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Demographics</label>
-                  <input
-                    value={subDemographics}
-                    onChange={(e) => setSubDemographics(e.target.value)}
-                    placeholder="e.g., 58-year-old right-handed male"
-                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                  />
-                </div>
-                <div>
-                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Difficulty</label>
-                  <select
-                    value={subDifficulty}
-                    onChange={(e) => setSubDifficulty(e.target.value as CaseDifficulty)}
-                    aria-label="Select difficulty"
-                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                  >
-                    <option value="Resident">Resident</option>
-                    <option value="Fellow">Fellow</option>
-                    <option value="Attending">Attending</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Past Medical History</label>
-                  <input
-                    value={subPmh}
-                    onChange={(e) => setSubPmh(e.target.value)}
-                    placeholder="Hypertension, diabetes, prior surgeries..."
-                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                  />
-                </div>
-              </div>
-
-              {/* Vital Signs */}
-              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-                <div>
-                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">BP</label>
-                  <input
-                    value={subVitalBp}
-                    onChange={(e) => setSubVitalBp(e.target.value)}
-                    placeholder="130/80 mmHg"
-                    className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                  />
-                </div>
-                <div>
-                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">HR</label>
-                  <input
-                    value={subVitalHr}
-                    onChange={(e) => setSubVitalHr(e.target.value)}
-                    placeholder="80 bpm"
-                    className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                  />
-                </div>
-                <div>
-                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">RR</label>
-                  <input
-                    value={subVitalRr}
-                    onChange={(e) => setSubVitalRr(e.target.value)}
-                    placeholder="18 /min"
-                    className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                  />
-                </div>
-                <div>
-                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Temp</label>
-                  <input
-                    value={subVitalTemp}
-                    onChange={(e) => setSubVitalTemp(e.target.value)}
-                    placeholder="36.8 °C"
-                    className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                  />
-                </div>
-                <div>
-                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">SpO2</label>
-                  <input
-                    value={subVitalSpo2}
-                    onChange={(e) => setSubVitalSpo2(e.target.value)}
-                    placeholder="98%"
-                    className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div>
-                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">History of Present Illness (HPI)</label>
-                  <textarea
-                    rows={3}
-                    value={subHistory}
-                    onChange={(e) => setSubHistory(e.target.value)}
-                    placeholder="Describe symptom onset, progression, and relevant timeline..."
-                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                  />
-                </div>
-                <div>
-                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Neurological Examination</label>
-                  <textarea
-                    rows={3}
-                    value={subNeuroExam}
-                    onChange={(e) => setSubNeuroExam(e.target.value)}
-                    placeholder="GCS, NIHSS, cranial nerves, motor/sensory/cerebellar findings..."
-                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                  />
-                </div>
-                <div>
-                  <label className="font-bold block mb-1 text-[var(--text-secondary)]">Key Labs, CSF &amp; Workup</label>
-                  <textarea
-                    rows={3}
-                    value={subLabsCsf}
-                    onChange={(e) => setSubLabsCsf(e.target.value)}
-                    placeholder="CSF cell count/protein, autoimmune panel, EEG/EMG, or labs..."
-                    className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                  />
-                </div>
-              </div>
-
-              {/* CLIENT-SIDE PHI DE-IDENTIFICATION & WEBP COMPRESSION STUDIO */}
-              <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/60">
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+              {/* 2. CLIENT-SIDE PHI DE-IDENTIFICATION & CLINICAL IMAGING */}
+              <div className="p-3.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/60 space-y-2.5">
+                <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="text-xs font-black uppercase text-[#6D28D9] dark:text-violet-400">
                     CLINICAL &amp; IMAGING
                   </span>
@@ -717,7 +728,7 @@ export function SubmitTab({
 
                 {/* Auto-extracted candidate figures from uploaded document (.pdf, .docx) */}
                 {aiExtractedImages.length > 0 && (
-                  <div className="mb-3 p-3 rounded-xl border border-[#6D28D9]/30 bg-[#6D28D9]/10 space-y-2">
+                  <div className="p-2.5 rounded-xl border border-[#6D28D9]/30 bg-[#6D28D9]/10 space-y-2">
                     <div className="flex flex-wrap items-center justify-between gap-1">
                       <span className="text-xs font-bold text-[#6D28D9] dark:text-violet-400 flex items-center gap-1.5">
                         <span>💡</span> Auto-extracted {aiExtractedImages.length} clinical figure{aiExtractedImages.length > 1 ? "s" : ""} from uploaded document:
@@ -765,7 +776,7 @@ export function SubmitTab({
                                 : "border-[var(--border-hairline)] opacity-60 hover:opacity-100"
                             }`}
                           >
-                            <img src={imgUrl} alt={`Figure ${idx + 1}`} className="w-16 h-16 object-cover" />
+                            <img src={imgUrl} alt={`Figure ${idx + 1}`} className="w-14 h-14 object-cover" />
                             <span className="absolute bottom-0 inset-x-0 bg-black/75 text-[9px] text-center font-bold text-white py-0.5">
                               {isCurrent ? "✓ Active" : `Fig ${idx + 1}`}
                             </span>
@@ -776,7 +787,7 @@ export function SubmitTab({
                   </div>
                 )}
 
-                <div className="flex flex-wrap items-center gap-2 mb-3">
+                <div className="flex flex-wrap items-center gap-2">
                   <input
                     ref={imageFileInputRef}
                     type="file"
@@ -790,23 +801,23 @@ export function SubmitTab({
                       <button
                         type="button"
                         onClick={() => applyPhiBlackoutMask("top")}
-                        className="px-2.5 py-1 rounded bg-[var(--text-ink)] text-[var(--bg-surface)] text-xs font-bold hover:opacity-90"
+                        className="px-2 py-1 rounded bg-[var(--text-ink)] text-[var(--bg-surface)] text-[11px] font-bold hover:opacity-90"
                       >
-                        ⬛ Mask Top Banner
+                        ⬛ Mask Top
                       </button>
                       <button
                         type="button"
                         onClick={() => applyPhiBlackoutMask("corners")}
-                        className="px-2.5 py-1 rounded bg-[var(--text-ink)] text-[var(--bg-surface)] text-xs font-bold hover:opacity-90"
+                        className="px-2 py-1 rounded bg-[var(--text-ink)] text-[var(--bg-surface)] text-[11px] font-bold hover:opacity-90"
                       >
-                        ⬛ Mask 4 DICOM Corners
+                        ⬛ Mask Corners
                       </button>
                       <button
                         type="button"
                         onClick={() => applyPhiBlackoutMask("bottom")}
-                        className="px-2.5 py-1 rounded bg-[var(--text-ink)] text-[var(--bg-surface)] text-xs font-bold hover:opacity-90"
+                        className="px-2 py-1 rounded bg-[var(--text-ink)] text-[var(--bg-surface)] text-[11px] font-bold hover:opacity-90"
                       >
-                        ⬛ Mask Bottom Banner
+                        ⬛ Mask Bottom
                       </button>
                     </>
                   )}
@@ -814,95 +825,114 @@ export function SubmitTab({
 
                 <canvas
                   ref={canvasRef}
-                  className={`max-h-52 rounded border border-[var(--border-hairline)] mx-auto ${
+                  className={`max-h-48 rounded border border-[var(--border-hairline)] mx-auto ${
                     subImageWebpUrl ? "block" : "hidden"
                   }`}
                 />
 
-                {/* Figure Modality, Caption & Key Findings directly inside CLINICAL & IMAGING */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 mt-3 border-t border-[var(--border-hairline)]">
+                {/* Modality + Display Timing + Caption + Key Findings */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2.5 border-t border-[var(--border-hairline)]">
                   <div>
-                    <label className="font-bold block mb-1 text-[var(--text-secondary)]">Figure Modality / Type</label>
+                    <label className={labelCls}>Figure Modality / Type</label>
                     <input
                       value={subModality}
                       onChange={(e) => setSubModality(e.target.value)}
                       placeholder="e.g., Clinical photo, Brain MRI, CT, EEG"
-                      className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
+                      className={fieldCls}
                     />
                   </div>
                   <div>
-                    <label className="font-bold block mb-1 text-[var(--text-secondary)]">Figure Caption / Description</label>
-                    <input
+                    <label className={labelCls}>Display Timing</label>
+                    <select
+                      value={subImageRevealTiming}
+                      onChange={(e) =>
+                        setSubImageRevealTiming(e.target.value as "before" | "after")
+                      }
+                      aria-label="Select when figure is displayed"
+                      className={fieldCls}
+                    >
+                      <option value="before">Show Before Answer (Default)</option>
+                      <option value="after">Reveal After Correct Answer</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 items-start">
+                  <div>
+                    <label className={labelCls}>Figure Caption / Description</label>
+                    <AutoResizeTextarea
+                      minRows={1}
                       value={subFigCaption}
                       onChange={(e) => setSubFigCaption(e.target.value)}
                       placeholder="Description of clinical finding or view..."
-                      className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
+                      className={fieldCls}
                     />
                   </div>
                   <div>
-                    <label className="font-bold block mb-1 text-[var(--text-secondary)]">Key Findings Summary</label>
-                    <input
+                    <label className={labelCls}>Key Findings Summary</label>
+                    <AutoResizeTextarea
+                      minRows={1}
                       value={subFindings}
                       onChange={(e) => setSubFindings(e.target.value)}
                       placeholder="Abnormal findings interpretation..."
-                      className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
+                      className={fieldCls}
                     />
                   </div>
                 </div>
               </div>
 
-              <div>
-                <label className="font-bold block mb-1 text-[var(--text-secondary)]">Final Clinical Diagnosis</label>
-                <input
-                  value={subDiagnosis}
-                  onChange={(e) => setSubDiagnosis(e.target.value)}
-                  placeholder="Definitive diagnosis (e.g., Percheron Artery Bilateral Paramedian Thalamic Infarction)..."
-                  className="w-full p-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
-                />
-              </div>
+              {/* 3. FINAL DIAGNOSIS & COLLAPSIBLE MCQ / RESOLUTION */}
+              <div className="p-3.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/40 space-y-2.5">
+                <div>
+                  <label className={labelCls}>Final Clinical Diagnosis</label>
+                  <AutoResizeTextarea
+                    minRows={1}
+                    value={subDiagnosis}
+                    onChange={(e) => setSubDiagnosis(e.target.value)}
+                    placeholder="Definitive diagnosis (e.g., Percheron Artery Bilateral Paramedian Thalamic Infarction)..."
+                    className={fieldCls}
+                  />
+                </div>
 
-              {/* ===============================================================
-                  COLLAPSIBLE OPTIONAL SECTIONS (Matching Full Admin Case Editor)
-                 =============================================================== */}
-              <div className="space-y-3 pt-1">
                 {/* 1. COLLAPSIBLE: MULTIPLE-CHOICE QUESTION, 4 OPTIONS, PEER % & RATIONALES */}
-                <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/60 overflow-hidden">
+                <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)]/80 overflow-hidden">
                   <button
                     type="button"
                     onClick={() => setShowSubMcqSection((prev) => !prev)}
-                    className="w-full px-4 py-3 text-left flex items-center justify-between gap-2 text-xs font-black uppercase tracking-wide hover:bg-[#6D28D9]/5 transition-colors"
+                    className="w-full px-3.5 py-2.5 text-left flex items-center justify-between gap-2 text-xs font-black uppercase tracking-wide hover:bg-[#6D28D9]/5 transition-colors"
                   >
                     <span className="text-[#6D28D9] dark:text-violet-400">
-                      {showSubMcqSection ? "▼" : "▶"} Optional: Multiple-Choice Question Prompt, 4 Options (A–D), Peer % &amp; Rationales
+                      {showSubMcqSection ? "▼" : "▶"} Optional: Multiple-Choice Question Prompt, 4 Options (A–D) &amp; Rationales
                     </span>
                     <span className="text-[11px] font-semibold text-[var(--text-muted)]">
-                      {showSubMcqSection ? "Click to collapse" : "Collapsed (Optional)"}
+                      {showSubMcqSection ? "Collapse" : "Expand"}
                     </span>
                   </button>
 
                   {showSubMcqSection && (
-                    <div className="p-4 border-t border-[var(--border-hairline)] space-y-3 text-xs">
-                      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                    <div className="p-3.5 border-t border-[var(--border-hairline)] space-y-2.5 text-xs">
+                      <div className="grid grid-cols-1 sm:grid-cols-4 gap-2.5 items-start">
                         <div className="sm:col-span-3">
-                          <label className="font-bold block mb-1 text-[var(--text-secondary)]">
+                          <label className={labelCls}>
                             Multiple-Choice Question Prompt (Optional)
                           </label>
-                          <input
+                          <AutoResizeTextarea
+                            minRows={1}
                             value={subQuestion}
                             onChange={(e) => setSubQuestion(e.target.value)}
                             placeholder="What is the most likely diagnosis or next best management step?"
-                            className="w-full p-2 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs font-medium focus:outline-none focus:border-[#6D28D9]"
+                            className={fieldCls}
                           />
                         </div>
                         <div>
-                          <label className="font-bold block mb-1 text-[var(--text-secondary)]">Correct Option</label>
+                          <label className={labelCls}>Correct Option</label>
                           <select
                             value={subCorrect}
                             onChange={(e) =>
                               setSubCorrect(e.target.value as "A" | "B" | "C" | "D")
                             }
                             aria-label="Select correct option"
-                            className="w-full p-2 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-emerald-700 dark:text-emerald-400 text-xs font-black focus:outline-none focus:border-[#6D28D9]"
+                            className={`${fieldCls} text-emerald-700 dark:text-emerald-400 font-black`}
                           >
                             <option value="A">Option A</option>
                             <option value="B">Option B</option>
@@ -912,7 +942,7 @@ export function SubmitTab({
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         {[
                           {
                             id: "A" as const,
@@ -920,8 +950,6 @@ export function SubmitTab({
                             setVal: setSubOptA,
                             rat: subOptARationale,
                             setRat: setSubOptARationale,
-                            peer: subPeerA,
-                            setPeer: setSubPeerA,
                           },
                           {
                             id: "B" as const,
@@ -929,8 +957,6 @@ export function SubmitTab({
                             setVal: setSubOptB,
                             rat: subOptBRationale,
                             setRat: setSubOptBRationale,
-                            peer: subPeerB,
-                            setPeer: setSubPeerB,
                           },
                           {
                             id: "C" as const,
@@ -938,8 +964,6 @@ export function SubmitTab({
                             setVal: setSubOptC,
                             rat: subOptCRationale,
                             setRat: setSubOptCRationale,
-                            peer: subPeerC,
-                            setPeer: setSubPeerC,
                           },
                           {
                             id: "D" as const,
@@ -947,38 +971,37 @@ export function SubmitTab({
                             setVal: setSubOptD,
                             rat: subOptDRationale,
                             setRat: setSubOptDRationale,
-                            peer: subPeerD,
-                            setPeer: setSubPeerD,
                           },
                         ].map((item) => (
                           <div
                             key={item.id}
-                            className={`p-3 rounded-lg border space-y-1.5 ${
+                            className={`p-2.5 rounded-lg border space-y-1.5 ${
                               subCorrect === item.id
                                 ? "border-emerald-500/60 bg-emerald-500/5"
                                 : "border-[var(--border-hairline)] bg-[var(--bg-surface)]"
                             }`}
                           >
                             <div className="flex items-center justify-between">
-                              <span className="font-black text-[var(--text-ink)]">Option {item.id} Text</span>
+                              <span className="font-black text-[var(--text-ink)]">Option {item.id}</span>
                               {subCorrect === item.id && (
                                 <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
-                                  ✓ Correct Option
+                                  ✓ Correct
                                 </span>
                               )}
                             </div>
-                            <input
+                            <AutoResizeTextarea
+                              minRows={1}
                               value={item.val}
                               onChange={(e) => item.setVal(e.target.value)}
                               placeholder={`Option ${item.id} choice...`}
-                              className="w-full p-1.5 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
+                              className={fieldCls}
                             />
-                            <textarea
-                              rows={2}
+                            <AutoResizeTextarea
+                              minRows={1}
                               value={item.rat}
                               onChange={(e) => item.setRat(e.target.value)}
-                              placeholder={`Rationale / explanation for Option ${item.id} (Optional)...`}
-                              className="w-full p-1.5 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-secondary)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
+                              placeholder={`Rationale for Option ${item.id} (Optional)...`}
+                              className={`${fieldCls} text-[var(--text-secondary)]`}
                             />
                           </div>
                         ))}
@@ -988,56 +1011,56 @@ export function SubmitTab({
                 </div>
 
                 {/* 2. COLLAPSIBLE: CLINICAL DISCUSSION, HIGH-YIELD TEACHING POINTS & PITFALLS */}
-                <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/60 overflow-hidden">
+                <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)]/80 overflow-hidden">
                   <button
                     type="button"
                     onClick={() => setShowSubResolutionSection((prev) => !prev)}
-                    className="w-full px-4 py-3 text-left flex items-center justify-between gap-2 text-xs font-black uppercase tracking-wide hover:bg-[#6D28D9]/5 transition-colors"
+                    className="w-full px-3.5 py-2.5 text-left flex items-center justify-between gap-2 text-xs font-black uppercase tracking-wide hover:bg-[#6D28D9]/5 transition-colors"
                   >
                     <span className="text-[#6D28D9] dark:text-violet-400">
                       {showSubResolutionSection ? "▼" : "▶"} Optional: Clinical Discussion, High-Yield Teaching Points &amp; Pitfalls
                     </span>
                     <span className="text-[11px] font-semibold text-[var(--text-muted)]">
-                      {showSubResolutionSection ? "Click to collapse" : "Collapsed (Optional)"}
+                      {showSubResolutionSection ? "Collapse" : "Expand"}
                     </span>
                   </button>
 
                   {showSubResolutionSection && (
-                    <div className="p-4 border-t border-[var(--border-hairline)] space-y-3 text-xs">
+                    <div className="p-3.5 border-t border-[var(--border-hairline)] space-y-2.5 text-xs">
                       <div>
-                        <label className="font-bold block mb-1 text-[var(--text-secondary)]">Clinical Discussion</label>
-                        <textarea
-                          rows={4}
+                        <label className={labelCls}>Clinical Discussion</label>
+                        <AutoResizeTextarea
+                          minRows={3}
                           value={subDiscussion}
                           onChange={(e) => setSubDiscussion(e.target.value)}
                           placeholder="Pathophysiology, neuroimaging correlation, and evidence-based management..."
-                          className="w-full p-2 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
+                          className={fieldCls}
                         />
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 items-start">
                         <div>
-                          <label className="font-bold block mb-1 text-[var(--text-secondary)]">
+                          <label className={labelCls}>
                             High-Yield Teaching Points
                           </label>
-                          <textarea
-                            rows={3}
+                          <AutoResizeTextarea
+                            minRows={2}
                             value={subTeachingPoint}
                             onChange={(e) => setSubTeachingPoint(e.target.value)}
                             placeholder="Key board-style clinical takeaways..."
-                            className="w-full p-2 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
+                            className={fieldCls}
                           />
                         </div>
                         <div>
-                          <label className="font-bold block mb-1 text-[var(--text-secondary)]">
+                          <label className={labelCls}>
                             Clinical Pitfalls to Avoid
                           </label>
-                          <textarea
-                            rows={3}
+                          <AutoResizeTextarea
+                            minRows={2}
                             value={subPitfall}
                             onChange={(e) => setSubPitfall(e.target.value)}
                             placeholder="Diagnostic or management pitfalls to avoid..."
-                            className="w-full p-2 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
+                            className={fieldCls}
                           />
                         </div>
                       </div>
@@ -1046,57 +1069,60 @@ export function SubmitTab({
                 </div>
               </div>
 
-              {/* SOURCE & REFERENCE */}
-              <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/60 space-y-3">
+              {/* 4. SOURCE & REFERENCE */}
+              <div className="p-3.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/60 space-y-2.5">
                 <span className="text-xs font-black uppercase text-[#6D28D9] dark:text-violet-400 block">
                   SOURCE &amp; REFERENCE
                 </span>
-                <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
-                  <div>
-                    <label className="font-bold block mb-1 text-[var(--text-secondary)]">Source / Journal</label>
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 text-xs">
+                  <div className="sm:col-span-3">
+                    <label className={labelCls}>Source / Journal</label>
                     <input
                       value={subJournalName}
                       onChange={(e) => setSubJournalName(e.target.value)}
                       placeholder="e.g., NEJM, JAMA, Lancet"
-                      className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
+                      className={fieldCls}
                     />
                   </div>
-                  <div className="sm:col-span-2">
-                    <label className="font-bold block mb-1 text-[var(--text-secondary)]">Source DOI / URL</label>
+                  <div className="sm:col-span-4">
+                    <label className={labelCls}>Source DOI / URL</label>
                     <input
                       value={subDoiUrl}
                       onChange={(e) => setSubDoiUrl(e.target.value)}
                       placeholder="https://doi.org/10.1212/..."
-                      className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
+                      className={fieldCls}
                     />
                   </div>
-                  <div>
-                    <label className="font-bold block mb-1 text-[var(--text-secondary)]">Published Date</label>
+                  <div className="sm:col-span-3">
+                    <label className={labelCls}>Author / Institution</label>
+                    <input
+                      value={subAuthor}
+                      onChange={(e) => setSubAuthor(e.target.value)}
+                      placeholder="e.g., Dr. Jane Doe • Stroke Center"
+                      className={fieldCls}
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className={labelCls}>Published Date</label>
                     <input
                       type="date"
                       value={subPublishedDate}
                       onChange={(e) => setSubPublishedDate(e.target.value)}
-                      className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] text-xs focus:outline-none focus:border-[#6D28D9]"
+                      className={fieldCls}
                     />
                   </div>
                 </div>
-                <div>
-                  <label className="font-bold block mb-1 text-xs text-[var(--text-secondary)]">Author / Institution</label>
-                  <input
-                    value={subAuthor}
-                    onChange={(e) => setSubAuthor(e.target.value)}
-                    placeholder="e.g., Dr. Jane Doe • Stroke Center"
-                    className="w-full p-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[#6D28D9]"
-                  />
-                </div>
               </div>
 
-              <button
-                type="submit"
-                className="px-6 py-3 rounded-xl text-xs font-black uppercase bg-[#6D28D9] text-white hover:bg-[#5B21B6] shadow-sm transition-colors"
-              >
-                Submit Case
-              </button>
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-6 py-2.5 rounded-xl text-xs font-black uppercase bg-[#6D28D9] text-white hover:bg-[#5B21B6] disabled:opacity-60 shadow-sm transition-colors"
+                >
+                  {isSubmitting ? "Submitting..." : "Submit Case"}
+                </button>
+              </div>
             </form>
     </div>
   );
