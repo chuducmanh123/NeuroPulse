@@ -51,115 +51,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "abstract": "Direct-acting oral anticoagulation did not reduce recurrent stroke compared with aspirin in randomised controlled trials (RCTs) of embolic stroke of undetermined source (ESUS), and subgroup benefits suggested by analyses of individual RCTs were inconsistent across trials. We aimed to evaluate the effect of anticoagulation on the risks of recurrent stroke and major bleeding in patients with ESUS, overall and in prespecified subgroups using individual participant data from RCTs. In this systematic review and meta-analysis, we searched MEDLINE and Scopus for RCTs published between April 1, 2014, and March 1, 2025, without language restriction, comparing anticoagulants with aspirin in patients with ESUS. Non-randomised studies and studies not enrolling patients with ESUS were excluded. We requested individual participant data from the principal investigators of all eligible trials. The primary outcomes were recurrent stroke and major bleeding. For each outcome of interest, we estimated the treatment effect for the overall trial population separately within each trial and the resulting overall treatment estimates were subsequently pooled across trials. Risk of bias was assessed with the Cochrane Risk of Bias tool (version 2.0) for the primary efficacy outcome of stroke recurrence. Hazard ratios (HRs) with corresponding 95% CIs were estimated following adjustment for prespecified covariates and pooled by use of the random-effects model. This study is registered with PROSPERO (CRD42025644724). Our systematic database search identified 1170 records. Of these studies, four were eligible for inclusion in the analysis, including a total of 13 970 participants. Mean age of participants was 66 years (SD 10·6); 5486 (39·3%) participants were female and 8484 (60·7%) were male. Across all trials, 6989 patients were assigned to receive a direct-acting oral anticoagulant and 6981 were assigned to receive aspirin. The hazard for recurrent stroke was similar between participants allocated to anticoagulant or aspirin (399 of 6989 patients [4·6 events per 100 patient-years] in the anticoagulant group vs 417 of 6981 [4·8 events per 100 patient-years] in the aspirin group; adjusted HR 0·94, 95% CI 0·78-1·14), without evidence of heterogeneity across studies (I2=5%, p for Cochran's Q test=0·37). The hazard for major bleeding was also similar between the two groups (149 of 6989 patients [1·6 events per 100 patient-years] in the anticoagulant group vs 106 of 6981 [1·1 events per 100 patient-years] in the aspirin group; adjusted HR 1·19, 95% CI 0·52-2·73), but heterogeneity was present across studies (I2=79%, p for Cochran's Q test=0·0023). Anticoagulation did not reduce the risk of recurrent stroke after ESUS when compared with aspirin, and the risk of major bleeding did not differ significantly between the two treatments. A possible benefit from anticoagulation in patients with ESUS and left atrial enlargement, as shown in a hypothesis-generating subgroup analysis, should be investigated in future trials. Division of Neurology Innovation Fund, McMaster University.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In this individual participant data meta-analysis of 13,970 patients with ESUS, direct-acting oral anticoagulants did not reduce recurrent stroke compared with aspirin (adjusted HR 0.94, 95% CI 0.78-1.14) and showed similar major bleeding risk (adjusted HR 1.19, 95% CI 0.52-2.73). Potential benefit in patients with left atrial enlargement warrants future trials.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1056/nejmicm2608021",
-    "title": "Functional Fixed Dystonia of the Foot",
-    "journal": {
-      "name": "The New England Journal of Medicine",
-      "short_name": "NEJM",
-      "badge_bg": "#FEE2E2",
-      "badge_text": "#991B1B"
-    },
-    "pub_date": "2026-11-19T00:00:00Z",
-    "article_type": "Case Report",
-    "article_types": [
-      "Case Report"
-    ],
-    "authors": [
-      "Nonnekes Jorik",
-      "de Greef-Rotteveel Annemieke"
-    ],
-    "doi_url": "https://doi.org/10.1056/nejmicm2608021",
-    "neurology_classification": {
-      "subspecialty": "Movement Disorders",
-      "subspecialties": [
-        "Movement Disorders"
-      ],
-      "topics": [
-        "Dystonia"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at NEJM via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s0140-6736(26)02345-7",
-    "title": "Multiple sclerosis: beyond controlling relapses",
-    "journal": {
-      "name": "The Lancet",
-      "short_name": "The Lancet",
-      "badge_bg": "#DBEAFE",
-      "badge_text": "#1E40AF"
-    },
-    "pub_date": "2026-11-19T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "The Lancet"
-    ],
-    "doi_url": "https://doi.org/10.1016/s0140-6736(26)02345-7",
-    "neurology_classification": {
-      "subspecialty": "Neuroimmunology",
-      "subspecialties": [
-        "Neuroimmunology"
-      ],
-      "topics": [
-        "Multiple sclerosis"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at The Lancet via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s0140-6736(26)02240-3",
-    "title": "Remibrutinib: a high-efficacy disease-modifying drug for relapsing multiple sclerosis?",
-    "journal": {
-      "name": "The Lancet",
-      "short_name": "The Lancet",
-      "badge_bg": "#DBEAFE",
-      "badge_text": "#1E40AF"
-    },
-    "pub_date": "2026-11-19T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Edan Gilles",
-      "Page Emmanuelle Le"
-    ],
-    "doi_url": "https://doi.org/10.1016/s0140-6736(26)02240-3",
-    "neurology_classification": {
-      "subspecialty": "Neuroimmunology",
-      "subspecialties": [
-        "Neuroimmunology"
-      ],
-      "topics": [
-        "Multiple sclerosis"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at The Lancet via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Meta-Analysis"
     }
   },
   {
@@ -571,7 +468,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218793",
-    "title": "Teaching Video NeuroImage: Female Presentation of Fragile X-Associated Tremor/Ataxia Syndrome",
+    "title": "Teaching Video NeuroImage: Female Presentation of Fragile X-Associated Tremor/Ataxia Syndrome.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -584,10 +481,10 @@
       "Case Report"
     ],
     "authors": [
-      "Braza Samuel",
-      "Eickholt Lynn",
-      "Paul Rachel A.",
-      "Aamodt Whitley W."
+      "Braza S",
+      "Eickholt L",
+      "Paul RA",
+      "Aamodt WW."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218793",
     "neurology_classification": {
@@ -600,11 +497,12 @@
         "Tremor"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "A 69-year-old woman with atrial fibrillation, hypertension, and prediabetes presented with 4 years of intention tremor, gait instability, and falls (Video).Her sons have fragile X syndrome, and testing revealed a mosaic FMR1 premutation with 74-93 CGG repeats.Female FMR1 premutation carriers, those with 55-200 repeats, are at increased risk of fragile X primary ovarian insufficiency, fragile X-associated neuropsychiatric disorders, and fragile X-associated tremor/ataxia syndrome (FXTAS), an age-related neurodegenerative disorder occurring in 13%-16% of female carriers and 38%-75% of male carriers.1Figure MRI Brain Without Contrast T2 fluid-attenuated inversion recovery sequences did not show hyperintensity in the middle cerebellar peduncle, known as the MCP sign (arrows, A), but did show hyperintensity in the left pons (B).In addition, there were diffuse hyperintensities in the cerebral white matter with generalized atrophy (C and D).The splenium of the corpus callosum was not involved.Major radiologic criteria in FXTAS include white matter lesions in the MCP and/or brainstem, while minor criteria include cerebral white matter lesions and moderate-to-severe generalized brain atrophy.FXTAS = fragile X-associated tremor/ataxia syndrome; MCP = middle cerebellar peduncle.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Female FMR1 premutation carriers (55–200 CGG repeats) can develop fragile X-associated tremor/ataxia syndrome (FXTAS), which occurs in 13%–16% of female carriers. MRI in female FXTAS may lack the classic middle cerebellar peduncle (MCP) sign, instead showing brainstem (e.g., pontine) and cerebral white matter hyperintensities with generalized atrophy.",
       "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Case Report"
     }
   },
   {
@@ -656,7 +554,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218890",
-    "title": "Quantifying Disease Progression in Patients With Charcot-Marie-Tooth Neuropathy Type 1A Using Quantitative Muscle MRI and Clinical Outcomes",
+    "title": "Quantifying Disease Progression in Patients With Charcot-Marie-Tooth Neuropathy Type 1A Using Quantitative Muscle MRI and Clinical Outcomes.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -669,14 +567,14 @@
       "Original Article"
     ],
     "authors": [
-      "Iterbeke Louise",
-      "Huysmans Lotte",
-      "Bamps Kobe",
-      "Peeters Ronald",
-      "Goosens Veerle",
-      "Maes Frederik",
-      "Dupont Patrick",
-      "Claeys Kristl G."
+      "Iterbeke L",
+      "Huysmans L",
+      "Bamps K",
+      "Peeters R",
+      "Goosens V",
+      "Maes F",
+      "Dupont P",
+      "Claeys KG."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218890",
     "neurology_classification": {
@@ -1992,7 +1890,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218918",
-    "title": "Cognition in Essential Tremor",
+    "title": "Cognition in Essential Tremor: Alzheimer Disease Pathology Before Dementia.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -2005,29 +1903,32 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Benito-León Julián",
-      "Benito-Rodríguez Carla María"
+      "Benito-León J",
+      "Benito-Rodríguez CM."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218918",
     "neurology_classification": {
-      "subspecialty": "Movement Disorders",
+      "subspecialty": "Dementia",
       "subspecialties": [
+        "Dementia",
         "Movement Disorders"
       ],
       "topics": [
+        "Alzheimer",
+        "Dementia",
         "Tremor"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
       "ai_verified": false
     }
   },
   {
     "id": "10.1212/wnl.0000000000218743",
-    "title": "Spontaneous Resolution of Severe Cervical Cord Compression in Pediatric Idiopathic Intervertebral Disc Calcification",
+    "title": "Spontaneous Resolution of Severe Cervical Cord Compression in Pediatric Idiopathic Intervertebral Disc Calcification.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -2040,8 +1941,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Hu Xingxin",
-      "Li Bingkui"
+      "Hu X",
+      "Li B."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218743",
     "neurology_classification": {
@@ -2101,7 +2002,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218956",
-    "title": "The Design of Neurology",
+    "title": "The Design of <i>Neurology</i>: Changes in the Print Journal Over the Past 75 Years.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -2114,11 +2015,11 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Merino José G.",
-      "Ng Sarabeth",
-      "Aman Ramm Kaitlyn",
-      "Pieper Kathleen M.",
-      "Baskin Patricia K."
+      "Merino JG",
+      "Ng S",
+      "Aman Ramm K",
+      "Pieper KM",
+      "Baskin PK."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218956",
     "neurology_classification": {
@@ -2147,9 +2048,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-18T00:00:00Z",
-    "article_type": "Case Report",
+    "article_type": "Original Article",
     "article_types": [
-      "Case Report"
+      "Original Article"
     ],
     "authors": [
       "Vogrig Alberto"
@@ -2161,7 +2062,7 @@
         "Epilepsy"
       ],
       "topics": [
-        "Neurology"
+        "Cerebral"
       ]
     },
     "abstract": "Postcontrast T1 MRI showing enhancing recurrence in the right temporal lobe.(B) Perfusion MRI demonstrating increased relative cerebral blood volume.(C) EEG with epileptiform activity over right temporal derivations.",
@@ -2293,7 +2194,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218871",
-    "title": "Predicting Epilepsy Trajectory After Infantile Epileptic Spasms Syndrome",
+    "title": "Predicting Epilepsy Trajectory After Infantile Epileptic Spasms Syndrome: The BASED Score and Beyond.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -2306,7 +2207,7 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Hussain Shaun A."
+      "Hussain SA."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218871",
     "neurology_classification": {
@@ -2425,7 +2326,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4218",
-    "title": "Agent Orange and Parkinson Disease-The War Ended, the Exposure: Did Not.",
+    "title": "Agent Orange and Parkinson Disease—The War Ended, the Exposure: Did Not",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -2438,9 +2339,9 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Goldman SM",
-      "Dorsey ER",
-      "Okun MS."
+      "Goldman Samuel M.",
+      "Dorsey E. Ray",
+      "Okun Michael S."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4218",
     "neurology_classification": {
@@ -3689,7 +3590,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218748",
-    "title": "From Research Cohorts to Clinical Practice",
+    "title": "From Research Cohorts to Clinical Practice: Bringing Alzheimer Disease Genetic and Biomarker Discoveries Into the Memory Clinic.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -3702,22 +3603,22 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Pichet Binette Alexa"
+      "Pichet Binette A."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218748",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Dementia",
       "subspecialties": [
-        "Other"
+        "Dementia"
       ],
       "topics": [
-        "Neurology"
+        "Alzheimer"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
       "ai_verified": false
     }
   },
@@ -3907,7 +3808,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218863",
-    "title": "α-Synuclein Seed Amplification Assays in Routine Clinical Settings",
+    "title": "α-Synuclein Seed Amplification Assays in Routine Clinical Settings: Simplifying Diagnosis or Uncovering Complexity?",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -3920,8 +3821,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Bendetowicz David",
-      "Meissner Wassilios G."
+      "Bendetowicz D",
+      "Meissner WG."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218863",
     "neurology_classification": {
@@ -3989,6 +3890,41 @@
       "clinical_significance": "Clinical significance for Movement Disorders practice.",
       "ai_verified": true,
       "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1056/nejmicm2608021",
+    "title": "Functional Fixed Dystonia of the Foot.",
+    "journal": {
+      "name": "The New England Journal of Medicine",
+      "short_name": "NEJM",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-14T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Nonnekes J",
+      "de Greef-Rotteveel A."
+    ],
+    "doi_url": "https://doi.org/10.1056/nejmicm2608021",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Dystonia"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at NEJM via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
     }
   },
   {
@@ -5264,7 +5200,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218815",
-    "title": "Cerebral Amyloid Angiopathy Brain MRI Boston Criteria v2.0",
+    "title": "Cerebral Amyloid Angiopathy Brain MRI Boston Criteria v2.0: Are We Ready to Implement Them in the Study of Patients With Alzheimer Disease?",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -5277,7 +5213,7 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Oliveira Tiago Gil"
+      "Oliveira TG."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218815",
     "neurology_classification": {
@@ -5287,6 +5223,7 @@
         "Dementia"
       ],
       "topics": [
+        "Alzheimer",
         "Cerebral",
         "Brain",
         "Amyloid"
@@ -5387,7 +5324,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218864",
-    "title": "Neurology at 75",
+    "title": "<i>Neurology</i> at 75: The Educational Mission-Cultivating Authors, Reviewers, and Editors.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -5400,14 +5337,14 @@
       "Original Article"
     ],
     "authors": [
-      "Worrall Bradford B.",
-      "Aamodt Whitley W.",
-      "Elkind Mitchell S.V.",
-      "Fu Katherine A.",
-      "Johnston Karen C.",
-      "Pieper Kathleen M.",
-      "Strowd Roy E.",
-      "Lyons-Warren Ariel M."
+      "Worrall BB",
+      "Aamodt WW",
+      "Elkind MSV",
+      "Fu KA",
+      "Johnston KC",
+      "Pieper KM",
+      "Strowd RE",
+      "Lyons-Warren AM."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218864",
     "neurology_classification": {
@@ -5670,7 +5607,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218749",
-    "title": "Sensitive Detection of Misfolded α-Synuclein in Submandibular Gland Biopsy Using RT-QuIC Testing in Parkinson Disease",
+    "title": "Sensitive Detection of Misfolded α-Synuclein in Submandibular Gland Biopsy Using RT-QuIC Testing in Parkinson Disease.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -5683,7 +5620,7 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Witt Karsten"
+      "Witt K."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218749",
     "neurology_classification": {
@@ -6782,7 +6719,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218819",
-    "title": "Teaching NeuroImage: Gelsolin Amyloidosis",
+    "title": "Teaching NeuroImage: Gelsolin Amyloidosis: A Cause of Familial Progressive Facial and Bulbar Palsy.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -6795,13 +6732,13 @@
       "Case Report"
     ],
     "authors": [
-      "Ganguly Jacky",
-      "Dutta Debayan",
-      "Chowdhury Sayoni Roy",
-      "Mukherjee Soumava",
-      "Singh Nilam",
-      "Basu Purba",
-      "Kumar Hrishikesh"
+      "Ganguly J",
+      "Dutta D",
+      "Chowdhury SR",
+      "Mukherjee S",
+      "Singh N",
+      "Basu P",
+      "Kumar H."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218819",
     "neurology_classification": {
@@ -11125,8 +11062,7 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Multiple sclerosis",
-        "Neurology"
+        "Multiple sclerosis"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -12323,9 +12259,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Case Report",
+    "article_type": "Original Article",
     "article_types": [
-      "Case Report"
+      "Original Article"
     ],
     "authors": [
       "Jaffer Ali-Musa",
@@ -12341,10 +12277,14 @@
       "subspecialty": "Neurocritical Care",
       "subspecialties": [
         "Neurocritical Care",
-        "Epilepsy"
+        "Epilepsy",
+        "CNS Infections"
       ],
       "topics": [
-        "Status epilepticus"
+        "Status epilepticus",
+        "Neurological",
+        "Brain",
+        "Encephalopathy"
       ]
     },
     "abstract": "Objective: Document a rare lethal neurological immune-related adverse event from talquetamab use. Background: Status epilepticus is a rare complication of bispecific T-cell engager (BiTE) therapy as part of immune effector cell-associated neurotoxicity syndrome (ICANS), but seizures are usually generalized and non-convulsive in nature. Here we describe a case of super-refractory focal status epilepticus from talquetamab, a BiTE therapy targeting CD3 and GPRC5D. Design/Methods NA. Results: 67-year-old male with treatment-refractory multiple myeloma on maintenance talquetamab at 0.8 mg/kg who presented 15 days after receiving his first maintenance dose with encephalopathy, new-onset right upper extremity weakness, continuous rhythmic shaking of the right arm, and lip-smacking movements. He was diagnosed with epilepsia partialis continua arising from the left hemisphere. MRI brain with and without contrast showed diffusion-weighted imaging (DWI) restriction along the left frontal, temporal, and parietal cortices without enhancement, likely due to prolonged focal status epilepticus. He was intubated and placed on intravenous propofol. Continuous electroencephalography (EEG) showed frequent bursts of lateralized periodic discharges at 1 Hz over the left temporo-parietal region every 5-10 seconds. Lumbar puncture was remarkable for opening pressure 32 cm H 2 O, 0 nucleated cells, protein 47 mg/mL, negative meningoencephalitis panel, negative oligoclonal bands, and myelin basic protein 8.67 ng/mL. He was placed on maximal doses of intravenous levetiracetam, lacosamide, and fosphenytoin, however continued to exhibit frequent clonic seizures of the right arm over the next 72 hours. He was treated with intravenous methylprednisolone 1000 mg daily for 5 days, intravenous immune globulin (IVIg) 1g/kg for 2 days, and anakinra 100 mg every 6 hours for 4 doses without meaningful recovery. Due to refractory ICANS, family elected to withdraw care and he passed away on day 24 after presentation. Conclusions: Focal status epilepticus is a complication of advanced ICANS from talquetamab use, and it may respond poorly to steroids, IVIg, and anakinra.",
@@ -12376,12 +12316,16 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001268392.12806.26",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Epilepsy",
       "subspecialties": [
-        "Other"
+        "Epilepsy",
+        "Dementia",
+        "Neuroimmunology"
       ],
       "topics": [
-        "Encephalitis"
+        "Seizure",
+        "Encephalitis",
+        "Headache"
       ]
     },
     "abstract": "Objective: NA. Background: LGI1 and CASPR2 antibodies target parts of voltage-gated potassium channel (VGKC) complexes. They can produce autoimmune encephalitis presenting as seizures, cognitive decline, and memory impairment. Both these most commonly affect older males. Pediatric cases remain rare, and dual positivity at any age is extremely rare. In approximately half of the confirmed LGI1 cases MRI findings are normal, posing a diagnostic challenge. Design/Methods NA. Results: A 15-year-old female who was previously healthy was admitted with subacute onset of profound anterograde and retrograde amnesia, disorientation to time and place, dizziness, headache and drowsiness. Despite significant memory impairment, verbal communication was preserved. An electroclinical seizure was detected on EEG, with altered consciousness, leftward eye deviation, and perioral automatism lasting one minute. Rhythmic 6-8 Hz left frontotemporal activity was recorded that evolved to 2-4 Hz complexes spread across the right-side region. Two additional subclinical seizures of temporal onset were recorded as well. No features of autonomic dysfunction or peripheral nerve excitability were found. A comprehensive autoimmune encephalitis panel was conducted, with LGI1 antibodies at 1:80 and CASPR2 at 1:640 in serum. CSF values were 1:1 for both. All other antibodies were negative. Infectious workup was unremarkable and empirical acyclovir was discontinued. IV Methylprednisolone pulse therapy and levetiracetam were initiated. EEG normalized prior to discharge, while significant memory deficits persisted. Patient was discharged in a stabilized condition on oral prednisolone taper and levetiracetam with follow-up neuroimaging and prolonged EEG monitoring scheduled. Conclusions: This case illustrates that dual LGI1/CASPR2 autoimmune encephalitis can present with pure limbic encephalitis and predominant amnesia in a pediatric patient. This phenotype is unreported in published literature. Normal MRI did not exclude active limbic disease with electroclinically confirmed seizures. Comprehensive autoimmune testing, including testing for dual VGKC antibodies, should be considered for pediatric cases with subacute amnesia and new-onset seizures regardless of neuroimaging findings.",
@@ -12402,9 +12346,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Case Report",
+    "article_type": "Original Article",
     "article_types": [
-      "Case Report"
+      "Original Article"
     ],
     "authors": [
       "Parchuri Sriya",
@@ -12414,9 +12358,14 @@
     "neurology_classification": {
       "subspecialty": "CNS Infections",
       "subspecialties": [
-        "CNS Infections"
+        "CNS Infections",
+        "Neurocritical Care",
+        "Epilepsy"
       ],
       "topics": [
+        "Seizure",
+        "Status epilepticus",
+        "Encephalitis",
         "Meningitis"
       ]
     },
@@ -12469,7 +12418,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4165",
-    "title": "Arrival of CAR T-Cell Therapies for Stiff Person Syndrome.",
+    "title": "Arrival of CAR T-Cell Therapies for Stiff Person Syndrome",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -12482,8 +12431,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Gupta S",
-      "Gelfand JM."
+      "Gupta Sasha",
+      "Gelfand Jeffrey M."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4165",
     "neurology_classification": {
@@ -12800,7 +12749,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4491",
-    "title": "Azetukalner in Adults With Focal Seizures: Research Summary.",
+    "title": "Azetukalner in Adults With Focal Seizures",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -15095,6 +15044,75 @@
     }
   },
   {
+    "id": "10.1016/s0140-6736(26)02345-7",
+    "title": "Multiple sclerosis: beyond controlling relapses.",
+    "journal": {
+      "name": "The Lancet",
+      "short_name": "The Lancet",
+      "badge_bg": "#DBEAFE",
+      "badge_text": "#1E40AF"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "The Lancet."
+    ],
+    "doi_url": "https://doi.org/10.1016/s0140-6736(26)02345-7",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at The Lancet via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s0140-6736(26)02240-3",
+    "title": "Remibrutinib: a high-efficacy disease-modifying drug for relapsing multiple sclerosis?",
+    "journal": {
+      "name": "The Lancet",
+      "short_name": "The Lancet",
+      "badge_bg": "#DBEAFE",
+      "badge_text": "#1E40AF"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Edan G",
+      "Page EL."
+    ],
+    "doi_url": "https://doi.org/10.1016/s0140-6736(26)02240-3",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at The Lancet via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1016/s1474-4422(26)00362-5",
     "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease.",
     "journal": {
@@ -15113,6 +15131,287 @@
       "Taira T."
     ],
     "doi_url": "https://doi.org/10.1016/s1474-4422(26)00362-5",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00354-6",
+    "title": "Climate change: aggravation and adaptation in neurology.",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Sisodiya S."
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00354-6",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00373-x",
+    "title": "From syndrome to antibody-defined autoimmune encephalitides.",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Patil A",
+      "Vilaseca A",
+      "Dubey D."
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00373-x",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00367-4",
+    "title": "Neurotrauma as a chronic disease: a call for integrated care.",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "The Lancet Neurology."
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00367-4",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00358-3",
+    "title": "Progress in exon skipping for Duchenne muscular dystrophy.",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Goossens R",
+      "Aartsma-Rus A."
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00358-3",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Muscular dystrophy"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00363-7",
+    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease.",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Walker-Pizarro N",
+      "Eisinger RS",
+      "Okun MS",
+      "Foote KD."
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00363-7",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00361-3",
+    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease.",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Barrit S",
+      "Carron R",
+      "Hariz M."
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00361-3",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00364-9",
+    "title": "APOE, p-tau217, and cognitive impairment in diverse cohorts.",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Schindler SE."
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00364-9",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00365-0",
+    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease - Authors' reply.",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Dalvi A",
+      "Eisenberg HM."
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00365-0",
     "neurology_classification": {
       "subspecialty": "Movement Disorders",
       "subspecialties": [
@@ -15408,42 +15707,6 @@
       "conclusion_vi": "Isolated peripheral nerve vasculitis can present with reversible bilateral hypoglossal palsy and tongue atrophy alongside subacute asymmetric weakness, severe neuropathic pain, and dysarthria. Clinicians should consider peripheral nervous system vasculitis in patients presenting with painful, asymmetric weakness accompanied by bulbar cranial neuropathies.",
       "clinical_significance": "Clinical significance for Other practice.",
       "ai_verified": true
-    }
-  },
-  {
-    "id": "10.1001/jamaneurol.2026.3048",
-    "title": "Exhaled Carbon Monoxide Levels May Offer Clues on the Etiology of Parkinson Disease.",
-    "journal": {
-      "name": "JAMA Neurology",
-      "short_name": "JAMA Neurol",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#E11D48"
-    },
-    "pub_date": "2026-11-01T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Darweesh SKL",
-      "Remz MA",
-      "Goldman SM."
-    ],
-    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.3048",
-    "neurology_classification": {
-      "subspecialty": "Movement Disorders",
-      "subspecialties": [
-        "Movement Disorders"
-      ],
-      "topics": [
-        "Parkinson"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
     }
   },
   {
@@ -20431,287 +20694,6 @@
     "article_types": [
       "Case Report"
     ]
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00354-6",
-    "title": "Climate change: aggravation and adaptation in neurology",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Sisodiya Sanjay"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00354-6",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00373-x",
-    "title": "From syndrome to antibody-defined autoimmune encephalitides",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Patil Anuja",
-      "Vilaseca Andreu",
-      "Dubey Divyanshu"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00373-x",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00367-4",
-    "title": "Neurotrauma as a chronic disease: a call for integrated care",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "The Lancet Neurology"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00367-4",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00358-3",
-    "title": "Progress in exon skipping for Duchenne muscular dystrophy",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Goossens Remko",
-      "Aartsma-Rus Annemieke"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00358-3",
-    "neurology_classification": {
-      "subspecialty": "Neuromuscular",
-      "subspecialties": [
-        "Neuromuscular"
-      ],
-      "topics": [
-        "Muscular dystrophy"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Neuromuscular practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00363-7",
-    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Walker-Pizarro Nur",
-      "Eisinger Robert S",
-      "Okun Michael S",
-      "Foote Kelly D"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00363-7",
-    "neurology_classification": {
-      "subspecialty": "Movement Disorders",
-      "subspecialties": [
-        "Movement Disorders"
-      ],
-      "topics": [
-        "Parkinson"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00361-3",
-    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Barrit Sami",
-      "Carron Romain",
-      "Hariz Marwan"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00361-3",
-    "neurology_classification": {
-      "subspecialty": "Movement Disorders",
-      "subspecialties": [
-        "Movement Disorders"
-      ],
-      "topics": [
-        "Parkinson"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00364-9",
-    "title": "APOE, p-tau217, and cognitive impairment in diverse cohorts",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Schindler Suzanne E"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00364-9",
-    "neurology_classification": {
-      "subspecialty": "Dementia",
-      "subspecialties": [
-        "Dementia"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00365-0",
-    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease – Authors' reply",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Dalvi Arif",
-      "Eisenberg Howard M"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00365-0",
-    "neurology_classification": {
-      "subspecialty": "Movement Disorders",
-      "subspecialties": [
-        "Movement Disorders"
-      ],
-      "topics": [
-        "Parkinson"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
-    }
   },
   {
     "id": "10.1161/strokeaha.126.055677",
@@ -27611,6 +27593,42 @@
       "conclusion_vi": "While anti-amyloid therapies show potential in slowing Alzheimer's disease (AD) progression, translating use to cognitively unimpaired individuals with AD neuropathological change requires addressing key implementation hurdles. Clinicians must navigate ethical concerns, health-system impacts, and high false-positive rates due to low pathology prevalence and intermediate biomarker concentrations in asymptomatic populations.",
       "clinical_significance": "Clinical significance for Dementia practice.",
       "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.3048",
+    "title": "Exhaled Carbon Monoxide Levels May Offer Clues on the Etiology of Parkinson Disease",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-09-08T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Darweesh Sirwan K.L.",
+      "Remz Matthew A.",
+      "Goldman Samuel M."
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.3048",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
     }
   },
   {
