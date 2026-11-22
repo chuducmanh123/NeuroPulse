@@ -258,6 +258,9 @@ export default function AdminCommandCenter() {
 
   const persistAdminCases = async (nextCases: ClinicalCase[]) => {
     setCases(nextCases);
+    try {
+      localStorage.setItem("neurocase_cached_cases_v2", JSON.stringify(nextCases));
+    } catch {}
     const token =
       sessionStorage.getItem("neurocase_admin_token") ||
       localStorage.getItem("neurocase_admin_token");
@@ -290,6 +293,55 @@ export default function AdminCommandCenter() {
       }
     } catch (err: any) {
       setServerSyncSuccess(`❌ Network error while saving cases: ${err?.message || "Check connection"}`);
+    } finally {
+      setIsSyncingServer(false);
+    }
+  };
+
+  const handleDeleteRejectedCase = async (caseId: string) => {
+    const prevCases = cases;
+    const nextCases = cases.filter((c) => c.id !== caseId);
+    setCases(nextCases);
+    try {
+      localStorage.setItem("neurocase_cached_cases_v2", JSON.stringify(nextCases));
+    } catch {}
+
+    const token =
+      sessionStorage.getItem("neurocase_admin_token") ||
+      localStorage.getItem("neurocase_admin_token");
+    setIsSyncingServer(true);
+    try {
+      const res = await fetch("/api/neurocase", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { "x-admin-token": token } : {}),
+        },
+        body: JSON.stringify({
+          action: "delete_case",
+          caseId,
+        }),
+      });
+      if (res.ok) {
+        const json = await res.json().catch(() => ({}));
+        if (json.success === false) {
+          setCases(prevCases);
+          setServerSyncSuccess(`⚠️ ${json.warning || "Could not delete case on server."}`);
+          setTimeout(() => setServerSyncSuccess(""), 6000);
+        } else {
+          setServerSyncSuccess("✓ Case permanently deleted and synchronized.");
+          setTimeout(() => setServerSyncSuccess(""), 4000);
+        }
+      } else if (res.status === 401) {
+        setCases(prevCases);
+        setServerSyncSuccess("⚠️ Admin session expired. Please re-enter passcode.");
+      } else {
+        setCases(prevCases);
+        setServerSyncSuccess(`⚠️ Server rejected delete (Status ${res.status}).`);
+      }
+    } catch (err: any) {
+      setCases(prevCases);
+      setServerSyncSuccess(`❌ Network error while deleting case: ${err?.message || "Check connection"}`);
     } finally {
       setIsSyncingServer(false);
     }
@@ -1307,6 +1359,7 @@ export default function AdminCommandCenter() {
               isSyncingServer={isSyncingServer}
               refreshCasesFromServer={refreshCasesFromServer}
               onPersistAdminCases={persistAdminCases}
+              onDeleteCase={handleDeleteRejectedCase}
               onPreviewCase={(c) => setAdminPreviewCase(c)}
               getLocalTodayIso={getLocalTodayIso}
               subspecialtyTabs={SUBSPECIALTY_TABS}

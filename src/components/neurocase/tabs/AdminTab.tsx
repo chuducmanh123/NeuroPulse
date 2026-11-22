@@ -2,6 +2,18 @@
 
 import React, { useState, useMemo } from "react";
 import {
+  Archive,
+  Ban,
+  Calendar,
+  Eye,
+  Flame,
+  MoreHorizontal,
+  Pencil,
+  RotateCcw,
+  Trash2,
+  X,
+} from "lucide-react";
+import {
   ClinicalCase,
   CaseStatus,
   CaseDifficulty,
@@ -19,6 +31,7 @@ interface AdminTabProps {
   isSyncingServer: boolean;
   refreshCasesFromServer: () => Promise<void>;
   onPersistAdminCases: (nextCases: ClinicalCase[]) => Promise<void>;
+  onDeleteCase?: (caseId: string) => Promise<void>;
   onSetActiveCaseId?: (id: string) => void;
   onPreviewCase: (c: ClinicalCase) => void;
   getLocalTodayIso: () => string;
@@ -34,6 +47,7 @@ export function AdminTab({
   isSyncingServer,
   refreshCasesFromServer,
   onPersistAdminCases,
+  onDeleteCase,
   onSetActiveCaseId,
   onPreviewCase,
   getLocalTodayIso,
@@ -41,6 +55,7 @@ export function AdminTab({
 }: AdminTabProps) {
   const [adminStatusFilter, setAdminStatusFilter] = useState<"pending" | "approved" | "rejected">("pending");
   const [editingCaseId, setEditingCaseId] = useState<string | null>(null);
+  const [openActionMenuId, setOpenActionMenuId] = useState<string | null>(null);
   const [editDraft, setEditDraft] = useState<ClinicalCase | null>(null);
   const [adminScheduleDates, setAdminScheduleDates] = useState<Record<string, string>>({});
 
@@ -428,17 +443,6 @@ export function AdminTab({
               <span>Schedule Timeline</span>
             </button>
 
-            {serverSyncSuccess && (
-              <span
-                className={`text-xs font-bold px-2.5 py-1.5 rounded-lg border animate-fadeIn ${
-                  serverSyncSuccess.startsWith("✓")
-                    ? "text-emerald-500 bg-emerald-500/10 border-emerald-500/30"
-                    : "text-amber-500 bg-amber-500/10 border-amber-500/30"
-                }`}
-              >
-                {serverSyncSuccess}
-              </span>
-            )}
             <button
               type="button"
               onClick={refreshCasesFromServer}
@@ -451,6 +455,25 @@ export function AdminTab({
             </button>
           </div>
         </div>
+
+        {/* Non-shifting floating sync status toast */}
+        {serverSyncSuccess && (
+          <div
+            role="status"
+            aria-live="polite"
+            className={`fixed bottom-5 right-5 z-50 text-xs font-bold px-3.5 py-2.5 rounded-xl border shadow-lg backdrop-blur-md animate-fadeIn ${
+              serverSyncSuccess.startsWith("✓")
+                ? darkMode
+                  ? "text-emerald-300 bg-emerald-950/90 border-emerald-700"
+                  : "text-emerald-700 bg-emerald-50/95 border-emerald-300"
+                : darkMode
+                ? "text-amber-300 bg-amber-950/90 border-amber-700"
+                : "text-amber-800 bg-amber-50/95 border-amber-300"
+            }`}
+          >
+            {serverSyncSuccess}
+          </div>
+        )}
 
         {/* VISUAL 14-DAY DAILY CHALLENGE TIMELINE */}
         {showTimeline && (
@@ -659,101 +682,62 @@ export function AdminTab({
                           : `${theme.cardBorder} ${theme.cardBg}`
                       }`}
                     >
-                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <div className="flex flex-wrap items-center gap-2">
+                      <div className="flex flex-wrap items-start justify-between gap-3 mb-2">
+                        <div className="flex flex-wrap items-center gap-1.5 min-w-0">
                           <span
-                            className={`px-2 py-0.5 rounded text-[10px] font-black uppercase ${
+                            className={`px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wide ${
                               st === "approved"
-                                ? "bg-emerald-600 text-white"
+                                ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30"
                                 : st === "pending"
-                                ? "bg-amber-400 text-slate-950"
+                                ? "bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30"
                                 : st === "needs_revision"
-                                ? "bg-orange-500 text-white"
-                                : "bg-rose-600 text-white"
+                                ? "bg-orange-500/15 text-orange-700 dark:text-orange-300 border border-orange-500/30"
+                                : "bg-rose-500/15 text-rose-700 dark:text-rose-300 border border-rose-500/30"
                             }`}
                           >
                             {st}
                           </span>
-                          <span className="text-xs font-black">{c.case_code}</span>
-                          <span className="text-xs text-slate-400 font-semibold">
+                          <span className="text-xs font-black text-[var(--text-ink)]">{c.case_code}</span>
+                          <span className="text-[11px] text-[var(--text-muted)] font-medium">
                             {c.published_date}
                           </span>
-                          <span className={`text-xs font-bold px-2 py-0.5 rounded border ${theme.badge}`}>
+                          <span className={`text-[11px] font-bold px-2 py-0.5 rounded-md border ${theme.badge}`}>
                             {c.subspecialty}
                           </span>
                           <span
-                            className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
+                            className={`px-2 py-0.5 rounded-md text-[10px] font-bold border ${
                               DIFFICULTY_BADGES[c.difficulty]
                             }`}
                           >
                             {c.difficulty}
                           </span>
                           {st === "approved" && c.is_daily_challenge ? (
-                            <span className="px-2 py-0.5 rounded text-[10px] font-black bg-indigo-600 text-white">
+                            <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#6D28D9]/12 text-[#6D28D9] dark:text-violet-300 border border-[#6D28D9]/25">
                               {dailyChallengeCases[0]?.id === c.id
-                                ? `⭐ Active Daily (${c.published_date})`
+                                ? "★ Active Daily"
                                 : c.published_date > new Date().toISOString().slice(0, 10)
-                                ? `📅 Scheduled Daily (${c.published_date})`
-                                : `🔥 Daily Track (${c.published_date})`}
+                                ? "📅 Scheduled Daily"
+                                : "🔥 Daily Track"}
                             </span>
                           ) : st === "approved" ? (
-                            <span className="px-2 py-0.5 rounded text-[10px] font-black bg-slate-600 text-white">
-                              📚 Case Archive Only
+                            <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-[var(--bg-subtle)] text-[var(--text-muted)] border border-[var(--border-hairline)]">
+                              Archive Only
                             </span>
                           ) : null}
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-1.5">
-                          {(st !== "approved" || c.is_daily_challenge) && (
-                            <button
-                              type="button"
-                              onClick={() => handleAdminUpdateStatus(c.id, "approved", false)}
-                              className="px-2.5 py-1 rounded text-[11px] font-bold bg-emerald-600 text-white hover:bg-emerald-700"
-                              title="Approve and store in Case Archive without placing in Daily Challenge"
-                            >
-                              {st !== "approved"
-                                ? "📚 Approve to Archive"
-                                : "📚 Move to Archive Only"}
-                            </button>
-                          )}
-
-                          <div className="flex items-center gap-1 bg-indigo-500/10 border border-indigo-500/30 rounded px-1.5 py-0.5">
-                            <input
-                              type="date"
-                              aria-label="Select Daily Challenge date"
-                              value={adminScheduleDates[c.id] || c.published_date}
-                              onChange={(e) =>
-                                setAdminScheduleDates((prev) => ({
-                                  ...prev,
-                                  [c.id]: e.target.value,
-                                }))
-                              }
-                              className="text-[11px] font-bold bg-transparent outline-none"
-                            />
-                            <button
-                              type="button"
-                              onClick={() =>
-                                handleAdminUpdateStatus(
-                                  c.id,
-                                  "approved",
-                                  true,
-                                  adminScheduleDates[c.id] || c.published_date
-                                )
-                              }
-                              className="px-2 py-0.5 rounded text-[11px] font-bold bg-indigo-600 text-white hover:bg-indigo-700"
-                              title="Publish or schedule as Daily Challenge on the selected date"
-                            >
-                              🔥 Set Daily Challenge
-                            </button>
-                          </div>
+                        {/* Compact 3-button Action Bar + Popover Menu */}
+                        <div className="flex items-center gap-1.5 shrink-0 relative">
                           <button
                             type="button"
                             onClick={() => setAdminPreviewCase(c)}
-                            className="px-2.5 py-1 rounded text-[11px] font-bold bg-indigo-500/20 text-indigo-400 hover:bg-indigo-500/30 border border-indigo-500/30 flex items-center gap-1 transition-colors"
+                            className="px-2.5 py-1.5 rounded-lg text-[11px] font-semibold border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-secondary)] hover:text-[var(--text-ink)] hover:border-[#6D28D9]/40 flex items-center gap-1.5 transition-colors"
                             title="Preview case in clinical split-screen layout"
                           >
-                            👁️ Preview Case
+                            <Eye className="w-3.5 h-3.5" />
+                            <span>Preview</span>
                           </button>
+
                           <button
                             type="button"
                             onClick={() => {
@@ -764,27 +748,160 @@ export function AdminTab({
                                 handleStartFullEdit(c);
                               }
                             }}
-                            className="px-2.5 py-1 rounded text-[11px] font-bold bg-slate-700 text-white hover:bg-slate-600"
+                            className={`px-2.5 py-1.5 rounded-lg text-[11px] font-semibold flex items-center gap-1.5 transition-colors ${
+                              isEditing
+                                ? "bg-slate-700 text-white hover:bg-slate-600"
+                                : "bg-[#6D28D9]/10 text-[#6D28D9] dark:text-violet-300 border border-[#6D28D9]/25 hover:bg-[#6D28D9]/20"
+                            }`}
                           >
-                            {isEditing ? "✕ Close Editor" : "✏️ Edit Case"}
+                            {isEditing ? (
+                              <>
+                                <X className="w-3.5 h-3.5" />
+                                <span>Close</span>
+                              </>
+                            ) : (
+                              <>
+                                <Pencil className="w-3.5 h-3.5" />
+                                <span>Edit</span>
+                              </>
+                            )}
                           </button>
-                          {st === "approved" && (
+
+                          {st === "rejected" && onDeleteCase && (
                             <button
                               type="button"
-                              onClick={() => handleAdminUpdateStatus(c.id, "pending", false)}
-                              className="px-2.5 py-1 rounded text-[11px] font-bold bg-amber-500/20 text-amber-500 hover:bg-amber-500/30"
+                              onClick={() => {
+                                if (
+                                  window.confirm(
+                                    `Permanently delete ${c.case_code}?\nThis removes the case from the database and prevents it from reappearing.`
+                                  )
+                                ) {
+                                  if (isEditing) {
+                                    setEditingCaseId(null);
+                                    setEditDraft(null);
+                                  }
+                                  setOpenActionMenuId(null);
+                                  onDeleteCase(c.id);
+                                }
+                              }}
+                              className="px-2.5 py-1.5 rounded-lg text-[11px] font-semibold border border-rose-500/30 bg-rose-500/10 text-rose-600 dark:text-rose-400 hover:bg-rose-500/20 flex items-center gap-1.5 transition-colors"
+                              title="Permanently delete rejected case"
                             >
-                              ↩ Move to Pending
+                              <Trash2 className="w-3.5 h-3.5" />
+                              <span>Delete</span>
                             </button>
                           )}
-                          {st !== "rejected" && (
-                            <button
-                              type="button"
-                              onClick={() => handleAdminUpdateStatus(c.id, "rejected", false)}
-                              className="px-2.5 py-1 rounded text-[11px] font-bold bg-rose-600/80 text-white hover:bg-rose-600"
+
+                          <button
+                            type="button"
+                            aria-label="More case actions"
+                            onClick={() =>
+                              setOpenActionMenuId((prev) => (prev === c.id ? null : c.id))
+                            }
+                            className={`p-1.5 rounded-lg border transition-colors ${
+                              openActionMenuId === c.id
+                                ? "border-[#6D28D9] bg-[#6D28D9]/10 text-[#6D28D9]"
+                                : "border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-secondary)] hover:text-[var(--text-ink)]"
+                            }`}
+                          >
+                            <MoreHorizontal className="w-4 h-4" />
+                          </button>
+
+                          {openActionMenuId === c.id && (
+                            <div
+                              className={`absolute right-0 top-full mt-1.5 z-30 w-64 rounded-xl border shadow-xl p-2 space-y-1.5 text-xs ${
+                                darkMode
+                                  ? "bg-slate-900 border-slate-700 text-slate-100"
+                                  : "bg-white border-slate-200 text-slate-800"
+                              }`}
                             >
-                              ✗ Reject
-                            </button>
+                              <div className="p-2 rounded-lg bg-[#6D28D9]/5 border border-[#6D28D9]/20 space-y-1.5">
+                                <span className="text-[10px] font-bold uppercase tracking-wider text-[#6D28D9] dark:text-violet-300 flex items-center gap-1">
+                                  <Calendar className="w-3 h-3" />
+                                  <span>Schedule Daily Challenge</span>
+                                </span>
+                                <div className="flex items-center gap-1.5">
+                                  <input
+                                    type="date"
+                                    aria-label="Select Daily Challenge date"
+                                    value={adminScheduleDates[c.id] || c.published_date}
+                                    onChange={(e) =>
+                                      setAdminScheduleDates((prev) => ({
+                                        ...prev,
+                                        [c.id]: e.target.value,
+                                      }))
+                                    }
+                                    className={`flex-1 min-w-0 px-2 py-1 rounded border text-[11px] font-semibold ${
+                                      darkMode
+                                        ? "bg-slate-950 border-slate-700 text-white"
+                                        : "bg-white border-slate-300 text-slate-900"
+                                    }`}
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      handleAdminUpdateStatus(
+                                        c.id,
+                                        "approved",
+                                        true,
+                                        adminScheduleDates[c.id] || c.published_date
+                                      );
+                                      setOpenActionMenuId(null);
+                                    }}
+                                    className="px-2.5 py-1 rounded bg-[#6D28D9] text-white text-[11px] font-bold hover:bg-[#5B21B6] flex items-center gap-1 shrink-0"
+                                  >
+                                    <Flame className="w-3 h-3" />
+                                    <span>Set</span>
+                                  </button>
+                                </div>
+                              </div>
+
+                              {(st !== "approved" || c.is_daily_challenge) && (
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    handleAdminUpdateStatus(c.id, "approved", false);
+                                    setOpenActionMenuId(null);
+                                  }}
+                                  className="w-full px-2.5 py-1.5 rounded-lg text-left font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10 flex items-center gap-2"
+                                >
+                                  <Archive className="w-3.5 h-3.5" />
+                                  <span>
+                                    {st !== "approved"
+                                      ? "Approve to Archive"
+                                      : "Move to Archive Only"}
+                                  </span>
+                                </button>
+                              )}
+
+                              {st === "approved" && (
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    handleAdminUpdateStatus(c.id, "pending", false);
+                                    setOpenActionMenuId(null);
+                                  }}
+                                  className="w-full px-2.5 py-1.5 rounded-lg text-left font-semibold text-amber-600 dark:text-amber-400 hover:bg-amber-500/10 flex items-center gap-2"
+                                >
+                                  <RotateCcw className="w-3.5 h-3.5" />
+                                  <span>Move to Pending</span>
+                                </button>
+                              )}
+
+                              {st !== "rejected" && (
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    handleAdminUpdateStatus(c.id, "rejected", false);
+                                    setOpenActionMenuId(null);
+                                  }}
+                                  className="w-full px-2.5 py-1.5 rounded-lg text-left font-semibold text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 flex items-center gap-2"
+                                >
+                                  <Ban className="w-3.5 h-3.5" />
+                                  <span>Reject Case</span>
+                                </button>
+                              )}
+                            </div>
                           )}
                         </div>
                       </div>
