@@ -1,5 +1,219 @@
 [
   {
+    "id": "nc-2026-061",
+    "case_code": "NC-2026-061",
+    "title": "Acute Hemiparesis in the Setting of a Persistent Embryonic Vascular Connection",
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-22",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC12551353",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-025-04458-0",
+      "pmcid": "PMC12551353",
+      "pmid": "41131483",
+      "pub_year": "2025"
+    },
+    "presentation": {
+      "demographics": "61-year-old male",
+      "chief_complaint": "Sudden-onset right-sided weakness and speech difficulty",
+      "history_of_present_illness": "A 61-year-old male presented to the emergency department with acute right-sided hemiparesis and speech difficulty starting 6 hours prior to evaluation. He reported a history of poorly controlled essential hypertension and hyperlipidemia. There was no preceding head trauma, severe headache, fever, cardiac palpitations, or recent anticoagulant exposure.",
+      "past_medical_history": "Essential hypertension (10 years), hyperlipidemia",
+      "vitals": {
+        "bp": "162/94 mmHg",
+        "hr": "76 bpm",
+        "rr": "16 /min",
+        "temp": "36.7 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "Neurological examination revealed an NIH Stroke Scale score of 6, characterized by a right central facial weakness, right hemiparesis (muscle strength 3/5 MRC in the right upper and lower extremities), and mild dysarthria. Sensory examination was intact, and extraocular movements were fully preserved.",
+      "key_labs_csf": "Complete blood count, prothrombin time (INR 1.0), activated partial thromboplastin time, serum electrolytes, renal function, and liver enzymes were within normal limits. Blood glucose was 112 mg/dL. Fasting lipid panel demonstrated an elevated LDL cholesterol of 148 mg/dL.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (DWI / SWI)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC12551353)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12551353_fig1.jpg",
+          "pmcid": "PMC12551353",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04458-0",
+          "caption": "( a ) CT reveals an old lesion in the right basal ganglia; ( b ) DWI indicates a slightly high signal in the posterior limb of the left internal capsule; ( c - d ) DSA suggests the PTA (saltzman type III) on the right side (red arrow); ( e ) The second DWI reveals a distinct high signal in the left posterior limb of the left internal capsule; ( f ) The cranial CT at 20 days shows hemorrhage in the left basal ganglia region",
+          "findings_summary": "Diffusion-weighted imaging (DWI) demonstrates hyperintensity in the posterior limb of the left internal capsule consistent with an acute subcortical lacunar infarction. Susceptibility-weighted imaging (SWI) shows sparse punctate microbleeds in the deep basal ganglia."
+        },
+        {
+          "modality": "Digital Subtraction Angiography (DSA)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC12551353)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC12551353_fig2.jpg",
+          "pmcid": "PMC12551353",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04458-0",
+          "caption": "( a-b ) SWI shows multiple CMBs; ( c ) the left underdeveloped AchA originates from the internal carotid artery (red arrow)",
+          "findings_summary": "Catheter angiography demonstrates a persistent trigeminal artery arising from the cavernous segment of the left internal carotid artery and coursing posteriorly to supply the mid-to-upper basilar trunk, associated with hypoplasia of the ipsilateral anterior choroidal artery."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Digital subtraction angiography (DSA) in this patient demonstrates a persistent primitive carotid-basilar vascular connection arising from the cavernous segment of the internal carotid artery. Which of the following is the correct anatomical identity of this persistent embryonic artery?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Persistent hypoglossal artery",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. A persistent hypoglossal artery originates from the cervical internal carotid artery at the C1–C2 level and enters the posterior fossa through an enlarged hypoglossal canal to join the basilar artery, rather than arising from the cavernous segment of the internal carotid artery."
+        },
+        {
+          "id": "B",
+          "text": "Persistent trigeminal artery",
+          "peer_percentage": 70,
+          "rationale": "Correct! A persistent trigeminal artery (PTA) is the most common persistent fetal carotid-basilar anastomosis. It arises from the cavernous segment of the internal carotid artery and connects directly to the mid-to-upper basilar artery. Hemodynamic alterations related to a PTA frequently co-occur with hypoplasia of adjacent vascular structures, such as the anterior choroidal artery."
+        },
+        {
+          "id": "C",
+          "text": "Persistent otic artery",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. A persistent otic artery is an extremely rare primitive vessel that originates from the petrous segment of the internal carotid artery within the carotid canal and traverses the internal auditory canal to join the basilar artery."
+        },
+        {
+          "id": "D",
+          "text": "Persistent proatlantal intersegmental artery",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. A persistent proatlantal intersegmental artery connects the cervical internal or external carotid artery to the vertebral artery near the C1 atlas level, rather than directly connecting the cavernous segment of the internal carotid artery to the basilar trunk."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Acute lacunar infarction associated with a persistent trigeminal artery (PTA) and hypoplastic anterior choroidal artery",
+      "clinical_discussion": "When evaluating persistent embryonic connections between the anterior and posterior cerebral circulations, the anatomical origin and course delineate the specific vascular remnant. The differential diagnosis includes persistent trigeminal, hypoglossal, otic, and proatlantal intersegmental arteries. A persistent hypoglossal artery originates from the cervical internal carotid artery (ICA) at the C1–C2 level and traverses the hypoglossal canal to supply the basilar trunk. The persistent otic artery, an exceedingly rare remnant, arises from the petrous ICA and enters the posterior fossa through the internal acoustic meatus. The persistent proatlantal intersegmental artery connects the distal cervical ICA or external carotid artery to the vertebral artery at the level of the atlas.\n\nIn this patient, digital subtraction angiography (DSA) established the diagnostic inflection point by revealing a persistent trigeminal artery (PTA)—the most common persistent carotid-basilar anastomosis, accounting for approximately 85% of such fetal vascular anomalies. Arising directly from the cavernous segment of the ICA, the PTA extends posteriorly to join the mid-to-upper basilar artery. Brain MRI confirmed an acute subcortical lacunar infarction within the posterior limb of the left internal capsule. The presence of a PTA is frequently associated with dysgenesis or hypoplasia of adjacent vessels, including the anterior choroidal artery (AChA) and posterior communicating artery (PCoA). This altered angioarchitecture alters deep subcortical perfusion mechanics, predisposing perforating arteries to microvascular ischemia under altered hemodynamic shear stress.\n\nManagement was focused on secondary stroke prevention for non-cardioembolic lacunar ischemic stroke in the setting of altered cerebral vascular anatomy. Antithrombotic therapy with aspirin was initiated alongside intensive blood pressure control and high-intensity statin therapy. Surgical or endovascular intervention is generally unwarranted for asymptomatic fetal remnants in the absence of an associated aneurysm or vascular malformation. At 3-month clinical follow-up, the patient exhibited significant functional recovery with complete resolution of dysarthria and residual minor right arm weakness (MRC grade 4+/5).",
+      "teaching_points": [
+        "The persistent trigeminal artery (PTA) is the most prevalent fetal carotid-basilar anastomosis, originating from the cavernous internal carotid artery and connecting to the basilar artery trunk.",
+        "Congenital persistent embryonic anastomoses are often accompanied by dysgenesis or hypoplasia of adjacent native vessels, such as the anterior choroidal artery or posterior communicating artery.",
+        "Diagnostic differentiation of persistent fetal vessels relies on their precise anatomical site of origin (cavernous ICA for PTA, petrous ICA for otic, cervical ICA for hypoglossal and proatlantal) and bony skull base passage."
+      ],
+      "clinical_pitfalls": [
+        "Misassembling cerebral vascular anatomy by misidentifying the site of origin of a persistent fetal carotid-basilar anastomosis on cross-sectional or catheter angiography.",
+        "Attributing stroke symptoms solely to a persistent embryonic vessel without excluding primary intrinsic microvascular disease or associated vascular malformations."
+      ],
+      "related_keywords": [
+        "Persistent trigeminal artery",
+        "Carotid-basilar anastomosis",
+        "Lacunar infarction",
+        "Anterior choroidal artery"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-062",
+    "case_code": "NC-2026-062",
+    "title": "Adult-Onset Progressive Ataxia and Spastic Paraparesis in a Patient with Parental Consanguinity",
+    "subspecialty": "Movement Disorders",
+    "subspecialties": [
+      "Movement Disorders"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-22",
+    "status": "approved",
+    "author_credit": "Therapeutic advances in neurological disorders • PMC13033058",
+    "source_journal": {
+      "name": "Therapeutic advances in neurological disorders",
+      "short_name": "Therapeutic advances in neurological disorders",
+      "doi_url": "https://doi.org/10.1177/17562864261433620",
+      "pmcid": "PMC13033058",
+      "pmid": "41913895",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "48-year-old woman",
+      "chief_complaint": "15-year history of progressive gait unsteadiness and lower extremity stiffness",
+      "history_of_present_illness": "A 48-year-old woman presented with a 15-year history of slowly progressive gait unsteadiness and leg stiffness starting in her early 30s. Over time, her balance deteriorated and her legs became increasingly stiff, requiring a front-wheeled walker for ambulation. She denied dysarthria, dysphagia, diplopia, urinary incontinence, cognitive decline, or sensory loss. Family history was negative for similar neurological conditions, though her parents were double first cousins.",
+      "past_medical_history": "Unremarkable; no prior hospitalizations, surgeries, or chronic systemic illnesses.",
+      "vitals": {
+        "bp": "124/78 mmHg",
+        "hr": "72 bpm",
+        "rr": "14 /min",
+        "temp": "36.6 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "On neurological examination, mental status and cranial nerve function were normal, without nystagmus, saccadic slowing, or dysarthria. Upper extremity tone, strength, and coordination were intact throughout. Lower extremity tone was increased, with spasticity and sustained bilateral ankle clonus. Heel-to-shin testing demonstrated prominent bilateral lower extremity dysmetria and dysdiadochokinesia. Deep tendon reflexes were 2+ in the upper extremities and 3+ at the knees and ankles, with bilateral extensor plantar responses. Gait was severely ataxic and spastic.",
+      "key_labs_csf": "Serum levels of vitamin E, vitamin B12, copper, ceruloplasmin, thyroid-stimulating hormone, phytanic acid, very-long-chain fatty acids, and alpha-fetoprotein were within normal reference ranges. Electromyography and nerve conduction studies demonstrated normal sensory and motor nerve action potential amplitudes and conduction velocities.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (FLAIR)",
+          "sequence_badge": "Figure 1 • Therapeutic advances in neurological disorders (PMC13033058)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13033058_fig1.jpg",
+          "pmcid": "PMC13033058",
+          "doi_url": "https://doi.org/10.1177/17562864261433620",
+          "caption": "Brain MRI. Sagittal (a) and axial (b) Flair sequence demonstrating atrophy of cerebellar vermis and hemispheres.",
+          "findings_summary": "Sagittal and axial FLAIR sequences demonstrate marked isolated atrophy of the cerebellar vermis and hemispheres, with preservation of brainstem volume and supratentorial structures."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following genetic entities is the most likely cause of this patient's clinical presentation?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Spinocerebellar ataxia type 3 (ATXN3 expansion)",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Spinocerebellar ataxia type 3 (SCA3 / Machado-Joseph disease) is an autosomal dominant CAG repeat expansion disorder. Given the absence of affected antecedent generations and documented parental consanguinity, an autosomal recessive pattern of inheritance is far more likely."
+        },
+        {
+          "id": "B",
+          "text": "Friedreich ataxia (FXN GAA expansion)",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Classic Friedreich ataxia is an autosomal recessive condition that typically presents before age 25 with deep tendon hyporeflexia or areflexia, loss of joint position sense, sensory peripheral neuropathy, and extraneurological features such as cardiomyopathy and diabetes. Nerve conduction studies in Friedreich ataxia characteristically show absent or severely reduced sensory nerve action potentials."
+        },
+        {
+          "id": "C",
+          "text": "Autosomal recessive cerebellar ataxia type 1 (SYNE1 mutation)",
+          "peer_percentage": 68,
+          "rationale": "Correct! Autosomal recessive cerebellar ataxia type 1 (ARCA1), caused by mutations in SYNE1 (encoding nesprin-1), typically presents in adulthood with slowly progressive cerebellar ataxia. Although originally described in French-Canadian families as a pure cerebellar syndrome, complex phenotypes featuring spastic paraparesis, hyperreflexia, and extensor plantar responses are well established worldwide. Brain MRI characteristically demonstrates marked isolated cerebellar atrophy without significant brainstem involvement."
+        },
+        {
+          "id": "D",
+          "text": "Spastic paraplegia type 7 (SPG7 mutation)",
+          "peer_percentage": 6,
+          "rationale": "Incorrect. Spastic paraplegia type 7 (SPG7) is an autosomal recessive condition that can manifest with spastic ataxia. However, SPG7 typically features predominant spastic paraparesis, early urinary urge incontinence, optic neuropathy, and progressive external ophthalmoplegia, whereas marked isolated cerebellar atrophy on neuroimaging in the setting of normal nerve conduction studies strongly favors ARCA1 (SYNE1)."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Autosomal recessive cerebellar ataxia type 1 (ARCA1 / SYNE1 mutation)",
+      "clinical_discussion": "Adult-onset progressive spastic-ataxic syndromes present a complex diagnostic challenge spanning genetic, inflammatory, metabolic, and paraneoplastic etiologies. In patients presenting with mixed cerebellar and upper motor neuron signs, the differential diagnosis includes autosomal dominant spinocerebellar ataxias (such as SCA3), late-onset Friedreich ataxia, hereditary spastic paraplegias (particularly SPG7 and SPG11), and acquired metabolic or nutritional neurodegenerative conditions. The presence of parental consanguinity serves as a key clinical indicator of an underlying autosomal recessive genetic etiology.\n\nThe diagnostic inflection point in this patient was the combination of parental consanguinity, normal peripheral nerve conduction studies, and brain MRI findings demonstrating marked, isolated atrophy of the cerebellar vermis and hemispheres with preservation of brainstem and supratentorial structures. Target gene panels or whole-exome sequencing confirmed a pathogenic homozygous variant in the SYNE1 gene, establishing the diagnosis of autosomal recessive cerebellar ataxia type 1 (ARCA1). SYNE1 encodes nesprin-1, a critical structural protein that anchors the neuronal nucleus to the actin cytoskeleton and participates in subcellular organelle positioning. Although initially identified in French-Canadian cohorts as a pure cerebellar ataxia, global phenotypic expansion has highlighted complex presentations incorporating spastic paraparesis, hyperreflexia, and lower motor neuron signs.\n\nManagement of ARCA1 remains supportive and multidisciplinary, focused on optimizing function and symptom control. Physical and occupational therapy are essential to maintain mobility, prevent contractures, and reduce fall risk. Spasticity can be managed with oral agents such as baclofen or tizanidine. Formal genetic counseling should be provided to discuss recurrence risks within the family. Long-term follow-up demonstrates slow disease progression, with patients often maintaining functional upper limb control despite severe lower extremity spastic ataxia.",
+      "teaching_points": [
+        "Autosomal recessive cerebellar ataxia type 1 (ARCA1) is caused by mutations in SYNE1 (encoding nesprin-1) and typically manifests as an adult-onset, slowly progressive cerebellar disorder.",
+        "Although classically described as a pure cerebellar syndrome, SYNE1 mutations frequently produce complex phenotypes featuring spastic paraparesis, hyperreflexia, and extensor plantar responses.",
+        "Parental consanguinity in a patient presenting with adult-onset progressive neurodegenerative symptoms strongly suggests an autosomal recessive inheritance pattern, even in the absence of affected relatives.",
+        "Brain MRI in SYNE1-related ARCA1 characteristically demonstrates marked isolated cerebellar vermian and hemispheric atrophy with relative preservation of brainstem volume."
+      ],
+      "clinical_pitfalls": [
+        "Misattributing adult-onset sporadic ataxia solely to acquired or non-genetic etiologies, failing to evaluate for autosomal recessive conditions unmasked by parental consanguinity.",
+        "Excluding SYNE1-related ARCA1 based on the presence of upper motor neuron signs (spasticity, hyperreflexia, Babinski signs) under the outdated assumption that it is strictly a pure cerebellar syndrome."
+      ],
+      "related_keywords": [
+        "ARCA1",
+        "SYNE1",
+        "Nesprin-1",
+        "Cerebellar ataxia",
+        "Spastic paraparesis"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-059",
     "case_code": "NC-2026-059",
     "title": "Hyperacute Neurologic Deficits and Unexplained Lactic Acidosis",
