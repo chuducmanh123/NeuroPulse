@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { ShieldCheck, X } from "lucide-react";
 
 interface AdminAuthModalProps {
   show: boolean;
@@ -89,8 +90,9 @@ export function AdminAuthModal({ show, onClose, darkMode, onSuccess }: AdminAuth
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between">
-          <span className="text-xs font-black uppercase tracking-wider text-indigo-500">
-            🛡️ ADMIN AUTHENTICATION
+          <span className="text-xs font-black uppercase tracking-wider text-indigo-500 inline-flex items-center gap-1.5">
+            <ShieldCheck className="w-4 h-4" />
+            <span>ADMIN AUTHENTICATION</span>
           </span>
           <button
             type="button"
@@ -98,7 +100,7 @@ export function AdminAuthModal({ show, onClose, darkMode, onSuccess }: AdminAuth
             className="text-xs font-bold text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg"
             aria-label="Close modal"
           >
-            ✕
+            <X className="w-4 h-4" />
           </button>
         </div>
 

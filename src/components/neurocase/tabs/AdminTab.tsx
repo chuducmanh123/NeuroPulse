@@ -5,13 +5,21 @@ import {
   Archive,
   Ban,
   Calendar,
+  CheckCircle2,
+  Clock,
   Eye,
   Flame,
   MoreHorizontal,
   Pencil,
+  RefreshCw,
   RotateCcw,
+  Save,
+  Search,
+  Star,
   Trash2,
+  Upload,
   X,
+  Zap,
 } from "lucide-react";
 import {
   ClinicalCase,
@@ -364,24 +372,28 @@ export function AdminTab({
             {[
               {
                 id: "pending" as const,
-                label: "⏳ Pending Review",
+                label: "Pending Review",
+                icon: Clock,
                 count: pendingCount,
                 activeClass: "bg-amber-500 text-slate-950",
               },
               {
                 id: "approved" as const,
-                label: "✅ Approved & Published",
+                label: "Approved & Published",
+                icon: CheckCircle2,
                 count: approvedCases.length,
                 activeClass: "bg-emerald-600 text-white",
               },
               {
                 id: "rejected" as const,
-                label: "🚫 Rejected",
+                label: "Rejected",
+                icon: Ban,
                 count: rejectedCount,
                 activeClass: "bg-rose-600 text-white",
               },
             ].map((group) => {
               const isSelected = adminStatusFilter === group.id;
+              const GroupIcon = group.icon;
               return (
                 <button
                   key={group.id}
@@ -399,6 +411,7 @@ export function AdminTab({
                       : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                   }`}
                 >
+                  <GroupIcon className="w-3.5 h-3.5 shrink-0" />
                   <span>{group.label}</span>
                   <span
                     className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
@@ -423,7 +436,7 @@ export function AdminTab({
               className="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white flex items-center gap-1.5 shadow-xs transition-all cursor-pointer"
               title="Quickly generate a structured case draft from clinical summary"
             >
-              <span>⚡</span>
+              <Zap className="w-3.5 h-3.5" />
               <span>Quick Case Draft</span>
             </button>
 
@@ -439,7 +452,7 @@ export function AdminTab({
               }`}
               title="Toggle visual 14-day Daily Challenge Scheduler"
             >
-              <span>📅</span>
+              <Calendar className="w-3.5 h-3.5" />
               <span>Schedule Timeline</span>
             </button>
 
@@ -450,7 +463,7 @@ export function AdminTab({
               className="px-3 py-2 rounded-lg text-xs font-black bg-slate-800 text-white hover:bg-slate-700 border border-slate-700 flex items-center gap-1.5 transition-all disabled:opacity-50"
               title="Reload and sync cases with cloud server (/api/neurocase)"
             >
-              <span className={isSyncingServer ? "animate-spin" : ""}>🔄</span>
+              <RefreshCw className={`w-3.5 h-3.5 ${isSyncingServer ? "animate-spin" : ""}`} />
               <span>{isSyncingServer ? "Syncing..." : "Sync from Server"}</span>
             </button>
           </div>
@@ -484,7 +497,7 @@ export function AdminTab({
           >
             <div className="flex items-center justify-between gap-2 mb-3">
               <div className="flex items-center gap-2">
-                <span className="text-base">📅</span>
+                <Calendar className="w-4 h-4 text-indigo-500" />
                 <span className="text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300">
                   Daily Challenge Schedule (Next 14 Days)
                 </span>
@@ -562,7 +575,7 @@ export function AdminTab({
         >
           <div className="flex items-center gap-2 flex-1 max-w-md">
             <div className="relative w-full">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs">🔍</span>
+              <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
               <input
                 type="text"
                 value={searchQuery}
@@ -576,9 +589,10 @@ export function AdminTab({
                 <button
                   type="button"
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs font-bold"
+                  aria-label="Clear search"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 >
-                  ✕
+                  <X className="w-3.5 h-3.5" />
                 </button>
               )}
             </div>
@@ -645,7 +659,7 @@ export function AdminTab({
                     >
                       <p className="text-sm font-bold">
                         {adminStatusFilter === "pending"
-                          ? "🎉 No cases waiting in the Pending Review queue."
+                          ? "No cases waiting in the Pending Review queue."
                           : adminStatusFilter === "approved"
                           ? "No approved cases found."
                           : "No rejected cases."}
@@ -712,12 +726,23 @@ export function AdminTab({
                             {c.difficulty}
                           </span>
                           {st === "approved" && c.is_daily_challenge ? (
-                            <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#6D28D9]/12 text-[#6D28D9] dark:text-violet-300 border border-[#6D28D9]/25">
-                              {dailyChallengeCases[0]?.id === c.id
-                                ? "★ Active Daily"
-                                : c.published_date > new Date().toISOString().slice(0, 10)
-                                ? "📅 Scheduled Daily"
-                                : "🔥 Daily Track"}
+                            <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#6D28D9]/12 text-[#6D28D9] dark:text-violet-300 border border-[#6D28D9]/25 inline-flex items-center gap-1">
+                              {dailyChallengeCases[0]?.id === c.id ? (
+                                <>
+                                  <Star className="w-3 h-3" />
+                                  <span>Active Daily</span>
+                                </>
+                              ) : c.published_date > new Date().toISOString().slice(0, 10) ? (
+                                <>
+                                  <Calendar className="w-3 h-3" />
+                                  <span>Scheduled Daily</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Flame className="w-3 h-3" />
+                                  <span>Daily Track</span>
+                                </>
+                              )}
                             </span>
                           ) : st === "approved" ? (
                             <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-[var(--bg-subtle)] text-[var(--text-muted)] border border-[var(--border-hairline)]">
@@ -1367,7 +1392,8 @@ export function AdminTab({
                                       onClick={() => handleAdminRemoveFigure(fIdx)}
                                       className="text-[11px] font-bold text-rose-500 hover:text-rose-400 hover:underline flex items-center gap-1"
                                     >
-                                      🗑️ Remove Figure {fIdx + 1}
+                                      <Trash2 className="w-3 h-3" />
+                                      <span>Remove Figure {fIdx + 1}</span>
                                     </button>
                                   )}
                                 </div>
@@ -1390,8 +1416,9 @@ export function AdminTab({
                                     </div>
 
                                     <div>
-                                      <label className="block text-[10px] font-bold text-slate-400 mb-1">
-                                        📁 Upload / Replace from Computer:
+                                      <label className="flex items-center gap-1 text-[10px] font-bold text-slate-400 mb-1">
+                                        <Upload className="w-3 h-3" />
+                                        <span>Upload / Replace from Computer:</span>
                                       </label>
                                       <input
                                         type="file"
@@ -1783,9 +1810,10 @@ export function AdminTab({
                             <button
                               type="button"
                               onClick={() => handleSaveAdminEdit(c.id)}
-                              className="px-5 py-2 rounded-lg text-xs font-black bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm"
+                              className="px-5 py-2 rounded-lg text-xs font-black bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm inline-flex items-center gap-1.5"
                             >
-                              💾 Save All Case Changes
+                              <Save className="w-3.5 h-3.5" />
+                              <span>Save All Case Changes</span>
                             </button>
                           </div>
                         </div>
@@ -1813,7 +1841,7 @@ export function AdminTab({
                 >
                   <div className="flex items-center justify-between pb-2 border-b dark:border-slate-800">
                     <div className="flex items-center gap-2">
-                      <span className="text-xl">⚡</span>
+                      <Zap className="w-4 h-4 text-amber-500" />
                       <div>
                         <h4 className="text-xs font-black uppercase tracking-wide">Quick Case Draft Generator</h4>
                         <p className="text-[11px] text-slate-400">Generate structured Clinical Case draft directly into Pending queue</p>
@@ -1822,9 +1850,10 @@ export function AdminTab({
                     <button
                       type="button"
                       onClick={() => setShowAiDraftModal(false)}
-                      className="text-slate-400 hover:text-white text-xs font-bold"
+                      aria-label="Close modal"
+                      className="text-slate-400 hover:text-white p-1"
                     >
-                      ✕
+                      <X className="w-4 h-4" />
                     </button>
                   </div>
 
@@ -1903,7 +1932,7 @@ export function AdminTab({
                         </>
                       ) : (
                         <>
-                          <span>⚡</span>
+                          <Zap className="w-3.5 h-3.5" />
                           <span>Generate Case Draft</span>
                         </>
                       )}

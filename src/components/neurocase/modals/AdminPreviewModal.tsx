@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { AlertTriangle, Archive, Flame, Lightbulb, Pencil, X } from "lucide-react";
 import { ClinicalCase, CaseDifficulty } from "@/types/clinicalCase";
 import { NeuroImagingViewer } from "@/components/neurocase/NeuroImagingViewer";
 
@@ -75,17 +76,18 @@ export function AdminPreviewModal({
                 onClose();
                 onStartFullEdit(caseToEdit);
               }}
-              className="px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 flex items-center gap-1 transition-colors"
+              className="px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 flex items-center gap-1.5 transition-colors"
             >
-              <span>✏️</span>
+              <Pencil className="w-3.5 h-3.5" />
               <span>Edit Full Case</span>
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="px-3 py-1.5 rounded-lg text-xs font-black bg-rose-600 text-white hover:bg-rose-700 transition-colors"
+              className="px-3 py-1.5 rounded-lg text-xs font-black bg-rose-600 text-white hover:bg-rose-700 flex items-center gap-1 transition-colors"
             >
-              ✕ Close Preview
+              <X className="w-3.5 h-3.5" />
+              <span>Close Preview</span>
             </button>
           </div>
         </div>
@@ -212,7 +214,10 @@ export function AdminPreviewModal({
                 darkMode ? "bg-indigo-950/20 border-indigo-900/50" : "bg-indigo-50 border-indigo-200"
               }`}
             >
-              <span className="font-bold text-indigo-500 block">💡 High-Yield Teaching Points:</span>
+              <span className="font-bold text-indigo-500 flex items-center gap-1.5">
+                <Lightbulb className="w-3.5 h-3.5" />
+                <span>High-Yield Teaching Points:</span>
+              </span>
               <ul className="space-y-1">
                 {adminPreviewCase.resolution.teaching_points.map((pt, i) => (
                   <li key={i} className="flex items-start gap-1.5">
@@ -227,7 +232,10 @@ export function AdminPreviewModal({
                 darkMode ? "bg-rose-950/20 border-rose-900/50" : "bg-rose-50 border-rose-200"
               }`}
             >
-              <span className="font-bold text-rose-500 block">⚠️ Clinical Pitfalls:</span>
+              <span className="font-bold text-rose-500 flex items-center gap-1.5">
+                <AlertTriangle className="w-3.5 h-3.5" />
+                <span>Clinical Pitfalls:</span>
+              </span>
               <ul className="space-y-1">
                 {adminPreviewCase.resolution.clinical_pitfalls.map((pf, i) => (
                   <li key={i} className="flex items-start gap-1.5">
@@ -268,9 +276,10 @@ export function AdminPreviewModal({
                   onAdminUpdateStatus(adminPreviewCase.id, "approved", false);
                   onClose();
                 }}
-                className="px-3.5 py-2 rounded-xl text-xs font-black bg-emerald-600 text-white hover:bg-emerald-700"
+                className="px-3.5 py-2 rounded-xl text-xs font-black bg-emerald-600 text-white hover:bg-emerald-700 inline-flex items-center gap-1.5"
               >
-                📚 Approve to Case Archive
+                <Archive className="w-3.5 h-3.5" />
+                <span>Approve to Case Archive</span>
               </button>
             )}
             <button
@@ -284,9 +293,10 @@ export function AdminPreviewModal({
                 );
                 onClose();
               }}
-              className="px-3.5 py-2 rounded-xl text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700"
+              className="px-3.5 py-2 rounded-xl text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700 inline-flex items-center gap-1.5"
             >
-              🔥 Publish as Daily Challenge ({adminScheduleDates[adminPreviewCase.id] || adminPreviewCase.published_date})
+              <Flame className="w-3.5 h-3.5" />
+              <span>Publish as Daily Challenge ({adminScheduleDates[adminPreviewCase.id] || adminPreviewCase.published_date})</span>
             </button>
           </div>
 
