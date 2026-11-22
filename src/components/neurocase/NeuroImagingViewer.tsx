@@ -22,16 +22,13 @@ export function NeuroImagingViewer({
     setZoomIndex(null);
   }, [imagingList]);
 
-  if (!imagingList || imagingList.length === 0) return null;
-  const firstUnlockedIdx = imagingList.findIndex(
+  const visibleImaging = (imagingList || []).filter(
     (img) => img.reveal_timing !== "after" || isSolved
   );
-  const hasUnlockedFigure = firstUnlockedIdx !== -1;
+  if (visibleImaging.length === 0) return null;
+
   const zoomedImg =
-    zoomIndex !== null &&
-    (imagingList[zoomIndex]?.reveal_timing !== "after" || isSolved)
-      ? imagingList[zoomIndex]
-      : null;
+    zoomIndex !== null ? visibleImaging[zoomIndex] ?? null : null;
 
   return (
     <div className="rounded-2xl border border-slate-800 bg-[#0D111A] text-white overflow-hidden">
@@ -39,64 +36,40 @@ export function NeuroImagingViewer({
       <div className="px-4 py-2.5 bg-[#0D111A] border-b border-slate-800 flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <span className="text-[10.5px] font-bold uppercase tracking-wider text-slate-300">
-            {imagingList.length > 1
-              ? `${imagingList.length} Clinical Figures`
-              : hasUnlockedFigure
-              ? imagingList[0].modality || "Clinical & Imaging"
-              : "Clinical & Imaging (Post-Answer Reveal)"}
+            {visibleImaging.length > 1
+              ? `${visibleImaging.length} Clinical Figures`
+              : visibleImaging[0].modality || "Clinical & Imaging"}
           </span>
-          {isSolved && imagingList[0].pmcid && (
+          {isSolved && visibleImaging[0].pmcid && (
             <a
               href={
-                imagingList[0].doi_url ||
-                `https://pmc.ncbi.nlm.nih.gov/articles/${imagingList[0].pmcid}/`
+                visibleImaging[0].doi_url ||
+                `https://pmc.ncbi.nlm.nih.gov/articles/${visibleImaging[0].pmcid}/`
               }
               target="_blank"
               rel="noopener noreferrer"
               className="text-[11px] font-bold text-indigo-300 hover:text-indigo-200 underline"
             >
-              Source: {imagingList[0].pmcid} ↗
+              Source: {visibleImaging[0].pmcid} ↗
             </a>
           )}
         </div>
 
         <div className="flex items-center gap-2">
-          {hasUnlockedFigure && (
-            <button
-              type="button"
-              onClick={() => setZoomIndex(firstUnlockedIdx)}
-              className="px-2.5 py-1 rounded-lg text-[10.5px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition-colors"
-            >
-              🔍 Enlarge
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => setZoomIndex(0)}
+            className="px-2.5 py-1 rounded-lg text-[10.5px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition-colors"
+          >
+            🔍 Enlarge
+          </button>
         </div>
       </div>
 
       {/* Stacked / Multi-Panel Clinical & Imaging Figures with Captions Directly Underneath */}
       <div className="p-3 bg-black space-y-3">
-        {imagingList.map((img, idx) => {
-          const isLockedUntilSolved = img.reveal_timing === "after" && !isSolved;
+        {visibleImaging.map((img, idx) => {
           const isCaptionRevealed = isSolved || Boolean(revealedCaptions[idx]);
-
-          if (isLockedUntilSolved) {
-            return (
-              <div
-                key={idx}
-                className="rounded-xl bg-[#0D111A] border border-dashed border-slate-700/90 min-h-[220px] sm:min-h-[260px] flex flex-col items-center justify-center p-6 text-center space-y-2.5"
-              >
-                <div className="w-11 h-11 rounded-full bg-indigo-500/15 border border-indigo-400/30 flex items-center justify-center text-lg">
-                  🔒
-                </div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-300">
-                  {img.figure_label || (imagingList.length > 1 ? `Figure ${idx + 1}` : "Clinical & Imaging")}
-                </span>
-                <p className="text-xs font-medium text-slate-300 max-w-xs leading-relaxed">
-                  Imaging &amp; findings will be revealed after you select the correct answer.
-                </p>
-              </div>
-            );
-          }
 
           return (
             <div
@@ -125,7 +98,7 @@ export function NeuroImagingViewer({
                   <div className="flex items-center justify-between gap-2 flex-wrap">
                     <div className="flex items-center gap-2">
                       <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-300">
-                        {img.figure_label || (imagingList.length > 1 ? `Figure ${idx + 1}` : "Figure")}
+                        {img.figure_label || (visibleImaging.length > 1 ? `Figure ${idx + 1}` : "Figure")}
                       </span>
                       {img.modality && (
                         <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">
@@ -188,24 +161,21 @@ export function NeuroImagingViewer({
                 <span className="text-sm font-bold text-white">{zoomedImg.modality}</span>
               </div>
               <div className="flex items-center gap-2">
-                {imagingList.length > 1 &&
-                  imagingList.map((item, i) => {
-                    if (item.reveal_timing === "after" && !isSolved) return null;
-                    return (
-                      <button
-                        key={i}
-                        type="button"
-                        onClick={() => setZoomIndex(i)}
-                        className={`px-2.5 py-1 rounded text-xs font-bold ${
-                          zoomIndex === i
-                            ? "bg-indigo-600 text-white"
-                            : "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                        }`}
-                      >
-                        {item.figure_label || `Fig ${i + 1}`}
-                      </button>
-                    );
-                  })}
+                {visibleImaging.length > 1 &&
+                  visibleImaging.map((item, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => setZoomIndex(i)}
+                      className={`px-2.5 py-1 rounded text-xs font-bold ${
+                        zoomIndex === i
+                          ? "bg-indigo-600 text-white"
+                          : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                      }`}
+                    >
+                      {item.figure_label || `Fig ${i + 1}`}
+                    </button>
+                  ))}
                 <button
                   type="button"
                   onClick={() => setZoomIndex(null)}
