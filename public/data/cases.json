@@ -1,5 +1,223 @@
 [
   {
+    "id": "nc-2026-063",
+    "case_code": "NC-2026-063",
+    "title": "Subacute Ataxia and Lethargy in a Young Male Following an Upper Respiratory Tract Illness",
+    "subspecialty": "Neuroimmunology",
+    "subspecialties": [
+      "Neuroimmunology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-23",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13188800",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04861-1",
+      "pmcid": "PMC13188800",
+      "pmid": "41942904",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "22-year-old male",
+      "chief_complaint": "Inability to stand or walk, slurred speech, and blurred vision.",
+      "history_of_present_illness": "Approximately 2 weeks after experiencing a mild upper respiratory tract illness, the patient developed acute vertigo, nausea, vomiting, blurred vision, and slurred speech. His symptoms rapidly progressed over several days to severe motor incoordination, rendering him unable to stand or walk unassisted. Brain MRI performed at a local community hospital was unremarkable, and empiric supportive therapy yielded no improvement, prompting transfer for tertiary neurological evaluation.",
+      "past_medical_history": "Unremarkable. No prior neurological, psychiatric, or autoimmune disease.",
+      "vitals": {
+        "bp": "122/76 mmHg",
+        "hr": "74 bpm",
+        "rr": "16 /min",
+        "temp": "38.0 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "On arrival, the patient was conscious but visibly lethargic, with moderate scanning dysarthria. Orientation to person, place, and time was intact, and basic bedside cognitive testing was preserved. Cranial nerve examination revealed prominent bilateral horizontal and vertical nystagmus. Motor strength was 5/5 in all extremities, but motor coordination was severely impaired. Bilateral finger-to-nose testing showed marked dysmetria and intention tremor; heel-to-shin testing demonstrated decomposition of movement and terminal tremor. Light touch and vibration sensation were intact. Tendon reflexes were brisk (3+) bilaterally, with a positive Babinski sign on the left and bilateral patellar and ankle clonus. Truncal ataxia was severe; he was unable to stand or walk independently, exhibiting a broad-based, lurching gait when supported.",
+      "key_labs_csf": "Initial complete blood count and basic metabolic panel were normal. Lumbar puncture revealed an opening pressure of 14 cmH2O (reference range, 6–20 cmH2O), clear fluid, white blood cell count 6/µL (90% lymphocytes), red blood cell count 0/µL, glucose 68 mg/dL (3.8 mmol/L), and protein 38 mg/dL (0.38 g/L).",
+      "imaging": [
+        {
+          "modality": "Electroencephalography (EEG)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13188800)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13188800_fig1.jpg",
+          "pmcid": "PMC13188800",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04861-1",
+          "caption": "Electroencephalogram of the patient. An 8-hour electroencephalogram, recorded with 16 leads, revealed irregular slow θ- and δ-waves during the waking period. The dashed arrows point to δ waves, and the solid arrows point to θ waves",
+          "findings_summary": "16-lead continuous trace demonstrating background slowing with diffuse, irregular theta and delta wave activity during the awake state without epileptiform discharges."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely underlying diagnosis for this patient's clinical presentation?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Miller Fisher syndrome",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Miller Fisher syndrome classically presents with the peripheral triad of ophthalmoplegia, ataxia, and areflexia (or hyporeflexia). In contrast, this patient demonstrates clear central upper motor neuron signs (hyperreflexia, clonus, and a Babinski sign) along with lethargy and diffuse EEG slowing, pointing directly to central nervous system pathology."
+        },
+        {
+          "id": "B",
+          "text": "Acute disseminated encephalomyelitis (ADEM)",
+          "peer_percentage": 16,
+          "rationale": "Incorrect. Acute disseminated encephalomyelitis (ADEM) typically presents post-virally with encephalopathy and multifocal neurological deficits; however, neuroimaging characteristically demonstrates extensive, poorly demarcated hyperintense T2/FLAIR lesions in the subcortical white matter and deep gray nuclei. A normal brain MRI renders ADEM highly improbable."
+        },
+        {
+          "id": "C",
+          "text": "Anti-GAD65 antibody-associated cerebellar ataxia",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Anti-GAD65 antibody-associated autoimmune cerebellar ataxia typically follows a subacute-to-chronic progressive course without acute post-infectious onset, initial lethargy, or diffuse cerebral slowing on EEG, and is frequently accompanied by high-titer anti-GAD antibodies and coexisting autoimmune endocrinopathies such as type 1 diabetes."
+        },
+        {
+          "id": "D",
+          "text": "Anti-NMDAR encephalitis",
+          "peer_percentage": 64,
+          "rationale": "Correct! Anti-N-methyl-D-aspartate receptor (anti-NMDAR) encephalitis classically presents with psychiatric symptoms, movement disorders, seizures, and autonomic instability. However, cerebellar ataxia occurs as the initial or predominant symptom in approximately 5% of cases. The GluN1 subunit of the NMDA receptor is densely expressed on cerebellar granule cells, which supply excitatory parallel-fiber input to Purkinje neurons; antibody-mediated receptor internalization impairs this excitatory input, precipitating severe cerebellar ataxia even in the absence of structural neuroimaging abnormalities."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Anti-N-methyl-D-aspartate receptor (anti-NMDAR) encephalitis presenting with atypical initial cerebellar ataxia",
+      "clinical_discussion": "The differential diagnosis for subacute post-infectious cerebellar ataxia accompanied by central upper motor neuron signs includes acute post-infectious cerebellitis, acute disseminated encephalomyelitis (ADEM), autoimmune cerebellar ataxia (such as anti-GAD65 antibody syndrome or paraneoplastic cerebellar degeneration), and atypical presentations of autoimmune encephalitis. Miller Fisher syndrome was excluded by the presence of upper motor neuron signs (hyperreflexia, clonus, and a left Babinski sign), encephalopathy (lethargy and diffuse slowing on EEG), and the absence of peripheral areflexia. The lack of white matter or brainstem signal abnormalities on MRI rendered ADEM and acute cerebellitis improbable, while normal routine CSF parameters and negative systemic tumor screening argued against structural infectious or paraneoplastic processes.\n\nThe critical clinical inflection point was recognizing that anti-NMDAR encephalitis can present as an isolated or predominant cerebellar syndrome without early psychiatric symptoms, movement disorders, or autonomic instability. Definitive diagnosis was established when CSF testing via cell-based assay returned positive for anti-NMDAR IgG antibodies targeting the extracellular domain of the GluN1 subunit. Pathophysiologically, although mature cerebellar Purkinje cells lack functional NMDA receptors, GluN1 subunits are densely concentrated on cerebellar granule cells. These granule cells supply crucial excitatory parallel-fiber input to Purkinje neurons; antibody-mediated receptor internalization impairs this excitatory neurotransmission, leading to profound functional cerebellar output disruption without structural tissue breakdown on neuroimaging.\n\nFollowing diagnostic confirmation, the patient received combined first-line immunotherapy with high-dose intravenous methylprednisolone (1 g daily for 5 days) and intravenous immunoglobulin (IVIG, 2 g/kg total dose over 5 days), alongside early escalation to second-line therapy with rituximab. Coupled with structured inpatient physical and occupational rehabilitation, early immunomodulation yielded progressive alleviation of lethargy, dysarthria, and gait instability, leading to independent ambulation and sustained motor recovery at 6-month follow-up.",
+      "teaching_points": [
+        "Anti-NMDAR encephalitis can present atypically with isolated or predominant cerebellar ataxia in up to 5% of cases, occurring without early psychiatric or dysautonomic features.",
+        "Cerebellar dysfunction in anti-NMDAR encephalitis results from antibody-mediated internalization of GluN1 subunits on cerebellar granule cells, disrupting excitatory parallel-fiber input to Purkinje neurons.",
+        "A normal brain MRI does not rule out anti-NMDAR encephalitis; background electroencephalographic slowing can provide a vital clue to underlying central nervous system dysfunction.",
+        "Early initiation of combined first-line immunotherapy (corticosteroids and IVIG) and prompt escalation to second-line agents (rituximab) optimize long-term neurological outcomes."
+      ],
+      "clinical_pitfalls": [
+        "Misdiagnosing central post-infectious ataxia as Miller Fisher syndrome by failing to recognize central upper motor neuron signs such as hyperreflexia, clonus, and Babinski sign.",
+        "Delaying lumbar puncture and autoantibody panel testing because classic psychiatric features, movement disorders, or seizures are absent.",
+        "Ruling out autoimmune encephalitis prematurely on the basis of a normal brain MRI and non-inflammatory routine CSF parameters."
+      ],
+      "related_keywords": [
+        "anti-NMDAR encephalitis",
+        "GluN1 subunit",
+        "granule cell dysfunction",
+        "autoimmune cerebellar ataxia",
+        "rituximab"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-064",
+    "case_code": "NC-2026-064",
+    "title": "Subacute Quadriparesis and Severe Sensory Ataxia in an Elderly Patient",
+    "subspecialty": "Neuromuscular",
+    "subspecialties": [
+      "Neuromuscular"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-23",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13134219",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04841-5",
+      "pmcid": "PMC13134219",
+      "pmid": "41872827",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "76-year-old male",
+      "chief_complaint": "Subacute quadriparesis, foot numbness, and severe sensory ataxia",
+      "history_of_present_illness": "A 76-year-old male presented with a 2-month history of progressive weakness involving the right upper extremity and both lower extremities, accompanied by distal lower-extremity numbness and severe gait unsteadiness over the preceding 3 weeks. He described a pronounced sensation of 'walking on cotton.' Empirical supplementation with oral neurotrophic vitamins at an outside clinic produced no clinical improvement; although right upper-extremity strength partially recovered, bilateral lower-extremity weakness and gait instability persisted and progressed.",
+      "past_medical_history": "Hypertension, localized rectal adenocarcinoma status post curative surgical resection 5 years prior",
+      "vitals": {
+        "bp": "134/82 mmHg",
+        "hr": "74 bpm",
+        "rr": "16 /min",
+        "temp": "36.6 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "On neurological examination, cranial nerve function was intact. Muscle strength was 4+/5 in the bilateral upper extremities and 4/5 in the bilateral lower extremities. Deep tendon reflexes were absent at the biceps and patellae bilaterally, with preserved Achilles reflexes. Sensory examination revealed markedly reduced vibration perception at the toes and impaired distal joint position sense, alongside sole hyperalgesia. Gait was severely ataxic with a positive Romberg sign. No resting, postural, or action tremor was observed.",
+      "key_labs_csf": "Electrodiagnostic testing (EMG/NCS) demonstrated a generalized sensorimotor polyradiculoneuropathy across all four limbs with combined demyelinating and axonal features, featuring gastrocnemius sparing. Cerebrospinal fluid (CSF) analysis revealed prominent cytoalbuminologic dissociation, with a protein elevation of 1.85 g/L (reference range: 0.15–0.45 g/L) and a nucleated cell count of 3 cells/µL.",
+      "imaging": [
+        {
+          "modality": "3T Brachial and Lumbosacral Plexus MRI",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13134219)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13134219_fig1.jpg",
+          "pmcid": "PMC13134219",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04841-5",
+          "caption": "Brachial Plexus + lumbosacral plexus MRI (3T): Abbreviations: MRI: Magnetic Resonance Imaging; T1: T1-weighted imaging; T2: T2-weighted imaging; A1-3: The bilateral brachial plexus courses are normal, with no significant abnormal signal intensity noted along its trajectory; no abnormal changes are observed on fat-suppressed T2-weighted imaging; Notes: B1-3: Imaging on T2 (B1-2) and T1 (B3) sequences revealed no significant abnormalities of the lumbosacral plexus, with findings of disc bulging at L3/4, L4/5, and L5/S1 levels, subcutaneous fasciitis in the lumbosacral region, and degenerative ch",
+          "findings_summary": "Normal course, caliber, and signal intensity of the bilateral brachial and lumbosacral nerve roots and plexuses, with no evidence of nerve root hypertrophy or abnormal fat-suppressed T2 hyperintensity."
+        },
+        {
+          "modality": "Brain MRI with DWI and MRA",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13134219)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13134219_fig2.jpg",
+          "pmcid": "PMC13134219",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04841-5",
+          "caption": "Cranial brain scan + DWI + MRA : Abbreviations: T1: T1-weighted imaging; T2: T2-weighted imaging; DWI: Diffusion-Weighted Imaging; MRA: Magnetic Resonance Angiography; Imaging Diagnosis: Multiple demyelinating changes in the white matter of bilateral frontal and parietal lobes; age-related brain changes",
+          "findings_summary": "Mild, scattered white matter hyperintensities in the bilateral frontal and parietal periventricular regions consistent with chronic microvascular ischemic changes; no acute diffusion restriction or intracranial arterial stenosis."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis in this patient?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Anti-neurofascin-155 (NF155) autoimmune nodopathy",
+          "peer_percentage": 72,
+          "rationale": "Correct! Anti-neurofascin-155 (NF155) autoimmune nodopathy is an autoantibody-mediated peripheral neuropathy targeting the nodes and paranodes of Ranvier. It classically presents with subacute-to-chronic severe sensory ataxia, profound cytoalbuminologic dissociation in the CSF, electrophysiological features of demyelinating polyradiculoneuropathy, and refractoriness to standard intravenous immunoglobulin (IVIG) therapy. Although classic cases present in younger adults with hypertrophic nerve roots on plexus MRI, atypical presentations in elderly patients can lack root hypertrophy and present with normal plexus neuroimaging."
+        },
+        {
+          "id": "B",
+          "text": "Classic chronic inflammatory demyelinating polyradiculoneuropathy (CIDP)",
+          "peer_percentage": 18,
+          "rationale": "Incorrect. Classic CIDP is a macrophage-mediated demyelinating polyneuropathy that typically exhibits robust clinical responses to IVIG, plasma exchange, or corticosteroids. Autoimmune nodopathies targeting paranodal proteins such as NF155 are pathologically distinct from classic CIDP, lacking macrophage-mediated demyelination and complement activation, and are characteristically refractory to IVIG, requiring targeted B-cell depletion."
+        },
+        {
+          "id": "C",
+          "text": "Anti-myelin-associated glycoprotein (MAG) neuropathy",
+          "peer_percentage": 6,
+          "rationale": "Incorrect. Anti-MAG neuropathy is an indolent, slowly progressive sensory-predominant polyneuropathy typically seen in older men, associated with an IgM monoclonal gammopathy of undetermined significance (MGUS). It characteristically presents with distal symmetric sensory ataxia and markedly prolonged distal motor latencies, rather than subacute motor quadriparesis and severe high CSF protein elevation in the g/L range."
+        },
+        {
+          "id": "D",
+          "text": "Hereditary neuropathy with liability to pressure palsies (HNPP)",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. HNPP is an autosomal dominant neuropathy caused by a heterozygous deletion of the PMP22 gene. It manifests as recurrent, self-limiting, painless focal compression neuropathies (e.g., peroneal nerve palsy, carpal tunnel syndrome) precipitated by minor mechanical trauma or compression, rather than subacute generalized sensorimotor quadriparesis with severe CSF protein elevation."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Anti-neurofascin-155 (NF155) antibody-positive autoimmune nodopathy",
+      "clinical_discussion": "The differential diagnosis for subacute, progressive sensorimotor polyradiculoneuropathy accompanied by severe sensory ataxia and high CSF protein includes chronic inflammatory demyelinating polyradiculoneuropathy (CIDP), autoimmune nodopathy, anti-myelin-associated glycoprotein (MAG) neuropathy, and paraneoplastic or paraproteinemic neuropathies. Although the presentation resembles classic CIDP, several features warrant suspicion for an autoimmune nodopathy. Classic CIDP typically responds well to first-line immunotherapies such as intravenous immunoglobulin (IVIG) or plasma exchange. Conversely, anti-MAG neuropathy typically manifests as an indolent, distal symmetric sensory neuropathy associated with IgM monoclonal gammopathy. Hereditary neuropathy with liability to pressure palsies (HNPP) presents with recurrent focal nerve compression palsies, which is inconsistent with subacute quadriparesis.\n\nThe diagnostic inflection point in this case was confirmed by serum cell-based autoantibody testing, which identified high-titer anti-neurofascin-155 (NF155) IgG4 antibodies. Autoimmune nodopathies, formalized in the 2021 European Academy of Neurology/Peripheral Nerve Society guidelines, are distinct from classic macrophage-mediated demyelinating CIDP. Pathogenically, IgG4 anti-NF155 antibodies target the septate-like junctions at the paranode of Ranvier, detaching the terminal loops of myelin from the axolemma without activating classic complement pathways or inciting macrophage infiltration. This structural disruption causes impulse conduction failure and profound CSF protein elevation. While younger patients frequently exhibit marked nerve root hypertrophy on plexus MRI, elderly patients can present atypically with completely normal plexus imaging, rendering autoantibody serology essential for accurate diagnosis.\n\nBecause IgG4 antibodies do not trigger complement activation or macrophage recruitment, patients with anti-NF155 nodopathy are characteristically refractory to standard IVIG therapy and corticosteroids. Definitive management requires targeted B-cell depletion strategies to eliminate antibody-producing plasma precursor cells. Initiation of rituximab (or emerging targeted therapies such as dual BLyS/APRIL inhibitors) leads to rapid clearance of circulating anti-NF155 titers, accompanied by substantial functional recovery, reversal of quadriparesis, and stabilization of sensory ataxia.",
+      "teaching_points": [
+        "Autoimmune nodopathies are pathologically distinct from classic CIDP and are driven by pathogenic autoantibodies (e.g., IgG4 anti-NF155, anti-CNTN1, anti-CASPR1) targeting nodal and paranodal cell-adhesion proteins.",
+        "Anti-NF155 nodopathy presents with severe sensory ataxia, marked CSF cytoalbuminologic dissociation, electrophysiological demyelination, and characteristic refractoriness to standard IVIG therapy.",
+        "Although nerve root hypertrophy on plexus MRI is common in younger individuals, plexus neuroimaging may be completely normal in elderly patients, necessitating serum cell-based autoantibody testing.",
+        "B-cell-depleting therapies (e.g., rituximab) or plasma-cell-directed agents are the definitive treatment of choice, inducing clinical recovery where IVIG fails."
+      ],
+      "clinical_pitfalls": [
+        "Misdiagnosing anti-NF155 nodopathy as classic CIDP and escalating IVIG treatment despite lack of response, delaying effective B-cell-depleting therapy.",
+        "Excluding autoimmune nodopathy in elderly patients based on normal brachial and lumbosacral plexus MRI findings.",
+        "Attributing profound sensory ataxia and CSF cytoalbuminologic dissociation in an elderly patient to microvascular brain changes or age-related peripheral neuropathy."
+      ],
+      "related_keywords": [
+        "Autoimmune nodopathy",
+        "Neurofascin-155",
+        "CIDP mimic",
+        "Sensory ataxia",
+        "Rituximab"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-061",
     "case_code": "NC-2026-061",
     "title": "Acute Hemiparesis in the Setting of a Persistent Embryonic Vascular Connection",
