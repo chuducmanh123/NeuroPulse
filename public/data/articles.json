@@ -9,9 +9,9 @@
       "badge_text": "#DC2626"
     },
     "pub_date": "2026-11-23T00:00:00Z",
-    "article_type": "Review",
+    "article_type": "Original Article",
     "article_types": [
-      "Review"
+      "Original Article"
     ],
     "authors": [
       "Vollert Jan",
@@ -47,9 +47,9 @@
       "badge_text": "#E11D48"
     },
     "pub_date": "2026-11-23T00:00:00Z",
-    "article_type": "Case Report",
+    "article_type": "Original Article",
     "article_types": [
-      "Case Report"
+      "Original Article"
     ],
     "authors": [
       "Cogswell Petrice M.",
@@ -597,9 +597,10 @@
       "badge_text": "#991B1B"
     },
     "pub_date": "2026-11-23T00:00:00Z",
-    "article_type": "Original Article",
+    "article_type": "Guideline",
     "article_types": [
-      "Original Article"
+      "Guideline",
+      "Review"
     ],
     "authors": [
       "Aparicio Hugo J.",
@@ -15866,41 +15867,6 @@
     }
   },
   {
-    "id": "10.1016/s1474-4422(26)00362-5",
-    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease.",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-11-01T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Horisawa S",
-      "Taira T."
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00362-5",
-    "neurology_classification": {
-      "subspecialty": "Movement Disorders",
-      "subspecialties": [
-        "Movement Disorders"
-      ],
-      "topics": [
-        "Parkinson"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
-    }
-  },
-  {
     "id": "10.1001/jama.2026.15496",
     "title": "Tenecteplase Before Thrombectomy at 4.5 to 24 Hours for Basilar Artery Occlusion: The ATTENTION LATE Randomized Clinical Trial.",
     "journal": {
@@ -21166,6 +21132,41 @@
     "article_types": [
       "Case Report"
     ]
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00362-5",
+    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-10-14T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Horisawa Shiro",
+      "Taira Takaomi"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00362-5",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
   },
   {
     "id": "10.1016/s1474-4422(26)00354-6",
@@ -32821,21 +32822,22 @@
       "badge_text": "#991B1B"
     },
     "pub_date": "2006-02-09T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Cronin S."
     ],
     "doi_url": "https://doi.org/10.1161/01.str.0000204241.18818.3e",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Other"
+        "Stroke"
       ],
       "topics": [
-        "Neurology"
+        "Stroke",
+        "Ischemic"
       ]
     },
     "abstract": "The recent meta-analysis of Cronin et al 1 examined the association between the MTHFR C677T polymorphism, the strongest genetic determinant of moderate hyperhomocysteinemia, and ischemic stroke.These authors considered 31 studies, including 15 from Europe, and concluded for the existence of an overall weak and dose allele-dependent association; in the European area, they reported a lack of association between the MTHFR C677T polymorphism and ischemic stroke in Northern and Central Europe, whereas the MTHFR C677T polymorphism was surprisingly a significant risk factor for ischemic stroke in Italy.The same authors 1 suggested that it was important to investigate whether this finding was attributable to population differences in T allele frequency, folate status, or other genetic or environmental influences.In fact, the frequency of MTHFR 677T allele is higher in Italy than in Central and Northern Europe, and the same gradient is observed for the dietary intake and status of folate. 2 Therefore, the significant association observed by Cronin et al 1 in Italy should be regarded as paradoxical if one considers that adequate folate dietary intake neutralizes the phenotypic influence of MTHFR on homocysteine. 2In fact, 2 of the 4 Italian populations that were included in the meta-analysis of Cronin et al 1 were different for age and cause of stroke from those recruited in the other areas of Europe; this makes the paradox reported by Cronin et al questionable.Pezzini et al 3 found a significant association of MTHFR 677TT with patients with spontaneous cervical artery dissection (CAD), a very particular cause of stroke, but not with those with non-CAD ischemic stroke, whereas Gallai et al 4 found no association in younger patients with spontaneous CAD.A third study found no association between 677T T genotype and stroke, 5 whereas in another study, Margaglione et al 6 found only a weak association with premature stroke (age Ͻ50), after multivariate adjustment (Pϭ0.0486).We have evaluated the association between MTHFR 677T T C677T polymorphism and ischemic cerebrovascular disease in 131 patients from Southern Italy (Sicily) with a mean age of 76.2 years (51.9% males), compared with 118 sex-and age-matched controls (mean age 75.9 years, Pϭ0.6032, 50.8% males, Pϭ0.8672).The 677T allele frequency was comparable in both groups (patients: 0.439 [95% CI, 0.380 to 0.499], controls: 0.432 [95% CI, 0.371 to 0.496]; Pϭ0.8798) and no difference of the 677T T genotype frequency was observed (patients: 0.229 [95% CI, 0.165 to 0.308], controls: 0.169 [95% CI, 0.112 to 0.247]; Pϭ0.2418).In our opinion, the small number of studies on the association between homocysteine or MTHFR and stroke needs to be increased, taking into consideration other nutritional and genetic determinants of homocysteine, folate and vitamin B12 in particular, before a definitive conclusion based on meta-analyses can be reached.This will be required for discussing the beneficial role of folate supplementation.Indeed, if folate intake in Europe does explain the heterogeneity of the associations, folic acid as a preventive intervention would be unlikely to have any influence in the regions where there is no MTHFR-vascular disease association, as recently suggested by Lewis et al for coronary artery disease.",

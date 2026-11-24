@@ -1,0 +1,44 @@
+{
+  "guideline_id": "guide-doi-10-1161-str-0000000000000539",
+  "version": 1,
+  "metadata": {
+    "guideline_id": "guide-doi-10-1161-str-0000000000000539",
+    "title": "Forecasting the Burden and Cost of Stroke in the United States: Projections by Sociodemographic Groups Through 2050: A Scientific Statement From the American Heart Association",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "source_url": "https://doi.org/10.1161/str.0000000000000539",
+    "doi": "10.1161/str.0000000000000539",
+    "state": "PENDING_REVIEW",
+    "top_takeaways": [
+      "U.S. stroke prevalence is projected to exceed 19.4 million adults by 2050, disproportionately affecting Black, American Indian/Alaska Native, and multiracial individuals (25%–30% in those >80 years). Inflation-adjusted annual stroke costs will quintuple to $142 billion among adults aged 45–64, necessitating urgent, equitable prevention and treatment policies."
+    ]
+  },
+  "total_recommendations": 1,
+  "pending_count": 1,
+  "approved_count": 0,
+  "rejected_count": 0,
+  "recommendations": [
+    {
+      "rec_id": "guide-doi-10-1161-str-0000000000000539-rec-01",
+      "guideline_id": "guide-doi-10-1161-str-0000000000000539",
+      "grading_system": "AHA_ACC",
+      "page_num": 1,
+      "section": "Stroke",
+      "topic": "Stroke",
+      "statement": "Forecasting the Burden and Cost of Stroke in the United States: Projections by Sociodemographic Groups Through 2050: A Scientific Statement From the American Heart Association",
+      "cor": "1",
+      "cor_label": "Official Society Recommendation",
+      "loe": "A",
+      "loe_label": "Evidence from trials & consensus",
+      "target_population": "Patients managed under Stroke guidelines",
+      "driving_trials": [
+        "Stroke (2026)",
+        "DOI: 10.1161/str.0000000000000539"
+      ],
+      "verbatim_quote": "Forecasting the Burden and Cost of Stroke in the United States: Projections by Sociodemographic Groups Through 2050: A Scientific Statement From the American Heart Association",
+      "confidence_score": 0.95,
+      "approval_status": "pending"
+    }
+  ],
+  "updated_at": "2026-11-24T06:02:43.614245+00:00"
+}
