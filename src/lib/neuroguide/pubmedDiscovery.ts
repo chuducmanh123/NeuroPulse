@@ -422,13 +422,13 @@ export function buildEuropePMCQuery(options: PubMedSearchOptions): string {
   return parts.join(" AND ");
 }
 
+const MAX_DISCOVERY_RESPONSE_BYTES = 10 * 1024 * 1024;
+
 function fetchJsonHttps<T>(url: string): Promise<T> {
   return new Promise((resolve, reject) => {
-    const agent = new https.Agent({ rejectUnauthorized: false });
     const req = https.get(
       url,
       {
-        agent,
         headers: {
           "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
           Accept: "application/json",
@@ -436,14 +436,25 @@ function fetchJsonHttps<T>(url: string): Promise<T> {
       },
       (res) => {
         if (res.statusCode && res.statusCode >= 400) {
+          res.resume();
           reject(new Error(`HTTP ${res.statusCode}`));
           return;
         }
-        let data = "";
-        res.on("data", (chunk) => (data += chunk));
+        let totalBytes = 0;
+        const chunks: Buffer[] = [];
+        res.on("data", (chunk: Buffer | string) => {
+          const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+          totalBytes += buf.byteLength;
+          if (totalBytes > MAX_DISCOVERY_RESPONSE_BYTES) {
+            req.destroy();
+            reject(new Error(`Response exceeded ${MAX_DISCOVERY_RESPONSE_BYTES} bytes`));
+            return;
+          }
+          chunks.push(buf);
+        });
         res.on("end", () => {
           try {
-            resolve(JSON.parse(data) as T);
+            resolve(JSON.parse(Buffer.concat(chunks).toString("utf-8")) as T);
           } catch (e) {
             reject(e);
           }

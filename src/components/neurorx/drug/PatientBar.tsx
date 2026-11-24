@@ -28,6 +28,7 @@ import { IndicationDropdown } from "./DoseCard";
 
 interface PatientBarProps {
   drug: DrugRecord;
+  effectiveStatus?: "verified" | "draft" | "retired";
   regimens?: Regimen[];
   selectedRegimenIndex?: number;
   onSelectRegimenIndex?: (index: number) => void;
@@ -36,6 +37,7 @@ interface PatientBarProps {
 
 export function PatientBar({
   drug,
+  effectiveStatus,
   regimens = drug.regimens || [],
   selectedRegimenIndex = 0,
   onSelectRegimenIndex,
@@ -57,8 +59,10 @@ export function PatientBar({
         explanation: [],
       };
     }
-    return resolveRegimen(drug, activeRegimen, patientParsed, renalResult);
-  }, [drug, activeRegimen, patientParsed, renalResult]);
+    return resolveRegimen(drug, activeRegimen, patientParsed, renalResult, {
+      effectiveStatus,
+    });
+  }, [drug, effectiveStatus, activeRegimen, patientParsed, renalResult]);
 
   // Product units
   const productUnits =

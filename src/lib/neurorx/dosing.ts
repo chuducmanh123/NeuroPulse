@@ -33,16 +33,18 @@ export function resolveRegimen(
   drug: DrugRecord,
   regimen: Regimen,
   patient: PatientParsed,
-  renal: RenalResolutionResult
+  renal: RenalResolutionResult,
+  options?: { effectiveStatus?: "verified" | "draft" | "retired" }
 ): RegimenResolution {
   const explanation: string[] = [];
+  const effectiveStatus = options?.effectiveStatus ?? drug.status;
 
-  // RULE 1: Draft or unverified drugs MUST NOT compute numbers
-  if (drug.status !== "verified") {
+  // RULE 1: Draft, retired, or tamper-downgraded drugs MUST NOT compute numbers
+  if (effectiveStatus !== "verified") {
     return {
       state: "blocked_draft",
       ruleText: "Pending verification — clinical dosage locked",
-      explanation: ["Record is in draft status. Clinical verification required before dosage calculation."],
+      explanation: ["Record is not verified (draft, retired, or hash mismatch). Clinical verification required before dosage calculation."],
     };
   }
 

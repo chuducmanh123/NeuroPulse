@@ -15,6 +15,8 @@ import {
   CANONICAL_ESO_2026_ASAH_PICOS,
 } from "@/lib/neuroguide/esoPicoGrouper";
 import { parseAhaCorAndLoe } from "@/lib/neuroguide/notebooklmParser";
+import { getStoredAdminToken } from "@/utils/clientAuth";
+import { sanitizeUrl } from "@/utils/safeUrl";
 import type { GuidelineDoc, PracticeChangeDetail } from "@/types/neuroguide";
 
 export interface StoredRec {
@@ -23,6 +25,7 @@ export interface StoredRec {
   guideline_title: string;
   society: string;
   year?: number;
+  source_url?: string;
   grading_system: string;
   page_num: number;
   statement: string;
@@ -53,6 +56,7 @@ export interface PendingGuidelineGroup {
   guideline_title: string;
   society: string;
   year?: number;
+  source_url?: string;
   recommendations: StoredRec[];
   categories: {
     name: string;
@@ -295,16 +299,7 @@ export function ReviewQueueTab({
   const [editingPracticeChange, setEditingPracticeChange] = useState<PracticeChangeDetail | null>(null);
 
   // Read dismissed recommendation IDs from localStorage
-  const getAdminToken = (): string => {
-    if (typeof window === "undefined") return "";
-    return (
-      sessionStorage.getItem("neurocase_admin_token") ||
-      localStorage.getItem("neurocase_admin_token") ||
-      sessionStorage.getItem("adminToken") ||
-      localStorage.getItem("adminToken") ||
-      ""
-    );
-  };
+  const getAdminToken = (): string => getStoredAdminToken();
 
   const getDismissedRecIds = (): Set<string> => {
     try {
@@ -501,14 +496,21 @@ export function ReviewQueueTab({
           (rec.guideline_title || "").toLowerCase().includes("european stroke") ||
           gId.toLowerCase().includes("eso");
 
+        const safeUrl = sanitizeUrl(rec.source_url);
         map.set(gId, {
           guideline_id: gId,
           guideline_title: rec.guideline_title || gId,
           society: isDocEso ? "ESO" : (rec.society || "General"),
           year: rec.year || 2025,
+          source_url: safeUrl || undefined,
           recommendations: [],
           categories: [],
         });
+      } else if (!map.get(gId)!.source_url && rec.source_url) {
+        const safeUrl = sanitizeUrl(rec.source_url);
+        if (safeUrl) {
+          map.get(gId)!.source_url = safeUrl;
+        }
       }
 
       map.get(gId)!.recommendations.push(rec);
@@ -900,7 +902,7 @@ export function ReviewQueueTab({
       society: isDocEso ? "ESO" : (isAha ? "AHA/ASA" : (group.society || "General")),
       year: group.year || new Date().getFullYear(),
       title: group.guideline_title,
-      officialUrl: "",
+      officialUrl: group.source_url || "",
       journalTarget: isDocEso ? "European Stroke Journal" : ((isAha || group.society.includes("AHA")) ? "Stroke" : "Neurology"),
       documentType: "Clinical Practice Guideline",
       publishDate: `${group.year || new Date().getFullYear()}-01-01`,
@@ -1023,7 +1025,7 @@ export function ReviewQueueTab({
         "Clinical Practice Guideline",
       society: isDocEso ? "ESO" : (isAha ? "AHA/ASA" : (parentGroup?.society || rec.society || "General")),
       year: parentGroup?.year || rec.year || 2026,
-      officialUrl: "",
+      officialUrl: parentGroup?.source_url || sanitizeUrl(rec.source_url) || "",
       journalTarget: isDocEso ? "European Stroke Journal" : ((isAha || rec.society?.includes("AHA")) ? "Stroke" : "Neurology"),
       documentType: "Clinical Practice Guideline",
       publishDate: `${parentGroup?.year || rec.year || 2026}-01-01`,
@@ -1469,6 +1471,17 @@ export function ReviewQueueTab({
                       <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                         ⚡ 96% AI Grounded
                       </span>
+                      {group.source_url && (
+                        <a
+                          href={group.source_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/25 hover:underline max-w-[320px] truncate"
+                          title={`Source URL: ${group.source_url}`}
+                        >
+                          🔗 {group.source_url}
+                        </a>
+                      )}
                     </div>
 
                     {/* Quick Guideline Action Buttons */}

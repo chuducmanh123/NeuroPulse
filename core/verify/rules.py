@@ -27,6 +27,7 @@ def _tokenize(text: str) -> List[str]:
 def verify_grounding(statement: str, verbatim_quote: str, page_text: str) -> Tuple[float, List[str]]:
     """
     Kiểm chứng đối chiếu câu khuyến cáo với văn bản gốc của trang.
+    Luôn kiểm tra token overlap của chính statement để tránh LLM tự cung cấp verbatim_quote đánh lừa.
     Trả về: (score: 0.0 - 1.0, issues: List[str])
     """
     issues = []
@@ -35,32 +36,37 @@ def verify_grounding(statement: str, verbatim_quote: str, page_text: str) -> Tup
 
     page_text_clean = page_text.lower()
 
-    # 1. Kiểm tra verbatim_quote nếu có
+    # 1. Tính token overlap bắt buộc cho chính statement
+    statement_tokens = _tokenize(statement)
+    if not statement_tokens:
+        return 0.0, ["Câu khuyến cáo quá ngắn hoặc chỉ chứa từ dừng."]
+
+    present_tokens = [t for t in statement_tokens if t in page_text_clean]
+    statement_overlap = round(len(present_tokens) / len(statement_tokens), 2)
+
+    # 2. Kiểm tra verbatim_quote nếu có (chỉ làm điều kiện bổ sung, không vượt qua statement_overlap)
+    quote_score = statement_overlap
     if verbatim_quote and len(verbatim_quote.strip()) > 15:
         quote_clean = verbatim_quote.strip().lower()
         if quote_clean in page_text_clean:
-            return 1.0, []
-        # Kiểm tra nếu 80% từ của quote có trong trang
-        quote_tokens = _tokenize(quote_clean)
-        if quote_tokens:
-            present = sum(1 for t in quote_tokens if t in page_text_clean)
-            if present / len(quote_tokens) >= 0.85:
-                return 0.95, []
+            quote_score = 1.0
+        else:
+            quote_tokens = _tokenize(quote_clean)
+            if quote_tokens:
+                present_q = sum(1 for t in quote_tokens if t in page_text_clean)
+                quote_score = round(present_q / len(quote_tokens), 2)
+                if quote_score < 0.70:
+                    issues.append("Trích dẫn nguyên văn (verbatim_quote) không khớp đầy đủ với trang gốc.")
+    else:
+        issues.append("Thiếu trích dẫn nguyên văn (verbatim_quote) đủ dài để đối chiếu.")
 
-    # 2. Kiểm tra token overlap của statement
-    statement_tokens = _tokenize(statement)
-    if not statement_tokens:
-        return 0.5, ["Câu khuyến cáo quá ngắn hoặc chỉ chứa từ dừng."]
+    final_score = min(statement_overlap, quote_score) if statement_overlap < 0.40 else statement_overlap
+    if statement_overlap < 0.40:
+        issues.append(f"Tỷ lệ trùng khớp từ vựng của khuyến cáo quá thấp ({statement_overlap*100:.0f}%), nghi ngờ AI ảo giác.")
+    elif statement_overlap < 0.70:
+        issues.append(f"Tỷ lệ trùng khớp ở mức trung bình ({statement_overlap*100:.0f}%), câu có thể đã được viết lại.")
 
-    present_tokens = [t for t in statement_tokens if t in page_text_clean]
-    overlap_ratio = round(len(present_tokens) / len(statement_tokens), 2)
-
-    if overlap_ratio < 0.40:
-        issues.append(f"Tỷ lệ trùng khớp từ vựng quá thấp ({overlap_ratio*100:.0f}%), nghi ngờ AI ảo giác.")
-    elif overlap_ratio < 0.70:
-        issues.append(f"Tỷ lệ trùng khớp ở mức trung bình ({overlap_ratio*100:.0f}%), câu có thể đã được viết lại.")
-
-    return overlap_ratio, issues
+    return final_score, issues
 
 
 def verify_classification(rec: AnalyzedRecommendation) -> Tuple[bool, List[str]]:
@@ -72,13 +78,19 @@ def verify_classification(rec: AnalyzedRecommendation) -> Tuple[bool, List[str]]
     issues = []
     is_valid = True
 
-    # Nếu là mục Điểm mới (What Is New / Practice Changes), chấp nhận linh hoạt nếu có change_type rõ ràng
+    # Nếu là mục Điểm mới (What Is New / Practice Changes), vẫn kiểm tra hợp lệ COR/LOE nếu có
     if getattr(rec, "is_high_impact_change", False):
         if rec.cor:
             norm_cor, _ = normalize_cor(rec.cor)
-            if norm_cor and norm_cor.lower() not in VALID_AHA_COR:
+            if not norm_cor or norm_cor.lower() not in VALID_AHA_COR:
                 issues.append(f"Mức COR '{rec.cor}' của điểm mới không chuẩn ({norm_cor}).")
-        return True, issues
+                is_valid = False
+        if rec.loe:
+            norm_loe, _ = normalize_loe(rec.loe)
+            if not norm_loe or norm_loe.lower() not in VALID_AHA_LOE:
+                issues.append(f"Mức LOE '{rec.loe}' của điểm mới không chuẩn ({norm_loe}).")
+                is_valid = False
+        return is_valid, issues
 
     if rec.grading_system == GradingSystemType.AHA_ACC:
         # Kiểm tra COR
@@ -99,6 +111,11 @@ def verify_classification(rec: AnalyzedRecommendation) -> Tuple[bool, List[str]]
                 is_valid = False
 
     elif rec.grading_system == GradingSystemType.GRADE_ESO:
+        # Kiểm tra có ít nhất một trường phân loại GRADE
+        if not rec.quality_of_evidence and not rec.strength_of_recommendation and not rec.voting:
+            issues.append("Thiếu thông tin phân loại GRADE/ESO (quality_of_evidence, strength_of_recommendation hoặc voting).")
+            is_valid = False
+
         # Kiểm tra Quality of evidence
         if rec.quality_of_evidence and rec.quality_of_evidence.strip().lower() not in VALID_ESO_QUALITY:
             issues.append(f"Chất lượng bằng chứng '{rec.quality_of_evidence}' không chuẩn GRADE (High, Moderate, Low, Very Low).")

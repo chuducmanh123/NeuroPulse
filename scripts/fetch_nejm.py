@@ -42,6 +42,20 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = True
 ctx.verify_mode = ssl.CERT_REQUIRED
 
+
+def sanitize_http_url(url: str, fallback: str = "") -> str:
+    """Only allow http(s) URLs with a valid netloc and no whitespace/control characters."""
+    for candidate in (url, fallback):
+        if not isinstance(candidate, str):
+            continue
+        cleaned = candidate.strip()
+        if not cleaned or any(ch.isspace() or ord(ch) < 32 for ch in cleaned):
+            continue
+        parsed = urllib.parse.urlparse(cleaned)
+        if parsed.scheme.lower() in ("http", "https") and parsed.netloc:
+            return cleaned
+    return ""
+
 HEADERS = {
     "User-Agent": "NeuroJournalTracker/3.0 (mailto:admin@neuropulse.org; Clinical Research & Practice Guidelines Aggregator)"
 }
@@ -1111,7 +1125,7 @@ def fetch_journal_articles(journal_cfg: dict, cache: dict) -> list:
                 "article_type": primary_type,
                 "article_types": all_types,
                 "authors": authors,
-                "doi_url": c_item.get("URL", f"https://doi.org/{doi}"),
+                "doi_url": sanitize_http_url(c_item.get("URL", ""), f"https://doi.org/{doi}"),
                 "neurology_classification": {
                     "subspecialty": primary_sub,
                     "subspecialties": sub_list,
@@ -1193,7 +1207,7 @@ def sync_guidelines_to_neuroguide(articles: list):
                 "title": title,
                 "society": society,
                 "year": pub_year,
-                "source_url": art.get("doi_url", f"https://doi.org/{doi}"),
+                "source_url": sanitize_http_url(art.get("doi_url", ""), f"https://doi.org/{doi}"),
                 "doi": doi,
                 "state": "PENDING_REVIEW",
                 "top_takeaways": [takeaway] if takeaway else ["Society clinical practice guideline."]

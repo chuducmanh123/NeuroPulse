@@ -10,6 +10,7 @@ import type {
 import { detectSociety, detectSubspecialty } from "./pubmedDiscovery.ts";
 import { GEMINI_WATERFALL_MODELS, recordGeminiFallback } from "../gemini/models.ts";
 import { generateSafeGuidelineId } from "./notebooklmParser.ts";
+import { sanitizeUrl } from "../../utils/safeUrl.ts";
 
 function loadEnvKey(): string {
   const envPath = path.join(process.cwd(), ".env");
@@ -306,7 +307,7 @@ Respond strictly in JSON matching this schema:
       society: soc,
       year: options.pubYear,
       title: options.title,
-      officialUrl: options.officialUrl,
+      officialUrl: sanitizeUrl(options.officialUrl),
       journalTarget: options.journal,
       documentType: result.documentType || "Clinical Practice Guideline",
       publishDate: `${options.pubYear}-01-15`,
@@ -422,7 +423,7 @@ function buildDeterministicGuideline(
     society,
     year: options.pubYear,
     title: options.title,
-    officialUrl: options.officialUrl,
+    officialUrl: sanitizeUrl(options.officialUrl),
     journalTarget: options.journal,
     documentType: options.title.toLowerCase().includes("consensus") ? "Expert Consensus" : "Clinical Practice Guideline",
     publishDate: `${options.pubYear}-01-15`,
@@ -531,7 +532,7 @@ export async function extractGuidelineFromPdfBuffer(options: {
         title: fallbackTitle,
         journal: options.society,
         pubYear,
-        officialUrl: `file://${options.fileName}`,
+        officialUrl: "",
         isFullText: true,
       },
       options.society,
@@ -728,7 +729,7 @@ Respond strictly in JSON matching this schema:
             society: options.society,
             year: pubYear,
             title: result.title || fallbackTitle,
-            officialUrl: `upload://${options.fileName}`,
+            officialUrl: "",
             journalTarget: options.society,
             documentType: "Clinical Practice Guideline",
             publishDate: `${pubYear}-01-15`,
@@ -757,7 +758,7 @@ Respond strictly in JSON matching this schema:
       title: fallbackTitle,
       journal: options.society,
       pubYear,
-      officialUrl: `file://${options.fileName}`,
+      officialUrl: "",
       isFullText: true,
     },
     options.society,
@@ -803,12 +804,14 @@ export async function extractGuidelineFromUrlOrDoi(options: {
   const cleanTitle = title || `Guideline on ${options.society} Management`;
   const detectedSub = detectSubspecialty(cleanTitle);
 
+  const safeUrl = sanitizeUrl(options.url);
+
   if (abstract || cleanTitle) {
     const extracted = await extractGuidelineWithGemini({
       title: cleanTitle,
       journal,
       pubYear,
-      officialUrl: options.url,
+      officialUrl: safeUrl,
       fullTextSnippet: abstract || cleanTitle,
       isFullText: Boolean(abstract && abstract.length > 300),
     });
@@ -822,7 +825,7 @@ export async function extractGuidelineFromUrlOrDoi(options: {
       title: cleanTitle,
       journal,
       pubYear,
-      officialUrl: options.url,
+      officialUrl: safeUrl,
       isFullText: false,
     },
     options.society,

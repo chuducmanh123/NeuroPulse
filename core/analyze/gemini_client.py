@@ -11,6 +11,14 @@ import certifi
 from core.common.contracts import CoreException
 from core.gemini_models import get_gemini_waterfall
 
+try:
+    import truststore
+
+    truststore.inject_into_ssl()
+    _HAS_TRUSTSTORE = True
+except ImportError:
+    _HAS_TRUSTSTORE = False
+
 
 def _ensure_ipv4():
     """Ép buộc socket dùng IPv4 để tránh nghẽn DNS/timeout trên Windows."""
@@ -97,26 +105,23 @@ class GeminiClient:
             # Dùng header x-goog-api-key thay vì truyền qua query string để bảo mật tuyệt đối,
             # tránh lộ API key vào log mạng, URL lỗi hoặc jobs.json khi gặp sự cố kết nối.
             url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent"
+            verify_arg = True if _HAS_TRUSTSTORE else certifi.where()
             try:
-                # Ưu tiên dùng certifi CA bundle
                 try:
                     response = requests.post(
                         url,
                         headers=clean_headers,
                         json=payload,
                         timeout=60,
-                        verify=certifi.where(),
+                        verify=verify_arg,
                     )
-                except requests.exceptions.SSLError:
-                    # Fallback an toàn nếu Windows chạy sau mạng proxy kiểm tra SSL
-                    import urllib3
-                    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-                    response = requests.post(
-                        url,
-                        headers=clean_headers,
-                        json=payload,
-                        timeout=60,
-                        verify=False,
+                except requests.exceptions.SSLError as ssl_err:
+                    err_msg = re.sub(r"AIza[0-9A-Za-z-_]{35}", "[REDACTED_KEY]", str(ssl_err))
+                    err_msg = re.sub(r"key=[0-9A-Za-z-_]+", "key=[REDACTED]", err_msg)
+                    raise CoreException(
+                        code="GEMINI_TLS_ERROR",
+                        message=f"Xác thực TLS tới Gemini API thất bại (từ chối kết nối không an toàn): {err_msg}",
+                        retryable=False,
                     )
 
                 if response.status_code == 200:

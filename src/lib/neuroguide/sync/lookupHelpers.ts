@@ -9,6 +9,7 @@ import type {
   RecommendationLabelOutput,
 } from "../../../types/neuroguide.ts";
 import { cloneJson } from "../../sync/jsonPatch.ts";
+import { isDraftOrUnapprovedNeuroGuideBlock } from "./blockGraph.ts";
 import {
   computeBlockContentHash,
   computeBlockSectionHashes,
@@ -455,7 +456,9 @@ export function buildDeterministicFallbackBlockForPracticeChange(params: {
 export function reconstructCatalogFromSyncGraph(
   derived: Pick<DerivedNeuroGuideGraphView, "store" | "graph" | "blocksByUid">,
   baseline?: Partial<NeuroGuideStoreInput>,
+  options?: { excludeDrafts?: boolean },
 ): ReconstructedNeuroGuideCatalog {
+  const excludeDrafts = Boolean(options?.excludeDrafts);
   const { store, graph, blocksByUid } = derived;
   const fallbackGuidelines = baseline?.guidelines ?? [];
   const fallbackById = new Map<string, GuidelineDoc>();
@@ -512,6 +515,7 @@ export function reconstructCatalogFromSyncGraph(
       for (const uid of orderedUids) {
         const block = blocksByUid.get(uid);
         if (block && block.deletedAt === null) {
+          if (excludeDrafts && isDraftOrUnapprovedNeuroGuideBlock(block)) continue;
           orderedBlocks.push(block);
         }
       }

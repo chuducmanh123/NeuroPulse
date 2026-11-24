@@ -58,7 +58,7 @@ export default function RootLayout({
             `,
           }}
         />
-        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.tailwindcss.com" referrerPolicy="no-referrer"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `

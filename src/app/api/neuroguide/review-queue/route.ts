@@ -20,6 +20,7 @@ import {
 } from "@/lib/neuroguide/esoPicoGrouper";
 import { parseAhaCorAndLoe } from "@/lib/neuroguide/notebooklmParser";
 import { verifyAdminToken } from "@/utils/security";
+import { sanitizeUrl } from "@/utils/safeUrl";
 import { supabaseAdmin, hasSupabaseAdminConfig } from "@/lib/supabase";
 import { resolveSafeChildPath } from "@/lib/neuroguide/safePath";
 
@@ -291,7 +292,14 @@ export async function GET(request: NextRequest) {
       return false;
     };
 
-    const queue: Array<StoredRec & { guideline_title: string; society: string; year?: number }> = [];
+    const queue: Array<
+      StoredRec & {
+        guideline_title: string;
+        society: string;
+        year?: number;
+        source_url?: string;
+      }
+    > = [];
     const seenRecKeys = new Set<string>();
 
     for (const [file, record] of recordsMap.entries()) {
@@ -302,6 +310,8 @@ export async function GET(request: NextRequest) {
         if (isGuidelineExcludedFromQueue(fileGId, cleanFileName)) {
           continue;
         }
+
+        const safeSourceUrl = sanitizeUrl(record.metadata?.source_url);
 
         for (const rec of record.recommendations || []) {
           const status = (rec.approval_status || "").toUpperCase();
@@ -316,6 +326,7 @@ export async function GET(request: NextRequest) {
               guideline_title: record.metadata?.title || "Hướng dẫn lâm sàng",
               society: record.metadata?.society || "Chưa rõ",
               year: record.metadata?.year,
+              source_url: safeSourceUrl || undefined,
               category: rec.category || (rec as any).section || "Khuyến cáo chung",
               topic: rec.topic || rec.target_population || "Khuyến cáo lâm sàng",
             });
@@ -464,6 +475,10 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
       title: record.metadata.title || existing.title,
       society: record.metadata.society || existing.society,
       year: record.metadata.year || existing.year,
+      officialUrl:
+        sanitizeUrl(record.metadata.source_url) ||
+        sanitizeUrl(existing.officialUrl) ||
+        "https://pubmed.ncbi.nlm.nih.gov/",
       allPracticeChanges: practiceChanges,
       topTakeaways: record.metadata.top_takeaways || [],
       executiveSummary: summaryVi,
@@ -477,7 +492,7 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
       society: record.metadata.society || "AHA/ASA",
       year: record.metadata.year || new Date().getFullYear(),
       title: record.metadata.title || "Clinical Practice Guideline",
-      officialUrl: record.metadata.source_url || "https://pubmed.ncbi.nlm.nih.gov/",
+      officialUrl: sanitizeUrl(record.metadata.source_url) || "https://pubmed.ncbi.nlm.nih.gov/",
       journalTarget: record.metadata.society?.includes("ESO")
         ? "European Stroke Journal"
         : record.metadata.society?.includes("AHA")
@@ -1061,6 +1076,7 @@ export async function POST(request: NextRequest) {
         allPracticeChanges,
         officialUrl,
       } = body;
+      const safeOfficialUrl = sanitizeUrl(officialUrl);
       const targetDocId = doc_id || file_id;
       if (!targetDocId) {
         return NextResponse.json({ ok: false, error: "Thiếu doc_id để sửa guideline" }, { status: 400 });
@@ -1107,7 +1123,7 @@ export async function POST(request: NextRequest) {
           activeData.guidelines[docIdx].allPracticeChanges = allPracticeChanges;
         }
         if (officialUrl) {
-          activeData.guidelines[docIdx].officialUrl = officialUrl;
+          activeData.guidelines[docIdx].officialUrl = safeOfficialUrl;
         }
         activeData.guidelines[docIdx].synthesizedAt = new Date().toISOString();
         updatedGuideline = activeData.guidelines[docIdx];
@@ -1119,7 +1135,7 @@ export async function POST(request: NextRequest) {
           society: newSociety || "AHA/ASA",
           year: newYear || new Date().getFullYear(),
           title: title || "Clinical Practice Guideline",
-          officialUrl: officialUrl || "https://pubmed.ncbi.nlm.nih.gov/",
+          officialUrl: safeOfficialUrl || "https://pubmed.ncbi.nlm.nih.gov/",
           journalTarget: (newSociety || "").includes("ESO") ? "European Stroke Journal" : (newSociety || "").includes("AHA") ? "Stroke" : "Neurology",
           documentType: "Clinical Practice Guideline",
           publishDate: `${newYear || new Date().getFullYear()}-01-01`,
@@ -1203,7 +1219,7 @@ export async function POST(request: NextRequest) {
               title: title || "Clinical Practice Guideline",
               society: newSociety || "AHA/ASA",
               year: newYear || new Date().getFullYear(),
-              source_url: officialUrl || "",
+              source_url: safeOfficialUrl || "",
             },
             total_recommendations: 0,
             pending_count: 0,
@@ -1217,7 +1233,7 @@ export async function POST(request: NextRequest) {
         if (title) rec.metadata.title = title;
         if (newSociety) rec.metadata.society = newSociety;
         if (newYear) rec.metadata.year = newYear;
-        if (officialUrl) rec.metadata.source_url = officialUrl;
+        if (officialUrl) rec.metadata.source_url = safeOfficialUrl;
         if (Array.isArray(topTakeaways)) (rec.metadata as any).top_takeaways = topTakeaways;
 
         if (Array.isArray(allPracticeChanges)) {

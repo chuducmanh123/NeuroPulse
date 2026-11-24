@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { handleGetChanges } from "@/lib/neuroguide/sync/handlers";
 import { SupabaseNeuroGuideRepo } from "@/lib/neuroguide/sync/repoSupabase";
+import { isAdminRequest } from "@/lib/neurorx/sync/routeHelpers";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const result = await handleGetChanges(
-    { repo: new SupabaseNeuroGuideRepo() },
+    { repo: new SupabaseNeuroGuideRepo(), isAdmin: isAdminRequest(req) },
     {
       sinceParam: searchParams.get("since"),
       limitParam: searchParams.get("limit"),

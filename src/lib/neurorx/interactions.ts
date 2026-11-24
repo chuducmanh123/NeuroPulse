@@ -65,6 +65,7 @@ export interface RegimenAnalysisResult {
 export interface InteractionDataStore {
   drugs?: DrugRecord[] | Record<string, DrugRecord> | Map<string, DrugRecord>;
   interactions?: Interaction[];
+  effectiveStatusById?: Map<string, "verified" | "draft" | "retired">;
 }
 
 const SEVERITY_ORDER: Record<InteractionSeverity, number> = {
@@ -134,7 +135,8 @@ export function analyzeRegimen(
     const record = getDrugRecord(id, data);
     if (record) {
       recordsMap.set(id, record);
-      if (record.status === "verified") {
+      const effectiveStatus = data.effectiveStatusById?.get(id) ?? record.status;
+      if (effectiveStatus === "verified") {
         verifiedRecordsMap.set(id, record);
       } else {
         result.draftsExcluded.push(id);

@@ -4,6 +4,7 @@ import {
   computeBlockContentHash,
   computeBlockSectionHashes,
   computeProtocolMetadataHash,
+  isDraftOrUnapprovedNeuroGuideBlock,
 } from "./blockGraph.ts";
 import { RepoError, type NeuroGuideRepo } from "./repo.ts";
 import type {
@@ -205,6 +206,7 @@ function stripVerificationAndForceDraft(
       const pc = payload.practiceChange as Record<string, unknown>;
       delete pc.verification;
       pc.status = "draft";
+      pc.approvalStatus = "needs_review";
     }
     if (payload.trial && typeof payload.trial === "object") {
       const trial = payload.trial as Record<string, unknown>;
@@ -424,11 +426,15 @@ export async function handleGetChanges(
       const hasMore = Boolean(
         delta.rows.length === limit && lastRow && lastRow.changeSeq < delta.maxSeq
       );
+      const visibleRows =
+        deps.isAdmin === false
+          ? delta.rows.filter((r) => r.deletedAt !== null || !isDraftOrUnapprovedNeuroGuideBlock(r))
+          : delta.rows;
       return {
         status: 200,
         headers: noStoreHeaders({ ETag: deltaETag }),
         body: {
-          changes: delta.rows,
+          changes: visibleRows,
           maxSeq: delta.maxSeq,
           rootHash: delta.rootHash,
           hasMore,
@@ -476,11 +482,16 @@ export async function handleGetChanges(
         protoDelta.rows.length === limit && lastProto && lastProto.changeSeq < maxSeq
       );
 
+    const visibleBlockRows =
+      deps.isAdmin === false
+        ? blockDelta.rows.filter((r) => r.deletedAt !== null || !isDraftOrUnapprovedNeuroGuideBlock(r))
+        : blockDelta.rows;
+
     return {
       status: 200,
       headers: noStoreHeaders({ ETag: graphETag }),
       body: {
-        changes: blockDelta.rows,
+        changes: visibleBlockRows,
         protocolChanges: protoDelta.rows,
         ...(links !== undefined ? { blockLinks: links } : {}),
         maxSeq,
@@ -950,10 +961,14 @@ export async function handleQueryBlocksByFacets(
 ): Promise<HandlerResult> {
   try {
     const blocks = await deps.repo.queryBlocksByFacets(filter);
+    const visibleBlocks =
+      deps.isAdmin === false
+        ? blocks.filter((b) => b.deletedAt !== null || !isDraftOrUnapprovedNeuroGuideBlock(b))
+        : blocks;
     return {
       status: 200,
       headers: noStoreHeaders(),
-      body: { blocks },
+      body: { blocks: visibleBlocks },
     };
   } catch (err) {
     return mapNeuroGuideRepoErrorToResult(err, deps.repo);

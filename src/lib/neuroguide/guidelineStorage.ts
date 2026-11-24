@@ -631,8 +631,12 @@ export async function loadMergedNeuroGuideData(): Promise<{
           scenarios: MOCK_CLINICAL_SCENARIOS,
           recommendationAtoms: MOCK_RECOMMENDATION_ATOMS,
         },
+        { excludeDrafts: true },
       );
-      if (v2Catalog.protocolCount > 0 && v2Catalog.guidelines.length > 0) {
+      if (
+        v2Catalog.protocolCount > 0 &&
+        (v2Catalog.guidelines.length > 0 || (v2Catalog.deletedGuidelineIds || []).length > 0)
+      ) {
         const mergedDeletedSet = new Set<string>(
           (v2Catalog.deletedGuidelineIds || []).map((x) => x.toLowerCase()),
         );
@@ -673,10 +677,13 @@ export async function loadMergedNeuroGuideData(): Promise<{
 
   const supabaseApprovedKeys = new Set<string>(dynamicData?.approvedGuidelineKeys || []);
   const supabasePendingKeys = new Set<string>(dynamicData?.pendingGuidelineKeys || []);
+  const supabaseDeletedKeys = new Set<string>(
+    (dynamicData?.deletedGuidelineIds || []).map((x) => x.toLowerCase())
+  );
 
   const localData = await getFromLocalDisk();
   const deletedSet = new Set<string>([
-    ...(dynamicData?.deletedGuidelineIds || []).map((x) => x.toLowerCase()),
+    ...supabaseDeletedKeys,
     ...((localData as any)?.deletedGuidelineIds || []).map((x: string) => x.toLowerCase()),
     ...((localData as any)?.deleted_guideline_ids || []).map((x: string) => x.toLowerCase()),
   ]);
@@ -702,12 +709,12 @@ export async function loadMergedNeuroGuideData(): Promise<{
     }
   }
   for (const approvedId of approvedStoreIds) {
-    if (!supabasePendingKeys.has(approvedId)) {
+    if (!supabasePendingKeys.has(approvedId) && !supabaseDeletedKeys.has(approvedId)) {
       deletedSet.delete(approvedId);
     }
   }
   for (const approvedTitle of approvedStoreTitles) {
-    if (!supabasePendingKeys.has(approvedTitle)) {
+    if (!supabasePendingKeys.has(approvedTitle) && !supabaseDeletedKeys.has(approvedTitle)) {
       deletedSet.delete(approvedTitle);
     }
   }
@@ -826,7 +833,11 @@ export async function loadMergedNeuroGuideData(): Promise<{
     ].map((x) => String(x || "").toLowerCase().trim()).filter(Boolean))
   );
 
-  if (dynamicData && Array.isArray(dynamicData.guidelines) && dynamicData.guidelines.length > 0) {
+  if (
+    dynamicData &&
+    Array.isArray(dynamicData.guidelines) &&
+    (dynamicData.guidelines.length > 0 || (dynamicData.deletedGuidelineIds || []).length > 0)
+  ) {
     const coordinatedDynamicDocs = filterCoordinated(dynamicData.guidelines);
     const filteredStore = storeDocs.filter((g) => !isStoreDocDeleted(g));
     const mergedExclusionSet = new Set<string>([...deletedSet, ...unapprovedFilterSet]);

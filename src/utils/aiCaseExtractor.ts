@@ -128,6 +128,8 @@ export async function extractTextFromUploadedDocument(
         await new Promise<void>((resolve, reject) => {
           const script = document.createElement("script");
           script.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+          script.crossOrigin = "anonymous";
+          script.referrerPolicy = "no-referrer";
           script.onload = () => resolve();
           script.onerror = () => reject(new Error("Failed to load PDF parser"));
           document.head.appendChild(script);

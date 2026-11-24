@@ -2,6 +2,7 @@
 
 import React, { ViewTransition, useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
+import { sanitizeUrl } from "@/utils/safeUrl";
 import {
   BookOpen,
   Building2,
@@ -1668,17 +1669,23 @@ export default function NeuroGuidePage() {
 
                         {/* Action Bar */}
                         <div className="pt-3 border-t border-[var(--border-hairline)] flex flex-wrap items-center justify-between gap-2">
-                          <a
-                            href={doc.officialUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs font-semibold text-[var(--text-muted)] hover:text-[#C25934] flex items-center gap-1"
-                          >
-                            <span>
-                              {`Read original article on ${doc.journalTarget}`}
+                          {sanitizeUrl(doc.officialUrl) ? (
+                            <a
+                              href={sanitizeUrl(doc.officialUrl)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs font-semibold text-[var(--text-muted)] hover:text-[#C25934] flex items-center gap-1"
+                            >
+                              <span>
+                                {`Read original article on ${doc.journalTarget}`}
+                              </span>
+                              <span>↗</span>
+                            </a>
+                          ) : (
+                            <span className="text-xs font-semibold text-[var(--text-muted)]">
+                              {doc.journalTarget}
                             </span>
-                            <span>↗</span>
-                          </a>
+                          )}
 
                           <div className="flex items-center gap-2">
                             <button
@@ -1861,9 +1868,9 @@ export default function NeuroGuidePage() {
                         </div>
 
                         <div className="flex items-center gap-2">
-                          {conf.officialUrl && (
+                          {sanitizeUrl(conf.officialUrl) && (
                             <a
-                              href={conf.officialUrl}
+                              href={sanitizeUrl(conf.officialUrl)}
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
@@ -2001,9 +2008,9 @@ export default function NeuroGuidePage() {
                                     💡 {tr.bottomLineTakeaway}
                                   </div>
                                   <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
-                                    {tr.fullTextUrl && (
+                                    {sanitizeUrl(tr.fullTextUrl) && (
                                       <a
-                                        href={tr.fullTextUrl}
+                                        href={sanitizeUrl(tr.fullTextUrl)}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-[10.5px] font-bold text-[var(--text-muted)] hover:text-[#C25934] hover:underline flex items-center gap-0.5"
@@ -2031,15 +2038,21 @@ export default function NeuroGuidePage() {
 
                         {/* Action Footer */}
                         <div className="mt-4 pt-3 border-t border-[var(--border-hairline)] flex items-center justify-between">
-                          <a
-                            href={conf.officialUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs font-bold text-[#C25934] dark:text-orange-400 hover:underline flex items-center gap-1"
-                          >
-                            <span>Official Supplement / Abstracts</span>
-                            <span>↗</span>
-                          </a>
+                          {sanitizeUrl(conf.officialUrl) ? (
+                            <a
+                              href={sanitizeUrl(conf.officialUrl)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs font-bold text-[#C25934] dark:text-orange-400 hover:underline flex items-center gap-1"
+                            >
+                              <span>Official Supplement / Abstracts</span>
+                              <span>↗</span>
+                            </a>
+                          ) : (
+                            <span className="text-xs font-semibold text-[var(--text-muted)]">
+                              Official Supplement / Abstracts
+                            </span>
+                          )}
 
                           <button
                             onClick={() => toggleConference(conf.id)}

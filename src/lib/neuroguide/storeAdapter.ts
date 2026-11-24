@@ -12,6 +12,7 @@ import {
   isEsoPfoGuideline,
 } from "./esoPicoGrouper.ts";
 import { parseAhaCorAndLoe } from "./notebooklmParser.ts";
+import { sanitizeUrl } from "../../utils/safeUrl.ts";
 
 const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
 const TMP_DIR = path.join("/tmp", "guidelines_store");
@@ -136,7 +137,7 @@ export function convertGuidelineRecordToDoc(record: any, includePending = false)
     society: metadata.society || "AHA/ASA",
     year: metadata.year || 2026,
     title: metadata.title || "Clinical Practice Guideline",
-    officialUrl: metadata.source_url || "https://pubmed.ncbi.nlm.nih.gov/",
+    officialUrl: sanitizeUrl(metadata.source_url) || "https://pubmed.ncbi.nlm.nih.gov/",
     journalTarget: metadata.society?.includes("ESO") ? "European Stroke Journal" : metadata.society?.includes("AHA") ? "Stroke" : "Neurology",
     documentType: "Clinical Practice Guideline",
     publishDate:
@@ -213,6 +214,10 @@ export function buildGuidelineRecordFromDoc(
 
     const topic = chg.topic || (pNum ? `PICO ${pNum}: ${pQuestion || ""}`.trim() : `Khuyến cáo #${idx + 1}`);
 
+    const hasClassification = recIsEso
+      ? Boolean(qualityOfEvidence && strengthOfRecommendation)
+      : Boolean(cor && loe);
+
     return {
       rec_id: chg.id || `rec-${idx + 1}`,
       guideline_id: doc.id,
@@ -233,13 +238,24 @@ export function buildGuidelineRecordFromDoc(
       change_type: chg.changeType,
       previous_grade: chg.previousGrade,
       consensus_statement: chg.expertConsensusStatement || chg.previousText || undefined,
-      verification_detail: {
-        status: defaultStatus === "APPROVED" ? "APPROVED" : "PENDING_COORDINATION",
-        grounding_score: doc.fullTextStatus === "FULL_TEXT_PARSED" ? 0.95 : 0.85,
-        classification_valid: true,
-        numbers_verified: true,
-        issues: [],
-      },
+      verification_detail:
+        defaultStatus === "APPROVED"
+          ? {
+              status: "APPROVED",
+              grounding_score: 1.0,
+              classification_valid: hasClassification,
+              numbers_verified: true,
+              issues: [],
+            }
+          : {
+              status: "UNVERIFIED_TS_EXTRACT",
+              grounding_score: 0,
+              classification_valid: hasClassification,
+              numbers_verified: false,
+              issues: [
+                "Deterministic source-page grounding and numerical check not yet performed by TS extractor",
+              ],
+            },
     };
   });
 
@@ -251,7 +267,7 @@ export function buildGuidelineRecordFromDoc(
       title: doc.title,
       society: doc.society,
       year: doc.year,
-      source_url: doc.officialUrl,
+      source_url: sanitizeUrl(doc.officialUrl),
       pmcid: doc.pmcid,
       doi: doc.doi,
       top_takeaways: doc.topTakeaways || [],

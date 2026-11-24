@@ -88,10 +88,17 @@ export function DrugDetail({
   const blackBox = drug.black_box?.value;
 
   const handleSaveDrug = async (updatedDrug: DrugRecord): Promise<boolean> => {
+    const hasHash = Boolean(updatedDrug.verification?.content_hash);
+    const nextEffectiveStatus: "verified" | "draft" | "retired" =
+      updatedDrug.status === "retired"
+        ? "retired"
+        : updatedDrug.status === "verified" && hasHash
+        ? "verified"
+        : "draft";
     setCurrentDrugItem({
       drug: updatedDrug,
-      effectiveStatus: updatedDrug.status === "verified" ? "verified" : "draft",
-      hashMatches: true,
+      effectiveStatus: nextEffectiveStatus,
+      hashMatches: hasHash,
     });
     window.dispatchEvent(new CustomEvent("neurorx_drug_updated"));
     return true;
@@ -231,6 +238,7 @@ export function DrugDetail({
         {/* Unified Dose Card */}
         <DoseCard
           drug={drug}
+          effectiveStatus={currentDrugItem.effectiveStatus}
           regimens={drug.regimens || []}
           setting="unified"
           patient={patientParsed}
@@ -247,6 +255,7 @@ export function DrugDetail({
           <div className="animate-in fade-in slide-in-from-top-1 duration-200">
             <PatientBar
               drug={drug}
+              effectiveStatus={currentDrugItem.effectiveStatus}
               regimens={drug.regimens || []}
               selectedRegimenIndex={selectedRegimenIndex}
               onSelectRegimenIndex={setSelectedRegimenIndex}
@@ -349,6 +358,7 @@ export function DrugDetail({
           {/* 4. Tier 3: Contextual Tools Row */}
           <ToolsRow
             drug={drug}
+            effectiveStatus={currentDrugItem.effectiveStatus}
             sources={sources}
             patient={patientParsed}
             renal={renalResult}

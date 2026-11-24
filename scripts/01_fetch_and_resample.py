@@ -14,10 +14,14 @@ Run:  python 01_fetch_and_resample.py
 """
 from __future__ import annotations
 
+import hashlib
 import json
+import os
+import stat
 import sys
 import tarfile
 import xml.etree.ElementTree as ET
+import zipfile
 from pathlib import Path
 
 import nv_common as nv  # noqa: F401  (must come first: installs OS trust store)
@@ -39,17 +43,111 @@ SKIPPED = [
 ]
 
 # ---------------------------------------------------------------- helpers
-def download(url: str, dest: Path) -> Path:
+def download(
+    url: str,
+    dest: Path,
+    expected_sha256: str | None = None,
+    max_bytes: int = 1024 * 1024 * 1024,
+) -> Path:
     if dest.exists() and dest.stat().st_size > 0:
         return dest
     dest.parent.mkdir(parents=True, exist_ok=True)
+    tmp_dest = dest.with_suffix(dest.suffix + ".tmp")
+    hasher = hashlib.sha256()
+    total = 0
     print(f"  downloading {url}")
-    with requests.get(url, headers=H, timeout=600, stream=True) as r:
-        r.raise_for_status()
-        with open(dest, "wb") as f:
-            for chunk in r.iter_content(1 << 20):
-                f.write(chunk)
+    try:
+        with requests.get(url, headers=H, timeout=600, stream=True) as r:
+            r.raise_for_status()
+            with open(tmp_dest, "wb") as f:
+                for chunk in r.iter_content(1 << 20):
+                    if not chunk:
+                        continue
+                    total += len(chunk)
+                    if total > max_bytes:
+                        raise ValueError(f"Download exceeded {max_bytes} bytes limit for {url}")
+                    hasher.update(chunk)
+                    f.write(chunk)
+        digest = hasher.hexdigest()
+        if expected_sha256 and digest.lower() != expected_sha256.lower():
+            raise ValueError(f"SHA-256 mismatch for {url}: got {digest}, expected {expected_sha256}")
+        os.replace(tmp_dest, dest)
+        print(f"  sha256={digest}")
+    except Exception:
+        if tmp_dest.exists():
+            tmp_dest.unlink()
+        raise
     return dest
+
+
+def safe_extract_tar_members(
+    tar_obj: tarfile.TarFile,
+    dest_dir: Path,
+    members: list[tarfile.TarInfo],
+    max_total_bytes: int = 1024 * 1024 * 1024,
+) -> None:
+    dest_resolved = dest_dir.resolve()
+    dest_resolved.mkdir(parents=True, exist_ok=True)
+    total_bytes = 0
+    for m in members:
+        if m.issym() or m.islnk() or m.isdev() or m.isfifo() or m.ischr() or m.isblk():
+            raise ValueError(f"Refusing unsafe tar member type: {m.name}")
+        if m.size < 0:
+            raise ValueError(f"Invalid negative tar member size: {m.name}")
+        target = (dest_resolved / m.name).resolve()
+        if not target.is_relative_to(dest_resolved):
+            raise ValueError(f"Blocked tar path traversal: {m.name}")
+        if m.isdir():
+            target.mkdir(parents=True, exist_ok=True)
+            continue
+        if not m.isreg():
+            continue
+        target.parent.mkdir(parents=True, exist_ok=True)
+        src = tar_obj.extractfile(m)
+        if src is None:
+            continue
+        with src, open(target, "wb") as dst:
+            while True:
+                chunk = src.read(1 << 20)
+                if not chunk:
+                    break
+                total_bytes += len(chunk)
+                if total_bytes > max_total_bytes:
+                    raise ValueError(f"Tar extraction exceeded limit ({max_total_bytes} bytes)")
+                dst.write(chunk)
+
+
+def safe_extract_zip_members(
+    zip_path: Path,
+    dest_dir: Path,
+    member_names: list[str],
+    max_total_bytes: int = 512 * 1024 * 1024,
+) -> None:
+    dest_resolved = dest_dir.resolve()
+    dest_resolved.mkdir(parents=True, exist_ok=True)
+    total_bytes = 0
+    with zipfile.ZipFile(str(zip_path), "r") as z:
+        for name in member_names:
+            info = z.getinfo(name)
+            mode = (info.external_attr >> 16) & 0o170000
+            if stat.S_ISLNK(mode):
+                raise ValueError(f"Refusing symlink in zip archive: {info.filename}")
+            target = (dest_resolved / info.filename).resolve()
+            if not target.is_relative_to(dest_resolved):
+                raise ValueError(f"Blocked zip path traversal: {info.filename}")
+            if info.is_dir():
+                target.mkdir(parents=True, exist_ok=True)
+                continue
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with z.open(info, "r") as src, open(target, "wb") as dst:
+                while True:
+                    chunk = src.read(1 << 20)
+                    if not chunk:
+                        break
+                    total_bytes += len(chunk)
+                    if total_bytes > max_total_bytes:
+                        raise ValueError(f"Zip extraction exceeded limit ({max_total_bytes} bytes)")
+                    dst.write(chunk)
 
 
 def to_uint8(data: np.ndarray, lo_pct: float = 1.0, hi_pct: float = 99.5) -> np.ndarray:
@@ -206,10 +304,7 @@ FSL_DIR = CACHE / "fsl_atlases"
 if not (FSL_DIR / "data/atlases/JHU/JHU-ICBM-labels-1mm.nii.gz").exists():
     with tarfile.open(FSL_TAR) as t:
         members = [m for m in t.getmembers() if "JHU" in m.name or "icense" in m.name or m.name.startswith("info/")]
-        try:
-            t.extractall(FSL_DIR, members=members, filter="data")
-        except TypeError:
-            t.extractall(FSL_DIR, members=members)
+        safe_extract_tar_members(t, FSL_DIR, members)
 jhu = nib.load(str(FSL_DIR / "data/atlases/JHU/JHU-ICBM-labels-1mm.nii.gz"))
 assert same_world_grid(jhu, n6), "JHU world grid != NLin6Asym world grid"
 print("   JHU orientation", nib.aff2axcodes(jhu.affine), "(NLin6Asym TemplateFlow:", nib.aff2axcodes(n6.affine), ") same world grid")
@@ -318,12 +413,13 @@ record(out, source="Clinical Toolbox for SPM scct.nii (Rorden et al. 2012, Neuro
 
 # ---------------------------------------------------------------- 7. AAL3 (Automated Anatomical Labeling v3)
 print("[7] AAL3 atlas (Rolls et al. 2020, GNU GPL)")
-import zipfile
 AAL3_URL = "https://www.oxcns.org/AAL3v1_for_SPM12.zip"
 aal_zip_path = download(AAL3_URL, CACHE / "AAL3v1_for_SPM12.zip")
-with zipfile.ZipFile(str(aal_zip_path)) as z:
-    z.extract("AAL3/AAL3v1_1mm.nii.gz", str(CACHE / "aal3_extracted"))
-    z.extract("AAL3/AAL3v1_1mm.nii.txt", str(CACHE / "aal3_extracted"))
+safe_extract_zip_members(
+    aal_zip_path,
+    CACHE / "aal3_extracted",
+    ["AAL3/AAL3v1_1mm.nii.gz", "AAL3/AAL3v1_1mm.nii.txt"],
+)
 
 aal_src_nii = CACHE / "aal3_extracted" / "AAL3" / "AAL3v1_1mm.nii.gz"
 aal_txt_path = CACHE / "aal3_extracted" / "AAL3" / "AAL3v1_1mm.nii.txt"

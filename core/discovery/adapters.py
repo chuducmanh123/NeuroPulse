@@ -6,6 +6,13 @@ import requests
 from bs4 import BeautifulSoup
 from core.common.contracts import DiscoveredGuideline, FullTextAvailability
 
+try:
+    import truststore
+
+    truststore.inject_into_ssl()
+except ImportError:
+    pass
+
 # Ép buộc dùng IPv4 để tránh nghẽn timeout trên các mạng Dual Stack
 try:
     _orig_getaddrinfo = socket.getaddrinfo
@@ -105,7 +112,7 @@ def resolve_doi_crossref(doi: str, timeout: int = 8) -> Dict[str, Any]:
         "Accept": "application/json",
     }
     try:
-        resp = requests.get(api_url, headers=headers, timeout=timeout, verify=False)
+        resp = requests.get(api_url, headers=headers, timeout=timeout, verify=True)
         if resp.status_code == 200:
             msg = resp.json().get("message", {})
             title = msg.get("title", [""])[0] if msg.get("title") else None
@@ -151,7 +158,7 @@ class HtmlDirectoryAdapter:
             return results
 
         try:
-            resp = requests.get(url, headers=self.headers, timeout=self.timeout, verify=False, allow_redirects=True)
+            resp = requests.get(url, headers=self.headers, timeout=self.timeout, verify=True, allow_redirects=True)
             if resp.status_code != 200:
                 return results
 
@@ -271,7 +278,7 @@ class PubmedSocietyAdapter:
                 "tool": "NeuroGuideAcademic",
                 "email": "developer@neuropulse.org",
             }
-            s_resp = requests.get(esearch_url, params=params, headers=self.headers, timeout=self.timeout, verify=False)
+            s_resp = requests.get(esearch_url, params=params, headers=self.headers, timeout=self.timeout, verify=True)
             if s_resp.status_code == 200:
                 id_list = s_resp.json().get("esearchresult", {}).get("idlist", [])
             else:
@@ -289,7 +296,7 @@ class PubmedSocietyAdapter:
                 "tool": "NeuroGuideAcademic",
                 "email": "developer@neuropulse.org",
             }
-            sum_resp = requests.get(esummary_url, params=sum_params, headers=self.headers, timeout=self.timeout, verify=False)
+            sum_resp = requests.get(esummary_url, params=sum_params, headers=self.headers, timeout=self.timeout, verify=True)
             if sum_resp.status_code != 200:
                 return self._fetch_from_europe_pmc(source_key, config, limit=limit, year_min=year_min)
 
@@ -383,7 +390,7 @@ class PubmedSocietyAdapter:
             "sort": "P_PDATE_D desc",
         }
         try:
-            resp = requests.get(url, params=params, headers=self.headers, timeout=self.timeout, verify=False)
+            resp = requests.get(url, params=params, headers=self.headers, timeout=self.timeout, verify=True)
             if resp.status_code != 200:
                 return results
             data = resp.json()

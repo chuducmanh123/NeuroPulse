@@ -333,11 +333,11 @@ export async function executeIncrementalPipeline(
             voting: cp.voting,
             driving_trials: recItem.drivingTrials || cp.drivingTrials || [],
             verification_detail: {
-              status: "EXTRACTED_FROM_SYNOPTIC_TABLE",
-              grounding_score: 0.99,
-              classification_valid: true,
-              numbers_verified: true,
-              issues: [],
+              status: "UNVERIFIED_TS_EXTRACT",
+              grounding_score: 0,
+              classification_valid: Boolean(recItem.qualityOfEvidence && recItem.strengthOfRecommendation),
+              numbers_verified: false,
+              issues: ["Deterministic source-page grounding and numerical check not yet performed by TS extractor"],
             },
           });
         }
@@ -449,11 +449,11 @@ Respond strictly in valid JSON matching this schema:
               voting: p.voting || undefined,
               driving_trials: p.driving_trials || [],
               verification_detail: {
-                status: "EXTRACTED_FROM_SYNOPTIC_TABLE",
-                grounding_score: 0.96,
-                classification_valid: true,
-                numbers_verified: true,
-                issues: [],
+                status: "UNVERIFIED_TS_EXTRACT",
+                grounding_score: 0,
+                classification_valid: Boolean((r.quality_of_evidence || "Moderate") && normStrength),
+                numbers_verified: false,
+                issues: ["Deterministic source-page grounding and numerical check not yet performed by TS extractor"],
               },
             });
           }
@@ -575,11 +575,11 @@ Respond strictly in valid JSON matching this schema:
           driving_trials: r.driving_trials || [],
           verbatim_quote: r.verbatim_quote,
           verification_detail: {
-            status: "EXTRACTED_FROM_FULL_PDF",
-            grounding_score: 0.94,
-            classification_valid: true,
-            numbers_verified: true,
-            issues: [],
+            status: "UNVERIFIED_TS_EXTRACT",
+            grounding_score: 0,
+            classification_valid: Boolean(r.cor && r.loe),
+            numbers_verified: false,
+            issues: ["Deterministic source-page grounding and numerical check not yet performed by TS extractor"],
           },
         })).filter((r) => r.statement.length > 15);
 
@@ -691,11 +691,11 @@ Respond strictly in valid JSON matching this schema:
           driving_trials: r.driving_trials || [],
           verbatim_quote: r.verbatim_quote,
           verification_detail: {
-            status: "EXTRACTED_FROM_FULL_PDF",
-            grounding_score: 0.92,
-            classification_valid: true,
-            numbers_verified: true,
-            issues: [],
+            status: "UNVERIFIED_TS_EXTRACT",
+            grounding_score: 0,
+            classification_valid: Boolean(r.cor && r.loe),
+            numbers_verified: false,
+            issues: ["Deterministic source-page grounding and numerical check not yet performed by TS extractor"],
           },
         })).filter((r) => r.statement.length > 15);
 

@@ -7,11 +7,13 @@ and slice translation cycles, and reports exact FPS via POST callback.
 import http.server
 import json
 import os
+import posixpath
 import socketserver
 import subprocess
 import sys
 import threading
 import time
+import urllib.parse
 
 PORT = 9877
 WORKSPACE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -87,14 +89,58 @@ BENCHMARK_HTML = """<!DOCTYPE html>
 </html>
 """
 
+MAX_POST_BYTES = 65536
+
+
+def _is_allowed_benchmark_path(raw_path: str) -> bool:
+    """Only allow the temporary benchmark runner, NiiVue UMD bundle, and public/neurovision assets."""
+    if not isinstance(raw_path, str):
+        return False
+    url_path = urllib.parse.urlsplit(raw_path).path
+    decoded = urllib.parse.unquote(url_path)
+    if "\\" in decoded or any(ord(ch) < 32 for ch in decoded):
+        return False
+    normalized = posixpath.normpath(decoded)
+    if not normalized.startswith("/"):
+        return False
+    segments = [seg for seg in normalized.split("/") if seg]
+    if any(seg.startswith(".") or seg == ".." for seg in segments):
+        return False
+    if normalized in (
+        "/public/benchmark_runner.html",
+        "/node_modules/@niivue/niivue/dist/niivue.umd.js",
+    ):
+        return True
+    return normalized.startswith("/public/neurovision/")
+
+
 class BenchmarkHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=WORKSPACE_DIR, **kwargs)
 
+    def do_GET(self):
+        if not _is_allowed_benchmark_path(self.path):
+            self.send_error(403, "Forbidden")
+            return
+        super().do_GET()
+
+    def do_HEAD(self):
+        if not _is_allowed_benchmark_path(self.path):
+            self.send_error(403, "Forbidden")
+            return
+        super().do_HEAD()
+
     def do_POST(self):
         global benchmark_result
         if self.path == '/report_fps':
-            content_length = int(self.headers['Content-Length'])
+            try:
+                content_length = int(self.headers.get('Content-Length', '0'))
+            except ValueError:
+                self.send_error(400, "Invalid Content-Length")
+                return
+            if content_length <= 0 or content_length > MAX_POST_BYTES:
+                self.send_error(413, "Payload Too Large")
+                return
             post_data = self.rfile.read(content_length)
             benchmark_result = json.loads(post_data.decode('utf-8'))
             self.send_response(200)
@@ -113,7 +159,7 @@ def main():
         f.write(BENCHMARK_HTML)
 
     socketserver.TCPServer.allow_reuse_address = True
-    httpd = socketserver.TCPServer(("", PORT), BenchmarkHandler)
+    httpd = socketserver.TCPServer(("127.0.0.1", PORT), BenchmarkHandler)
     server_thread = threading.Thread(target=httpd.serve_forever, daemon=True)
     server_thread.start()
 

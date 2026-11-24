@@ -17,6 +17,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const CASES_FILE_PATH = path.join(process.cwd(), "public", "data", "cases.json");
+const PENDING_CASES_FILE_PATH = path.join(process.cwd(), "data", "neurocase_pending_cases.json");
 
 const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
 const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
@@ -273,6 +274,16 @@ async function getBundledCases(): Promise<ClinicalCase[]> {
   }
 }
 
+async function getLocalPendingCases(): Promise<ClinicalCase[]> {
+  try {
+    const raw = await fs.readFile(PENDING_CASES_FILE_PATH, "utf-8");
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
 /**
  * Merges dynamic store cases (Supabase / KV) with repo-bundled cases.
  * Priority: Dynamic store overrides repo cases by ID (so admin edits/moderation persist),
@@ -331,9 +342,13 @@ async function saveToActiveStorage(cases: ClinicalCase[]): Promise<{
     }
   }
 
-  // 3. Fall back to local disk (dev environment)
+  // 3. Fall back to local disk (dev environment): isolate unapproved cases outside public/
   try {
-    await fs.writeFile(CASES_FILE_PATH, JSON.stringify(cases, null, 2), "utf-8");
+    const approvedOnly = cases.filter((c) => !c.status || c.status === "approved");
+    const unapprovedOnly = cases.filter((c) => Boolean(c.status && c.status !== "approved"));
+    await fs.writeFile(CASES_FILE_PATH, JSON.stringify(approvedOnly, null, 2), "utf-8");
+    await fs.mkdir(path.dirname(PENDING_CASES_FILE_PATH), { recursive: true });
+    await fs.writeFile(PENDING_CASES_FILE_PATH, JSON.stringify(unapprovedOnly, null, 2), "utf-8");
     return { success: true, storage: "local-file" };
   } catch (fsErr: any) {
     if (fsErr?.code === "EROFS" || process.env.VERCEL) {
@@ -394,6 +409,13 @@ export async function GET(req: Request) {
       }
       const kvDeleted = await getDeletedIdsFromKv();
       kvDeleted.forEach((id) => deletedIds.add(id));
+    }
+
+    if (!dynamicCases) {
+      const localPending = await getLocalPendingCases();
+      if (localPending.length > 0) {
+        dynamicCases = localPending;
+      }
     }
 
     const bundled = await getBundledCases();
@@ -489,6 +511,12 @@ export async function POST(req: Request) {
         dynamicCases = await getFromKv();
         const kvDeleted = await getDeletedIdsFromKv();
         kvDeleted.forEach((id) => deletedIds.add(id));
+      }
+      if (!dynamicCases) {
+        const localPending = await getLocalPendingCases();
+        if (localPending.length > 0) {
+          dynamicCases = localPending;
+        }
       }
       const bundled = await getBundledCases();
       return mergeCases(dynamicCases, bundled, deletedIds);

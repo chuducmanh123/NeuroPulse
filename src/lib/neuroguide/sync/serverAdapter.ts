@@ -83,7 +83,7 @@ export async function listAllBlocksMap(
 export async function loadNeuroGuideCatalogFromSyncV2(
   repo: NeuroGuideRepo,
   baseline?: Partial<NeuroGuideStoreInput>,
-  options?: { includeBlockLinks?: boolean },
+  options?: { includeBlockLinks?: boolean; excludeDrafts?: boolean },
 ): Promise<LoadedNeuroGuideV2Catalog> {
   const [{ liveBlocksByUid }, liveProtocols, protocolEdges, blockLinks, syncState] =
     await Promise.all([
@@ -107,7 +107,9 @@ export async function loadNeuroGuideCatalogFromSyncV2(
   // Inject authoritative edge positions loaded from repo.listProtocolEdges()
   derived.graph.protocolBlocks = protocolEdges;
 
-  const catalog = reconstructCatalogFromSyncGraph(derived, baseline);
+  const catalog = reconstructCatalogFromSyncGraph(derived, baseline, {
+    excludeDrafts: options?.excludeDrafts,
+  });
 
   let lastUpdatedAt: string | null = null;
   for (const proto of liveProtocols) {

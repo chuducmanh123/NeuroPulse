@@ -96,12 +96,17 @@ export function InteractionsTab({
 
   // 2. Pure Engine Evaluation
   const rawDrugs = useMemo(() => drugs.map((d) => d.drug), [drugs]);
+  const effectiveStatusById = useMemo(
+    () => new Map(drugs.map((d) => [d.drug.id, d.effectiveStatus])),
+    [drugs]
+  );
   const analysisResult = useMemo(() => {
     return analyzeRegimen(selectedDrugIds, {
       drugs: rawDrugs,
       interactions,
+      effectiveStatusById,
     });
-  }, [selectedDrugIds, rawDrugs, interactions]);
+  }, [selectedDrugIds, rawDrugs, interactions, effectiveStatusById]);
 
   // 3. Swap Simulation Dialog & Undo Toast States
   const [swapDialog, setSwapDialog] = useState<SwapDialogState>({

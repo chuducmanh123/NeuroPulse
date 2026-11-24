@@ -178,6 +178,7 @@ export function IndicationDropdown({
 
 interface DoseCardProps {
   drug: DrugRecord;
+  effectiveStatus?: "verified" | "draft" | "retired";
   regimens: Regimen[];
   setting?: "acute_inpatient" | "maintenance_outpatient" | "unified";
   patient: PatientParsed;
@@ -191,6 +192,7 @@ interface DoseCardProps {
 
 export function DoseCard({
   drug,
+  effectiveStatus,
   regimens,
   setting = "unified",
   patient,
@@ -225,7 +227,10 @@ export function DoseCard({
   }
 
   // 1. Resolve clinical dosage
-  const resolution = resolveRegimen(drug, activeRegimen, patient, renal);
+  const resolution = resolveRegimen(drug, activeRegimen, patient, renal, {
+    effectiveStatus,
+  });
+  const isLocked = resolution.state === "blocked_draft";
 
   return (
     <div className="rounded-2xl border border-[var(--border-hairline)] border-l-4 border-l-[#2F855A] bg-[var(--bg-surface)] shadow-xs flex flex-col justify-between transition-all">
@@ -342,7 +347,7 @@ export function DoseCard({
         {/* Card Body: Clinical Administration & Specific Guidance */}
         <div className="p-4 sm:p-5 space-y-4">
           {/* Specific Clinical Administration & Instructions */}
-          {(activeRegimen.dose_text || resolution.ruleText) && (
+          {(isLocked || activeRegimen.dose_text || resolution.ruleText) && (
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
                 <FileText className="w-4 h-4 text-[#2F855A] dark:text-emerald-400 shrink-0" />
@@ -351,13 +356,13 @@ export function DoseCard({
                 </span>
               </div>
               <p className="text-sm text-[var(--text-ink)] leading-relaxed font-normal whitespace-pre-wrap break-words">
-                {activeRegimen.dose_text || resolution.ruleText}
+                {isLocked ? resolution.ruleText : activeRegimen.dose_text || resolution.ruleText}
               </p>
             </div>
           )}
 
           {/* IV Infusion Protocol / Preparation */}
-          {drug.tools?.iv_infusion?.value && (activeRegimen.route === "IV" || !activeRegimen.route) && (
+          {!isLocked && drug.tools?.iv_infusion?.value && (activeRegimen.route === "IV" || !activeRegimen.route) && (
             <div className="pt-4 border-t border-[var(--border-hairline)] space-y-2.5">
               <div className="flex items-center gap-2 font-semibold text-xs text-sky-900 dark:text-sky-300 uppercase tracking-wider">
                 <Syringe className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />

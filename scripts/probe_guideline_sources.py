@@ -1,14 +1,16 @@
 import os
 import re
 import socket
-import ssl
 import json
-import urllib3
 import requests
 from bs4 import BeautifulSoup
 
-# Vô hiệu hóa cảnh báo SSL
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+try:
+    import truststore
+
+    truststore.inject_into_ssl()
+except ImportError:
+    pass
 
 # Ép buộc dùng IPv4
 try:
@@ -58,7 +60,7 @@ def probe_source(src):
     }
 
     try:
-        resp = requests.get(url, headers=headers, timeout=25, verify=False, allow_redirects=True)
+        resp = requests.get(url, headers=headers, timeout=25, verify=True, allow_redirects=True)
         result["status_code"] = resp.status_code
         text = resp.text
 

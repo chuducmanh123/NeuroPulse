@@ -319,14 +319,30 @@ export function indexAllGuidelineRecommendations(
       const labels = autoLabelRecommendationVerbatim(inp, STROKE_ONTOLOGY);
       const valRes = validateLabelRecord(inp, labels, STROKE_ONTOLOGY);
 
-      const hasCustomHumanLabel = Boolean(customRecLabels && customRecLabels[recId]);
-      const hasExplicitApproval = (chg.approvalStatus as string) === "human_approved" || (chg.approvalStatus as string) === "approved";
-      const isHumanLabeled = hasCustomHumanLabel || hasExplicitApproval || Boolean(chg.v3Labels?.isExplicit);
+      const customLabel = customRecLabels ? customRecLabels[recId] : undefined;
+      const customValRes = customLabel
+        ? validateLabelRecord(inp, customLabel, STROKE_ONTOLOGY)
+        : null;
+      const hasValidCustomHumanLabel = Boolean(
+        customLabel &&
+          customLabel.needs_review !== true &&
+          (customValRes?.status === "ai_checked" || customValRes?.status === "human_approved")
+      );
+      const hasExplicitApproval =
+        (chg.approvalStatus as string) === "human_approved" ||
+        (chg.approvalStatus as string) === "approved";
+      const isHumanLabeled =
+        hasValidCustomHumanLabel || hasExplicitApproval || Boolean(chg.v3Labels?.isExplicit);
 
       let validationStatus: IndexedNavigatorRecommendation["validationStatus"] = "ai_checked";
-      if (valRes.status === "reject" || chg.approvalStatus === "rejected") {
+      if (valRes.status === "reject" || customValRes?.status === "reject" || chg.approvalStatus === "rejected") {
         validationStatus = "reject";
-      } else if (chg.approvalStatus === "needs_review") {
+      } else if (
+        chg.approvalStatus === "needs_review" ||
+        customLabel?.needs_review === true ||
+        customValRes?.status === "needs_review" ||
+        (!hasExplicitApproval && valRes.status === "needs_review")
+      ) {
         validationStatus = "needs_review";
       } else if (isHumanLabeled) {
         validationStatus = "human_approved";

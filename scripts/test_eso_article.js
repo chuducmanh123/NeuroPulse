@@ -1,5 +1,4 @@
 async function testArticle() {
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
   const urls = [
     'https://doi.org/10.1177/23969873241257223',
     'https://academic.oup.com/esj/article/11/5/aakag043/8671382'

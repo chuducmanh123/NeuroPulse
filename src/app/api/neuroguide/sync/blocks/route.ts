@@ -45,7 +45,7 @@ export async function GET(req: NextRequest) {
   };
 
   const result = await handleQueryBlocksByFacets(
-    { repo: new SupabaseNeuroGuideRepo() },
+    { repo: new SupabaseNeuroGuideRepo(), isAdmin: isAdminRequest(req) },
     filter
   );
 

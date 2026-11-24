@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from core.common.base import BaseCore
 from core.common.contracts import (
     DocumentLifecycleState,
+    VerificationStatus,
     CoreException,
     StoredRecommendation,
     GuidelineDocumentRecord,
@@ -51,11 +52,19 @@ class StoreCore(BaseCore):
         latest_version = self.manager.get_latest_version(input_data.file_id)
         current_version = latest_version + 1
 
-        # 3. Đóng gói StoredRecommendations
+        # 3. Đóng gói StoredRecommendations (tự động cách ly các mục FAILED thành REJECTED)
         stored_recs: List[StoredRecommendation] = []
+        pending_count = 0
+        rejected_count = 0
         for v_rec in input_data.verified_recommendations:
             rec_dict = v_rec.model_dump()
-            rec_dict["approval_status"] = ApprovalStatus.PENDING_REVIEW
+            v_status = getattr(v_rec.verification_detail, "status", None)
+            if v_status == VerificationStatus.FAILED:
+                rec_dict["approval_status"] = ApprovalStatus.REJECTED
+                rejected_count += 1
+            else:
+                rec_dict["approval_status"] = ApprovalStatus.PENDING_REVIEW
+                pending_count += 1
             stored_recs.append(StoredRecommendation(**rec_dict))
 
         # Trích xuất Top Takeaways từ metadata nếu có
@@ -67,9 +76,9 @@ class StoreCore(BaseCore):
             version=current_version,
             metadata=input_data.metadata,
             total_recommendations=len(stored_recs),
-            pending_count=len(stored_recs),
+            pending_count=pending_count,
             approved_count=0,
-            rejected_count=0,
+            rejected_count=rejected_count,
             top_takeaways=top_takeaways,
             recommendations=stored_recs,
             created_at=now_iso,
@@ -84,7 +93,7 @@ class StoreCore(BaseCore):
             version=current_version,
             storage_path=str(saved_path),
             total_stored=len(stored_recs),
-            pending_count=len(stored_recs),
+            pending_count=pending_count,
             approved_count=0,
             state=DocumentLifecycleState.PENDING_REVIEW,
         )

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ShieldCheck, X } from "lucide-react";
+import { storeAdminToken } from "@/utils/clientAuth";
 
 interface AdminAuthModalProps {
   show: boolean;
@@ -59,8 +60,7 @@ export function AdminAuthModal({ show, onClose, darkMode, onSuccess }: AdminAuth
       });
       const data = await res.json().catch(() => null);
       if (res.ok && data?.success && data?.token) {
-        sessionStorage.setItem("neurocase_admin_token", data.token);
-        localStorage.setItem("neurocase_admin_token", data.token);
+        storeAdminToken(data.token);
         setPasscode("");
         onSuccess();
         onClose();

@@ -9,16 +9,16 @@ export interface FullTextFetchResult {
   sectionsExtracted: string[];
 }
 
+const MAX_FULLTEXT_RESPONSE_BYTES = 15 * 1024 * 1024;
+
 /**
- * Downloads raw XML/text via HTTPS with timeout protection
+ * Downloads raw XML/text via HTTPS with timeout protection and verified TLS.
  */
 function fetchHttpsText(url: string, timeoutMs = 9000): Promise<string> {
   return new Promise((resolve, reject) => {
-    const agent = new https.Agent({ rejectUnauthorized: false });
     const req = https.get(
       url,
       {
-        agent,
         headers: {
           "User-Agent": "NeuroPulse-GuidelineBot/2.5 (Clinical Research; mailto:contact@neuropulse.org)",
           Accept: "application/xml, text/xml, */*",
@@ -26,12 +26,23 @@ function fetchHttpsText(url: string, timeoutMs = 9000): Promise<string> {
       },
       (res) => {
         if (res.statusCode && res.statusCode >= 400) {
+          res.resume();
           reject(new Error(`HTTP ${res.statusCode} from ${url}`));
           return;
         }
-        let data = "";
-        res.on("data", (chunk) => (data += chunk));
-        res.on("end", () => resolve(data));
+        let totalBytes = 0;
+        const chunks: Buffer[] = [];
+        res.on("data", (chunk: Buffer | string) => {
+          const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+          totalBytes += buf.byteLength;
+          if (totalBytes > MAX_FULLTEXT_RESPONSE_BYTES) {
+            req.destroy();
+            reject(new Error(`Response exceeded ${MAX_FULLTEXT_RESPONSE_BYTES} bytes from ${url}`));
+            return;
+          }
+          chunks.push(buf);
+        });
+        res.on("end", () => resolve(Buffer.concat(chunks).toString("utf-8")));
       }
     );
     req.on("error", reject);

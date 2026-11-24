@@ -1,18 +1,8 @@
 import crypto from "crypto";
 import type { ClinicalCase } from "../types/clinicalCase";
+import { sanitizeUrl } from "./safeUrl.ts";
 
-/**
- * Validates and sanitizes external URLs to prevent Stored XSS via javascript: or data: URIs.
- * Only http:// and https:// protocols are permitted.
- */
-export function sanitizeUrl(url: string | undefined): string {
-  if (!url) return "";
-  const trimmed = url.trim();
-  if (/^https?:\/\//i.test(trimmed)) {
-    return trimmed;
-  }
-  return "";
-}
+export { sanitizeUrl };
 
 const DEFAULT_AUTH_SECRET = "neuropulse-neurocase-auth-secret-key-2026";
 const DEFAULT_PASSCODE = "@neuro2026";

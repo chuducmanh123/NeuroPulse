@@ -2,6 +2,7 @@
 
 import { ViewTransition, startTransition, useEffect, useState, useMemo, useDeferredValue } from "react";
 import { Article } from "@/types/article";
+import { sanitizeUrl } from "@/utils/safeUrl";
 import {
   ArticleCard,
   getJournalTheme,
@@ -959,14 +960,20 @@ export default function HomePage() {
                           </div>
                         </div>
 
-                        <a
-                          href={item.doi_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs sm:text-sm font-bold mb-2 block leading-snug text-[var(--text-ink)] hover:text-[#B91C1C] dark:hover:text-rose-400 transition-colors"
-                        >
-                          {item.title}
-                        </a>
+                        {sanitizeUrl(item.doi_url) ? (
+                          <a
+                            href={sanitizeUrl(item.doi_url)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs sm:text-sm font-bold mb-2 block leading-snug text-[var(--text-ink)] hover:text-[#B91C1C] dark:hover:text-rose-400 transition-colors"
+                          >
+                            {item.title}
+                          </a>
+                        ) : (
+                          <span className="text-xs sm:text-sm font-bold mb-2 block leading-snug text-[var(--text-ink)]">
+                            {item.title}
+                          </span>
+                        )}
 
                         <div
                           className={`text-xs leading-relaxed p-2.5 rounded-lg border-l-3 border-amber-500 ${

@@ -85,9 +85,19 @@ class VerifyCore(BaseCore):
 
             rec_dict = rec.model_dump()
             rec_dict["verification_detail"] = v_detail
-            rec_dict["state"] = DocumentLifecycleState.VERIFIED
+            rec_dict["state"] = (
+                DocumentLifecycleState.FAILED
+                if status == VerificationStatus.FAILED
+                else DocumentLifecycleState.VERIFIED
+            )
 
             verified_recs.append(VerifiedRecommendation(**rec_dict))
+
+        overall_state = (
+            DocumentLifecycleState.FAILED
+            if (passed_count == 0 and warning_count == 0 and failed_count > 0)
+            else DocumentLifecycleState.VERIFIED
+        )
 
         output = VerifyOutput(
             file_id=input_data.file_id,
@@ -96,7 +106,7 @@ class VerifyCore(BaseCore):
             warning_count=warning_count,
             failed_count=failed_count,
             verified_recommendations=verified_recs,
-            state=DocumentLifecycleState.VERIFIED,
+            state=overall_state,
         )
 
         return output.model_dump()

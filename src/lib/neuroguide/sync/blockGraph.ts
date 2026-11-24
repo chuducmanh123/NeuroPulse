@@ -882,14 +882,40 @@ export function decomposeNeuroGuideStoreToGraph(store: NeuroGuideStoreInput): Ne
 }
 
 /**
+ * Returns true if a Sync v2 content block is in draft or unapproved review state.
+ */
+export function isDraftOrUnapprovedNeuroGuideBlock(
+  block: NeuroGuideContentBlockRow
+): boolean {
+  const dataObj = block.data as unknown as Record<string, unknown> | undefined;
+  if (!dataObj) return false;
+  if (dataObj.status === "draft") return true;
+  const payload = dataObj.payload as Record<string, unknown> | undefined;
+  if (!payload) return false;
+  const pc = payload.practiceChange as Record<string, unknown> | undefined;
+  if (pc) {
+    if (pc.status === "draft") return true;
+    if (pc.approvalStatus === "needs_review" || pc.approvalStatus === "rejected") {
+      return true;
+    }
+  }
+  const trial = payload.trial as Record<string, unknown> | undefined;
+  if (trial && trial.status === "draft") return true;
+  return false;
+}
+
+/**
  * Reconstructs the NeuroGuide store views losslessly from a normalized Granular Block Graph.
  */
 export function assembleNeuroGuideStoreFromGraph(
-  graph: NeuroGuideGraphSnapshot
+  graph: NeuroGuideGraphSnapshot,
+  options?: { excludeDrafts?: boolean }
 ): NeuroGuideStoreInput {
+  const excludeDrafts = Boolean(options?.excludeDrafts);
   const blocksByUid = new Map<string, NeuroGuideContentBlockRow>();
   for (const block of graph.blocks) {
     if (block.deletedAt === null) {
+      if (excludeDrafts && isDraftOrUnapprovedNeuroGuideBlock(block)) continue;
       blocksByUid.set(block.uid, block);
     }
   }

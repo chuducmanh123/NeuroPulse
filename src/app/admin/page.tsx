@@ -44,7 +44,11 @@ import { NotebookLMUploadModal } from "@/components/neuroguide/NotebookLMUploadM
 import { EditGuidelineModal } from "@/components/neuroguide/EditGuidelineModal";
 import { PivotalTrialsAdminTab } from "@/components/neuroguide/PivotalTrialsAdminTab";
 import { PivotalTrialModal } from "@/components/neuroguide/PivotalTrialModal";
-import { getStoredAdminToken } from "@/utils/clientAuth";
+import {
+  getStoredAdminToken,
+  storeAdminToken,
+  clearStoredAdminToken,
+} from "@/utils/clientAuth";
 import { useNeuroRxDrugs } from "@/hooks/useNeuroRxDrugs";
 import { NeuroRxAdminSection } from "@/components/neurorx/admin/NeuroRxAdminSection";
 
@@ -102,9 +106,7 @@ export default function AdminCommandCenter() {
   const [authError, setAuthError] = useState("");
 
   useEffect(() => {
-    const token =
-      sessionStorage.getItem("neurocase_admin_token") ||
-      localStorage.getItem("neurocase_admin_token");
+    const token = getStoredAdminToken();
     if (token) {
       setIsAdminVerified(true);
     }
@@ -129,8 +131,7 @@ export default function AdminCommandCenter() {
       });
       const data = await res.json();
       if (res.ok && data.success && data.token) {
-        sessionStorage.setItem("neurocase_admin_token", data.token);
-        localStorage.setItem("neurocase_admin_token", data.token);
+        storeAdminToken(data.token);
         setIsAdminVerified(true);
         setPasscodeInput("");
       } else {
@@ -144,8 +145,7 @@ export default function AdminCommandCenter() {
   };
 
   const handleLogout = () => {
-    sessionStorage.removeItem("neurocase_admin_token");
-    localStorage.removeItem("neurocase_admin_token");
+    clearStoredAdminToken();
     setIsAdminVerified(false);
   };
 

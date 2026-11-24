@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo, useDeferredValue, useEffect } from "react";
 import Link from "next/link";
+import { sanitizeUrl } from "@/utils/safeUrl";
 import {
   SlidersHorizontal,
   Search,
@@ -2988,9 +2989,9 @@ export function ClinicalNavigatorTab({
                                 </span>
                               ))}
                             </div>
-                            {article.doi_url && (
+                            {sanitizeUrl(article.doi_url) && (
                               <a
-                                href={article.doi_url}
+                                href={sanitizeUrl(article.doi_url)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-[11px] font-bold text-[#C25934] dark:text-orange-400 hover:underline"
@@ -3245,9 +3246,9 @@ function RecommendationMatrixCard({
             ))}
           </div>
 
-          {rec.officialUrl && (
+          {sanitizeUrl(rec.officialUrl) && (
             <a
-              href={rec.officialUrl}
+              href={sanitizeUrl(rec.officialUrl)}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[11px] font-bold text-[#C25934] dark:text-orange-400 hover:underline shrink-0"

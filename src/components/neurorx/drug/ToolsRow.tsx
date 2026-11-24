@@ -12,6 +12,7 @@ import { MissedDoseModal } from "../tools/MissedDoseModal";
 
 interface ToolsRowProps {
   drug: DrugRecord;
+  effectiveStatus?: "verified" | "draft" | "retired";
   sources?: Source[];
   patient?: PatientParsed;
   renal?: RenalResolutionResult;
@@ -20,6 +21,7 @@ interface ToolsRowProps {
 
 export function ToolsRow({
   drug,
+  effectiveStatus,
   sources = [],
   patient,
   renal,
@@ -29,6 +31,16 @@ export function ToolsRow({
 
   const tools = drug.tools;
   if (!tools) return null;
+
+  const isVerified = (effectiveStatus ?? drug.status) === "verified";
+  if (!isVerified) {
+    return (
+      <div className="p-4 sm:p-5 rounded-2xl border border-amber-500/30 bg-amber-500/10 text-amber-900 dark:text-amber-200 text-xs sm:text-sm font-medium flex items-center gap-2.5">
+        <Wrench className="w-4 h-4 shrink-0 text-amber-600 dark:text-amber-400" />
+        <span>Bedside calculators &amp; reversal tools are locked until this record is clinically verified.</span>
+      </div>
+    );
+  }
 
   const hasHoldRestart = Boolean(tools.hold_restart?.value && tools.hold_restart.value.length > 0);
   const hasTitration = Boolean(tools.titration?.schedules && tools.titration.schedules.length > 0);

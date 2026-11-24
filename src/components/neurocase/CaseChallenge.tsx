@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ClinicalCase, UserCaseProgress } from "@/types/clinicalCase";
+import { sanitizeUrl } from "@/utils/safeUrl";
 import { Article } from "@/types/article";
 import { NeuroImagingViewer } from "@/components/neurocase/NeuroImagingViewer";
 
@@ -271,9 +272,9 @@ export function CaseChallenge({
               Final Diagnosis, Teaching Points &amp; Clinical Pitfalls
             </h3>
 
-            {currentCase.source_journal && (
+            {currentCase.source_journal && sanitizeUrl(currentCase.source_journal.doi_url) && (
               <a
-                href={currentCase.source_journal.doi_url}
+                href={sanitizeUrl(currentCase.source_journal.doi_url)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs font-bold text-[#6D28D9] dark:text-violet-400 hover:underline"
@@ -340,10 +341,13 @@ export function CaseChallenge({
                 </Link>
               </div>
               <div className="space-y-2">
-                {relatedPulseArticles.map((art) => (
+                {relatedPulseArticles.map((art) => {
+                  const safeArtUrl = sanitizeUrl(art.doi_url);
+                  if (!safeArtUrl) return null;
+                  return (
                   <a
                     key={art.id}
-                    href={art.doi_url}
+                    href={safeArtUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] hover:border-[#6D28D9] block transition-all"
@@ -362,7 +366,8 @@ export function CaseChallenge({
                     </div>
                     <p className="text-xs font-bold leading-snug text-[var(--text-ink)]">{art.title}</p>
                   </a>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
