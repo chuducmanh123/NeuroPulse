@@ -1,5 +1,755 @@
 [
   {
+    "id": "10.1001/jama.2026.19825",
+    "title": "Postherpetic Neuralgia",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Vollert Jan",
+      "Attal Nadine",
+      "Baron Ralf"
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.19825",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular",
+        "Headache & Pain"
+      ],
+      "topics": [
+        "Neuropathic pain"
+      ]
+    },
+    "abstract": "This JAMA Insights discusses postherpetic neuralgia, chronic neuropathic pain following infection with shingles, including its epidemiology, clinical presentation, and treatment, such as pharmacotherapy and cognitive behavioral therapy.",
+    "ai_takeaways": {
+      "conclusion_vi": "Postherpetic neuralgia is a chronic neuropathic pain condition following herpes zoster infection that requires multimodal management, combining evidence-based pharmacotherapy with non-pharmacological approaches such as cognitive behavioral therapy.",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
+      "ai_verified": true,
+      "study_type": "Review"
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4470",
+    "title": "Resolving ARIA-H Microhemorrhages in Amyloid-Targeting Therapies",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Cogswell Petrice M.",
+      "Preboske Gregory M.",
+      "Weigand Stephen D.",
+      "Wiste Heather J.",
+      "Klein Gregory",
+      "Benzinger Tammie L.",
+      "Gordon Brian A.",
+      "Llibre-Guerra Jorge",
+      "Clifford David B.",
+      "Perrin Richard J.",
+      "Bateman Randall J.",
+      "Jack Clifford R.",
+      "Adams Sarah",
+      "Agrawal Rohan",
+      "Alexander Silvy",
+      "Allaham Shafiq Alsayed",
+      "Amtashar Fatima",
+      "Andersen Scott",
+      "Andrews Elise",
+      "Angeloff Nathan",
+      "Aschenbrenner Andrew",
+      "Assay Michele",
+      "Barthelemy Nicholas",
+      "Baudler Monika",
+      "Bechara Jacob",
+      "Belyew Stephanie",
+      "Bergot Celine",
+      "Berman Sarah",
+      "Bittner Tobias",
+      "Bodge Courtney",
+      "Bosch Capdevil Beatriz",
+      "Brandon Susan",
+      "Brooks William",
+      "Brosch Jared",
+      "Budde John",
+      "Bur Jessia",
+      "Burgdorf Dana",
+      "Cairns Nigel",
+      "Cao Yuchen",
+      "Carrow Rachel",
+      "Chen Charles",
+      "Chen Gengsheng",
+      "Cheng Eden Yun-Ju",
+      "Clarnette Roger",
+      "Clinch Bev",
+      "Coalier Kelly",
+      "Comishen Michael",
+      "Craycroft Alicia",
+      "Cruchaga Carlos",
+      "Damen Miranda",
+      "Delmar Paul",
+      "Diaz Janice",
+      "Diepenbrock Nina",
+      "Doering Stephanie",
+      "Dombrowski Kaitlyn",
+      "Dominquez-Rivera Evelyn",
+      "Doody Rachelle",
+      "Douglas Jane",
+      "Dubois Bruno",
+      "Fagan Anne",
+      "Farlow Martin",
+      "Feng Yingdong",
+      "Ferguson Kristen",
+      "Flores Shaney",
+      "Fontoura Paulo",
+      "Franklin Erin",
+      "Fulbright Amanda",
+      "Fuqua Angela",
+      "Galante Nicholas",
+      "Galasko Douglas",
+      "Gauteul Pascale",
+      "Gauthier Serge",
+      "Giacobino Caroline",
+      "Goate Alison",
+      "Green Kelly",
+      "Gruebbeling Ellen",
+      "Hart Erica",
+      "Hasenstab Jason",
+      "Heusel Jonathan",
+      "Higging Ixavier",
+      "Hoagey David",
+      "Hobbs Diana",
+      "Holdridge Karen",
+      "Honig Lawrence",
+      "Hornbeck Russ",
+      "Hsiung Ging-Yuek",
+      "Jackson Kelley",
+      "Jany Miranda",
+      "Jarman Stephen",
+      "Jayadev Suman",
+      "Jian Meng",
+      "Jiménez-Velázquez Ivonne",
+      "Jorke Michelle",
+      "Joseph-Mathurin Nelly",
+      "Kamar Lydia",
+      "Keefe Sarah",
+      "Kelly Peggy",
+      "Kerchner Geoffrey",
+      "King Bridgette",
+      "Kinsella Justin",
+      "Kohn Arelene",
+      "Koudelis Deborah",
+      "Lah James",
+      "Li Yan",
+      "Longsdon Derek",
+      "Mallmann Jacki",
+      "Masellis Mario",
+      "Massoumzadeh Parinaz",
+      "Masters Colin",
+      "Mather Paula",
+      "Mayhew Tayona",
+      "McCann Karen",
+      "McCullough Austin",
+      "McDade Eric",
+      "McKay Nicole",
+      "Meshulam Inbal",
+      "Mills Susan",
+      "Mintun Mark",
+      "Morrison Dominique",
+      "Mummery Catherine",
+      "Murphy Julie",
+      "Natanegara Fanni",
+      "Nazeri Arash",
+      "Nicklaus Joyce",
+      "Pariente Jérémie",
+      "Patel Aakash",
+      "Petranek Jennifer",
+      "Polcaro Maria",
+      "Pontecorvo Michael",
+      "Portell Jeanine",
+      "Pulizos Christine",
+      "Qassem Maisoon",
+      "Rahmani Farzaneh",
+      "Rao Nisha",
+      "Rizzo Jacqueline",
+      "Roberson Erik",
+      "Sabaredzovic Edita",
+      "Salloway Stephen",
+      "Sanchez-Valle Raquel",
+      "Santacruz Anna",
+      "Saptarshi Chatterjee",
+      "Sathyan Sushila",
+      "Sawicki Elizabeth",
+      "Schcherbinin Sergey",
+      "Schillizzi Jeanette",
+      "Schneider Lon",
+      "Schwartz Gail",
+      "Scott Jalen",
+      "Shimony Hope",
+      "Simmons Ashlee",
+      "Sims John",
+      "Smith Thomas (Hunter)",
+      "Snider Joy",
+      "Snyder Peter",
+      "Stauber Jennifer",
+      "Stiebel Annette",
+      "Stout Sarah",
+      "Sullivan Jennifer",
+      "Surti Ghulam",
+      "Svaldi Diana",
+      "Sweeney Shannon",
+      "Symonds Leslie",
+      "Szpak Dan",
+      "Thompson Sarah",
+      "van Dyck Christopher",
+      "Wallon David",
+      "Wang Guoqiao",
+      "Wang Qing",
+      "Wang Yong",
+      "Watkins Amber",
+      "Wojtowicz Jakub",
+      "Xiong Chengjie",
+      "Yaari Roy",
+      "Yen Daniel",
+      "Ziegemeier Ellen",
+      "Zimmer Jennifer"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4470",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Alzheimer",
+        "Amyloid"
+      ]
+    },
+    "abstract": "This case series investigates the resolution of microhemorrhages in the context of amyloid-related imaging abnormalities (ARIAs) in the Dominantly Inherited Alzheimer Network (DIAN) gantenerumab study.",
+    "ai_takeaways": {
+      "conclusion_vi": "This case series from the DIAN gantenerumab study demonstrates that amyloid-related imaging abnormalities with microhemorrhages (ARIA-H) can resolve over time, providing valuable insight into the radiologic progression and management of anti-amyloid therapy side effects.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true,
+      "study_type": "Case Report"
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4318",
+    "title": "Age-Dependent Efficiency of MRI Monitoring in Treated Multiple Sclerosis",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Prosperini Luca",
+      "Tomassini Valentina",
+      "Cerqua Raffaella",
+      "Ferraro Elisabetta",
+      "Cruciani Alessandro",
+      "Haggiag Shalom",
+      "Ruggieri Serena",
+      "De Luca Giovanna",
+      "Graziano Francesca",
+      "Lagonigro Ester",
+      "Sensi Stefano L.",
+      "Cortese Antonio",
+      "De Giglio Laura",
+      "Tortorella Carla",
+      "Gasperini Claudio"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4318",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis"
+      ]
+    },
+    "abstract": "This cohort study estimates the number of patients with multiple sclerosis who would need to undergo routine magnetic resonance imaging (MRI) examinations to detect 1 instance of MRI activity.",
+    "ai_takeaways": {
+      "conclusion_vi": "This cohort study evaluates the age-dependent yield of routine surveillance MRI in treated multiple sclerosis to determine the number of patients required to scan to detect a single instance of subclinical disease activity.",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4324",
+    "title": "Reflections on the Utility of Surveillance MRIs in an Evolving MS Landscape",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "McConville Kylie",
+      "Ontaneda Daniel"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4324",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.057718",
+    "title": "Disappearing Ruptured Aneurysm: Pathologically Confirmed Thrombosis and Rapid Recanalization",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Kuang Guicheng",
+      "Ji Hang",
+      "Huang Ruina",
+      "Xiao Anqi",
+      "Liu Yi"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.057718",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Aneurysm"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.057099",
+    "title": "Middle Cerebral Artery Dissection Revealed by Follow-Up Ultra-High-Resolution Photon-Counting CT Angiography",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Xu Lu-Lu",
+      "Lu Shan-Shan"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.057099",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Cerebral"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.057872",
+    "title": "Choose Right for Left Hemispheric Intracerebral Hemorrhage to Mitigate an Unfounded Disparity in Offering Life and Tissue Saving Interventions",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Stockbridge Melissa D.",
+      "Keser Zafer"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.057872",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Hemorrhage",
+        "Intracerebral"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.058013",
+    "title": "What We Prescribe and What Our Patients Receive: Intention-to-Treat and Real-World Effectiveness",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Kumar Sandeep"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.058013",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.056590",
+    "title": "Scientific Statements in Action: Clinical Application of Brain Health Over the Lifespan",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Haslett Jack J.",
+      "Uppendahl Adam",
+      "Koppel Scott J.",
+      "Shriram Anjana T.",
+      "Simpkins Alexis N."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.056590",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Brain"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.057756",
+    "title": "Rare Bilateral Extracranial Internal Carotid Artery Duplication",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Ku Leizhi",
+      "Kang Jing",
+      "Ma Xiaojing"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.057756",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Carotid"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.055626",
+    "title": "Molecular Architecture of Noncoding RNA Networks in Stroke",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Review",
+    "article_types": [
+      "Review"
+    ],
+    "authors": [
+      "Vemuganti Raghu",
+      "Mehta Suresh L."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.055626",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Neurological",
+        "Brain"
+      ]
+    },
+    "abstract": "Stroke remains the leading cause of long-term neurological disability worldwide, with limited treatment options. Increasing evidence shows that noncoding RNAs, including microRNAs, long noncoding RNAs, and circular RNAs, play crucial roles in shaping the poststroke pathophysiology. Beyond their individual effects, the crosstalk of noncoding RNAs regulates the poststroke pathophysiologic mechanisms. They form competing endogenous RNA networks enabled by direct base-pairing with other RNAs and scaffolding of RNAs with proteins. These interactions coordinate signals across molecular pathways, amplifying or buffering cellular responses to injury. Recent studies have shown that long noncoding RNAs and circular RNAs function as microRNA sponges and epigenetic scaffolds that regulate gene networks in a spatiotemporal manner. By evaluating structural features, mechanisms, and functional outcomes, this review highlights noncoding RNA crosstalk as a novel regulatory layer of poststroke brain damage. Targeting noncoding RNA crosstalk enables modulation of injury responses and provides insights for future RNA-based stroke therapies.",
+    "ai_takeaways": {
+      "conclusion_vi": "MicroRNAs, long noncoding RNAs, and circular RNAs form interacting regulatory networks and epigenetic scaffolds that modulate poststroke brain injury. Targeting this noncoding RNA crosstalk represents an emerging mechanistic strategy for future RNA-based stroke therapeutics.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true,
+      "study_type": "Review"
+    }
+  },
+  {
+    "id": "10.1161/str.0000000000000539",
+    "title": "Forecasting the Burden and Cost of Stroke in the United States: Projections by Sociodemographic Groups Through 2050: A Scientific Statement From the American Heart Association",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Guideline",
+    "article_types": [
+      "Guideline",
+      "Review"
+    ],
+    "authors": [
+      "Aparicio Hugo J.",
+      "Deutsch Anne",
+      "Dlamini Nomazulu",
+      "Elkind Mitchell S.V.",
+      "Elm Jordan",
+      "Howard George",
+      "Mistry Eva A.",
+      "Ovbiagele Bruce",
+      "Piccini Jonathan P.",
+      "Waken R.J.",
+      "Madsen Tracy E."
+    ],
+    "doi_url": "https://doi.org/10.1161/str.0000000000000539",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke"
+      ]
+    },
+    "abstract": "BACKGROUND: Given expected increases in stroke burden in the United States through 2050, forecasts of the burden by age, sex, race, ethnicity, education level, income level, and health insurance status are needed. METHODS: We used National Health and Nutrition Examination Survey (January 2015–March 2020) and Medical Expenditure Panel Survey (2015–2019) data to estimate recent trends in stroke prevalence and costs, then projected prevalence and costs through 2050 accounting for population sociodemographic changes. We also projected prevalence by age, sex, race, and ethnicity strata. RESULTS: We estimate that stroke will affect >9.0 million of ≈148 million men (6.1%) and >10.4 million of ≈154 million women (6.7%) by 2050. Prevalence will be highest among Black, American Indian/Alaska Native, and multiracial adults, reaching 25% to 30% among those >80 years of age, compared with 16% among White adults of the same age. The largest relative increases will occur among Hispanic and Asian Americans, with a 2- to 6-fold increase in absolute case numbers, depending on age. Prevalence will remain high among people with lower levels of education or income and those without health insurance; however, absolute numbers will roughly double, and costs will increase 5- to 8-fold among high school and college graduates and middle- and high-income earners. Adjusted for inflation, annual stroke care costs will quintuple to $142 billion among people 45 to 64 years of age. Young adults 20 to 44 years of age and Hispanic, American Indian/Alaska Native, and multiracial populations will experience cost increases >1000%. CONCLUSIONS: The alarming rise in stroke burden projected by 2050 is expected to affect sociodemographic groups unequally. Programs and policies to prevent and treat stroke across age groups, mitigate widening healthcare disparities, and reduce costs are urgently needed.",
+    "ai_takeaways": {
+      "conclusion_vi": "U.S. stroke prevalence is projected to exceed 19.4 million adults by 2050, disproportionately affecting Black, American Indian/Alaska Native, and multiracial individuals (25%–30% in those >80 years). Inflation-adjusted annual stroke costs will quintuple to $142 billion among adults aged 45–64, necessitating urgent, equitable prevention and treatment policies.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.058755",
+    "title": "December 2026 Stroke Highlights",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Sur Nicole B."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.058755",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.053517",
+    "title": "Controversies in Stroke: Should We Thrombolyze Patients With Hemorrhagic Brain Imaging Markers of Cerebral Amyloid Angiopathy?",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-23T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Sellimi Amina",
+      "Puy Laurent",
+      "Lebeau Romane",
+      "Greenberg Steven M.",
+      "Werring David J."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.053517",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke",
+        "Dementia"
+      ],
+      "topics": [
+        "Stroke",
+        "Cerebral",
+        "Brain",
+        "Amyloid"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1002/ana.78406",
+    "title": "Artificial Intelligence-Generated Content in Manuscripts Submitted to Annals of Neurology.",
+    "journal": {
+      "name": "Annals of Neurology",
+      "short_name": "Ann Neurol",
+      "badge_bg": "#EDE9FE",
+      "badge_text": "#5B21B6"
+    },
+    "pub_date": "2026-11-22T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Kowalski RG",
+      "Sillau S",
+      "Roe D",
+      "Hall DA",
+      "Tyler KL."
+    ],
+    "doi_url": "https://doi.org/10.1002/ana.78406",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Dementia",
+        "Neurology"
+      ]
+    },
+    "abstract": "Since the large language model (LLM) program Chat Generative Pre-trained Transformer (ChatGPT) was introduced in November 2022, the use of artificial intelligence (AI) expanded rapidly in published writing. This has been quantified in many fields, but not in medical journals that focus on neurology and neuroscience. We sought to characterize the use of LLM in articles submitted before and after ChatGPT became available to the general public, in a neurology journal, Annals of Neurology, that covers all neurology subspecialties. The study evaluated manuscripts submitted on movement disorders, dementia, and vascular neurology before and after ChatGPT became available. AI content was measured with LLM-detection platforms Pangram, Originality.ai and GPTZero. Substantial AI was defined as ≥20% of content, or >50% likelihood of AI use. Manuscript type, country of author, country, Human Development Index (HDI), AI disclosure, and publication decision were compared with AI detected. Of 300 papers submitted after the introduction of ChatGPT, AI was detected by Pangram in 74 (25%) and this was substantial (≥20% of content) in 32 (11%). Substantial AI was more common in brief communications than full research articles (31% vs 10%, p = 0.006) and in vascular neurology articles (17%, vascular; 8%, dementia; and 5%, movement disorders; p = 0.012). Most manuscripts analyzed were submitted by authors from China (37%) and the United States (19%) and each had 11% substantial AI use. Authors from countries with lower levels of development were more likely to use AI (median HDI 0.797, AI ≥20% vs median HDI 0.925, AI <20%, p = 0.033). No AI was found in 60 papers submitted from July 3 to September 14, 2022 (pre-ChatGPT) by any of the AI-detection platforms. Of 300 post-ChatGPT manuscripts, 24 (8%) were accepted. None with substantial AI use were accepted (p = 0.090; odds ratio [OR] = 0.000, 95% confidence interval [CI] = 0.000-1.068). The authors of 5 (2%) of these papers disclosed AI use, including 1 (3%) of the papers with substantial AI detected. The study found AI was used in writing one quarter of papers submitted to Annals of Neurology after ChatGPT was introduced, with substantial AI content in 11%. No papers with AI ≥20% of content were accepted for publication. AI-generated text was more frequent in brief communications and vascular neurology articles. Authors in countries with lower levels of development were significantly more likely to use AI. The results suggest no advantage from AI in publication success, but point to a need for greater transparency by authors about AI use. ANN NEUROL 2026.",
+    "ai_takeaways": {
+      "conclusion_vi": "After ChatGPT's release, 25% of manuscripts submitted to Annals of Neurology contained AI text, with 11% having substantial AI content (≥20%). Substantial AI use was higher in lower HDI countries (p=0.033) and yielded zero accepted papers (p=0.090; OR=0.000, 95% CI=0.000-1.068), demonstrating no advantage in publication success.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
     "id": "10.1016/s1474-4422(26)00366-2",
     "title": "Anticoagulants compared with aspirin in patients with embolic strokes of undetermined source: an individual participant data meta-analysis of randomised trials",
     "journal": {
@@ -15117,41 +15867,6 @@
     }
   },
   {
-    "id": "10.1016/s1474-4422(26)00362-5",
-    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease.",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-11-01T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Horisawa S",
-      "Taira T."
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00362-5",
-    "neurology_classification": {
-      "subspecialty": "Movement Disorders",
-      "subspecialties": [
-        "Movement Disorders"
-      ],
-      "topics": [
-        "Parkinson"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
-    }
-  },
-  {
     "id": "10.1001/jama.2026.15496",
     "title": "Tenecteplase Before Thrombectomy at 4.5 to 24 Hours for Basilar Artery Occlusion: The ATTENTION LATE Randomized Clinical Trial.",
     "journal": {
@@ -20417,6 +21132,41 @@
     "article_types": [
       "Case Report"
     ]
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00362-5",
+    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-10-14T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Horisawa Shiro",
+      "Taira Takaomi"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00362-5",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
   },
   {
     "id": "10.1016/s1474-4422(26)00354-6",
@@ -31528,12 +32278,12 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.107.502153",
     "neurology_classification": {
-      "subspecialty": "Stroke",
+      "subspecialty": "Other",
       "subspecialties": [
-        "Stroke"
+        "Other"
       ],
       "topics": [
-        "Stroke"
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
@@ -31564,12 +32314,12 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.107.500819",
     "neurology_classification": {
-      "subspecialty": "Stroke",
+      "subspecialty": "Other",
       "subspecialties": [
-        "Stroke"
+        "Other"
       ],
       "topics": [
-        "Stroke"
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
@@ -31598,12 +32348,11 @@
     ],
     "doi_url": "https://doi.org/10.1161/01.str.0000251582.07152.63",
     "neurology_classification": {
-      "subspecialty": "Stroke",
+      "subspecialty": "Other",
       "subspecialties": [
-        "Stroke"
+        "Other"
       ],
       "topics": [
-        "Stroke",
         "Brain"
       ]
     },
@@ -31810,12 +32559,12 @@
     ],
     "doi_url": "https://doi.org/10.1161/01.str.0000217469.28030.e0",
     "neurology_classification": {
-      "subspecialty": "Stroke",
+      "subspecialty": "Other",
       "subspecialties": [
-        "Stroke"
+        "Other"
       ],
       "topics": [
-        "Stroke"
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
@@ -31844,12 +32593,456 @@
     ],
     "doi_url": "https://doi.org/10.1161/01.str.0000217369.61669.02",
     "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000217468.68181.33",
+    "title": "Response",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-03-23T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Garg R."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000217468.68181.33",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000217467.46004.71",
+    "title": "Response",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-03-23T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Hu G."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000217467.46004.71",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000210185.87354.47",
+    "title": "Response",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-03-02T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Thomalla G."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000210185.87354.47",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000210145.10929.c2",
+    "title": "Response",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-03-02T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Jiang B."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000210145.10929.c2",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000210166.22274.83",
+    "title": "Response",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-03-02T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Demaerschalk B. M."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000210166.22274.83",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000210146.87174.fc",
+    "title": "Response",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-03-02T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Frontera J."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000210146.87174.fc",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000204241.18818.3e",
+    "title": "Response:",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-02-09T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Cronin S."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000204241.18818.3e",
+    "neurology_classification": {
       "subspecialty": "Stroke",
       "subspecialties": [
         "Stroke"
       ],
       "topics": [
+        "Stroke",
+        "Ischemic"
+      ]
+    },
+    "abstract": "The recent meta-analysis of Cronin et al 1 examined the association between the MTHFR C677T polymorphism, the strongest genetic determinant of moderate hyperhomocysteinemia, and ischemic stroke.These authors considered 31 studies, including 15 from Europe, and concluded for the existence of an overall weak and dose allele-dependent association; in the European area, they reported a lack of association between the MTHFR C677T polymorphism and ischemic stroke in Northern and Central Europe, whereas the MTHFR C677T polymorphism was surprisingly a significant risk factor for ischemic stroke in Italy.The same authors 1 suggested that it was important to investigate whether this finding was attributable to population differences in T allele frequency, folate status, or other genetic or environmental influences.In fact, the frequency of MTHFR 677T allele is higher in Italy than in Central and Northern Europe, and the same gradient is observed for the dietary intake and status of folate. 2 Therefore, the significant association observed by Cronin et al 1 in Italy should be regarded as paradoxical if one considers that adequate folate dietary intake neutralizes the phenotypic influence of MTHFR on homocysteine. 2In fact, 2 of the 4 Italian populations that were included in the meta-analysis of Cronin et al 1 were different for age and cause of stroke from those recruited in the other areas of Europe; this makes the paradox reported by Cronin et al questionable.Pezzini et al 3 found a significant association of MTHFR 677TT with patients with spontaneous cervical artery dissection (CAD), a very particular cause of stroke, but not with those with non-CAD ischemic stroke, whereas Gallai et al 4 found no association in younger patients with spontaneous CAD.A third study found no association between 677T T genotype and stroke, 5 whereas in another study, Margaglione et al 6 found only a weak association with premature stroke (age Ͻ50), after multivariate adjustment (Pϭ0.0486).We have evaluated the association between MTHFR 677T T C677T polymorphism and ischemic cerebrovascular disease in 131 patients from Southern Italy (Sicily) with a mean age of 76.2 years (51.9% males), compared with 118 sex-and age-matched controls (mean age 75.9 years, Pϭ0.6032, 50.8% males, Pϭ0.8672).The 677T allele frequency was comparable in both groups (patients: 0.439 [95% CI, 0.380 to 0.499], controls: 0.432 [95% CI, 0.371 to 0.496]; Pϭ0.8798) and no difference of the 677T T genotype frequency was observed (patients: 0.229 [95% CI, 0.165 to 0.308], controls: 0.169 [95% CI, 0.112 to 0.247]; Pϭ0.2418).In our opinion, the small number of studies on the association between homocysteine or MTHFR and stroke needs to be increased, taking into consideration other nutritional and genetic determinants of homocysteine, folate and vitamin B12 in particular, before a definitive conclusion based on meta-analyses can be reached.This will be required for discussing the beneficial role of folate supplementation.Indeed, if folate intake in Europe does explain the heterogeneity of the associations, folic acid as a preventive intervention would be unlikely to have any influence in the regions where there is no MTHFR-vascular disease association, as recently suggested by Lewis et al for coronary artery disease.",
+    "ai_takeaways": {
+      "conclusion_vi": "In a Sicilian cohort (131 stroke patients, 118 controls), MTHFR 677T allele (0.439 vs. 0.432, P=0.8798) and 677TT genotype (0.229 vs. 0.169, P=0.2418) showed no ischemic stroke association. Apparent regional meta-analysis heterogeneity may reflect cohort differences rather than causal risk, warranting folate and B12 assessment before endorsing folic acid prevention.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true,
+      "study_type": "Editorial / Perspective"
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000204253.08386.b7",
+    "title": "Response:",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-02-09T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Johnson D. M."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000204253.08386.b7",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000204242.78655.5a",
+    "title": "Response",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-02-02T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Hachinski V."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000204242.78655.5a",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000204085.84722.52",
+    "title": "Response",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-02-02T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Serena J."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000204085.84722.52",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000199636.88063.2b",
+    "title": "Pathophysiology of Gender Difference in Prognosis of Asymptomatic Carotid Stenosis: Research and Future Implications",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-01-12T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Hellings W. E."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000199636.88063.2b",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
         "Stroke"
+      ],
+      "topics": [
+        "Carotid"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000199641.90199.10",
+    "title": "Response",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-01-12T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Gobin Y. P."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000199641.90199.10",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000199645.63359.73",
+    "title": "Response:",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-01-05T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Schrader J."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000199645.63359.73",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",

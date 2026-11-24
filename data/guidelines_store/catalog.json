@@ -113,5 +113,18 @@
     "rejected_count": 0,
     "grading_system": "AHA_ACC",
     "updated_at": "2026-11-09T08:05:51.893+00:00"
+  },
+  "guide-doi-10-1161-str-0000000000000539": {
+    "guideline_id": "guide-doi-10-1161-str-0000000000000539",
+    "title": "Forecasting the Burden and Cost of Stroke in the United States: Projections by Sociodemographic Groups Through 2050: A Scientific Statement From the American Heart Association",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "latest_version": 1,
+    "total_recommendations": 1,
+    "pending_count": 1,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "AHA_ACC",
+    "updated_at": "2026-11-24T06:02:43.614245+00:00"
   }
 }
