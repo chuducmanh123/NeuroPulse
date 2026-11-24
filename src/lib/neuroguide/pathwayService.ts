@@ -922,3 +922,13 @@ export function getDefaultPathwayRepo(): NeuroGuideRepo | null {
   }
   return null;
 }
+
+export async function runWithPathwayRepo<T>(
+  persistOnWrite: boolean,
+  fn: (repo: NeuroGuideRepo) => Promise<T>
+): Promise<T> {
+  if (hasSupabaseConfig()) {
+    return fn(new SupabaseNeuroGuideRepo());
+  }
+  return withLocalPathwayRepo(fn, persistOnWrite);
+}

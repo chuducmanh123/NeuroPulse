@@ -8,6 +8,7 @@ import {
   Building2,
   ChevronDown,
   Compass,
+  GitBranch,
   Layers,
   Radio,
   Search,
@@ -25,6 +26,7 @@ import {
   NavigatorQuery,
 } from "../../types/neuroguide";
 import type { Article } from "../../types/article";
+import type { ClinicalPathwayDoc } from "../../types/clinicalPathways";
 import {
   PIVOTAL_TRIALS_SEED,
   mergePivotalTrialsWithConferences,
@@ -55,6 +57,19 @@ const ClinicalNavigatorTab = dynamic(
       <div className="p-12 text-center text-slate-500 animate-pulse">
         <span className="text-3xl block mb-2">🧭</span>
         Loading Clinical Navigator &amp; Ontology Engine...
+      </div>
+    ),
+  }
+);
+
+const ClinicalPathwaysTab = dynamic(
+  () => import("../../components/neuroguide/ClinicalPathwaysTab").then((m) => m.ClinicalPathwaysTab),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="p-12 text-center text-[var(--text-muted)] animate-pulse">
+        <span className="text-3xl block mb-2">🔀</span>
+        Loading Clinical Pathways...
       </div>
     ),
   }
@@ -101,7 +116,7 @@ import { cleanGuidelineTitle } from "../../lib/neuroguide/guidelineFormat";
 import type { PracticeChangeDetail } from "../../types/neuroguide";
 import { getAdminHeaders, getStoredAdminToken } from "@/utils/clientAuth";
 
-type NavTabId = "guidelines" | "conf" | "navigator" | "review";
+type NavTabId = "guidelines" | "conf" | "navigator" | "pathways" | "review";
 
 interface ThemeStyle {
   borderLeft: string;
@@ -327,6 +342,7 @@ export default function NeuroGuidePage() {
   const [customRecLabels, setCustomRecLabels] = useState<Record<string, RecommendationLabelOutput>>({});
   const [neuroPulseArticles, setNeuroPulseArticles] = useState<Article[]>([]);
   const [navigatorSeedQuery, setNavigatorSeedQuery] = useState<NavigatorQuery | null>(null);
+  const [clinicalPathways, setClinicalPathways] = useState<ClinicalPathwayDoc[]>([]);
 
   const SWR_STORAGE_KEY = "neuroguide_swr_store_v3";
   const isSyncV2 = process.env.NEXT_PUBLIC_NEUROGUIDE_SYNC_V2 !== "0";
@@ -469,6 +485,11 @@ export default function NeuroGuidePage() {
       .catch(() => {});
   }, []);
 
+  const publishedPathwayCount = useMemo(
+    () => clinicalPathways.filter((p) => p.status === "published" && !p.deletedAt).length,
+    [clinicalPathways]
+  );
+
   // Dynamic Navigation Tabs with Live Counts (Review Queue visible to Admin only)
   const navTabs = useMemo(() => {
     const tabs: {
@@ -498,10 +519,17 @@ export default function NeuroGuidePage() {
         mobileLabel: "Navigator",
         icon: Compass,
       },
+      {
+        id: "pathways" as const,
+        label: "Clinical Pathways",
+        mobileLabel: "Pathways",
+        icon: GitBranch,
+        ...(publishedPathwayCount > 0 ? { badge: `${publishedPathwayCount}` } : {}),
+      },
     ];
 
     return tabs;
-  }, [guidelineDocs.length, conferences.length]);
+  }, [guidelineDocs.length, conferences.length, publishedPathwayCount]);
 
   // Expandable cards states (details reveal only on click)
   const [expandedGuidelineIds, setExpandedGuidelineIds] = useState<Record<string, boolean>>({});
@@ -933,6 +961,9 @@ export default function NeuroGuidePage() {
     }
     if (Object.keys(catalog.customRecLabels).length > 0) {
       setCustomRecLabels((prev) => ({ ...prev, ...catalog.customRecLabels }));
+    }
+    if (Array.isArray(catalog.clinicalPathways)) {
+      setClinicalPathways(catalog.clinicalPathways);
     }
     setIsInitialLoading(false);
   }, [
@@ -2086,6 +2117,23 @@ export default function NeuroGuidePage() {
             isAdminVerified={isAdminVerified}
             initialPresetOrQuery={navigatorSeedQuery}
             onPivotalTrialsUpdated={(updated) => setPivotalTrials(updated)}
+          />
+        )}
+
+        {/* =========================================================================
+            TAB 4: CLINICAL PATHWAYS (Step-by-Step Interactive Algorithms)
+           ========================================================================= */}
+        {activeTab === "pathways" && (
+          <ClinicalPathwaysTab
+            syncPathways={clinicalPathways}
+            isAdminVerified={isAdminVerified}
+            darkMode={darkMode}
+            onRequestAdminAuth={() => setShowAdminAuthModal(true)}
+            onPathwaysMutated={() => {
+              if (isSyncV2) {
+                syncState.refresh();
+              }
+            }}
           />
         )}
 
