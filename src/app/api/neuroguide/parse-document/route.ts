@@ -1,10 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { extractTextFromDocument } from "@/lib/neuroguide/documentParser";
+import { verifyAdminToken } from "@/utils/security";
 
 export const dynamic = "force-dynamic";
 
+const MAX_DOCUMENT_BYTES = 25 * 1024 * 1024; // 25 MB limit
+
 export async function POST(request: NextRequest) {
   try {
+    const adminToken =
+      request.headers.get("x-admin-token") ||
+      request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
+
+    if (!verifyAdminToken(adminToken)) {
+      return NextResponse.json(
+        { ok: false, error: "Unauthorized. Administrator credentials required." },
+        { status: 401 }
+      );
+    }
+
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
 
@@ -12,6 +26,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { ok: false, error: "Vui lòng chọn tệp tài liệu hợp lệ (.md, .txt, .docx, .doc, .pdf)." },
         { status: 400 }
+      );
+    }
+
+    if (file.size > MAX_DOCUMENT_BYTES) {
+      return NextResponse.json(
+        { ok: false, error: "Tệp tài liệu vượt quá giới hạn dung lượng tối đa 25MB." },
+        { status: 413 }
       );
     }
 

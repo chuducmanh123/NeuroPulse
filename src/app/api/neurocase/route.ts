@@ -3,11 +3,13 @@ import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
 import { ClinicalCase } from "@/types/clinicalCase";
-import { supabaseAdmin, hasSupabaseConfig } from "@/lib/supabase";
+import { supabaseAdmin, hasSupabaseAdminConfig } from "@/lib/supabase";
 import {
   sanitizeUrl,
   generateAdminAuthToken,
   verifyAdminToken,
+  verifyAdminPasscode,
+  isAdminAuthConfigured,
   sanitizeCommunityCaseSubmission,
 } from "@/utils/security";
 
@@ -21,23 +23,42 @@ const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST
 const KV_KEY = "neurocase_custom_cases_v1";
 const KV_DELETED_KEY = "neurocase_deleted_ids_v1";
 const DELETED_SENTINEL_ID = "__deleted_case_ids__";
+const MAX_SUBMIT_PAYLOAD_BYTES = 2 * 1024 * 1024; // 2 MB cap for community submissions
+const MAX_SUBMIT_IMAGING_ITEMS = 10;
 
-// Secure Admin Passcode: Defaults to "@neuro2026" if not configured in environment variables.
-const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || "@neuro2026";
+function normalizeSubmissionCase(raw: any): ClinicalCase | null {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+  const chief = typeof raw.presentation?.chief_complaint === "string" ? raw.presentation.chief_complaint.trim() : "";
+  if (!chief) return null;
 
-function isPasscodeValid(input: string): boolean {
-  if (!input) return false;
-  const rawInput = input.trim();
-  const cleanInput = rawInput.toLowerCase().replace(/^@/, "");
-  const cleanExpected = ADMIN_PASSCODE.trim().toLowerCase().replace(/^@/, "");
-  return rawInput === ADMIN_PASSCODE.trim() || cleanInput === cleanExpected;
+  const isoDate =
+    typeof raw.published_date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(raw.published_date.trim())
+      ? raw.published_date.trim()
+      : new Date().toISOString().split("T")[0];
+
+  const rawImaging = Array.isArray(raw.presentation?.imaging)
+    ? raw.presentation.imaging.slice(0, MAX_SUBMIT_IMAGING_ITEMS)
+    : [];
+
+  return {
+    ...raw,
+    title: typeof raw.title === "string" && raw.title.trim() ? raw.title.trim().slice(0, 300) : "Community Clinical Case",
+    subspecialty: typeof raw.subspecialty === "string" && raw.subspecialty.trim() ? raw.subspecialty.trim().slice(0, 120) : "General Neurology",
+    difficulty: typeof raw.difficulty === "string" && raw.difficulty.trim() ? raw.difficulty.trim().slice(0, 60) : "Fellow",
+    published_date: isoDate,
+    presentation: {
+      ...(raw.presentation && typeof raw.presentation === "object" ? raw.presentation : {}),
+      chief_complaint: chief.slice(0, 4000),
+      imaging: rawImaging.filter((img: unknown) => img && typeof img === "object" && !Array.isArray(img)),
+    },
+  } as ClinicalCase;
 }
 
 // ==========================================
 // 1. SUPABASE STORAGE (PRIMARY CLOUD BACKEND)
 // ==========================================
 async function getFromSupabase(): Promise<{ cases: ClinicalCase[]; deletedIds: Set<string> } | null> {
-  if (!hasSupabaseConfig()) return null;
+  if (!hasSupabaseAdminConfig()) return null;
   try {
     const { data, error } = await supabaseAdmin
       .from("clinical_cases")
@@ -69,7 +90,7 @@ async function getFromSupabase(): Promise<{ cases: ClinicalCase[]; deletedIds: S
 }
 
 async function setToSupabase(cases: ClinicalCase[]): Promise<boolean> {
-  if (!hasSupabaseConfig()) return false;
+  if (!hasSupabaseAdminConfig()) return false;
   try {
     const rows = cases.map((c) => ({
       id: c.id,
@@ -99,8 +120,35 @@ async function setToSupabase(cases: ClinicalCase[]): Promise<boolean> {
   }
 }
 
+async function upsertSingleCaseToSupabase(c: ClinicalCase): Promise<boolean> {
+  if (!hasSupabaseAdminConfig()) return false;
+  try {
+    const row = {
+      id: c.id,
+      case_code: c.case_code || c.id,
+      title: c.title || "Untitled Case",
+      subspecialty: c.subspecialty || (Array.isArray(c.subspecialties) ? c.subspecialties[0] : "General Neurology"),
+      difficulty: c.difficulty || "Fellow",
+      status: c.status || "pending",
+      is_daily_challenge: Boolean(c.is_daily_challenge),
+      published_date: c.published_date || new Date().toISOString().split("T")[0],
+      data: c,
+      updated_at: new Date().toISOString(),
+    };
+    const { error } = await supabaseAdmin.from("clinical_cases").upsert([row], { onConflict: "id" });
+    if (error) {
+      console.error("Supabase single-case upsert error in /api/neurocase:", error);
+      return false;
+    }
+    return true;
+  } catch (e) {
+    console.error("Supabase single-case upsert exception in /api/neurocase:", e);
+    return false;
+  }
+}
+
 async function deleteFromSupabase(caseId: string): Promise<boolean> {
-  if (!hasSupabaseConfig()) return false;
+  if (!hasSupabaseAdminConfig()) return false;
   try {
     const { error } = await supabaseAdmin
       .from("clinical_cases")
@@ -113,7 +161,7 @@ async function deleteFromSupabase(caseId: string): Promise<boolean> {
 }
 
 async function recordDeletedIdInSupabase(caseId: string): Promise<boolean> {
-  if (!hasSupabaseConfig()) return false;
+  if (!hasSupabaseAdminConfig()) return false;
   try {
     const existing = await getFromSupabase();
     const deletedSet = new Set<string>(existing?.deletedIds || []);
@@ -268,7 +316,7 @@ async function saveToActiveStorage(cases: ClinicalCase[]): Promise<{
   warning?: string;
 }> {
   // 1. Try Supabase (Primary, unlimited requests)
-  if (hasSupabaseConfig()) {
+  if (hasSupabaseAdminConfig()) {
     const sbOk = await setToSupabase(cases);
     if (sbOk) {
       return { success: true, storage: "supabase" };
@@ -318,8 +366,8 @@ export async function GET(req: Request) {
 
       return NextResponse.json({
         isVercel: Boolean(process.env.VERCEL),
-        hasSupabaseConfig: hasSupabaseConfig(),
-        storageBackend: hasSupabaseConfig() ? "supabase" : "local-file",
+        hasSupabaseConfig: hasSupabaseAdminConfig(),
+        storageBackend: hasSupabaseAdminConfig() ? "supabase" : "local-file",
       });
     }
 
@@ -327,7 +375,7 @@ export async function GET(req: Request) {
     let deletedIds = new Set<string>();
     let backend = "local-file";
 
-    if (hasSupabaseConfig()) {
+    if (hasSupabaseAdminConfig()) {
       const sbResult = await getFromSupabase();
       if (sbResult) {
         if (sbResult.cases.length > 0) {
@@ -392,12 +440,25 @@ export async function GET(req: Request) {
  */
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const rawBody = await req.text();
+    if (Buffer.byteLength(rawBody, "utf8") > MAX_SUBMIT_PAYLOAD_BYTES * 4) {
+      return NextResponse.json({ error: "Request payload too large." }, { status: 413 });
+    }
+    const body = JSON.parse(rawBody);
 
     // 1. Admin Verification / Login
     if (body.action === "verify_admin") {
+      if (!isAdminAuthConfigured()) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: "Admin authentication is not configured. Set ADMIN_PASSCODE and ADMIN_AUTH_SECRET in Environment Variables.",
+          },
+          { status: 503 }
+        );
+      }
       const passcode = typeof body.passcode === "string" ? body.passcode.trim() : "";
-      if (isPasscodeValid(passcode)) {
+      if (verifyAdminPasscode(passcode)) {
         const token = generateAdminAuthToken();
         return NextResponse.json({
           success: true,
@@ -415,7 +476,7 @@ export async function POST(req: Request) {
     const fetchCurrentCases = async (): Promise<ClinicalCase[]> => {
       let dynamicCases: ClinicalCase[] | null = null;
       const deletedIds = new Set<string>();
-      if (hasSupabaseConfig()) {
+      if (hasSupabaseAdminConfig()) {
         const sbResult = await getFromSupabase();
         if (sbResult) {
           if (sbResult.cases.length > 0) {
@@ -435,8 +496,15 @@ export async function POST(req: Request) {
 
     // 2. Public Community Submission (does NOT require admin token)
     if (body.action === "submit" || (body.newCase && !body.action)) {
-      const candidate: ClinicalCase = body.newCase;
-      if (!candidate || !candidate.presentation?.chief_complaint) {
+      if (Buffer.byteLength(rawBody, "utf8") > MAX_SUBMIT_PAYLOAD_BYTES) {
+        return NextResponse.json(
+          { error: "Submission payload exceeds 2 MB limit." },
+          { status: 413 }
+        );
+      }
+
+      const normalizedCandidate = normalizeSubmissionCase(body.newCase);
+      if (!normalizedCandidate) {
         return NextResponse.json(
           { error: "Invalid case submission payload." },
           { status: 400 }
@@ -445,12 +513,20 @@ export async function POST(req: Request) {
 
       // SECURITY ENFORCEMENT:
       // Generates unguessable server ID, sanitizes external URLs, and locks status to 'pending'
-      const safeCase = sanitizeCommunityCaseSubmission(candidate);
+      const safeCase = sanitizeCommunityCaseSubmission(normalizedCandidate);
 
-      const currentList = await fetchCurrentCases();
-      const updatedList = [safeCase, ...currentList.filter((c) => c.id !== safeCase.id)];
+      let saveResult: { success: boolean; storage: string; error?: string; warning?: string };
+      if (hasSupabaseAdminConfig()) {
+        const ok = await upsertSingleCaseToSupabase(safeCase);
+        saveResult = ok
+          ? { success: true, storage: "supabase" }
+          : { success: false, storage: "supabase", error: "Failed to persist submission." };
+      } else {
+        const currentList = await fetchCurrentCases();
+        const updatedList = [safeCase, ...currentList.filter((c) => c.id !== safeCase.id)];
+        saveResult = await saveToActiveStorage(updatedList);
+      }
 
-      const saveResult = await saveToActiveStorage(updatedList);
       return NextResponse.json({
         success: saveResult.success,
         storage: saveResult.storage,
@@ -498,7 +574,7 @@ export async function POST(req: Request) {
 
     // Admin Operation B: Delete a case permanently (with tombstone so bundled cases never reappear)
     if (body.action === "delete_case" && body.caseId) {
-      if (hasSupabaseConfig()) {
+      if (hasSupabaseAdminConfig()) {
         await recordDeletedIdInSupabase(body.caseId);
         await deleteFromSupabase(body.caseId);
       }

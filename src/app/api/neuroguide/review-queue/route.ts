@@ -20,7 +20,8 @@ import {
 } from "@/lib/neuroguide/esoPicoGrouper";
 import { parseAhaCorAndLoe } from "@/lib/neuroguide/notebooklmParser";
 import { verifyAdminToken } from "@/utils/security";
-import { supabaseAdmin, hasSupabaseConfig } from "@/lib/supabase";
+import { supabaseAdmin, hasSupabaseAdminConfig } from "@/lib/supabase";
+import { resolveSafeChildPath } from "@/lib/neuroguide/safePath";
 
 export const dynamic = "force-dynamic";
 
@@ -80,37 +81,37 @@ const TMP_DIR = path.join("/tmp", "guidelines_store");
  * Đọc nội dung tệp tin: Ưu tiên /tmp (phiên hiện tại), sau đó kho tĩnh STORE_DIR.
  */
 async function getFileContentAsync(fileName: string): Promise<{ content: string; sourcePath: string } | null> {
-  const tmpPath = path.join(TMP_DIR, fileName);
-  if (fs.existsSync(tmpPath)) {
-    try {
+  try {
+    const tmpPath = resolveSafeChildPath(TMP_DIR, fileName);
+    if (fs.existsSync(tmpPath)) {
       return { content: fs.readFileSync(tmpPath, "utf-8"), sourcePath: tmpPath };
-    } catch {}
-  }
+    }
+  } catch {}
 
-  const storePath = path.join(STORE_DIR, fileName);
-  if (fs.existsSync(storePath)) {
-    try {
+  try {
+    const storePath = resolveSafeChildPath(STORE_DIR, fileName);
+    if (fs.existsSync(storePath)) {
       return { content: fs.readFileSync(storePath, "utf-8"), sourcePath: storePath };
-    } catch {}
-  }
+    }
+  } catch {}
 
   return null;
 }
 
 function getFileContent(fileName: string): { content: string; sourcePath: string } | null {
-  const tmpPath = path.join(TMP_DIR, fileName);
-  if (fs.existsSync(tmpPath)) {
-    try {
+  try {
+    const tmpPath = resolveSafeChildPath(TMP_DIR, fileName);
+    if (fs.existsSync(tmpPath)) {
       return { content: fs.readFileSync(tmpPath, "utf-8"), sourcePath: tmpPath };
-    } catch {}
-  }
+    }
+  } catch {}
 
-  const storePath = path.join(STORE_DIR, fileName);
-  if (fs.existsSync(storePath)) {
-    try {
+  try {
+    const storePath = resolveSafeChildPath(STORE_DIR, fileName);
+    if (fs.existsSync(storePath)) {
       return { content: fs.readFileSync(storePath, "utf-8"), sourcePath: storePath };
-    } catch {}
-  }
+    }
+  } catch {}
 
   return null;
 }
@@ -168,7 +169,7 @@ async function loadUnifiedStoreRecords(): Promise<{
   }
 
   // 3. Đối chiếu với Supabase (Single Source of Truth trên Cloud)
-  if (hasSupabaseConfig()) {
+  if (hasSupabaseAdminConfig()) {
     try {
       const { data } = await supabaseAdmin
         .from("neuroguide_docs")
@@ -237,6 +238,17 @@ async function loadUnifiedStoreRecords(): Promise<{
 }
 
 export async function GET(request: NextRequest) {
+  const adminToken =
+    request.headers.get("x-admin-token") ||
+    request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
+
+  if (!verifyAdminToken(adminToken)) {
+    return NextResponse.json(
+      { ok: false, error: "Unauthorized. Administrator credentials required." },
+      { status: 401, headers: { "Cache-Control": "no-store" } }
+    );
+  }
+
   try {
     const activeData = await loadMergedNeuroGuideData();
     const { recordsMap, supabaseApprovedKeys, supabaseDeletedKeys, supabasePendingKeys } = await loadUnifiedStoreRecords();
@@ -314,11 +326,14 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    return NextResponse.json({
-      ok: true,
-      total: queue.length,
-      queue,
-    });
+    return NextResponse.json(
+      {
+        ok: true,
+        total: queue.length,
+        queue,
+      },
+      { headers: { "Cache-Control": "no-store" } }
+    );
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Lỗi đọc hàng đợi duyệt";
     return NextResponse.json({ ok: false, error: message }, { status: 500 });
@@ -630,15 +645,15 @@ export async function POST(request: NextRequest) {
           // Xóa file khỏi STORE_DIR (nếu có quyền ghi) và ghi đè tombstone vào TMP_DIR nếu STORE_DIR là read-only (trên Vercel)
           for (const dir of [STORE_DIR, TMP_DIR]) {
             try {
-              const fullLatest = path.join(/* turbopackIgnore: true */ dir, fileName);
+              const fullLatest = resolveSafeChildPath(dir, fileName);
               if (fs.existsSync(/* turbopackIgnore: true */ fullLatest)) fs.unlinkSync(/* turbopackIgnore: true */ fullLatest);
-              const fullV1 = path.join(/* turbopackIgnore: true */ dir, fileName.replace(/_latest\.json$/i, "_v1.json"));
+              const fullV1 = resolveSafeChildPath(dir, fileName.replace(/_latest\.json$/i, "_v1.json"));
               if (fs.existsSync(/* turbopackIgnore: true */ fullV1)) fs.unlinkSync(/* turbopackIgnore: true */ fullV1);
             } catch {}
           }
 
           // Nếu file gốc trong STORE_DIR vẫn tồn tại (do read-only trên Vercel), ghi bản REJECTED vào TMP_DIR để ghi đè hoàn toàn
-          if (fs.existsSync(path.join(STORE_DIR, fileName))) {
+          if (fs.existsSync(resolveSafeChildPath(STORE_DIR, fileName))) {
             try {
               if (!fs.existsSync(TMP_DIR)) fs.mkdirSync(TMP_DIR, { recursive: true });
               const tombstone: GuidelineRecord = {
@@ -648,7 +663,7 @@ export async function POST(request: NextRequest) {
                 rejected_count: Math.max(rec.recommendations.length, 1),
                 updated_at: new Date().toISOString(),
               };
-              fs.writeFileSync(path.join(TMP_DIR, fileName), JSON.stringify(tombstone, null, 2), "utf-8");
+              fs.writeFileSync(resolveSafeChildPath(TMP_DIR, fileName), JSON.stringify(tombstone, null, 2), "utf-8");
             } catch {}
           }
         } catch (e) {
@@ -709,7 +724,7 @@ export async function POST(request: NextRequest) {
       });
 
       // Đánh dấu trạng thái "deleted" (kèm upsert tombstone row) trên Supabase SAU saveNeuroGuideToActiveStorage để chặn vĩnh viễn trên mọi Lambda instance
-      if (hasSupabaseConfig()) {
+      if (hasSupabaseAdminConfig()) {
         try {
           const nowIso = new Date().toISOString();
           await supabaseAdmin

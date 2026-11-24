@@ -5,7 +5,7 @@ import path from "path";
 import { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } from "@/lib/neuroguide/guidelineStorage";
 import { MOCK_GUIDELINE_DOCS } from "@/data/neuroguideMockData";
 import { verifyAdminToken } from "@/utils/security";
-import { supabaseAdmin, hasSupabaseConfig } from "@/lib/supabase";
+import { supabaseAdmin, hasSupabaseAdminConfig } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -130,15 +130,18 @@ export async function POST(request: NextRequest) {
     });
 
     // 2b. Đánh dấu trạng thái "deleted" trên bảng neuroguide_docs của Supabase để chặn vĩnh viễn trên mọi Lambda instance
-    if (hasSupabaseConfig()) {
+    if (hasSupabaseAdminConfig()) {
       try {
         const deleteIds = Array.from(allDeletedIds);
-        await supabaseAdmin
+        const { error: updateErr } = await supabaseAdmin
           .from("neuroguide_docs")
           .update({ status: "deleted", updated_at: new Date().toISOString() })
           .in("id", deleteIds);
+        if (updateErr) {
+          console.error("Lỗi cập nhật trạng thái deleted trên Supabase:", updateErr);
+        }
 
-        await supabaseAdmin.from("neuroguide_docs").upsert(
+        const { error: upsertErr } = await supabaseAdmin.from("neuroguide_docs").upsert(
           {
             id: normTarget,
             title: title || normTarget,
@@ -150,6 +153,9 @@ export async function POST(request: NextRequest) {
           },
           { onConflict: "id" }
         );
+        if (upsertErr) {
+          console.error("Lỗi ghi tombstone deleted trên Supabase:", upsertErr);
+        }
       } catch (sbErr) {
         console.warn("Lỗi đánh dấu xóa guideline trên Supabase:", sbErr);
       }

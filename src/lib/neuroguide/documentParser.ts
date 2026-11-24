@@ -22,6 +22,9 @@ function loadGeminiApiKey(): string {
   return (process.env.GEMINI_API_KEY || "").trim().replace(/^["']|["']$/g, "");
 }
 
+const MAX_ZLIB_OUTPUT_BYTES = 25 * 1024 * 1024; // 25 MB cap per stream
+const MAX_PDF_CUMULATIVE_BYTES = 30 * 1024 * 1024; // 30 MB cumulative cap per PDF
+
 /**
  * Extract a specific file from a ZIP buffer in memory without external libraries.
  */
@@ -45,15 +48,16 @@ function extractFileFromZip(zipBuffer: Buffer, targetFileName: string): Buffer |
       if (fileName === targetFileName) {
         if (compressionMethod === 0) {
           // Stored uncompressed
+          if (uncompressedSize > MAX_ZLIB_OUTPUT_BYTES) return null;
           return zipBuffer.subarray(dataOffset, dataOffset + uncompressedSize);
         } else if (compressionMethod === 8) {
           // Deflate compressed
           const compressedData = zipBuffer.subarray(dataOffset, dataOffset + compressedSize);
           try {
-            return zlib.inflateRawSync(compressedData);
+            return zlib.inflateRawSync(compressedData, { maxOutputLength: MAX_ZLIB_OUTPUT_BYTES });
           } catch {
             try {
-              return zlib.inflateSync(compressedData);
+              return zlib.inflateSync(compressedData, { maxOutputLength: MAX_ZLIB_OUTPUT_BYTES });
             } catch {
               return null;
             }
@@ -222,8 +226,10 @@ export function extractTextFromPdfNative(pdfBuffer: Buffer): string {
   const textBlocks: string[] = [];
   const bufferLength = pdfBuffer.length;
   let offset = 0;
+  let cumulativeBytes = 0;
 
   while (offset < bufferLength) {
+    if (cumulativeBytes >= MAX_PDF_CUMULATIVE_BYTES) break;
     const streamStart = pdfBuffer.indexOf(Buffer.from("stream"), offset);
     if (streamStart === -1) break;
 
@@ -248,19 +254,27 @@ export function extractTextFromPdfNative(pdfBuffer: Buffer): string {
 
     const streamData = pdfBuffer.subarray(dataStart, endStream);
     let decodedText = "";
+    const remainingBudget = Math.max(0, MAX_PDF_CUMULATIVE_BYTES - cumulativeBytes);
+    const streamCap = Math.min(MAX_ZLIB_OUTPUT_BYTES, remainingBudget);
 
-    if (isFlate) {
+    if (isFlate && streamCap > 0) {
       try {
-        decodedText = zlib.inflateSync(streamData).toString("latin1");
+        const inflated = zlib.inflateSync(streamData, { maxOutputLength: streamCap });
+        cumulativeBytes += inflated.length;
+        decodedText = inflated.toString("latin1");
       } catch {
         try {
-          decodedText = zlib.inflateRawSync(streamData).toString("latin1");
+          const inflatedRaw = zlib.inflateRawSync(streamData, { maxOutputLength: streamCap });
+          cumulativeBytes += inflatedRaw.length;
+          decodedText = inflatedRaw.toString("latin1");
         } catch {
-          // Skip corrupt stream
+          // Skip corrupt or over-limit stream
         }
       }
-    } else {
-      decodedText = streamData.toString("latin1");
+    } else if (!isFlate) {
+      const slice = streamData.subarray(0, streamCap);
+      cumulativeBytes += slice.length;
+      decodedText = slice.toString("latin1");
     }
 
     if (decodedText) {

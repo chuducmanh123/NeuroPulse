@@ -96,9 +96,18 @@ export function PipelineModal({
     try {
       if (mode === "DISCOVER") {
         setStreamMessage("Scanning medical registries & PubMed for new guideline publications...");
+        const adminToken =
+          typeof window !== "undefined"
+            ? sessionStorage.getItem("neurocase_admin_token") ||
+              localStorage.getItem("neurocase_admin_token") ||
+              ""
+            : "";
         const res = await fetch("/api/neuroguide/pipeline", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            ...(adminToken ? { "x-admin-token": adminToken } : {}),
+          },
           body: JSON.stringify({ society, discover: true }),
         });
         const data = await res.json().catch(() => null);

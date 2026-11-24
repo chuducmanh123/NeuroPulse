@@ -375,7 +375,11 @@ export function ReviewQueueTab({
   const fetchQueue = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch("/api/neuroguide/review-queue");
+      const token = getAdminToken();
+      const res = await fetch("/api/neuroguide/review-queue", {
+        headers: token ? { "x-admin-token": token } : {},
+        cache: "no-store",
+      });
       const data = await res.json();
       if (data.ok && Array.isArray(data.queue)) {
         // Retrieve rejected guideline IDs from localStorage

@@ -405,9 +405,18 @@ export function PivotalTrialModal({
     setIsLookingUp(true);
     setLookupStatus(null);
     try {
+      const adminToken =
+        typeof window !== "undefined"
+          ? sessionStorage.getItem("neurocase_admin_token") ||
+            localStorage.getItem("neurocase_admin_token") ||
+            ""
+          : "";
       const res = await fetch("/api/neuroguide/navigator", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(adminToken ? { "x-admin-token": adminToken } : {}),
+        },
         body: JSON.stringify({
           action: "lookup_trial",
           identifier: lookupInput.trim(),

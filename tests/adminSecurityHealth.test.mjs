@@ -16,11 +16,32 @@ test("Token v2 TTL and Expiration", async (t) => {
     assert.equal(isValid, false);
   });
 
-  await t.test("should verify legacy static sha256 token for backwards compatibility", () => {
+  await t.test("should reject legacy static sha256 token by default and verify only when opted in", () => {
     const legacyToken = generateAdminAuthToken("secret123", "pass123", { legacyStatic: true });
     assert.match(legacyToken, /^[a-f0-9]{64}$/);
-    const isValid = verifyAdminToken(legacyToken, { adminAuthSecret: "secret123", adminPasscode: "pass123" });
-    assert.equal(isValid, true);
+    assert.equal(verifyAdminToken(legacyToken, { adminAuthSecret: "secret123", adminPasscode: "pass123" }), false);
+    assert.equal(
+      verifyAdminToken(legacyToken, { adminAuthSecret: "secret123", adminPasscode: "pass123", allowLegacyStatic: true }),
+      true
+    );
+  });
+
+  await t.test("should reject plaintext passcode as bearer/admin token", () => {
+    assert.equal(verifyAdminToken("pass123", { adminAuthSecret: "secret123", adminPasscode: "pass123" }), false);
+  });
+
+  await t.test("should fail closed in production when credentials are unset", () => {
+    const origPass = process.env.ADMIN_PASSCODE;
+    const origSecret = process.env.ADMIN_AUTH_SECRET;
+    delete process.env.ADMIN_PASSCODE;
+    delete process.env.ADMIN_AUTH_SECRET;
+    try {
+      const token = generateAdminAuthToken("secret123", "pass123", { expiresInHours: 24 });
+      assert.equal(verifyAdminToken(token, { nodeEnv: "production" }), false);
+    } finally {
+      if (origPass !== undefined) process.env.ADMIN_PASSCODE = origPass;
+      if (origSecret !== undefined) process.env.ADMIN_AUTH_SECRET = origSecret;
+    }
   });
 
   await t.test("should reject tampered token_v2 signature", () => {

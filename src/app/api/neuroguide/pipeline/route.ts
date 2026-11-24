@@ -9,24 +9,43 @@ import {
   extractGuidelineFromPdfBuffer,
   extractGuidelineFromUrlOrDoi,
 } from "@/lib/neuroguide/geminiGuidelineExtractor";
+import { verifyAdminToken } from "@/utils/security";
+import { parseSafeYear, resolveSafeChildPath, validateSafeExternalUrl } from "@/lib/neuroguide/safePath";
 
 const execFileAsync = promisify(execFile);
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
+const MAX_PIPELINE_UPLOAD_BYTES = 50 * 1024 * 1024;
+const RAW_UPLOAD_DIR = path.join(process.cwd(), "data", "guidelines_raw");
 const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
 const PYTHON_PATH =
   process.env.PYTHON_PATH ||
   "C:\\Users\\Manh\\AppData\\Local\\Programs\\Python\\Python315\\python.exe";
 
-export async function GET() {
+function extractAdminToken(request: NextRequest): string | undefined {
+  return (
+    request.headers.get("x-admin-token") ||
+    request.headers.get("authorization")?.replace(/^Bearer\s+/i, "") ||
+    undefined
+  );
+}
+
+export async function GET(request: NextRequest) {
+  if (!verifyAdminToken(extractAdminToken(request))) {
+    return NextResponse.json({ ok: false, error: "Unauthorized." }, { status: 401 });
+  }
+
   try {
     const jobsFile = path.join(STORE_DIR, "jobs.json");
     if (!fs.existsSync(jobsFile)) {
       return NextResponse.json({ ok: true, jobs: [] });
     }
     const jobs = JSON.parse(fs.readFileSync(jobsFile, "utf-8"));
-    return NextResponse.json({ ok: true, jobs: Object.values(jobs) });
+    return NextResponse.json(
+      { ok: true, jobs: Object.values(jobs) },
+      { headers: { "Cache-Control": "no-store" } }
+    );
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Error reading jobs list";
     return NextResponse.json({ ok: false, error: message }, { status: 500 });
@@ -34,6 +53,14 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  if (!verifyAdminToken(extractAdminToken(request))) {
+    return NextResponse.json(
+      { ok: false, error: "Unauthorized. Administrator credentials required." },
+      { status: 401 }
+    );
+  }
+
+  let createdTempUploadPath: string | null = null;
   try {
     let url: string | undefined;
     let local_path: string | undefined;
@@ -52,23 +79,28 @@ export async function POST(request: NextRequest) {
       discover = formData.get("discover") === "true";
       url = (formData.get("url") as string) || undefined;
       title = (formData.get("title") as string) || undefined;
-      const yearStr = formData.get("year") as string;
-      if (yearStr) year = parseInt(yearStr, 10);
+      year = parseSafeYear(formData.get("year"));
 
       const file = formData.get("file") as File | null;
       if (file && file.size > 0) {
+        if (file.size > MAX_PIPELINE_UPLOAD_BYTES) {
+          return NextResponse.json(
+            { ok: false, error: { code: "FILE_TOO_LARGE", message: "Uploaded PDF exceeds 50MB limit." } },
+            { status: 413 }
+          );
+        }
         uploadedFileName = file.name;
         uploadedBuffer = Buffer.from(await file.arrayBuffer());
 
-        // Save locally if filesystem writable
+        // Save locally if filesystem writable (cleaned up in finally)
         try {
-          const uploadDir = path.join(process.cwd(), "data", "guidelines_raw");
-          if (!fs.existsSync(uploadDir)) {
-            fs.mkdirSync(uploadDir, { recursive: true });
+          if (!fs.existsSync(RAW_UPLOAD_DIR)) {
+            fs.mkdirSync(RAW_UPLOAD_DIR, { recursive: true });
           }
           const safeName = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
-          const targetPath = path.join(uploadDir, safeName);
+          const targetPath = resolveSafeChildPath(RAW_UPLOAD_DIR, safeName);
           fs.writeFileSync(targetPath, uploadedBuffer);
+          createdTempUploadPath = targetPath;
           local_path = targetPath;
         } catch {
           // Read-only filesystem in serverless environments
@@ -83,8 +115,31 @@ export async function POST(request: NextRequest) {
       local_path = body.local_path;
       society = body.society || "AHA";
       title = body.title;
-      year = body.year;
-      discover = body.discover;
+      year = parseSafeYear(body.year);
+      discover = Boolean(body.discover);
+    }
+
+    if (url) {
+      try {
+        url = validateSafeExternalUrl(url, { httpsOnly: false }).toString();
+      } catch (urlErr: unknown) {
+        const msg = urlErr instanceof Error ? urlErr.message : "Invalid external URL";
+        return NextResponse.json({ ok: false, error: { code: "INVALID_URL", message: msg } }, { status: 400 });
+      }
+    }
+
+    if (local_path && !createdTempUploadPath) {
+      try {
+        const baseName = path.basename(local_path);
+        const resolved = resolveSafeChildPath(RAW_UPLOAD_DIR, baseName);
+        if (path.resolve(local_path) !== resolved) {
+          throw new Error("local_path must reside inside data/guidelines_raw");
+        }
+        local_path = resolved;
+      } catch (pathErr: unknown) {
+        const msg = pathErr instanceof Error ? pathErr.message : "Invalid local_path";
+        return NextResponse.json({ ok: false, error: { code: "INVALID_LOCAL_PATH", message: msg } }, { status: 400 });
+      }
     }
 
     const isVercelServerless = Boolean(
@@ -266,5 +321,11 @@ export async function POST(request: NextRequest) {
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Error processing pipeline request";
     return NextResponse.json({ ok: false, error: { message } }, { status: 500 });
+  } finally {
+    if (createdTempUploadPath && fs.existsSync(/* turbopackIgnore: true */ createdTempUploadPath)) {
+      try {
+        fs.unlinkSync(/* turbopackIgnore: true */ createdTempUploadPath);
+      } catch {}
+    }
   }
 }

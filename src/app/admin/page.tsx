@@ -214,8 +214,16 @@ export default function AdminCommandCenter() {
   };
 
   const fetchReviewQueueCount = async () => {
+    const token =
+      sessionStorage.getItem("neurocase_admin_token") ||
+      localStorage.getItem("neurocase_admin_token") ||
+      "";
+    if (!token) return;
     try {
-      const res = await fetch("/api/neuroguide/review-queue");
+      const res = await fetch("/api/neuroguide/review-queue", {
+        headers: { "x-admin-token": token },
+        cache: "no-store",
+      });
       const data = await res.json();
       if (data.ok && typeof data.total === "number") {
         setReviewQueueCount(data.total);

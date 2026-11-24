@@ -4,7 +4,7 @@ import {
   loadMergedNeuroGuideData,
   saveNeuroGuideToActiveStorage,
 } from "@/lib/neuroguide/guidelineStorage";
-import { hasSupabaseConfig } from "@/lib/supabase";
+import { hasSupabaseAdminConfig } from "@/lib/supabase";
 import { SupabaseNeuroGuideRepo } from "@/lib/neuroguide/sync/repoSupabase";
 import {
   syncCustomRecLabelToV2Repo,
@@ -73,14 +73,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json().catch(() => ({}));
     const action = String(body.action || "").trim();
 
-    // lookup_trial is read-only metadata resolution
-    if (action === "lookup_trial") {
-      const identifier = String(body.identifier || "").trim();
-      const result = await lookupTrialByPmidOrDoi(identifier);
-      return NextResponse.json(result);
-    }
-
-    // All mutating actions require Admin authorization
+    // All actions (including lookup_trial which triggers outbound fetches + Gemini) require Admin authorization
     const adminToken =
       request.headers.get("x-admin-token") ||
       request.headers.get("authorization")?.replace(/^Bearer\s+/i, "") ||
@@ -90,10 +83,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           ok: false,
-          error: "Unauthorized. Administrator authentication is required to modify Clinical Navigator records.",
+          error: "Unauthorized. Administrator authentication is required to access Clinical Navigator actions.",
         },
         { status: 401 }
       );
+    }
+
+    if (action === "lookup_trial") {
+      const identifier = String(body.identifier || "").trim();
+      const result = await lookupTrialByPmidOrDoi(identifier);
+      return NextResponse.json(result);
     }
 
     const currentStore = await loadMergedNeuroGuideData();
@@ -148,7 +147,7 @@ export async function POST(request: NextRequest) {
         skipV2Mirror: true,
       });
 
-      if (saveRes.success && isNeuroGuideSyncV2Enabled() && hasSupabaseConfig()) {
+      if (saveRes.success && isNeuroGuideSyncV2Enabled() && hasSupabaseAdminConfig()) {
         try {
           await syncPivotalTrialToV2Repo(new SupabaseNeuroGuideRepo(), trial, "admin");
         } catch (v2Err) {
@@ -200,7 +199,7 @@ export async function POST(request: NextRequest) {
         skipV2Mirror: true,
       });
 
-      if (saveRes.success && isNeuroGuideSyncV2Enabled() && hasSupabaseConfig()) {
+      if (saveRes.success && isNeuroGuideSyncV2Enabled() && hasSupabaseAdminConfig()) {
         try {
           await syncDeletePivotalTrialInV2Repo(new SupabaseNeuroGuideRepo(), trialId, "admin");
         } catch (v2Err) {
@@ -243,7 +242,7 @@ export async function POST(request: NextRequest) {
         skipV2Mirror: true,
       });
 
-      if (saveRes.success && isNeuroGuideSyncV2Enabled() && hasSupabaseConfig()) {
+      if (saveRes.success && isNeuroGuideSyncV2Enabled() && hasSupabaseAdminConfig()) {
         try {
           await syncCustomRecLabelToV2Repo(
             new SupabaseNeuroGuideRepo(),

@@ -16,28 +16,92 @@ export function sanitizeUrl(url: string | undefined): string {
 
 const DEFAULT_AUTH_SECRET = "neuropulse-neurocase-auth-secret-key-2026";
 const DEFAULT_PASSCODE = "@neuro2026";
-const TOKEN_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours session TTL
+
+function timingSafeEqualStrings(a: string, b: string): boolean {
+  const digestA = crypto.createHash("sha256").update(a, "utf8").digest();
+  const digestB = crypto.createHash("sha256").update(b, "utf8").digest();
+  return crypto.timingSafeEqual(digestA, digestB);
+}
+
+export function isProductionRuntime(nodeEnv?: string): boolean {
+  const effectiveEnv = nodeEnv ?? process.env.NODE_ENV;
+  return effectiveEnv === "production" || Boolean(process.env.VERCEL);
+}
+
+export function resolveAdminCredentials(options?: {
+  adminAuthSecret?: string;
+  adminPasscode?: string;
+  nodeEnv?: string;
+}): { secret: string; passcode: string } | null {
+  const rawSecret = (options?.adminAuthSecret ?? process.env.ADMIN_AUTH_SECRET ?? "").trim();
+  const rawPasscode = (options?.adminPasscode ?? process.env.ADMIN_PASSCODE ?? "").trim();
+
+  if (isProductionRuntime(options?.nodeEnv)) {
+    if (!rawSecret || !rawPasscode) {
+      return null;
+    }
+    return { secret: rawSecret, passcode: rawPasscode };
+  }
+
+  return {
+    secret: rawSecret || DEFAULT_AUTH_SECRET,
+    passcode: rawPasscode || DEFAULT_PASSCODE,
+  };
+}
+
+export function isAdminAuthConfigured(options?: {
+  adminAuthSecret?: string;
+  adminPasscode?: string;
+  nodeEnv?: string;
+}): boolean {
+  return resolveAdminCredentials(options) !== null;
+}
+
+export function verifyAdminPasscode(
+  input: string | null | undefined,
+  options?: {
+    adminAuthSecret?: string;
+    adminPasscode?: string;
+    nodeEnv?: string;
+  }
+): boolean {
+  if (typeof input !== "string") return false;
+  const trimmedInput = input.trim();
+  if (!trimmedInput) return false;
+
+  const creds = resolveAdminCredentials(options);
+  if (!creds) return false;
+
+  return timingSafeEqualStrings(trimmedInput, creds.passcode);
+}
 
 /**
  * Creates an authentication token for admin authorization.
- * Supports timestamped session tokens with expiration (TTL) while maintaining compatibility.
+ * Supports timestamped session tokens with expiration (TTL).
+ * Fails closed in production when ADMIN_AUTH_SECRET or ADMIN_PASSCODE is missing.
  */
 export function generateAdminAuthToken(
-  adminAuthSecret = process.env.ADMIN_AUTH_SECRET,
-  adminPasscode = process.env.ADMIN_PASSCODE,
-  options?: { expiresInHours?: number; legacyStatic?: boolean }
+  adminAuthSecret?: string,
+  adminPasscode?: string,
+  options?: { expiresInHours?: number; legacyStatic?: boolean; nodeEnv?: string }
 ): string {
-  const secret = adminAuthSecret || DEFAULT_AUTH_SECRET;
-  const passcode = adminPasscode || DEFAULT_PASSCODE;
+  const creds = resolveAdminCredentials({
+    adminAuthSecret,
+    adminPasscode,
+    nodeEnv: options?.nodeEnv,
+  });
+  if (!creds) {
+    throw new Error("ADMIN_AUTH_NOT_CONFIGURED");
+  }
 
   if (options?.legacyStatic) {
-    return crypto.createHmac("sha256", secret).update(passcode).digest("hex");
+    return crypto.createHmac("sha256", creds.secret).update(creds.passcode).digest("hex");
   }
 
   const hours = options?.expiresInHours ?? 24;
   const expiresAt = Date.now() + hours * 60 * 60 * 1000;
-  const payload = `${passcode}:${expiresAt}`;
-  const signature = crypto.createHmac("sha256", secret).update(payload).digest("hex");
+  const payload = `${creds.passcode}:${expiresAt}`;
+  const signature = crypto.createHmac("sha256", creds.secret).update(payload).digest("hex");
 
   // Format: token_v2.<expiresAt>.<signature>
   return `token_v2.${expiresAt}.${signature}`;
@@ -45,7 +109,8 @@ export function generateAdminAuthToken(
 
 /**
  * Timing-safe admin authorization verification.
- * Supports both modern TTL-based tokens (token_v2) and legacy static SHA-256 tokens.
+ * Accepts expiring HMAC-signed token_v2 credentials only (plaintext passcode rejected).
+ * Legacy static HMAC tokens are rejected unless explicitly opted in via allowLegacyStatic.
  */
 export function verifyAdminToken(
   token: string | null | undefined,
@@ -53,50 +118,54 @@ export function verifyAdminToken(
     adminAuthSecret?: string;
     adminPasscode?: string;
     nodeEnv?: string;
+    allowLegacyStatic?: boolean;
   }
 ): boolean {
-  if (!token) return false;
+  if (typeof token !== "string" || !token) return false;
 
-  const adminPasscode = options?.adminPasscode ?? process.env.ADMIN_PASSCODE ?? DEFAULT_PASSCODE;
-  const adminAuthSecret = options?.adminAuthSecret ?? process.env.ADMIN_AUTH_SECRET ?? DEFAULT_AUTH_SECRET;
+  const creds = resolveAdminCredentials({
+    adminAuthSecret: options?.adminAuthSecret,
+    adminPasscode: options?.adminPasscode,
+    nodeEnv: options?.nodeEnv,
+  });
+  if (!creds) return false;
 
   // 1. Check TTL-based token_v2 format (token_v2.<expiresAt>.<signature>)
   if (token.startsWith("token_v2.")) {
     const parts = token.split(".");
-    if (parts.length === 3) {
-      const expiresAt = parseInt(parts[1], 10);
+    if (parts.length === 3 && /^\d+$/.test(parts[1])) {
+      const expiresAt = Number.parseInt(parts[1], 10);
       const signature = parts[2];
 
-      // Session expired check
-      if (isNaN(expiresAt) || Date.now() > expiresAt) {
+      if (!Number.isFinite(expiresAt) || Date.now() > expiresAt) {
         return false;
       }
 
-      const payload = `${adminPasscode}:${expiresAt}`;
-      const expectedSignature = crypto.createHmac("sha256", adminAuthSecret).update(payload).digest("hex");
+      const payload = `${creds.passcode}:${expiresAt}`;
+      const expectedSignature = crypto.createHmac("sha256", creds.secret).update(payload).digest("hex");
 
       if (signature.length !== expectedSignature.length) return false;
       try {
-        return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature));
+        return crypto.timingSafeEqual(Buffer.from(signature, "utf8"), Buffer.from(expectedSignature, "utf8"));
       } catch {
         return false;
       }
     }
+    return false;
   }
 
-  // 2. Fallback check: Legacy static SHA-256 token format
-  const expectedLegacy = crypto.createHmac("sha256", adminAuthSecret).update(adminPasscode).digest("hex");
-  if (token.length === expectedLegacy.length) {
-    try {
-      if (crypto.timingSafeEqual(Buffer.from(token), Buffer.from(expectedLegacy))) {
-        return true;
-      }
-    } catch {}
-  }
-
-  // 3. Fallback check: Direct admin passcode match
-  if (token === adminPasscode) {
-    return true;
+  // 2. Optional legacy static HMAC token (disabled by default)
+  const allowLegacy =
+    options?.allowLegacyStatic === true || process.env.ALLOW_LEGACY_STATIC_ADMIN_TOKEN === "1";
+  if (allowLegacy) {
+    const expectedLegacy = crypto.createHmac("sha256", creds.secret).update(creds.passcode).digest("hex");
+    if (token.length === expectedLegacy.length) {
+      try {
+        if (crypto.timingSafeEqual(Buffer.from(token, "utf8"), Buffer.from(expectedLegacy, "utf8"))) {
+          return true;
+        }
+      } catch {}
+    }
   }
 
   return false;

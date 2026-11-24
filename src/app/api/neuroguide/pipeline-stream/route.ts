@@ -1,12 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
 import { executeIncrementalPipeline, IncrementalProgressEvent } from "@/lib/neuroguide/incrementalExtractor";
 import { verifyAdminToken } from "@/utils/security";
+import { isValidUploadId, parseSafeYear, resolveSafeChildPath, validateSafeExternalUrl } from "@/lib/neuroguide/safePath";
 import zlib from "zlib";
 import fs from "fs";
 import path from "path";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
+
+const MAX_PDF_BYTES = 55 * 1024 * 1024; // 55 MB cap for uploaded/decompressed PDFs
+
+function getAllowedBlobHosts(): { hosts: string[]; supabaseHost: string | null } {
+  const hosts = ["*.public.blob.vercel-storage.com"];
+  let supabaseHost: string | null = null;
+  const sbUrl = (process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "").trim();
+  if (sbUrl) {
+    try {
+      supabaseHost = new URL(sbUrl).hostname.toLowerCase();
+      hosts.push(supabaseHost);
+    } catch {}
+  }
+  return { hosts, supabaseHost };
+}
 
 export async function POST(request: NextRequest) {
   // Khóa bảo vệ Admin: Chỉ quản trị viên có token hợp lệ mới được thực thi luồng bóc tách PDF
@@ -43,11 +59,13 @@ export async function POST(request: NextRequest) {
     uploadId = (formData.get("uploadId") as string) || undefined;
     const keyField = formData.get("apiKey") as string;
     if (keyField) apiKey = keyField;
-    const yearStr = formData.get("year") as string;
-    if (yearStr) year = parseInt(yearStr, 10);
+    year = parseSafeYear(formData.get("year"));
 
     const file = formData.get("file") as File | null;
     if (file && file.size > 0) {
+      if (file.size > MAX_PDF_BYTES) {
+        return NextResponse.json({ ok: false, error: "File exceeds 55MB limit." }, { status: 413 });
+      }
       fileName = file.name;
       directBuffer = Buffer.from(await file.arrayBuffer());
     }
@@ -59,7 +77,7 @@ export async function POST(request: NextRequest) {
       fileName = body.fileName || "guideline.pdf";
       society = body.society || "AHA";
       title = body.title;
-      year = body.year;
+      year = parseSafeYear(body.year);
       if (body.apiKey) apiKey = body.apiKey;
     } catch {}
   }
@@ -67,9 +85,10 @@ export async function POST(request: NextRequest) {
   // Tự động giải nén nếu buffer được gửi ở định dạng Gzip (magic bytes 0x1f, 0x8b)
   if (directBuffer && directBuffer.length > 2 && directBuffer[0] === 0x1f && directBuffer[1] === 0x8b) {
     try {
-      directBuffer = zlib.gunzipSync(directBuffer);
+      directBuffer = zlib.gunzipSync(directBuffer, { maxOutputLength: MAX_PDF_BYTES });
     } catch (decompErr) {
       console.warn("Không thể giải nén payload gzip trực tiếp:", decompErr);
+      return NextResponse.json({ ok: false, error: "Gzip payload invalid or exceeds size limit." }, { status: 400 });
     }
   }
 
@@ -78,12 +97,15 @@ export async function POST(request: NextRequest) {
 
   // Nếu tệp được tải lên theo phương thức chunked upload
   if (!pdfBuffer && uploadId) {
+    if (!isValidUploadId(uploadId)) {
+      return NextResponse.json({ ok: false, error: "Invalid uploadId format." }, { status: 400 });
+    }
     const tmpDir = path.join("/tmp", "neuroguide_uploads");
     const localTmpDir = path.join(process.cwd(), "data", "temp_uploads");
     let uploadFilePath: string | null = null;
 
     for (const dir of [tmpDir, localTmpDir]) {
-      const candidate = path.join(dir, `${uploadId}.bin`);
+      const candidate = resolveSafeChildPath(dir, `${uploadId}.bin`);
       if (fs.existsSync(candidate)) {
         uploadFilePath = candidate;
         break;
@@ -92,17 +114,22 @@ export async function POST(request: NextRequest) {
 
     if (uploadFilePath) {
       try {
-        let rawBuf = fs.readFileSync(uploadFilePath);
+        let rawBuf = fs.readFileSync(/* turbopackIgnore: true */ uploadFilePath);
+        if (rawBuf.length > MAX_PDF_BYTES) {
+          return NextResponse.json({ ok: false, error: "Uploaded file exceeds 55MB limit." }, { status: 413 });
+        }
         // Tự động giải nén nếu file chunked được nén gzip
         if (rawBuf.length > 2 && rawBuf[0] === 0x1f && rawBuf[1] === 0x8b) {
           try {
-            rawBuf = zlib.gunzipSync(rawBuf);
-          } catch {}
+            rawBuf = zlib.gunzipSync(rawBuf, { maxOutputLength: MAX_PDF_BYTES });
+          } catch {
+            return NextResponse.json({ ok: false, error: "Chunked gzip payload invalid or exceeds size limit." }, { status: 400 });
+          }
         }
         pdfBuffer = rawBuf;
         // Xóa tệp tạm để giải phóng bộ nhớ
         try {
-          fs.unlinkSync(uploadFilePath);
+          fs.unlinkSync(/* turbopackIgnore: true */ uploadFilePath);
         } catch {}
       } catch (chunkReadErr) {
         console.warn("Lỗi đọc tệp chunked upload:", chunkReadErr);
@@ -112,19 +139,41 @@ export async function POST(request: NextRequest) {
 
   if (!pdfBuffer && blob_url) {
     try {
-      const res = await fetch(blob_url);
-      if (!res.ok) {
+      const { hosts, supabaseHost } = getAllowedBlobHosts();
+      const parsedBlobUrl = validateSafeExternalUrl(blob_url, {
+        httpsOnly: true,
+        allowedHosts: hosts,
+      });
+      if (
+        supabaseHost &&
+        parsedBlobUrl.hostname.toLowerCase() === supabaseHost &&
+        !parsedBlobUrl.pathname.startsWith("/storage/v1/object/public/guidelines-pdf/")
+      ) {
         return NextResponse.json(
-          { ok: false, error: `Could not retrieve file from Vercel Blob (HTTP ${res.status})` },
+          { ok: false, error: "Invalid Supabase storage object path for blob_url." },
           { status: 400 }
         );
       }
-      pdfBuffer = Buffer.from(await res.arrayBuffer());
-    } catch {
-      return NextResponse.json(
-        { ok: false, error: "Network connection error downloading document from Vercel Blob" },
-        { status: 500 }
-      );
+
+      const res = await fetch(parsedBlobUrl.toString(), { redirect: "error" });
+      if (!res.ok) {
+        return NextResponse.json(
+          { ok: false, error: `Could not retrieve file from storage (HTTP ${res.status})` },
+          { status: 400 }
+        );
+      }
+      const contentLenHeader = Number.parseInt(res.headers.get("content-length") || "0", 10);
+      if (contentLenHeader > MAX_PDF_BYTES) {
+        return NextResponse.json({ ok: false, error: "Remote blob exceeds 55MB limit." }, { status: 413 });
+      }
+      const arrBuf = await res.arrayBuffer();
+      if (arrBuf.byteLength > MAX_PDF_BYTES) {
+        return NextResponse.json({ ok: false, error: "Remote blob exceeds 55MB limit." }, { status: 413 });
+      }
+      pdfBuffer = Buffer.from(arrBuf);
+    } catch (blobErr: unknown) {
+      const msg = blobErr instanceof Error ? blobErr.message : "Invalid or unreachable blob_url";
+      return NextResponse.json({ ok: false, error: msg }, { status: 400 });
     }
   }
 

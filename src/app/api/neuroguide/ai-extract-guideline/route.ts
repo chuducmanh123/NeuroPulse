@@ -4,6 +4,9 @@ import path from "path";
 import { detectSociety } from "@/lib/neuroguide/pubmedDiscovery";
 import { detectGuidelineFormFormat } from "@/lib/neuroguide/guidelineFormat";
 import { GEMINI_WATERFALL_MODELS, recordGeminiFallback } from "@/lib/gemini/models";
+import { verifyAdminToken } from "@/utils/security";
+
+const MAX_EXTRACT_TEXT_CHARS = 500_000;
 
 function loadGeminiKey(): string {
   const envPath = path.join(process.cwd(), ".env");
@@ -28,13 +31,30 @@ const MODELS = GEMINI_WATERFALL_MODELS;
 
 export async function POST(request: NextRequest) {
   try {
+    const adminToken =
+      request.headers.get("x-admin-token") ||
+      request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
+
+    if (!verifyAdminToken(adminToken)) {
+      return NextResponse.json(
+        { ok: false, error: "Unauthorized. Administrator credentials required." },
+        { status: 401 }
+      );
+    }
+
     const body = await request.json();
-    const text = (body.text || "").trim();
-    const title = (body.title || "").trim();
-    const societyInput = (body.society || "").trim();
+    const text = (typeof body.text === "string" ? body.text : "").trim();
+    const title = (typeof body.title === "string" ? body.title : "").trim();
+    const societyInput = (typeof body.society === "string" ? body.society : "").trim();
 
     if (!text || text.length < 20) {
       return NextResponse.json({ ok: false, error: "Nội dung văn bản quá ngắn để trích xuất." }, { status: 400 });
+    }
+    if (text.length > MAX_EXTRACT_TEXT_CHARS) {
+      return NextResponse.json(
+        { ok: false, error: `Nội dung văn bản vượt quá giới hạn ${MAX_EXTRACT_TEXT_CHARS.toLocaleString()} ký tự.` },
+        { status: 413 }
+      );
     }
 
     const apiKey = loadGeminiKey();

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 import { verifyAdminToken } from "@/utils/security";
-import { supabaseAdmin, hasSupabaseConfig } from "@/lib/supabase";
+import { supabaseAdmin, hasSupabaseAdminConfig } from "@/lib/supabase";
 import { loadMergedNeuroGuideData } from "@/lib/neuroguide/guidelineStorage";
 import {
   GEMINI_WATERFALL_MODELS,
@@ -131,7 +131,7 @@ export async function GET(req: NextRequest) {
     });
 
     // 2. Storage Diagnostics (Supabase & Vercel Blob)
-    const hasSupabase = hasSupabaseConfig();
+    const hasSupabase = hasSupabaseAdminConfig();
     let supabaseConnected = false;
     let supabaseCasesCount = 0;
     let supabaseDocsCount = 0;

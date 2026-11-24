@@ -85,11 +85,18 @@ export function NotebookLMUploadModal({
     if (isBinaryDoc) {
       setIsParsingFile(true);
       try {
+        const adminToken =
+          typeof window !== "undefined"
+            ? sessionStorage.getItem("neurocase_admin_token") ||
+              localStorage.getItem("neurocase_admin_token") ||
+              ""
+            : "";
         const formData = new FormData();
         formData.append("file", file);
 
         const res = await fetch("/api/neuroguide/parse-document", {
           method: "POST",
+          headers: adminToken ? { "x-admin-token": adminToken } : {},
           body: formData,
         });
 
@@ -141,9 +148,18 @@ export function NotebookLMUploadModal({
     setErrorMessage(null);
 
     try {
+      const adminToken =
+        typeof window !== "undefined"
+          ? sessionStorage.getItem("neurocase_admin_token") ||
+            localStorage.getItem("neurocase_admin_token") ||
+            ""
+          : "";
       const res = await fetch("/api/neuroguide/ai-extract-guideline", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(adminToken ? { "x-admin-token": adminToken } : {}),
+        },
         body: JSON.stringify({
           text: rawText,
           title: overrideTitle || parsedPreview?.doc.title,

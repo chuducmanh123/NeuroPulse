@@ -10,12 +10,14 @@ const supabaseAnonKey =
   process.env.SUPABASE_ANON_KEY ||
   "";
 
-const supabaseServiceRoleKey =
-  process.env.SUPABASE_SERVICE_ROLE_KEY ||
-  supabaseAnonKey;
+const supabaseServiceRoleKey = (process.env.SUPABASE_SERVICE_ROLE_KEY || "").trim();
 
 export function hasSupabaseConfig(): boolean {
   return Boolean(supabaseUrl && supabaseAnonKey);
+}
+
+export function hasSupabaseAdminConfig(): boolean {
+  return Boolean(supabaseUrl && supabaseServiceRoleKey);
 }
 
 // Client for standard requests (Client and Server)
@@ -29,10 +31,10 @@ export const supabase = createClient(
   }
 );
 
-// Admin client for backend API routes (bypasses RLS if service_role is present)
+// Admin client for backend API routes (requires SUPABASE_SERVICE_ROLE_KEY; never falls back to anon key)
 export const supabaseAdmin = createClient(
   supabaseUrl || "https://placeholder.supabase.co",
-  supabaseServiceRoleKey || "placeholder",
+  supabaseServiceRoleKey || "missing-service-role-key",
   {
     auth: {
       persistSession: false,

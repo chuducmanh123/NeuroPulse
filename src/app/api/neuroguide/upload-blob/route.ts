@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { verifyAdminToken } from "@/utils/security";
-import { supabaseAdmin, hasSupabaseConfig } from "@/lib/supabase";
+import { supabaseAdmin, hasSupabaseAdminConfig } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -17,7 +17,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     );
   }
 
-  if (!hasSupabaseConfig()) {
+  if (!hasSupabaseAdminConfig()) {
     return NextResponse.json(
       { ok: false, error: "SUPABASE_NOT_CONFIGURED: Supabase URL hoặc Service Role Key chưa được cấu hình." },
       { status: 500 }
@@ -44,6 +44,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }
 
     const rawBuffer = Buffer.from(await file.arrayBuffer());
+    if (rawBuffer.length < 5 || rawBuffer.subarray(0, 5).toString("ascii") !== "%PDF-") {
+      return NextResponse.json(
+        { ok: false, error: "Tệp tải lên không phải định dạng PDF hợp lệ (%PDF-)." },
+        { status: 400 }
+      );
+    }
     const sanitizedName = (file.name || "guideline.pdf").replace(/[^a-zA-Z0-9._-]/g, "_");
     const uniqueFileName = `guideline-${Date.now()}-${sanitizedName}`;
 

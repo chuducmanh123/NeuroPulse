@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { supabaseAdmin, hasSupabaseConfig } from "../supabase.ts";
+import { supabaseAdmin, hasSupabaseAdminConfig } from "../supabase.ts";
+import { resolveSafeChildPath } from "./safePath.ts";
 import type { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "../../types/neuroguide.ts";
 import {
   normalizeEsoStrength,
@@ -278,7 +279,7 @@ export async function saveStoreFileSafe(fileName: string, dataStr: string): Prom
     if (!fs.existsSync(TMP_DIR)) {
       fs.mkdirSync(TMP_DIR, { recursive: true });
     }
-    const tmpPath = path.join(TMP_DIR, fileName);
+    const tmpPath = resolveSafeChildPath(TMP_DIR, fileName);
     fs.writeFileSync(tmpPath, dataStr, "utf-8");
   } catch (err) {
     console.warn("Không thể ghi vào TMP_DIR:", err);
@@ -290,7 +291,7 @@ export async function saveStoreFileSafe(fileName: string, dataStr: string): Prom
       if (!fs.existsSync(STORE_DIR)) {
         fs.mkdirSync(STORE_DIR, { recursive: true });
       }
-      const storePath = path.join(STORE_DIR, fileName);
+      const storePath = resolveSafeChildPath(STORE_DIR, fileName);
       fs.writeFileSync(storePath, dataStr, "utf-8");
     } catch (e: any) {
       if (e?.code !== "EROFS") {
@@ -300,7 +301,7 @@ export async function saveStoreFileSafe(fileName: string, dataStr: string): Prom
   }
 
   // 3. Đồng bộ GuidelineRecord lên Supabase nếu là file _latest.json
-  if (fileName.endsWith("_latest.json") && hasSupabaseConfig()) {
+  if (fileName.endsWith("_latest.json") && hasSupabaseAdminConfig()) {
     try {
       const record = JSON.parse(dataStr);
       if (record && record.guideline_id && record.metadata?.title) {

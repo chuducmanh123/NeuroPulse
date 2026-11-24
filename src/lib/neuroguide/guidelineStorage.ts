@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
-import { supabaseAdmin, hasSupabaseConfig } from "../supabase.ts";
+import { supabaseAdmin, hasSupabaseAdminConfig } from "../supabase.ts";
 import type {
   GuidelineDoc,
   ConferenceEvent,
@@ -101,7 +101,7 @@ export interface SupabaseNeuroGuidePayload extends NeuroGuideBlobPayload {
  * Loads dynamic NeuroGuide data from Supabase (Single Source of Truth)
  */
 export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | null> {
-  if (!hasSupabaseConfig()) return null;
+  if (!hasSupabaseAdminConfig()) return null;
   try {
     const { data, error } = await supabaseAdmin
       .from("neuroguide_docs")
@@ -255,7 +255,7 @@ export async function setToSupabase(
   payload: NeuroGuideBlobPayload,
   options?: { onlyGuidelineIds?: string[] },
 ): Promise<{ ok: boolean; error?: string }> {
-  if (!hasSupabaseConfig()) return { ok: false, error: "No Supabase config" };
+  if (!hasSupabaseAdminConfig()) return { ok: false, error: "No Supabase admin config" };
   try {
     const guidelines = Array.isArray(payload.guidelines) ? payload.guidelines : [];
     const targetOnlySet =
@@ -622,7 +622,7 @@ export async function loadMergedNeuroGuideData(): Promise<{
   let dynamicData: SupabaseNeuroGuidePayload | null = null;
 
   // Primary (Sync v2 when feature flag enabled): 2-tier Granular Block & Merkle Graph
-  if (isNeuroGuideSyncV2Enabled() && hasSupabaseConfig()) {
+  if (isNeuroGuideSyncV2Enabled() && hasSupabaseAdminConfig()) {
     try {
       const v2Catalog = await loadNeuroGuideCatalogFromSyncV2(
         new SupabaseNeuroGuideRepo(),
@@ -667,7 +667,7 @@ export async function loadMergedNeuroGuideData(): Promise<{
   }
 
   // Primary: Load directly from Supabase
-  if (hasSupabaseConfig()) {
+  if (hasSupabaseAdminConfig()) {
     dynamicData = await getFromSupabase();
   }
 
@@ -920,7 +920,7 @@ export async function saveNeuroGuideToActiveStorage(payload: {
   let existingConferences = payload.conferences;
   if (!effectiveDeletedIds || !effectiveDeletedTrialIds || !existingPivotalTrials || !existingCustomLabels || existingConferences === undefined) {
     try {
-      const existingSupabase = hasSupabaseConfig() ? await getFromSupabase() : null;
+      const existingSupabase = hasSupabaseAdminConfig() ? await getFromSupabase() : null;
       const existingLocal = await getFromLocalDisk();
       if (!effectiveDeletedIds) {
         effectiveDeletedIds = Array.from(
@@ -982,7 +982,7 @@ export async function saveNeuroGuideToActiveStorage(payload: {
 
   const localOk = await setToLocalDisk(fullPayload);
 
-  if (hasSupabaseConfig()) {
+  if (hasSupabaseAdminConfig()) {
     const targetOnlyIds =
       Array.isArray(payload.onlyGuidelineIds) && payload.onlyGuidelineIds.length > 0
         ? payload.onlyGuidelineIds

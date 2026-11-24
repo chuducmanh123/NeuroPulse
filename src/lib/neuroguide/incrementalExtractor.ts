@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { supabaseAdmin, hasSupabaseConfig } from "../supabase";
+import { supabaseAdmin, hasSupabaseAdminConfig } from "../supabase";
 import type { SubspecialtyType } from "../../types/neuroguide";
 import { detectSociety, detectSubspecialty } from "./pubmedDiscovery";
 import { saveStoreFileSafe } from "./storeAdapter";
@@ -732,7 +732,7 @@ Respond strictly in valid JSON matching this schema:
         docId,
       });
 
-      if (options.blobUrl && hasSupabaseConfig()) {
+      if (options.blobUrl && hasSupabaseAdminConfig()) {
         try {
           const parts = options.blobUrl.split("/");
           const fileName = parts[parts.length - 1];

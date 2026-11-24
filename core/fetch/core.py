@@ -1,7 +1,10 @@
 import hashlib
+import ipaddress
 import re
+import socket
 from pathlib import Path
 from typing import Optional, Dict, Any
+from urllib.parse import urljoin, urlparse
 import requests
 from bs4 import BeautifulSoup
 import pymupdf  # PyMuPDF: kiểm tra trang & tính toàn vẹn PDF tốc độ cao
@@ -75,11 +78,25 @@ class FetchCore(BaseCore):
 
         # 1. Thu thập dữ liệu byte
         if input_data.local_path:
-            path_obj = Path(input_data.local_path)
-            if not path_obj.exists():
+            allowed_dir = (Path.cwd() / "data" / "guidelines_raw").resolve()
+            try:
+                path_obj = Path(input_data.local_path).resolve()
+            except Exception:
+                raise CoreException(
+                    code="INVALID_LOCAL_PATH",
+                    message="Đường dẫn tệp cục bộ không hợp lệ.",
+                    retryable=False,
+                )
+            if not path_obj.is_relative_to(allowed_dir):
+                raise CoreException(
+                    code="INVALID_LOCAL_PATH",
+                    message="Đường dẫn tệp cục bộ phải nằm trong thư mục data/guidelines_raw.",
+                    retryable=False,
+                )
+            if not path_obj.exists() or not path_obj.is_file():
                 raise CoreException(
                     code="LOCAL_FILE_NOT_FOUND",
-                    message=f"Tệp cục bộ không tồn tại: {input_data.local_path}",
+                    message="Tệp cục bộ không tồn tại.",
                     retryable=False,
                 )
             pdf_bytes = path_obj.read_bytes()
@@ -127,14 +144,12 @@ class FetchCore(BaseCore):
                     code="PAYWALLED_MANUAL_REQUIRED",
                     message="Bài báo bị khóa bởi tường thu phí của nhà xuất bản. Vui lòng tải tệp PDF lên thủ công (chọn 'Đường dẫn tệp cục bộ trên máy') để AI bóc tách.",
                     retryable=False,
-                    details={"header_snippet": snippet[:200]},
                 )
 
             raise CoreException(
                 code="INVALID_PDF_HEADER",
                 message="Tệp tải về không có định dạng PDF hợp lệ (không chứa magic bytes '%PDF-'). Vui lòng kiểm tra lại URL hoặc tải trực tiếp file PDF về máy.",
                 retryable=False,
-                details={"header_snippet": snippet[:200]},
             )
 
         # 4. Tính toán mã băm SHA-256
@@ -231,12 +246,7 @@ class FetchCore(BaseCore):
                         break
 
             if pdf_link:
-                # Xử lý đường dẫn tương đối
-                if pdf_link.startswith("/"):
-                    base_domain = re.match(r"^https?://[^/]+", url)
-                    if base_domain:
-                        pdf_link = base_domain.group(0) + pdf_link
-
+                pdf_link = urljoin(url, pdf_link)
                 resolved_bytes = self._download_url(pdf_link, timeout)
                 if resolved_bytes.startswith(b"%PDF-"):
                     return resolved_bytes, "HTML_META_RESOLVED"
@@ -246,34 +256,126 @@ class FetchCore(BaseCore):
 
         return raw_bytes, "DIRECT_DOWNLOAD"
 
+    def _validate_public_url(self, url: str) -> str:
+        parsed = urlparse((url or "").strip())
+        if parsed.scheme not in ("http", "https") or not parsed.netloc:
+            raise CoreException(
+                code="INVALID_URL",
+                message="URL không hợp lệ (chỉ hỗ trợ http/https).",
+                retryable=False,
+            )
+        if parsed.username or parsed.password:
+            raise CoreException(
+                code="INVALID_URL",
+                message="URL không được chứa thông tin xác thực.",
+                retryable=False,
+            )
+        hostname = (parsed.hostname or "").lower()
+        if not hostname or hostname in ("localhost",) or hostname.endswith((".localhost", ".local", ".internal")):
+            raise CoreException(
+                code="BLOCKED_URL",
+                message="Tên miền nội bộ không được phép truy cập.",
+                retryable=False,
+            )
+        try:
+            addr_infos = socket.getaddrinfo(hostname, parsed.port or (443 if parsed.scheme == "https" else 80), type=socket.SOCK_STREAM)
+        except socket.gaierror as e:
+            raise CoreException(
+                code="NETWORK_REQUEST_FAILED",
+                message=f"Không thể phân giải tên miền {hostname}: {e}",
+                retryable=True,
+            )
+        for info in addr_infos:
+            ip_str = info[4][0].split("%")[0]
+            ip_obj = ipaddress.ip_address(ip_str)
+            if (
+                ip_obj.is_private
+                or ip_obj.is_loopback
+                or ip_obj.is_link_local
+                or ip_obj.is_multicast
+                or ip_obj.is_reserved
+                or ip_obj.is_unspecified
+            ):
+                raise CoreException(
+                    code="BLOCKED_URL",
+                    message="Địa chỉ IP nội bộ hoặc dành riêng không được phép truy cập.",
+                    retryable=False,
+                )
+        return parsed.geturl()
+
     def _download_url(self, url: str, timeout: int) -> bytes:
+        max_bytes = 50 * 1024 * 1024
+        max_redirects = 5
         headers = {
             "User-Agent": self.default_user_agent,
             "Accept": "application/pdf,application/octet-stream,text/html,*/*",
         }
+        current_url = self._validate_public_url(url)
         try:
-            response = requests.get(url, headers=headers, timeout=timeout, allow_redirects=True, verify=False)
+            response = None
+            for _ in range(max_redirects + 1):
+                response = requests.get(
+                    current_url,
+                    headers=headers,
+                    timeout=timeout,
+                    allow_redirects=False,
+                    verify=True,
+                    stream=True,
+                )
+                if response.status_code in (301, 302, 303, 307, 308):
+                    location = response.headers.get("Location")
+                    response.close()
+                    if not location:
+                        break
+                    current_url = self._validate_public_url(urljoin(current_url, location))
+                    continue
+                break
+            else:
+                raise CoreException(
+                    code="TOO_MANY_REDIRECTS",
+                    message="Quá nhiều chuyển hướng HTTP khi tải tài liệu.",
+                    retryable=False,
+                )
+
+            assert response is not None
             if response.status_code == 403:
+                response.close()
                 raise CoreException(
                     code="PAYWALLED_MANUAL_REQUIRED",
                     message="Tài liệu bị giới hạn truy cập bởi nhà xuất bản (403 Forbidden / Paywall). Vui lòng tải tệp PDF lên thủ công để tiếp tục xử lý.",
                     retryable=False,
-                    details={"url": url, "status_code": 403},
+                    details={"url": current_url, "status_code": 403},
                 )
             elif response.status_code == 404:
+                response.close()
                 raise CoreException(
                     code="HTTP_404_NOT_FOUND",
-                    message=f"Không tìm thấy tài liệu tại URL: {url}",
+                    message=f"Không tìm thấy tài liệu tại URL: {current_url}",
                     retryable=False,
                 )
             elif response.status_code in (429, 500, 502, 503, 504):
+                code_val = response.status_code
+                response.close()
                 raise CoreException(
-                    code=f"HTTP_{response.status_code}_TEMPORARY_ERROR",
-                    message=f"Máy chủ đích trả về lỗi tạm thời ({response.status_code}) khi tải {url}",
+                    code=f"HTTP_{code_val}_TEMPORARY_ERROR",
+                    message=f"Máy chủ đích trả về lỗi tạm thời ({code_val}) khi tải {current_url}",
                     retryable=True,
                 )
             response.raise_for_status()
-            return response.content
+            chunks = []
+            total = 0
+            for chunk in response.iter_content(chunk_size=65536):
+                if chunk:
+                    total += len(chunk)
+                    if total > max_bytes:
+                        response.close()
+                        raise CoreException(
+                            code="FILE_TOO_LARGE",
+                            message="Tài liệu tải về vượt quá giới hạn 50MB.",
+                            retryable=False,
+                        )
+                    chunks.append(chunk)
+            return b"".join(chunks)
         except requests.exceptions.Timeout:
             raise CoreException(
                 code="DOWNLOAD_TIMEOUT",

@@ -243,6 +243,7 @@ export function generateSafeGuidelineId(
   existingOrDeletedIds?: Set<string> | string[]
 ): string {
   const socSlug = (society || "guide").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const cleanYear = String(year ?? "").replace(/[^0-9]/g, "").slice(0, 4) || String(new Date().getFullYear());
   const slug = generateSafeGuidelineSlug(title);
   let hash = 0;
   const s = (title || "").toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -250,7 +251,7 @@ export function generateSafeGuidelineId(
     hash = ((hash << 5) - hash + s.charCodeAt(i)) | 0;
   }
   const hashStr = Math.abs(hash).toString(36).slice(0, 4);
-  const baseId = `${socSlug}-${year}-${slug}-${hashStr}`;
+  const baseId = `${socSlug}-${cleanYear}-${slug}-${hashStr}`;
 
   if (existingOrDeletedIds) {
     const idSet =
