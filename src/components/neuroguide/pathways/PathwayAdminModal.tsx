@@ -529,9 +529,6 @@ export function PathwayAdminModal({
                     ? "Upload Flowchart Image & Extract Pathway"
                     : `Review & Publish — ${draft?.title.en || "New Draft"}`}
               </h2>
-              <p className="text-[11px] sm:text-xs text-[var(--text-muted)]">
-                Human-in-the-loop gate: every AI extraction stays in Draft until validated and published.
-              </p>
             </div>
           </div>
 
@@ -895,67 +892,6 @@ export function PathwayAdminModal({
                   </div>
                 )}
 
-                {confidenceNotes.length > 0 && (
-                  <div className="rounded-xl border border-sky-500/30 bg-sky-500/8 p-3 text-xs text-sky-900 dark:text-sky-200">
-                    <p className="font-bold mb-1">Gemini Vision Confidence Notes:</p>
-                    <ul className="list-disc pl-4 space-y-0.5">
-                      {confidenceNotes.map((note, idx) => (
-                        <li key={idx}>{note}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {validation && (
-                  <div
-                    className={`rounded-xl border p-3 text-xs ${
-                      validation.errors.length > 0
-                        ? "border-rose-500/35 bg-rose-500/8 text-rose-800 dark:text-rose-200"
-                        : validation.warnings.length > 0
-                          ? "border-amber-500/35 bg-amber-500/8 text-amber-800 dark:text-amber-200"
-                          : "border-emerald-500/35 bg-emerald-500/8 text-emerald-800 dark:text-emerald-200"
-                    }`}
-                  >
-                    <div className="flex flex-wrap items-center justify-between gap-2 font-bold">
-                      <span className="inline-flex items-center gap-1.5">
-                        {validation.errors.length > 0 ? (
-                          <AlertCircle size={15} />
-                        ) : (
-                          <CheckCircle2 size={15} />
-                        )}
-                        {validation.errors.length > 0
-                          ? `${validation.errors.length} Blocking Error(s) — fix before publishing`
-                          : validation.warnings.length > 0
-                            ? `Ready to Publish (${validation.warnings.length} advisory warning)`
-                            : "Graph Validated — Ready to Publish"}
-                      </span>
-                    </div>
-                    {(validation.errors.length > 0 || validation.warnings.length > 0) && (
-                      <div className="mt-2 flex flex-wrap gap-1.5">
-                        {[...validation.errors, ...validation.warnings].map((issue, idx) => (
-                          <button
-                            key={idx}
-                            type="button"
-                            onClick={() => {
-                              if (issue.nodeId) {
-                                setSelectedNodeId(issue.nodeId);
-                                setEditorTab("visual");
-                              }
-                            }}
-                            className={`px-2 py-1 rounded-lg text-[11px] font-medium border text-left cursor-pointer ${
-                              issue.severity === "error"
-                                ? "bg-rose-500/15 border-rose-500/35"
-                                : "bg-amber-500/15 border-amber-500/35"
-                            }`}
-                          >
-                            <span className="font-mono font-bold">[{issue.code}]</span> {issue.message}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
-
                 {/* Split-Screen Review Workspace */}
                 <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.35fr)] gap-4 lg:flex-1 lg:min-h-0">
                   {/* Left: Original Image Reference */}
@@ -1096,19 +1032,19 @@ export function PathwayAdminModal({
                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                                   <div>
                                     <label className="block font-semibold mb-1">
-                                      Entry Node
+                                      First Step
                                     </label>
                                     <CustomSelect
                                       value={draft.entryNodeId}
                                       onChange={(v) => setDraft({ ...draft, entryNodeId: v })}
-                                      ariaLabel="Entry node"
+                                      ariaLabel="First step"
                                       darkMode={darkMode}
                                       accent="amber"
                                       size="form-sm"
                                       buttonClassName="bg-[var(--bg-surface)] shadow-none"
-                                      options={draft.nodes.map((n) => ({
+                                      options={draft.nodes.map((n, idx) => ({
                                         value: n.id,
-                                        label: `${n.id}: ${n.title.en.slice(0, 28)}`,
+                                        label: `Step ${idx + 1}: ${n.title.en || n.id}`,
                                       }))}
                                     />
                                   </div>
@@ -1487,7 +1423,7 @@ export function PathwayAdminModal({
                               {/* Outgoing Edges */}
                               <div className="space-y-2 pt-2 border-t border-[var(--border-hairline)]">
                                 <div className="flex items-center justify-between">
-                                  <span className="font-bold">Outgoing Branches (Edges)</span>
+                                  <span className="font-bold">Next Step Branches</span>
                                   <button
                                     type="button"
                                     onClick={() => {
@@ -1511,100 +1447,109 @@ export function PathwayAdminModal({
 
                                 {selectedNode.edges.length === 0 ? (
                                   <p className="text-[11px] text-[var(--text-muted)]">
-                                    No outgoing branches (terminal node).
+                                    No next steps (this is a final conclusion step).
                                   </p>
                                 ) : (
                                   selectedNode.edges.map((edge, idx) => (
                                     <div
                                       key={edge.id}
-                                      className="rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-2.5 grid grid-cols-1 sm:grid-cols-12 gap-2 items-center"
+                                      className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3 space-y-2"
                                     >
-                                      <input
-                                        type="text"
-                                        value={edge.label.en}
-                                        placeholder="Branch label (EN)"
-                                        onChange={(e) =>
-                                          updateSelectedNode((n) => ({
-                                            ...n,
-                                            edges: n.edges.map((ed, i) =>
-                                              i === idx
-                                                ? { ...ed, label: { ...ed.label, en: e.target.value } }
-                                                : ed
-                                            ),
-                                          }))
-                                        }
-                                        className="sm:col-span-4 px-2 py-1 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)]"
-                                      />
-                                      <input
-                                        type="text"
-                                        value={edge.label.vi || ""}
-                                        placeholder="Nhãn (VI)"
-                                        onChange={(e) =>
-                                          updateSelectedNode((n) => ({
-                                            ...n,
-                                            edges: n.edges.map((ed, i) =>
-                                              i === idx
-                                                ? { ...ed, label: { ...ed.label, vi: e.target.value } }
-                                                : ed
-                                            ),
-                                          }))
-                                        }
-                                        className="sm:col-span-3 px-2 py-1 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)]"
-                                      />
-                                      <select
-                                        value={edge.targetNodeId}
-                                        onChange={(e) =>
-                                          updateSelectedNode((n) => ({
-                                            ...n,
-                                            edges: n.edges.map((ed, i) =>
-                                              i === idx
-                                                ? { ...ed, targetNodeId: e.target.value }
-                                                : ed
-                                            ),
-                                          }))
-                                        }
-                                        className="sm:col-span-3 px-2 py-1 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)]"
-                                      >
-                                        {draft.nodes.map((target) => (
-                                          <option key={target.id} value={target.id}>
-                                            → {target.id} ({target.title.en.slice(0, 18)})
-                                          </option>
-                                        ))}
-                                      </select>
-                                      <select
-                                        value={edge.tone || "default"}
-                                        onChange={(e) =>
-                                          updateSelectedNode((n) => ({
-                                            ...n,
-                                            edges: n.edges.map((ed, i) =>
-                                              i === idx
-                                                ? {
-                                                    ...ed,
-                                                    tone: e.target.value as PathwayEdge["tone"],
-                                                  }
-                                                : ed
-                                            ),
-                                          }))
-                                        }
-                                        className="sm:col-span-1 px-1 py-1 rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)]"
-                                      >
-                                        <option value="default">Default</option>
-                                        <option value="positive">Positive</option>
-                                        <option value="warning">Warning</option>
-                                        <option value="danger">Danger</option>
-                                      </select>
-                                      <button
-                                        type="button"
-                                        onClick={() =>
-                                          updateSelectedNode((n) => ({
-                                            ...n,
-                                            edges: n.edges.filter((_, i) => i !== idx),
-                                          }))
-                                        }
-                                        className="sm:col-span-1 p-1 text-rose-500 justify-self-end cursor-pointer"
-                                      >
-                                        <Trash2 size={13} />
-                                      </button>
+                                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                        <input
+                                          type="text"
+                                          value={edge.label.en}
+                                          placeholder="Choice label (EN)"
+                                          onChange={(e) =>
+                                            updateSelectedNode((n) => ({
+                                              ...n,
+                                              edges: n.edges.map((ed, i) =>
+                                                i === idx
+                                                  ? { ...ed, label: { ...ed.label, en: e.target.value } }
+                                                  : ed
+                                              ),
+                                            }))
+                                          }
+                                          className="w-full min-h-[34px] px-2.5 py-1 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)]"
+                                        />
+                                        <input
+                                          type="text"
+                                          value={edge.label.vi || ""}
+                                          placeholder="Choice label (VI)"
+                                          onChange={(e) =>
+                                            updateSelectedNode((n) => ({
+                                              ...n,
+                                              edges: n.edges.map((ed, i) =>
+                                                i === idx
+                                                  ? { ...ed, label: { ...ed.label, vi: e.target.value } }
+                                                  : ed
+                                              ),
+                                            }))
+                                          }
+                                          className="w-full min-h-[34px] px-2.5 py-1 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)]"
+                                        />
+                                      </div>
+
+                                      <div className="flex flex-wrap sm:flex-nowrap items-center gap-2">
+                                        <span className="text-[11px] font-semibold text-[var(--text-muted)] shrink-0">
+                                          Go to:
+                                        </span>
+                                        <select
+                                          value={edge.targetNodeId}
+                                          onChange={(e) =>
+                                            updateSelectedNode((n) => ({
+                                              ...n,
+                                              edges: n.edges.map((ed, i) =>
+                                                i === idx
+                                                  ? { ...ed, targetNodeId: e.target.value }
+                                                  : ed
+                                              ),
+                                            }))
+                                          }
+                                          className="flex-1 min-w-0 min-h-[34px] px-2.5 py-1 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)]"
+                                        >
+                                          {draft.nodes.map((target, tIdx) => (
+                                            <option key={target.id} value={target.id}>
+                                              Step {tIdx + 1}: {target.title.en || target.id}
+                                            </option>
+                                          ))}
+                                        </select>
+                                        <select
+                                          value={edge.tone || "default"}
+                                          onChange={(e) =>
+                                            updateSelectedNode((n) => ({
+                                              ...n,
+                                              edges: n.edges.map((ed, i) =>
+                                                i === idx
+                                                  ? {
+                                                      ...ed,
+                                                      tone: e.target.value as PathwayEdge["tone"],
+                                                    }
+                                                  : ed
+                                              ),
+                                            }))
+                                          }
+                                          className="w-28 shrink-0 min-h-[34px] px-2 py-1 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)]"
+                                        >
+                                          <option value="default">Default</option>
+                                          <option value="positive">Positive</option>
+                                          <option value="warning">Warning</option>
+                                          <option value="danger">Danger</option>
+                                        </select>
+                                        <button
+                                          type="button"
+                                          onClick={() =>
+                                            updateSelectedNode((n) => ({
+                                              ...n,
+                                              edges: n.edges.filter((_, i) => i !== idx),
+                                            }))
+                                          }
+                                          title="Remove branch"
+                                          className="p-1.5 rounded-lg text-rose-500 hover:bg-rose-500/10 shrink-0 cursor-pointer"
+                                        >
+                                          <Trash2 size={14} />
+                                        </button>
+                                      </div>
                                     </div>
                                   ))
                                 )}
@@ -1642,6 +1587,72 @@ export function PathwayAdminModal({
                           >
                             Apply JSON to Editor
                           </button>
+                        </div>
+                      )}
+
+                      {/* Extraction Notes & Graph Validation (below main editor) */}
+                      {(confidenceNotes.length > 0 || validation) && (
+                        <div className="space-y-3 pt-2 border-t border-[var(--border-hairline)]">
+                          {confidenceNotes.length > 0 && (
+                            <div className="rounded-xl border border-sky-500/30 bg-sky-500/8 p-3 text-xs text-sky-900 dark:text-sky-200">
+                              <p className="font-bold mb-1">Gemini Vision Confidence Notes:</p>
+                              <ul className="list-disc pl-4 space-y-0.5">
+                                {confidenceNotes.map((note, idx) => (
+                                  <li key={idx}>{note}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          {validation && (
+                            <div
+                              className={`rounded-xl border p-3 text-xs ${
+                                validation.errors.length > 0
+                                  ? "border-rose-500/35 bg-rose-500/8 text-rose-800 dark:text-rose-200"
+                                  : validation.warnings.length > 0
+                                    ? "border-amber-500/35 bg-amber-500/8 text-amber-800 dark:text-amber-200"
+                                    : "border-emerald-500/35 bg-emerald-500/8 text-emerald-800 dark:text-emerald-200"
+                              }`}
+                            >
+                              <div className="flex flex-wrap items-center justify-between gap-2 font-bold">
+                                <span className="inline-flex items-center gap-1.5">
+                                  {validation.errors.length > 0 ? (
+                                    <AlertCircle size={15} />
+                                  ) : (
+                                    <CheckCircle2 size={15} />
+                                  )}
+                                  {validation.errors.length > 0
+                                    ? `${validation.errors.length} Blocking Error(s) — fix before publishing`
+                                    : validation.warnings.length > 0
+                                      ? `Ready to Publish (${validation.warnings.length} advisory warning)`
+                                      : "Graph Validated — Ready to Publish"}
+                                </span>
+                              </div>
+                              {(validation.errors.length > 0 || validation.warnings.length > 0) && (
+                                <div className="mt-2 flex flex-wrap gap-1.5">
+                                  {[...validation.errors, ...validation.warnings].map((issue, idx) => (
+                                    <button
+                                      key={idx}
+                                      type="button"
+                                      onClick={() => {
+                                        if (issue.nodeId) {
+                                          setSelectedNodeId(issue.nodeId);
+                                          setEditorTab("visual");
+                                        }
+                                      }}
+                                      className={`px-2 py-1 rounded-lg text-[11px] font-medium border text-left cursor-pointer ${
+                                        issue.severity === "error"
+                                          ? "bg-rose-500/15 border-rose-500/35"
+                                          : "bg-amber-500/15 border-amber-500/35"
+                                      }`}
+                                    >
+                                      <span className="font-mono font-bold">[{issue.code}]</span> {issue.message}
+                                    </button>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
