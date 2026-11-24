@@ -586,7 +586,13 @@ export function PathwayAdminModal({
         )}
 
         {/* Modal Body */}
-        <div className="flex-1 overflow-y-auto p-3.5 sm:p-4 space-y-3.5">
+        <div
+          className={`flex-1 min-h-0 p-3.5 sm:p-4 ${
+            stage === "review"
+              ? "flex flex-col gap-3 overflow-y-auto lg:overflow-hidden"
+              : "overflow-y-auto space-y-3.5"
+          }`}
+        >
           {stage === "upload" ? (
             <div className="w-full grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] gap-4 items-stretch">
               {/* Left: Image Picker */}
@@ -951,10 +957,10 @@ export function PathwayAdminModal({
                 )}
 
                 {/* Split-Screen Review Workspace */}
-                <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.35fr)] gap-4 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.35fr)] gap-4 lg:flex-1 lg:min-h-0">
                   {/* Left: Original Image Reference */}
-                  <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] overflow-hidden">
-                    <div className="flex items-center justify-between px-3.5 py-2 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]">
+                  <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] overflow-hidden flex flex-col lg:h-full">
+                    <div className="flex items-center justify-between px-3.5 py-2 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)] shrink-0">
                       <span className="inline-flex items-center gap-1.5 text-xs font-bold">
                         <ImageIcon size={14} className="text-[#C25934]" />
                         Original Flowchart
@@ -963,7 +969,7 @@ export function PathwayAdminModal({
                         <button
                           type="button"
                           onClick={() => setImageZoom((z) => Math.max(50, z - 25))}
-                          className="p-1 rounded hover:bg-[var(--bg-surface)]"
+                          className="p-1 rounded hover:bg-[var(--bg-surface)] cursor-pointer"
                         >
                           <ZoomOut size={14} />
                         </button>
@@ -973,20 +979,20 @@ export function PathwayAdminModal({
                         <button
                           type="button"
                           onClick={() => setImageZoom((z) => Math.min(250, z + 25))}
-                          className="p-1 rounded hover:bg-[var(--bg-surface)]"
+                          className="p-1 rounded hover:bg-[var(--bg-surface)] cursor-pointer"
                         >
                           <ZoomIn size={14} />
                         </button>
                         <button
                           type="button"
                           onClick={() => setImageZoom(100)}
-                          className="p-1 rounded hover:bg-[var(--bg-surface)]"
+                          className="p-1 rounded hover:bg-[var(--bg-surface)] cursor-pointer"
                         >
                           <RotateCcw size={13} />
                         </button>
                       </div>
                     </div>
-                    <div className="max-h-[calc(94vh-215px)] min-h-[420px] overflow-auto p-3.5 bg-[var(--bg-subtle)]/50">
+                    <div className="flex-1 min-h-[280px] overflow-auto p-3.5 bg-[var(--bg-subtle)]/50 custom-scrollbar">
                       {reviewImageUrl ? (
                         <img
                           src={reviewImageUrl}
@@ -1003,8 +1009,8 @@ export function PathwayAdminModal({
                   </div>
 
                   {/* Right: 3 Sub-tabs (Visual Editor | Live Preview | Raw JSON) */}
-                  <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] overflow-hidden">
-                    <div className="flex items-center justify-between px-3 py-2 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]">
+                  <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] overflow-hidden flex flex-col lg:h-full">
+                    <div className="flex items-center justify-between px-3 py-2 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)] shrink-0">
                       <div className="flex items-center gap-1">
                         {(
                           [
@@ -1048,7 +1054,7 @@ export function PathwayAdminModal({
                       </button>
                     </div>
 
-                    <div className="p-5 max-h-[calc(94vh-215px)] min-h-[420px] overflow-y-auto space-y-4">
+                    <div className="p-4 sm:p-5 flex-1 min-h-0 overflow-y-auto space-y-4 custom-scrollbar">
                       {editorTab === "visual" && (
                         <>
                           {showMetaEditor && (
@@ -1145,56 +1151,72 @@ export function PathwayAdminModal({
                             </div>
                           )}
 
-                          {/* Node Strip */}
-                          <div className="flex flex-wrap items-center gap-1.5">
-                            {draft.nodes.map((n) => {
-                              const hasErr = validation?.errors.some(
-                                (e) => e.nodeId === n.id
-                              );
-                              const active = selectedNode?.id === n.id;
-                              return (
-                                <button
-                                  key={n.id}
-                                  type="button"
-                                  onClick={() => setSelectedNodeId(n.id)}
-                                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-semibold border transition-colors cursor-pointer ${
-                                    active
-                                      ? "bg-[#C25934] text-white border-[#C25934]"
-                                      : "bg-[var(--bg-subtle)] text-[var(--text-secondary)] border-[var(--border-hairline)] hover:text-[var(--text-ink)]"
-                                  }`}
-                                >
-                                  {hasErr && (
-                                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-                                  )}
-                                  <span className="font-mono">{n.id}</span>
-                                  <span className="opacity-75 capitalize">({n.kind})</span>
-                                </button>
-                              );
-                            })}
-                            <button
-                              type="button"
-                              onClick={() => {
-                                const newNode = createBlankNode(draft.nodes);
-                                setDraft({
-                                  ...draft,
-                                  nodes: [...draft.nodes, newNode],
-                                });
-                                setSelectedNodeId(newNode.id);
-                              }}
-                              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-bold border border-dashed border-[#C25934]/50 text-[#C25934] hover:bg-[#C25934]/10 cursor-pointer"
-                            >
-                              <Plus size={12} />
-                              <span>Add Node</span>
-                            </button>
+                          {/* Step Selector */}
+                          <div className="space-y-2">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                                Pathway Steps ({draft.nodes.length}) — Click a step to edit
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const newNode = createBlankNode(draft.nodes);
+                                  setDraft({
+                                    ...draft,
+                                    nodes: [...draft.nodes, newNode],
+                                  });
+                                  setSelectedNodeId(newNode.id);
+                                }}
+                                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-bold border border-dashed border-[#C25934]/50 text-[#C25934] hover:bg-[#C25934]/10 cursor-pointer"
+                              >
+                                <Plus size={12} />
+                                <span>Add Step</span>
+                              </button>
+                            </div>
+
+                            <div className="flex flex-wrap items-center gap-1.5">
+                              {draft.nodes.map((n, idx) => {
+                                const hasErr = validation?.errors.some(
+                                  (e) => e.nodeId === n.id
+                                );
+                                const active = selectedNode?.id === n.id;
+                                return (
+                                  <button
+                                    key={n.id}
+                                    type="button"
+                                    onClick={() => setSelectedNodeId(n.id)}
+                                    title={`${n.id} (${n.kind})`}
+                                    className={`inline-flex items-center gap-1.5 max-w-[210px] px-2.5 py-1 rounded-lg text-[11px] font-semibold border transition-colors cursor-pointer ${
+                                      active
+                                        ? "bg-[#C25934] text-white border-[#C25934] shadow-2xs"
+                                        : "bg-[var(--bg-subtle)] text-[var(--text-secondary)] border-[var(--border-hairline)] hover:text-[var(--text-ink)] hover:border-[#C25934]/40"
+                                    }`}
+                                  >
+                                    {hasErr && (
+                                      <span className="w-1.5 h-1.5 rounded-full bg-rose-400 shrink-0" />
+                                    )}
+                                    <span className={`font-mono text-[10px] shrink-0 ${active ? "text-white/85" : "text-[var(--text-muted)]"}`}>
+                                      {idx + 1}.
+                                    </span>
+                                    <span className="truncate">{n.title.en || n.id}</span>
+                                  </button>
+                                );
+                              })}
+                            </div>
                           </div>
 
                           {/* Selected Node Form */}
                           {selectedNode && (
-                            <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] p-3.5 space-y-3 text-xs">
-                              <div className="flex flex-wrap items-center justify-between gap-2">
-                                <span className="font-bold text-[var(--text-ink)]">
-                                  Editing Node: <span className="font-mono">{selectedNode.id}</span>
-                                </span>
+                            <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] p-4 space-y-3.5 text-xs">
+                              <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-[var(--border-hairline)]">
+                                <div className="flex flex-wrap items-center gap-2 min-w-0">
+                                  <span className="font-bold text-xs sm:text-[13px] text-[var(--text-ink)] truncate">
+                                    Step {draft.nodes.findIndex((n) => n.id === selectedNode.id) + 1}: {selectedNode.title.en || selectedNode.id}
+                                  </span>
+                                  <span className="px-2 py-0.5 rounded-md font-mono text-[10px] bg-[var(--bg-subtle)] text-[var(--text-muted)] border border-[var(--border-hairline)]">
+                                    {selectedNode.id}
+                                  </span>
+                                </div>
                                 {draft.nodes.length > 1 && (
                                   <button
                                     type="button"
