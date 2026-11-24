@@ -9,14 +9,14 @@
 ## Phase 1: Schema, Graph Validator & Sync v2 Merkle Integration
 Mục tiêu: Tích hợp `Clinical Pathways` trực tiếp vào kiến trúc **NeuroGuide 2-Tier Granular Blocks & Merkle Tree** (chống lặp, chống mất dữ liệu, optimistic concurrency, soft-delete tombstones).
 
-- [ ] **T1.1 — Types & Schema:** Tạo `src/types/clinicalPathways.ts` (`ClinicalPathwayDoc`, `PathwayNode`, `PathwayEdge`, `BilingualText`, `PathwaySourceMeta`, `PathwayValidationResult`).
-- [ ] **T1.2 — Graph Validator:** Tạo `src/lib/neuroguide/pathwayValidator.ts` kiểm tra blocking errors (entry node, broken edges, dead-ends, duplicate node IDs, source metadata) và warnings (orphan nodes, cycles, missing VI).
-- [ ] **T1.3 — Mở rộng Sync v2 Types & Merkle Graph Engine:**
+- [x] **T1.1 — Types & Schema:** Tạo `src/types/clinicalPathways.ts` (`ClinicalPathwayDoc`, `PathwayNode`, `PathwayEdge`, `BilingualText`, `PathwaySourceMeta`, `PathwayValidationResult`).
+- [x] **T1.2 — Graph Validator:** Tạo `src/lib/neuroguide/pathwayValidator.ts` kiểm tra blocking errors (entry node, broken edges, dead-ends, duplicate node IDs, source metadata) và warnings (orphan nodes, cycles, missing VI).
+- [x] **T1.3 — Mở rộng Sync v2 Types & Merkle Graph Engine:**
   - Cập nhật `src/lib/neuroguide/sync/types.ts`: thêm `protocol_type: "clinical_pathway"`, `block_type: "pathway_node"`, `role: "pathway_step"`.
   - Cập nhật `src/lib/neuroguide/sync/blockGraph.ts` & `handlers.ts`: hỗ trợ decompose/assemble `ClinicalPathwayDoc` ↔ `NeuroGuideProtocolRow` + `NeuroGuideContentBlockRow[]` với deterministic UUID, O(log N) selective re-hash, và `ALLOWED_PROTOCOL_TYPES` / `ALLOWED_BLOCK_TYPES`.
   - Cập nhật `src/hooks/useNeuroGuideSync.ts` & `src/lib/neuroguide/sync/lookupHelpers.ts`: dẫn xuất thêm danh sách `clinicalPathways` (tự động lọc `deletedAt === null`, tách rõ `published` vs `draft`) từ cùng IndexedDB + Realtime sync engine.
-- [ ] **T1.4 — SQL Migration (Idempotent + Rollback):** Tạo `supabase/migrations/20261122_neuroguide_clinical_pathways_v2.sql` và `20261122_neuroguide_clinical_pathways_v2_rollback.sql` mở rộng constraint của `neuroguide_protocols`, `neuroguide_content_blocks`, `neuroguide_protocol_blocks`.
-- [ ] **T1.5 — Pathway Service & Image Storage:** Tạo `src/lib/neuroguide/pathwayService.ts` xử lý:
+- [x] **T1.4 — SQL Migration (Idempotent + Rollback):** Tạo `supabase/migrations/20261122_neuroguide_clinical_pathways_v2.sql` và `20261122_neuroguide_clinical_pathways_v2_rollback.sql` mở rộng constraint của `neuroguide_protocols`, `neuroguide_content_blocks`, `neuroguide_protocol_blocks`.
+- [x] **T1.5 — Pathway Service & Image Storage:** Tạo `src/lib/neuroguide/pathwayService.ts` xử lý:
   - Canonical slug + `sourceImageSha256` chống lặp khi upload/tạo mới.
   - Upload ảnh lên Supabase Storage bucket `pathway-images` (local fallback `public/uploads/pathways/`).
   - Ghi nguyên tử qua `NeuroGuideRepo` với `baseRev` (trả `409 Conflict` khi lệch), soft-delete tombstone (`deleted_at` + `change_seq`), và restore trong chu kỳ 30 ngày.

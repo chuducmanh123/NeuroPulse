@@ -8,9 +8,11 @@ import type {
   RecommendationAtom,
   RecommendationLabelOutput,
 } from "../../../types/neuroguide.ts";
+import type { ClinicalPathwayDoc } from "../../../types/clinicalPathways.ts";
 import { cloneJson } from "../../sync/jsonPatch.ts";
 import { isDraftOrUnapprovedNeuroGuideBlock } from "./blockGraph.ts";
 import {
+  assembleClinicalPathwayFromGraph,
   computeBlockContentHash,
   computeBlockSectionHashes,
   decomposeNeuroGuideStoreToGraph,
@@ -60,6 +62,7 @@ export interface ReconstructedNeuroGuideCatalog {
   customRecLabels: Record<string, RecommendationLabelOutput>;
   deletedGuidelineIds: string[];
   deletedTrialIds: string[];
+  clinicalPathways: ClinicalPathwayDoc[];
 }
 
 function formatLocalTimeHHMM(isoTimestamp: string | null): string | null {
@@ -481,6 +484,7 @@ export function reconstructCatalogFromSyncGraph(
       customRecLabels: cloneJson(baseline?.customRecLabels ?? {}),
       deletedGuidelineIds: cloneJson(baseline?.deletedGuidelineIds ?? []),
       deletedTrialIds: cloneJson(baseline?.deletedTrialIds ?? []),
+      clinicalPathways: cloneJson(baseline?.clinicalPathways ?? []),
     };
   }
 
@@ -497,8 +501,10 @@ export function reconstructCatalogFromSyncGraph(
   let hasScenarioCatalog = false;
   let hasTrialCatalog = false;
   let hasAtomCatalog = false;
+  let hasPathwayProtocols = false;
 
   const guidelines: GuidelineDoc[] = [];
+  const clinicalPathways: ClinicalPathwayDoc[] = [];
 
   for (const proto of graph.protocols) {
     if (proto.deletedAt !== null) continue;
@@ -528,8 +534,23 @@ export function reconstructCatalogFromSyncGraph(
       if (proto.metadata.catalogKind === "clinical_scenarios") hasScenarioCatalog = true;
       else if (proto.metadata.catalogKind === "pivotal_trials") hasTrialCatalog = true;
       else if (proto.metadata.catalogKind === "recommendation_atoms") hasAtomCatalog = true;
+    } else if (proto.metadata.kind === "clinical_pathway") {
+      hasPathwayProtocols = true;
+      const orderedUids = edgesByProtocol.get(proto.uid) ?? proto.blockOrder;
+      const assembled = assembleClinicalPathwayFromGraph(proto, blocksByUid, orderedUids, {
+        excludeDrafts,
+      });
+      if (assembled) {
+        clinicalPathways.push(assembled);
+      }
     }
   }
+
+  clinicalPathways.sort((a, b) => {
+    const timeCmp = (b.updatedAt || "").localeCompare(a.updatedAt || "");
+    if (timeCmp !== 0) return timeCmp;
+    return (a.title?.en || "").localeCompare(b.title?.en || "");
+  });
 
   guidelines.sort((a, b) => {
     if (b.year !== a.year) return b.year - a.year;
@@ -558,5 +579,8 @@ export function reconstructCatalogFromSyncGraph(
     customRecLabels: mergedCustomLabels,
     deletedGuidelineIds: cloneJson(store.deletedGuidelineIds || []),
     deletedTrialIds: cloneJson(store.deletedTrialIds || []),
+    clinicalPathways: hasPathwayProtocols
+      ? clinicalPathways
+      : cloneJson(baseline?.clinicalPathways ?? []),
   };
 }

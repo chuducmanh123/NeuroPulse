@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { filterValidNeuroPulseArticles } from "@/utils/articleFilter";
 import {
   AlertTriangle,
   BarChart3,
@@ -427,8 +428,9 @@ export default function AdminCommandCenter() {
       .then((res) => res.json())
       .then((data: any[]) => {
         if (Array.isArray(data)) {
-          setArticlesCount(data.length);
-          setPulseArticles(data);
+          const validArticles = filterValidNeuroPulseArticles(data);
+          setArticlesCount(validArticles.length);
+          setPulseArticles(validArticles);
         }
       })
       .catch((e) => console.warn("Could not fetch articles:", e));

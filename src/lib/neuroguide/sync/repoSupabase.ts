@@ -73,7 +73,7 @@ interface DbProtocolEdgeRow {
   block_uid: string;
   position: number | string;
   section_path: string;
-  role: "recommendation" | "shared" | "trial" | "scenario" | "atom";
+  role: "recommendation" | "shared" | "trial" | "scenario" | "atom" | "pathway_step";
 }
 
 interface DbBlockLinkRow {
@@ -588,6 +588,35 @@ export class SupabaseNeuroGuideRepo implements NeuroGuideRepo {
       throw new RepoError(
         "SERVICE_UNAVAILABLE",
         "neuroguide_delete_protocol returned empty result"
+      );
+    }
+
+    return mapProtocolRow(row);
+  }
+
+  async restoreProtocol(
+    uid: string,
+    expectedRev: number,
+    actor: string
+  ): Promise<NeuroGuideProtocolRow> {
+    const client = this.getClient();
+    const { data: rpcData, error } = await client.rpc("neuroguide_restore_protocol", {
+      p_uid: uid,
+      p_expected_rev: expectedRev,
+      p_actor: actor,
+    });
+
+    if (error) {
+      await this.throwMappedError(error, uid, "protocol");
+    }
+
+    const row = Array.isArray(rpcData)
+      ? (rpcData[0] as DbProtocolRow | undefined)
+      : (rpcData as DbProtocolRow | undefined);
+    if (!row) {
+      throw new RepoError(
+        "SERVICE_UNAVAILABLE",
+        "neuroguide_restore_protocol returned empty result"
       );
     }
 

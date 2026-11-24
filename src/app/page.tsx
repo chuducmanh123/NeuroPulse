@@ -11,6 +11,7 @@ import {
   NeuroRxIllustration,
 } from "@/components/ecosystem/BentoIllustrations";
 import { getEffectiveStreakDays } from "@/utils/neurocaseStreak";
+import { filterValidNeuroPulseArticles } from "@/utils/articleFilter";
 
 interface BentoAppConfig {
   id: "neuropulse" | "neurocase" | "neurocalc" | "neurovision" | "neuroguide" | "neurorx";
@@ -135,7 +136,7 @@ export default function EcosystemHubPage() {
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (active && Array.isArray(data)) {
-          setArticleCount(data.length);
+          setArticleCount(filterValidNeuroPulseArticles(data).length);
         }
       })
       .catch(() => {});

@@ -2,6 +2,7 @@ import { computeRootHashFromEntries } from "../../sync/jsonPatch.ts";
 import {
   computeNeuroGuideRootHash,
   computeProtocolMerkleHash,
+  computeProtocolMetadataHash,
   normalizeLookupKey,
 } from "./blockGraph.ts";
 import { RepoError, type NeuroGuideRepo } from "./repo.ts";
@@ -78,13 +79,20 @@ function extractBlockStatus(data: unknown): string {
     if (trial && typeof trial.status === "string" && trial.status.trim()) {
       return trial.status.trim();
     }
+    if (
+      payload.kind === "pathway_node" &&
+      typeof payload.pathwayStatus === "string" &&
+      payload.pathwayStatus.trim()
+    ) {
+      return payload.pathwayStatus.trim();
+    }
   }
   return "draft";
 }
 
 function defaultRoleForBlockType(
   blockType: NeuroGuideBlockType
-): "recommendation" | "shared" | "trial" | "scenario" | "atom" {
+): "recommendation" | "shared" | "trial" | "scenario" | "atom" | "pathway_step" {
   switch (blockType) {
     case "shared_clinical_block":
       return "shared";
@@ -95,6 +103,8 @@ function defaultRoleForBlockType(
       return "scenario";
     case "recommendation_atom":
       return "atom";
+    case "pathway_node":
+      return "pathway_step";
     default:
       return "recommendation";
   }
@@ -534,6 +544,54 @@ export class MemoryNeuroGuideRepo implements NeuroGuideRepo {
     return structuredClone(existing);
   }
 
+  async restoreProtocol(
+    uid: string,
+    expectedRev: number,
+    actor: string
+  ): Promise<NeuroGuideProtocolRow> {
+    const existing = this.protocols.get(uid);
+    if (!existing || existing.deletedAt === null) {
+      throw new RepoError("NOT_FOUND", `NG_NOT_FOUND:${uid}`);
+    }
+
+    if (existing.rev !== expectedRev) {
+      throw new RepoError("REV_CONFLICT", `NG_REV_CONFLICT:${existing.rev}`, {
+        currentRev: existing.rev,
+        currentRow: structuredClone(existing),
+      });
+    }
+
+    for (const other of this.protocols.values()) {
+      if (other.deletedAt === null && other.slug === existing.slug && other.uid !== uid) {
+        throw new RepoError("SLUG_TAKEN", `NG_SLUG_TAKEN:${existing.slug}`);
+      }
+    }
+
+    const nowIso = this.nowProvider().toISOString();
+    const cleanActor = actor?.trim() || "system";
+    const seq = ++this.seq;
+
+    existing.deletedAt = null;
+    existing.status = "draft";
+    if (existing.metadata.kind === "clinical_pathway") {
+      existing.metadata.pathway.status = "draft";
+      existing.metadata.pathway.updatedAt = nowIso;
+    }
+    existing.metadataHash = computeProtocolMetadataHash(existing.metadata);
+    existing.protocolHash = this.computeProtocolHashFromRow(
+      existing.metadataHash,
+      existing.blockOrder
+    );
+    existing.rev += 1;
+    existing.changeSeq = seq;
+    existing.updatedAt = nowIso;
+    existing.updatedBy = cleanActor;
+
+    await this.recomputeRootHash();
+
+    return structuredClone(existing);
+  }
+
   async createBlock(
     data: NeuroGuideContentBlockData,
     contentHash: string,
@@ -829,6 +887,9 @@ export class MemoryNeuroGuideRepo implements NeuroGuideRepo {
         const trial = payload.trial as Record<string, unknown>;
         delete trial.verification;
         trial.status = "draft";
+      }
+      if (payload.kind === "pathway_node") {
+        payload.pathwayStatus = "draft";
       }
     }
 

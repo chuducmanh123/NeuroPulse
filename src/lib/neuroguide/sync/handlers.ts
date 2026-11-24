@@ -5,6 +5,7 @@ import {
   computeBlockSectionHashes,
   computeProtocolMetadataHash,
   isDraftOrUnapprovedNeuroGuideBlock,
+  isDraftOrUnapprovedNeuroGuideProtocol,
 } from "./blockGraph.ts";
 import { RepoError, type NeuroGuideRepo } from "./repo.ts";
 import type {
@@ -39,12 +40,14 @@ const ALLOWED_BLOCK_TYPES = new Set<NeuroGuideBlockType>([
   "late_breaking_trial",
   "clinical_scenario",
   "recommendation_atom",
+  "pathway_node",
 ]);
 
 const ALLOWED_PROTOCOL_TYPES = new Set<NeuroGuideProtocolType>([
   "guideline",
   "conference",
   "scenario_catalog",
+  "clinical_pathway",
 ]);
 
 const FORBIDDEN_ENVELOPE_KEYS = [
@@ -450,11 +453,17 @@ export async function handleGetChanges(
       const hasMore = Boolean(
         delta.rows.length === limit && lastRow && lastRow.changeSeq < delta.maxSeq
       );
+      const visibleProtocolRows =
+        deps.isAdmin === false
+          ? delta.rows.filter(
+              (r) => r.deletedAt !== null || !isDraftOrUnapprovedNeuroGuideProtocol(r)
+            )
+          : delta.rows;
       return {
         status: 200,
         headers: noStoreHeaders({ ETag: deltaETag }),
         body: {
-          changes: delta.rows,
+          changes: visibleProtocolRows,
           maxSeq: delta.maxSeq,
           rootHash: delta.rootHash,
           hasMore,
@@ -486,13 +495,19 @@ export async function handleGetChanges(
       deps.isAdmin === false
         ? blockDelta.rows.filter((r) => r.deletedAt !== null || !isDraftOrUnapprovedNeuroGuideBlock(r))
         : blockDelta.rows;
+    const visibleProtocolRows =
+      deps.isAdmin === false
+        ? protoDelta.rows.filter(
+            (r) => r.deletedAt !== null || !isDraftOrUnapprovedNeuroGuideProtocol(r)
+          )
+        : protoDelta.rows;
 
     return {
       status: 200,
       headers: noStoreHeaders({ ETag: graphETag }),
       body: {
         changes: visibleBlockRows,
-        protocolChanges: protoDelta.rows,
+        protocolChanges: visibleProtocolRows,
         ...(links !== undefined ? { blockLinks: links } : {}),
         maxSeq,
         rootHash,

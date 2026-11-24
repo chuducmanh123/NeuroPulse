@@ -33,8 +33,18 @@ import type {
   RecommendationV3Labels,
   SubspecialtyType,
 } from "../../../types/neuroguide.ts";
+import type {
+  ClinicalPathwayDoc,
+  ClinicalPathwayProtocolMeta,
+  PathwayNode,
+  PathwayStatus,
+} from "../../../types/clinicalPathways.ts";
 
-export type NeuroGuideProtocolType = "guideline" | "conference" | "scenario_catalog";
+export type NeuroGuideProtocolType =
+  | "guideline"
+  | "conference"
+  | "scenario_catalog"
+  | "clinical_pathway";
 
 export type NeuroGuideBlockType =
   | "recommendation"
@@ -42,7 +52,8 @@ export type NeuroGuideBlockType =
   | "pivotal_trial"
   | "late_breaking_trial"
   | "clinical_scenario"
-  | "recommendation_atom";
+  | "recommendation_atom"
+  | "pathway_node";
 
 export type NeuroGuideBlockPayload =
   | { kind: "recommendation"; practiceChange: PracticeChangeDetail }
@@ -50,7 +61,8 @@ export type NeuroGuideBlockPayload =
   | { kind: "pivotal_trial"; trial: PivotalTrialRecord }
   | { kind: "late_breaking_trial"; trial: LateBreakingTrial; conferenceId: string }
   | { kind: "clinical_scenario"; scenario: ClinicalScenario }
-  | { kind: "recommendation_atom"; atom: RecommendationAtom };
+  | { kind: "recommendation_atom"; atom: RecommendationAtom }
+  | { kind: "pathway_node"; pathwaySlug: string; pathwayStatus: PathwayStatus; node: PathwayNode };
 
 export interface NeuroGuideBlockFacetIndex {
   recId?: string;
@@ -102,6 +114,10 @@ export type NeuroGuideProtocolMetadata =
       deletedGuidelineIds?: string[];
       deletedTrialIds?: string[];
       orphanCustomRecLabels?: Record<string, RecommendationLabelOutput>;
+    }
+  | {
+      kind: "clinical_pathway";
+      pathway: ClinicalPathwayProtocolMeta;
     };
 
 export interface NeuroGuideProtocolRow {
@@ -130,7 +146,7 @@ export interface NeuroGuideProtocolBlockEdge {
   blockUid: string;
   position: number;
   sectionPath: string;
-  role: "recommendation" | "shared" | "trial" | "scenario" | "atom";
+  role: "recommendation" | "shared" | "trial" | "scenario" | "atom" | "pathway_step";
 }
 
 export type NeuroGuideBlockLinkType =
@@ -166,6 +182,7 @@ export interface NeuroGuideStoreInput {
   customRecLabels?: Record<string, RecommendationLabelOutput>;
   deletedGuidelineIds?: string[];
   deletedTrialIds?: string[];
+  clinicalPathways?: ClinicalPathwayDoc[];
 }
 
 export interface NeuroGuideOverlappingFacetFilter {
@@ -198,7 +215,7 @@ export interface NeuroGuideProtocolEdgeInput {
   blockUid: string;
   position: number;
   sectionPath: string;
-  role: "recommendation" | "shared" | "trial" | "scenario" | "atom";
+  role: "recommendation" | "shared" | "trial" | "scenario" | "atom" | "pathway_step";
 }
 
 export interface NeuroGuideProtocolUpsertInput {

@@ -22,6 +22,13 @@ import type {
   RecommendationLabelOutput,
   SubspecialtyType,
 } from "../../../types/neuroguide.ts";
+import type {
+  ClinicalPathwayDoc,
+  ClinicalPathwayProtocolMeta,
+  PathwayDomain,
+  PathwayNode,
+} from "../../../types/clinicalPathways.ts";
+import { computePathwayNodeBlockKey } from "../pathwayValidator.ts";
 import {
   canonicalizeSyncValue,
   cloneJson,
@@ -65,6 +72,227 @@ export function normalizeLookupKey(raw?: string | null): string {
  * Generates a deterministic RFC-4122-shaped UUID from SHA-256(namespace:key)
  * so migrations and decompositions produce stable immutable UIDs.
  */
+export function computePathwayProtocolUid(slug: string): string {
+  return deterministicUuidFromKey("pathway-protocol", (slug || "").trim().toLowerCase());
+}
+
+export function computePathwayNodeBlockUid(pathwaySlug: string, nodeId: string): string {
+  return deterministicUuidFromKey("pathway-node", computePathwayNodeBlockKey(pathwaySlug, nodeId));
+}
+
+function mapPathwayDomainToBlockDomains(
+  domain: PathwayDomain
+): ("diagnosis" | "treatment" | "prevention")[] {
+  if (domain === "combined") return ["diagnosis", "treatment"];
+  return [domain];
+}
+
+function mapTierToDirection(
+  tier?: number
+): "recommended" | "conditional" | "harm" | "unspecified" {
+  if (tier === 1) return "recommended";
+  if (tier === 2 || tier === 3 || tier === 4) return "conditional";
+  if (tier === 5) return "harm";
+  return "unspecified";
+}
+
+export function buildPathwayNodeBlockData(
+  pathway: Pick<ClinicalPathwayDoc, "slug" | "status" | "subspecialty" | "conditionId" | "domain">,
+  node: PathwayNode
+): NeuroGuideContentBlockData {
+  const cleanNode = cloneJson(node);
+  delete cleanNode.blockUid;
+  delete cleanNode.blockRev;
+
+  const cleanSlug = pathway.slug.trim().toLowerCase();
+  const blockKey = computePathwayNodeBlockKey(cleanSlug, cleanNode.id);
+  const facetIndex: NeuroGuideBlockFacetIndex = {
+    subspecialties: pathway.subspecialty ? [pathway.subspecialty] : [],
+    conditionIds: pathway.conditionId ? [pathway.conditionId] : [],
+    domains: mapPathwayDomainToBlockDomains(pathway.domain),
+    diagnosisTags: [],
+    timeWindowIds: [],
+    interventionTags: [],
+    direction: mapTierToDirection(cleanNode.tier),
+    ...(cleanNode.tier !== undefined ? { normalizedTier: cleanNode.tier } : {}),
+    ontologyFacets: null,
+    v3Labels: null,
+    customLabel: null,
+    citedTrialKeys: [],
+    linkedScenarioKeys: [],
+    picoKey: null,
+    sectionPath: cleanNode.kind,
+  };
+
+  return {
+    blockKey,
+    blockType: "pathway_node",
+    payload: {
+      kind: "pathway_node",
+      pathwaySlug: cleanSlug,
+      pathwayStatus: pathway.status,
+      node: cleanNode,
+    },
+    facetIndex,
+  };
+}
+
+export function buildClinicalPathwayProtocolMeta(
+  pathway: ClinicalPathwayDoc
+): ClinicalPathwayProtocolMeta {
+  const cloned = cloneJson(pathway) as unknown as Record<string, unknown>;
+  delete cloned.nodes;
+  delete cloned.rev;
+  delete cloned.changeSeq;
+  delete cloned.protocolHash;
+  delete cloned.deletedAt;
+  return cloned as unknown as ClinicalPathwayProtocolMeta;
+}
+
+export function decomposeClinicalPathwayToGraphEntries(
+  pathway: ClinicalPathwayDoc,
+  seqCounter?: { value: number }
+): {
+  protocol: NeuroGuideProtocolRow;
+  blocks: NeuroGuideContentBlockRow[];
+  edges: NeuroGuideProtocolBlockEdge[];
+} {
+  const cleanSlug = pathway.slug.trim().toLowerCase();
+  const protocolUid = pathway.uid || computePathwayProtocolUid(cleanSlug);
+  const nowIso = pathway.updatedAt || pathway.createdAt || DEFAULT_TS;
+
+  const blocks: NeuroGuideContentBlockRow[] = [];
+  const blockOrder: string[] = [];
+  const orderedBlockHashes: string[] = [];
+  const edges: NeuroGuideProtocolBlockEdge[] = [];
+
+  for (let i = 0; i < pathway.nodes.length; i++) {
+    const node = pathway.nodes[i];
+    const blockData = buildPathwayNodeBlockData(pathway, node);
+    const uid = node.blockUid || computePathwayNodeBlockUid(cleanSlug, node.id);
+    const contentHash = computeBlockContentHash(blockData);
+    const sectionHashes = computeBlockSectionHashes(blockData);
+    const seq = seqCounter ? ++seqCounter.value : i + 1;
+
+    blocks.push({
+      uid,
+      slug: blockData.blockKey.toLowerCase(),
+      blockKey: blockData.blockKey,
+      blockType: "pathway_node",
+      data: blockData,
+      contentHash,
+      sectionHashes,
+      rev: node.blockRev ?? 1,
+      changeSeq: seq,
+      updatedAt: nowIso,
+      updatedBy: pathway.reviewedBy || "system",
+      deletedAt: null,
+    });
+
+    blockOrder.push(uid);
+    orderedBlockHashes.push(contentHash);
+    edges.push({
+      protocolUid,
+      blockUid: uid,
+      position: i,
+      sectionPath: node.kind,
+      role: "pathway_step",
+    });
+  }
+
+  const meta = buildClinicalPathwayProtocolMeta({
+    ...pathway,
+    uid: protocolUid,
+    slug: cleanSlug,
+  });
+  const metadata: NeuroGuideProtocolMetadata = {
+    kind: "clinical_pathway",
+    pathway: meta,
+  };
+  const metadataHash = computeProtocolMetadataHash(metadata);
+  const protocolHash = computeProtocolMerkleHash(metadataHash, orderedBlockHashes);
+  const protoSeq = seqCounter ? ++seqCounter.value : blocks.length + 1;
+
+  const protocol: NeuroGuideProtocolRow = {
+    uid: protocolUid,
+    slug: cleanSlug,
+    protocolType: "clinical_pathway",
+    society: pathway.source.organizationOrAuthor || pathway.source.sourceType,
+    year: pathway.source.year || 0,
+    title: pathway.title.en,
+    status: pathway.status,
+    subspecialties: pathway.subspecialty ? [pathway.subspecialty] : [],
+    metadata,
+    blockOrder,
+    metadataHash,
+    protocolHash,
+    rev: pathway.rev ?? 1,
+    changeSeq: pathway.changeSeq ?? protoSeq,
+    createdAt: pathway.createdAt || nowIso,
+    updatedAt: nowIso,
+    updatedBy: pathway.reviewedBy || "system",
+    deletedAt: pathway.deletedAt ?? null,
+  };
+
+  return { protocol, blocks, edges };
+}
+
+export function isDraftOrUnapprovedNeuroGuideProtocol(
+  proto: NeuroGuideProtocolRow
+): boolean {
+  if (proto.protocolType === "clinical_pathway" && proto.status === "draft") {
+    return true;
+  }
+  if (
+    proto.metadata.kind === "clinical_pathway" &&
+    proto.metadata.pathway.status === "draft"
+  ) {
+    return true;
+  }
+  return false;
+}
+
+export function assembleClinicalPathwayFromGraph(
+  proto: NeuroGuideProtocolRow,
+  blocksByUid: ReadonlyMap<string, NeuroGuideContentBlockRow>,
+  orderedUids?: readonly string[],
+  options?: { excludeDrafts?: boolean }
+): ClinicalPathwayDoc | null {
+  if (proto.metadata.kind !== "clinical_pathway") return null;
+  if (options?.excludeDrafts && isDraftOrUnapprovedNeuroGuideProtocol(proto)) {
+    return null;
+  }
+
+  const uids = orderedUids && orderedUids.length > 0 ? orderedUids : proto.blockOrder;
+  const nodes: PathwayNode[] = [];
+  for (const bUid of uids) {
+    const b = blocksByUid.get(bUid);
+    if (!b || b.deletedAt !== null) continue;
+    if (b.data.payload.kind === "pathway_node") {
+      nodes.push({
+        ...cloneJson(b.data.payload.node),
+        blockUid: b.uid,
+        blockRev: b.rev,
+      });
+    }
+  }
+
+  const meta = cloneJson(proto.metadata.pathway);
+  return {
+    ...meta,
+    uid: proto.uid,
+    slug: proto.slug,
+    status: (proto.status as ClinicalPathwayDoc["status"]) || meta.status,
+    nodes,
+    rev: proto.rev,
+    changeSeq: proto.changeSeq,
+    protocolHash: proto.protocolHash,
+    deletedAt: proto.deletedAt,
+    updatedAt: proto.updatedAt || meta.updatedAt,
+    createdAt: proto.createdAt || meta.createdAt,
+  };
+}
+
 export function deterministicUuidFromKey(namespace: string, key: string): string {
   const hex = sha256Hex(`${namespace}:${key}`);
   const timeLow = hex.slice(0, 8);
@@ -870,6 +1098,17 @@ export function decomposeNeuroGuideStoreToGraph(store: NeuroGuideStoreInput): Ne
     );
   }
 
+  if (Array.isArray(store.clinicalPathways) && store.clinicalPathways.length > 0) {
+    for (const pathway of store.clinicalPathways) {
+      const decomposed = decomposeClinicalPathwayToGraphEntries(pathway, seqCounter);
+      for (const b of decomposed.blocks) {
+        blockByUid.set(b.uid, b);
+      }
+      protocols.push(decomposed.protocol);
+      protocolBlocks.push(...decomposed.edges);
+    }
+  }
+
   const rootHash = computeNeuroGuideRootHash(protocols);
 
   return {
@@ -901,6 +1140,9 @@ export function isDraftOrUnapprovedNeuroGuideBlock(
   }
   const trial = payload.trial as Record<string, unknown> | undefined;
   if (trial && trial.status === "draft") return true;
+  if (payload.kind === "pathway_node" && payload.pathwayStatus === "draft") {
+    return true;
+  }
   return false;
 }
 
@@ -935,6 +1177,7 @@ export function assembleNeuroGuideStoreFromGraph(
   const scenarios: ClinicalScenario[] = [];
   const pivotalTrials: PivotalTrialRecord[] = [];
   const recommendationAtoms: RecommendationAtom[] = [];
+  const clinicalPathways: ClinicalPathwayDoc[] = [];
   const customRecLabels: Record<string, RecommendationLabelOutput> = {};
   let deletedGuidelineIds: string[] = [];
   let deletedTrialIds: string[] = [];
@@ -1003,6 +1246,13 @@ export function assembleNeuroGuideStoreFromGraph(
         deletedTrialIds = cloneJson(proto.metadata.deletedTrialIds || []);
         Object.assign(customRecLabels, cloneJson(proto.metadata.orphanCustomRecLabels || {}));
       }
+    } else if (proto.metadata.kind === "clinical_pathway") {
+      const assembledPathway = assembleClinicalPathwayFromGraph(proto, blocksByUid, orderedUids, {
+        excludeDrafts,
+      });
+      if (assembledPathway) {
+        clinicalPathways.push(assembledPathway);
+      }
     }
   }
 
@@ -1015,6 +1265,7 @@ export function assembleNeuroGuideStoreFromGraph(
     customRecLabels,
     deletedGuidelineIds,
     deletedTrialIds,
+    clinicalPathways,
   };
 }
 

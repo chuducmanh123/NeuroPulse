@@ -21,3 +21,6 @@ data/*.pdf
 scripts/.venv/
 scripts/.cache/
 scripts/validation/
+
+# Supabase CLI local temp files
+supabase/.temp/

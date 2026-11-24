@@ -87,6 +87,7 @@ const EMPTY_STORE: NeuroGuideStoreInput = {
   customRecLabels: {},
   deletedGuidelineIds: [],
   deletedTrialIds: [],
+  clinicalPathways: [],
 };
 
 function defaultRoleForBlockType(
@@ -102,6 +103,8 @@ function defaultRoleForBlockType(
       return "scenario";
     case "recommendation_atom":
       return "atom";
+    case "pathway_node":
+      return "pathway_step";
     default:
       return "recommendation";
   }

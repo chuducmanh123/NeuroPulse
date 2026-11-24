@@ -50,6 +50,11 @@ export interface NeuroGuideRepo {
     expectedRev: number,
     actor: string
   ): Promise<NeuroGuideProtocolRow>;
+  restoreProtocol(
+    uid: string,
+    expectedRev: number,
+    actor: string
+  ): Promise<NeuroGuideProtocolRow>;
   createBlock(
     data: NeuroGuideContentBlockData,
     contentHash: string,

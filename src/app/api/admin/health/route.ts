@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 import { verifyAdminToken } from "@/utils/security";
+import { filterValidNeuroPulseArticles } from "@/utils/articleFilter";
 import { supabaseAdmin, hasSupabaseAdminConfig } from "@/lib/supabase";
 import { loadMergedNeuroGuideData } from "@/lib/neuroguide/guidelineStorage";
 import {
@@ -17,6 +18,8 @@ export const revalidate = 0;
 interface ArticleItem {
   id?: string;
   title?: string;
+  authors?: unknown[];
+  abstract?: string;
   journal?: any;
   date?: string;
   pub_date?: string;
@@ -51,7 +54,8 @@ export async function GET(req: NextRequest) {
     let articles: ArticleItem[] = [];
     try {
       const raw = await fs.readFile(articlesPath, "utf-8");
-      articles = JSON.parse(raw);
+      const parsed = JSON.parse(raw);
+      articles = Array.isArray(parsed) ? filterValidNeuroPulseArticles(parsed) : [];
     } catch (e) {
       console.warn("Could not read articles.json:", e);
     }
