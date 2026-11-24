@@ -1,5 +1,213 @@
 [
   {
+    "id": "nc-2026-065",
+    "case_code": "NC-2026-065",
+    "title": "Infant Monozygotic Twins Presenting with Focal Seizures and Deep White Matter Ischemia",
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-24",
+    "status": "approved",
+    "author_credit": "Neurology. Genetics • PMC13639938",
+    "source_journal": {
+      "name": "Neurology. Genetics",
+      "short_name": "Neurology. Genetics",
+      "doi_url": "https://doi.org/10.1212/nxg.0000000000200434",
+      "pmcid": "PMC13639938",
+      "pmid": "42840539",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "10-week-old female infant",
+      "chief_complaint": "Recurrent right upper-extremity twitching, facial pulling, and irritability",
+      "history_of_present_illness": "A 10-week-old female infant born at 30 weeks' gestation from a triplet pregnancy presented after several acute episodes of right upper-extremity clonic twitching, right-sided facial pulling, and 24 hours of marked irritability. She had no preceding fever, upper respiratory symptoms, or systemic signs of infection. Notably, her monozygotic twin sister presented concurrently to an outside emergency department with similar right-sided focal motor seizures.",
+      "past_medical_history": "Prematurity (born at 30 weeks' gestation via triplet pregnancy)",
+      "vitals": {
+        "bp": "74/46 mmHg",
+        "hr": "142 bpm",
+        "rr": "34 breaths/min",
+        "temp": "36.9 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "On neurologic examination, she was irritable but intermittently consolable. Cranial nerve testing revealed right-sided central facial weakness during crying, and spontaneous movement of the right upper extremity was decreased relative to the left. Muscle tone was preserved, deep tendon reflexes were 2+ bilaterally, and plantar responses were extensor bilaterally.",
+      "key_labs_csf": "Lumbar puncture demonstrated a cerebrospinal fluid (CSF) white blood cell count of 20 cells/µL (85% lymphocytes), red blood cell count of 5 cells/µL, glucose of 48 mg/dL (concurrent serum glucose, 88 mg/dL), and protein of 62 mg/dL. Complete blood count, serum electrolyte panel, C-reactive protein, and erythrocyte sedimentation rate were within normal limits.",
+      "imaging": [
+        {
+          "modality": "MRI Brain (DWI/MRA) & Digital Subtraction Angiography",
+          "sequence_badge": "Figure 1 • Neurology. Genetics (PMC13639938)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13639938_fig1.webp",
+          "pmcid": "PMC13639938",
+          "doi_url": "https://doi.org/10.1212/nxg.0000000000200434",
+          "caption": "Patient A: (A.a) Findings of diffusion restriction in bilateral deep white matter tracts originally thought to be caused by medullary vein thrombosis. (B.a) Left-sided holohemispheric hypodensity on CT at the time of representation. (C.a and D.a) Demonstration of diffusion restriction across left ACA and MCA territories. (E.a) MRA of the head demonstrating loss of signal at bilateral ICA termini. (F.a and G.a) Additional areas of bilateral diffusion restriction, despite optimal medical therapy before revascularization. Preoperative angiography demonstrating bilateral ICA terminal narrowing on ",
+          "findings_summary": "Diffusion-weighted imaging revealed patchy areas of acute restricted diffusion in the bilateral deep frontal white matter alongside prominent deep linear vascular structures. Brain MR angiography and digital subtraction angiography demonstrated severe bilateral luminal stenosis of the terminal internal carotid arteries accompanied by prominent lenticulostriate collateral networks."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely underlying diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cerebral medullary venous thrombosis",
+          "peer_percentage": 18,
+          "rationale": "Incorrect. Although engorged deep medullary structures and mild CSF pleocytosis can raise concern for medullary venous thrombosis, prominent deep linear vessels in this anatomical distribution represent compensatory arterial collateral pathways recruited secondary to high-grade proximal arterial steno-occlusive disease."
+        },
+        {
+          "id": "B",
+          "text": "Moyamoya disease (RNF213-related vasculopathy)",
+          "peer_percentage": 68,
+          "rationale": "Correct! Moyamoya disease is a progressive steno-occlusive arteriopathy involving the terminal internal carotid arteries and their proximal branches. In infants harboring predisposing genetic variants such as RNF213, presentation can occur early in life with acute ischemic strokes, focal seizures, and deep white matter restricted diffusion; concurrent presentation in monozygotic twins strongly implicates an underlying genetic susceptibility."
+        },
+        {
+          "id": "C",
+          "text": "Herpes simplex virus encephalitis",
+          "peer_percentage": 9,
+          "rationale": "Incorrect. Although mild lymphocytic CSF pleocytosis (20 cells/µL) and focal seizures occur in pediatric central nervous system infections, herpes simplex virus encephalitis classically produces asymmetric temporal and inferior frontal cortical-subcortical injury rather than bilateral terminal internal carotid artery stenosis with collateral formation."
+        },
+        {
+          "id": "D",
+          "text": "Periventricular leukomalacia secondary to perinatal asphyxia",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Periventricular leukomalacia in premature infants manifests as static white matter gliosis or cystic encephalomalacia rather than acute focal arterial-territory diffusion restriction, progressive distal internal carotid artery stenosis, and intracranial arterial collateral networks."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Early-onset Moyamoya disease secondary to an RNF213 genetic variant",
+      "clinical_discussion": "The differential diagnosis for an infant presenting with focal motor seizures, acute deep white matter restricted diffusion, and mild lymphocytic CSF pleocytosis encompasses central nervous system infection such as herpes simplex virus encephalitis, deep medullary venous thrombosis, chronic perinatal white matter injury, and genetic steno-occlusive arteriopathies. Mild CSF pleocytosis can occur as a secondary reactive inflammatory response to acute cerebral ischemia and may mislead clinicians toward an infectious etiology, whereas engorged deep parenchymal vessels can mimic venous congestion.\n\nThe diagnostic inflection point is dedicated cerebrovascular imaging paired with exclusion of infectious etiologies via negative CSF viral polymerase chain reaction and cultures. Magnetic resonance angiography and digital subtraction angiography confirm bilateral severe stenosis of the terminal internal carotid arteries with compensatory lenticulostriate collateral networks, establishing Moyamoya angiopathy. In monozygotic twins with infantile onset, genetic testing frequently identifies pathogenic variants in RNF213, which drives abnormal vascular remodeling, progressive intimal thickening, and luminal narrowing that predispose to hemodynamic watershed ischemia.\n\nAcute management prioritizes neuroprotective stabilization, seizure control, antiplatelet therapy with low-dose aspirin, and strict avoidance of hypotension, dehydration, and hypocapnia to preserve collateral perfusion. Definitive long-term care requires timely neurosurgical referral for indirect revascularization—such as pial synangiosis or encephaloduroarteriosynangiosis—which fosters durable extracranial-to-intracranial neovascularization and substantially reduces the risk of recurrent ischemic stroke.",
+      "teaching_points": [
+        "Moyamoya disease can present in early infancy with focal seizures and acute deep white matter ischemia, particularly in patients carrying predisposing RNF213 variants.",
+        "Prominent deep linear parenchymal vessels in infants with internal carotid artery steno-occlusion represent compensatory lenticulostriate arterial collaterals rather than medullary venous thrombosis.",
+        "Mild reactive CSF pleocytosis can accompany acute pediatric cerebral infarction and should not delay dedicated cerebrovascular imaging.",
+        "Urgent MR angiography or catheter angiography is indicated in infants with unexplained focal seizures and acute deep white matter diffusion restriction."
+      ],
+      "clinical_pitfalls": [
+        "Misinterpreting deep arterial collateral vessels as cerebral medullary venous thrombosis, leading to inappropriate anticoagulation and hemorrhagic risk.",
+        "Attributing focal infant seizures or transient motor deficits solely to primary epilepsy or sequelae of prematurity without obtaining vascular imaging.",
+        "Delaying neurosurgical evaluation for indirect revascularization in young pediatric patients with progressive Moyamoya angiopathy."
+      ],
+      "related_keywords": [
+        "Moyamoya disease",
+        "RNF213 variant",
+        "Pediatric stroke",
+        "Internal carotid artery stenosis",
+        "Pial synangiosis"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-066",
+    "case_code": "NC-2026-066",
+    "title": "75-Year-Old Man with Rapidly Progressive Parkinsonism and Low-Frequency Tremor",
+    "subspecialty": "Movement Disorders",
+    "subspecialties": [
+      "Movement Disorders",
+      "Neuro-Oncology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-24",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC12482555",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-025-04426-8",
+      "pmcid": "PMC12482555",
+      "pmid": "41023924",
+      "pub_year": "2025"
+    },
+    "presentation": {
+      "demographics": "75-year-old male",
+      "chief_complaint": "Rapidly progressive gait instability, cognitive decline, and low-frequency tremor",
+      "history_of_present_illness": "A 75-year-old man presented with a 6-month history of progressive apathy, cognitive decline, and unsteady gait. Four months prior to evaluation, head CT and dopamine transporter (DAT) SPECT imaging performed at an outside facility were reported as normal. Over the subsequent 3 months, his cognitive impairment worsened, and he developed recurrent falls, dysarthria, and a prominent tremor involving the upper extremities, leading to admission to a care facility.",
+      "past_medical_history": "Hypertension, dyslipidemia",
+      "vitals": {
+        "bp": "134/82 mmHg",
+        "hr": "74 bpm",
+        "rr": "16 /min",
+        "temp": "36.7 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "On initial neurologic examination, the patient was alert but severely bradyphrenic with pronounced executive dysfunction and short-term memory impairment. Cranial nerve testing demonstrated facial hypomimia, hypophonia, and mild slowing of saccades without vertical gaze limitation. Motor examination revealed diffuse, symmetric lead-pipe rigidity and generalized bradykinesia. A coarse, low-frequency (<4 Hz) tremor was present in the upper extremities at rest and markedly amplified during posture maintenance and target-directed movement (Holmes-type tremor). Gait was broad-based, slow, and short-stepped, with severe postural instability.",
+      "key_labs_csf": "Routine hematologic and metabolic panels, thyroid-stimulating hormone, vitamin B12, and rapid plasma reagin were unremarkable. Lumbar puncture yielded clear cerebrospinal fluid (CSF) with an opening pressure of 14 cmH2O, glucose of 58 mg/dL, elevated protein of 78 mg/dL, and 0 nucleated cells/µL. Initial CSF cytology was negative for malignant cells.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (FLAIR and T1-weighted Post-Contrast)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC12482555)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12482555_fig1.jpg",
+          "pmcid": "PMC12482555",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04426-8",
+          "caption": "A-H Cerebral MRI at admission. A–D Axial fluid-attenuated inversion recovery (FLAIR) images show confluent hyperintense lesions extending from the left frontal cortex through the subcortical and deep white matter to the corpus callosum, involving the left caudate nucleus, bilateral basal ganglia, and midbrain. Lesions appear slightly asymmetric, with greater involvement on the left side. E–H Gadolinium-enhanced axial T1-weighted images. Nodular lesions in the left frontal lobe (arrows) exhibit mild enhancement, without significant enhancement in the brainstem or basal ganglia. I, J Hematoxylin",
+          "findings_summary": "Confluent T2/FLAIR hyperintensities involving deep subcortical white matter, corpus callosum, bilateral basal ganglia, and midbrain, with subtle non-mass-forming nodular enhancement in the left frontal lobe."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Progressive supranuclear palsy",
+          "peer_percentage": 16,
+          "rationale": "Incorrect. Progressive supranuclear palsy (PSP) causes rapidly evolving parkinsonism, early falls, and axial rigidity, but characteristically manifests with vertical supranuclear gaze palsy and midbrain atrophy (\"hummingbird sign\") rather than diffuse, infiltrative leukoencephalopathy involving the corpus callosum and brainstem with focal contrast enhancement or a low-frequency rest/postural/intention (Holmes) tremor."
+        },
+        {
+          "id": "B",
+          "text": "Creutzfeldt-Jakob disease",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Creutzfeldt-Jakob disease (CJD) presents with rapidly progressive dementia and movement disorders (typically myoclonus or cerebellar ataxia). However, neuroimaging classically demonstrates cortical ribboning and striatal hyperintensity with restricted diffusion on DWI/ADC, rather than confluent subcortical white matter and brainstem T2/FLAIR signal abnormalities with subtle contrast enhancement."
+        },
+        {
+          "id": "C",
+          "text": "Lymphomatosis cerebri",
+          "peer_percentage": 58,
+          "rationale": "Correct! Lymphomatosis cerebri (LC) is a rare, highly infiltrative variant of primary central nervous system lymphoma (PCNSL) characterized by diffuse lymphoid cell infiltration along nerve tracts without discrete mass formation or substantial contrast enhancement. It classically presents as rapidly progressive cognitive decline, gait disturbance, and atypical parkinsonism with Holmes tremor secondary to neoplastic disruption of nigrostriatal and cerebellothalamic pathways."
+        },
+        {
+          "id": "D",
+          "text": "Subcortical ischemic vascular encephalopathy",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Subcortical ischemic vascular encephalopathy (Binswanger disease) produces confluent white matter FLAIR hyperintensities and lower-body parkinsonism, but exhibits an indolent, step-wise decline in patients with extensive vascular risk factors. It does not cause infiltrative callosal or midbrain signal alterations, nodular contrast enhancement, or a subacute Holmes tremor."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Lymphomatosis cerebri (non-mass-forming variant of primary central nervous system lymphoma)",
+      "clinical_discussion": "Lymphomatosis cerebri (LC) is a rare, highly infiltrative variant of primary central nervous system lymphoma (PCNSL) characterized by diffuse B-cell infiltration along myelinated tracts without significant tissue destruction or discrete tumor formation. Because contrast enhancement on T1-weighted magnetic resonance imaging (MRI) is subtle, patchy, or entirely absent, LC frequently mimics diffuse neurodegenerative, infectious, or neurovascular conditions. Progressive supranuclear palsy typically presents with vertical gaze restriction, prominent axial rigidity, and midbrain atrophy on neuroimaging. Creutzfeldt-Jakob disease features rapid cognitive decline accompanied by myoclonus, cortical ribboning, and striatal hyperintensity on diffusion-weighted imaging. Subcortical ischemic vascular encephalopathy displays step-wise cognitive decline and confluent leukoencephalopathy without brainstem involvement, contrast enhancement, or an acute Holmes tremor.\n\nThe key diagnostic inflection point in this case was the development of a low-frequency (<4 Hz) Holmes tremor—a coarse tremor present at rest, posture, and kinetic movement—reflecting dual disruption of both the nigrostriatal dopaminergic and dentato-rubro-olivary/cerebellothalamic pathways. Although initial dopamine transporter (DAT) SPECT imaging was reported as normal early in the disease course, neoplastic cell infiltration progressively invaded the substantia nigra, basal ganglia, and red nucleus. Because cerebrospinal fluid (CSF) cytology yields false-negative results in up to 70% of LC cases due to sparse malignant cell shedding, target identification using fluorodeoxyglucose-positron emission tomography (FDG-PET) or arterial spin labeling (ASL) hyperperfusion MRI is critical. Definitive diagnosis relies on targeted stereotactic brain biopsy, which reveals perivascular and diffuse parenchymal infiltration of atypical CD20+ large B lymphocytes.\n\nOnce diagnosed, management centers on high-dose methotrexate-based chemotherapy regimens (often combined with rituximab and cytarabine) with or without consolidation whole-brain radiotherapy. Early recognition and prompt initiation of therapy are essential, as delay can lead to irreversible neurological disability or fatal cerebral edema. Patients treated early may exhibit substantial neurological recovery and radiographic resolution of FLAIR signal abnormalities.",
+      "teaching_points": [
+        "Lymphomatosis cerebri is a non-mass-forming variant of PCNSL characterized by diffuse T2/FLAIR hyperintensity with minimal or absent contrast enhancement, mimicking leukoencephalopathies.",
+        "Holmes tremor (<4.5 Hz, present at rest, posture, and intention) results from dual disruption of the nigrostriatal dopaminergic and cerebellothalamic/dentato-rubro-olivary pathways.",
+        "Normal early DAT SPECT imaging does not exclude rapidly progressive infiltrative brainstem or basal ganglia pathology.",
+        "Definitive diagnosis of lymphomatosis cerebri requires stereotactic tissue biopsy when serial CSF cytologies remain negative despite high clinical suspicion."
+      ],
+      "clinical_pitfalls": [
+        "Misattributing diffuse white matter hyperintensities to ischemic microvascular disease or normal aging, delaying brain biopsy in patients with rapidly progressive subcortical neurological deficits.",
+        "Ruling out primary CNS malignancy based solely on negative initial CSF cytology, which frequently yields false-negative results in non-mass-forming lymphomatosis cerebri."
+      ],
+      "related_keywords": [
+        "Lymphomatosis cerebri",
+        "Primary central nervous system lymphoma",
+        "Holmes tremor",
+        "Rapidly progressive parkinsonism",
+        "Leukoencephalopathy"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-063",
     "case_code": "NC-2026-063",
     "title": "Subacute Ataxia and Lethargy in a Young Male Following an Upper Respiratory Tract Illness",
