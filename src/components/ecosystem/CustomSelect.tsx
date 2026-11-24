@@ -21,6 +21,7 @@ interface CustomSelectProps<T extends string = string> {
   accent?: CustomSelectAccent;
   align?: "left" | "right";
   compact?: boolean;
+  size?: "default" | "compact" | "form" | "form-sm";
   showIndicator?: "checkbox" | "check" | "none";
   className?: string;
   buttonClassName?: string;
@@ -75,6 +76,7 @@ export function CustomSelect<T extends string = string>({
   accent = "cyan",
   align = "left",
   compact = false,
+  size,
   showIndicator = "checkbox",
   className = "",
   buttonClassName = "",
@@ -129,9 +131,13 @@ export function CustomSelect<T extends string = string>({
         className={`w-full flex items-center justify-between gap-2 border transition-colors cursor-pointer focus:outline-none focus:ring-2 ${
           ACCENT_RING[accent]
         } ${
-          compact
+          (size ?? (compact ? "compact" : "default")) === "compact"
             ? "min-h-[34px] px-2.5 py-1.5 rounded-lg text-xs font-medium"
-            : "min-h-[44px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold"
+            : (size ?? (compact ? "compact" : "default")) === "form-sm"
+              ? "min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium"
+              : (size ?? (compact ? "compact" : "default")) === "form"
+                ? "min-h-[40px] px-3.5 py-2 rounded-xl text-sm font-medium"
+                : "min-h-[44px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold"
         } ${
           darkMode
             ? "bg-slate-900 border-slate-700 text-slate-100 hover:border-slate-500"

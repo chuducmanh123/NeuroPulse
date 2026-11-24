@@ -9,7 +9,6 @@ import {
   GitBranch,
   Layers,
   Plus,
-  RefreshCw,
   RotateCcw,
   Search,
   SlidersHorizontal,
@@ -473,18 +472,8 @@ export function ClinicalPathwaysTab({
             )}
           </div>
 
-          <div className="flex items-center justify-end gap-2 shrink-0">
-            <button
-              type="button"
-              onClick={fetchPathways}
-              disabled={isLoading}
-              className="inline-flex items-center gap-1.5 min-h-[40px] px-3 py-2 rounded-xl text-xs font-semibold border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-ink)] transition-colors cursor-pointer"
-              title="Refresh pathways"
-            >
-              <RefreshCw size={13} className={isLoading ? "animate-spin" : ""} />
-              <span className="hidden sm:inline">Refresh</span>
-            </button>
-            {isAdminVerified && (
+          {isAdminVerified && (filteredPathways.length > 0 || hasActiveFilters) && (
+            <div className="flex items-center justify-end gap-2 shrink-0">
               <button
                 type="button"
                 onClick={openCreateModal}
@@ -493,8 +482,8 @@ export function ClinicalPathwaysTab({
                 <Plus size={14} />
                 <span>Upload Flowchart</span>
               </button>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* Mobile-Only Compact Collapsible Filter Controls */}
