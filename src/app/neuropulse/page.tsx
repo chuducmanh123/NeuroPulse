@@ -436,7 +436,7 @@ export default function HomePage() {
     let deferTimer: ReturnType<typeof setTimeout> | null = null;
     const mountTime = typeof performance !== "undefined" ? performance.now() : Date.now();
 
-    fetch("/data/articles.json")
+    fetch("/data/articles.json", { cache: "no-store" })
       .then((res) => {
         const lastMod = res.headers.get("last-modified");
         const formattedTime = lastMod
