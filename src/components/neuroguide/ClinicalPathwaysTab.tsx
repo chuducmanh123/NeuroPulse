@@ -3,7 +3,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import {
-  ArrowRight,
   ChevronDown,
   Edit3,
   GitBranch,
@@ -675,115 +674,80 @@ export function ClinicalPathwaysTab({
                   onClick={() => {
                     if (!isDeleted) setSelectedUid(p.uid);
                   }}
-                  className={`rounded-2xl border border-l-4 transition-all shadow-xs bg-[var(--bg-surface)] border-[var(--border-hairline)] ${
+                  className={`rounded-2xl border border-l-4 transition-all duration-200 shadow-xs bg-[var(--bg-surface)] border-[var(--border-hairline)] ${
                     isGuideline
                       ? "border-l-[#C25934] hover:border-[#C25934]/70"
                       : "border-l-indigo-500 hover:border-indigo-400/70"
-                  } ${!isDeleted ? "cursor-pointer" : ""}`}
+                  } ${!isDeleted ? "cursor-pointer hover:-translate-y-0.5 hover:shadow-md" : ""}`}
                 >
-                  <div className="p-3.5 sm:p-5 space-y-2.5">
-                    {/* Meta Header */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                        <span
-                          className={`px-2 py-0.5 rounded-md text-[10.5px] sm:text-[11px] font-black tracking-wider uppercase border ${
-                            isGuideline
-                              ? "bg-[#C25934]/12 text-[#C25934] border-[#C25934]/30 dark:bg-orange-500/20 dark:text-orange-300"
-                              : "bg-indigo-500/12 text-indigo-700 border-indigo-500/30 dark:bg-indigo-500/20 dark:text-indigo-300"
-                          }`}
+                  <div className="p-3.5 sm:p-5 space-y-1.5">
+                    {/* Title + Admin Controls Row */}
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0 space-y-1">
+                        {isAdminVerified && ((p.status !== "published" && !isDeleted) || isDeleted) && (
+                          <div className="flex flex-wrap items-center gap-1.5">
+                            {p.status !== "published" && !isDeleted && (
+                              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30">
+                                {p.status}
+                              </span>
+                            )}
+                            {isDeleted && (
+                              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-rose-500/15 text-rose-700 dark:text-rose-300 border border-rose-500/30">
+                                Deleted
+                              </span>
+                            )}
+                          </div>
+                        )}
+                        <h3 className="text-sm sm:text-base font-bold text-[var(--text-ink)] leading-snug">
+                          {p.title.en}
+                        </h3>
+                      </div>
+
+                      {isAdminVerified && (
+                        <div
+                          className="flex items-center gap-1.5 shrink-0"
+                          onClick={(e) => e.stopPropagation()}
                         >
-                          {isGuideline ? "Guideline" : "Textbook"} {p.source.year}
-                        </span>
-                        <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[var(--bg-subtle)] text-[var(--text-secondary)] border border-[var(--border-hairline)]">
-                          {p.subspecialty}
-                        </span>
-                        <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[var(--bg-subtle)] text-[var(--text-muted)] border border-[var(--border-hairline)] capitalize">
-                          {p.domain}
-                        </span>
-                        <span className="text-[11px] font-medium text-[var(--text-muted)]">
-                          {p.nodes.length} steps
-                        </span>
-                        {isAdminVerified && p.status !== "published" && !isDeleted && (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30">
-                            {p.status}
-                          </span>
-                        )}
-                        {isDeleted && (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-rose-500/15 text-rose-700 dark:text-rose-300 border border-rose-500/30">
-                            Deleted
-                          </span>
-                        )}
-                      </div>
-
-                      <div
-                        className="flex items-center gap-1.5 shrink-0"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        {!isDeleted && (
-                          <button
-                            type="button"
-                            onClick={() => setSelectedUid(p.uid)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-[#C25934] hover:bg-[#A64827] text-white transition-colors cursor-pointer"
-                          >
-                            <span>Start Pathway</span>
-                            <ArrowRight size={13} />
-                          </button>
-                        )}
-                        {isAdminVerified && !isDeleted && (
-                          <button
-                            type="button"
-                            onClick={() => openEditModal(p)}
-                            className="p-1.5 rounded-lg text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] transition-colors cursor-pointer"
-                            title="Edit pathway"
-                          >
-                            <Edit3 size={14} />
-                          </button>
-                        )}
-                        {isAdminVerified && !isDeleted && (
-                          <button
-                            type="button"
-                            disabled={busyUid === p.uid}
-                            onClick={() => handleDelete(p)}
-                            className="p-1.5 rounded-lg text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer disabled:opacity-40"
-                            title="Delete pathway"
-                          >
-                            <Trash2 size={14} />
-                          </button>
-                        )}
-                        {isAdminVerified && isDeleted && (
-                          <button
-                            type="button"
-                            disabled={busyUid === p.uid}
-                            onClick={() => handleRestore(p)}
-                            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[11px] font-semibold bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-500/25 transition-colors cursor-pointer disabled:opacity-40"
-                            title="Restore pathway as Draft"
-                          >
-                            <RotateCcw size={12} />
-                            <span>Restore</span>
-                          </button>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Title & Summary */}
-                    <div>
-                      <h3 className="text-sm sm:text-base font-bold text-[var(--text-ink)] leading-snug">
-                        {p.title.en}
-                      </h3>
-                      {p.title.vi && (
-                        <p className="text-xs text-[var(--text-muted)] mt-0.5">
-                          {p.title.vi}
-                        </p>
-                      )}
-                      {p.summary?.en && (
-                        <p className="text-xs text-[var(--text-secondary)] mt-1.5 line-clamp-2 leading-relaxed">
-                          {p.summary.en}
-                        </p>
+                          {!isDeleted && (
+                            <button
+                              type="button"
+                              onClick={() => openEditModal(p)}
+                              className="p-1.5 rounded-lg text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] transition-colors cursor-pointer"
+                              title="Edit pathway"
+                            >
+                              <Edit3 size={14} />
+                            </button>
+                          )}
+                          {!isDeleted && (
+                            <button
+                              type="button"
+                              disabled={busyUid === p.uid}
+                              onClick={() => handleDelete(p)}
+                              className="p-1.5 rounded-lg text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer disabled:opacity-40"
+                              title="Delete pathway"
+                            >
+                              <Trash2 size={14} />
+                            </button>
+                          )}
+                          {isDeleted && (
+                            <button
+                              type="button"
+                              disabled={busyUid === p.uid}
+                              onClick={() => handleRestore(p)}
+                              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[11px] font-semibold bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-500/25 transition-colors cursor-pointer disabled:opacity-40"
+                              title="Restore pathway as Draft"
+                            >
+                              <RotateCcw size={12} />
+                              <span>Restore</span>
+                            </button>
+                          )}
+                        </div>
                       )}
                     </div>
 
+                    {/* Concise Source */}
                     <p className="text-[11px] text-[var(--text-muted)]">
-                      {p.source.title} · {p.source.organizationOrAuthor} ({p.source.year})
+                      {p.source.organizationOrAuthor || p.source.title} ({p.source.year})
                       {p.source.figureRef ? ` · ${p.source.figureRef}` : ""}
                     </p>
                   </div>

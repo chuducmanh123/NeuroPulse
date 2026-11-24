@@ -516,20 +516,20 @@ export function PathwayAdminModal({
     >
       <div className="w-full max-w-[1600px] h-[94vh] flex flex-col rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] shadow-2xl overflow-hidden">
         {/* Modal Header */}
-        <div className="flex items-center justify-between gap-3 px-6 py-4 border-b border-[var(--border-hairline)] bg-[var(--bg-surface)]">
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="w-9 h-9 rounded-xl bg-[#C25934]/12 text-[#C25934] flex items-center justify-center shrink-0">
-              <Sparkles size={18} />
+        <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-[var(--border-hairline)] bg-[var(--bg-surface)]">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="w-8 h-8 rounded-xl bg-[#C25934]/12 text-[#C25934] flex items-center justify-center shrink-0">
+              <Sparkles size={16} />
             </div>
             <div className="min-w-0">
-              <h2 className="text-base sm:text-lg font-bold tracking-tight truncate">
+              <h2 className="text-sm sm:text-base font-bold tracking-tight truncate">
                 {mode === "edit"
                   ? `Edit Clinical Pathway — ${draft?.title.en || ""}`
                   : stage === "upload"
                     ? "Upload Flowchart Image & Extract Pathway"
                     : `Review & Publish — ${draft?.title.en || "New Draft"}`}
               </h2>
-              <p className="text-xs sm:text-[13px] text-[var(--text-muted)] mt-0.5">
+              <p className="text-[11px] sm:text-xs text-[var(--text-muted)]">
                 Human-in-the-loop gate: every AI extraction stays in Draft until validated and published.
               </p>
             </div>
@@ -586,21 +586,21 @@ export function PathwayAdminModal({
         )}
 
         {/* Modal Body */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5">
+        <div className="flex-1 overflow-y-auto p-3.5 sm:p-4 space-y-3.5">
           {stage === "upload" ? (
-            <div className="w-full grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] gap-6 items-stretch">
+            <div className="w-full grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] gap-4 items-stretch">
               {/* Left: Image Picker */}
-              <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 flex flex-col gap-4">
-                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)]">
+              <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 flex flex-col gap-3">
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-[var(--text-secondary)]">
                   1. Flowchart Image (PNG, JPEG, WebP ≤ 10MB)
                 </label>
 
-                <label className="flex-1 min-h-[260px] flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-[var(--border-hairline)] hover:border-[#C25934] bg-[var(--bg-subtle)]/60 p-6 text-center cursor-pointer transition-colors">
-                  <Upload size={28} className="text-[#C25934] mb-3" />
-                  <span className="text-sm font-semibold text-[var(--text-ink)]">
+                <label className="flex-1 min-h-[180px] flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-[var(--border-hairline)] hover:border-[#C25934] bg-[var(--bg-subtle)]/60 p-4 text-center cursor-pointer transition-colors">
+                  <Upload size={22} className="text-[#C25934] mb-2" />
+                  <span className="text-xs font-semibold text-[var(--text-ink)]">
                     {imageFile ? imageFile.name : "Click to select flowchart image"}
                   </span>
-                  <span className="text-xs text-[var(--text-muted)] mt-1.5 max-w-sm leading-relaxed">
+                  <span className="text-[11px] text-[var(--text-muted)] mt-1 max-w-sm leading-relaxed">
                     High-resolution screenshots from PDF guidelines or textbooks work best
                   </span>
                   <input
@@ -616,7 +616,7 @@ export function PathwayAdminModal({
                 </label>
 
                 {localPreviewUrl && (
-                  <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)] p-2.5 max-h-[320px] overflow-auto">
+                  <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)] p-2 max-h-[240px] overflow-auto">
                     <img
                       src={localPreviewUrl}
                       alt="Selected flowchart preview"
@@ -625,8 +625,8 @@ export function PathwayAdminModal({
                   </div>
                 )}
 
-                <div className="pt-3 border-t border-[var(--border-hairline)]">
-                  <label className="block text-xs sm:text-[13px] font-semibold text-[var(--text-secondary)] mb-1.5">
+                <div className="pt-2.5 border-t border-[var(--border-hairline)]">
+                  <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
                     Or paste existing image URL (for manual draft without upload)
                   </label>
                   <input
@@ -634,24 +634,24 @@ export function PathwayAdminModal({
                     value={manualImageUrl}
                     onChange={(e) => setManualImageUrl(e.target.value)}
                     placeholder="https://... or /uploads/pathways/..."
-                    className="w-full min-h-[40px] px-3.5 py-2 rounded-xl text-sm font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
+                    className="w-full min-h-[36px] px-3 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
                   />
                 </div>
               </div>
 
               {/* Right: Source Metadata */}
-              <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 space-y-4">
-                <p className="text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)]">
+              <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 space-y-2.5">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-secondary)]">
                   2. Source Attribution &amp; Taxonomy
                 </p>
 
-                <div className="flex gap-2.5">
+                <div className="flex gap-2">
                   {(["guideline", "textbook"] as const).map((t) => (
                     <button
                       key={t}
                       type="button"
                       onClick={() => setSourceType(t)}
-                      className={`flex-1 min-h-[40px] py-2 rounded-xl text-sm font-bold border capitalize transition-colors cursor-pointer ${
+                      className={`flex-1 min-h-[34px] py-1.5 rounded-lg text-xs font-bold border capitalize transition-colors cursor-pointer ${
                         sourceType === t
                           ? "bg-[#C25934] text-white border-[#C25934]"
                           : "bg-[var(--bg-subtle)] text-[var(--text-secondary)] border-[var(--border-hairline)]"
@@ -662,9 +662,9 @@ export function PathwayAdminModal({
                   ))}
                 </div>
 
-                <div className="space-y-3.5">
+                <div className="space-y-2.5">
                   <div>
-                    <label className="block text-xs sm:text-[13px] font-semibold text-[var(--text-secondary)] mb-1.5">
+                    <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
                       Preferred Pathway Title (EN, optional)
                     </label>
                     <input
@@ -672,12 +672,12 @@ export function PathwayAdminModal({
                       value={preferredTitle}
                       onChange={(e) => setPreferredTitle(e.target.value)}
                       placeholder="Leave blank to let Gemini read title from image"
-                      className="w-full min-h-[40px] px-3.5 py-2 rounded-xl text-sm font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
+                      className="w-full min-h-[36px] px-3 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs sm:text-[13px] font-semibold text-[var(--text-secondary)] mb-1.5">
+                    <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
                       Source Title *
                     </label>
                     <input
@@ -685,13 +685,13 @@ export function PathwayAdminModal({
                       value={sourceTitle}
                       onChange={(e) => setSourceTitle(e.target.value)}
                       placeholder="e.g. 2026 AHA/ASA Acute Ischemic Stroke Guideline"
-                      className="w-full min-h-[40px] px-3.5 py-2 rounded-xl text-sm font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
+                      className="w-full min-h-[36px] px-3 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
                     />
                   </div>
 
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-3 gap-2.5">
                     <div className="col-span-2">
-                      <label className="block text-xs sm:text-[13px] font-semibold text-[var(--text-secondary)] mb-1.5">
+                      <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
                         Organization / Author
                       </label>
                       <input
@@ -699,25 +699,25 @@ export function PathwayAdminModal({
                         value={organizationOrAuthor}
                         onChange={(e) => setOrganizationOrAuthor(e.target.value)}
                         placeholder="e.g. AHA/ASA or Adams & Victor"
-                        className="w-full min-h-[40px] px-3.5 py-2 rounded-xl text-sm font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
+                        className="w-full min-h-[36px] px-3 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs sm:text-[13px] font-semibold text-[var(--text-secondary)] mb-1.5">
+                      <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
                         Year *
                       </label>
                       <input
                         type="number"
                         value={year}
                         onChange={(e) => setYear(Number(e.target.value))}
-                        className="w-full min-h-[40px] px-3.5 py-2 rounded-xl text-sm font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] focus:outline-none focus:border-[#C25934]"
+                        className="w-full min-h-[36px] px-3 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] focus:outline-none focus:border-[#C25934]"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-2.5">
                     <div>
-                      <label className="block text-xs sm:text-[13px] font-semibold text-[var(--text-secondary)] mb-1.5">
+                      <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
                         Subspecialty
                       </label>
                       <CustomSelect
@@ -726,8 +726,8 @@ export function PathwayAdminModal({
                         ariaLabel="Pathway subspecialty"
                         darkMode={darkMode}
                         accent="amber"
-                        size="form"
-                        buttonClassName="bg-[var(--bg-paper)] shadow-none"
+                        size="compact"
+                        buttonClassName="min-h-[36px] px-3 py-1.5 rounded-lg text-xs font-medium bg-[var(--bg-paper)] shadow-none"
                         options={SUBSPECIALTY_OPTIONS.map((s) => ({
                           value: s,
                           label: s,
@@ -735,7 +735,7 @@ export function PathwayAdminModal({
                       />
                     </div>
                     <div>
-                      <label className="block text-xs sm:text-[13px] font-semibold text-[var(--text-secondary)] mb-1.5">
+                      <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
                         Domain
                       </label>
                       <CustomSelect
@@ -744,8 +744,8 @@ export function PathwayAdminModal({
                         ariaLabel="Pathway domain"
                         darkMode={darkMode}
                         accent="amber"
-                        size="form"
-                        buttonClassName="bg-[var(--bg-paper)] shadow-none"
+                        size="compact"
+                        buttonClassName="min-h-[36px] px-3 py-1.5 rounded-lg text-xs font-medium bg-[var(--bg-paper)] shadow-none"
                         options={[
                           { value: "diagnosis", label: "Diagnosis" },
                           { value: "treatment", label: "Treatment" },
@@ -755,9 +755,9 @@ export function PathwayAdminModal({
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-2.5">
                     <div>
-                      <label className="block text-xs sm:text-[13px] font-semibold text-[var(--text-secondary)] mb-1.5">
+                      <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
                         Figure / Page Ref
                       </label>
                       <input
@@ -765,11 +765,11 @@ export function PathwayAdminModal({
                         value={figureRef}
                         onChange={(e) => setFigureRef(e.target.value)}
                         placeholder="e.g. Figure 2, p. 412"
-                        className="w-full min-h-[40px] px-3.5 py-2 rounded-xl text-sm font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
+                        className="w-full min-h-[36px] px-3 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs sm:text-[13px] font-semibold text-[var(--text-secondary)] mb-1.5">
+                      <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
                         Source URL (optional)
                       </label>
                       <input
@@ -777,46 +777,46 @@ export function PathwayAdminModal({
                         value={sourceUrl}
                         onChange={(e) => setSourceUrl(e.target.value)}
                         placeholder="https://doi.org/..."
-                        className="w-full min-h-[40px] px-3.5 py-2 rounded-xl text-sm font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
+                        className="w-full min-h-[36px] px-3 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs sm:text-[13px] font-semibold text-[var(--text-secondary)] mb-1.5">
+                    <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
                       Extraction Notes for AI (optional)
                     </label>
                     <textarea
-                      rows={3}
+                      rows={2}
                       value={additionalInstructions}
                       onChange={(e) => setAdditionalInstructions(e.target.value)}
                       placeholder="e.g. Focus on the right-hand LVO thrombectomy branch"
-                      className="w-full px-3.5 py-2.5 rounded-xl text-sm font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
+                      className="w-full px-3 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/75 focus:outline-none focus:border-[#C25934]"
                     />
                   </div>
                 </div>
 
                 {extractError && (
-                  <div className="rounded-xl border border-rose-500/35 bg-rose-500/10 p-3 text-xs sm:text-[13px] text-rose-700 dark:text-rose-200">
+                  <div className="rounded-xl border border-rose-500/35 bg-rose-500/10 p-2.5 text-xs text-rose-700 dark:text-rose-200">
                     {extractError}
                   </div>
                 )}
 
-                <div className="flex flex-wrap items-center gap-2.5 pt-2">
+                <div className="flex flex-wrap items-center gap-2 pt-1">
                   <button
                     type="button"
                     disabled={isExtracting}
                     onClick={handleExtractWithGemini}
-                    className="flex-1 min-h-[42px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold bg-[#C25934] hover:bg-[#A64827] text-white disabled:opacity-50 cursor-pointer"
+                    className="flex-1 min-h-[38px] inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-[#C25934] hover:bg-[#A64827] text-white disabled:opacity-50 cursor-pointer"
                   >
                     {isExtracting ? (
                       <>
-                        <Loader2 size={16} className="animate-spin" />
+                        <Loader2 size={14} className="animate-spin" />
                         <span>Extracting with Gemini Vision...</span>
                       </>
                     ) : (
                       <>
-                        <Sparkles size={16} />
+                        <Sparkles size={14} />
                         <span>Extract with Gemini Vision</span>
                       </>
                     )}
@@ -825,7 +825,7 @@ export function PathwayAdminModal({
                     type="button"
                     disabled={isExtracting}
                     onClick={handleStartManualDraft}
-                    className="min-h-[42px] px-4 py-2.5 rounded-xl text-sm font-semibold border border-[var(--border-hairline)] bg-[var(--bg-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-ink)] cursor-pointer"
+                    className="min-h-[38px] px-3.5 py-2 rounded-xl text-xs font-semibold border border-[var(--border-hairline)] bg-[var(--bg-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-ink)] cursor-pointer"
                   >
                     Manual Draft
                   </button>
@@ -942,7 +942,7 @@ export function PathwayAdminModal({
                                 : "bg-amber-500/15 border-amber-500/35"
                             }`}
                           >
-                            [{issue.code}] {issue.message}
+                            <span className="font-mono font-bold">[{issue.code}]</span> {issue.message}
                           </button>
                         ))}
                       </div>
@@ -1166,7 +1166,7 @@ export function PathwayAdminModal({
                                   {hasErr && (
                                     <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
                                   )}
-                                  <span>{n.id}</span>
+                                  <span className="font-mono">{n.id}</span>
                                   <span className="opacity-75 capitalize">({n.kind})</span>
                                 </button>
                               );
@@ -1193,7 +1193,7 @@ export function PathwayAdminModal({
                             <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] p-3.5 space-y-3 text-xs">
                               <div className="flex flex-wrap items-center justify-between gap-2">
                                 <span className="font-bold text-[var(--text-ink)]">
-                                  Editing Node: {selectedNode.id}
+                                  Editing Node: <span className="font-mono">{selectedNode.id}</span>
                                 </span>
                                 {draft.nodes.length > 1 && (
                                   <button
@@ -1634,7 +1634,7 @@ export function PathwayAdminModal({
         {stage === "review" && draft && (
           <div className="px-5 py-3 border-t border-[var(--border-hairline)] bg-[var(--bg-surface)] flex flex-wrap items-center justify-between gap-3">
             <div className="flex flex-wrap items-center gap-2 text-xs">
-              <span className="px-2.5 py-1 rounded-lg font-semibold bg-[var(--bg-subtle)] text-[var(--text-secondary)]">
+              <span className="px-2.5 py-1 rounded-lg font-mono font-semibold bg-[var(--bg-subtle)] text-[var(--text-secondary)]">
                 {serverUid ? `rev ${baseRev} · ${draft.status}` : "Unsaved Draft"}
               </span>
               {autosavedAt && (

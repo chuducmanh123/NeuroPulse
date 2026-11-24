@@ -38,6 +38,7 @@ import {
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../../components/ecosystem/AdminButton";
 import { CustomSelect } from "../../components/ecosystem/CustomSelect";
+import { DrawLoader } from "../../components/ecosystem/DrawLoader";
 import { MEDICAL_DISCLAIMER_TEXT } from "../../components/ecosystem/MedicalDisclaimerFooter";
 import { NeuroGuideSyncStatusBadge } from "../../components/neuroguide/sync/NeuroGuideSyncStatusBadge";
 import { useNeuroGuideSync } from "../../hooks/useNeuroGuideSync";
@@ -54,10 +55,12 @@ const ClinicalNavigatorTab = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="p-12 text-center text-slate-500 animate-pulse">
-        <span className="text-3xl block mb-2">🧭</span>
-        Loading Clinical Navigator &amp; Ontology Engine...
-      </div>
+      <DrawLoader
+        variant="compass"
+        label="Loading Clinical Navigator & Ontology Engine..."
+        accentClassName="text-[#C25934] dark:text-orange-400"
+        className="p-12"
+      />
     ),
   }
 );
@@ -67,10 +70,12 @@ const ClinicalPathwaysTab = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="p-12 text-center text-[var(--text-muted)] animate-pulse">
-        <span className="text-3xl block mb-2">🔀</span>
-        Loading Clinical Pathways...
-      </div>
+      <DrawLoader
+        variant="pathway"
+        label="Loading Clinical Pathways..."
+        accentClassName="text-[#C25934] dark:text-orange-400"
+        className="p-12"
+      />
     ),
   }
 );
@@ -80,10 +85,12 @@ const ReviewQueueTab = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="p-12 text-center text-slate-500 animate-pulse">
-        <span className="text-3xl block mb-2">⏳</span>
-        Đang tải Review Queue...
-      </div>
+      <DrawLoader
+        variant="queue"
+        label="Đang tải Review Queue..."
+        accentClassName="text-[#C25934] dark:text-orange-400"
+        className="p-12"
+      />
     ),
   }
 );
@@ -1396,11 +1403,12 @@ export default function NeuroGuidePage() {
 
             {/* Guideline Cards (Colored by Society, Click to Expand Details) */}
             {isInitialLoading && guidelineDocs.length === 0 ? (
-              <div className="p-12 text-center rounded-2xl border border-dashed border-[var(--border-hairline)] bg-[var(--bg-surface)]/70 animate-pulse">
-                <span className="text-3xl block mb-2">📚</span>
-                <h3 className="text-sm font-bold text-[var(--text-ink)]">
-                  Đang đồng bộ thư viện Guideline lâm sàng...
-                </h3>
+              <div className="p-12 text-center rounded-2xl border border-dashed border-[var(--border-hairline)] bg-[var(--bg-surface)]/70">
+                <DrawLoader
+                  variant="book"
+                  label="Đang đồng bộ thư viện Guideline lâm sàng..."
+                  accentClassName="text-[#C25934] dark:text-orange-400"
+                />
               </div>
             ) : filteredGuidelines.length === 0 ? (
               <div className="p-12 text-center rounded-2xl border border-dashed border-[var(--border-hairline)] bg-[var(--bg-surface)]/70">

@@ -5,6 +5,7 @@ import { Niivue, SLICE_TYPE } from "@niivue/niivue";
 import { useNeuroVisionStore } from "../../store/useNeuroVisionStore";
 import { useNeuroViewer } from "./NeuroViewerContext";
 import { loadWithCache } from "../../lib/niivue-cache";
+import { DrawLoader } from "../ecosystem/DrawLoader";
 import SliceScrollbar from "./SliceScrollbar";
 import type { OntologyEntry, NeuroOntology, ViewMode } from "../../types/neurovision";
 
@@ -477,12 +478,15 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
       </div>
 
       {isLoading && (
-        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-sm flex flex-col items-center justify-center gap-3 z-20 transition-opacity">
-          <div className="w-10 h-10 border-3 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-sm font-bold text-sky-400 tracking-wider">ĐANG TẢI DỮ LIỆU</p>
-          <p className="text-xs text-slate-400 font-mono">
-            {loadProgress || "Không gian chuẩn MNI152 1mm"}
-          </p>
+        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-sm flex flex-col items-center justify-center z-20 transition-opacity">
+          <DrawLoader
+            variant="brain"
+            label="ĐANG TẢI DỮ LIỆU"
+            sublabel={loadProgress || "Không gian chuẩn MNI152 1mm"}
+            accentClassName="text-sky-400"
+            iconClassName="w-11 h-11"
+            labelClassName="text-sm font-bold text-sky-400 tracking-wider"
+          />
         </div>
       )}
 

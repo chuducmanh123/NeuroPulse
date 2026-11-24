@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { AdminButton } from "@/components/ecosystem/AdminButton";
 import { AppSwitcher } from "@/components/ecosystem/AppSwitcher";
+import { DrawLoaderIcon } from "@/components/ecosystem/DrawLoader";
 import { MedicalDisclaimerFooter } from "@/components/ecosystem/MedicalDisclaimerFooter";
 import { OfflineStatus } from "@/components/neurorx/OfflineStatus";
 import { useNeuroRxDrugs } from "@/hooks/useNeuroRxDrugs";
@@ -288,9 +289,13 @@ export function NeuroRxShell({
         <main className="min-h-[500px]">
           {syncState.status === "loading" && activeDrugs.length === 0 ? (
             <div role="status" aria-live="polite" className="space-y-4">
-              <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-                Loading drug directory…
-              </p>
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+                <DrawLoaderIcon
+                  variant="rx"
+                  className="w-5 h-5 text-teal-700 dark:text-teal-400 shrink-0"
+                />
+                <span>Loading drug directory…</span>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                 {[0, 1, 2, 3, 4, 5].map((idx) => (
                   <div

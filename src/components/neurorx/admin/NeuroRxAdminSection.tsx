@@ -22,6 +22,7 @@ import {
   History,
 } from "lucide-react";
 import { getStoredAdminToken } from "@/utils/clientAuth";
+import { DrawLoader } from "@/components/ecosystem/DrawLoader";
 import { useNeuroRxDrugs, type UseNeuroRxDrugsResult } from "@/hooks/useNeuroRxDrugs";
 import type { SyncRow } from "@/lib/neurorx/sync/types";
 import { DataHealth } from "./DataHealth";
@@ -389,9 +390,12 @@ export function NeuroRxAdminSection({ darkMode = false, syncState: externalSyncS
 
   if (isViewLoading) {
     return (
-      <div className="p-12 text-center text-xs text-slate-500 flex items-center justify-center gap-2">
-        <RefreshCw className="w-4 h-4 animate-spin text-sky-500" />
-        <span>Loading NeuroRx data integrity &amp; audit status…</span>
+      <div className="p-12">
+        <DrawLoader
+          variant="rx"
+          label="Loading NeuroRx data integrity & audit status…"
+          accentClassName="text-teal-700 dark:text-teal-400"
+        />
       </div>
     );
   }

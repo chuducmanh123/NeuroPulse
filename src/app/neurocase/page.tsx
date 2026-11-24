@@ -7,6 +7,7 @@ import { ClinicalCase, CaseDifficulty, CaseStatus, CaseNeuroImaging } from "../.
 import { Article } from "../../types/article";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../../components/ecosystem/AdminButton";
+import { DrawLoader } from "../../components/ecosystem/DrawLoader";
 import { MedicalDisclaimerFooter } from "../../components/ecosystem/MedicalDisclaimerFooter";
 import { NeuroImagingViewer } from "../../components/neurocase/NeuroImagingViewer";
 import { CaseChallenge } from "../../components/neurocase/CaseChallenge";
@@ -838,9 +839,11 @@ export default function NeuroCasePage() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 pt-5">
         {loading && (
           <div className="p-12 text-center rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)]">
-            <p className="text-sm font-bold animate-pulse text-[var(--text-muted)]">
-              Loading Neurology &amp; Stroke Clinical Cases...
-            </p>
+            <DrawLoader
+              variant="case"
+              label="Loading Neurology & Stroke Clinical Cases..."
+              accentClassName="text-amber-600 dark:text-amber-400"
+            />
           </div>
         )}
 

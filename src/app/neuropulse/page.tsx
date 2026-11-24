@@ -14,6 +14,7 @@ import {
 import { AppSwitcher } from "@/components/ecosystem/AppSwitcher";
 import { AdminButton } from "@/components/ecosystem/AdminButton";
 import { CustomSelect } from "@/components/ecosystem/CustomSelect";
+import { DrawLoaderIcon } from "@/components/ecosystem/DrawLoader";
 import { MedicalDisclaimerFooter } from "@/components/ecosystem/MedicalDisclaimerFooter";
 import { SUBSPECIALTY_TABS } from "@/constants/subspecialties";
 import {
@@ -1438,7 +1439,14 @@ export default function HomePage() {
 
         {/* Articles Grouped by Date -> Grouped by Journal */}
         {loading ? (
-          <div className="space-y-4">
+          <div role="status" aria-live="polite" className="space-y-4">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+              <DrawLoaderIcon
+                variant="pulse"
+                className="w-5 h-5 text-[#B91C1C] dark:text-red-400 shrink-0"
+              />
+              <span>Loading NeuroPulse literature feed…</span>
+            </div>
             <div className="h-11 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] animate-pulse" />
             <div className="space-y-3">
               {[0, 1, 2].map((i) => (

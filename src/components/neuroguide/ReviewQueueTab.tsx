@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
+import { RefreshCw } from "lucide-react";
+import { DrawLoader } from "@/components/ecosystem/DrawLoader";
 import { EditGuidelineModal } from "./EditGuidelineModal";
 import { AhaGuidelineTable } from "./AhaGuidelineTable";
 import { EsoGuidelineTable, type EsoPicoItem, renderGradeQuality, renderGradeStrength } from "./EsoGuidelineTable";
@@ -1267,7 +1269,7 @@ export function ReviewQueueTab({
               }`}
               title="Refresh reviews from server"
             >
-              <span className={isLoading ? "animate-spin" : ""}>🔄</span>
+              <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? "animate-spin" : ""}`} />
               <span>Refresh</span>
             </button>
           </div>
@@ -1368,11 +1370,12 @@ export function ReviewQueueTab({
           4. REVIEW CONTENT: LIST OF PENDING GUIDELINES
          ========================================================================= */}
       {isLoading ? (
-        <div className="text-center py-20">
-          <div className="animate-spin inline-block w-8 h-8 border-3 border-amber-500 border-t-transparent rounded-full mb-3"></div>
-          <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
-            Loading clinical guideline review queue...
-          </p>
+        <div className="py-20">
+          <DrawLoader
+            variant="queue"
+            label="Loading clinical guideline review queue..."
+            accentClassName="text-[#C25934] dark:text-orange-400"
+          />
         </div>
       ) : guidelineGroups.length === 0 ? (
         <div

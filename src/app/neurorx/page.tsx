@@ -1,4 +1,5 @@
 import React, { Suspense, ViewTransition } from "react";
+import { DrawLoader } from "@/components/ecosystem/DrawLoader";
 import { NeuroRxShell } from "@/components/neurorx/NeuroRxShell";
 import {
   getAllSources,
@@ -15,8 +16,12 @@ export default async function NeuroRxPage() {
     <ViewTransition name="app-neurorx" share="app-morph" default="none">
       <Suspense
         fallback={
-          <div className="min-h-screen bg-[#0F172A] flex items-center justify-center text-slate-400">
-            Loading NeuroRx...
+          <div className="min-h-screen bg-[var(--bg-paper)] flex items-center justify-center">
+            <DrawLoader
+              variant="rx"
+              label="Loading NeuroRx..."
+              accentClassName="text-teal-700 dark:text-teal-400"
+            />
           </div>
         }
       >

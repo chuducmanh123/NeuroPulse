@@ -241,6 +241,49 @@ html.night-shift .bento-card:hover {
   }
 }
 
+/* Looping SVG Stroke Draw Animation for Loading / Waiting States */
+@keyframes drawInkLoop {
+  0% {
+    opacity: 0.25;
+    stroke-dashoffset: 1;
+  }
+  40%,
+  65% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+  92%,
+  100% {
+    opacity: 0.25;
+    stroke-dashoffset: -1;
+  }
+}
+
+.ink-draw-loop :is(path, circle, rect, line, ellipse, polygon):not(.ink-static) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: drawInkLoop 2.2s var(--apple-ease) infinite;
+}
+
+.ink-draw-loop .ink-delay-1 {
+  animation-delay: 0.18s;
+}
+
+.ink-draw-loop .ink-delay-2 {
+  animation-delay: 0.36s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ink-draw-loop :is(path, circle, rect, line, ellipse, polygon):not(.ink-static),
+  .ink-draw-loop .ink-delay-1,
+  .ink-draw-loop .ink-delay-2 {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+    animation: none;
+  }
+}
+
 /* Smooth Zoom / Morph View Transitions between Hub & Apps */
 ::view-transition {
   pointer-events: none;
@@ -391,4 +434,42 @@ html.night-shift .bento-card:hover {
 }
 .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: rgba(156, 150, 142, 0.65);
+}
+
+/* Hiệu ứng chuyển bước mượt mà cho Clinical Pathways */
+@keyframes pathwayStepIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.992);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pathwayChoiceIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-pathway-step {
+  animation: pathwayStepIn 320ms var(--apple-ease) both;
+}
+
+.animate-pathway-choice {
+  animation: pathwayChoiceIn 260ms var(--apple-ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pathway-step,
+  .animate-pathway-choice {
+    animation: none !important;
+  }
 }
