@@ -1,5 +1,80 @@
 [
   {
+    "id": "10.1001/jama.2026.22999",
+    "title": "What Is Idiopathic Normal Pressure Hydrocephalus?",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-11-25T00:00:00Z",
+    "article_type": "Review",
+    "article_types": [
+      "Review"
+    ],
+    "authors": [
+      "Walter Kristin L."
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.22999",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Hydrocephalus"
+      ]
+    },
+    "abstract": "This JAMA Patient Page describes how common idiopathic normal pressure hydrocephalus is, the risk factors, and how it is diagnosed and treated.",
+    "ai_takeaways": {
+      "conclusion_vi": "This JAMA Patient Page provides a concise, patient-facing overview of idiopathic normal pressure hydrocephalus, covering its epidemiology, risk factors, diagnostic evaluation, and treatment options.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true,
+      "study_type": "Review"
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218865",
+    "title": "Implications of EASO's New Obesity Definition Across Aging Cohorts",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-25T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Li Xin-Yue",
+      "Xu Ying",
+      "Huang Hui-Juan",
+      "Liang Yong-Hui",
+      "Zheng Xiang-Yi",
+      "Wu Xian-Bo",
+      "Zhou Rui"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218865",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1161/strokeaha.126.055602",
     "title": "Predictors of Recovery From Aphasia After Stroke",
     "journal": {
@@ -719,7 +794,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218634",
-    "title": "Embracing the Potential of Digital Technologies in Neurorehabilitation Trials",
+    "title": "Embracing the Potential of Digital Technologies in Neurorehabilitation Trials.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -732,7 +807,7 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Moccia Marcello"
+      "Moccia M."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218634",
     "neurology_classification": {
@@ -1746,6 +1821,106 @@
     }
   },
   {
+    "id": "10.1002/ana.78409",
+    "title": "Clinical Impairment in Advanced Alzheimer's (High Alzheimer's Disease Neuropathological Change) Correlates with Quantitative Neurofibrillary Tangle Measures and Co-pathologies.",
+    "journal": {
+      "name": "Annals of Neurology",
+      "short_name": "Ann Neurol",
+      "badge_bg": "#EDE9FE",
+      "badge_text": "#5B21B6"
+    },
+    "pub_date": "2026-11-24T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Yushkevich PA",
+      "Robinson JL",
+      "Cai H",
+      "Athalye C",
+      "Lyu X",
+      "Khodakarami Z",
+      "Denning AE",
+      "Levorse LM",
+      "Ittyerah R",
+      "Mechanic-Hamilton D",
+      "Ohm DT",
+      "Irwin DJ",
+      "Lee EB",
+      "Das SR",
+      "Brown CA"
+    ],
+    "doi_url": "https://doi.org/10.1002/ana.78409",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia",
+        "Neuromuscular",
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Alzheimer",
+        "Dementia",
+        "Brain",
+        "Tau"
+      ]
+    },
+    "abstract": "The current diagnostic criteria for Alzheimer's disease (AD) define discrete biological stages of the disease. Whereas discrete staging simplifies diagnosis, treatment, and participant stratification in clinical trials, discrete disease categories may mask a considerable range of variability in disease severity, even at what is pathologically considered \"end stage\" disease. We aimed to characterize the contributions of phosphorylated tau neurofibrillary tangle (NFT) pathology and co-pathologies to variability in dementia severity in brain donors diagnosed with a high level of AD neuropathological change (ADNC). In a cohort of 197 donors with a primary diagnosis of high ADNC, we computed the association between quantitative measures of neocortical NFT load and an informant-based measure of clinical impairment. We examined the impact of co-pathologies on residuals from the canonical pathology-impairment relationship estimated in donors without known significant co-pathologies. We found a positive association (Spearman ρ195=0.321 ) between cortical NFT load and the clinical impairment measure. Clinical impairment was significantly greater than expected for NFT load in presence of co-pathologies, including limbic-predominant age-related TDP-43 encephalopathy (stage 2 or 3) and cerebrovascular disease. In donors with limbic and neocortical subtypes of Lewy pathology, neocortical α -synuclein burden was associated with greater than expected clinical impairment. Categorizing high ADNC as a single homogeneous category masks a considerable range of pathological severity that contributes to clinical impairment. Complementing discrete staging with continuous measures of tau pathology and probabilistic measures of co-pathologies will improve clinicopathologic studies needed for a precision approach to diagnosis and treatment. ANN NEUROL 2026.",
+    "ai_takeaways": {
+      "conclusion_vi": "In 197 brain donors with high Alzheimer's disease neuropathological change, quantitative neocortical neurofibrillary tangle load correlated with clinical impairment (Spearman ρ195=0.321). Co-pathologies—including LATE (stage 2–3), cerebrovascular disease, and neocortical α-synuclein in limbic/neocortical Lewy pathology—independently contributed to greater-than-expected dementia severity.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1002/ana.78408",
+    "title": "Plasma Metabolic Proteomics Links Phenoconversion and Disease-Specific Brain 18 F-fluorodeoxyglucose Positron Emission Tomography Pattern Expressions in Isolated REM Sleep Behavior Disorder.",
+    "journal": {
+      "name": "Annals of Neurology",
+      "short_name": "Ann Neurol",
+      "badge_bg": "#EDE9FE",
+      "badge_text": "#5B21B6"
+    },
+    "pub_date": "2026-11-24T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Kim R",
+      "Kim H",
+      "Lee S",
+      "Jin B",
+      "Kim S",
+      "Choi S",
+      "Yoon EJ",
+      "Kim YK",
+      "Lee JY."
+    ],
+    "doi_url": "https://doi.org/10.1002/ana.78408",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia",
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson",
+        "Dementia",
+        "Brain"
+      ]
+    },
+    "abstract": "Cellular metabolic dysfunction has emerged as a key contributor to neurodegeneration, but its role in Lewy body disease (LBD), particularly during prodromal stages, remains unclear. We investigated targeted blood-based proteomic profiles related to metabolic pathways across the REM sleep behavior disorder (RBD)-LBD continuum, and explored their potential as biomarkers of disease severity and phenoconversion. In this prospective cohort study, we enrolled 116 patients across the RBD-LBD continuum, including 47 with polysomnography-confirmed isolated RBD (iRBD), 45 with Parkinson's disease (PD) with RBD, and 24 with dementia with Lewy bodies (DLB) with RBD, along with 30 age-matched healthy controls. Plasma concentrations of 92 metabolism-related proteins were measured using a proximity extension assay. Motor function, neuropsychological assessments, and brain 18F-fluorodeoxyglucose positron emission tomography imaging were obtained. Patients with iRBD were prospectively followed for up to 4 years to monitor phenoconversion. Compared with controls, 16 differentially expressed metabolism-related proteins were identified across the RBD-LBD continuum, with predominant enrichment in neutrophil degranulation pathways. These protein alterations were mainly observed in patients with clinically manifest LBD, with DOPA decarboxylase demonstrating the most prominent differential expression and significant correlations with levodopa equivalent daily dose. In contrast, only N-terminal pro-B-type natriuretic peptide (NT-proBNP) was significantly upregulated in patients with iRBD. Elevated NT-proBNP levels were associated with orthostatic intolerance, increased PD- and DLB-related metabolic brain pattern expressions, and earlier phenoconversion. Plasma metabolic proteins showed stage-specific alterations across the RBD-LBD continuum. NT-proBNP may have potential as a marker of short-term phenoconversion risk in iRBD. ANN NEUROL 2026.",
+    "ai_takeaways": {
+      "conclusion_vi": "In this prospective cohort of 116 patients across the RBD-LBD continuum, plasma NT-proBNP was uniquely upregulated in isolated RBD and associated with orthostatic intolerance, PD/DLB-related FDG-PET brain patterns, and earlier phenoconversion. Conversely, DOPA decarboxylase alterations occurred primarily in clinically manifest Lewy body disease.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
     "id": "10.1001/jama.2026.19825",
     "title": "Postherpetic Neuralgia",
     "journal": {
@@ -2045,7 +2220,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4324",
-    "title": "Reflections on the Utility of Surveillance MRIs in an Evolving MS Landscape",
+    "title": "Reflections on the Utility of Surveillance MRIs in an Evolving MS Landscape.",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -2058,8 +2233,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "McConville Kylie",
-      "Ontaneda Daniel"
+      "McConville K",
+      "Ontaneda D."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4324",
     "neurology_classification": {
@@ -2389,9 +2564,9 @@
       "badge_text": "#991B1B"
     },
     "pub_date": "2026-11-23T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Sur Nicole B."
@@ -2406,11 +2581,12 @@
         "Stroke"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "abstract": "Sleep-disordered breathing (SDB) is associated with unfavorable outcomes in acute stroke; however, long-term outcomes remain underexplored with conflicting cohort-based evidence.In this cohort study from the Bern Sleep-Stroke Registry, Yang and colleagues examined associations of SDB during acute stroke or transient ischemic attack with all-cause mortality, major adverse cardiovascular events, and functional outcomes.SDB was measured by respiratory polygraphy within 3 days of hospital admission and defined by the apnea-hypopnea index (AHI) as mild (AHI, 5/h to <15/h), moderate (AHI, 15/h to <30/h), and severe (AHI ≥30/h).Among 1082 patients with acute stroke/transient ischemic attack (mean age, 66 years; 63% men), 77% had SDB, the mean AHI was 19/h, and 6% had central sleep apnea.All-cause mortality occurred in 16.5% after a mean follow-up of 51 months, although major adverse cardiovascular event occurred in 17% after a mean followup of 48 months.After multivariable adjustment, severe SDB was independently associated with all-cause mortality (adjusted hazard ratio, 1.73 [95% CI, 1.04-2.89]).Mild, moderate, and severe SDB were independently associated with an increased risk (roughly 2-fold) of major adverse cardiovascular event.Moreover, moderate and severe SDB were independently associated with unfavorable 3-month functional outcomes after multivariable adjustment.When SDB was modeled as an ordinal variable, a linear trend was observed with increasing risk for all-cause mortality, major adverse cardiovascular event, and unfavorable 3-month functional outcomes with increasing SDB severity.Patients with severe SDB more often had cardioembolic stroke, and those with moderate-severe SDB and atrial fibrillation had a higher risk of all-cause mortality.These findings highlight the high prevalence of SDB after acute stroke/transient ischemic attack and its association with adverse short-and long-term outcomes, underscoring the potential importance of screening for SDB after stroke/transient ischemic attack and of further research to determine whether treatment improves clinical outcomes.See p 3632.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In a Bern Sleep-Stroke Registry cohort of 1,082 patients with acute stroke or TIA, 77% had sleep-disordered breathing (SDB). Severe SDB independently predicted all-cause mortality (aHR 1.73, 95% CI 1.04–2.89), while mild-to-severe SDB increased major adverse cardiovascular events roughly 2-fold and moderate-to-severe SDB worsened 3-month functional outcomes.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Original Article"
     }
   },
   {
@@ -4862,7 +5038,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4218",
-    "title": "Agent Orange and Parkinson Disease—The War Ended, the Exposure: Did Not",
+    "title": "Agent Orange and Parkinson Disease-The War Ended, the Exposure: Did Not.",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -4875,9 +5051,9 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Goldman Samuel M.",
-      "Dorsey E. Ray",
-      "Okun Michael S."
+      "Goldman SM",
+      "Dorsey ER",
+      "Okun MS."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4218",
     "neurology_classification": {
@@ -13599,7 +13775,8 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Multiple sclerosis"
+        "Multiple sclerosis",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -14955,7 +15132,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4165",
-    "title": "Arrival of CAR T-Cell Therapies for Stiff Person Syndrome",
+    "title": "Arrival of CAR T-Cell Therapies for Stiff Person Syndrome.",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -14968,8 +15145,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Gupta Sasha",
-      "Gelfand Jeffrey M."
+      "Gupta S",
+      "Gelfand JM."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4165",
     "neurology_classification": {
@@ -15286,7 +15463,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4491",
-    "title": "Azetukalner in Adults With Focal Seizures",
+    "title": "Azetukalner in Adults With Focal Seizures: Research Summary.",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
