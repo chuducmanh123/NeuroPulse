@@ -1,5 +1,211 @@
 [
   {
+    "id": "nc-2026-067",
+    "case_code": "NC-2026-067",
+    "title": "Acute Focal Deficits and Seizures Following Surveillance Cerebral Angiography",
+    "subspecialty": "Neurocritical Care",
+    "subspecialties": [
+      "Neurocritical Care",
+      "Vascular Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-25",
+    "status": "approved",
+    "author_credit": "Stroke (Hoboken, N.J.) • PMC12697658",
+    "source_journal": {
+      "name": "Stroke (Hoboken, N.J.)",
+      "short_name": "Stroke (Hoboken, N.J.)",
+      "doi_url": "https://doi.org/10.1161/svin.124.001362",
+      "pmcid": "PMC12697658",
+      "pmid": "41573418",
+      "pub_year": "2025"
+    },
+    "presentation": {
+      "demographics": "32-year-old male",
+      "chief_complaint": "Acute gaze deviation, focal motor weakness, and seizures following cerebral digital subtraction angiography.",
+      "history_of_present_illness": "A 32-year-old male presented for elective surveillance digital subtraction angiography (DSA) 11 years after surgical clipping of a post-traumatic anterior communicating artery pseudoaneurysm. Intraprocedurally, following intra-arterial administration of 62 mL of Isovue-300 (iopamidol, osmolality 616 mOsm/kg H2O), he acutely developed left gaze deviation and right upper extremity weakness without systemic blood pressure elevation or procedural technical complications. Upon transfer to the post-procedure recovery unit, he experienced a focal impaired awareness seizure featuring rightward head and gaze deviation and rhythmic clonic jerking of the right upper and lower extremities.",
+      "past_medical_history": "Traumatic brain injury with chronic bifrontal encephalomalacia; post-traumatic focal epilepsy controlled on lamotrigine 100 mg twice daily; myasthenia gravis treated with pyridostigmine; status-post surgical repair of bilateral femur fractures.",
+      "vitals": {
+        "bp": "134/85 mmHg",
+        "hr": "82 bpm",
+        "rr": "16 /min",
+        "temp": "36.7 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "Following seizure termination, he was somnolent but rousable to verbal commands. Neurological examination demonstrated a transient left gaze preference without cranial nerve palsies. Right upper extremity motor strength was 3/5 and right lower extremity strength was 4/5, with intact strength on the left side. Deep tendon reflexes were 3+ throughout the right hemibody with an upgoing right plantar response.",
+      "key_labs_csf": "Initial laboratory evaluation revealed a serum creatinine of 0.9 mg/dL (reference range: 0.65–1.25 mg/dL), blood urea nitrogen of 13 mg/dL, serum sodium of 139 mEq/L, and serum potassium of 4.1 mEq/L. Leukocyte count was 7.2 × 10^3/µL, hemoglobin was 14.1 g/dL, and platelet count was 240 × 10^3/µL. Coagulation profile was within normal reference limits.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (DWI, FLAIR, GRE, and Contrast-Enhanced T1) and MRA",
+          "sequence_badge": "Figure 1 • Stroke (Hoboken, N.J.) (PMC12697658)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12697658_fig1.jpg",
+          "pmcid": "PMC12697658",
+          "doi_url": "https://doi.org/10.1161/svin.124.001362",
+          "caption": "Imaging studies of a patient with posterior reversible encephalopathy syndrome after surveillance digital subtraction angiography of an anterior communicating artery pseudoaneurysm after clipping. A, Neuroimaging immediately after event: Axial contrast‐enhanced computed tomography of the head showing stable bifrontal encephalomalacia and gliosis and a left anterior communicating artery aneurysm clip without evidence of infarction or ischemic penumbra ( far left panel ). Axial contrast‐enhanced T1‐weighted MRI ( center left panel ) and FLAIR sequence showing diffuse leptomeningeal enhancement a",
+          "findings_summary": "Stable chronic bifrontal encephalomalacia and right temporal gliosis. New diffuse left-sided sulcal FLAIR hyperintensity and diffuse leptomeningeal contrast enhancement are present, without acute restricted diffusion, susceptibility artifact, or large-vessel occlusion."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Procedure-related acute ischemic stroke",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Thromboembolic stroke is a recognized complication of catheter-based angiography; however, MRA demonstrated arterial patency without large-vessel occlusion, and DWI showed no acute restricted diffusion to explain the acute focal neurological deficits."
+        },
+        {
+          "id": "B",
+          "text": "Iatrogenic subarachnoid hemorrhage",
+          "peer_percentage": 6,
+          "rationale": "Incorrect. Catheter manipulation or microvascular perforation can precipitate subarachnoid extravasation resulting in sulcal FLAIR hyperintensity; however, gradient-echo (GRE) MRI sequences demonstrated no susceptibility artifact indicative of acute subarachnoid hemorrhage."
+        },
+        {
+          "id": "C",
+          "text": "Acute lamotrigine toxicity",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Supratherapeutic antiseizure medication toxicity typically manifests with symmetric vestibulocerebellar signs such as ataxia, nystagmus, and diffuse encephalopathy, rather than acute unilateral focal deficits accompanied by focal sulcal FLAIR hyperintensity and leptomeningeal enhancement."
+        },
+        {
+          "id": "D",
+          "text": "Posterior reversible encephalopathy syndrome",
+          "peer_percentage": 74,
+          "rationale": "Correct! Posterior reversible encephalopathy syndrome (PRES) can be triggered by neuroangiographic contrast administration, particularly in patients with pre-existing blood-brain barrier (BBB) breakdown from prior traumatic brain injury or encephalomalacia. Intra-arterial hyperosmolar contrast agents disrupt vulnerable microvascular tight junctions, producing transient vasogenic edema, sulcal FLAIR hyperintensity, leptomeningeal enhancement, seizures, and focal deficits even in normotensive patients."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Posterior reversible encephalopathy syndrome (PRES) secondary to neuroangiographic contrast administration in a patient with pre-existing blood-brain barrier dysfunction.",
+      "clinical_discussion": "The sudden onset of focal neurological deficits and seizures following diagnostic cerebral angiography requires immediate differentiation between procedural complications and acute neurotoxicity. The primary diagnostic considerations include procedure-related thromboembolic cerebral infarction, iatrogenic vascular perforation with subarachnoid hemorrhage, hyperosmolar contrast-induced neurotoxicity, and postictal Todd paresis. In this patient, immediate magnetic resonance angiography (MRA) demonstrated complete arterial patency, while diffusion-weighted imaging (DWI) and gradient-echo (GRE) sequences excluded territorial ischemic infarction and acute subarachnoid hemorrhage, respectively.\n\nThe key diagnostic inflection point relies on recognizing contrast-induced posterior reversible encephalopathy syndrome (PRES) in a normotensive patient with pre-existing blood-brain barrier (BBB) dysfunction. Although PRES classically presents with severe systemic hypertension (observed in approximately 60% of cases), non-hypertensive etiologies—including cytotoxic immunosuppressants, preeclampsia, sepsis, and intra-arterial contrast media—are well established. Non-ionic hyperosmolar contrast agents such as iopamidol exert direct cytotoxic and osmotic effects on microvascular endothelial cells. In patients with pre-existing BBB disruption secondary to chronic traumatic encephalomalacia, pressurized intra-arterial contrast injection further compromises endothelial tight junction integrity, precipitating focal vasogenic edema, sulcal FLAIR hyperintensity, and transient leptomeningeal contrast enhancement.\n\nManagement of contrast-induced PRES focuses on supportive neurocritical care, aggressive seizure control with intravenous antiseizure medications, maintaining adequate intravenous hydration, and avoiding further contrast exposure. Systemic blood pressure must be monitored closely to prevent secondary hyperperfusion injury. With supportive management, contrast-induced microvascular dysfunction rapidly remits; clinical symptoms and characteristic neuroimaging alterations (sulcal FLAIR hyperintensity and leptomeningeal enhancement) typically resolve completely within days to weeks without permanent neurological sequelae.",
+      "teaching_points": [
+        "PRES can develop in normotensive patients following cerebral digital subtraction angiography due to hyperosmolar contrast-mediated microvascular endothelial disruption.",
+        "Pre-existing structural brain pathology (e.g., chronic traumatic brain injury or encephalomalacia) increases microvascular vulnerability to contrast-induced blood-brain barrier failure.",
+        "Neuroimaging in contrast-induced PRES may demonstrate focal or asymmetric sulcal FLAIR hyperintensity and leptomeningeal enhancement, mimicking subarachnoid hemorrhage or infectious meningitis.",
+        "Clinical management centers on supportive care, aggressive seizure control, hydration, and avoidance of re-exposure to neurotoxic contrast agents, with expected full neurological recovery."
+      ],
+      "clinical_pitfalls": [
+        "Misdiagnosing contrast-induced PRES as an acute thromboembolic stroke or subarachnoid hemorrhage, leading to inappropriate thrombolysis, anticoagulation, or redundant catheter angiography.",
+        "Assuming systemic hypertension is required to diagnose PRES, potentially delaying recognition of contrast- or toxin-mediated vasogenic edema in normotensive patients."
+      ],
+      "related_keywords": [
+        "Posterior reversible encephalopathy syndrome",
+        "Digital subtraction angiography contrast neurotoxicity",
+        "Blood-brain barrier disruption",
+        "Traumatic brain injury encephalomalacia"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-068",
+    "case_code": "NC-2026-068",
+    "title": "Recurrent Episodic Headache with Prolonged Bilateral Photopsia and External Ophthalmoplegia",
+    "subspecialty": "Headache & Pain",
+    "subspecialties": [
+      "Headache & Pain",
+      "Neuro-Ophthalmology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-25",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13104203",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04732-9",
+      "pmcid": "PMC13104203",
+      "pmid": "41715021",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "33-year-old female",
+      "chief_complaint": "Recurrent severe episodic headaches associated with prolonged bilateral visual disturbances and eye movement limitation.",
+      "history_of_present_illness": "A 33-year-old female presented to the neurology clinic during the second week of a prolonged neurological episode characterized by continuous visual phenomena and restricted extraocular movements. She reported a 4-year history of recurrent, stereotypic episodes featuring right temporal throbbing headaches preceded by visual and oculomotor disturbances. Each cycle began with acute-onset bilateral blurred vision and continuous bright photopsias across the entire visual field, followed within minutes by severe right temporal headache and restriction of eye movements in all directions. Although her headache typically resolved within 48 hours, the photopsias and eye movement limitations persisted for up to 4 weeks per episode. She also noted brief, unprovoked episodes of bilateral tinnitus lasting 5 to 10 minutes. High-dose intravenous methylprednisolone administered during a prior attack yielded no improvement.",
+      "past_medical_history": "No prior medical conditions, vascular risk factors, diabetes mellitus, or personal or family history of autoimmune disease.",
+      "vitals": {
+        "bp": "118/76 mmHg",
+        "hr": "72 bpm",
+        "rr": "14 /min",
+        "temp": "36.6 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "On physical examination, she was alert and oriented. Visual acuity was 20/20 bilaterally with normal, equal, and reactive pupils, no relative afferent pupillary defect, and no ptosis. Extraocular motility testing demonstrated severe restriction of eye movements in all gaze directions bilaterally (bilateral external ophthalmoplegia). Fundoscopy showed sharp optic discs without papilledema. Cranial nerves V, VII, and IX through XII were intact. Motor strength, sensation, cerebellar coordination, and gait were normal without limb ataxia. Deep tendon reflexes were normal and symmetric throughout, and plantar responses were flexor bilaterally.",
+      "key_labs_csf": "Complete blood count, comprehensive metabolic panel, erythrocyte sedimentation rate, C-reactive protein, and thyroid function tests were normal. Lumbar puncture demonstrated a normal opening pressure (14 cmH2O), normal leukocyte count (<5 cells/µL), normal glucose level (62 mg/dL), and normal protein concentration (32 mg/dL).",
+      "imaging": [
+        {
+          "modality": "18F-FDG PET/MRI",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13104203)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13104203_fig1.jpg",
+          "pmcid": "PMC13104203",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04732-9",
+          "caption": "Axial 18-FDG PET/MRI during the ictal and interictal period. A Before initiating treatment, the 18-FDG PET scan during the ictal period of the patient revealed reduced radiotracer uptake in multiple brain regions, including the left hippocampus (blue arrow), left temporal lobe (white arrow). B After a re-examination on the fifth day of treatment, it was found that there was a significant improvement in the metabolism of the cortical brain region during the interictal period compared to before. 18 F-FDG PET, 18 F-fluorodeoxyglucose PET",
+          "findings_summary": "Brain 18F-FDG PET/MRI performed during the symptomatic phase demonstrates focal hypometabolism in the left temporal lobe and left hippocampus without acute infarction or structural parenchymal lesions on MRI."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Migraine with persistent visual and brainstem aura",
+          "peer_percentage": 56,
+          "rationale": "Correct! According to International Classification of Headache Disorders, 3rd edition (ICHD-3) criteria, this patient exhibits features of migraine with both visual aura (bilateral photopsias) and brainstem aura (bilateral external ophthalmoplegia causing gaze limitation, and unprovoked tinnitus). When aura symptoms persist for 7 days or longer without neuroimaging evidence of cerebral infarction, the condition is classified as persistent aura without infarction. 18F-FDG PET during the symptomatic phase demonstrates focal regional hypometabolism consistent with prolonged cortical spreading depression-related neurovascular metabolic changes."
+        },
+        {
+          "id": "B",
+          "text": "Recurrent painful ophthalmoplegic neuropathy (RPON)",
+          "peer_percentage": 22,
+          "rationale": "Incorrect. RPON predominantly presents with unilateral ocular motor cranial nerve palsies (most commonly third nerve palsy with ptosis and pupillary involvement) accompanied by ipsilateral headache, and characteristically demonstrates nerve thickening or contrast enhancement on MRI. Symmetric bilateral external ophthalmoplegia with preserved pupillary function, paired with prolonged visual photopsias and tinnitus, is atypical for RPON."
+        },
+        {
+          "id": "C",
+          "text": "Miller Fisher syndrome",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Miller Fisher syndrome is characterized by the classic triad of ophthalmoplegia, ataxia, and areflexia, typically following an infectious prodrome and associated with anti-GQ1b antibodies and CSF albuminocytological dissociation. This patient lacks ataxia and areflexia, has normal CSF protein, and has experienced stereotyped recurrent month-long episodes over 4 years."
+        },
+        {
+          "id": "D",
+          "text": "Tolosa-Hunt syndrome",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Tolosa-Hunt syndrome causes painful ophthalmoplegia secondary to idiopathic granulomatous inflammation of the cavernous sinus or superior orbital fissure. It typically presents unilaterally with periorbital pain, demonstrates structural contrast enhancement on orbital/cavernous sinus MRI, and responds rapidly to corticosteroid therapy. This patient features bilateral symmetric ophthalmoplegia accompanied by visual aura phenomena, normal structural MRI, and no response to high-dose corticosteroids."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Migraine with persistent visual and brainstem aura",
+      "clinical_discussion": "This patient presented with an unusually prolonged and complex migraine aura phenotype characterized by concurrent visual phenomena (bilateral positive photopsias) and brainstem manifestations (bilateral external ophthalmoplegia and intermittent tinnitus). The differential diagnosis for recurrent headache with neuro-ophthalmologic deficits encompasses inflammatory cranial neuropathies such as Tolosa-Hunt syndrome, autoimmune post-infectious syndromes like Miller Fisher syndrome, recurrent painful ophthalmoplegic neuropathy (RPON), ocular myasthenia gravis, and structural vascular or epileptogenic lesions. Miller Fisher syndrome was rendered unlikely by the absence of appendicular or gait ataxia, preserved deep tendon reflexes, lack of a viral prodrome, and normal CSF protein without albuminocytological dissociation. Tolosa-Hunt syndrome and RPON were argued against by the bilateral, symmetric involvement, normal structural MRI without cranial nerve enhancement, and complete lack of response to empirical high-dose corticosteroid therapy.\n\nThe diagnostic inflection point rested on applying ICHD-3 diagnostic criteria alongside functional neuroimaging to confirm persistent migraine aura. According to ICHD-3, brainstem aura (1.2.2) includes symptoms such as dysarthria, vertigo, tinnitus, hyperacusis, diplopia/gaze restriction, ataxia, and decreased consciousness. When visual or brainstem aura symptoms persist for 7 days or longer in the absence of ischemic tissue infarction on brain MRI, the presentation fulfills criteria for persistent aura without infarction (1.4.2). Hybrid 18F-FDG PET/MRI during the symptomatic phase revealed focal regional hypometabolism within the left temporal lobe and hippocampus despite unremarkable structural sequences. This metabolic depression directly reflects the persistent neurovascular altered state induced by prolonged cortical spreading depression (CSD), where sustained wave propagation of neuronal depolarization causes localized transient metabolic suppression without irreversible parenchymal damage.\n\nSubsequent targeted laboratory and neurophysiological testing during outpatient follow-up—including serum anti-acetylcholine receptor antibodies, repetitively negative single-fiber electromyography, anti-GQ1b antibodies, long-term sleep-deprived EEG, and magnetoencephalography (MEG)—further excluded occult neuromuscular junction disorders and focal temporal lobe epilepsy. Initiation of targeted migraine preventive therapy with sodium valproate led to complete resolution of both the headache episodes and the prolonged 4-week visual and oculomotor deficits. Follow-up interictal 18F-FDG PET confirmed complete normalization of baseline temporal metabolic activity.",
+      "teaching_points": [
+        "Migraine aura symptoms persisting for 7 days or longer without MRI evidence of acute cerebral infarction fulfill ICHD-3 criteria for persistent aura without infarction.",
+        "Brainstem aura symptoms (e.g., tinnitus, diplopia, bilateral ophthalmoplegia, vertigo, dysarthria) can occur in combination with visual aura and may persist beyond the typical 60-minute duration.",
+        "Functional neuroimaging with 18F-FDG PET during prolonged migraine aura demonstrates reversible regional cortical hypometabolism corresponding to prolonged cortical spreading depression, helping distinguish functional migraine aura from structural, vascular, or inflammatory neuropathies."
+      ],
+      "clinical_pitfalls": [
+        "Misdiagnosing persistent migraine aura as an inflammatory or granulomatous neuropathy (such as Tolosa-Hunt syndrome or RPON), leading to inappropriate repetitive high-dose corticosteroid therapy.",
+        "Failing to recognize brainstem aura features—such as transient tinnitus or extraocular motility restriction—when evaluating patients presenting predominantly with prominent visual aura phenomena."
+      ],
+      "related_keywords": [
+        "Migraine with persistent aura",
+        "Brainstem aura",
+        "Cortical spreading depression",
+        "18F-FDG PET hypometabolism",
+        "Ophthalmoplegic migraine mimic"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-065",
     "case_code": "NC-2026-065",
     "title": "Infant Monozygotic Twins Presenting with Focal Seizures and Deep White Matter Ischemia",
