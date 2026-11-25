@@ -92,10 +92,14 @@
       "subspecialty": "Dementia",
       "subspecialties": [
         "Dementia",
-        "Neuromuscular"
+        "Neuromuscular",
+        "Stroke"
       ],
       "topics": [
-        "Neurology"
+        "Alzheimer",
+        "Dementia",
+        "Cerebral",
+        "Brain"
       ]
     },
     "abstract": "BACKGROUND AND OBJECTIVES: Brain pathologies are common in the elderly; however, their contribution to Alzheimer dementia risk and cognitive decline in those who die as centenarians remain unclear. This study examines the frequency of Alzheimer disease neuropathologic changes (ADNC), limbic-predominant age-related TDP-43 encephalopathy neuropathologic change (LATE-NC), and other brain pathologies and their association with Alzheimer dementia risk and cognitive decline in centenarians. METHODS: This clinicopathologic study included older participants from the Religious Orders Study and Rush Memory and Aging Project, 2 ongoing clinicopathologic cohort studies of aging and dementia, who underwent annual clinical evaluations and autopsy. Participants were evaluated annually for cognitive status and followed for a mean (SD) of 11.4 (5.3) years before death. Neuropathologic evaluation included ADNC (and separately β-amyloid load and tangle density), LATE-NC, presence or absence of neocortical Lewy bodies (LBs), hippocampal sclerosis of aging (HS-A), primary age-related tauopathy (PART), and 5 cerebrovascular disease (CVD) pathologies including arteriolosclerosis, atherosclerosis, cerebral amyloid angiopathy, macroinfarcts, and microinfarcts. Multivariable regression and linear mixed-effects models were applied. RESULTS: A total of 104 centenarians were included in this study. The mean (SD) age at death was 102 (1.9) years, 84% were female, 58% had Alzheimer dementia, 21% had mild cognitive impairment (MCI), and 21% had no cognitive impairment (NCI). All 3 clinical diagnostic groups exhibited pathologies, including any type of CVD (94%), ADNC (72%; 73% of them were intermediate and 27% of them were high), LATE-NC (58%, 30% of them exhibiting HS-A), HS-A (18%, 95% had LATE-NC), PART (28%), and neocortical LBs (11%). Mixed pathologies, particularly ADNC + LATE-NC + CVD, were common in the Alzheimer dementia group (52%) compared with NCI (36%) and MCI (23%). After adjusted for age at death, sex, education, and other brain pathologies, only LATE-NC and tangles (specifically intermediate/high ADNC with Braak stage V) were associated with more rapid decline in global cognition and increased odds of Alzheimer dementia. DISCUSSION: Brain pathology, but not dementia, is nearly inevitable in those who die as centenarians. LATE-NC and tangles are the key contributors to cognitive decline. Future study investigating resilience factors may inform preventive strategies.",
@@ -131,12 +135,13 @@
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218832",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Epilepsy",
       "subspecialties": [
-        "Other"
+        "Epilepsy",
+        "Movement Disorders"
       ],
       "topics": [
-        "Neurology"
+        "Chorea"
       ]
     },
     "abstract": "Hemichorea is a rare movement disorder that can arise from a diversity of causes. In this case, a 7-year-old boy presented with subacute onset of involuntary movements involving the left upper extremity. This case highlights the importance of careful characterization of abnormal movements in children, as distinguishing chorea from myoclonus, tics, or epileptic automatisms directs subsequent diagnostic testing. It also underscores the broad differential diagnosis of hemichorea in pediatric patients and the need to consider systemic and vascular processes when imaging reveals focal findings. Through stepwise clinical reasoning, this case illustrates how integrating movement phenomenology with neuroimaging and systemic evaluation can uncover an underlying unifying diagnosis.",
@@ -190,12 +195,12 @@
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218585",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Movement Disorders",
       "subspecialties": [
-        "Other"
+        "Movement Disorders"
       ],
       "topics": [
-        "Neurology"
+        "Parkinson"
       ]
     },
     "abstract": "BACKGROUND AND OBJECTIVES: Physiotherapy is a crucial element of care strategies for parkinsonian syndromes, especially in atypical parkinsonian disorders (APDs), where levodopa response is limited. Preliminary studies in APDs have reported improvements in walking and motor functions; however, small sample sizes represented a common limitation because of the rare nature of these diseases. The Mobility in Atypical Parkinsonism: a Trial of Physiotherapy (MobilityAPP) aims to investigate the superiority of gait-focused physiotherapy (GPT) in improving self-paced gait speed, compared with standard physiotherapy (SPT). METHODS: This double-blind, randomized controlled trial was conducted in 5 centers across Europe. Patients with multiple system atrophy, progressive supranuclear palsy, and Parkinson disease (PD) were recruited through outpatient clinics or from specialized wards. Patients were included if they had a Hoehn and Yahr stage below 4 and excluded if their medication had been adapted recently or ambulation was influenced by other preconditions. After a 1-week home monitoring of physical activity, participants were randomized (1:1) to inpatient GPT or SPT for 2 weeks, followed by 5 weeks of home-based training. The primary outcome was the pre-post change in self-paced gait speed, measured with wearable sensors during a standardized 2 × 10-m walking test. Secondary outcomes included clinical scores, patient-reported outcomes (PROMs), and digital mobility measures from daily life. Repeated-measures analysis of variance was used to assess primary and secondary outcomes. RESULTS: Of 167 patients screened, 160 were included (mean age 67.4, 51.2% female) and 151 completed the study per protocol (85 with APD, 66 with PD; 76 GPT, 75 SPT). GPT was comparable to SPT in improving self-paced gait speed (95% CI -0.04 to 0.04; p = 0.949). However, positive changes in daily-life mobility metrics were observed that favored the GPT intervention. Furthermore, encouraging effects were observed in both study arms regarding balance and both patient and clinical global impressions of change. DISCUSSION: This randomized controlled trial provides evidence for the effectiveness of physiotherapy in APD. Physiotherapy led to promising results on daily-life mobility, clinical scales, and PROMs. Although GPT was not superior to SPT, the intervention was safe, well tolerated, and contributed to a perceived improvement in functional disability. A ceiling effect associated with the high self-paced speed of participants with PD has been observed as a potential limitation. TRIAL REGISTRATION INFORMATION: NCT04608604 (clinicaltrials.gov/study/NCT04608604), registered on October 23, 2020. CLASSIFICATION OF EVIDENCE: This study provides Class I evidence that, in patients with PD and atypical Parkinsonian syndromes, GPT and SPT resulted in similar self-paced gait speeds.",
@@ -1722,9 +1727,13 @@
     "neurology_classification": {
       "subspecialty": "Dementia",
       "subspecialties": [
-        "Dementia"
+        "Dementia",
+        "Stroke"
       ],
       "topics": [
+        "Alzheimer",
+        "Dementia",
+        "Cerebral",
         "Amyloid"
       ]
     },
@@ -2669,7 +2678,7 @@
   },
   {
     "id": "10.1001/jama.2026.20669",
-    "title": "Pediatric Medical Imaging and Brain Tumor Risk",
+    "title": "Pediatric Medical Imaging and Brain Tumor Risk.",
     "journal": {
       "name": "JAMA",
       "short_name": "JAMA",
@@ -2682,9 +2691,9 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Persiani Federica",
-      "Boldrini Luca",
-      "De Maria Ruggero"
+      "Persiani F",
+      "Boldrini L",
+      "De Maria R."
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.20669",
     "neurology_classification": {
