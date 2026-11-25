@@ -76,9 +76,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-24T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Mojdeganlou Paniz",
@@ -98,11 +98,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "BACKGROUND AND OBJECTIVES: Brain pathologies are common in the elderly; however, their contribution to Alzheimer dementia risk and cognitive decline in those who die as centenarians remain unclear. This study examines the frequency of Alzheimer disease neuropathologic changes (ADNC), limbic-predominant age-related TDP-43 encephalopathy neuropathologic change (LATE-NC), and other brain pathologies and their association with Alzheimer dementia risk and cognitive decline in centenarians. METHODS: This clinicopathologic study included older participants from the Religious Orders Study and Rush Memory and Aging Project, 2 ongoing clinicopathologic cohort studies of aging and dementia, who underwent annual clinical evaluations and autopsy. Participants were evaluated annually for cognitive status and followed for a mean (SD) of 11.4 (5.3) years before death. Neuropathologic evaluation included ADNC (and separately β-amyloid load and tangle density), LATE-NC, presence or absence of neocortical Lewy bodies (LBs), hippocampal sclerosis of aging (HS-A), primary age-related tauopathy (PART), and 5 cerebrovascular disease (CVD) pathologies including arteriolosclerosis, atherosclerosis, cerebral amyloid angiopathy, macroinfarcts, and microinfarcts. Multivariable regression and linear mixed-effects models were applied. RESULTS: A total of 104 centenarians were included in this study. The mean (SD) age at death was 102 (1.9) years, 84% were female, 58% had Alzheimer dementia, 21% had mild cognitive impairment (MCI), and 21% had no cognitive impairment (NCI). All 3 clinical diagnostic groups exhibited pathologies, including any type of CVD (94%), ADNC (72%; 73% of them were intermediate and 27% of them were high), LATE-NC (58%, 30% of them exhibiting HS-A), HS-A (18%, 95% had LATE-NC), PART (28%), and neocortical LBs (11%). Mixed pathologies, particularly ADNC + LATE-NC + CVD, were common in the Alzheimer dementia group (52%) compared with NCI (36%) and MCI (23%). After adjusted for age at death, sex, education, and other brain pathologies, only LATE-NC and tangles (specifically intermediate/high ADNC with Braak stage V) were associated with more rapid decline in global cognition and increased odds of Alzheimer dementia. DISCUSSION: Brain pathology, but not dementia, is nearly inevitable in those who die as centenarians. LATE-NC and tangles are the key contributors to cognitive decline. Future study investigating resilience factors may inform preventive strategies.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In 104 centenarians (mean age 102±1.9 years; 58% Alzheimer dementia), brain pathology was nearly universal (94% cerebrovascular disease, 72% ADNC, 5 8% LATE-NC), yet 21% remained cognitively unimpaired. After multivariable adjustment, only LATE-NC and tangles (intermediate/high ADNC, Braak stage V) independently predicted faster global cognitive decline and Alzheimer dementia.",
       "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Original Article"
     }
   },
   {
@@ -138,11 +139,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Hemichorea is a rare movement disorder that can arise from a diversity of causes. In this case, a 7-year-old boy presented with subacute onset of involuntary movements involving the left upper extremity. This case highlights the importance of careful characterization of abnormal movements in children, as distinguishing chorea from myoclonus, tics, or epileptic automatisms directs subsequent diagnostic testing. It also underscores the broad differential diagnosis of hemichorea in pediatric patients and the need to consider systemic and vascular processes when imaging reveals focal findings. Through stepwise clinical reasoning, this case illustrates how integrating movement phenomenology with neuroimaging and systemic evaluation can uncover an underlying unifying diagnosis.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Hemichorea in pediatric patients requires careful movement characterization to distinguish it from myoclonus, tics, or seizures. Integrating phenomenology with neuroimaging and systemic evaluation is essential to uncover underlying vascular, inflammatory, or metabolic etiologies.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Case Report"
     }
   },
   {
@@ -155,8 +157,10 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-24T00:00:00Z",
-    "article_type": "Original Article",
+    "article_type": "RCT",
     "article_types": [
+      "RCT",
+      "Clinical Trial",
       "Original Article"
     ],
     "authors": [
@@ -194,11 +198,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "BACKGROUND AND OBJECTIVES: Physiotherapy is a crucial element of care strategies for parkinsonian syndromes, especially in atypical parkinsonian disorders (APDs), where levodopa response is limited. Preliminary studies in APDs have reported improvements in walking and motor functions; however, small sample sizes represented a common limitation because of the rare nature of these diseases. The Mobility in Atypical Parkinsonism: a Trial of Physiotherapy (MobilityAPP) aims to investigate the superiority of gait-focused physiotherapy (GPT) in improving self-paced gait speed, compared with standard physiotherapy (SPT). METHODS: This double-blind, randomized controlled trial was conducted in 5 centers across Europe. Patients with multiple system atrophy, progressive supranuclear palsy, and Parkinson disease (PD) were recruited through outpatient clinics or from specialized wards. Patients were included if they had a Hoehn and Yahr stage below 4 and excluded if their medication had been adapted recently or ambulation was influenced by other preconditions. After a 1-week home monitoring of physical activity, participants were randomized (1:1) to inpatient GPT or SPT for 2 weeks, followed by 5 weeks of home-based training. The primary outcome was the pre-post change in self-paced gait speed, measured with wearable sensors during a standardized 2 × 10-m walking test. Secondary outcomes included clinical scores, patient-reported outcomes (PROMs), and digital mobility measures from daily life. Repeated-measures analysis of variance was used to assess primary and secondary outcomes. RESULTS: Of 167 patients screened, 160 were included (mean age 67.4, 51.2% female) and 151 completed the study per protocol (85 with APD, 66 with PD; 76 GPT, 75 SPT). GPT was comparable to SPT in improving self-paced gait speed (95% CI -0.04 to 0.04; p = 0.949). However, positive changes in daily-life mobility metrics were observed that favored the GPT intervention. Furthermore, encouraging effects were observed in both study arms regarding balance and both patient and clinical global impressions of change. DISCUSSION: This randomized controlled trial provides evidence for the effectiveness of physiotherapy in APD. Physiotherapy led to promising results on daily-life mobility, clinical scales, and PROMs. Although GPT was not superior to SPT, the intervention was safe, well tolerated, and contributed to a perceived improvement in functional disability. A ceiling effect associated with the high self-paced speed of participants with PD has been observed as a potential limitation. TRIAL REGISTRATION INFORMATION: NCT04608604 (clinicaltrials.gov/study/NCT04608604), registered on October 23, 2020. CLASSIFICATION OF EVIDENCE: This study provides Class I evidence that, in patients with PD and atypical Parkinsonian syndromes, GPT and SPT resulted in similar self-paced gait speeds.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In patients with Parkinson disease and atypical parkinsonian syndromes, gait-focused physiotherapy was not superior to standard physiotherapy for improving self-paced gait speed (95% CI -0.04 to 0.04; p = 0.949). However, physiotherapy overall was safe, well tolerated, and yielded improvements in daily-life mobility, clinical scales, and patient-reported outcomes.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "RCT"
     }
   },
   {
@@ -699,11 +704,12 @@
         "Parkinson"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "BACKGROUND AND OBJECTIVES: Epidemiologic studies suggest altered cancer susceptibility in Parkinson disease (PD), but the magnitude and biological basis of these associations remain unclear. We aimed to quantify cancer risk after PD diagnosis, identify cancer-specific patterns, and evaluate contributions of smoking and shared genetic mechanisms. METHODS: This retrospective study integrated 3 Finnish cohorts: biobank-based FinnGen, nationwide register-based FINPARK, and the clinically validated Turku University Hospital cohort. PD cases were matched to controls by age and sex, and analyses included cancers diagnosed after the index date. Fine-Gray competing-risk and Cox proportional hazards models estimated hazard ratios (HRs) of incident cancer. Genetic analyses included Mendelian randomization (MR), linkage disequilibrium score regression (LDSC), polygenic risk score (PGS), and genome-wide association studies (GWAS). RESULTS: The FinnGen, FINPARK, and Turku cohorts included 4,277 individuals with PD (42,770 matched controls), 21,105 (63,285), and 1,103 (1,103), respectively. Across cohorts (mean age at PD diagnosis, 68.7-70.8 years; 40%-46% female), PD was associated with a 31%-41% lower overall cancer risk (Fine-Gray HR range 0.59 [95% CI 0.55-0.65] to 0.69 [0.66-0.72]). The strongest reductions were observed for respiratory (HR range 0.11-0.42) and gastrointestinal cancers (HR range 0.37-0.64). These associations persisted in Cox and smoking-adjusted analyses. Genetic analyses used FinnGen (n = 520,210) and previous European GWAS meta-analyses. MR estimates were consistent with inverse associations between PD genetic liability and respiratory (OR 0.943 [0.900-0.985]), gastrointestinal (0.966 [0.932-0.999]), and skin cancers (0.967 [0.943-0.991]). LDSC demonstrated positive genetic correlations between PD and melanoma (rg = 0.194, p = 0.016) and breast cancer (rg = 0.161, p = 0.006). PD PGS was associated with respiratory (OR 0.959 [0.940-0.979]), gastrointestinal (0.974 [0.960-0.989]), genitourinary (0.984 [0.970-0.998]), skin (0.985 [0.973-0.997]), and breast cancers (1.016 [1.001-1.030]). GWAS identified shared susceptibility loci between PD and several cancers. DISCUSSION: PD was associated with a substantially reduced incidence of most cancers, particularly respiratory and gastrointestinal cancers. Combined epidemiologic and genetic findings suggest that these inverse associations are not explained by smoking alone but may partly reflect cancer-specific shared genetic susceptibility. Residual confounding and detection bias cannot be fully excluded, and generalizability beyond European populations is uncertain.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Parkinson disease (PD) is associated with a 31%–41% lower overall cancer risk (Fine-Gray HR 0.59 [95% CI 0.55–0.65] to 0.69 [0.66–0.72]), especially respiratory and gastrointestinal cancers. Genetic analyses suggest these inverse associations stem from shared genetic susceptibility rather than smoking, despite positive genetic correlations between PD, melanoma, and breast cancer.",
       "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Original Article"
     }
   },
   {
@@ -1722,11 +1728,12 @@
         "Amyloid"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "BACKGROUND AND OBJECTIVES: Alzheimer disease (AD) and cerebral small vessel disease frequently coexist, and their hallmarks, amyloid pathology and white matter hyperintensities (WMHs), are each associated with cognitive decline. Whether these associations are independent or interactive remains unclear. This study investigated their joint associations with cognitive decline across the clinical continuum. METHODS: This longitudinal study included 2 observational cohorts: the harmonization cohort, which recruited participants from Singaporean community and memory clinics, and the Alzheimer's Disease Neuroimaging Initiative (ADNI), a multisite study in North America. Participants underwent MRI, amyloid biomarker assessments (plasma phosphorylated-tau 217 or amyloid PET), and neuropsychological assessments. Linear mixed-effects models evaluated independent and interactive associations of the amyloid biomarker and WMHs with cognitive decline, stratified by clinical stage. RESULTS: The study included 448 participants from harmonization (mean age 72.45 ± 8.13 years; 56% female) and 1,245 from ADNI (72.56 ± 7.35; 49% female). Among cognitively normal (CN) individuals, statistical interactions between the amyloid biomarker and WMHs were detected in both cohorts, with the joint association exceeding the sum of their individual associations: in harmonization, for global cognition (amyloid biomarker × WMHs × time β = -0.042, 95% CI -0.068 to -0.016, p = 0.002), memory and executive function; in ADNI, for global cognition (β = -0.081, -0.136 to -0.026, p = 0.004) and memory. At mild cognitive impairment (MCI), no interaction was detected; both markers were independently associated with decline in several domains (global cognition, memory, and executive function in harmonization; memory and language in ADNI), whereas an association was detected for the amyloid biomarker only in the remaining domains. At dementia, the amyloid biomarker was associated with decline in harmonization, while WMHs were not; neither reached significance in ADNI, likely reflecting the shorter follow-up. DISCUSSION: The joint association of amyloid pathology and WMHs with cognitive decline was stage dependent: at CN, it exceeded the sum of their individual associations; at MCI, both markers were independently associated with decline; and at dementia, an association was detected for the amyloid biomarker only. Clinical stage and WMH burden may therefore warrant consideration when interpreting disease-modifying therapy responses. However, the observational design limits causal inference, and the interaction reported is statistical rather than necessarily biological.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In two observational cohorts, amyloid pathology and white matter hyperintensities interacted synergistically to accelerate global cognitive decline in cognitively normal individuals (harmonization β = -0.042, p = 0.002; ADNI β = -0.081, p = 0.004), but acted independently at mild cognitive impairment, highlighting stage-dependent effects.",
       "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Original Article"
     }
   },
   {
@@ -2029,7 +2036,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4324",
-    "title": "Reflections on the Utility of Surveillance MRIs in an Evolving MS Landscape.",
+    "title": "Reflections on the Utility of Surveillance MRIs in an Evolving MS Landscape",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -2042,8 +2049,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "McConville K",
-      "Ontaneda D."
+      "McConville Kylie",
+      "Ontaneda Daniel"
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4324",
     "neurology_classification": {
@@ -2365,7 +2372,7 @@
   },
   {
     "id": "10.1161/strokeaha.126.058755",
-    "title": "December 2026 Stroke Highlights.",
+    "title": "December 2026 Stroke Highlights",
     "journal": {
       "name": "Stroke (AHA)",
       "short_name": "Stroke",
@@ -2378,7 +2385,7 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Sur NB."
+      "Sur Nicole B."
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.058755",
     "neurology_classification": {
@@ -4846,7 +4853,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4218",
-    "title": "Agent Orange and Parkinson Disease-The War Ended, the Exposure: Did Not.",
+    "title": "Agent Orange and Parkinson Disease—The War Ended, the Exposure: Did Not",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -4859,9 +4866,9 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Goldman SM",
-      "Dorsey ER",
-      "Okun MS."
+      "Goldman Samuel M.",
+      "Dorsey E. Ray",
+      "Okun Michael S."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4218",
     "neurology_classification": {
@@ -14939,7 +14946,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4165",
-    "title": "Arrival of CAR T-Cell Therapies for Stiff Person Syndrome.",
+    "title": "Arrival of CAR T-Cell Therapies for Stiff Person Syndrome",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -14952,8 +14959,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Gupta S",
-      "Gelfand JM."
+      "Gupta Sasha",
+      "Gelfand Jeffrey M."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4165",
     "neurology_classification": {
@@ -15270,7 +15277,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4491",
-    "title": "Azetukalner in Adults With Focal Seizures: Research Summary.",
+    "title": "Azetukalner in Adults With Focal Seizures",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
