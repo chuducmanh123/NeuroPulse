@@ -349,7 +349,7 @@ export async function executeIncrementalPipeline(
         count: allExtractedRecs.length,
         total: allExtractedRecs.length,
         percent: 88,
-        message: `⚡ Extracted ${canonicalEsoPicos.length} official PICO questions (${allExtractedRecs.length} recommendations & expert consensus statements) from ESO Synoptic Table.`,
+        message: `Extracted ${canonicalEsoPicos.length} official PICO questions (${allExtractedRecs.length} recommendations & expert consensus statements) from ESO Synoptic Table.`,
         recommendations: allExtractedRecs,
         docId,
       });
@@ -467,7 +467,7 @@ Respond strictly in valid JSON matching this schema:
             count: allExtractedRecs.length,
             total: allExtractedRecs.length,
             percent: 88,
-            message: `⚡ Extracted ${picos.length} official PICO questions (${allExtractedRecs.length} recommendations) from ESO Synoptic Table.`,
+            message: `Extracted ${picos.length} official PICO questions (${allExtractedRecs.length} recommendations) from ESO Synoptic Table.`,
             recommendations: allExtractedRecs,
             docId,
           });
@@ -593,7 +593,7 @@ Respond strictly in valid JSON matching this schema:
             count: batch1Recs.length,
             total: allExtractedRecs.length,
             percent: 55,
-            message: `⚡ Batch 1 complete: Extracted ${batch1Recs.length} frontline & high-impact recommendations. Streamed to Review Queue.`,
+            message: `Batch 1 complete: Extracted ${batch1Recs.length} frontline & high-impact recommendations. Streamed to Review Queue.`,
             recommendations: batch1Recs,
             docId,
           });
@@ -709,7 +709,7 @@ Respond strictly in valid JSON matching this schema:
             count: batch2Recs.length,
             total: allExtractedRecs.length,
             percent: 88,
-            message: `⚡ Batch 2 complete: Extracted ${batch2Recs.length} specialized pharmacotherapy & threshold recommendations.`,
+            message: `Batch 2 complete: Extracted ${batch2Recs.length} specialized pharmacotherapy & threshold recommendations.`,
             recommendations: batch2Recs,
             docId,
           });

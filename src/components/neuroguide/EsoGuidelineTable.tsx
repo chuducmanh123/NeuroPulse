@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { BarChart3, FlaskConical, Pencil, Pill, X } from "lucide-react";
 import type { RecommendationV3Labels } from "@/types/neuroguide";
 import { cleanGuidelineTitle } from "@/lib/neuroguide/guidelineFormat";
 
@@ -296,9 +297,10 @@ export function EsoGuidelineTable({
                     <button
                       type="button"
                       onClick={() => onEditPico(pico)}
-                      className="px-2 py-0.5 rounded text-[10px] font-bold bg-white/80 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-white cursor-pointer shadow-2xs"
+                      className="px-2 py-0.5 rounded text-[10px] font-bold bg-white/80 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-white cursor-pointer shadow-2xs inline-flex items-center gap-1"
                     >
-                      ✏️ Edit
+                      <Pencil className="w-2.5 h-2.5" aria-hidden="true" />
+                      <span>Edit</span>
                     </button>
                   )}
                 </div>
@@ -364,7 +366,8 @@ export function EsoGuidelineTable({
                                   key={sIdx}
                                   className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-blue-50 dark:bg-blue-950/50 text-[#1d72b8] dark:text-blue-300 border border-blue-200 dark:border-blue-800"
                                 >
-                                  📊 {study}
+                                  <BarChart3 className="w-3 h-3" aria-hidden="true" />
+                                  <span>{study}</span>
                                 </span>
                               ))}
                             </div>
@@ -399,15 +402,17 @@ export function EsoGuidelineTable({
                                   key={t}
                                   className="inline-flex items-center gap-0.5 px-1.5 py-0.2 rounded font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60"
                                 >
-                                  💊 {t.replace(/^tag_/, "").replace(/_/g, " ")}
+                                  <Pill className="w-3 h-3" aria-hidden="true" />
+                                  <span>{t.replace(/^tag_/, "").replace(/_/g, " ")}</span>
                                 </span>
                               ))}
                               {(rec.v3Labels?.diagnosisTags || pico.v3Labels?.diagnosisTags)?.map((d) => (
                                 <span
                                   key={d}
-                                  className="inline-flex items-center gap-0.5 px-1.5 py-0.2 rounded font-semibold bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60"
+                                  className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded font-semibold bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60"
                                 >
-                                  🔬 {d.replace(/^tag_/, "").replace(/_/g, " ")}
+                                  <FlaskConical className="w-3 h-3" aria-hidden="true" />
+                                  <span>{d.replace(/^tag_/, "").replace(/_/g, " ")}</span>
                                 </span>
                               ))}
                             </div>
@@ -520,9 +525,10 @@ export function EsoGuidelineTable({
                           <button
                             type="button"
                             onClick={() => onEditPico(pico)}
-                            className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-white/70 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-white cursor-pointer transition-colors shadow-2xs"
+                            className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-white/70 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-white cursor-pointer transition-colors shadow-2xs inline-flex items-center gap-1"
                           >
-                            ✏️ Edit PICO
+                            <Pencil className="w-3 h-3" aria-hidden="true" />
+                            <span>Edit PICO</span>
                           </button>
                         )}
                       </div>
@@ -605,7 +611,7 @@ export function EsoGuidelineTable({
                                       key={sIdx}
                                       className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 dark:bg-blue-950/50 text-[#1d72b8] dark:text-blue-300 border border-blue-200 dark:border-blue-800 shadow-2xs"
                                     >
-                                      <span>📊</span>
+                                      <BarChart3 className="w-3 h-3" aria-hidden="true" />
                                       <span>{study}</span>
                                     </span>
                                   ))}
@@ -644,7 +650,7 @@ export function EsoGuidelineTable({
                                       key={t}
                                       className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 shadow-2xs"
                                     >
-                                      <span>💊</span>
+                                      <Pill className="w-3 h-3" aria-hidden="true" />
                                       <span>{t.replace(/^tag_/, "").replace(/_/g, " ")}</span>
                                     </span>
                                   ))}
@@ -653,7 +659,7 @@ export function EsoGuidelineTable({
                                       key={d}
                                       className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 shadow-2xs"
                                     >
-                                      <span>🔬</span>
+                                      <FlaskConical className="w-3 h-3" aria-hidden="true" />
                                       <span>{d.replace(/^tag_/, "").replace(/_/g, " ")}</span>
                                     </span>
                                   ))}
@@ -714,9 +720,10 @@ export function EsoGuidelineTable({
               <button
                 type="button"
                 onClick={() => setShowGradeModal(false)}
+                aria-label="Close modal"
                 className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-700 hover:bg-slate-600 text-white font-bold cursor-pointer transition-all"
               >
-                ✕
+                <X className="w-4 h-4" aria-hidden="true" />
               </button>
             </div>
 

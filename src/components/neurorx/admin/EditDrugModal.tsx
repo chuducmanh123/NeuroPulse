@@ -2324,7 +2324,7 @@ export function EditDrugModal({
             <div className="space-y-5">
               <div className="p-4 rounded-xl bg-rose-50/60 dark:bg-rose-950/20 border border-rose-200/80 dark:border-rose-900/40 text-xs sm:text-sm">
                 <span className="font-bold text-rose-800 dark:text-rose-300 block mb-1">
-                  🤰 Reproductive, Pregnancy &amp; Lactation Timeline
+                  Reproductive, Pregnancy &amp; Lactation Timeline
                 </span>
                 <p className="text-rose-700 dark:text-rose-400">
                   Single source of truth synced to both the Drug Detail view and Pregnancy &amp; Lactation tab. Mark conditional fields as N/A when not clinically applicable.
@@ -2664,7 +2664,7 @@ export function EditDrugModal({
               <div className="flex items-center justify-between pb-1 flex-wrap gap-2">
                 <div>
                   <span className="font-extrabold text-slate-800 dark:text-slate-200 text-sm sm:text-base block">
-                    ⚡ FDA Prescribing Information Interactions (Section 7)
+                    FDA Prescribing Information Interactions (Section 7)
                   </span>
                   <span className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
                     Document critical drug-drug interactions with both neurological and non-neurological co-medications (antimicrobials, contraceptives, cardiac agents).
@@ -2729,10 +2729,10 @@ export function EditDrugModal({
                               }
                               className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold focus:ring-2 focus:ring-purple-500"
                             >
-                              <option value="contraindicated">🔴 Contraindicated</option>
-                              <option value="major">🟠 Major</option>
-                              <option value="moderate">🟡 Moderate</option>
-                              <option value="minor">⚪ Minor</option>
+                              <option value="contraindicated">Contraindicated</option>
+                              <option value="major">Major</option>
+                              <option value="moderate">Moderate</option>
+                              <option value="minor">Minor</option>
                             </select>
                           </div>
                         </div>

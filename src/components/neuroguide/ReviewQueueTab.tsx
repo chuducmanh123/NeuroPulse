@@ -1,7 +1,29 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
-import { RefreshCw } from "lucide-react";
+import {
+  AlertTriangle,
+  Check,
+  CheckCircle2,
+  ClipboardList,
+  Clock,
+  Eraser,
+  FileText,
+  Info,
+  Landmark,
+  LayoutGrid,
+  Link2,
+  NotebookPen,
+  Pencil,
+  RefreshCw,
+  Search,
+  ShieldCheck,
+  Tag,
+  Target,
+  Trash2,
+  X,
+  Zap,
+} from "lucide-react";
 import { DrawLoader } from "@/components/ecosystem/DrawLoader";
 import { EditGuidelineModal } from "./EditGuidelineModal";
 import { AhaGuidelineTable } from "./AhaGuidelineTable";
@@ -329,7 +351,7 @@ export function ReviewQueueTab({
     if (onQueueUpdated) onQueueUpdated();
     setFeedbackMessage({
       type: "success",
-      text: `🔄 Restored and displayed all ${rawServerRecs.length} pending recommendations from server.`,
+      text: `Restored and displayed all ${rawServerRecs.length} pending recommendations from server.`,
     });
   };
 
@@ -355,7 +377,7 @@ export function ReviewQueueTab({
         setQueue([]);
         setFeedbackMessage({
           type: "success",
-          text: `🗑️ Successfully purged all deleted guidelines on Cloud and Local!`,
+          text: `Successfully purged all deleted guidelines on Cloud and Local!`,
         });
         if (onQueueCountChange) onQueueCountChange(0);
         if (onQueueUpdated) onQueueUpdated();
@@ -606,18 +628,18 @@ export function ReviewQueueTab({
         } catch {}
         setFeedbackMessage({
           type: "success",
-          text: `✅ Approved and published Guideline "${group.guideline_title}" (${group.recommendations.length} recommendations) to Clinical Practice Guidelines!`,
+          text: `Approved and published Guideline "${group.guideline_title}" (${group.recommendations.length} recommendations) to Clinical Practice Guidelines!`,
         });
         setQueue((prev) => prev.filter((r) => r.guideline_id !== group.guideline_id));
         if (onQueueUpdated) onQueueUpdated();
       } else {
         setFeedbackMessage({
           type: "error",
-          text: `⚠️ ${data.error || "An error occurred while approving the guideline."}`,
+          text: `${data.error || "An error occurred while approving the guideline."}`,
         });
       }
     } catch {
-      setFeedbackMessage({ type: "error", text: "⚠️ Network error while approving guideline." });
+      setFeedbackMessage({ type: "error", text: "Network error while approving guideline." });
     } finally {
       setActionLoading(null);
       setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
@@ -663,7 +685,7 @@ export function ReviewQueueTab({
 
         setFeedbackMessage({
           type: "info",
-          text: `❌ Rejected and removed Guideline "${group.guideline_title}" from review queue.`,
+          text: `Rejected and removed Guideline "${group.guideline_title}" from review queue.`,
         });
         setQueue((prev) => {
           const next = prev.filter((r) => r.guideline_id !== group.guideline_id);
@@ -676,11 +698,11 @@ export function ReviewQueueTab({
       } else {
         setFeedbackMessage({
           type: "error",
-          text: `⚠️ ${data.error || "An error occurred while rejecting the guideline."}`,
+          text: `${data.error || "An error occurred while rejecting the guideline."}`,
         });
       }
     } catch {
-      setFeedbackMessage({ type: "error", text: "⚠️ Network error while rejecting the guideline." });
+      setFeedbackMessage({ type: "error", text: "Network error while rejecting the guideline." });
     } finally {
       setActionLoading(null);
       setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
@@ -721,18 +743,18 @@ export function ReviewQueueTab({
         } catch {}
         setFeedbackMessage({
           type: "success",
-          text: `✅ ${data.message || `Successfully approved all ${queue.length} recommendations to the official guidelines repository!`}`,
+          text: `${data.message || `Successfully approved all ${queue.length} recommendations to the official guidelines repository!`}`,
         });
         setQueue([]);
         if (onQueueUpdated) onQueueUpdated();
       } else {
         setFeedbackMessage({
           type: "error",
-          text: `⚠️ ${data.error || "An error occurred while approving all recommendations."}`,
+          text: `${data.error || "An error occurred while approving all recommendations."}`,
         });
       }
     } catch {
-      setFeedbackMessage({ type: "error", text: "⚠️ Network error while bulk approving recommendations." });
+      setFeedbackMessage({ type: "error", text: "Network error while bulk approving recommendations." });
     } finally {
       setActionLoading(null);
       setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
@@ -771,7 +793,7 @@ export function ReviewQueueTab({
         setRawServerRecs((prev) => prev.filter((r) => r.rec_id !== rec.rec_id));
         setFeedbackMessage({
           type: "success",
-          text: `🗑️ Successfully deleted 1 recommendation.`,
+          text: `Successfully deleted 1 recommendation.`,
         });
         if (onQueueUpdated) onQueueUpdated();
       } else {
@@ -801,12 +823,12 @@ export function ReviewQueueTab({
       });
       const data = await res.json();
       if (data.ok) {
-        setFeedbackMessage({ type: "success", text: `🧹 ${data.message}` });
+        setFeedbackMessage({ type: "success", text: `${data.message}` });
       } else {
-        setFeedbackMessage({ type: "error", text: `⚠️ ${data.error || "Error cleaning up Vercel Blob storage."}` });
+        setFeedbackMessage({ type: "error", text: `${data.error || "Error cleaning up Vercel Blob storage."}` });
       }
     } catch {
-      setFeedbackMessage({ type: "error", text: "⚠️ Network error while cleaning up Vercel Blob storage." });
+      setFeedbackMessage({ type: "error", text: "Network error while cleaning up Vercel Blob storage." });
     } finally {
       setCleanupLoading(false);
     }
@@ -1101,7 +1123,7 @@ export function ReviewQueueTab({
         >
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
             <span>Pending Guidelines</span>
-            <span className="text-amber-500">📑</span>
+            <FileText className="w-4 h-4 text-amber-500" aria-hidden="true" />
           </div>
           <div className="text-2xl font-black mt-1 text-slate-900 dark:text-white">
             {guidelineGroups.length}
@@ -1118,7 +1140,7 @@ export function ReviewQueueTab({
         >
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
             <span>Total Recommendations</span>
-            <span className="text-blue-500">🎯</span>
+            <Target className="w-4 h-4 text-blue-500" aria-hidden="true" />
           </div>
           <div className="text-2xl font-black mt-1 text-slate-900 dark:text-white">
             {queue.length}
@@ -1135,7 +1157,7 @@ export function ReviewQueueTab({
         >
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
             <span>AI Grounding Score</span>
-            <span className="text-emerald-500">⚡</span>
+            <Zap className="w-4 h-4 text-emerald-500" aria-hidden="true" />
           </div>
           <div className="text-2xl font-black mt-1 text-emerald-600 dark:text-emerald-400">
             {avgGroundingScore}%
@@ -1152,7 +1174,7 @@ export function ReviewQueueTab({
         >
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
             <span>Societies Active</span>
-            <span className="text-purple-500">🏛️</span>
+            <Landmark className="w-4 h-4 text-purple-500" aria-hidden="true" />
           </div>
           <div className="text-2xl font-black mt-1 text-slate-900 dark:text-white">
             {Object.keys(societyCounts).filter((k) => k !== "ALL" && societyCounts[k] > 0).length}
@@ -1174,7 +1196,7 @@ export function ReviewQueueTab({
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           {/* Live Search Input */}
           <div className="relative flex-1 max-w-md">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs">🔍</span>
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true" />
             <input
               type="text"
               value={searchQuery}
@@ -1190,9 +1212,10 @@ export function ReviewQueueTab({
               <button
                 type="button"
                 onClick={() => setSearchQuery("")}
+                aria-label="Clear search"
                 className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs font-bold cursor-pointer"
               >
-                ✕
+                <X className="w-3.5 h-3.5" aria-hidden="true" />
               </button>
             )}
           </div>
@@ -1206,7 +1229,8 @@ export function ReviewQueueTab({
                 className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-600 active:scale-[0.98] text-white shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
                 title="Launch Gemini AI Fulltext Extraction Pipeline from PDF"
               >
-                <span>⚡ Run AI PDF Pipeline</span>
+                <Zap className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>Run AI PDF Pipeline</span>
               </button>
             )}
 
@@ -1221,7 +1245,8 @@ export function ReviewQueueTab({
                 }`}
                 title="Import structured guideline from NotebookLM notes"
               >
-                <span>📝 Import NotebookLM</span>
+                <NotebookPen className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>Import NotebookLM</span>
               </button>
             )}
 
@@ -1235,13 +1260,14 @@ export function ReviewQueueTab({
                     type: "APPROVE_ALL",
                     title: "Approve Entire Review Queue?",
                     description: `This action will approve all ${guidelineGroups.length} Guidelines (${queue.length} recommendations) and publish them to Clinical Practice Guidelines immediately.`,
-                    confirmLabel: `✓ Approve All (${queue.length} items)`,
+                    confirmLabel: `Approve All (${queue.length} items)`,
                     confirmColor: "emerald",
                   })
                 }
                 className="px-3.5 py-1.5 rounded-xl text-xs font-black bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white shadow-xs transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
               >
-                <span>{actionLoading === "ALL" ? "Processing..." : `✓ Approve All (${queue.length})`}</span>
+                <Check className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>{actionLoading === "ALL" ? "Processing..." : `Approve All (${queue.length})`}</span>
               </button>
             )}
 
@@ -1249,14 +1275,15 @@ export function ReviewQueueTab({
               type="button"
               disabled={cleanupLoading}
               onClick={handleCleanupPdfs}
-              className={`px-2.5 py-1.5 rounded-xl text-xs font-semibold border transition-all flex items-center gap-1 cursor-pointer ${
+              className={`px-2.5 py-1.5 rounded-xl text-xs font-semibold border transition-all flex items-center gap-1.5 cursor-pointer ${
                 darkMode
                   ? "bg-slate-800/80 border-slate-700 text-slate-300 hover:bg-slate-700"
                   : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
               }`}
               title="Purge temporary PDF blobs in Vercel Blob storage"
             >
-              <span>🧹 {cleanupLoading ? "Purging..." : "Purge Blobs"}</span>
+              <Eraser className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>{cleanupLoading ? "Purging..." : "Purge Blobs"}</span>
             </button>
 
             <button
@@ -1353,15 +1380,22 @@ export function ReviewQueueTab({
           }`}
         >
           <div className="flex items-center gap-2">
-            <span>{feedbackMessage.type === "success" ? "✓" : feedbackMessage.type === "error" ? "⚠️" : "ℹ️"}</span>
+            {feedbackMessage.type === "success" ? (
+              <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
+            ) : feedbackMessage.type === "error" ? (
+              <AlertTriangle className="w-4 h-4 shrink-0" aria-hidden="true" />
+            ) : (
+              <Info className="w-4 h-4 shrink-0" aria-hidden="true" />
+            )}
             <span>{feedbackMessage.text}</span>
           </div>
           <button
             type="button"
             onClick={() => setFeedbackMessage(null)}
-            className="text-xs font-bold opacity-70 hover:opacity-100 px-1.5 py-0.5 cursor-pointer"
+            aria-label="Dismiss message"
+            className="text-xs font-bold opacity-70 hover:opacity-100 p-1 cursor-pointer"
           >
-            ✕
+            <X className="w-3.5 h-3.5" aria-hidden="true" />
           </button>
         </div>
       )}
@@ -1383,7 +1417,9 @@ export function ReviewQueueTab({
             darkMode ? "bg-slate-900/50 border-slate-800" : "bg-slate-50 border-slate-200"
           }`}
         >
-          <span className="text-4xl mb-3 block">🎉</span>
+          <div className="w-11 h-11 mx-auto mb-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+            <CheckCircle2 className="w-5 h-5" aria-hidden="true" />
+          </div>
           <h3 className="text-base font-bold text-slate-800 dark:text-white">
             Review queue is currently empty!
           </h3>
@@ -1393,8 +1429,9 @@ export function ReviewQueueTab({
 
           {rawServerCount > 0 && (
             <div className="mt-5 p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 inline-block max-w-lg text-center">
-              <p className="text-xs font-semibold text-amber-700 dark:text-amber-300 mb-2.5">
-                ⚠️ There are <strong>{rawServerCount}</strong> recommendations on the server temporarily dismissed in your browser cache.
+              <p className="text-xs font-semibold text-amber-700 dark:text-amber-300 mb-2.5 flex items-center justify-center gap-1.5 flex-wrap">
+                <AlertTriangle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                <span>There are <strong>{rawServerCount}</strong> recommendations on the server temporarily dismissed in your browser cache.</span>
               </p>
               <div className="flex items-center justify-center gap-2 flex-wrap">
                 <button
@@ -1402,7 +1439,8 @@ export function ReviewQueueTab({
                   onClick={handleResetDismissedCache}
                   className="px-4 py-2 rounded-lg text-xs font-black bg-amber-500 hover:bg-amber-600 text-white cursor-pointer transition-all shadow-xs flex items-center gap-1.5"
                 >
-                  <span>🔄 Restore and Display ({rawServerCount} recommendations)</span>
+                  <RefreshCw className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>Restore and Display ({rawServerCount} recommendations)</span>
                 </button>
                 <button
                   type="button"
@@ -1410,7 +1448,8 @@ export function ReviewQueueTab({
                   className="px-4 py-2 rounded-lg text-xs font-bold bg-rose-600 hover:bg-rose-700 text-white cursor-pointer transition-all shadow-xs flex items-center gap-1.5"
                   title="Permanently remove on Cloud and Local"
                 >
-                  <span>🗑️ Permanently Delete on Cloud &amp; Local</span>
+                  <Trash2 className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>Permanently Delete on Cloud &amp; Local</span>
                 </button>
               </div>
             </div>
@@ -1454,35 +1493,40 @@ export function ReviewQueueTab({
                       >
                         {group.year || 2024}
                       </span>
-                      <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-black bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
-                        ⏳{" "}
-                        {isGroupEso
-                          ? (() => {
-                              const picos = buildEsoPicoItemsFromStoredRecs(
-                                group.recommendations,
-                                group.guideline_title,
-                                group.guideline_id
-                              );
-                              const totalRecs = picos.reduce((acc, p) => acc + p.recommendations.length, 0);
-                              return `${picos.length} PICO (${totalRecs} Recommendations)`;
-                            })()
-                          : `${group.recommendations.length} Recommendations`}
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10.5px] font-black bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+                        <Clock className="w-3 h-3" aria-hidden="true" />
+                        <span>
+                          {isGroupEso
+                            ? (() => {
+                                const picos = buildEsoPicoItemsFromStoredRecs(
+                                  group.recommendations,
+                                  group.guideline_title,
+                                  group.guideline_id
+                                );
+                                const totalRecs = picos.reduce((acc, p) => acc + p.recommendations.length, 0);
+                                return `${picos.length} PICO (${totalRecs} Recommendations)`;
+                              })()
+                            : `${group.recommendations.length} Recommendations`}
+                        </span>
                       </span>
-                      <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
-                        🏷️ {group.categories.length} Categories
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
+                        <Tag className="w-3 h-3" aria-hidden="true" />
+                        <span>{group.categories.length} Categories</span>
                       </span>
-                      <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                        ⚡ 96% AI Grounded
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                        <Zap className="w-3 h-3" aria-hidden="true" />
+                        <span>96% AI Grounded</span>
                       </span>
                       {group.source_url && (
                         <a
                           href={group.source_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/25 hover:underline max-w-[320px] truncate"
+                          className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/25 hover:underline max-w-[320px] truncate"
                           title={`Source URL: ${group.source_url}`}
                         >
-                          🔗 {group.source_url}
+                          <Link2 className="w-3 h-3 shrink-0" aria-hidden="true" />
+                          <span className="truncate">{group.source_url}</span>
                         </a>
                       )}
                     </div>
@@ -1496,7 +1540,8 @@ export function ReviewQueueTab({
                         className="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 flex items-center gap-1 cursor-pointer transition-colors"
                         title="Edit guideline metadata"
                       >
-                        <span>✏️ Edit</span>
+                        <Pencil className="w-3 h-3" aria-hidden="true" />
+                        <span>Edit</span>
                       </button>
 
                       <button
@@ -1508,7 +1553,7 @@ export function ReviewQueueTab({
                             type: "REJECT_GUIDELINE",
                             title: `Reject guideline "${group.guideline_title}"?`,
                             description: `This action will remove this document and all ${group.recommendations.length} recommendations from the review queue.`,
-                            confirmLabel: "✕ Confirm Rejection",
+                            confirmLabel: "Confirm Rejection",
                             confirmColor: "rose",
                             targetGuideline: group,
                           })
@@ -1516,7 +1561,8 @@ export function ReviewQueueTab({
                         className="px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/40 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 flex items-center gap-1 cursor-pointer transition-colors"
                         title="Reject this guideline"
                       >
-                        <span>✕ Reject</span>
+                        <X className="w-3 h-3" aria-hidden="true" />
+                        <span>Reject</span>
                       </button>
 
                       <button
@@ -1528,7 +1574,7 @@ export function ReviewQueueTab({
                             type: "APPROVE_GUIDELINE",
                             title: `Approve & Publish Guideline?`,
                             description: `Confirm approval of all ${group.recommendations.length} recommendations from:\n"${group.guideline_title}" (${group.society})\ninto the official clinical practice guidelines repository?`,
-                            confirmLabel: `✓ Approve (${group.recommendations.length} items)`,
+                            confirmLabel: `Approve (${group.recommendations.length} items)`,
                             confirmColor: "emerald",
                             targetGuideline: group,
                           })
@@ -1536,7 +1582,8 @@ export function ReviewQueueTab({
                         className="px-3.5 py-1 rounded-lg text-xs font-black bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white shadow-xs flex items-center gap-1.5 cursor-pointer transition-all disabled:opacity-50"
                         title="Approve all recommendations in this guideline"
                       >
-                        <span>{isProcessingThis ? "Processing..." : "✓ Approve & Publish"}</span>
+                        <Check className="w-3.5 h-3.5" aria-hidden="true" />
+                        <span>{isProcessingThis ? "Processing..." : "Approve & Publish"}</span>
                       </button>
                     </div>
                   </div>
@@ -1552,7 +1599,7 @@ export function ReviewQueueTab({
                     className="mt-3 flex items-center justify-between gap-2 pt-2 border-t border-slate-100 dark:border-slate-800/60 cursor-pointer select-none"
                   >
                     <span className="text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
-                      <span>📋</span>
+                      <ClipboardList className="w-3.5 h-3.5 text-[#C25934] dark:text-orange-400" aria-hidden="true" />
                       <span>
                         {isGroupEso ? (
                           (() => {
@@ -1601,24 +1648,26 @@ export function ReviewQueueTab({
                         <button
                           type="button"
                           onClick={() => setGroupViewModes((prev) => ({ ...prev, [group.guideline_id]: "table" }))}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                             viewMode === "table"
                               ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs"
                               : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
                           }`}
                         >
-                          📋 Standard Table
+                          <ClipboardList className="w-3.5 h-3.5" aria-hidden="true" />
+                          <span>Standard Table</span>
                         </button>
                         <button
                           type="button"
                           onClick={() => setGroupViewModes((prev) => ({ ...prev, [group.guideline_id]: "cards" }))}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                             viewMode === "cards"
                               ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs"
                               : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
                           }`}
                         >
-                          🗂️ Detailed Cards
+                          <LayoutGrid className="w-3.5 h-3.5" aria-hidden="true" />
+                          <span>Detailed Cards</span>
                         </button>
                       </div>
                     </div>
@@ -1719,7 +1768,7 @@ export function ReviewQueueTab({
                             {/* Category Header */}
                             <div className="flex items-center justify-between gap-2 border-b pb-2 border-slate-200/60 dark:border-slate-800/60">
                               <div className="flex items-center gap-1.5">
-                                <span className="text-amber-500">🏷️</span>
+                                <Tag className="w-3.5 h-3.5 text-amber-500" aria-hidden="true" />
                                 <span className="font-extrabold uppercase tracking-wide text-slate-800 dark:text-slate-200 text-xs">
                                   {category.name}
                                 </span>
@@ -1787,32 +1836,42 @@ export function ReviewQueueTab({
                                           ✓ Clinician Approved
                                         </span>
                                       ) : item.approval_status === "ai_checked" ? (
-                                        <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300 border border-sky-300 dark:border-sky-800">
-                                          🛡️ AI Checked (Verbatim Span Verified)
+                                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300 border border-sky-300 dark:border-sky-800">
+                                          <ShieldCheck className="w-3 h-3" aria-hidden="true" />
+                                          <span>AI Checked (Verbatim Span Verified)</span>
                                         </span>
                                       ) : (
-                                        <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
-                                          ⏳ Needs Clinician Review
+                                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
+                                          <Clock className="w-3 h-3" aria-hidden="true" />
+                                          <span>Needs Clinician Review</span>
                                         </span>
                                       )}
 
                                       <button
                                         type="button"
                                         onClick={() => handleOpenEditRecommendation(item)}
-                                        className="px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-500/20 hover:text-amber-600 transition-colors cursor-pointer border border-slate-200 dark:border-slate-700"
+                                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-500/20 hover:text-amber-600 transition-colors cursor-pointer border border-slate-200 dark:border-slate-700"
                                         title="Edit recommendation text, category, or grade"
                                       >
-                                        <span>✏️ Edit</span>
+                                        <Pencil className="w-3 h-3" aria-hidden="true" />
+                                        <span>Edit</span>
                                       </button>
 
                                       <button
                                         type="button"
                                         disabled={actionLoading === item.rec_id}
                                         onClick={() => handleDeleteSingleRecommendation(item)}
-                                        className="px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/60 transition-colors cursor-pointer border border-rose-200 dark:border-rose-900"
+                                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/60 transition-colors cursor-pointer border border-rose-200 dark:border-rose-900"
                                         title="Delete this recommendation from review queue"
                                       >
-                                        <span>{actionLoading === item.rec_id ? "..." : "🗑️ Delete"}</span>
+                                        {actionLoading === item.rec_id ? (
+                                          <span>...</span>
+                                        ) : (
+                                          <>
+                                            <Trash2 className="w-3 h-3" aria-hidden="true" />
+                                            <span>Delete</span>
+                                          </>
+                                        )}
                                       </button>
                                     </div>
                                   </div>
@@ -1827,7 +1886,10 @@ export function ReviewQueueTab({
                                     <div className="p-2.5 rounded-lg bg-slate-100/80 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-[11px] space-y-1.5">
                                       {item.verbatim_quote && (
                                         <div>
-                                          <span className="font-bold text-slate-500 dark:text-slate-400">📄 Verbatim PDF Quote:</span>
+                                          <span className="font-bold text-slate-500 dark:text-slate-400 inline-flex items-center gap-1">
+                                            <FileText className="w-3 h-3" aria-hidden="true" />
+                                            <span>Verbatim PDF Quote:</span>
+                                          </span>
                                           <p className="italic text-slate-700 dark:text-slate-300 mt-0.5 font-serif line-clamp-3 hover:line-clamp-none transition-all">
                                             "{item.verbatim_quote}"
                                           </p>
@@ -1835,7 +1897,7 @@ export function ReviewQueueTab({
                                       )}
                                       {item.verification_detail?.issues && item.verification_detail.issues.length > 0 && (
                                         <div className="text-amber-600 dark:text-amber-400 flex items-start gap-1">
-                                          <span>⚠️</span>
+                                          <AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-0.5" aria-hidden="true" />
                                           <span><strong>AI Notice:</strong> {item.verification_detail.issues.join("; ")}</span>
                                         </div>
                                       )}
@@ -1868,8 +1930,9 @@ export function ReviewQueueTab({
 
                     {/* Bottom Action Footer for Guideline */}
                     <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
-                      <div className="text-xs text-slate-500 dark:text-slate-400">
-                        🛡️ Upon approval, recommendations will appear immediately in Practice Guidelines for all clinicians.
+                      <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" />
+                        <span>Upon approval, recommendations will appear immediately in Practice Guidelines for all clinicians.</span>
                       </div>
 
                       <div className="flex items-center gap-2">
@@ -1882,14 +1945,15 @@ export function ReviewQueueTab({
                               type: "REJECT_GUIDELINE",
                               title: `Reject guideline "${group.guideline_title}"?`,
                               description: `This action will remove this guideline and all ${group.recommendations.length} recommendations from the review queue.`,
-                              confirmLabel: "✕ Confirm Rejection",
+                              confirmLabel: "Confirm Rejection",
                               confirmColor: "rose",
                               targetGuideline: group,
                             })
                           }
-                          className="px-3 py-1.5 rounded-xl text-xs font-bold text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 border border-rose-200 dark:border-rose-900 cursor-pointer transition-colors"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 border border-rose-200 dark:border-rose-900 cursor-pointer transition-colors"
                         >
-                          ✕ Reject Guideline
+                          <X className="w-3.5 h-3.5" aria-hidden="true" />
+                          <span>Reject Guideline</span>
                         </button>
 
                         <button
@@ -1901,14 +1965,15 @@ export function ReviewQueueTab({
                               type: "APPROVE_GUIDELINE",
                               title: `Approve & Publish Guideline?`,
                               description: `Confirm approval of all ${group.recommendations.length} recommendations from:\n"${group.guideline_title}" (${group.society})\ninto the official clinical practice guidelines repository?`,
-                              confirmLabel: `✓ Approve (${group.recommendations.length} items)`,
+                              confirmLabel: `Approve (${group.recommendations.length} items)`,
                               confirmColor: "emerald",
                               targetGuideline: group,
                             })
                           }
                           className="px-4 py-1.5 rounded-xl text-xs font-black bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white shadow-xs flex items-center gap-1.5 cursor-pointer transition-all disabled:opacity-50"
                         >
-                          <span>{isProcessingThis ? "Approving..." : `✓ Approve & Publish (${group.recommendations.length} recommendations)`}</span>
+                          <Check className="w-3.5 h-3.5" aria-hidden="true" />
+                          <span>{isProcessingThis ? "Approving..." : `Approve & Publish (${group.recommendations.length} recommendations)`}</span>
                         </button>
                       </div>
                     </div>
@@ -1940,7 +2005,13 @@ export function ReviewQueueTab({
                     : "bg-amber-500/20 text-amber-600 dark:text-amber-400"
                 }`}
               >
-                {confirmDialog.confirmColor === "emerald" ? "✓" : confirmDialog.confirmColor === "rose" ? "⚠️" : "ℹ️"}
+                {confirmDialog.confirmColor === "emerald" ? (
+                  <Check className="w-5 h-5" aria-hidden="true" />
+                ) : confirmDialog.confirmColor === "rose" ? (
+                  <AlertTriangle className="w-5 h-5" aria-hidden="true" />
+                ) : (
+                  <Info className="w-5 h-5" aria-hidden="true" />
+                )}
               </div>
               <div>
                 <h3 className="text-sm font-extrabold text-slate-900 dark:text-white">
@@ -2010,7 +2081,7 @@ export function ReviewQueueTab({
         onSuccess={() => {
           fetchQueue();
           if (onQueueUpdated) onQueueUpdated();
-          setFeedbackMessage({ type: "success", text: "✅ Changes saved successfully!" });
+          setFeedbackMessage({ type: "success", text: "Changes saved successfully!" });
         }}
         darkMode={darkMode}
       />

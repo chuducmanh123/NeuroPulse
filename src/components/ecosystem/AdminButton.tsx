@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { ShieldCheck } from "lucide-react";
 import { AdminAuthModal } from "../neurocase/modals/AdminAuthModal";
 
 interface AdminButtonProps {
@@ -53,7 +54,7 @@ export function AdminButton({ darkMode = false }: AdminButtonProps) {
         title={isAdminVerified ? "Admin Command Center (Verified)" : "Admin Command Center Login"}
         aria-label="Admin Control Center"
       >
-        <span className="text-sm">🛡️</span>
+        <ShieldCheck className="w-3.5 h-3.5" aria-hidden="true" />
         <span className="hidden sm:inline">Admin</span>
         {isAdminVerified && (
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { Eye, EyeOff, Search, X } from "lucide-react";
 import { CaseNeuroImaging } from "../../types/clinicalCase";
 
 interface NeuroImagingViewerProps {
@@ -59,9 +60,10 @@ export function NeuroImagingViewer({
           <button
             type="button"
             onClick={() => setZoomIndex(0)}
-            className="px-2.5 py-1 rounded-lg text-[10.5px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition-colors"
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10.5px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition-colors"
           >
-            🔍 Enlarge
+            <Search className="w-3 h-3" aria-hidden="true" />
+            <span>Enlarge</span>
           </button>
         </div>
       </div>
@@ -87,8 +89,9 @@ export function NeuroImagingViewer({
                   className="w-full h-full max-h-[440px] object-contain transition-transform duration-200 group-hover:scale-[1.01]"
                   loading={idx === 0 ? "eager" : "lazy"}
                 />
-                <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/75 text-[10px] font-bold text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none select-none">
-                  🔍 Zoom
+                <span className="inline-flex items-center gap-1 absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/75 text-[10px] font-bold text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none select-none">
+                  <Search className="w-3 h-3" aria-hidden="true" />
+                  <span>Zoom</span>
                 </span>
               </div>
 
@@ -118,7 +121,17 @@ export function NeuroImagingViewer({
                         }
                         className="px-2.5 py-1 rounded-lg text-[10.5px] font-medium bg-slate-800 hover:bg-slate-700 text-indigo-300 transition-colors flex items-center gap-1"
                       >
-                        <span>{isCaptionRevealed ? "👁 Hide Caption Hint" : "👁 Show Caption Hint"}</span>
+                        {isCaptionRevealed ? (
+                          <>
+                            <EyeOff className="w-3 h-3" aria-hidden="true" />
+                            <span>Hide Caption Hint</span>
+                          </>
+                        ) : (
+                          <>
+                            <Eye className="w-3 h-3" aria-hidden="true" />
+                            <span>Show Caption Hint</span>
+                          </>
+                        )}
                       </button>
                     )}
                   </div>
@@ -179,9 +192,10 @@ export function NeuroImagingViewer({
                 <button
                   type="button"
                   onClick={() => setZoomIndex(null)}
-                  className="px-3 py-1 rounded-lg text-xs font-bold bg-slate-800 text-white hover:bg-slate-700"
+                  className="inline-flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-bold bg-slate-800 text-white hover:bg-slate-700"
                 >
-                  ✕ Close
+                  <X className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>Close</span>
                 </button>
               </div>
             </div>
@@ -213,9 +227,10 @@ export function NeuroImagingViewer({
                           [zoomIndex]: true,
                         }))
                       }
-                      className="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold text-xs hover:bg-indigo-500"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-indigo-600 text-white font-bold text-xs hover:bg-indigo-500"
                     >
-                      👁️ Show Caption Hint
+                      <Eye className="w-3.5 h-3.5" aria-hidden="true" />
+                      <span>Show Caption Hint</span>
                     </button>
                   </div>
                 )}

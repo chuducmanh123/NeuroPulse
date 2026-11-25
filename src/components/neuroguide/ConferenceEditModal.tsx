@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { Pencil, Plus, Trash2, X, Zap } from "lucide-react";
 import type {
   ConferenceEvent,
   LateBreakingTrial,
@@ -217,8 +218,18 @@ export function ConferenceEditModal({
       >
         <div className="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-slate-200/70 dark:border-slate-800">
           <div>
-            <h2 className="font-journal text-lg sm:text-xl font-bold">
-              {isEditing ? `✏️ Chỉnh sửa Conference: ${conference?.acronym}` : "➕ Thêm Conference mới"}
+            <h2 className="font-journal text-lg sm:text-xl font-bold flex items-center gap-2">
+              {isEditing ? (
+                <>
+                  <Pencil className="w-4 h-4 text-[#C25934] dark:text-orange-400" aria-hidden="true" />
+                  <span>Chỉnh sửa Conference: {conference?.acronym}</span>
+                </>
+              ) : (
+                <>
+                  <Plus className="w-4 h-4 text-[#C25934] dark:text-orange-400" aria-hidden="true" />
+                  <span>Thêm Conference mới</span>
+                </>
+              )}
             </h2>
             <p className="text-xs text-slate-400 mt-0.5">
               Cập nhật thông tin hội nghị và danh sách Late-Breaking Trials.
@@ -227,9 +238,10 @@ export function ConferenceEditModal({
           <button
             type="button"
             onClick={onClose}
-            className="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+            aria-label="Close modal"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
           >
-            ✕
+            <X className="w-4 h-4" aria-hidden="true" />
           </button>
         </div>
 
@@ -269,9 +281,9 @@ export function ConferenceEditModal({
                 onChange={(e) => setStatus(e.target.value as "LIVE" | "RECENT" | "UPCOMING")}
                 className={inputCls}
               >
-                <option value="LIVE">🔴 LIVE</option>
-                <option value="RECENT">🟡 RECENT</option>
-                <option value="UPCOMING">⚪ UPCOMING</option>
+                <option value="LIVE">LIVE</option>
+                <option value="RECENT">RECENT</option>
+                <option value="UPCOMING">UPCOMING</option>
               </select>
             </div>
           </div>
@@ -432,10 +444,11 @@ export function ConferenceEditModal({
                           <button
                             type="button"
                             onClick={() => handleRemoveTrial(idx)}
-                            className="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-500/10 text-rose-500 hover:bg-rose-500/20"
+                            className="p-1 rounded text-[11px] font-bold bg-rose-500/10 text-rose-500 hover:bg-rose-500/20"
                             title="Delete trial"
+                            aria-label="Delete trial"
                           >
-                            🗑️
+                            <Trash2 className="w-3.5 h-3.5" aria-hidden="true" />
                           </button>
                         </div>
                       </div>
@@ -588,7 +601,10 @@ export function ConferenceEditModal({
                                 handleUpdateTrial(idx, { isPracticeChanging: e.target.checked })
                               }
                             />
-                            <span>⚡ Practice-Changing Trial</span>
+                            <span className="inline-flex items-center gap-1">
+                              <Zap className="w-3.5 h-3.5 text-[#C25934] dark:text-orange-400" aria-hidden="true" />
+                              <span>Practice-Changing Trial</span>
+                            </span>
                           </label>
                         </div>
                       )}

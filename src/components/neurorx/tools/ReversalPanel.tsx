@@ -53,7 +53,7 @@ export function ReversalPanel({
           </div>
           <div>
             <h3 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 dark:text-slate-100 flex items-center gap-2">
-              <span>🛡️ Urgent Anticoagulation Reversal Guidance</span>
+              <span>Urgent Anticoagulation Reversal Guidance</span>
             </h3>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
               Protocol for acute intracranial hemorrhage (ICH) or life-threatening bleeding on <strong>{result.drug_name}</strong>

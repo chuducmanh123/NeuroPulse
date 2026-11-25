@@ -357,8 +357,9 @@ export function PatientBar({
           </div>
 
           {renalResult.warning && (
-            <span className="text-amber-600 dark:text-amber-400 font-bold">
-              ⚠️ {renalResult.warning}
+            <span className="text-amber-600 dark:text-amber-400 font-bold inline-flex items-center gap-1">
+              <AlertTriangle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+              <span>{renalResult.warning}</span>
             </span>
           )}
         </div>
@@ -428,8 +429,9 @@ export function PatientBar({
             </div>
 
             {resolution.cappedReason && (
-              <p className="text-xs sm:text-sm text-amber-800 dark:text-amber-300 font-semibold break-words">
-                ⚠️ {resolution.cappedReason}
+              <p className="text-xs sm:text-sm text-amber-800 dark:text-amber-300 font-semibold break-words flex items-center gap-1.5">
+                <AlertTriangle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                <span>{resolution.cappedReason}</span>
               </p>
             )}
 

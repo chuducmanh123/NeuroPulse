@@ -259,12 +259,12 @@ export default function AdminCommandCenter() {
         setServerSyncSuccess(`✓ Synchronized with server (${data.length} cases)`);
         setTimeout(() => setServerSyncSuccess(""), 4000);
       } else {
-        setServerSyncSuccess(`⚠️ Server error (${res.status}). Verify credentials.`);
+        setServerSyncSuccess(`Server error (${res.status}). Verify credentials.`);
         setTimeout(() => setServerSyncSuccess(""), 5000);
       }
     } catch (e: any) {
       console.error("Error loading cases for admin:", e);
-      setServerSyncSuccess(`❌ Sync failed: ${e?.message || "Network error"}`);
+      setServerSyncSuccess(`Sync failed: ${e?.message || "Network error"}`);
     } finally {
       setIsSyncingServer(false);
     }
@@ -316,19 +316,19 @@ export default function AdminCommandCenter() {
       if (res.ok) {
         const json = await res.json().catch(() => ({}));
         if (!json.success && json.warning) {
-          setServerSyncSuccess(`⚠️ ${json.warning}`);
+          setServerSyncSuccess(`${json.warning}`);
           setTimeout(() => setServerSyncSuccess(""), 7000);
         } else {
           setServerSyncSuccess("✓ Cases successfully saved and synchronized to cloud storage.");
           setTimeout(() => setServerSyncSuccess(""), 4000);
         }
       } else if (res.status === 401) {
-        setServerSyncSuccess("⚠️ Admin session expired. Please re-enter passcode.");
+        setServerSyncSuccess("Admin session expired. Please re-enter passcode.");
       } else {
-        setServerSyncSuccess(`⚠️ Server rejected update (Status ${res.status}).`);
+        setServerSyncSuccess(`Server rejected update (Status ${res.status}).`);
       }
     } catch (err: any) {
-      setServerSyncSuccess(`❌ Network error while saving cases: ${err?.message || "Check connection"}`);
+      setServerSyncSuccess(`Network error while saving cases: ${err?.message || "Check connection"}`);
     } finally {
       setIsSyncingServer(false);
     }
@@ -362,7 +362,7 @@ export default function AdminCommandCenter() {
         const json = await res.json().catch(() => ({}));
         if (json.success === false) {
           setCases(prevCases);
-          setServerSyncSuccess(`⚠️ ${json.warning || "Could not delete case on server."}`);
+          setServerSyncSuccess(`${json.warning || "Could not delete case on server."}`);
           setTimeout(() => setServerSyncSuccess(""), 6000);
         } else {
           setServerSyncSuccess("✓ Case permanently deleted and synchronized.");
@@ -370,14 +370,14 @@ export default function AdminCommandCenter() {
         }
       } else if (res.status === 401) {
         setCases(prevCases);
-        setServerSyncSuccess("⚠️ Admin session expired. Please re-enter passcode.");
+        setServerSyncSuccess("Admin session expired. Please re-enter passcode.");
       } else {
         setCases(prevCases);
-        setServerSyncSuccess(`⚠️ Server rejected delete (Status ${res.status}).`);
+        setServerSyncSuccess(`Server rejected delete (Status ${res.status}).`);
       }
     } catch (err: any) {
       setCases(prevCases);
-      setServerSyncSuccess(`❌ Network error while deleting case: ${err?.message || "Check connection"}`);
+      setServerSyncSuccess(`Network error while deleting case: ${err?.message || "Check connection"}`);
     } finally {
       setIsSyncingServer(false);
     }
@@ -499,7 +499,7 @@ export default function AdminCommandCenter() {
             return next;
           });
         }
-        setRadarMessage(`🗑️ Deleted trial "${trial.acronym} (${trial.year})" from NeuroGuide storage.`);
+        setRadarMessage(`Deleted trial "${trial.acronym} (${trial.year})" from NeuroGuide storage.`);
       } else {
         alert(`Delete error: ${data.error || "Unable to delete trial"}`);
       }
@@ -720,7 +720,7 @@ export default function AdminCommandCenter() {
           if (novel.length > 0) {
             const merged = [...novel, ...prev];
             localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(merged));
-            setRadarMessage(`✨ Scan successful: Discovered ${novel.length} newly released clinical guidelines.`);
+            setRadarMessage(`Scan successful: Discovered ${novel.length} newly released clinical guidelines.`);
             return merged;
           } else {
             setRadarMessage("✓ Guideline repository is completely up to date with official society releases.");
@@ -734,7 +734,7 @@ export default function AdminCommandCenter() {
         setRadarMessage("✓ Radar scan complete: All PubMed, Europe PMC, and ESO sources synchronized.");
       }
     } catch (err) {
-      setRadarMessage("⚠️ Network error during online radar scanning.");
+      setRadarMessage("Network error during online radar scanning.");
     } finally {
       setIsSyncingRadar(false);
     }
@@ -1389,7 +1389,7 @@ export default function AdminCommandCenter() {
 
               <div className="text-xs text-slate-600 dark:text-slate-300 p-3.5 rounded-xl bg-blue-500/5 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/40 flex flex-wrap items-center justify-between gap-2 mt-4">
                 <span className="flex items-center gap-1.5">
-                  <span>🤖</span>
+                  <Bot className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" aria-hidden="true" />
                   <span>Aggregator workflow bot: <code className="font-mono text-blue-600 dark:text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded">python scripts/fetch_nejm.py</code></span>
                 </span>
                 <Link href="/neuropulse" className="font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
@@ -2044,7 +2044,7 @@ export default function AdminCommandCenter() {
             fetchReviewQueueCount();
             fetchGuidelinesList();
             setRadarMessage(
-              `🎉 Successfully created and published practice guideline "${newDoc.title}" (${newDoc.allPracticeChanges?.length || 0} recommendations)!`
+              `Successfully created and published practice guideline "${newDoc.title}" (${newDoc.allPracticeChanges?.length || 0} recommendations)!`
             );
             setGuidelineSubTab("repository");
             setAdminTab("guidelines");
@@ -2104,7 +2104,7 @@ export default function AdminCommandCenter() {
                   return next;
                 });
               }
-              setRadarMessage(`🎉 Successfully saved pivotal trial "${savedTrial.acronym} (${savedTrial.year})"!`);
+              setRadarMessage(`Successfully saved pivotal trial "${savedTrial.acronym} (${savedTrial.year})"!`);
               setShowTrialModal(false);
               setEditingTrial(null);
               fetchPivotalTrials();

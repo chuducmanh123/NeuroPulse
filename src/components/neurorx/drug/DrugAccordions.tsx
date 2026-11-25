@@ -13,6 +13,7 @@ import {
   Info,
   Dna,
   HeartPulse,
+  Zap,
   ArrowRightLeft,
 } from "lucide-react";
 import type { DrugRecord, Source, Sourced } from "@/types/neurorx";
@@ -659,8 +660,9 @@ export function DrugAccordions({
                     {enz.serotonergic && (
                       <>
                         <span className="text-slate-300 dark:text-slate-700">•</span>
-                        <span className="font-extrabold text-purple-600 dark:text-purple-400">
-                          ⚡ Serotonergic Activity
+                        <span className="inline-flex items-center gap-1 font-extrabold text-purple-600 dark:text-purple-400">
+                          <Zap className="w-3.5 h-3.5" aria-hidden="true" />
+                          <span>Serotonergic Activity</span>
                         </span>
                       </>
                     )}

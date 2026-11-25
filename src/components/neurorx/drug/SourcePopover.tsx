@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Info, X, ExternalLink, BookOpen, Quote, ShieldCheck } from "lucide-react";
+import { Info, X, ExternalLink, BookOpen, MapPin, Quote, ShieldCheck } from "lucide-react";
 import type { SourceRef, Source } from "@/types/neurorx";
 
 interface SourcePopoverProps {
@@ -148,7 +148,8 @@ export function SourcePopover({
 
                       {/* Section Locator */}
                       <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-800 dark:text-slate-200">
-                        <span>📍 {ref.locator}</span>
+                        <MapPin className="w-3 h-3 shrink-0" aria-hidden="true" />
+                        <span>{ref.locator}</span>
                       </div>
                     </div>
 

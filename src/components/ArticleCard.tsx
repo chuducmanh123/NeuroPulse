@@ -1,6 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import {
+  Check,
+  ClipboardList,
+  FileText,
+  Image as ImageIcon,
+  MessageSquare,
+  NotebookPen,
+  Sparkles,
+} from "lucide-react";
 import { Article } from "../types/article";
 import { sanitizeUrl } from "@/utils/safeUrl";
 
@@ -732,13 +741,14 @@ function ArticleCardComponent({
               </span>
               {isAiVerified && (
                 <span
-                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                  className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border ${
                     darkMode
                       ? "bg-indigo-950/80 text-indigo-300 border-indigo-800"
                       : "bg-[var(--bg-surface)] text-indigo-700 border-indigo-200"
                   }`}
                 >
-                  ✨ Gemini AI
+                  <Sparkles className="w-2.5 h-2.5" aria-hidden="true" />
+                  <span>Gemini AI</span>
                 </span>
               )}
             </div>
@@ -758,8 +768,9 @@ function ArticleCardComponent({
             }`}
           >
             <div className="flex items-center justify-between mb-1.5">
-              <span className="font-bold text-[10.5px] uppercase tracking-wider text-amber-700 dark:text-amber-400">
-                📝 Personal Clinical Note
+              <span className="inline-flex items-center gap-1 font-bold text-[10.5px] uppercase tracking-wider text-amber-700 dark:text-amber-400">
+                <NotebookPen className="w-3 h-3" aria-hidden="true" />
+                <span>Personal Clinical Note</span>
               </span>
               {!isEditingNote && (
                 <button
@@ -834,36 +845,43 @@ function ArticleCardComponent({
         ) : (
           <div className="mt-2 py-2.5 px-3.5 rounded-xl border border-dashed border-[var(--border-hairline)] bg-[var(--bg-subtle)]/50 text-[var(--text-muted)] text-[11px] flex items-center justify-between gap-2">
             {article.article_type === "Editorial / Perspective" ? (
-              <span>
-                💬{" "}
-                <strong className="text-[var(--text-secondary)]">
-                  Expert Commentary / Editorial
-                </strong>{" "}
-                — Invited clinical perspective &amp; appraisal on{" "}
-                <strong className="text-[var(--text-secondary)]">
-                  {article.journal.short_name || article.journal.name}
-                </strong>{" "}
-                (no structured abstract issued by publisher).
+              <span className="inline-flex items-center gap-1.5 flex-wrap">
+                <MessageSquare className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                <span>
+                  <strong className="text-[var(--text-secondary)]">
+                    Expert Commentary / Editorial
+                  </strong>{" "}
+                  — Invited clinical perspective &amp; appraisal on{" "}
+                  <strong className="text-[var(--text-secondary)]">
+                    {article.journal.short_name || article.journal.name}
+                  </strong>{" "}
+                  (no structured abstract issued by publisher).
+                </span>
               </span>
             ) : article.article_type === "Case Report" ? (
-              <span>
-                🖼️{" "}
-                <strong className="text-[var(--text-secondary)]">
-                  Clinical Case / NeuroImage
-                </strong>{" "}
-                — Diagnostic neuroimaging &amp; bedside case discussion available on{" "}
-                <strong className="text-[var(--text-secondary)]">
-                  {article.journal.short_name || article.journal.name}
-                </strong>
-                .
+              <span className="inline-flex items-center gap-1.5 flex-wrap">
+                <ImageIcon className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                <span>
+                  <strong className="text-[var(--text-secondary)]">
+                    Clinical Case / NeuroImage
+                  </strong>{" "}
+                  — Diagnostic neuroimaging &amp; bedside case discussion available on{" "}
+                  <strong className="text-[var(--text-secondary)]">
+                    {article.journal.short_name || article.journal.name}
+                  </strong>
+                  .
+                </span>
               </span>
             ) : (
-              <span>
-                📄 Full manuscript &amp; study details available on{" "}
-                <strong className="text-[var(--text-secondary)]">
-                  {article.journal.short_name || article.journal.name}
-                </strong>
-                .
+              <span className="inline-flex items-center gap-1.5 flex-wrap">
+                <FileText className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                <span>
+                  Full manuscript &amp; study details available on{" "}
+                  <strong className="text-[var(--text-secondary)]">
+                    {article.journal.short_name || article.journal.name}
+                  </strong>
+                  .
+                </span>
               </span>
             )}
           </div>
@@ -885,7 +903,17 @@ function ArticleCardComponent({
               }`}
               title="Copy formatted summary & citation for Zalo, Telegram, or Journal Club slides"
             >
-              <span>{copied ? "✓ Copied!" : "📋 Copy for Journal Club"}</span>
+              {copied ? (
+                <>
+                  <Check className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>Copied!</span>
+                </>
+              ) : (
+                <>
+                  <ClipboardList className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>Copy for Journal Club</span>
+                </>
+              )}
             </button>
 
             <a

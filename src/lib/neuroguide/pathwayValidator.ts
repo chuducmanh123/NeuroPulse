@@ -66,13 +66,13 @@ export function validateClinicalPathway(
     errors.push({
       code: "MISSING_TITLE",
       severity: "error",
-      message: "Pathway English title (title.en) is required.",
+      message: "Pathway English title is required.",
     });
   } else if (!doc.title.vi?.trim()) {
     warnings.push({
       code: "MISSING_VI_TRANSLATION",
       severity: "warning",
-      message: "Pathway title is missing a Vietnamese translation (title.vi).",
+      message: "Pathway title is missing a Vietnamese translation.",
     });
   }
 
@@ -82,7 +82,7 @@ export function validateClinicalPathway(
     errors.push({
       code: "MISSING_SOURCE",
       severity: "error",
-      message: "Source title and a valid publication year (>= 1900) are required.",
+      message: "Source title and a valid publication year (1900 or later) are required.",
     });
   }
 
@@ -90,7 +90,7 @@ export function validateClinicalPathway(
     errors.push({
       code: "MISSING_IMAGE",
       severity: "error",
-      message: "Original flowchart image URL (sourceImageUrl) is required.",
+      message: "Original flowchart image is required.",
     });
   }
 
@@ -99,7 +99,7 @@ export function validateClinicalPathway(
     errors.push({
       code: "EMPTY_NODES",
       severity: "error",
-      message: "Pathway must contain at least one node.",
+      message: "Pathway must contain at least one step.",
     });
     return {
       valid: false,
@@ -110,23 +110,34 @@ export function validateClinicalPathway(
   }
 
   const nodeById = new Map<string, PathwayNode>();
+  const stepIndexById = new Map<string, number>();
   const duplicateIds = new Set<string>();
 
-  for (const node of nodes) {
+  nodes.forEach((node, idx) => {
     const id = (node.id || "").trim();
-    if (!id) continue;
+    if (!id) return;
     if (nodeById.has(id)) {
       duplicateIds.add(id);
     } else {
       nodeById.set(id, node);
+      stepIndexById.set(id, idx);
     }
-  }
+  });
+
+  const formatStep = (id: string): string => {
+    const idx = stepIndexById.get(id);
+    const n = nodeById.get(id);
+    const title = n?.title?.en?.trim();
+    if (idx !== undefined && title) return `Step ${idx + 1} ("${title}")`;
+    if (idx !== undefined) return `Step ${idx + 1}`;
+    return `"${id}"`;
+  };
 
   for (const dupId of duplicateIds) {
     errors.push({
       code: "DUPLICATE_NODE_ID",
       severity: "error",
-      message: `Duplicate node ID detected: "${dupId}".`,
+      message: `Duplicate internal step ID detected ("${dupId}").`,
       nodeId: dupId,
     });
   }
@@ -136,22 +147,21 @@ export function validateClinicalPathway(
     errors.push({
       code: "INVALID_ENTRY_NODE",
       severity: "error",
-      message: entryId
-        ? `entryNodeId "${entryId}" does not match any node in the pathway.`
-        : "entryNodeId is required.",
+      message: "Please select a valid first step for this pathway.",
       nodeId: entryId || undefined,
     });
   }
 
   for (const node of nodes) {
     const nodeId = (node.id || "").trim();
+    const stepLabel = formatStep(nodeId);
     const edges = Array.isArray(node.edges) ? node.edges : [];
 
     if (!node.title?.vi?.trim()) {
       warnings.push({
         code: "MISSING_VI_TRANSLATION",
         severity: "warning",
-        message: `Node "${nodeId}" is missing a Vietnamese title (title.vi).`,
+        message: `${stepLabel} is missing a Vietnamese title.`,
         nodeId,
       });
     }
@@ -163,7 +173,7 @@ export function validateClinicalPathway(
       errors.push({
         code: "DEAD_END_DECISION",
         severity: "error",
-        message: `Node "${nodeId}" (${node.kind}) has no outgoing edges.`,
+        message: `${stepLabel} (${node.kind}) has no next steps.`,
         nodeId,
       });
     }
@@ -172,7 +182,7 @@ export function validateClinicalPathway(
       warnings.push({
         code: "NON_TERMINAL_LEAF",
         severity: "warning",
-        message: `Action node "${nodeId}" has no outgoing edges; consider marking it as diagnosis or treatment.`,
+        message: `${stepLabel} is marked as Action but has no next steps — consider changing its type to Diagnosis or Treatment.`,
         nodeId,
       });
     }
@@ -184,18 +194,19 @@ export function validateClinicalPathway(
       errors.push({
         code: "CHECKLIST_MISSING_ITEMS",
         severity: "error",
-        message: `Checklist node "${nodeId}" must define at least one checklist item.`,
+        message: `${stepLabel} is a Checklist step and needs at least one item.`,
         nodeId,
       });
     }
 
     for (const edge of edges) {
       const targetId = (edge.targetNodeId || "").trim();
+      const branchName = edge.label?.en?.trim() || "Untitled";
       if (!targetId || !nodeById.has(targetId)) {
         errors.push({
           code: "BROKEN_EDGE_TARGET",
           severity: "error",
-          message: `Edge "${edge.id}" on node "${nodeId}" points to missing targetNodeId "${targetId}".`,
+          message: `Branch "${branchName}" in ${stepLabel} points to a missing step.`,
           nodeId,
           edgeId: edge.id,
         });
@@ -204,7 +215,7 @@ export function validateClinicalPathway(
         warnings.push({
           code: "MISSING_VI_TRANSLATION",
           severity: "warning",
-          message: `Edge "${edge.id}" on node "${nodeId}" is missing a Vietnamese label (label.vi).`,
+          message: `Branch "${branchName}" in ${stepLabel} is missing a Vietnamese label.`,
           nodeId,
           edgeId: edge.id,
         });
@@ -237,7 +248,7 @@ export function validateClinicalPathway(
         warnings.push({
           code: "ORPHAN_NODE",
           severity: "warning",
-          message: `Node "${nodeId}" is unreachable from entryNodeId "${entryId}".`,
+          message: `${formatStep(nodeId)} cannot be reached from the first step.`,
           nodeId,
         });
       }
@@ -257,7 +268,7 @@ export function validateClinicalPathway(
             warnings.push({
               code: "CYCLE_DETECTED",
               severity: "warning",
-              message: `Directed cycle detected from "${uId}" to "${vId}" via edge "${edge.id}".`,
+              message: `${formatStep(uId)} loops back to ${formatStep(vId)}.`,
               nodeId: uId,
               edgeId: edge.id,
             });

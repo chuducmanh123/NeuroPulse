@@ -78,7 +78,7 @@ export function NovelCard({
                 }`}
               >
                 <Eye className="w-3.5 h-3.5" />
-                <span>👁️ NeuroVision</span>
+                <span>NeuroVision</span>
               </a>
             )}
             {ecosystemLinks.neuropulse && (
@@ -93,7 +93,7 @@ export function NovelCard({
                 }`}
               >
                 <FileText className="w-3.5 h-3.5" />
-                <span>📄 NeuroPulse</span>
+                <span>NeuroPulse</span>
               </a>
             )}
             {ecosystemLinks.neuroguide && (
@@ -108,7 +108,7 @@ export function NovelCard({
                 }`}
               >
                 <BookOpen className="w-3.5 h-3.5" />
-                <span>📖 NeuroGuide</span>
+                <span>NeuroGuide</span>
               </a>
             )}
           </div>

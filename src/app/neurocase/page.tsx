@@ -2,7 +2,7 @@
 
 import React, { ViewTransition, useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
-import { Flame, Layers, PlusCircle, Timer } from "lucide-react";
+import { Flame, Layers, Moon, PlusCircle, Sun, Timer } from "lucide-react";
 import { ClinicalCase, CaseDifficulty, CaseStatus, CaseNeuroImaging } from "../../types/clinicalCase";
 import { Article } from "../../types/article";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
@@ -755,7 +755,8 @@ export default function NeuroCasePage() {
               className="px-3 py-1.5 rounded-xl text-xs font-semibold border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[#6D28D9] dark:text-violet-300 flex items-center gap-1.5"
               title="Daily Case Streak"
             >
-              <span>🔥 {streakDays}d Streak</span>
+              <Flame className="w-3.5 h-3.5 text-[#6D28D9] dark:text-violet-400" aria-hidden="true" />
+              <span>{streakDays}d Streak</span>
             </div>
 
             {/* Mobile-only Night Shift & Admin controls (Desktop uses Left Rail) */}
@@ -766,7 +767,11 @@ export default function NeuroCasePage() {
                 className="px-2.5 py-1.5 rounded-xl text-xs font-bold border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-ink)] flex items-center gap-1"
                 title="Toggle Night-Shift / Dark Mode"
               >
-                <span>{darkMode ? "☀️" : "🌙"}</span>
+                {darkMode ? (
+                  <Sun className="w-3.5 h-3.5" aria-hidden="true" />
+                ) : (
+                  <Moon className="w-3.5 h-3.5" aria-hidden="true" />
+                )}
               </button>
               <AdminButton darkMode={darkMode} />
             </div>

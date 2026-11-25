@@ -161,7 +161,7 @@ export default function EcosystemHubPage() {
           : "Journal Monitor • Multi-Journal Live";
       case "neurocase":
         return caseStreak !== null
-          ? `Clinical Reasoning • 🔥 ${caseStreak}d Streak`
+          ? `Clinical Reasoning • ${caseStreak}d Streak`
           : "Clinical Reasoning • Daily Challenge";
       case "neurocalc":
         return "Clinical Scales • NIHSS & Bedside Scores";

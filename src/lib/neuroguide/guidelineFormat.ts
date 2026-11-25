@@ -35,7 +35,7 @@ export const GUIDELINE_FORMS: GuidelineFormDefinition[] = [
   {
     id: "ESO",
     label: "ESO Format",
-    badgeLabel: () => "🔵 ESO GRADE (PICO) FORMAT",
+    badgeLabel: () => "ESO GRADE (PICO) FORMAT",
     activeClasses: "bg-blue-600 text-white shadow-2xs font-extrabold",
     inactiveClasses: "text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40",
     badgeClasses: "border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40",
@@ -54,7 +54,7 @@ export const GUIDELINE_FORMS: GuidelineFormDefinition[] = [
   {
     id: "AHA",
     label: "AHA Format",
-    badgeLabel: () => "🔴 AHA/ASA (COR & LOE) FORMAT",
+    badgeLabel: () => "AHA/ASA (COR & LOE) FORMAT",
     activeClasses: "bg-rose-600 text-white shadow-2xs font-extrabold",
     inactiveClasses: "text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40",
     badgeClasses: "border-rose-500/30 text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/40",
@@ -99,7 +99,7 @@ export const GUIDELINE_FORMS: GuidelineFormDefinition[] = [
   {
     id: "STANDARD",
     label: "Standard",
-    badgeLabel: (society?: string) => `🟢 Standard Format (${society || "Standard"})`,
+    badgeLabel: (society?: string) => `Standard Format (${society || "Standard"})`,
     activeClasses: "bg-slate-700 text-white shadow-2xs font-extrabold",
     inactiveClasses: "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700",
     badgeClasses: "border-emerald-500/30 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40",

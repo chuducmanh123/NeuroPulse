@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { AlertTriangle, BookOpen, Lightbulb, Link2 } from "lucide-react";
 import { ClinicalCase, UserCaseProgress } from "@/types/clinicalCase";
 import { sanitizeUrl } from "@/utils/safeUrl";
 import { Article } from "@/types/article";
@@ -295,8 +296,9 @@ export function CaseChallenge({
 
           {/* Clinical Discussion */}
           <div className="text-xs sm:text-sm leading-relaxed space-y-2 whitespace-pre-line text-[var(--text-secondary)]">
-            <h4 className="font-bold uppercase text-xs text-[#6D28D9] dark:text-violet-400">
-              📖 Clinical Discussion:
+            <h4 className="font-bold uppercase text-xs text-[#6D28D9] dark:text-violet-400 flex items-center gap-1.5">
+              <BookOpen className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>Clinical Discussion:</span>
             </h4>
             <p>{currentCase.resolution.clinical_discussion}</p>
           </div>
@@ -304,8 +306,9 @@ export function CaseChallenge({
           {/* Teaching Points & Clinical Pitfalls */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="p-4 rounded-2xl border border-emerald-200 dark:border-emerald-800/70 bg-emerald-50/75 dark:bg-emerald-950/30">
-              <h4 className="text-xs font-bold uppercase text-emerald-700 dark:text-emerald-400 mb-2">
-                💡 High-Yield Teaching Points
+              <h4 className="text-xs font-bold uppercase text-emerald-700 dark:text-emerald-400 mb-2 flex items-center gap-1.5">
+                <Lightbulb className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>High-Yield Teaching Points</span>
               </h4>
               <ul className="space-y-2 text-xs leading-relaxed list-disc pl-4 text-[var(--text-ink)]">
                 {currentCase.resolution.teaching_points.map((tp, i) => (
@@ -315,8 +318,9 @@ export function CaseChallenge({
             </div>
 
             <div className="p-4 rounded-2xl border border-rose-200 dark:border-rose-800/70 bg-rose-50/75 dark:bg-rose-950/30">
-              <h4 className="text-xs font-bold uppercase text-rose-700 dark:text-rose-400 mb-2">
-                ⚠️ Clinical Pitfalls to Avoid
+              <h4 className="text-xs font-bold uppercase text-rose-700 dark:text-rose-400 mb-2 flex items-center gap-1.5">
+                <AlertTriangle className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>Clinical Pitfalls to Avoid</span>
               </h4>
               <ul className="space-y-2 text-xs leading-relaxed list-disc pl-4 text-[var(--text-ink)]">
                 {currentCase.resolution.clinical_pitfalls.map((pf, i) => (
@@ -331,7 +335,8 @@ export function CaseChallenge({
             <div className="p-4 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/65">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-bold uppercase text-[#6D28D9] dark:text-violet-400 flex items-center gap-1.5">
-                  <span>🔗 Related Literature on NeuroPulse</span>
+                  <Link2 className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>Related Literature on NeuroPulse</span>
                 </span>
                 <Link
                   href="/neuropulse"

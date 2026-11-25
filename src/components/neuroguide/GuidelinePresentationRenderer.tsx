@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { ClipboardList, LayoutGrid } from "lucide-react";
 import { AhaGuidelineTable, type AhaGuidelineSection, type AhaRecommendationItem } from "./AhaGuidelineTable";
 import { EsoGuidelineTable, type EsoPicoItem, type EsoEvidenceQuality, type EsoRecommendationStrength } from "./EsoGuidelineTable";
 import { groupPracticeChangesIntoEsoPicos, parseEsoGrade } from "@/lib/neuroguide/esoPicoGrouper";
@@ -108,24 +109,26 @@ export function GuidelinePresentationRenderer({
           <button
             type="button"
             onClick={() => setViewMode("society")}
-            className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === "society"
                 ? "bg-[var(--bg-surface)] text-[#C25934] dark:text-orange-400 shadow-2xs"
                 : "text-[var(--text-muted)] hover:text-[var(--text-ink)]"
             }`}
           >
-            📋 <span className="sm:hidden">Standard ({isAha ? "AHA" : isEso ? "ESO" : "Table"})</span><span className="hidden sm:inline">Society Standard ({isAha ? "AHA" : isEso ? "ESO" : "Table"})</span>
+            <ClipboardList className="w-3.5 h-3.5" aria-hidden="true" />
+            <span className="sm:hidden">Standard ({isAha ? "AHA" : isEso ? "ESO" : "Table"})</span><span className="hidden sm:inline">Society Standard ({isAha ? "AHA" : isEso ? "ESO" : "Table"})</span>
           </button>
           <button
             type="button"
             onClick={() => setViewMode("card")}
-            className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === "card"
                 ? "bg-[var(--bg-surface)] text-[#C25934] dark:text-orange-400 shadow-2xs"
                 : "text-[var(--text-muted)] hover:text-[var(--text-ink)]"
             }`}
           >
-            🗂️ Summary Cards
+            <LayoutGrid className="w-3.5 h-3.5" aria-hidden="true" />
+            <span>Summary Cards</span>
           </button>
         </div>
       </div>

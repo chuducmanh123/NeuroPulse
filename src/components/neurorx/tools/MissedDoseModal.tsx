@@ -82,7 +82,7 @@ export function MissedDoseModal({
             </div>
             <div>
               <h2 className="font-journal text-lg font-bold flex items-center gap-2">
-                <span>❓ Missed Dose Protocol</span>
+                <span>Missed Dose Protocol</span>
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400">
                 Official labelling instructions for <strong>{displayName}</strong>

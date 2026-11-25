@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import { FileText, Lightbulb, Sparkles, X, Zap } from "lucide-react";
 import { ClinicalCase, CaseDifficulty } from "@/types/clinicalCase";
 import {
   extractClinicalCaseFromArticleText,
@@ -457,7 +458,7 @@ export function SubmitTab({
       );
       resetAllSubmitFormFields();
     } catch (err: any) {
-      setSubmitSuccessMsg("⚠️ Submission error: " + (err?.message || "Failed"));
+      setSubmitSuccessMsg("Submission error: " + (err?.message || "Failed"));
     } finally {
       setIsSubmitting(false);
     }
@@ -475,11 +476,19 @@ export function SubmitTab({
               <button
                 type="button"
                 onClick={() => setShowAiExtractor((prev) => !prev)}
-                className="px-3 py-1.5 rounded-xl text-xs font-black bg-[#6D28D9] hover:bg-[#5B21B6] text-white shadow-sm transition-colors shrink-0"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black bg-[#6D28D9] hover:bg-[#5B21B6] text-white shadow-sm transition-colors shrink-0"
               >
-                {showAiExtractor
-                  ? "✕ Close AI Importer"
-                  : "✨ AI import from Article"}
+                {showAiExtractor ? (
+                  <>
+                    <X className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>Close AI Importer</span>
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>AI import from Article</span>
+                  </>
+                )}
               </button>
             </div>
 
@@ -488,8 +497,9 @@ export function SubmitTab({
               <div className="p-3.5 rounded-xl border-2 border-[#6D28D9]/40 bg-[#6D28D9]/5 space-y-2.5">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
-                    <span className="text-[11px] font-black uppercase tracking-wider text-[#6D28D9] dark:text-violet-400">
-                      ✨ SEMI-AUTOMATED HIGH-IMPACT JOURNAL IMPORTER
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-[#6D28D9] dark:text-violet-400">
+                      <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+                      <span>SEMI-AUTOMATED HIGH-IMPACT JOURNAL IMPORTER</span>
                     </span>
                     <p className="text-xs text-[var(--text-muted)]">
                       Upload a journal article file (<code>.pdf</code>, <code>.docx</code>, <code>.doc</code>, <code>.txt</code>, <code>.md</code>) or paste the Case Presentation &amp; Discussion from{" "}
@@ -500,11 +510,12 @@ export function SubmitTab({
                   <div className="flex flex-wrap items-center gap-2 shrink-0">
                     {uploadedDocName && (
                       <span className="px-2 py-1 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold">
-                        {isReadingDoc ? "⏳ Reading..." : `✓ ${uploadedDocName}`}
+                        {isReadingDoc ? "Reading..." : `✓ ${uploadedDocName}`}
                       </span>
                     )}
-                    <label className="px-3 py-1.5 rounded-lg text-xs font-bold bg-[var(--text-ink)] text-[var(--bg-surface)] cursor-pointer hover:opacity-90 shrink-0">
-                      📄 Upload Article (.pdf, .docx, .doc, .txt)
+                    <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[var(--text-ink)] text-[var(--bg-surface)] cursor-pointer hover:opacity-90 shrink-0">
+                      <FileText className="w-3.5 h-3.5" aria-hidden="true" />
+                      <span>Upload Article (.pdf, .docx, .doc, .txt)</span>
                       <input
                         ref={docFileInputRef}
                         type="file"
@@ -537,11 +548,16 @@ export function SubmitTab({
                     type="button"
                     disabled={isExtractingAi || isReadingDoc || (!aiRawText.trim() && !aiPdfBase64)}
                     onClick={handleRunAiExtraction}
-                    className="px-4 py-1.5 rounded-lg text-xs font-black bg-[#6D28D9] text-white hover:bg-[#5B21B6] disabled:opacity-50 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-black bg-[#6D28D9] text-white hover:bg-[#5B21B6] disabled:opacity-50 transition-colors"
                   >
-                    {isExtractingAi
-                      ? "⏳ Structuring Clinical Case..."
-                      : "⚡ Auto-Extract & Populate Form"}
+                    {isExtractingAi ? (
+                      <span>Structuring Clinical Case...</span>
+                    ) : (
+                      <>
+                        <Zap className="w-3.5 h-3.5" aria-hidden="true" />
+                        <span>Auto-Extract &amp; Populate Form</span>
+                      </>
+                    )}
                   </button>
                 </div>
               </div>
@@ -731,7 +747,7 @@ export function SubmitTab({
                   <div className="p-2.5 rounded-xl border border-[#6D28D9]/30 bg-[#6D28D9]/10 space-y-2">
                     <div className="flex flex-wrap items-center justify-between gap-1">
                       <span className="text-xs font-bold text-[#6D28D9] dark:text-violet-400 flex items-center gap-1.5">
-                        <span>💡</span> Auto-extracted {aiExtractedImages.length} clinical figure{aiExtractedImages.length > 1 ? "s" : ""} from uploaded document:
+                        <Lightbulb className="w-3.5 h-3.5 shrink-0" aria-hidden="true" /> Auto-extracted {aiExtractedImages.length} clinical figure{aiExtractedImages.length > 1 ? "s" : ""} from uploaded document:
                       </span>
                       <span className="text-[11px] text-[var(--text-muted)]">Click a figure to load into form</span>
                     </div>

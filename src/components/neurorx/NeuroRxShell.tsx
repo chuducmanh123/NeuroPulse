@@ -3,7 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import {
+  Moon,
   Pill,
+  Sun,
   Zap,
   Baby,
   Sparkles,
@@ -216,7 +218,11 @@ export function NeuroRxShell({
                 title="Toggle Night Shift Mode"
                 aria-label="Toggle Night Shift Mode"
               >
-                <span>{darkMode ? "☀️" : "🌙"}</span>
+                {darkMode ? (
+                  <Sun className="w-3.5 h-3.5" aria-hidden="true" />
+                ) : (
+                  <Moon className="w-3.5 h-3.5" aria-hidden="true" />
+                )}
               </button>
               <AdminButton darkMode={darkMode} />
             </div>

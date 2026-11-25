@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useId } from "react";
-import { Search, X, CheckCircle2, AlertTriangle, ShieldCheck } from "lucide-react";
+import { Search, X, CheckCircle2, AlertTriangle, ShieldCheck, Scale, Droplets, User } from "lucide-react";
 import type { ParsedOmnibarQuery, ParsedPatientParams, SearchResult } from "@/lib/neurorx/omnibar";
 import { TallManHint } from "@/components/neurorx/TallManHint";
 
@@ -172,7 +172,8 @@ export function Omnibar({
 
           {parsed.patient.weightKg !== undefined && (
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#2F855A]/10 text-[#2F855A] dark:text-emerald-300 border border-[#2F855A]/25">
-              <span>⚖️ {parsed.patient.weightKg} kg</span>
+              <Scale className="w-3 h-3" aria-hidden="true" />
+              <span>{parsed.patient.weightKg} kg</span>
               <button
                 type="button"
                 onClick={() => removePatientParam("weight")}
@@ -186,7 +187,8 @@ export function Omnibar({
 
           {parsed.patient.crcl !== undefined && (
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60">
-              <span>💧 CrCl {parsed.patient.crcl} mL/min</span>
+              <Droplets className="w-3 h-3" aria-hidden="true" />
+              <span>CrCl {parsed.patient.crcl} mL/min</span>
               <button
                 type="button"
                 onClick={() => removePatientParam("crcl")}
@@ -201,7 +203,7 @@ export function Omnibar({
           {parsed.patient.scr !== undefined && (
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-violet-50 dark:bg-violet-950/60 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800/60">
               <span>
-                🩸 SCr {parsed.patient.scr.value} {parsed.patient.scr.unit}
+                SCr {parsed.patient.scr.value} {parsed.patient.scr.unit}
               </span>
               <button
                 type="button"
@@ -216,7 +218,8 @@ export function Omnibar({
 
           {parsed.patient.age !== undefined && (
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60">
-              <span>👤 {parsed.patient.age} yrs</span>
+              <User className="w-3 h-3" aria-hidden="true" />
+              <span>{parsed.patient.age} yrs</span>
               <button
                 type="button"
                 onClick={() => removePatientParam("age")}
@@ -231,7 +234,7 @@ export function Omnibar({
           {parsed.patient.sex !== undefined && (
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60">
               <span>
-                ⚧ {parsed.patient.sex === "female" ? "Female" : "Male"}
+                {parsed.patient.sex === "female" ? "Female" : "Male"}
               </span>
               <button
                 type="button"

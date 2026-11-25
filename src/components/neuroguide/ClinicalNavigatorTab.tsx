@@ -4,6 +4,7 @@ import React, { useState, useMemo, useDeferredValue, useEffect } from "react";
 import Link from "next/link";
 import { sanitizeUrl } from "@/utils/safeUrl";
 import {
+  AlertTriangle,
   SlidersHorizontal,
   Search,
   Link2,
@@ -1214,7 +1215,7 @@ export function ClinicalNavigatorTab({
       const otDef = STROKE_ONTOLOGY.facets.outcome_target?.values.find((v) => v.id === ot);
       chips.push({
         id: `outcome:${ot}`,
-        label: `🎯 ${otDef?.label_en || ot}`,
+        label: `Outcome: ${otDef?.label_en || ot}`,
         color: "bg-fuchsia-700 text-white",
         onRemove: () => handleToggleOutcomeTarget(ot),
       });
@@ -1239,7 +1240,7 @@ export function ClinicalNavigatorTab({
     if (verificationFilter !== "all") {
       chips.push({
         id: `verif:${verificationFilter}`,
-        label: verificationFilter === "approved" ? "✓ Approved" : "⚠️ Needs Review",
+        label: verificationFilter === "approved" ? "Approved" : "Needs Review",
         color: verificationFilter === "approved" ? "bg-emerald-600 text-white" : "bg-amber-600 text-white",
         onRemove: () => setVerificationFilter("all"),
       });
@@ -1753,9 +1754,9 @@ export function ClinicalNavigatorTab({
                       {(
                         [
                           { id: "all", label: "All Directions" },
-                          { id: "recommended", label: "✓ Class I / IIa (FOR)" },
-                          { id: "conditional", label: "◐ Class IIb (Conditional)" },
-                          { id: "harm", label: "⛔ Class III (Harm / Against)" },
+                          { id: "recommended", label: "Class I / IIa (FOR)" },
+                          { id: "conditional", label: "Class IIb (Conditional)" },
+                          { id: "harm", label: "Class III (Harm / Against)" },
                         ] as const
                       ).map((d) => {
                         const active = selectedDirectionFilter === d.id;
@@ -1873,14 +1874,15 @@ export function ClinicalNavigatorTab({
                       <button
                         type="button"
                         onClick={() => setVerificationFilter("unlabeled_or_review")}
-                        className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center cursor-pointer ${
+                        className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center cursor-pointer inline-flex items-center justify-center gap-1 ${
                           verificationFilter === "unlabeled_or_review"
                             ? "bg-amber-600 text-white border-amber-600 shadow-sm"
                             : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border-[var(--border-hairline)] hover:border-amber-400"
                         }`}
                         title="Filter recommendations requiring full labeling or expert review"
                       >
-                        ⚠️ Needs Review
+                        <AlertTriangle className="w-3 h-3" aria-hidden="true" />
+                        <span>Needs Review</span>
                       </button>
                     </div>
                   </div>
@@ -3174,10 +3176,11 @@ function RecommendationMatrixCard({
               </span>
             ) : (
               <span
-                className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-800"
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-800"
                 title={rec.missingLabelReasons?.join(" • ") || "Chưa gắn nhãn hoàn chỉnh"}
               >
-                ⚠️ Chưa gắn nhãn đầy đủ
+                <AlertTriangle className="w-3 h-3" aria-hidden="true" />
+                <span>Chưa gắn nhãn đầy đủ</span>
               </span>
             )}
           </div>
@@ -3187,7 +3190,7 @@ function RecommendationMatrixCard({
       {/* Unlabeled / Incomplete Label Warning for Clinicians */}
       {rec.isUnlabeled && rec.missingLabelReasons && rec.missingLabelReasons.length > 0 && (
         <div className="text-[10.5px] text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1 rounded-md border border-amber-200 dark:border-amber-900/60 flex items-center gap-1.5">
-          <span className="shrink-0">⚠️</span>
+          <AlertTriangle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
           <span>
             <strong className="font-semibold">Cần bổ sung nhãn:</strong> {rec.missingLabelReasons.join(" • ")}
           </span>

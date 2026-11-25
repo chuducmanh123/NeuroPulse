@@ -1,6 +1,16 @@
 "use client";
 
 import { ViewTransition, startTransition, useEffect, useState, useMemo, useDeferredValue } from "react";
+import {
+  Check,
+  ClipboardList,
+  FileText,
+  Flame,
+  LayoutList,
+  Moon,
+  SlidersHorizontal,
+  Sun,
+} from "lucide-react";
 import { Article } from "@/types/article";
 import { sanitizeUrl } from "@/utils/safeUrl";
 import {
@@ -831,7 +841,11 @@ export default function HomePage() {
                 className="px-2.5 py-1.5 rounded-xl text-xs font-bold border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-ink)] flex items-center gap-1"
                 title="Toggle Night-Shift / Dark Mode"
               >
-                <span>{darkMode ? "☀️" : "🌙"}</span>
+                {darkMode ? (
+                  <Sun className="w-3.5 h-3.5" aria-hidden="true" />
+                ) : (
+                  <Moon className="w-3.5 h-3.5" aria-hidden="true" />
+                )}
               </button>
               <AdminButton darkMode={darkMode} />
             </div>
@@ -865,14 +879,24 @@ export default function HomePage() {
                 {showBriefing && (
                   <button
                     onClick={handleCopyFullBriefing}
-                    className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
                       briefingCopied
                         ? "bg-emerald-600 text-white"
                         : "bg-slate-800 hover:bg-slate-700 text-slate-200"
                     }`}
                     title="Copy all 4 morning highlights for Zalo / Telegram handover"
                   >
-                    {briefingCopied ? "✓ Briefing Copied!" : "📋 Copy Briefing"}
+                    {briefingCopied ? (
+                      <>
+                        <Check className="w-3.5 h-3.5" aria-hidden="true" />
+                        <span>Briefing Copied!</span>
+                      </>
+                    ) : (
+                      <>
+                        <ClipboardList className="w-3.5 h-3.5" aria-hidden="true" />
+                        <span>Copy Briefing</span>
+                      </>
+                    )}
                   </button>
                 )}
                 <button
@@ -1004,14 +1028,24 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={toggleCompactMode}
-                className={`px-3 py-2.5 rounded-xl text-xs font-semibold border transition-colors ${
+                className={`inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-semibold border transition-colors ${
                   compactMode
                     ? "bg-[#1C1917] text-[#FAF8F5] border-[#1C1917] dark:bg-stone-200 dark:text-stone-900"
                     : "border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)]"
                 }`}
                 title="Switch between Compact scanning view and Detailed card view"
               >
-                {compactMode ? "📑 Compact" : "📄 Detailed"}
+                {compactMode ? (
+                  <>
+                    <LayoutList className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>Compact</span>
+                  </>
+                ) : (
+                  <>
+                    <FileText className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>Detailed</span>
+                  </>
+                )}
               </button>
 
               <button
@@ -1036,7 +1070,8 @@ export default function HomePage() {
                     : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border-[var(--border-hairline)]"
                 }`}
               >
-                <span>⚡ Filters</span>
+                <SlidersHorizontal className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>Filters</span>
                 {hasActiveFilters && (
                   <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-white/25 text-white">
                     •
@@ -1063,7 +1098,10 @@ export default function HomePage() {
                 className="text-[10.5px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-2.5 flex items-center justify-between"
                 title="Top các chủ đề nóng được tìm ra mỗi ngày dựa trên số lượng bài báo nhắc tới và độ mới nghiên cứu"
               >
-                <span>🔥 HOT TOPICS</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Flame className="w-3.5 h-3.5 text-[#B91C1C] dark:text-rose-400" aria-hidden="true" />
+                  <span>HOT TOPICS</span>
+                </span>
               </div>
               <div className="flex flex-col gap-1.5">
                 {hotTopics.map((item) => {
@@ -1318,14 +1356,24 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={toggleCompactMode}
-                className={`px-3 py-2.5 rounded-xl text-xs font-semibold border transition-colors shrink-0 ${
+                className={`inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-semibold border transition-colors shrink-0 ${
                   compactMode
                     ? "bg-[#1C1917] text-[#FAF8F5] border-[#1C1917] dark:bg-stone-200 dark:text-stone-900"
                     : "border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:border-stone-400"
                 }`}
                 title="Switch between Compact scanning view and Detailed card view"
               >
-                {compactMode ? "📑 Compact" : "📄 Detailed"}
+                {compactMode ? (
+                  <>
+                    <LayoutList className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>Compact</span>
+                  </>
+                ) : (
+                  <>
+                    <FileText className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>Detailed</span>
+                  </>
+                )}
               </button>
 
               <button

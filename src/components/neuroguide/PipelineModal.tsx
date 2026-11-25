@@ -1,6 +1,15 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import {
+  FileText,
+  NotebookPen,
+  Radio,
+  Trash2,
+  Upload,
+  X,
+  Zap,
+} from "lucide-react";
 import { detectSociety } from "@/lib/neuroguide/pubmedDiscovery";
 
 interface PipelineModalProps {
@@ -411,10 +420,10 @@ export function PipelineModal({
       >
         <div className="flex items-center justify-between pb-3 border-b dark:border-slate-800 mb-4">
           <div className="flex items-center gap-2">
-            <span className="text-xl">⚡</span>
+            <Zap className="w-5 h-5 text-amber-500" aria-hidden="true" />
             <div>
               <h3 className="text-sm font-black uppercase tracking-wide">
-                NEUROGUIDE AI PIPELINE & STREAMING
+                NEUROGUIDE AI PIPELINE &amp; STREAMING
               </h3>
               <p className="text-[11px] text-slate-500 dark:text-slate-400">
                 Direct Blob Upload • Incremental Analysis • Auto-Storage Cleanup
@@ -424,9 +433,10 @@ export function PipelineModal({
           {!isLoading && (
             <button
               onClick={onClose}
-              className="text-slate-400 hover:text-slate-600 dark:hover:text-white text-sm font-bold"
+              aria-label="Close modal"
+              className="text-slate-400 hover:text-slate-600 dark:hover:text-white p-1"
             >
-              ✕
+              <X className="w-4 h-4" aria-hidden="true" />
             </button>
           )}
         </div>
@@ -446,7 +456,8 @@ export function PipelineModal({
                 : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
-            <span>📥</span> Manual URL / File Upload
+            <Upload className="w-3.5 h-3.5" aria-hidden="true" />
+            <span>Manual URL / File Upload</span>
           </button>
           <button
             type="button"
@@ -461,14 +472,15 @@ export function PipelineModal({
                 : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
-            <span>📡</span> Multi-Society Radar Scan
+            <Radio className="w-3.5 h-3.5" aria-hidden="true" />
+            <span>Multi-Society Radar Scan</span>
           </button>
         </div>
 
         {onOpenNotebookLM && (
           <div className="mb-4 p-2.5 rounded-xl border border-amber-500/30 bg-amber-500/10 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2 text-xs text-amber-700 dark:text-amber-300">
-              <span>📝</span>
+              <NotebookPen className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
               <span>Have notes or markdown tables from <strong>NotebookLM</strong>?</span>
             </div>
             <button
@@ -544,7 +556,7 @@ export function PipelineModal({
                       disabled={isLoading}
                     />
                     <div className="flex items-center justify-center gap-2">
-                      <span className="text-lg">📄</span>
+                      <FileText className="w-4 h-4 text-amber-600 dark:text-amber-400" aria-hidden="true" />
                       <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">
                         Click to select guideline PDF file
                       </span>
@@ -553,7 +565,7 @@ export function PipelineModal({
                 ) : (
                   <div className="flex items-center justify-between p-2.5 rounded-xl border border-amber-300 dark:border-amber-500/40 bg-amber-500/5">
                     <div className="flex items-center gap-2 overflow-hidden">
-                      <span className="text-base">📄</span>
+                      <FileText className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" aria-hidden="true" />
                       <div className="truncate">
                         <p className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">
                           {selectedFile.name}
@@ -567,9 +579,10 @@ export function PipelineModal({
                       <button
                         type="button"
                         onClick={handleRemoveFile}
-                        className="text-xs text-rose-500 hover:text-rose-600 font-bold px-2 py-1 bg-rose-500/10 rounded-lg shrink-0 cursor-pointer"
+                        className="inline-flex items-center gap-1 text-xs text-rose-500 hover:text-rose-600 font-bold px-2 py-1 bg-rose-500/10 rounded-lg shrink-0 cursor-pointer"
                       >
-                        ✕ Remove
+                        <X className="w-3 h-3" aria-hidden="true" />
+                        <span>Remove</span>
                       </button>
                     )}
                   </div>
@@ -630,8 +643,9 @@ export function PipelineModal({
 
               {/* Blob cleanup indicator */}
               {blobCleaned && (
-                <div className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 bg-emerald-500/10 px-2 py-1 rounded-md">
-                  <span>🗑️</span> Temporary PDF automatically deleted from Vercel Blob to conserve storage!
+                <div className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 bg-emerald-500/10 px-2 py-1 rounded-md">
+                  <Trash2 className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                  <span>Temporary PDF automatically deleted from Vercel Blob to conserve storage!</span>
                 </div>
               )}
 
@@ -639,7 +653,10 @@ export function PipelineModal({
               {liveRecs.length > 0 && (
                 <div className="space-y-1.5 pt-2 border-t border-amber-500/20">
                   <div className="flex justify-between items-center text-[11px] font-bold text-slate-700 dark:text-slate-300">
-                    <span>⚡ Newly Extracted Recommendations:</span>
+                    <span className="inline-flex items-center gap-1">
+                      <Zap className="w-3.5 h-3.5 text-amber-500" aria-hidden="true" />
+                      <span>Newly Extracted Recommendations:</span>
+                    </span>
                     <span className="bg-amber-500/20 text-amber-600 dark:text-amber-400 px-1.5 py-0.5 rounded-sm">
                       {liveRecs.length} total
                     </span>
@@ -703,7 +720,8 @@ export function PipelineModal({
                 </>
               ) : (
                 <>
-                  <span>⚡</span> Start AI Extraction
+                  <Zap className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>Start AI Extraction</span>
                 </>
               )}
             </button>

@@ -433,7 +433,7 @@ export function clusterAndAppraiseConsensus(
         statusBadge: {
           label: `${societiesPresent[0]} Guideline Stance`,
           pillClass: "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border-slate-300 dark:border-slate-700",
-          icon: "🏛️",
+          icon: "•",
         },
         societiesPresent,
         societyPositions,
@@ -463,7 +463,7 @@ export function clusterAndAppraiseConsensus(
       badge = {
         label: "Direct Stance Divergence",
         pillClass: "bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300 border-rose-300 dark:border-rose-800",
-        icon: "⚡",
+        icon: "!",
       };
       synthesis = `Conflicting direction between guidelines: ${societyPositions.map((p) => `${p.society} (${p.direction.toUpperCase()}, ${p.grade})`).join(" vs. ")}.`;
       concordantScoreSum += 35;
@@ -472,7 +472,7 @@ export function clusterAndAppraiseConsensus(
       badge = {
         label: "Consensus Against / Class III Safety Limit",
         pillClass: "bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border-amber-300 dark:border-amber-800",
-        icon: "⛔",
+        icon: "×",
       };
       synthesis = `Consensus across ${societiesPresent.join(" and ")} AGAINST this intervention in this subgroup to prevent potential harm.`;
       concordantScoreSum += 95;
@@ -481,7 +481,7 @@ export function clusterAndAppraiseConsensus(
       badge = {
         label: "Concordant with Evidence Grade Nuance",
         pillClass: "bg-indigo-100 text-indigo-800 dark:bg-indigo-950/60 dark:text-indigo-300 border-indigo-300 dark:border-indigo-800",
-        icon: "⚖️",
+        icon: "~",
       };
       synthesis = `Both guidelines support this intervention, but differ in recommendation grade (${societyPositions.map((p) => `${p.society}: ${p.grade}`).join(" vs. ")}).`;
       concordantScoreSum += 82;

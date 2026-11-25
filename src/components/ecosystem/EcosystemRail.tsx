@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Search, Shield } from "lucide-react";
+import { Moon, Search, Shield, Sun } from "lucide-react";
 import { AdminAuthModal } from "@/components/neurocase/modals/AdminAuthModal";
 import {
   COMMAND_PALETTE_OPEN_EVENT,
@@ -232,9 +232,19 @@ export function EcosystemRail({ children }: EcosystemRailProps) {
               type="button"
               onClick={handleToggleNight}
               aria-label="Toggle Night Shift Mode"
-              className="font-mono-tech rounded-md border border-[#3F3A36] bg-[#262320] px-2 py-1 text-[10px] font-semibold text-[#FAF8F5]"
+              className="font-mono-tech inline-flex items-center gap-1 rounded-md border border-[#3F3A36] bg-[#262320] px-2 py-1 text-[10px] font-semibold text-[#FAF8F5]"
             >
-              {darkMode ? "☀️ Day" : "🌙 Night"}
+              {darkMode ? (
+                <>
+                  <Sun className="h-3 w-3" aria-hidden="true" />
+                  <span>Day</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="h-3 w-3" aria-hidden="true" />
+                  <span>Night</span>
+                </>
+              )}
             </button>
             <button
               type="button"

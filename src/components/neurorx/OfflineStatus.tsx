@@ -275,7 +275,7 @@ export function OfflineStatus({
       <span className="inline-flex items-center gap-1.5 text-[11px] text-sky-700 dark:text-sky-300 font-semibold">
         <Zap className="w-3.5 h-3.5 text-sky-500" />
         <span>
-          ⚡ Offline-ready • data v{cachedVersion || dataHash} cached
+          Offline-ready • data v{cachedVersion || dataHash} cached
         </span>
         {!isOnline && (
           <span className="ml-1 px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-600 dark:text-amber-400 font-bold text-[10px]">

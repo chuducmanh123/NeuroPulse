@@ -1,6 +1,29 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
+import {
+  AlertTriangle,
+  Bot,
+  Check,
+  ClipboardList,
+  Clock,
+  Cloud,
+  FlaskConical,
+  Inbox,
+  Pencil,
+  Pill,
+  Plus,
+  RotateCcw,
+  Scale,
+  Search,
+  Shield,
+  Sparkles,
+  Tag,
+  Target,
+  Trash2,
+  X,
+  Zap,
+} from "lucide-react";
 import type {
   GuidelineDoc,
   PracticeChangeDetail,
@@ -1944,14 +1967,14 @@ export function EditGuidelineModal({
         {/* HEADER */}
         <div className="px-5 py-3.5 border-b flex flex-wrap items-center justify-between gap-3 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/50 flex-shrink-0">
           <div className="flex items-center gap-2.5 min-w-0">
-            <span className="text-xl flex-shrink-0">✏️</span>
+            <Pencil className="w-5 h-5 text-[#C25934] dark:text-orange-400 flex-shrink-0" aria-hidden="true" />
             <div className="min-w-0">
               <h3 className="text-sm sm:text-base font-extrabold truncate">
                 Edit Guideline: {cleanGuidelineTitle(docTitle || guidelineDoc?.title) || "Clinical Practice Guideline"}
               </h3>
               <div className="flex flex-wrap items-center gap-2 mt-0.5">
                 <span
-                  className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-full border ${
+                  className={`inline-flex items-center gap-1.5 text-[10px] font-black uppercase px-2 py-0.5 rounded-full border ${
                     isEso
                       ? "bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/30"
                       : isAha
@@ -1959,11 +1982,17 @@ export function EditGuidelineModal({
                       : "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
                   }`}
                 >
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full ${
+                      isEso ? "bg-blue-500" : isAha ? "bg-rose-500" : "bg-emerald-500"
+                    }`}
+                    aria-hidden="true"
+                  />
                   {isEso
-                    ? "🔵 ESO GRADE (PICO) FORMAT"
+                    ? "ESO GRADE (PICO) FORMAT"
                     : isAha
-                    ? "🔴 AHA/ASA (COR & LOE) FORMAT"
-                    : `🟢 STANDARD FORMAT (${docSociety || "Standard"})`}
+                    ? "AHA/ASA (COR & LOE) FORMAT"
+                    : `STANDARD FORMAT (${docSociety || "Standard"})`}
                 </span>
                 <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                   {isEso ? `${esoPicos.length} PICOs (${totalEsoRecommendationsCount} recommendations)` : `${practiceChanges.length} recommendations`} • {takeaways.length} key takeaways
@@ -1996,18 +2025,20 @@ export function EditGuidelineModal({
             <button
               type="button"
               onClick={onClose}
-              className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xl font-bold cursor-pointer p-1"
+              className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer p-1.5 rounded-lg"
               title="Close window"
+              aria-label="Close window"
             >
-              ✕
+              <X className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
         </div>
 
         {/* ERROR NOTIFICATION */}
         {errorMessage && (
-          <div className="mx-5 mt-3 p-3 rounded-xl text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-800 flex-shrink-0">
-            ⚠️ {errorMessage}
+          <div className="mx-5 mt-3 p-3 rounded-xl text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-800 flex-shrink-0 flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4 shrink-0" aria-hidden="true" />
+            <span>{errorMessage}</span>
           </div>
         )}
 
@@ -2018,10 +2049,10 @@ export function EditGuidelineModal({
             <button
               type="button"
               onClick={() => setBlockSuccessMessage(null)}
-              className="text-emerald-700 dark:text-emerald-300 font-extrabold px-1 cursor-pointer"
+              className="text-emerald-700 dark:text-emerald-300 font-extrabold p-1 cursor-pointer"
               aria-label="Dismiss block notification"
             >
-              ✕
+              <X className="w-3.5 h-3.5" aria-hidden="true" />
             </button>
           </div>
         )}
@@ -2074,7 +2105,7 @@ export function EditGuidelineModal({
                 : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
             }`}
           >
-            <span>📋</span>
+            <ClipboardList className="w-3.5 h-3.5" aria-hidden="true" />
             <span>1. General Information &amp; Scope</span>
           </button>
 
@@ -2090,7 +2121,7 @@ export function EditGuidelineModal({
                 : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
             }`}
           >
-            <span>🌟</span>
+            <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
             <span>2. Key Takeaways ({takeaways.length})</span>
           </button>
 
@@ -2105,7 +2136,7 @@ export function EditGuidelineModal({
                 : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
             }`}
           >
-            <span>⚖️</span>
+            <Scale className="w-3.5 h-3.5" aria-hidden="true" />
             <span>
               3. {isEso ? `PICO Questions & Recommendations (${esoPicos.length})` : `Recommendations (${practiceChanges.length})`}
             </span>
@@ -2121,10 +2152,12 @@ export function EditGuidelineModal({
                   <div>
                     <label className="block font-bold mb-1.5 text-slate-700 dark:text-slate-300 flex items-center justify-between">
                       <span className="text-xs sm:text-sm font-extrabold flex items-center gap-1.5">
-                        <span>🏷️</span> Guideline Title:
+                        <Tag className="w-3.5 h-3.5 text-[#C25934] dark:text-orange-400" aria-hidden="true" />
+                        <span>Guideline Title:</span>
                       </span>
                       <span className="text-[10.5px] text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/25 shadow-2xs">
-                        <span>☁️</span> Cloud Synced
+                        <Cloud className="w-3.5 h-3.5" aria-hidden="true" />
+                        <span>Cloud Synced</span>
                       </span>
                     </label>
                     <input
@@ -2245,8 +2278,9 @@ export function EditGuidelineModal({
                 <div className="space-y-4 max-w-6xl mx-auto w-full">
                   <div className="p-3.5 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900/60 flex items-center justify-between gap-3">
                     <div>
-                      <h4 className="font-bold text-indigo-900 dark:text-indigo-200">
-                        🌟 Top Take-Home Messages
+                      <h4 className="font-bold text-indigo-900 dark:text-indigo-200 flex items-center gap-1.5">
+                        <Sparkles className="w-4 h-4 text-indigo-600 dark:text-indigo-400" aria-hidden="true" />
+                        <span>Top Take-Home Messages</span>
                       </h4>
                       <p className="text-[11px] text-slate-500 dark:text-slate-400">
                         Core clinical takeaways that clinicians must master from this guideline.
@@ -2279,8 +2313,9 @@ export function EditGuidelineModal({
                           onClick={() => handleRemoveTakeaway(idx)}
                           className="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg cursor-pointer transition-colors"
                           title="Remove this takeaway"
+                          aria-label="Remove this takeaway"
                         >
-                          ✕
+                          <X className="w-3.5 h-3.5" aria-hidden="true" />
                         </button>
                       </div>
                     ))}
@@ -2311,9 +2346,10 @@ export function EditGuidelineModal({
                     <button
                       type="button"
                       onClick={handleAddTakeaway}
-                      className="px-4 py-2.5 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer shadow-xs whitespace-nowrap"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer shadow-xs whitespace-nowrap"
                     >
-                      ➕ Add Takeaway
+                      <Plus className="w-3.5 h-3.5" aria-hidden="true" />
+                      <span>Add Takeaway</span>
                     </button>
                   </div>
                 </div>
@@ -2340,20 +2376,24 @@ export function EditGuidelineModal({
                         className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-blue-600 hover:bg-blue-700 text-white cursor-pointer flex items-center gap-1 shadow-2xs"
                         title="Add a new PICO Question"
                       >
-                        <span>➕ Add PICO</span>
+                        <Plus className="w-3.5 h-3.5" aria-hidden="true" />
+                        <span>Add PICO</span>
                       </button>
                     </div>
 
                     <div className="p-2 border-b dark:border-slate-800 flex-shrink-0">
-                      <input
-                        type="text"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        placeholder="🔍 Search PICO questions or statements..."
-                        className={`w-full px-2.5 py-1.5 rounded-lg border text-xs ${
-                          darkMode ? "bg-slate-900 border-slate-700 text-white" : "bg-white border-slate-200"
-                        }`}
-                      />
+                      <div className="relative">
+                        <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true" />
+                        <input
+                          type="text"
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          placeholder="Search PICO questions or statements..."
+                          className={`w-full pl-8 pr-2.5 py-1.5 rounded-lg border text-xs ${
+                            darkMode ? "bg-slate-900 border-slate-700 text-white" : "bg-white border-slate-200"
+                          }`}
+                        />
+                      </div>
                     </div>
 
                     <div className="flex-1 min-h-0 overflow-y-auto p-1.5 space-y-1.5 custom-scrollbar">
@@ -2431,8 +2471,9 @@ export function EditGuidelineModal({
                           >
                             {/* Visual cue when dragging a recommendation over this PICO */}
                             {isTargetForRecDrop && (
-                              <div className="absolute inset-0 z-10 flex items-center justify-center bg-blue-600/95 text-white font-extrabold rounded-xl px-2 py-1 text-center shadow-lg text-[11px] animate-pulse">
-                                📥 Drop here to move recommendation to PICO {pico.picoNumber}
+                              <div className="absolute inset-0 z-10 flex items-center justify-center gap-1.5 bg-blue-600/95 text-white font-extrabold rounded-xl px-2 py-1 text-center shadow-lg text-[11px] animate-pulse">
+                                <Inbox className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                                <span>Drop here to move recommendation to PICO {pico.picoNumber}</span>
                               </div>
                             )}
 
@@ -2487,7 +2528,7 @@ export function EditGuidelineModal({
 
                       {esoPicos.length === 0 && (
                         <div className="text-center py-10 text-slate-400">
-                          No PICO questions yet. Click <b>➕ Add PICO</b> to create.
+                          No PICO questions yet. Click <b>Add PICO</b> to create.
                         </div>
                       )}
                     </div>
@@ -2511,10 +2552,11 @@ export function EditGuidelineModal({
                           <button
                             type="button"
                             onClick={() => handleDeletePico(selectedPicoIndex)}
-                            className="px-2.5 py-1 rounded-lg text-[11px] font-bold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 border border-rose-300 dark:border-rose-800 cursor-pointer transition-colors"
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-bold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 border border-rose-300 dark:border-rose-800 cursor-pointer transition-colors"
                             title="Delete this entire PICO question"
                           >
-                            🗑️ Delete PICO
+                            <Trash2 className="w-3 h-3" aria-hidden="true" />
+                            <span>Delete PICO</span>
                           </button>
                         </div>
 
@@ -2556,7 +2598,7 @@ export function EditGuidelineModal({
                         {/* RECOMMENDATIONS SECTION HEADER */}
                         <div className="pt-2 flex flex-wrap items-center justify-between gap-2 border-t dark:border-slate-800">
                           <div className="flex items-center gap-1.5 font-extrabold text-xs text-slate-800 dark:text-slate-200">
-                            <span>⚖️</span>
+                            <Scale className="w-3.5 h-3.5 text-[#C25934] dark:text-orange-400" aria-hidden="true" />
                             <span>Recommendations for this PICO ({currentPico.recommendations.length})</span>
                           </div>
                           <div className="flex items-center gap-2">
@@ -2569,7 +2611,8 @@ export function EditGuidelineModal({
                               className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer flex items-center gap-1 shadow-2xs"
                               title="Add another recommendation under this PICO question"
                             >
-                              <span>➕ Add Recommendation</span>
+                              <Plus className="w-3.5 h-3.5" aria-hidden="true" />
+                              <span>Add Recommendation</span>
                             </button>
                           </div>
                         </div>
@@ -2703,10 +2746,11 @@ export function EditGuidelineModal({
                                                 rev: recBlock.rev,
                                               })
                                             }
-                                            className="px-2 py-1 rounded-lg text-[10.5px] font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20 cursor-pointer"
+                                            className="inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[10.5px] font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20 cursor-pointer"
                                             title="Inspect block revision history & restore"
                                           >
-                                            🕒 History (rev {recBlock.rev})
+                                            <Clock className="w-3 h-3" aria-hidden="true" />
+                                            <span>History (rev {recBlock.rev})</span>
                                           </button>
                                           <button
                                             type="button"
@@ -2718,10 +2762,11 @@ export function EditGuidelineModal({
                                                 recBlockInfo.isFallback,
                                               )
                                             }
-                                            className="px-2 py-1 rounded-lg text-[10.5px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer disabled:opacity-50"
+                                            className="inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[10.5px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer disabled:opacity-50"
                                             title="Save only this block atomically with optimistic lock"
                                           >
-                                            ⚡ Save Block
+                                            <Zap className="w-3 h-3" aria-hidden="true" />
+                                            <span>Save Block</span>
                                           </button>
                                         </>
                                       );
@@ -2764,10 +2809,11 @@ export function EditGuidelineModal({
                                       <button
                                         type="button"
                                         onClick={() => handleRemoveRecFromCurrentPico(rIdx)}
-                                        className="text-[11px] font-semibold text-rose-600 hover:text-rose-700 dark:text-rose-400 cursor-pointer"
+                                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-rose-600 hover:text-rose-700 dark:text-rose-400 cursor-pointer"
                                         title="Remove this recommendation"
                                       >
-                                        🗑️ Remove
+                                        <Trash2 className="w-3 h-3" aria-hidden="true" />
+                                        <span>Remove</span>
                                       </button>
                                     )}
                                   </div>
@@ -2964,17 +3010,19 @@ export function EditGuidelineModal({
                                       {/* Header bar */}
                                       <div className="flex flex-wrap items-center justify-between gap-2 border-b pb-2 dark:border-slate-800">
                                         <div className="flex items-center gap-1.5">
-                                          <span className="text-sm">🏷️</span>
+                                          <Tag className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" aria-hidden="true" />
                                           <span className="font-extrabold text-[11px] text-blue-900 dark:text-blue-300">
                                             Clinical Navigator V3 Labels
                                           </span>
                                           {rec.v3Labels?.isExplicit ? (
-                                            <span className="text-[9.5px] px-1.5 py-0.2 rounded font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
-                                              ✏️ Manually Customized
+                                            <span className="inline-flex items-center gap-1 text-[9.5px] px-1.5 py-0.2 rounded font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+                                              <Pencil className="w-2.5 h-2.5" aria-hidden="true" />
+                                              <span>Manually Customized</span>
                                             </span>
                                           ) : (
-                                            <span className="text-[9.5px] px-1.5 py-0.2 rounded font-bold bg-sky-100 text-sky-700 dark:bg-sky-900/50 dark:text-sky-300 border border-sky-200 dark:border-sky-800">
-                                              🤖 Auto-classified
+                                            <span className="inline-flex items-center gap-1 text-[9.5px] px-1.5 py-0.2 rounded font-bold bg-sky-100 text-sky-700 dark:bg-sky-900/50 dark:text-sky-300 border border-sky-200 dark:border-sky-800">
+                                              <Bot className="w-2.5 h-2.5" aria-hidden="true" />
+                                              <span>Auto-classified</span>
                                             </span>
                                           )}
                                         </div>
@@ -2985,17 +3033,19 @@ export function EditGuidelineModal({
                                               <button
                                                 type="button"
                                                 onClick={() => handleResetEsoRecV3(rIdx)}
-                                                className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
+                                                className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
                                                 title="Restore auto-classification from text"
                                               >
-                                                🔄 Reset to Auto
+                                                <RotateCcw className="w-2.5 h-2.5" aria-hidden="true" />
+                                                <span>Reset to Auto</span>
                                               </button>
                                               <button
                                                 type="button"
                                                 onClick={() => setEditingEsoRecIndex(null)}
-                                                className="px-2.5 py-0.5 rounded text-[10.5px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition-colors cursor-pointer shadow-2xs"
+                                                className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[10.5px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition-colors cursor-pointer shadow-2xs"
                                               >
-                                                ✓ Done
+                                                <Check className="w-3 h-3" aria-hidden="true" />
+                                                <span>Done</span>
                                               </button>
                                             </>
                                           ) : (
@@ -3003,17 +3053,18 @@ export function EditGuidelineModal({
                                               <button
                                                 type="button"
                                                 onClick={() => handleResetEsoRecV3(rIdx)}
-                                                className="px-2 py-0.5 rounded text-[10px] font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 border border-slate-200 dark:border-slate-700 cursor-pointer"
+                                                className="px-2 py-1 rounded text-[10px] font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 border border-slate-200 dark:border-slate-700 cursor-pointer"
                                                 title="Run auto-classification"
+                                                aria-label="Run auto-classification"
                                               >
-                                                🔄
+                                                <RotateCcw className="w-3 h-3" aria-hidden="true" />
                                               </button>
                                               <button
                                                 type="button"
                                                 onClick={() => setEditingEsoRecIndex(rIdx)}
                                                 className="px-2.5 py-0.5 rounded text-[10.5px] font-bold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors cursor-pointer flex items-center gap-1 shadow-2xs"
                                               >
-                                                <span>✏️</span>
+                                                <Pencil className="w-2.5 h-2.5" aria-hidden="true" />
                                                 <span>Edit Labels</span>
                                               </button>
                                             </>
@@ -3151,15 +3202,20 @@ export function EditGuidelineModal({
                                                           : "bg-indigo-50 text-indigo-800 dark:bg-indigo-950/70 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800"
                                                       }`}
                                                     >
-                                                      <span>{isDiag ? "🔬" : "💊"}</span>
+                                                      {isDiag ? (
+                                                        <FlaskConical className="w-3 h-3" aria-hidden="true" />
+                                                      ) : (
+                                                        <Pill className="w-3 h-3" aria-hidden="true" />
+                                                      )}
                                                       <span>{getTagLabelByIdV3(tagId) || tagId}</span>
                                                       <button
                                                         type="button"
                                                         onClick={() => handleRemoveEsoRecTag(rIdx, tagId)}
                                                         className="ml-0.5 hover:text-red-600 transition-colors cursor-pointer text-slate-400 hover:text-red-500 font-bold"
                                                         title="Remove tag"
+                                                        aria-label="Remove tag"
                                                       >
-                                                        ✕
+                                                        <X className="w-3 h-3" aria-hidden="true" />
                                                       </button>
                                                     </span>
                                                   );
@@ -3248,25 +3304,28 @@ export function EditGuidelineModal({
                                           {effV3.conditionIds?.map((cId) => (
                                             <span
                                               key={cId}
-                                              className="px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800"
+                                              className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800"
                                             >
-                                              🎯 {getConditionByIdV3(cId)?.label || cId}
+                                              <Target className="w-3 h-3" aria-hidden="true" />
+                                              <span>{getConditionByIdV3(cId)?.label || cId}</span>
                                             </span>
                                           ))}
                                           {effV3.interventionTags?.map((tId) => (
                                             <span
                                               key={tId}
-                                              className="px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800"
+                                              className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800"
                                             >
-                                              💊 {getTagLabelByIdV3(tId) || tId}
+                                              <Pill className="w-3 h-3" aria-hidden="true" />
+                                              <span>{getTagLabelByIdV3(tId) || tId}</span>
                                             </span>
                                           ))}
                                           {effV3.diagnosisTags?.map((dId) => (
                                             <span
                                               key={dId}
-                                              className="px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300 border border-purple-200 dark:border-purple-800"
+                                              className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300 border border-purple-200 dark:border-purple-800"
                                             >
-                                              🔬 {getTagLabelByIdV3(dId) || dId}
+                                              <FlaskConical className="w-3 h-3" aria-hidden="true" />
+                                              <span>{getTagLabelByIdV3(dId) || dId}</span>
                                             </span>
                                           ))}
                                           {effV3.timeWindowIds?.map((twId) => {
@@ -3274,9 +3333,10 @@ export function EditGuidelineModal({
                                             return (
                                               <span
                                                 key={twId}
-                                                className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700"
+                                                className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700"
                                               >
-                                                ⏱️ {twObj?.label || twId}
+                                                <Clock className="w-3 h-3" aria-hidden="true" />
+                                                <span>{twObj?.label || twId}</span>
                                               </span>
                                             );
                                           })}
@@ -3292,7 +3352,7 @@ export function EditGuidelineModal({
                       </div>
                     ) : (
                       <div className="flex-1 flex flex-col items-center justify-center p-6 text-slate-400">
-                        <span className="text-3xl mb-2">📋</span>
+                        <ClipboardList className="w-8 h-8 mb-2 opacity-60" aria-hidden="true" />
                         <p>Select a PICO question from the left or click Add PICO.</p>
                       </div>
                     )}
@@ -3315,20 +3375,24 @@ export function EditGuidelineModal({
                         className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-amber-500 hover:bg-amber-600 text-white cursor-pointer flex items-center gap-1 shadow-2xs"
                         title="Add new recommendation"
                       >
-                        <span>➕ Add New</span>
+                        <Plus className="w-3.5 h-3.5" aria-hidden="true" />
+                        <span>Add New</span>
                       </button>
                     </div>
 
                     <div className="p-2 border-b dark:border-slate-800 flex-shrink-0">
-                      <input
-                        type="text"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        placeholder="🔍 Search recommendations..."
-                        className={`w-full px-2.5 py-1.5 rounded-lg border text-xs ${
-                          darkMode ? "bg-slate-900 border-slate-700 text-white" : "bg-white border-slate-200"
-                        }`}
-                      />
+                      <div className="relative">
+                        <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true" />
+                        <input
+                          type="text"
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          placeholder="Search recommendations..."
+                          className={`w-full pl-8 pr-2.5 py-1.5 rounded-lg border text-xs ${
+                            darkMode ? "bg-slate-900 border-slate-700 text-white" : "bg-white border-slate-200"
+                          }`}
+                        />
+                      </div>
                     </div>
 
                     <div className="flex-1 min-h-0 overflow-y-auto p-1.5 space-y-1.5 custom-scrollbar">
@@ -3451,9 +3515,10 @@ export function EditGuidelineModal({
                                       rev: activeStandardBlock.rev,
                                     })
                                   }
-                                  className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20 cursor-pointer"
+                                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20 cursor-pointer"
                                 >
-                                  🕒 History (rev {activeStandardBlock.rev})
+                                  <Clock className="w-2.5 h-2.5" aria-hidden="true" />
+                                  <span>History (rev {activeStandardBlock.rev})</span>
                                 </button>
                                 <button
                                   type="button"
@@ -3468,9 +3533,10 @@ export function EditGuidelineModal({
                                       );
                                     }
                                   }}
-                                  className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer disabled:opacity-50"
+                                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer disabled:opacity-50"
                                 >
-                                  ⚡ Save Block
+                                  <Zap className="w-2.5 h-2.5" aria-hidden="true" />
+                                  <span>Save Block</span>
                                 </button>
                               </div>
                             )}
@@ -3478,8 +3544,9 @@ export function EditGuidelineModal({
                             {rec.v3Labels && (rec.v3Labels.conditionIds?.length > 0 || rec.v3Labels.interventionTags?.length > 0) && (
                               <div className="flex flex-wrap items-center gap-1 mt-1.5 pt-1 border-t border-slate-100 dark:border-slate-800/60">
                                 {rec.v3Labels.conditionIds?.[0] && (
-                                  <span className="text-[9.5px] font-bold text-indigo-600 dark:text-indigo-400">
-                                    🎯 {getConditionByIdV3(rec.v3Labels.conditionIds[0])?.label || rec.v3Labels.conditionIds[0]}
+                                  <span className="inline-flex items-center gap-1 text-[9.5px] font-bold text-indigo-600 dark:text-indigo-400">
+                                    <Target className="w-2.5 h-2.5" aria-hidden="true" />
+                                    <span>{getConditionByIdV3(rec.v3Labels.conditionIds[0])?.label || rec.v3Labels.conditionIds[0]}</span>
                                   </span>
                                 )}
                                 {rec.v3Labels.interventionTags?.slice(0, 2).map((t) => (
@@ -3500,7 +3567,7 @@ export function EditGuidelineModal({
 
                       {practiceChanges.length === 0 && (
                         <div className="text-center py-10 text-slate-400">
-                          No recommendations yet. Click <b>➕ Add New</b> to create.
+                          No recommendations yet. Click <b>Add New</b> to create.
                         </div>
                       )}
                     </div>
@@ -3538,10 +3605,11 @@ export function EditGuidelineModal({
                                       rev: activeStandardBlock.rev,
                                     })
                                   }
-                                  className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20 cursor-pointer transition-colors"
+                                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20 cursor-pointer transition-colors"
                                   title="Inspect block revision history & restore"
                                 >
-                                  🕒 History (rev {activeStandardBlock.rev})
+                                  <Clock className="w-3 h-3" aria-hidden="true" />
+                                  <span>History (rev {activeStandardBlock.rev})</span>
                                 </button>
                                 <button
                                   type="button"
@@ -3556,20 +3624,22 @@ export function EditGuidelineModal({
                                       );
                                     }
                                   }}
-                                  className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer transition-colors disabled:opacity-50"
+                                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer transition-colors disabled:opacity-50"
                                   title="Save only this block atomically with optimistic lock"
                                 >
-                                  {isLoading ? "Saving..." : "⚡ Save Block"}
+                                  <Zap className="w-3 h-3" aria-hidden="true" />
+                                  <span>{isLoading ? "Saving..." : "Save Block"}</span>
                                 </button>
                               </>
                             )}
                             <button
                               type="button"
                               onClick={() => handleDeleteStandardRec(selectedRecIndex)}
-                              className="px-2 py-0.5 rounded text-[11px] font-bold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 border border-rose-300 dark:border-rose-800 cursor-pointer transition-colors"
+                              className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 border border-rose-300 dark:border-rose-800 cursor-pointer transition-colors"
                               title="Delete this recommendation"
                             >
-                              🗑️ Delete
+                              <Trash2 className="w-3 h-3" aria-hidden="true" />
+                              <span>Delete</span>
                             </button>
                           </div>
                         </div>
@@ -3632,7 +3702,8 @@ export function EditGuidelineModal({
                         {isAha && (
                           <div className="p-3 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/30 dark:bg-rose-950/20 space-y-3">
                             <div className="flex items-center gap-1.5 font-bold text-rose-700 dark:text-rose-300 text-[11px]">
-                              <span>🔴 ACC/AHA RECOMMENDATION GRADING</span>
+                              <span className="w-2 h-2 rounded-full bg-rose-500" aria-hidden="true" />
+                              <span>ACC/AHA RECOMMENDATION GRADING</span>
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -3777,17 +3848,19 @@ export function EditGuidelineModal({
                           {/* Header: Title + Mode Badge + Toggle Button */}
                           <div className="flex flex-wrap items-center justify-between gap-2 border-b pb-2.5 dark:border-slate-800">
                             <div className="flex items-center gap-2">
-                              <span className="text-base sm:text-lg">🏷️</span>
+                              <Tag className="w-4 h-4 text-[#C25934] dark:text-orange-400 shrink-0" aria-hidden="true" />
                               <div>
                                 <h4 className="font-extrabold text-xs text-slate-900 dark:text-slate-100 flex items-center gap-2">
                                   <span>Classification &amp; Clinical Tags (Clinical Navigator V3)</span>
                                   {isCustomizingV3 ? (
-                                    <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-700">
-                                      ✏️ Manually Customized
+                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-700">
+                                      <Pencil className="w-2.5 h-2.5" aria-hidden="true" />
+                                      <span>Manually Customized</span>
                                     </span>
                                   ) : (
-                                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-700 dark:bg-sky-900/50 dark:text-sky-300 border border-sky-300 dark:border-sky-700">
-                                      🤖 Auto-classified
+                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-700 dark:bg-sky-900/50 dark:text-sky-300 border border-sky-300 dark:border-sky-700">
+                                      <Bot className="w-2.5 h-2.5" aria-hidden="true" />
+                                      <span>Auto-classified</span>
                                     </span>
                                   )}
                                 </h4>
@@ -3802,10 +3875,11 @@ export function EditGuidelineModal({
                                 <button
                                   type="button"
                                   onClick={handleResetToAutoV3}
-                                  className="px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
+                                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
                                   title="Reset to automated classification"
                                 >
-                                  🔄 Reset to Auto
+                                  <RotateCcw className="w-3 h-3" aria-hidden="true" />
+                                  <span>Reset to Auto</span>
                                 </button>
                               ) : (
                                 <button
@@ -3814,7 +3888,8 @@ export function EditGuidelineModal({
                                   className="px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-2xs transition-colors flex items-center gap-1 cursor-pointer"
                                   title="Customize condition, domain, and tags"
                                 >
-                                  <span>✏️ Edit Labels</span>
+                                  <Pencil className="w-3 h-3" aria-hidden="true" />
+                                  <span>Edit Labels</span>
                                 </button>
                               )}
                             </div>
@@ -3868,7 +3943,7 @@ export function EditGuidelineModal({
                                       : "bg-white border-slate-200 text-indigo-700"
                                   }`}
                                 >
-                                  <span>🎯</span>
+                                  <Target className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                                   <span className="truncate">
                                     {activeConditionObj?.label || activeV3Labels.conditionIds[0] || "Unspecified"}
                                   </span>
@@ -3889,9 +3964,9 @@ export function EditGuidelineModal({
                                     darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                                   }`}
                                 >
-                                  <option value="treatment">💊 Treatment (Acute &amp; Active Management)</option>
-                                  <option value="diagnosis">🔍 Diagnosis (Assessment &amp; Evaluation)</option>
-                                  <option value="prevention">🛡️ Prevention (Secondary Prevention)</option>
+                                  <option value="treatment">Treatment (Acute &amp; Active Management)</option>
+                                  <option value="diagnosis">Diagnosis (Assessment &amp; Evaluation)</option>
+                                  <option value="prevention">Prevention (Secondary Prevention)</option>
                                 </select>
                               ) : (
                                 <div
@@ -3901,13 +3976,13 @@ export function EditGuidelineModal({
                                       : "bg-white border-slate-200 text-emerald-700"
                                   }`}
                                 >
-                                  <span>
-                                    {activeV3Labels.domains[0] === "diagnosis"
-                                      ? "🔍"
-                                      : activeV3Labels.domains[0] === "prevention"
-                                      ? "🛡️"
-                                      : "💊"}
-                                  </span>
+                                  {activeV3Labels.domains[0] === "diagnosis" ? (
+                                    <Search className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                                  ) : activeV3Labels.domains[0] === "prevention" ? (
+                                    <Shield className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                                  ) : (
+                                    <Pill className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                                  )}
                                   <span>{activeV3Labels.domains[0] || "treatment"}</span>
                                 </div>
                               )}
@@ -3926,9 +4001,9 @@ export function EditGuidelineModal({
                                     darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                                   }`}
                                 >
-                                  <option value="recommended">🟢 Strong Recommended (Class I, IIa)</option>
-                                  <option value="conditional">🟡 Marginal / Conditional (Class IIb)</option>
-                                  <option value="harm">🔴 Contraindicated / Harm (Class III)</option>
+                                  <option value="recommended">Strong Recommended (Class I, IIa)</option>
+                                  <option value="conditional">Marginal / Conditional (Class IIb)</option>
+                                  <option value="harm">Contraindicated / Harm (Class III)</option>
                                 </select>
                               ) : (
                                 <div
@@ -3940,13 +4015,16 @@ export function EditGuidelineModal({
                                       : "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-800"
                                   }`}
                                 >
-                                  <span>
-                                    {activeV3Labels.direction === "harm"
-                                      ? "🔴"
-                                      : activeV3Labels.direction === "conditional"
-                                      ? "🟡"
-                                      : "🟢"}
-                                  </span>
+                                  <span
+                                    className={`w-2 h-2 rounded-full shrink-0 ${
+                                      activeV3Labels.direction === "harm"
+                                        ? "bg-rose-500"
+                                        : activeV3Labels.direction === "conditional"
+                                        ? "bg-amber-500"
+                                        : "bg-emerald-500"
+                                    }`}
+                                    aria-hidden="true"
+                                  />
                                   <span className="capitalize">{activeV3Labels.direction}</span>
                                 </div>
                               )}
@@ -4201,7 +4279,7 @@ export function EditGuidelineModal({
                       </>
                     ) : (
                       <div className="flex-1 flex flex-col items-center justify-center p-6 text-slate-400">
-                        <span className="text-3xl mb-2">📋</span>
+                        <ClipboardList className="w-8 h-8 mb-2 opacity-60" aria-hidden="true" />
                         <p>Select a recommendation from the left or click Add New.</p>
                       </div>
                     )}
@@ -4217,9 +4295,10 @@ export function EditGuidelineModal({
               type="button"
               disabled={isLoading}
               onClick={handleDeleteFromModal}
-              className="px-3 py-2 rounded-xl text-xs font-bold bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/40 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 flex items-center gap-1 cursor-pointer transition-colors"
+              className="px-3 py-2 rounded-xl text-xs font-bold bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/40 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 flex items-center gap-1.5 cursor-pointer transition-colors"
             >
-              <span>🗑️ Delete Guideline</span>
+              <Trash2 className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>Delete Guideline</span>
             </button>
 
             <div className="flex flex-wrap items-center gap-2">
@@ -4244,7 +4323,10 @@ export function EditGuidelineModal({
                 {isLoading ? (
                   <span>Saving to Cloud...</span>
                 ) : (
-                  <span>☁️ Save Changes to Cloud</span>
+                  <>
+                    <Cloud className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>Save Changes to Cloud</span>
+                  </>
                 )}
               </button>
             </div>

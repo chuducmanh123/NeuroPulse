@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { X, Zap } from "lucide-react";
 import type {
   PivotalTrialRecord,
   OntologyFacetId,
@@ -617,17 +618,19 @@ export function PivotalTrialModal({
           <button
             type="button"
             onClick={onClose}
+            aria-label="Close modal"
             className="p-2 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition"
           >
-            ✕
+            <X className="w-4 h-4" aria-hidden="true" />
           </button>
         </div>
 
         <form onSubmit={handleSave} className="p-6 sm:p-7 overflow-y-auto space-y-6 text-sm">
           {/* 1-Click Auto-Fill Bar */}
           <div className="p-4 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900/60">
-            <label className="block text-xs font-bold uppercase tracking-wider text-indigo-800 dark:text-indigo-300 mb-1.5">
-              ⚡ 1-Click Auto-Fill from PMID, DOI, or Trial Acronym
+            <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-800 dark:text-indigo-300 mb-1.5">
+              <Zap className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>1-Click Auto-Fill from PMID, DOI, or Trial Acronym</span>
             </label>
             <div className="flex flex-col sm:flex-row gap-2.5">
               <input

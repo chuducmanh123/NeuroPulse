@@ -4,15 +4,27 @@ import React, { ViewTransition, useState, useMemo, useEffect, useRef } from "rea
 import Link from "next/link";
 import { sanitizeUrl } from "@/utils/safeUrl";
 import {
+  ArrowRight,
+  ArrowUpRight,
   BookOpen,
   Building2,
   ChevronDown,
+  ClipboardList,
   Compass,
   GitBranch,
   Layers,
+  Lightbulb,
+  Moon,
+  Pencil,
   Radio,
   Search,
+  ShieldCheck,
+  Sparkles,
+  Sun,
+  Target,
+  Trash2,
   X,
+  Zap,
 } from "lucide-react";
 import {
   NEUROLOGY_SUBSPECIALTIES,
@@ -514,6 +526,13 @@ export default function NeuroGuidePage() {
         badge: `${guidelineDocs.length}`,
       },
       {
+        id: "pathways" as const,
+        label: "Clinical Pathways",
+        mobileLabel: "Pathways",
+        icon: GitBranch,
+        ...(publishedPathwayCount > 0 ? { badge: `${publishedPathwayCount}` } : {}),
+      },
+      {
         id: "conf" as const,
         label: "Conferences & Trials",
         mobileLabel: "Conferences",
@@ -525,13 +544,6 @@ export default function NeuroGuidePage() {
         label: "Clinical Navigator",
         mobileLabel: "Navigator",
         icon: Compass,
-      },
-      {
-        id: "pathways" as const,
-        label: "Clinical Pathways",
-        mobileLabel: "Pathways",
-        icon: GitBranch,
-        ...(publishedPathwayCount > 0 ? { badge: `${publishedPathwayCount}` } : {}),
       },
     ];
 
@@ -653,7 +665,7 @@ export default function NeuroGuidePage() {
           }
         } catch {}
         reloadGuidelines(true);
-        setSyncMessage(`🗑️ Đã xóa guideline "${doc.title}" trên Cloud thành công.`);
+        setSyncMessage(`Đã xóa guideline "${doc.title}" trên Cloud thành công.`);
       } else {
         alert(`Lỗi khi xóa guideline: ${data.error || "Không thể xóa guideline"}`);
       }
@@ -687,7 +699,7 @@ export default function NeuroGuidePage() {
         const storageNote = json.savedToBlob ? "Vercel Blob" : json.storageBackend || "Cloud Storage";
         if (quota) {
           setSyncMessage(
-            `✨ Full-Text AI Radar: Đã quét ${quota.guidelinesAnalyzed} guideline mới đưa vào Hàng đợi duyệt (Review Queue), cập nhật 2 hội nghị & 2 kịch bản lâm sàng (${storageNote}).`
+            `Full-Text AI Radar: Đã quét ${quota.guidelinesAnalyzed} guideline mới đưa vào Hàng đợi duyệt (Review Queue), cập nhật 2 hội nghị & 2 kịch bản lâm sàng (${storageNote}).`
           );
         } else {
           setSyncMessage(json.message || `Successfully synchronized guidelines from ${storageNote}.`);
@@ -747,7 +759,7 @@ export default function NeuroGuidePage() {
           : conferences.filter((c) => c.id !== conf.id);
         setConferences(nextConfs);
         updateConferencesCache(nextConfs);
-        setSyncMessage(`🗑️ Đã xóa conference "${conf.acronym}" thành công.`);
+        setSyncMessage(`Đã xóa conference "${conf.acronym}" thành công.`);
       } else {
         alert(`Lỗi khi xóa conference: ${data.error || "Không thể xóa conference"}`);
       }
@@ -794,7 +806,7 @@ export default function NeuroGuidePage() {
           : conferences.map((c) => (c.id === conf.id ? updatedConf : c));
         setConferences(nextConfs);
         updateConferencesCache(nextConfs);
-        setSyncMessage(`🗑️ Đã xóa trial "${trialAcronym}" khỏi ${conf.acronym}.`);
+        setSyncMessage(`Đã xóa trial "${trialAcronym}" khỏi ${conf.acronym}.`);
       } else {
         alert(`Lỗi khi xóa trial: ${data.error || "Không thể xóa trial"}`);
       }
@@ -1178,9 +1190,10 @@ export default function NeuroGuidePage() {
                 className="px-2.5 py-1.5 rounded-xl text-xs font-bold bg-[#C25934]/15 hover:bg-[#C25934]/25 text-[#C25934] dark:text-orange-300 border border-[#C25934]/30 flex items-center gap-1 transition-all"
                 title="Mở Admin Command Center để kiểm duyệt khuyến cáo"
               >
-                <span>🛡️ {reviewQueueCount}</span>
+                <ShieldCheck className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>{reviewQueueCount}</span>
                 <span className="hidden sm:inline">chờ duyệt</span>
-                <span>→</span>
+                <ArrowRight className="w-3 h-3" aria-hidden="true" />
               </Link>
             )}
 
@@ -1192,7 +1205,11 @@ export default function NeuroGuidePage() {
                 className="px-2.5 py-1.5 rounded-xl text-xs font-bold border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-ink)] flex items-center gap-1"
                 title="Toggle Night-Shift / Dark Mode"
               >
-                <span>{darkMode ? "☀️" : "🌙"}</span>
+                {darkMode ? (
+                  <Sun className="w-3.5 h-3.5" aria-hidden="true" />
+                ) : (
+                  <Moon className="w-3.5 h-3.5" aria-hidden="true" />
+                )}
               </button>
               <AdminButton darkMode={darkMode} />
             </div>
@@ -1394,9 +1411,10 @@ export default function NeuroGuidePage() {
                 </div>
                 <button
                   onClick={() => setSyncMessage(null)}
-                  className="text-amber-600 dark:text-amber-400 hover:opacity-100 font-bold px-1.5"
+                  aria-label="Dismiss message"
+                  className="text-amber-600 dark:text-amber-400 hover:opacity-100 font-bold p-1"
                 >
-                  ✕
+                  <X className="w-3.5 h-3.5" aria-hidden="true" />
                 </button>
               </div>
             )}
@@ -1412,7 +1430,9 @@ export default function NeuroGuidePage() {
               </div>
             ) : filteredGuidelines.length === 0 ? (
               <div className="p-12 text-center rounded-2xl border border-dashed border-[var(--border-hairline)] bg-[var(--bg-surface)]/70">
-                <span className="text-3xl block mb-2">🔍</span>
+                <div className="w-11 h-11 mx-auto mb-3 rounded-xl bg-[#C25934]/10 border border-[#C25934]/20 flex items-center justify-center text-[#C25934] dark:text-orange-400">
+                  <Search className="w-5 h-5" aria-hidden="true" />
+                </div>
                 <h3 className="text-sm font-bold text-[var(--text-ink)]">
                   No guidelines match &ldquo;{searchQuery}&rdquo;
                 </h3>
@@ -1487,7 +1507,8 @@ export default function NeuroGuidePage() {
                                 className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-[#C25934]/10 text-[#C25934] dark:text-orange-400 hover:bg-[#C25934]/20 border border-[#C25934]/30 flex items-center gap-1 cursor-pointer transition-colors"
                                 title="Edit guideline metadata"
                               >
-                                <span>✏️ Edit</span>
+                                <Pencil className="w-3 h-3" aria-hidden="true" />
+                                <span>Edit</span>
                               </button>
                               <button
                                 type="button"
@@ -1499,7 +1520,11 @@ export default function NeuroGuidePage() {
                                 className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400 hover:bg-rose-500/20 border border-rose-500/30 flex items-center gap-1 cursor-pointer transition-colors disabled:opacity-50"
                                 title="Delete guideline"
                               >
-                                <span>{deleteLoadingId === doc.id ? "..." : "🗑️"}</span>
+                                {deleteLoadingId === doc.id ? (
+                                  <span>...</span>
+                                ) : (
+                                  <Trash2 className="w-3 h-3" aria-hidden="true" />
+                                )}
                               </button>
                             </div>
                           )}
@@ -1514,7 +1539,7 @@ export default function NeuroGuidePage() {
                       {/* Bottom Prompt Bar: Changes Badge + Click Indicator */}
                       <div className="mt-2.5 sm:mt-3 flex items-center justify-between gap-2 pt-2 border-t border-[var(--border-hairline)]">
                         <span className="text-[11px] sm:text-xs font-bold text-[var(--text-secondary)] flex items-center gap-1.5">
-                          <span>📋</span>
+                          <ClipboardList className="w-3.5 h-3.5 text-[#C25934] dark:text-orange-400" aria-hidden="true" />
                           <span>
                             {doc.society?.toUpperCase().includes("ESO")
                               ? (() => {
@@ -1580,8 +1605,9 @@ export default function NeuroGuidePage() {
                                   <div className="p-3.5 sm:p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-2.5 sm:space-y-3">
                                     <div className="flex flex-wrap items-center justify-between gap-1.5">
                                       <div className="flex items-center gap-2">
-                                        <span className="px-2.5 py-0.5 rounded-full text-[10px] sm:text-[10.5px] font-black bg-[#C25934]/15 text-[#C25934] dark:text-orange-300 border border-[#C25934]/30">
-                                          🌟 TOP TAKE-HOME MESSAGES
+                                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-[10.5px] font-black bg-[#C25934]/15 text-[#C25934] dark:text-orange-300 border border-[#C25934]/30">
+                                          <Sparkles className="w-3 h-3" aria-hidden="true" />
+                                          <span>TOP TAKE-HOME MESSAGES</span>
                                         </span>
                                       </div>
                                     </div>
@@ -1615,8 +1641,9 @@ export default function NeuroGuidePage() {
                               {newPracticeChanges.length > 0 && !doc.society?.toUpperCase().includes("ESO") && (
                                 <div className="space-y-2.5">
                                   <div className="flex items-center gap-2">
-                                    <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-[10.5px] font-black bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30">
-                                      ⚡ 1. WHAT IS NEW &amp; HIGH IMPACT CHANGES
+                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] sm:text-[10.5px] font-black bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30">
+                                      <Zap className="w-3 h-3" aria-hidden="true" />
+                                      <span>1. WHAT IS NEW &amp; HIGH IMPACT CHANGES</span>
                                     </span>
                                     <span className="text-[11px] font-bold text-[var(--text-muted)]">
                                       ({newPracticeChanges.length} practice changes vs. {doc.previousVersionYear || "prior"}):
@@ -1805,9 +1832,9 @@ export default function NeuroGuidePage() {
                   }
                   options={[
                     { value: "ALL", label: "All Events" },
-                    { value: "LIVE", label: "🔴 LIVE" },
-                    { value: "RECENT", label: "🟡 Recent" },
-                    { value: "UPCOMING", label: "⚪ Upcoming" },
+                    { value: "LIVE", label: "LIVE" },
+                    { value: "RECENT", label: "Recent" },
+                    { value: "UPCOMING", label: "Upcoming" },
                   ]}
                   ariaLabel="Filter by conference status"
                   darkMode={darkMode}
@@ -1846,7 +1873,13 @@ export default function NeuroGuidePage() {
             {/* Conference Cards List (Colored by Status, Click to Expand Details) */}
             {filteredConferences.length === 0 ? (
               <div className="p-12 text-center rounded-2xl border border-dashed border-[var(--border-hairline)] bg-[var(--bg-surface)]/70">
-                <span className="text-3xl block mb-2">{conferences.length === 0 ? "🎙️" : "🔍"}</span>
+                <div className="w-11 h-11 mx-auto mb-3 rounded-xl bg-[#C25934]/10 border border-[#C25934]/20 flex items-center justify-center text-[#C25934] dark:text-orange-400">
+                  {conferences.length === 0 ? (
+                    <Radio className="w-5 h-5" aria-hidden="true" />
+                  ) : (
+                    <Search className="w-5 h-5" aria-hidden="true" />
+                  )}
+                </div>
                 <h3 className="text-sm font-bold text-[var(--text-ink)]">
                   {conferences.length === 0
                     ? "No conferences available yet"
@@ -1893,13 +1926,19 @@ export default function NeuroGuidePage() {
                             {conf.acronym}
                           </span>
                           <span
-                            className={`text-xs px-2 py-0.5 rounded-full font-bold uppercase border ${theme.badge}`}
+                            className={`text-xs px-2 py-0.5 rounded-full font-bold uppercase border inline-flex items-center gap-1.5 ${theme.badge}`}
                           >
-                            {liveStatus === "LIVE"
-                              ? "🔴 LIVE"
-                              : liveStatus === "RECENT"
-                              ? "🟡 RECENT"
-                              : "⚪ UPCOMING"}
+                            <span
+                              className={`w-1.5 h-1.5 rounded-full ${
+                                liveStatus === "LIVE"
+                                  ? "bg-rose-500 animate-pulse"
+                                  : liveStatus === "RECENT"
+                                  ? "bg-amber-500"
+                                  : "bg-slate-400"
+                              }`}
+                              aria-hidden="true"
+                            />
+                            {liveStatus}
                           </span>
                           <span className="text-xs text-[var(--text-muted)] font-medium">
                             {conf.dates} • {conf.location}
@@ -1916,7 +1955,7 @@ export default function NeuroGuidePage() {
                               className="text-xs font-bold text-[#C25934] dark:text-orange-400 hover:underline flex items-center gap-1"
                             >
                               <span>Official Website</span>
-                              <span>↗</span>
+                              <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
                             </a>
                           )}
                           {isAdminVerified && (
@@ -1931,7 +1970,8 @@ export default function NeuroGuidePage() {
                                 className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-[#C25934]/10 text-[#C25934] dark:text-orange-400 hover:bg-[#C25934]/20 border border-[#C25934]/30 flex items-center gap-1 cursor-pointer transition-colors"
                                 title="Edit conference"
                               >
-                                <span>✏️ Edit</span>
+                                <Pencil className="w-3 h-3" aria-hidden="true" />
+                                <span>Edit</span>
                               </button>
                               <button
                                 type="button"
@@ -1943,7 +1983,11 @@ export default function NeuroGuidePage() {
                                 className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400 hover:bg-rose-500/20 border border-rose-500/30 flex items-center gap-1 cursor-pointer transition-colors disabled:opacity-50"
                                 title="Delete conference"
                               >
-                                <span>{deleteConfLoadingId === conf.id ? "..." : "🗑️"}</span>
+                                {deleteConfLoadingId === conf.id ? (
+                                  <span>...</span>
+                                ) : (
+                                  <Trash2 className="w-3 h-3" aria-hidden="true" />
+                                )}
                               </button>
                             </div>
                           )}
@@ -1965,8 +2009,10 @@ export default function NeuroGuidePage() {
                             {conf.stats.positiveTrials} Positive
                           </span>
                           <span className="text-[var(--border-hairline)]">•</span>
-                          <span className="font-semibold text-[#C25934] dark:text-orange-400">
-                            {conf.stats.practiceChangingCount} ⚡ Practice-Changing
+                          <span className="font-semibold text-[#C25934] dark:text-orange-400 inline-flex items-center gap-1">
+                            <span>{conf.stats.practiceChangingCount}</span>
+                            <Zap className="w-3 h-3" aria-hidden="true" />
+                            <span>Practice-Changing</span>
                           </span>
                         </div>
 
@@ -2033,18 +2079,21 @@ export default function NeuroGuidePage() {
                                       <span className="font-bold text-[var(--text-muted)]">Intervention vs. Control:</span>{" "}
                                       {tr.interventionGroup} vs {tr.controlGroup}
                                     </div>
-                                    <div className="p-2 rounded-xl bg-[var(--bg-paper)] border border-[var(--border-hairline)] text-[11px] font-semibold text-[var(--text-ink)]">
-                                      🎯 {tr.primaryOutcome}
+                                    <div className="p-2 rounded-xl bg-[var(--bg-paper)] border border-[var(--border-hairline)] text-[11px] font-semibold text-[var(--text-ink)] flex items-start gap-1.5">
+                                      <Target className="w-3.5 h-3.5 text-[#C25934] dark:text-orange-400 shrink-0 mt-0.5" aria-hidden="true" />
+                                      <span>{tr.primaryOutcome}</span>
                                     </div>
-                                    <div className="text-[11px] text-[var(--text-muted)]">
-                                      🛡️ {tr.safetyOutcome}
+                                    <div className="text-[11px] text-[var(--text-muted)] flex items-start gap-1.5">
+                                      <ShieldCheck className="w-3.5 h-3.5 shrink-0 mt-0.5" aria-hidden="true" />
+                                      <span>{tr.safetyOutcome}</span>
                                     </div>
                                   </div>
                                 </div>
 
                                 <div className="pt-2.5 border-t border-[var(--border-hairline)] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                                  <div className="text-[11px] sm:text-xs text-[#C25934] dark:text-orange-400 font-bold leading-relaxed">
-                                    💡 {tr.bottomLineTakeaway}
+                                  <div className="text-[11px] sm:text-xs text-[#C25934] dark:text-orange-400 font-bold leading-relaxed flex items-start gap-1.5">
+                                    <Lightbulb className="w-3.5 h-3.5 shrink-0 mt-0.5" aria-hidden="true" />
+                                    <span>{tr.bottomLineTakeaway}</span>
                                   </div>
                                   <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
                                     {sanitizeUrl(tr.fullTextUrl) && (
@@ -2055,17 +2104,17 @@ export default function NeuroGuidePage() {
                                         className="text-[10.5px] font-bold text-[var(--text-muted)] hover:text-[#C25934] hover:underline flex items-center gap-0.5"
                                       >
                                         <span>Paper</span>
-                                        <span>↗</span>
+                                        <ArrowUpRight className="w-3 h-3" aria-hidden="true" />
                                       </a>
                                     )}
                                     {isAdminVerified && (
                                       <button
                                         type="button"
                                         onClick={() => handleDeleteConferenceTrial(conf, tr.id, tr.trialAcronym)}
-                                        className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-500 hover:bg-rose-500/20 border border-rose-500/30 cursor-pointer"
+                                        className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-500 hover:bg-rose-500/20 border border-rose-500/30 cursor-pointer flex items-center"
                                         title="Delete trial from conference"
                                       >
-                                        🗑️
+                                        <Trash2 className="w-3 h-3" aria-hidden="true" />
                                       </button>
                                     )}
                                   </div>
@@ -2085,7 +2134,7 @@ export default function NeuroGuidePage() {
                               className="text-xs font-bold text-[#C25934] dark:text-orange-400 hover:underline flex items-center gap-1"
                             >
                               <span>Official Supplement / Abstracts</span>
-                              <span>↗</span>
+                              <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
                             </a>
                           ) : (
                             <span className="text-xs font-semibold text-[var(--text-muted)]">
@@ -2150,8 +2199,8 @@ export default function NeuroGuidePage() {
            ========================================================================= */}
         {activeTab === "review" && (
           <div className="p-8 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-ink)] shadow-2xs text-center max-w-lg mx-auto my-12">
-            <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-[#C25934]/10 flex items-center justify-center text-2xl">
-              🛡️
+            <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-[#C25934]/10 border border-[#C25934]/20 flex items-center justify-center text-[#C25934] dark:text-orange-400">
+              <ShieldCheck className="w-6 h-6" aria-hidden="true" />
             </div>
             <h3 className="text-base font-bold mb-1 text-[var(--text-ink)]">Kiểm duyệt đã được hợp nhất vào Admin Command Center</h3>
             <p className="text-xs text-[var(--text-muted)] mb-5 leading-relaxed">
@@ -2212,7 +2261,7 @@ export default function NeuroGuidePage() {
             setExpandedGuidelineIds((prev) => ({ ...prev, [newDoc.id]: true }));
             setSelectedSocietyFilter("ALL");
             setSyncMessage(
-              `🎉 Successfully generated and saved Practice Guideline "${newDoc.title}" (${newDoc.allPracticeChanges.length} recommendations)!`
+              `Successfully generated and saved Practice Guideline "${newDoc.title}" (${newDoc.allPracticeChanges.length} recommendations)!`
             );
             reloadGuidelines();
             fetchQueueCount();
@@ -2281,17 +2330,8 @@ export default function NeuroGuidePage() {
             FOOTER
            ========================================================================= */}
         <footer className="border-t border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-muted)] mt-12 py-6 text-center text-xs transition-colors">
-          <div className="max-w-[1440px] mx-auto space-y-3">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-[#C25934] dark:text-orange-400">NEUROGUIDE</span>
-                <span>• Part of the Neuro Ecosystem</span>
-              </div>
-              <div>
-                Clinical Practice Guidelines, Consensus Statements &amp; Conference Intelligence Radar
-              </div>
-            </div>
-            <p className="text-[11px] leading-relaxed pt-2 border-t border-[var(--border-hairline)]">
+          <div className="max-w-[1440px] mx-auto">
+            <p className="text-[11px] leading-relaxed">
               <span className="font-semibold text-[var(--text-secondary)]">
                 Medical Disclaimer:
               </span>{" "}

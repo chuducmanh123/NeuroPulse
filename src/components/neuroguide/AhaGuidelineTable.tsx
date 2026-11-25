@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { BarChart3, ClipboardList, Pencil, Trash2, X } from "lucide-react";
 import { cleanGuidelineTitle } from "@/lib/neuroguide/guidelineFormat";
 
 export interface AhaRecommendationItem {
@@ -145,7 +146,7 @@ export function AhaGuidelineTable({
           className="self-start sm:self-auto inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 rounded-lg bg-white/15 hover:bg-white/25 active:bg-white/30 text-white text-[11px] sm:text-xs font-bold transition-all border border-white/20 cursor-pointer shadow-xs shrink-0"
           title="View AHA/ASA COR (Class) & LOE (Level) standard scheme"
         >
-          <span>📊</span>
+          <BarChart3 className="w-3.5 h-3.5" aria-hidden="true" />
           <span>View COR / LOE Scheme</span>
         </button>
       </div>
@@ -196,18 +197,20 @@ export function AhaGuidelineTable({
                             <button
                               type="button"
                               onClick={() => onEditRec(rec)}
-                              className="text-[10.5px] font-bold text-amber-600 dark:text-amber-400 hover:underline"
+                              className="text-[10.5px] font-bold text-amber-600 dark:text-amber-400 hover:underline inline-flex items-center gap-1"
                             >
-                              ✏️ Edit
+                              <Pencil className="w-3 h-3" aria-hidden="true" />
+                              <span>Edit</span>
                             </button>
                           )}
                           {onDeleteRec && (
                             <button
                               type="button"
                               onClick={() => onDeleteRec(rec)}
-                              className="text-[10.5px] font-bold text-rose-500 hover:underline"
+                              className="text-[10.5px] font-bold text-rose-500 hover:underline inline-flex items-center"
+                              aria-label="Delete recommendation"
                             >
-                              🗑️
+                              <Trash2 className="w-3 h-3" aria-hidden="true" />
                             </button>
                           )}
                         </div>
@@ -333,18 +336,20 @@ export function AhaGuidelineTable({
                                   <button
                                     type="button"
                                     onClick={() => onEditRec(rec)}
-                                    className="text-[10.5px] font-bold text-amber-600 dark:text-amber-400 hover:underline cursor-pointer"
+                                    className="text-[10.5px] font-bold text-amber-600 dark:text-amber-400 hover:underline cursor-pointer inline-flex items-center gap-1"
                                   >
-                                    ✏️ Edit recommendation
+                                    <Pencil className="w-3 h-3" aria-hidden="true" />
+                                    <span>Edit recommendation</span>
                                   </button>
                                 )}
                                 {onDeleteRec && (
                                   <button
                                     type="button"
                                     onClick={() => onDeleteRec(rec)}
-                                    className="text-[10.5px] font-bold text-rose-500 hover:underline cursor-pointer"
+                                    className="text-[10.5px] font-bold text-rose-500 hover:underline cursor-pointer inline-flex items-center gap-1"
                                   >
-                                    🗑️ Delete
+                                    <Trash2 className="w-3 h-3" aria-hidden="true" />
+                                    <span>Delete</span>
                                   </button>
                                 )}
                               </div>
@@ -375,7 +380,7 @@ export function AhaGuidelineTable({
             {/* Modal Header */}
             <div className="sticky top-0 z-10 flex items-center justify-between p-4 border-b bg-slate-800 text-white">
               <div className="flex items-center gap-2">
-                <span className="text-xl">📋</span>
+                <ClipboardList className="w-5 h-5 text-slate-300" aria-hidden="true" />
                 <div>
                   <h3 className="font-black text-sm uppercase tracking-wide">
                     ACC / AHA Classification of Recommendations &amp; Level of Evidence
@@ -388,9 +393,10 @@ export function AhaGuidelineTable({
               <button
                 type="button"
                 onClick={() => setShowMatrixModal(false)}
+                aria-label="Close modal"
                 className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-700 hover:bg-slate-600 text-white font-bold cursor-pointer transition-all"
               >
-                ✕
+                <X className="w-4 h-4" aria-hidden="true" />
               </button>
             </div>
 

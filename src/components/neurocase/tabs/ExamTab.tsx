@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Timer } from "lucide-react";
+import { Award, Target, Timer } from "lucide-react";
 import { ClinicalCase } from "@/types/clinicalCase";
 import { NeuroImagingViewer } from "@/components/neurocase/NeuroImagingViewer";
 
@@ -70,7 +70,7 @@ export function ExamTab({
           <div className="p-4 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/60 text-left space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <span className="text-xs font-black uppercase text-[#6D28D9] dark:text-violet-400 flex items-center gap-1.5">
-                <span>🎯</span>
+                <Target className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>
                   Subspecialty Domains (
                   {examSelectedSpecialties.length === 0
@@ -155,7 +155,9 @@ export function ExamTab({
       ) : examFinished ? (
         <div className="text-center max-w-xl mx-auto py-8 space-y-6">
           <div className="space-y-2">
-            <span className="text-5xl">🏆</span>
+            <div className="w-12 h-12 mx-auto rounded-2xl bg-[#6D28D9]/10 border border-[#6D28D9]/20 flex items-center justify-center text-[#6D28D9] dark:text-violet-400">
+              <Award className="w-6 h-6" aria-hidden="true" />
+            </div>
             <h2 className="font-journal text-2xl sm:text-3xl font-bold text-[var(--text-ink)]">Exam Results</h2>
           </div>
 

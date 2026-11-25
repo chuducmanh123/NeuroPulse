@@ -1646,7 +1646,7 @@ export function PathwayAdminModal({
                                           : "bg-amber-500/15 border-amber-500/35"
                                       }`}
                                     >
-                                      <span className="font-mono font-bold">[{issue.code}]</span> {issue.message}
+                                      {issue.message}
                                     </button>
                                   ))}
                                 </div>

@@ -79,8 +79,8 @@ export function ReproBoard({
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
             <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
               {isLactation
-                ? `🟢 Compatible (${col1Drugs.length})`
-                : `🟢 Preferred (${col1Drugs.length})`}
+                ? `Compatible (${col1Drugs.length})`
+                : `Preferred (${col1Drugs.length})`}
             </h3>
           </div>
 
@@ -108,7 +108,7 @@ export function ReproBoard({
           <div className="flex items-center gap-2 mb-3 pb-2 border-b border-amber-200/60 dark:border-amber-900/40">
             <AlertTriangle className="w-4 h-4 text-amber-500" />
             <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-amber-700 dark:text-amber-400">
-              🟡 Caution ({col2Drugs.length})
+              Caution ({col2Drugs.length})
             </h3>
           </div>
 
@@ -134,7 +134,7 @@ export function ReproBoard({
           <div className="flex items-center gap-2 mb-3 pb-2 border-b border-rose-200/60 dark:border-rose-900/40">
             <XCircle className="w-4 h-4 text-rose-500" />
             <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-rose-700 dark:text-rose-400">
-              🔴 Avoid ({col3Drugs.length})
+              Avoid ({col3Drugs.length})
             </h3>
           </div>
 

@@ -1,6 +1,20 @@
 "use client";
 
 import React, { useState, useRef, useMemo } from "react";
+import {
+  AlertTriangle,
+  Bot,
+  CheckCircle2,
+  ClipboardList,
+  CloudUpload,
+  FileText,
+  FolderOpen,
+  Lightbulb,
+  NotebookPen,
+  Rocket,
+  Sparkles,
+  X,
+} from "lucide-react";
 import { parseNotebookLMContent } from "@/lib/neuroguide/notebooklmParser";
 import { detectSociety } from "@/lib/neuroguide/pubmedDiscovery";
 import { GuidelineDoc, SubspecialtyType, NEUROLOGY_SUBSPECIALTIES } from "@/types/neuroguide";
@@ -240,7 +254,7 @@ export function NotebookLMUploadModal({
       } catch {}
 
       setSuccessMessage(
-        `🎉 Successfully generated Practice Guideline "${data.guideline.title}" with ${data.stats?.totalRecommendations || 0} recommendations!`
+        `Successfully generated Practice Guideline "${data.guideline.title}" with ${data.stats?.totalRecommendations || 0} recommendations!`
       );
 
       setTimeout(() => {
@@ -265,8 +279,8 @@ export function NotebookLMUploadModal({
         {/* Header */}
         <div className="flex items-center justify-between p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 flex items-center justify-center text-xl text-white shadow-md">
-              📝
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 flex items-center justify-center text-white shadow-md">
+              <NotebookPen className="w-5 h-5" aria-hidden="true" />
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -284,9 +298,10 @@ export function NotebookLMUploadModal({
           </div>
           <button
             onClick={onClose}
+            aria-label="Close modal"
             className="p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >
-            ✕
+            <X className="w-4 h-4" aria-hidden="true" />
           </button>
         </div>
 
@@ -295,23 +310,25 @@ export function NotebookLMUploadModal({
           <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-200/60 dark:bg-slate-800 text-xs font-bold">
             <button
               onClick={() => setActiveTab("paste")}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
                 activeTab === "paste"
                   ? "bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-xs"
                   : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
-              📋 Paste Text / Markdown Table
+              <ClipboardList className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>Paste Text / Markdown Table</span>
             </button>
             <button
               onClick={() => setActiveTab("file")}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
                 activeTab === "file"
                   ? "bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-xs"
                   : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
-              📁 Upload File (.md, .txt, .doc, .docx, .pdf)
+              <FolderOpen className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>Upload File (.md, .txt, .doc, .docx, .pdf)</span>
             </button>
           </div>
 
@@ -367,17 +384,13 @@ export function NotebookLMUploadModal({
                   onChange={handleFileChange}
                   className="hidden"
                 />
-                <div className="w-12 h-12 mx-auto mb-2 rounded-2xl bg-amber-500/10 flex items-center justify-center text-2xl">
+                <div className="w-12 h-12 mx-auto mb-2 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400">
                   {isParsingFile ? (
                     <span className="w-6 h-6 border-2 border-amber-500/30 border-t-amber-500 rounded-full animate-spin" />
                   ) : selectedFile ? (
-                    selectedFile.name.toLowerCase().endsWith(".pdf")
-                      ? "📕"
-                      : selectedFile.name.toLowerCase().match(/\.docx?$/)
-                      ? "📘"
-                      : "📄"
+                    <FileText className="w-6 h-6" aria-hidden="true" />
                   ) : (
-                    "☁️"
+                    <CloudUpload className="w-6 h-6" aria-hidden="true" />
                   )}
                 </div>
                 {isParsingFile ? (
@@ -408,7 +421,7 @@ export function NotebookLMUploadModal({
                 <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 transition-all">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                      <span>📄</span>
+                      <FileText className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" aria-hidden="true" />
                       <span>Extracted Text ({rawText.length.toLocaleString()} characters)</span>
                     </span>
                     <button
@@ -432,8 +445,9 @@ export function NotebookLMUploadModal({
                         }`}
                         placeholder="Extracted text content from file..."
                       />
-                      <p className="text-[10px] text-slate-400">
-                        💡 You can edit the text directly above; the recommendation table below will automatically update.
+                      <p className="text-[10px] text-slate-400 flex items-center gap-1">
+                        <Lightbulb className="w-3 h-3 shrink-0 text-amber-500" aria-hidden="true" />
+                        <span>You can edit the text directly above; the recommendation table below will automatically update.</span>
                       </p>
                     </div>
                   )}
@@ -585,7 +599,7 @@ export function NotebookLMUploadModal({
                       <tr>
                         <td colSpan={4} className="p-6 text-center text-slate-500 dark:text-slate-400">
                           <div className="flex flex-col items-center justify-center gap-2 py-2">
-                            <span className="text-3xl">📋</span>
+                            <ClipboardList className="w-7 h-7 text-slate-400" aria-hidden="true" />
                             <p className="font-bold text-xs text-slate-700 dark:text-slate-300">
                               No valid recommendation table or list detected yet
                             </p>
@@ -634,7 +648,7 @@ export function NotebookLMUploadModal({
           {rawText && (parsedPreview?.stats.totalRecommendations || 0) === 0 && (
             <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs">
               <div className="flex items-center gap-2.5">
-                <span className="text-2xl">✨</span>
+                <Sparkles className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" aria-hidden="true" />
                 <div>
                   <p className="text-xs font-bold text-amber-700 dark:text-amber-400">
                     Automated Recommendation Extraction via AI
@@ -657,7 +671,7 @@ export function NotebookLMUploadModal({
                   </>
                 ) : (
                   <>
-                    <span>🤖</span>
+                    <Bot className="w-3.5 h-3.5" aria-hidden="true" />
                     <span>Extract with AI (Gemini)</span>
                   </>
                 )}
@@ -668,14 +682,14 @@ export function NotebookLMUploadModal({
           {/* Feedback messages */}
           {errorMessage && (
             <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs flex items-center gap-2">
-              <span>⚠️</span>
+              <AlertTriangle className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span>{errorMessage}</span>
             </div>
           )}
 
           {successMessage && (
             <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs flex items-center gap-2">
-              <span>✅</span>
+              <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span>{successMessage}</span>
             </div>
           )}
@@ -706,12 +720,12 @@ export function NotebookLMUploadModal({
                 </>
               ) : duplicateMatch ? (
                 <>
-                  <span>⚠️</span>
+                  <AlertTriangle className="w-3.5 h-3.5" aria-hidden="true" />
                   <span>Duplicate guideline title (Rename to save)</span>
                 </>
               ) : (
                 <>
-                  <span>🚀</span>
+                  <Rocket className="w-3.5 h-3.5" aria-hidden="true" />
                   <span>Generate Practice Guideline ({parsedPreview?.stats.totalRecommendations || 0} Recommendations)</span>
                 </>
               )}

@@ -8,6 +8,7 @@ import {
   ArrowRightLeft,
   Activity,
   Dna,
+  Lightbulb,
 } from "lucide-react";
 import type {
   CuratedHit,
@@ -55,25 +56,25 @@ export function InteractionCard({
 
     const severityConfig = {
       contraindicated: {
-        badge: "🔴 Contraindicated",
+        badge: "Contraindicated",
         border: darkMode ? "border-rose-900/60 bg-rose-950/20" : "border-rose-200 bg-rose-50/50",
         badgeColor: "bg-rose-500/15 text-rose-700 dark:text-rose-400 border-rose-500/30",
         icon: <AlertOctagon className="w-4 h-4 text-rose-500" />,
       },
       major: {
-        badge: "🟠 Major Interaction",
+        badge: "Major Interaction",
         border: darkMode ? "border-amber-900/60 bg-amber-950/20" : "border-amber-200 bg-amber-50/50",
         badgeColor: "bg-amber-500/15 text-amber-700 dark:text-amber-400 border-amber-500/30",
         icon: <AlertTriangle className="w-4 h-4 text-amber-500" />,
       },
       moderate: {
-        badge: "🟡 Moderate Interaction",
+        badge: "Moderate Interaction",
         border: darkMode ? "border-yellow-900/60 bg-yellow-950/20" : "border-yellow-200 bg-yellow-50/50",
         badgeColor: "bg-yellow-500/15 text-yellow-700 dark:text-yellow-400 border-yellow-500/30",
         icon: <Info className="w-4 h-4 text-yellow-500" />,
       },
       minor: {
-        badge: "🟡 Minor Interaction",
+        badge: "Minor Interaction",
         border: darkMode ? "border-slate-800 bg-slate-900/30" : "border-slate-200 bg-slate-50/50",
         badgeColor: "bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700",
         icon: <Info className="w-4 h-4 text-slate-400" />,
@@ -130,7 +131,8 @@ export function InteractionCard({
             }`}
           >
             <div className="font-bold flex items-center gap-1.5 text-slate-900 dark:text-slate-100 mb-1">
-              <span>💡 Clinical Management</span>
+              <Lightbulb className="w-3.5 h-3.5 text-amber-500" aria-hidden="true" />
+              <span>Clinical Management</span>
             </div>
             <p className="leading-relaxed">{hit.management}</p>
           </div>
@@ -194,7 +196,7 @@ export function InteractionCard({
               }`}
             >
               <Activity className="w-4 h-4 text-sky-500" />
-              <span>🔵 {flag.label}</span>
+              <span>{flag.label}</span>
             </span>
             <span className="text-sm sm:text-base font-extrabold text-slate-900 dark:text-slate-100">
               {flag.title}
@@ -250,7 +252,7 @@ export function InteractionCard({
               }`}
             >
               <Dna className="w-4 h-4 text-purple-500" />
-              <span>💪 May Worsen Myasthenia</span>
+              <span>May Worsen Myasthenia</span>
             </span>
             <span className="text-sm sm:text-base font-extrabold text-slate-900 dark:text-slate-100">
               {drugName} ({isAvoid ? "Avoid in MG" : "Caution / May Worsen MG"})
