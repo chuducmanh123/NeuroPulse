@@ -1,5 +1,53 @@
 [
   {
+    "id": "10.1056/nejmc2608489",
+    "title": "Dual-Target Adaptive Deep-Brain Stimulation for Tourette Syndrome",
+    "journal": {
+      "name": "The New England Journal of Medicine",
+      "short_name": "NEJM",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-26T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Okun Michael S.",
+      "Gómez Durán Julieth",
+      "Lowor Grace T.",
+      "Hook Matthew P.",
+      "Pontone Gregory M.",
+      "Bowers Dawn",
+      "Arias Franchesca",
+      "Allen William",
+      "Cagle Jackson",
+      "Rafferty Emily C.",
+      "Korytov Irina",
+      "Malaty Irene",
+      "Foote Kelly D.",
+      "Butson Christopher R.",
+      "Gunduz Aysegul"
+    ],
+    "doi_url": "https://doi.org/10.1056/nejmc2608489",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Brain"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at NEJM via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1001/jama.2026.22999",
     "title": "What Is Idiopathic Normal Pressure Hydrocephalus?",
     "journal": {
@@ -9,9 +57,9 @@
       "badge_text": "#DC2626"
     },
     "pub_date": "2026-11-25T00:00:00Z",
-    "article_type": "Review",
+    "article_type": "Original Article",
     "article_types": [
-      "Review"
+      "Original Article"
     ],
     "authors": [
       "Walter Kristin L."
@@ -44,9 +92,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-25T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Li Xin-Yue",
@@ -67,11 +115,12 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "BACKGROUND AND OBJECTIVES: Although visceral adiposity and metabolic comorbidities may increase risks of dementia and mortality, the implications of the newly proposed European Association for the Study of Obesity (EASO) framework remain unclear. We aimed to describe the prevalence of obesity under the EASO framework vs traditional body mass index (BMI) criteria and to examine their associations with incident dementia and all-cause mortality. METHODS: We used data from the English Longitudinal Study on Ageing (ELSA) and China Health and Retirement Longitudinal Study (CHARLS). Participants were classified using the EASO framework, which integrates BMI, waist-to-height ratio, and obesity-related comorbidities. Dementia was defined using validated algorithmic criteria or self-reported physician diagnosis; all-cause mortality was ascertained from death registries, medical records, or interviews with relatives. Associations between obesity phenotypes and outcomes were examined using Cox proportional hazards models, with cohort-specific hazard ratios (HRs) pooled using random-effects meta-analysis. RESULTS: Among 18,944 participants (mean age: ELSA 65.9 ± 9.3 years, CHARLS 58.2 ± 9.7 years; 54.3% and 53.2% female, respectively), 17,617 were included in the dementia analysis and 18,197 for mortality analysis, with a median follow-up of 8.2 years (CHARLS) and 11.5 years (ELSA). Under the EASO framework, 24.9% of CHARLS participants and 37.7% of ELSA participants were classified as obese. Compared with normal weight, EASO-defined overweight was associated with lower dementia (HRpooled: 0.61 [0.45-0.81]) and mortality (HRpooled: 0.32 [0.13-0.81]) risks; EASO-defined obesity was also associated with lower mortality risk (HRpooled: 0.79 [0.10-0.89]). When using normal weight without comorbidity as reference, EASO-defined obesity was linked to increased dementia risk (HRpooled: 1.93 [1.50-2.48]); although the increased mortality risk was only significant in CHARLS, the pooled overall estimate remained positive (HRpooled: 1.30 [1.01-1.68]). BMI-defined obesity showed similar patterns but did not capture the protective associations observed for overweight. Among individuals newly classified as having obesity, the most prevalent comorbidities were diabetes (35.1%) and hypertension (42.6%). DISCUSSION: The EASO definition substantially reclassified obesity status in both Chinese and British older adults and revealed associations with dementia and mortality distinct from BMI alone. Although the observational design and self-reported dementia outcomes limited generalizability, our findings suggest that incorporating fat distribution and comorbidities assessment is crucial for clinical risk stratification.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In two aging cohorts (n=18,944), EASO-defined obesity—incorporating fat distribution and comorbidities—was associated with increased dementia (HR 1.93, 95% CI 1.50-2.48) and mortality (HR 1.30, 95% CI 1.01-1.68) risks versus normal weight without comorbidities. Incorporating these factors improves clinical risk stratification beyond BMI alone.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Original Article"
     }
   },
   {
@@ -2220,7 +2269,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4324",
-    "title": "Reflections on the Utility of Surveillance MRIs in an Evolving MS Landscape.",
+    "title": "Reflections on the Utility of Surveillance MRIs in an Evolving MS Landscape",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -2233,8 +2282,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "McConville K",
-      "Ontaneda D."
+      "McConville Kylie",
+      "Ontaneda Daniel"
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4324",
     "neurology_classification": {
@@ -2578,7 +2627,8 @@
         "Stroke"
       ],
       "topics": [
-        "Stroke"
+        "Stroke",
+        "Ischemic"
       ]
     },
     "abstract": "Sleep-disordered breathing (SDB) is associated with unfavorable outcomes in acute stroke; however, long-term outcomes remain underexplored with conflicting cohort-based evidence.In this cohort study from the Bern Sleep-Stroke Registry, Yang and colleagues examined associations of SDB during acute stroke or transient ischemic attack with all-cause mortality, major adverse cardiovascular events, and functional outcomes.SDB was measured by respiratory polygraphy within 3 days of hospital admission and defined by the apnea-hypopnea index (AHI) as mild (AHI, 5/h to <15/h), moderate (AHI, 15/h to <30/h), and severe (AHI ≥30/h).Among 1082 patients with acute stroke/transient ischemic attack (mean age, 66 years; 63% men), 77% had SDB, the mean AHI was 19/h, and 6% had central sleep apnea.All-cause mortality occurred in 16.5% after a mean follow-up of 51 months, although major adverse cardiovascular event occurred in 17% after a mean followup of 48 months.After multivariable adjustment, severe SDB was independently associated with all-cause mortality (adjusted hazard ratio, 1.73 [95% CI, 1.04-2.89]).Mild, moderate, and severe SDB were independently associated with an increased risk (roughly 2-fold) of major adverse cardiovascular event.Moreover, moderate and severe SDB were independently associated with unfavorable 3-month functional outcomes after multivariable adjustment.When SDB was modeled as an ordinal variable, a linear trend was observed with increasing risk for all-cause mortality, major adverse cardiovascular event, and unfavorable 3-month functional outcomes with increasing SDB severity.Patients with severe SDB more often had cardioembolic stroke, and those with moderate-severe SDB and atrial fibrillation had a higher risk of all-cause mortality.These findings highlight the high prevalence of SDB after acute stroke/transient ischemic attack and its association with adverse short-and long-term outcomes, underscoring the potential importance of screening for SDB after stroke/transient ischemic attack and of further research to determine whether treatment improves clinical outcomes.See p 3632.",
@@ -2854,7 +2904,7 @@
   },
   {
     "id": "10.1001/jama.2026.20669",
-    "title": "Pediatric Medical Imaging and Brain Tumor Risk.",
+    "title": "Pediatric Medical Imaging and Brain Tumor Risk",
     "journal": {
       "name": "JAMA",
       "short_name": "JAMA",
@@ -2867,9 +2917,9 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Persiani F",
-      "Boldrini L",
-      "De Maria R."
+      "Persiani Federica",
+      "Boldrini Luca",
+      "De Maria Ruggero"
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.20669",
     "neurology_classification": {
@@ -5038,7 +5088,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4218",
-    "title": "Agent Orange and Parkinson Disease-The War Ended, the Exposure: Did Not.",
+    "title": "Agent Orange and Parkinson Disease—The War Ended, the Exposure: Did Not",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -5051,9 +5101,9 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Goldman SM",
-      "Dorsey ER",
-      "Okun MS."
+      "Goldman Samuel M.",
+      "Dorsey E. Ray",
+      "Okun Michael S."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4218",
     "neurology_classification": {
@@ -15132,7 +15182,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4165",
-    "title": "Arrival of CAR T-Cell Therapies for Stiff Person Syndrome.",
+    "title": "Arrival of CAR T-Cell Therapies for Stiff Person Syndrome",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -15145,8 +15195,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Gupta S",
-      "Gelfand JM."
+      "Gupta Sasha",
+      "Gelfand Jeffrey M."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4165",
     "neurology_classification": {
@@ -15463,7 +15513,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4491",
-    "title": "Azetukalner in Adults With Focal Seizures: Research Summary.",
+    "title": "Azetukalner in Adults With Focal Seizures",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -33249,6 +33299,40 @@
     "ai_takeaways": {
       "conclusion_vi": "",
       "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(15)00185-4",
+    "title": "Non-invasive ventilation and diaphragmatic pacing in ALS",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2015-07-30T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Mitsumoto Hiroshi"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(15)00185-4",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Als"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
       "ai_verified": false
     }
   },
