@@ -1,5 +1,230 @@
 [
   {
+    "id": "nc-2026-069",
+    "case_code": "NC-2026-069",
+    "title": "Acute Visual Field Loss and Hemisensory Deficit with Equivocal Early Non-Contrast CT",
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-26",
+    "status": "approved",
+    "author_credit": "Frontiers in neurology • PMC13447057",
+    "source_journal": {
+      "name": "Frontiers in neurology",
+      "short_name": "Frontiers in neurology",
+      "doi_url": "https://doi.org/10.3389/fneur.2026.1794563",
+      "pmcid": "PMC13447057",
+      "pmid": "42568351",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "66-year-old male",
+      "chief_complaint": "Sudden-onset right-sided visual disturbance and numbness",
+      "history_of_present_illness": "A 66-year-old right-handed man presented to the emergency department 2.5 hours after the abrupt onset of difficulty seeing objects on his right side while reading the morning newspaper. His spouse noted that he was bumping into doorframes on his right, and he reported tingling and numbness across the right side of his body. He denied headache, loss of consciousness, limb weakness, dysarthria, or diplopia, and he was transported directly by ambulance for emergent stroke evaluation.",
+      "past_medical_history": "Hypertension, hyperlipidemia, and paroxysmal atrial fibrillation (nonadherent to anticoagulation).",
+      "vitals": {
+        "bp": "162/92 mmHg",
+        "hr": "84 bpm",
+        "rr": "16 breaths/min",
+        "temp": "36.7 °C",
+        "spo2": "97%"
+      },
+      "neuro_exam": "On initial neurologic examination, he was alert and oriented to person and place, with mild impairment on delayed word recall; language fluency, comprehension, and repetition were intact. Confrontational visual field testing revealed a dense right homonymous hemianopia, whereas pupillary light reflexes and extraocular movements were intact. Motor strength was 5/5 throughout all four extremities without pronator drift. Pinprick and light touch sensation were markedly reduced over the right face, arm, and leg. Coordination was intact without dysmetria, and his admission National Institutes of Health Stroke Scale (NIHSS) score was 5.",
+      "key_labs_csf": "Point-of-care blood glucose was 118 mg/dL, the international normalized ratio (INR) was 1.0, the platelet count was 215,000/µL, and a basic metabolic panel was unremarkable. An electrocardiogram demonstrated atrial fibrillation with a controlled ventricular rate. Emergent non-contrast head CT excluded intracerebral hemorrhage and mass lesion, showing no frank parenchymal hypodensity and only subtle, equivocal sulcal effacement.",
+      "imaging": [
+        {
+          "modality": "Workflow Diagram (NCCT & DWI ML Pipeline)",
+          "sequence_badge": "Figure 1 • Frontiers in neurology (PMC13447057)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13447057_fig1.jpg",
+          "pmcid": "PMC13447057",
+          "doi_url": "https://doi.org/10.3389/fneur.2026.1794563",
+          "caption": "Workflow diagram of the machine learning framework for infarct territory prediction. The methodological pipeline comprises six sequential stages: (1) Case Collection: Acquisition of paired DWI and NCCT scans from ischemic stroke patients; (2) Area Segmentation: Automated partitioning of cerebral vasculature into ACA, MCP, PCA; (3) Region Selection: Identification of infarct regions within vascular territories; (4) Data Partitioning: Division of processed datasets into training, validation, and test subsets (60%:20%:20%); (5) Feature Extraction: Derivation of imaging biomarkers (HU values, volu",
+          "findings_summary": "Illustrates a six-stage machine learning framework integrating paired non-contrast CT and diffusion-weighted MRI scans, automated cerebral arterial territory partitioning, region selection, data splitting, and quantitative imaging feature extraction."
+        },
+        {
+          "modality": "Decision Curve Analysis (DCA)",
+          "sequence_badge": "Figure 2 • Frontiers in neurology (PMC13447057)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13447057_fig2.jpg",
+          "pmcid": "PMC13447057",
+          "doi_url": "https://doi.org/10.3389/fneur.2026.1794563",
+          "caption": "DCA of the prediction models across different tasks. (A) Acute versus non-acute infarction classification. (B) Laterality (left, right, and bilateral) infarction classification. (C) Territorial (ACA, MCA, and PCA) infarction classification.",
+          "findings_summary": "Displays net clinical benefit curves across three classification models evaluating acute versus non-acute infarction, lesion laterality, and cerebral arterial territory localization."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Based on the patient's acute clinical presentation, which cerebral arterial perfusion territory is most likely involved?",
+      "question_type": "Localization",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Left anterior cerebral artery (ACA) territory",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. The ACA supplies the medial frontal lobe, medial parietal lobe, and corpus callosum; infarction in this territory classically produces contralateral lower-extremity-predominant weakness, abulia, and gait apraxia rather than homonymous hemianopia and pan-hemisensory loss."
+        },
+        {
+          "id": "B",
+          "text": "Left posterior cerebral artery (PCA) territory",
+          "peer_percentage": 68,
+          "rationale": "Correct! The PCA perfuses the occipital lobe, medial temporal lobe, and thalamus. Left PCA territory infarction accounts for the contralateral (right) homonymous hemianopia, mild memory impairment, and contralateral hemisensory deficit involving the face, arm, and leg in the absence of aphasia or motor weakness."
+        },
+        {
+          "id": "C",
+          "text": "Left middle cerebral artery (MCA) territory",
+          "peer_percentage": 18,
+          "rationale": "Incorrect. Although left MCA ischemia involving the parietotemporal optic radiations can produce right homonymous hemianopia and sensory loss, MCA territory infarcts (lateral frontal, parietal, and temporal lobes and insula) typically cause aphasia in a right-handed patient and contralateral face-and-arm-predominant motor weakness rather than isolated hemianopia, thalamic hemisensory loss, and memory impairment."
+        },
+        {
+          "id": "D",
+          "text": "Basilar artery territory",
+          "peer_percentage": 6,
+          "rationale": "Incorrect. Basilar artery occlusion affects brainstem structures (pons and midbrain) and typically manifests with cranial nerve palsies, crossed sensory-motor deficits, dysarthria, diplopia, ataxia, or depressed consciousness."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Acute Left Posterior Cerebral Artery (PCA) Territorial Infarction",
+      "clinical_discussion": "Localizing ultra-early acute ischemic stroke on non-contrast CT (NCCT) is challenging because early parenchymal hypodensity and sulcal effacement are subtle and heavily dependent on interpreter experience. In this patient presenting with a dense right homonymous hemianopia, pan-hemisensory loss involving the right face, arm, and leg, and mild delayed-recall impairment without motor weakness or aphasia, the differential diagnosis centers on single-territory supratentorial arterial syndromes. Left middle cerebral artery (MCA) infarction can involve the optic radiations and somatosensory cortex, yet in a right-handed individual it typically produces aphasia and contralateral brachiofacial weakness. Left anterior cerebral artery (ACA) infarction affects the medial frontal and parietal lobes and corpus callosum, classically causing contralateral crural-predominant weakness and frontal executive dysfunction. Basilar artery ischemia affects brainstem pathways, producing cranial neuropathies, diplopia, ataxia, or impaired consciousness, and lies outside standardized supratentorial ACA, MCA, and PCA perfusion partitioning atlases.\n\nThe diagnostic inflection point relied on pairing precise neuroanatomical localization with quantitative NCCT analysis and subsequent 3.0-T diffusion-weighted MRI (DWI) confirmation. When performed after emergent stabilization, 3.0-T DWI mapped against the Talairach and Tournoux brain atlas confirmed acute restricted diffusion confined to the left occipital lobe, medial temporal lobe, and thalamus—the classic left PCA perfusion territory—secondary to cardioembolism from untreated paroxysmal atrial fibrillation. Pathophysiologically, ultra-early cerebral ischemia induces cytotoxic edema with only minimal net increases in parenchymal water content, rendering early hypodensity nearly imperceptible on routine visual inspection. Region-specific stratified machine learning frameworks using automated vascular territory segmentation can extract sub-visual NCCT features—including subtle Hounsfield unit attenuation shifts, sulcal effacement indices, and spatial distribution metrics—to objectively identify the culprit ACA, MCA, or PCA territory from baseline NCCT.\n\nRapidly localizing the affected vascular territory directly guides time-critical reperfusion and secondary prevention. Because the patient presented 2.5 hours after symptom onset with an NIHSS score of 5, disabling visual field loss, and no hemorrhage on baseline NCCT, he received immediate intravenous thrombolysis within the 4.5-hour therapeutic window without delaying care for MRI confirmation. Automated NCCT territorial decision-support tools can shorten the imaging-to-decision interval in acute stroke triage. Following thrombolysis, the patient experienced partial improvement in hemisensory symptoms and was initiated on oral anticoagulation for secondary cardioembolic stroke prevention.",
+      "teaching_points": [
+        "Supratentorial cerebral arterial perfusion territories map to distinct clinical syndromes: ACA (medial frontal and parietal lobes, corpus callosum), MCA (lateral frontal, parietal, and temporal lobes, insula), and PCA (occipital lobe, medial temporal lobe, thalamus).",
+        "Non-contrast CT remains the first-line emergency stroke modality to exclude hemorrhage, but ultra-early ischemic signs such as subtle Hounsfield unit attenuation drops and mild sulcal effacement are frequently missed on routine visual inspection.",
+        "Region-specific machine learning models trained on segmented NCCT territorial features serve as rapid decision-support tools to localize culprit vessels when MRI-DWI is not immediately available, helping preserve the narrow 4.5-hour intravenous thrombolysis window."
+      ],
+      "clinical_pitfalls": [
+        "Delaying acute reperfusion therapy in an eligible patient (<4.5 hours from onset) solely because baseline NCCT lacks frank hypodensity, particularly in non-MCA territories (ACA or PCA) where standard ASPECTS scoring is less sensitive.",
+        "Misapplying single-territory supratentorial perfusion models (ACA, MCA, or PCA) to patients with multi-territory cardioembolic infarcts or basilar artery strokes, which fall outside standard single-territory partitioning atlases."
+      ],
+      "related_keywords": [
+        "Posterior Cerebral Artery",
+        "Non-Contrast CT",
+        "Infarct Localization",
+        "Machine Learning"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-070",
+    "case_code": "NC-2026-070",
+    "title": "Acute Ataxia, Confusion, and Bilateral Thalamic Hemorrhage in an Adolescent Female",
+    "subspecialty": "Neurocritical Care",
+    "subspecialties": [
+      "Neurocritical Care",
+      "Neuroimmunology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-26",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13779880",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05239-z",
+      "pmcid": "PMC13779880",
+      "pmid": "43052797",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "15-year-old Somali female",
+      "chief_complaint": "Acute headache, confusion, and gait unsteadiness",
+      "history_of_present_illness": "A previously healthy 15-year-old girl presented to the emergency department with a 24-hour history of acute-onset severe headache, progressive confusion, and gait unsteadiness. Her family reported no antecedent febrile illness, upper respiratory symptoms, or gastrointestinal complaints, and there was no history of head trauma, toxic ingestion, new medications, or recent travel.",
+      "past_medical_history": "Unremarkable; no prior neurologic disorders, chronic medical conditions, or regular medications.",
+      "vitals": {
+        "bp": "116/72 mmHg",
+        "hr": "94 bpm",
+        "rr": "18 breaths/min",
+        "temp": "36.9 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "On neurologic examination, she was somnolent and disoriented to time and place, with slowed verbal responses. Cranial nerves II through XII were intact without papilledema or gaze palsy, and motor strength was full throughout without pronator drift. Coordination testing revealed prominent bilateral limb dysmetria, dysdiadochokinesia, and truncal ataxia precluding independent ambulation.",
+      "key_labs_csf": "Initial complete blood count, comprehensive metabolic panel, and coagulation profile were within normal limits; serum inflammatory and infectious panels were pending, and lumbar puncture was initially deferred pending neuroimaging.",
+      "imaging": [
+        {
+          "modality": "Noncontrast CT of the brain",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13779880)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13779880_fig1.webp",
+          "pmcid": "PMC13779880",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05239-z",
+          "caption": "(A–D). Non-contrast computed tomography (CT) of the brain demonstrates diffuse cerebral edema, more pronounced in the left parafalcine region, with bilateral symmetrical hyperdense hemorrhagic involvement of the thalami",
+          "findings_summary": "Diffuse cerebral edema, most pronounced in the left parafalcine region, with symmetric bilateral thalamic hyperdensity consistent with hemorrhage."
+        },
+        {
+          "modality": "MRI of the brain (with and without contrast)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13779880)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13779880_fig2.webp",
+          "pmcid": "PMC13779880",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05239-z",
+          "caption": "Brain magnetic resonance imaging (MRI) demonstrates extensive bilateral cerebral and cerebellar lesions with symmetrical involvement of the thalami and hippocampi. The lesions show hemorrhagic transformation without significant post-contrast enhancement, findings consistent with acute hemorrhagic leukoencephalitis",
+          "findings_summary": "Extensive bilateral cerebral and cerebellar white-matter lesions, along with symmetric involvement of the thalami and hippocampi, demonstrating hemorrhagic transformation without significant postcontrast enhancement."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Based on the clinical presentation and neuroimaging findings, what is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Acute necrotizing encephalopathy (ANE)",
+          "peer_percentage": 19,
+          "rationale": "Incorrect. Although acute necrotizing encephalopathy classically produces symmetric bilateral thalamic hemorrhagic necrosis and rapid neurologic decline, it typically follows an acute febrile viral prodrome and lacks the extensive multifocal cerebral and cerebellar white-matter involvement seen in this patient."
+        },
+        {
+          "id": "B",
+          "text": "Deep cerebral venous sinus thrombosis (CVST)",
+          "peer_percentage": 9,
+          "rationale": "Incorrect. Internal cerebral vein thrombosis is a critical vascular mimic of bilateral thalamic hemorrhage and edema that warrants urgent venography, but it does not typically explain extensive multifocal lesions involving the bilateral cerebellar and cerebral white matter and hippocampi."
+        },
+        {
+          "id": "C",
+          "text": "Acute hemorrhagic leukoencephalitis (AHLE)",
+          "peer_percentage": 66,
+          "rationale": "Correct! Acute hemorrhagic leukoencephalitis (Hurst disease) is a fulminant, hyperacute demyelinating disorder characterized by rapid neurologic deterioration, diffuse cerebral edema, and multifocal white-matter and deep gray-matter lesions with hemorrhagic transformation and minimal or absent contrast enhancement."
+        },
+        {
+          "id": "D",
+          "text": "Tumefactive multiple sclerosis (MS)",
+          "peer_percentage": 6,
+          "rationale": "Incorrect. Tumefactive multiple sclerosis typically presents with solitary or oligofocal periventricular lesions oriented perpendicular to the corpus callosum with characteristic open-ring enhancement rather than fulminant bilateral hemorrhagic transformation."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Acute hemorrhagic leukoencephalitis (Hurst disease)",
+      "clinical_discussion": "The presentation of acute confusion, cerebellar ataxia, diffuse cerebral edema, and symmetric bilateral thalamic hemorrhage raises a focused differential diagnosis that includes acute hemorrhagic leukoencephalitis (AHLE), acute necrotizing encephalopathy (ANE), deep cerebral venous sinus thrombosis (CVST), and severe acute disseminated encephalomyelitis (ADEM) or tumefactive multiple sclerosis (MS). Deep CVST is an essential vascular emergency to exclude whenever bilateral thalamic venous congestion or hemorrhage is encountered. Similarly, ANE shares overlapping deep gray-matter hemorrhagic necrosis and rapid impairment of consciousness, whereas ADEM and tumefactive MS typically represent nonhemorrhagic inflammatory demyelinating spectra.\n\nIn this patient, subsequent MR venography was normal, definitively excluding cerebral venous thrombosis, and comprehensive infectious and autoimmune panels were unrevealing. Although bilateral thalamic hemorrhage initially raised suspicion for ANE, the absence of a preceding viral febrile prodrome and the presence of extensive bilateral cerebral and cerebellar white-matter lesions favored AHLE. Originally described by Edward Weston Hurst in 1941, AHLE represents the most severe, hyperacute variant of ADEM. Its pathogenesis is thought to involve immune-mediated cross-reactivity (molecular mimicry) between microbial antigens and host myelin, triggering robust CD8+ T-cell activation, perivascular demyelination, neutrophilic and macrophage infiltration, fibrinoid vascular necrosis, and petechial or confluent hemorrhage.\n\nHistorically, AHLE carries a dismal prognosis, with mortality rates approaching 70% and complete remission reported in as few as 14% of fulminant cases. Despite diffuse cerebral edema and extensive hemorrhagic transformation, early clinical recognition and immediate initiation of aggressive immunomodulatory therapy—high-dose intravenous methylprednisolone combined with intravenous immunoglobulin (IVIG) alongside supportive neurocritical care—resulted in marked radiologic improvement on repeat MRI at 2 weeks and full neurologic recovery.",
+      "teaching_points": [
+        "Acute hemorrhagic leukoencephalitis (Hurst disease) is a rare, hyperacute variant of ADEM characterized by multifocal white-matter lesions with edema, mass effect, and hemorrhagic transformation on MRI.",
+        "Bilateral thalamic hemorrhage requires urgent MR or CT venography to exclude deep cerebral venous sinus thrombosis, as well as careful differentiation from acute necrotizing encephalopathy (ANE).",
+        "Unlike tumefactive multiple sclerosis, which typically exhibits solitary or oligofocal periventricular lesions with open-ring enhancement, AHLE demonstrates widespread bilateral lesions with hemorrhage and minimal or absent contrast enhancement.",
+        "Early recognition by MRI and prompt initiation of combined high-dose corticosteroids and IVIG can reverse severe cerebral edema and achieve full neurologic recovery despite high historical mortality."
+      ],
+      "clinical_pitfalls": [
+        "Assuming bilateral thalamic hemorrhagic edema represents deep cerebral venous thrombosis without performing dedicated venography, or delaying empiric immunotherapy while awaiting complete infectious and autoimmune exclusion.",
+        "Misdiagnosing AHLE as typical ADEM or ANE and managing with conservative supportive care alone rather than immediate dual immunomodulation with pulse intravenous corticosteroids and IVIG."
+      ],
+      "related_keywords": [
+        "Acute hemorrhagic leukoencephalitis",
+        "Hurst disease",
+        "Bilateral thalamic hemorrhage",
+        "Acute necrotizing encephalopathy",
+        "ADEM"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-067",
     "case_code": "NC-2026-067",
     "title": "Acute Focal Deficits and Seizures Following Surveillance Cerebral Angiography",
