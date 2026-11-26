@@ -315,4 +315,15 @@ describe("NeuroCalc Data Validator & 6-Block Merkle Hashing (T1)", () => {
     assert.equal(evaluated.effectiveStatus, "verified");
     assert.equal(evaluated.hashMatches, true);
   });
+
+  it("validates custom scoring.expression on formula scales and rejects unknown variables", () => {
+    const formula = makeValidFormulaScale();
+    delete formula.scoring.formula_id;
+    formula.scoring.expression = "(a * b * c) / 2";
+    assert.deepEqual(validateScaleRecord(formula), []);
+
+    formula.scoring.expression = "(a * missing_var) / 2";
+    const errs = validateScaleRecord(formula);
+    assert.ok(errs.some((e) => e.path === "scoring.expression"));
+  });
 });

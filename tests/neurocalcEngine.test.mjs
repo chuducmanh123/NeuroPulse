@@ -1,6 +1,11 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { evaluateScale } from "../src/lib/neurocalc/engine.ts";
+import {
+  evaluateExpression,
+  validateExpression,
+} from "../src/lib/neurocalc/expression.ts";
+import { evaluateFormula } from "../src/lib/neurocalc/formulas.ts";
 import { computeRecordContentHashSync } from "../src/lib/neurocalc/integrity.ts";
 
 function sealVerified(scale) {
@@ -530,5 +535,220 @@ describe("NeuroCalc Scoring Engine & Formulas (T2)", () => {
     );
     assert.equal(preview.isGated, false);
     assert.equal(preview.score, 5);
+  });
+
+  it("validates and evaluates safe math expressions and custom scoring.expression", () => {
+    assert.equal(validateExpression("(a * b * c) / 2", new Set(["a", "b", "c"])).valid, true);
+    assert.equal(
+      validateExpression("a + unknown_var", new Set(["a", "b"])).valid,
+      false
+    );
+    assert.equal(validateExpression("10 / (2 + 3").valid, false);
+
+    assert.equal(evaluateExpression("2 + 3 * 4 ^ 2", {}), 50);
+    assert.equal(evaluateExpression("if(x >= 10, x * 1.5, x / 2)", { x: 12 }), 18);
+    assert.equal(evaluateExpression("if(x >= 10, x * 1.5, x / 2)", { x: 8 }), 4);
+    assert.equal(evaluateExpression("round(sqrt(2), 2)", {}), 1.41);
+    assert.equal(evaluateExpression("10 / x", { x: 0 }), null);
+
+    const customScale = sealVerified({
+      id: "custom-expr-scale",
+      schema_version: 1,
+      metadata: {
+        name: "Custom Expression Formula",
+        short_name: "CEF",
+        aliases: [],
+        subspecialties: ["Neurocritical Care"],
+        kind: "formula",
+        summary: "Custom math test",
+      },
+      items: [
+        {
+          kind: "numeric",
+          id: "x",
+          label: "X",
+          required: true,
+          canonical_unit: "mg/dL",
+          units: [{ unit: "mg/dL", label: "mg/dL", to_canonical_factor: 1 }],
+          min_canonical: 1,
+          max_canonical: 100,
+        },
+        {
+          kind: "numeric",
+          id: "y",
+          label: "Y (optional)",
+          required: false,
+          canonical_unit: "mg/dL",
+          units: [{ unit: "mg/dL", label: "mg/dL", to_canonical_factor: 1 }],
+          min_canonical: 0,
+          max_canonical: 100,
+        },
+      ],
+      scoring: {
+        method: "formula",
+        min_score: 0,
+        max_score: null,
+        precision: 2,
+        expression: "(x * 2.5) + y / 2",
+      },
+      interpretation: [
+        {
+          id: "all",
+          min: 0,
+          max: null,
+          label: "Computed",
+          severity: "info",
+          summary: "Custom expression output",
+          refs: [{ source_id: "r1", locator: "Eq 1" }],
+        },
+      ],
+      assessment_guides: [],
+      references: [{ id: "r1", citation: "Ref 1", year: 2024 }],
+      status: "draft",
+      verification: { verified_by: null, verified_at: null, content_hash: null },
+    });
+
+    assert.equal(evaluateScale(customScale, { x: 10 }).score, 25);
+    assert.equal(evaluateScale(customScale, { x: 10, y: 5 }).score, 27.5);
+  });
+
+  it("evaluates all 8 published cardiovascular risk models accurately", () => {
+    // 1. SCORE2 (55yo Male, Low, non-smoker, SBP 130, TC 5.5, HDL 1.3 -> ~4.0%)
+    const s2 = evaluateFormula("score2", {
+      sex: 1,
+      region: 0,
+      age: 55,
+      smoker: 0,
+      sbp: 130,
+      total_chol: 5.5,
+      hdl_chol: 1.3,
+    });
+    assert.ok(s2 !== null && Math.abs(s2 - 4.0) < 0.15);
+
+    // 2. SCORE2-OP (73yo Female, Low, non-smoker, no DM, SBP 130, TC 5.0, HDL 1.5 -> ~6.4%)
+    const s2op = evaluateFormula("score2_op", {
+      sex: 0,
+      region: 0,
+      age: 73,
+      smoker: 0,
+      diabetes: 0,
+      sbp: 130,
+      total_chol: 5.0,
+      hdl_chol: 1.5,
+    });
+    assert.ok(s2op !== null && s2op > 5 && s2op < 8);
+
+    // 3. SCORE2-Diabetes (ESC published example -> 8.4%)
+    const s2dm = evaluateFormula("score2_diabetes", {
+      sex: 1,
+      region: 0,
+      age: 60,
+      diabetes_age: 60,
+      smoker: 0,
+      sbp: 140,
+      total_chol: 5.5,
+      hdl_chol: 1.3,
+      hba1c: 50,
+      egfr: 90,
+    });
+    assert.equal(Number(s2dm.toFixed(1)), 8.4);
+
+    // 4. ASCVD PCE (Goff 2014 Table A worked example -> 5.4%)
+    const ascvd = evaluateFormula("ascvd_pce", {
+      sex_race: 2,
+      age: 55,
+      total_chol: 213,
+      hdl_chol: 50,
+      sbp: 120,
+      bp_treated: 0,
+      smoker: 0,
+      diabetes: 0,
+    });
+    assert.equal(Number(ascvd.toFixed(1)), 5.4);
+
+    // 5. SMART2 (requires >=1 disease location)
+    assert.equal(
+      evaluateFormula("smart2", {
+        region: 0,
+        age: 62,
+        sex: 1,
+        smoker: 0,
+        diabetes: 0,
+        sbp: 135,
+        total_chol: 4.8,
+        hdl_chol: 1.3,
+        egfr: 80,
+        hscrp: 1.8,
+        years_since_diagnosis: 2,
+        cad: 0,
+        cerebrovascular: 0,
+        pad: 0,
+        aaa: 0,
+        antithrombotic: 1,
+      }),
+      null
+    );
+    const smart = evaluateFormula("smart2", {
+      region: 0,
+      age: 62,
+      sex: 1,
+      smoker: 0,
+      diabetes: 0,
+      sbp: 135,
+      total_chol: 4.8,
+      hdl_chol: 1.3,
+      egfr: 80,
+      hscrp: 1.8,
+      years_since_diagnosis: 2,
+      cad: 0,
+      cerebrovascular: 1,
+      pad: 0,
+      aaa: 0,
+      antithrombotic: 1,
+    });
+    assert.ok(smart !== null && smart > 10 && smart < 20);
+
+    // 6. PREVENT 10y Total CVD (55yo Female baseline -> 1 / (1 + exp(3.307728)) = 3.53%)
+    const prevF = evaluateFormula("prevent_10y_cvd", {
+      sex: 0,
+      age: 55,
+      total_chol: 4.8,
+      hdl_chol: 1.3,
+      sbp: 130,
+      egfr: 90,
+      diabetes: 0,
+      smoker: 0,
+      bp_treated: 0,
+      statin: 0,
+    });
+    assert.equal(Number(prevF.toFixed(1)), 3.5);
+
+    // 7. GRACE 2.0 1-year mortality
+    const g2 = evaluateFormula("grace_2_1y_death", {
+      age: 90,
+      heart_rate: 92,
+      sbp: 139,
+      creatinine: 1.06,
+      killip: 1,
+      cardiac_arrest: 0,
+      positive_enzymes: 1,
+      st_deviation: 1,
+    });
+    assert.ok(g2 !== null && g2 > 15 && g2 < 30);
+
+    // 8. RF-CL (Male 70-80, symptom 3, 4 RF -> 39%)
+    assert.equal(
+      evaluateFormula("rf_cl", {
+        sex: 1,
+        age_group: 4,
+        symptom_score: 2,
+        rf_family_hx: 1,
+        rf_smoking: 1,
+        rf_dyslipidemia: 1,
+        rf_hypertension: 1,
+        rf_diabetes: 0,
+      }),
+      39
+    );
   });
 });

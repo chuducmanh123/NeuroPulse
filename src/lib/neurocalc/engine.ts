@@ -5,6 +5,7 @@ import type {
   ScaleRecord,
   SelectScaleItem,
 } from "../../types/neurocalc.ts";
+import { evaluateExpression } from "./expression.ts";
 import { evaluateFormula } from "./formulas.ts";
 import { evaluateEffectiveScale } from "./integrity.ts";
 
@@ -47,6 +48,7 @@ export interface ScoreEvaluationResult {
   score: number | null;
   formattedScore: string | null;
   band: InterpretationBand | null;
+  applicableBands: InterpretationBand[];
   subscores: SubscoreResult[];
   untestableItems: UntestableItemSummary[];
   fieldErrors: NumericFieldError[];
@@ -140,6 +142,7 @@ export function evaluateScale(
       score: null,
       formattedScore: null,
       band: null,
+      applicableBands: scale.interpretation,
       subscores: [],
       untestableItems: [],
       fieldErrors: [],
@@ -224,8 +227,26 @@ export function evaluateScale(
   const isComplete =
     answeredRequiredCount === requiredCount && fieldErrors.length === 0;
 
+  const mergedNumeric: Record<string, number> = {};
+  for (const item of scale.items) {
+    if (item.kind === "numeric" && !item.required) {
+      mergedNumeric[item.id] = 0;
+    }
+  }
+  for (const [k, v] of Object.entries(selectPointsById)) {
+    if (typeof v === "number") mergedNumeric[k] = v;
+  }
+  for (const [k, v] of Object.entries(canonicalNumericById)) {
+    mergedNumeric[k] = v;
+  }
+
   let rawScore: number | null = null;
-  if (scale.scoring.method === "sum") {
+  const customExpr = scale.scoring.expression?.trim();
+  if (customExpr) {
+    if (isComplete) {
+      rawScore = evaluateExpression(customExpr, mergedNumeric);
+    }
+  } else if (scale.scoring.method === "sum") {
     if (answeredTotalCount > 0) {
       let sum = 0;
       for (const item of scale.items) {
@@ -255,13 +276,6 @@ export function evaluateScale(
     }
   } else if (scale.scoring.method === "formula") {
     if (isComplete && scale.scoring.formula_id) {
-      const mergedNumeric: Record<string, number> = {};
-      for (const [k, v] of Object.entries(selectPointsById)) {
-        if (typeof v === "number") mergedNumeric[k] = v;
-      }
-      for (const [k, v] of Object.entries(canonicalNumericById)) {
-        mergedNumeric[k] = v;
-      }
       rawScore = evaluateFormula(scale.scoring.formula_id, mergedNumeric);
     }
   }
@@ -274,10 +288,30 @@ export function evaluateScale(
       : null;
   const formattedScore = score !== null ? score.toFixed(precision) : null;
 
+  const hasConditionalBands = scale.interpretation.some((b) =>
+    Boolean(b.condition)
+  );
+  let applicableBands = scale.interpretation;
+  if (hasConditionalBands) {
+    const matchedConditional = scale.interpretation.filter((b) => {
+      if (!b.condition) return true;
+      const res = evaluateExpression(b.condition, mergedNumeric);
+      return res !== null && res !== 0;
+    });
+    if (matchedConditional.length > 0) {
+      applicableBands = matchedConditional;
+    } else {
+      const firstCond = scale.interpretation.find((b) => b.condition)?.condition;
+      applicableBands = firstCond
+        ? scale.interpretation.filter((b) => b.condition === firstCond)
+        : scale.interpretation;
+    }
+  }
+
   let band: InterpretationBand | null = null;
   if (isComplete && score !== null) {
     band =
-      scale.interpretation.find(
+      applicableBands.find(
         (b) => score >= b.min && (b.max === null || score <= b.max)
       ) ?? null;
   }
@@ -313,6 +347,7 @@ export function evaluateScale(
     score,
     formattedScore,
     band,
+    applicableBands,
     subscores,
     untestableItems,
     fieldErrors,

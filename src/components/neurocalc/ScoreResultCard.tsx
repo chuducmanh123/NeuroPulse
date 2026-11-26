@@ -111,6 +111,11 @@ export function ScoreResultCard({
   const SeverityIcon = activeStyle.Icon;
   const hasAnyScore = evaluation.formattedScore !== null;
 
+  const visibleBands =
+    evaluation.applicableBands.length > 0
+      ? evaluation.applicableBands
+      : scale.interpretation;
+
   return (
     <div
       id="neurocalc-result-card"
@@ -176,7 +181,7 @@ export function ScoreResultCard({
       </div>
 
       {/* Visual Segmented Severity Bar */}
-      {scale.interpretation.length > 0 && (
+      {visibleBands.length > 0 && (
         <div className="mt-4">
           <div
             className="flex gap-1.5"
@@ -187,10 +192,15 @@ export function ScoreResultCard({
                 : "Severity stratification bar"
             }
           >
-            {scale.interpretation.map((band) => {
+            {visibleBands.map((band) => {
               const style = SEVERITY_STYLES[band.severity];
               const isActive = activeBand?.id === band.id;
-              return (
+              const visibleBands =
+    evaluation.applicableBands.length > 0
+      ? evaluation.applicableBands
+      : scale.interpretation;
+
+  return (
                 <div
                   key={band.id}
                   title={`${band.label} (${band.min}${

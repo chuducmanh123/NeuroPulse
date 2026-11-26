@@ -12,7 +12,15 @@ export type FormulaId =
   | "abc_2"
   | "corrected_na_katz"
   | "corrected_phenytoin_winter_tozer"
-  | "serum_osmolality";
+  | "serum_osmolality"
+  | "score2"
+  | "score2_op"
+  | "score2_diabetes"
+  | "ascvd_pce"
+  | "smart2"
+  | "prevent_10y_cvd"
+  | "grace_2_1y_death"
+  | "rf_cl";
 
 export interface SourceRef {
   source_id: string;
@@ -91,6 +99,7 @@ export interface ScoringConfig {
   unit?: string;
   precision?: number;
   formula_id?: FormulaId;
+  expression?: string;
   untestable_policy?: "exclude_and_flag";
   subscores?: SubscoreDef[];
 }
@@ -99,6 +108,7 @@ export interface InterpretationBand {
   id: string;
   min: number;
   max: number | null;
+  condition?: string;
   label: string;
   severity: SeverityLevel;
   summary: string;

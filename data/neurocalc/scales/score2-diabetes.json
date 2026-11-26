@@ -1,0 +1,228 @@
+{
+  "id": "score2-diabetes",
+  "schema_version": 1,
+  "metadata": {
+    "name": "SCORE2-Diabetes (10-Year CVD Risk in Type 2 Diabetes, Age 40–69)",
+    "short_name": "SCORE2-Diabetes",
+    "aliases": ["ESC SCORE2-DM", "Diabetes CVD Risk"],
+    "subspecialties": ["Stroke", "Other"],
+    "kind": "formula",
+    "summary": "Estimates 10-year fatal and non-fatal CVD risk in adults aged 40–69 with type 2 diabetes without established ASCVD or severe target organ damage.",
+    "time_estimate": "~1–2 min",
+    "clinical_pearls": [
+      "Do not apply SCORE2-Diabetes to patients with established ASCVD or severe target-organ damage (eGFR <45, eGFR 45–59 with microalbuminuria, proteinuria, or microvascular disease in >=3 sites)—they are automatically Very High Risk per 2023 ESC Guidelines.",
+      "Supports both IFCC HbA1c (mmol/mol) and NGSP HbA1c (%)."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "sex",
+      "label": "Biological Sex",
+      "required": true,
+      "options": [
+        { "id": "female", "label": "Female", "points": 0, "badge": "F" },
+        { "id": "male", "label": "Male", "points": 1, "badge": "M" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "region",
+      "label": "ESC Cardiovascular Risk Region",
+      "required": true,
+      "options": [
+        { "id": "low", "label": "Low-risk region", "points": 0, "badge": "Low" },
+        { "id": "moderate", "label": "Moderate-risk region", "points": 1, "badge": "Mod" },
+        { "id": "high", "label": "High-risk region", "points": 2, "badge": "High" },
+        { "id": "very_high", "label": "Very-high-risk region", "points": 3, "badge": "V.High" }
+      ]
+    },
+    {
+      "kind": "numeric",
+      "id": "age",
+      "label": "Current Age",
+      "required": true,
+      "canonical_unit": "years",
+      "units": [{ "unit": "years", "label": "years", "to_canonical_factor": 1 }],
+      "min_canonical": 40,
+      "max_canonical": 69,
+      "step": 1
+    },
+    {
+      "kind": "numeric",
+      "id": "diabetes_age",
+      "label": "Age at Type 2 Diabetes Diagnosis",
+      "required": true,
+      "canonical_unit": "years",
+      "units": [{ "unit": "years", "label": "years", "to_canonical_factor": 1 }],
+      "min_canonical": 18,
+      "max_canonical": 69,
+      "step": 1
+    },
+    {
+      "kind": "select",
+      "id": "smoker",
+      "label": "Current Smoking Status",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "Non-smoker / Former smoker", "points": 0 },
+        { "id": "yes", "label": "Current smoker", "points": 1 }
+      ]
+    },
+    {
+      "kind": "numeric",
+      "id": "sbp",
+      "label": "Systolic Blood Pressure",
+      "required": true,
+      "canonical_unit": "mmHg",
+      "units": [{ "unit": "mmHg", "label": "mmHg", "to_canonical_factor": 1 }],
+      "min_canonical": 90,
+      "max_canonical": 220,
+      "step": 1
+    },
+    {
+      "kind": "numeric",
+      "id": "total_chol",
+      "label": "Total Cholesterol",
+      "required": true,
+      "canonical_unit": "mmol/L",
+      "units": [
+        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 1 },
+        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 0.02586 }
+      ],
+      "min_canonical": 2.0,
+      "max_canonical": 12.0,
+      "step": 0.1
+    },
+    {
+      "kind": "numeric",
+      "id": "hdl_chol",
+      "label": "HDL Cholesterol",
+      "required": true,
+      "canonical_unit": "mmol/L",
+      "units": [
+        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 1 },
+        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 0.02586 }
+      ],
+      "min_canonical": 0.4,
+      "max_canonical": 3.5,
+      "step": 0.1
+    },
+    {
+      "kind": "numeric",
+      "id": "hba1c",
+      "label": "HbA1c",
+      "required": true,
+      "canonical_unit": "mmol/mol",
+      "units": [
+        { "unit": "mmol/mol", "label": "mmol/mol (IFCC)", "to_canonical_factor": 1 },
+        { "unit": "%", "label": "% (NGSP)", "to_canonical_factor": 10.929, "to_canonical_offset": -23.5 }
+      ],
+      "min_canonical": 20,
+      "max_canonical": 150,
+      "step": 0.5
+    },
+    {
+      "kind": "numeric",
+      "id": "egfr",
+      "label": "eGFR (CKD-EPI)",
+      "required": true,
+      "canonical_unit": "mL/min/1.73m²",
+      "units": [{ "unit": "mL/min/1.73m²", "label": "mL/min/1.73m²", "to_canonical_factor": 1 }],
+      "min_canonical": 15,
+      "max_canonical": 150,
+      "step": 1
+    }
+  ],
+  "scoring": {
+    "method": "formula",
+    "min_score": 0,
+    "max_score": 100,
+    "unit": "%",
+    "precision": 1,
+    "formula_id": "score2_diabetes"
+  },
+  "interpretation": [
+    {
+      "id": "dm_low",
+      "min": 0,
+      "max": 4.9,
+      "label": "Low Risk (<5%)",
+      "severity": "normal",
+      "summary": "10-year CVD risk <5%. Focus on lifestyle intervention and glycemic/BP/lipid targets per 2023 ESC Diabetes Guidelines.",
+      "refs": [{ "source_id": "marx-2023-esc-dm", "locator": "Figure 3" }]
+    },
+    {
+      "id": "dm_moderate",
+      "min": 5.0,
+      "max": 9.9,
+      "label": "Moderate Risk (5.0–9.9%)",
+      "severity": "mild",
+      "summary": "10-year CVD risk 5% to <10%. Consider SGLT2i or GLP-1 RA in addition to standard cardioprotective management.",
+      "refs": [{ "source_id": "marx-2023-esc-dm", "locator": "Figure 3" }]
+    },
+    {
+      "id": "dm_high",
+      "min": 10.0,
+      "max": 19.9,
+      "label": "High Risk (10.0–19.9%)",
+      "severity": "moderate",
+      "summary": "10-year CVD risk 10% to <20%. Intensive LDL-C lowering (<1.8 mmol/L) and SGLT2i/GLP-1 RA recommended.",
+      "refs": [{ "source_id": "marx-2023-esc-dm", "locator": "Figure 3" }]
+    },
+    {
+      "id": "dm_very_high",
+      "min": 20.0,
+      "max": null,
+      "label": "Very High Risk (>=20%)",
+      "severity": "critical",
+      "summary": "10-year CVD risk >=20%. Aggressive multifactorial risk reduction (LDL-C <1.4 mmol/L) and proven CV-benefit glucose-lowering therapy.",
+      "refs": [{ "source_id": "marx-2023-esc-dm", "locator": "Figure 3" }]
+    }
+  ],
+  "assessment_guides": [],
+  "references": [
+    {
+      "id": "score2diabetes-2023",
+      "citation": "SCORE2-Diabetes Working Group and the ESC Cardiovascular Risk Collaboration. SCORE2-Diabetes: 10-year cardiovascular risk estimation in type 2 diabetes in Europe. Eur Heart J. 2023;44(28):2544-2556.",
+      "year": 2023,
+      "pmid": "37247330",
+      "doi": "10.1093/eurheartj/ehad260"
+    },
+    {
+      "id": "marx-2023-esc-dm",
+      "citation": "Marx N, Federici M, Schütt K, et al. 2023 ESC Guidelines for the management of cardiovascular disease in patients with diabetes. Eur Heart J. 2023;44(39):4043-4140.",
+      "year": 2023,
+      "pmid": "37622663",
+      "doi": "10.1093/eurheartj/ehad192"
+    }
+  ],
+  "test_cases": [
+    {
+      "name": "Published ESC example: 60yo Male, Low, DM age 60, SBP 140, TC 5.5, HDL 1.3, HbA1c 50, eGFR 90 -> 8.4%",
+      "inputs": { "sex": "male", "region": "low", "age": 60, "diabetes_age": 60, "smoker": "no", "sbp": 140, "total_chol": 5.5, "hdl_chol": 1.3, "hba1c": 50, "egfr": 90 },
+      "expected_score": 8.4,
+      "expected_band_id": "dm_moderate"
+    },
+    {
+      "name": "48yo Female, Low region, DM age 45, non-smoker, SBP 125, TC 4.8, HDL 1.5, HbA1c 48, eGFR 95 -> 2.6%",
+      "inputs": { "sex": "female", "region": "low", "age": 48, "diabetes_age": 45, "smoker": "no", "sbp": 125, "total_chol": 4.8, "hdl_chol": 1.5, "hba1c": 48, "egfr": 95 },
+      "expected_score": 2.6,
+      "expected_band_id": "dm_low"
+    },
+    {
+      "name": "65yo Male, High region, DM age 52, smoker, SBP 150, TC 6.2, HDL 1.0, HbA1c 68, eGFR 62 -> 40.5%",
+      "inputs": { "sex": "male", "region": "high", "age": 65, "diabetes_age": 52, "smoker": "yes", "sbp": 150, "total_chol": 6.2, "hdl_chol": 1.0, "hba1c": 68, "egfr": 62 },
+      "expected_score": 40.5,
+      "expected_band_id": "dm_very_high"
+    },
+    {
+      "name": "58yo Female, Moderate region, DM age 50, non-smoker, SBP 145, TC 5.8, HDL 1.2, HbA1c 7.5%, eGFR 75 -> 9.9%",
+      "inputs": { "sex": "female", "region": "moderate", "age": 58, "diabetes_age": 50, "smoker": "no", "sbp": 145, "total_chol": 5.8, "hdl_chol": 1.2, "hba1c": { "value": 7.5, "unit": "%" }, "egfr": 75 },
+      "expected_score": 9.9,
+      "expected_band_id": "dm_moderate"
+    }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

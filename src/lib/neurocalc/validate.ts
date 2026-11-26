@@ -1,4 +1,5 @@
 import { SUBSPECIALTY_LIST } from "../../constants/subspecialties.ts";
+import { validateExpression } from "./expression.ts";
 import type {
   FormulaId,
   RecordStatus,
@@ -26,6 +27,14 @@ const VALID_FORMULA_IDS = new Set<FormulaId>([
   "corrected_na_katz",
   "corrected_phenytoin_winter_tozer",
   "serum_osmolality",
+  "score2",
+  "score2_op",
+  "score2_diabetes",
+  "ascvd_pce",
+  "smart2",
+  "prevent_10y_cvd",
+  "grace_2_1y_death",
+  "rf_cl",
 ]);
 const VALID_SUBSPECIALTIES = new Set<string>(
   SUBSPECIALTY_LIST.filter((s) => s !== "All Subspecialties")
@@ -457,14 +466,36 @@ export function validateScaleRecord(
       });
     }
 
+    const hasExpression = isNonEmptyString(s.expression);
+    if (s.expression !== undefined) {
+      if (!isNonEmptyString(s.expression)) {
+        errors.push({
+          path: "scoring.expression",
+          message: "scoring.expression must be a non-empty math expression",
+        });
+      } else {
+        const exprCheck = validateExpression(
+          s.expression,
+          new Set(itemById.keys())
+        );
+        if (!exprCheck.valid) {
+          errors.push({
+            path: "scoring.expression",
+            message: exprCheck.error ?? "Invalid scoring expression",
+          });
+        }
+      }
+    }
+
     if (s.method === "formula") {
-      if (
-        !isNonEmptyString(s.formula_id) ||
-        !VALID_FORMULA_IDS.has(s.formula_id as FormulaId)
-      ) {
+      const hasFormulaId =
+        isNonEmptyString(s.formula_id) &&
+        VALID_FORMULA_IDS.has(s.formula_id as FormulaId);
+      if (!hasFormulaId && !hasExpression) {
         errors.push({
           path: "scoring.formula_id",
-          message: "Formula scales require a valid formula_id",
+          message:
+            "Formula scales require a valid formula_id or a custom scoring.expression",
         });
       }
     }
@@ -504,13 +535,17 @@ export function validateScaleRecord(
 
   // Interpretation (block 4)
   const bandIds = new Set<string>();
-  const parsedBands: Array<{ min: number; max: number | null; idx: number }> = [];
+  const parsedBandsByCondition = new Map<
+    string,
+    Array<{ min: number; max: number | null; idx: number }>
+  >();
   if (!Array.isArray(scale.interpretation) || scale.interpretation.length === 0) {
     errors.push({
       path: "interpretation",
       message: "At least one interpretation band is required",
     });
   } else {
+    const validItemIdsForBands = new Set(itemById.keys());
     scale.interpretation.forEach((band, idx) => {
       const bp = `interpretation[${idx}]`;
       if (!isPlainObject(band)) {
@@ -526,6 +561,25 @@ export function validateScaleRecord(
         });
       } else {
         bandIds.add(band.id);
+      }
+      if (band.condition !== undefined) {
+        if (!isNonEmptyString(band.condition)) {
+          errors.push({
+            path: `${bp}.condition`,
+            message: "Band condition must be a non-empty expression",
+          });
+        } else {
+          const condCheck = validateExpression(
+            band.condition,
+            validItemIdsForBands
+          );
+          if (!condCheck.valid) {
+            errors.push({
+              path: `${bp}.condition`,
+              message: condCheck.error ?? "Invalid band condition",
+            });
+          }
+        }
       }
       if (!isNonEmptyString(band.label)) {
         errors.push({ path: `${bp}.label`, message: "Band label is required" });
@@ -561,24 +615,31 @@ export function validateScaleRecord(
         });
       }
       if (isFiniteNumber(band.min) && (band.max === null || isFiniteNumber(band.max))) {
-        parsedBands.push({ min: band.min, max: band.max, idx });
+        const condKey = isNonEmptyString(band.condition)
+          ? band.condition.trim()
+          : "__default__";
+        const bucket = parsedBandsByCondition.get(condKey) ?? [];
+        bucket.push({ min: band.min, max: band.max, idx });
+        parsedBandsByCondition.set(condKey, bucket);
       }
 
       validateSourceRefs(band.refs, `${bp}.refs`, validSourceIds, errors);
     });
 
-    // Check for overlapping interpretation bands
-    const sorted = [...parsedBands].sort((a, b) => a.min - b.min);
-    for (let i = 1; i < sorted.length; i++) {
-      const prev = sorted[i - 1];
-      const curr = sorted[i];
-      if (prev.max === null || curr.min <= prev.max) {
-        errors.push({
-          path: `interpretation[${curr.idx}].min`,
-          message: `Interpretation band overlaps with band at index ${prev.idx} (min ${curr.min} <= prev max ${String(
-            prev.max
-          )})`,
-        });
+    // Check for overlapping interpretation bands within each condition group
+    for (const parsedBands of parsedBandsByCondition.values()) {
+      const sorted = [...parsedBands].sort((a, b) => a.min - b.min);
+      for (let i = 1; i < sorted.length; i++) {
+        const prev = sorted[i - 1];
+        const curr = sorted[i];
+        if (prev.max === null || curr.min <= prev.max) {
+          errors.push({
+            path: `interpretation[${curr.idx}].min`,
+            message: `Interpretation band overlaps with band at index ${prev.idx} (min ${curr.min} <= prev max ${String(
+              prev.max
+            )})`,
+          });
+        }
       }
     }
   }

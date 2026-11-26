@@ -6,16 +6,26 @@ import {
   ArrowDown,
   ArrowUp,
   BookOpen,
+  Calculator,
   Check,
   ChevronDown,
   ChevronRight,
+  FlaskConical,
   HelpCircle,
   Loader2,
   Plus,
+  ShieldCheck,
   Trash2,
   X,
 } from "lucide-react";
 import { SUBSPECIALTY_LIST } from "@/constants/subspecialties";
+import { evaluateScale, type ScaleInputValues } from "@/lib/neurocalc/engine";
+import { validateExpression } from "@/lib/neurocalc/expression";
+import { FORMULA_METADATA } from "@/lib/neurocalc/formulas";
+import {
+  evaluateEffectiveScale,
+  sealVerifiedScale,
+} from "@/lib/neurocalc/integrity";
 import {
   CALC_SECTIONS,
   computeSectionHashes,
@@ -25,6 +35,7 @@ import type { SyncRow } from "@/lib/neurocalc/sync/types";
 import { validateScaleRecord } from "@/lib/neurocalc/validate";
 import type {
   AssessmentGuide,
+  FormulaId,
   InterpretationBand,
   NumericScaleItem,
   ScaleItem,
@@ -45,7 +56,8 @@ interface EditScaleBlockModalProps {
   onSaved: (updatedRow: SyncRow) => Promise<void> | void;
 }
 
-type EditorTab = "items" | "interpretation" | "general" | "references";
+type EditorTab = "items" | "scoring" | "interpretation" | "general" | "references";
+type CalcMode = "sum" | "single_select" | "built_in_formula" | "custom_expression";
 
 const SECTION_LABELS: Record<CalcSectionName, string> = {
   metadata: "General Info",
@@ -76,6 +88,8 @@ function cleanLines(lines: string[] | undefined): string[] {
 
 function normalizeDraftForSave(scale: ScaleRecord): ScaleRecord {
   const pearls = cleanLines(scale.metadata.clinical_pearls);
+  const expr = scale.scoring.expression?.trim();
+  const unit = scale.scoring.unit?.trim();
   return {
     ...scale,
     metadata: {
@@ -85,6 +99,11 @@ function normalizeDraftForSave(scale: ScaleRecord): ScaleRecord {
       summary: scale.metadata.summary.trim(),
       time_estimate: scale.metadata.time_estimate?.trim() || undefined,
       clinical_pearls: pearls.length > 0 ? pearls : undefined,
+    },
+    scoring: {
+      ...scale.scoring,
+      unit: unit || undefined,
+      expression: expr || undefined,
     },
     assessment_guides: scale.assessment_guides.map((g) => {
       const prompts = cleanLines(g.exam_prompts);
@@ -279,10 +298,12 @@ export function EditScaleBlockModal({
   const [draft, setDraft] = useState<ScaleRecord | null>(null);
   const [expandedItemIds, setExpandedItemIds] = useState<Record<string, boolean>>({});
   const [openOptionGuides, setOpenOptionGuides] = useState<Record<string, boolean>>({});
+  const [testInputs, setTestInputs] = useState<ScaleInputValues>({});
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [conflictRow, setConflictRow] = useState<SyncRow | null>(null);
   const [pendingMine, setPendingMine] = useState<ScaleRecord | null>(null);
+  const [pendingSaveMode, setPendingSaveMode] = useState<"draft" | "verified">("draft");
 
   useEffect(() => {
     if (isOpen && syncRow) {
@@ -292,9 +313,11 @@ export function EditScaleBlockModal({
       const firstId = cloned.items[0]?.id;
       setExpandedItemIds(firstId ? { [firstId]: true } : {});
       setOpenOptionGuides({});
+      setTestInputs({});
       setError(null);
       setConflictRow(null);
       setPendingMine(null);
+      setPendingSaveMode("draft");
     }
   }, [isOpen, syncRow]);
 
@@ -319,6 +342,28 @@ export function EditScaleBlockModal({
     (sec) => draftSectionHashes[sec] !== syncRow.sectionHashes[sec]
   );
 
+  const isCurrentlyVerified =
+    evaluateEffectiveScale(syncRow.data).effectiveStatus === "verified";
+
+  const calcMode: CalcMode =
+    draft.scoring.expression !== undefined
+      ? "custom_expression"
+      : draft.scoring.method === "formula"
+        ? "built_in_formula"
+        : draft.scoring.method === "single_select"
+          ? "single_select"
+          : "sum";
+
+  const validItemIds = new Set(draft.items.map((it) => it.id));
+  const expressionValidation =
+    calcMode === "custom_expression"
+      ? validateExpression(draft.scoring.expression ?? "", validItemIds)
+      : null;
+
+  const liveTestEval = evaluateScale(normalizedDraft, testInputs, {
+    allowDraftPreview: true,
+  });
+
   const inputClass = `w-full rounded-lg border px-2.5 py-1.5 text-xs transition-colors focus:outline-none focus:border-[#0E7490] ${
     darkMode
       ? "border-slate-700 bg-slate-950/60 text-slate-100 placeholder:text-slate-500"
@@ -329,54 +374,98 @@ export function EditScaleBlockModal({
     darkMode ? "border-slate-800 bg-slate-950/30" : "border-slate-200 bg-white"
   }`;
 
+  const putScale = async (
+    payload: ScaleRecord,
+    expectedRev: number,
+    mode: "draft" | "verified"
+  ): Promise<{ ok: true; row: SyncRow } | { ok: false }> => {
+    const token = getStoredAdminToken();
+    const res = await fetch(
+      `/api/neurocalc/sync/scales/${encodeURIComponent(syncRow.uid)}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-token": token || "",
+        },
+        body: JSON.stringify({
+          expectedRev,
+          data: payload,
+          actor: "admin",
+        }),
+      }
+    );
+    const json = await res.json();
+
+    if (res.status === 409 && json?.code === "REV_CONFLICT" && json?.currentRow) {
+      setPendingMine(payload);
+      setPendingSaveMode(mode);
+      setConflictRow(json.currentRow as SyncRow);
+      return { ok: false };
+    }
+
+    if (!res.ok || !json?.row) {
+      setError(json?.error || `Save failed (${res.status})`);
+      return { ok: false };
+    }
+
+    return { ok: true, row: json.row as SyncRow };
+  };
+
   const submitUpdate = async (
     payloadScale: ScaleRecord,
-    expectedRev: number
+    expectedRev: number,
+    mode: "draft" | "verified"
   ): Promise<void> => {
     setSaving(true);
     setError(null);
 
-    const prepared: ScaleRecord = {
-      ...payloadScale,
-      status: "draft",
-      verification: {
-        verified_by: null,
-        verified_at: null,
-        content_hash: null,
-      },
-    };
-
     try {
-      const token = getStoredAdminToken();
-      const res = await fetch(
-        `/api/neurocalc/sync/scales/${encodeURIComponent(syncRow.uid)}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "x-admin-token": token || "",
-          },
-          body: JSON.stringify({
-            expectedRev,
-            data: prepared,
-            actor: "admin",
-          }),
+      let targetRev = expectedRev;
+      let basePayload = payloadScale;
+
+      if (mode === "verified") {
+        // Repair rows that were previously saved with `status: "verified"` and a stale hash
+        if (
+          syncRow.data.status === "verified" &&
+          !isCurrentlyVerified &&
+          changedSections.length === 0
+        ) {
+          const resetDraft: ScaleRecord = {
+            ...payloadScale,
+            status: "draft",
+            verification: {
+              verified_by: null,
+              verified_at: null,
+              content_hash: null,
+            },
+          };
+          const resetResult = await putScale(resetDraft, targetRev, "verified");
+          if (!resetResult.ok) return;
+          targetRev = resetResult.row.rev;
+          basePayload = resetResult.row.data;
         }
-      );
-      const json = await res.json();
 
-      if (res.status === 409 && json?.code === "REV_CONFLICT" && json?.currentRow) {
-        setPendingMine(prepared);
-        setConflictRow(json.currentRow as SyncRow);
+        const sealed = sealVerifiedScale(basePayload, "Admin");
+        const result = await putScale(sealed, targetRev, "verified");
+        if (!result.ok) return;
+        await onSaved(result.row);
+        onClose();
         return;
       }
 
-      if (!res.ok || !json?.row) {
-        setError(json?.error || `Save failed (${res.status})`);
-        return;
-      }
-
-      await onSaved(json.row as SyncRow);
+      const preparedDraft: ScaleRecord = {
+        ...payloadScale,
+        status: "draft",
+        verification: {
+          verified_by: null,
+          verified_at: null,
+          content_hash: null,
+        },
+      };
+      const result = await putScale(preparedDraft, targetRev, "draft");
+      if (!result.ok) return;
+      await onSaved(result.row);
       onClose();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Network error saving scale.");
@@ -385,14 +474,14 @@ export function EditScaleBlockModal({
     }
   };
 
-  const handleSave = () => {
+  const handleSave = (mode: "draft" | "verified") => {
     if (validationErrors.length > 0) {
       setError(
         `Please fix ${validationErrors.length} issue(s) before saving: ${validationErrors[0].message} (${validationErrors[0].path})`
       );
       return;
     }
-    void submitUpdate(normalizedDraft, syncRow.rev);
+    void submitUpdate(normalizedDraft, syncRow.rev, mode);
   };
 
   // --- Item helpers ---
@@ -604,7 +693,7 @@ export function EditScaleBlockModal({
                 Edit Scale — {draft.metadata.short_name}
               </h2>
               <p className="text-xs text-slate-500 mt-0.5">
-                Changes are saved as a draft and require clinical verification before going live.
+                Edit items, scoring formula, result bands, and references. Save as draft or save and verify immediately.
               </p>
             </div>
             <button
@@ -622,6 +711,7 @@ export function EditScaleBlockModal({
             {(
               [
                 { id: "items", label: `Scale Items (${draft.items.length})` },
+                { id: "scoring", label: "Scoring & Formula" },
                 {
                   id: "interpretation",
                   label: `Result Bands (${draft.interpretation.length})`,
@@ -1263,7 +1353,511 @@ export function EditScaleBlockModal({
               </div>
             )}
 
-            {/* TAB 2: RESULT BANDS */}
+            {/* TAB 2: SCORING & FORMULA */}
+            {activeTab === "scoring" && (
+              <div className="space-y-4">
+                <div className={cardClass}>
+                  <div>
+                    <span className="font-bold text-[11px] uppercase tracking-wider text-slate-500 block mb-2">
+                      Calculation Method
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                      {(
+                        [
+                          {
+                            id: "sum",
+                            title: "Sum of Items",
+                            desc: "Add points from all selected items",
+                          },
+                          {
+                            id: "single_select",
+                            title: "Single Grade",
+                            desc: "Use the grade of one primary item",
+                          },
+                          {
+                            id: "built_in_formula",
+                            title: "Built-in Formula",
+                            desc: "Standard clinical equation",
+                          },
+                          {
+                            id: "custom_expression",
+                            title: "Custom Expression",
+                            desc: "Multiply, divide, or complex math",
+                          },
+                        ] as const
+                      ).map((opt) => {
+                        const active = calcMode === opt.id;
+                        return (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            onClick={() => {
+                              setDraft((prev) => {
+                                if (!prev) return prev;
+                                if (opt.id === "sum") {
+                                  return {
+                                    ...prev,
+                                    metadata: { ...prev.metadata, kind: "point_sum" },
+                                    scoring: {
+                                      ...prev.scoring,
+                                      method: "sum",
+                                      formula_id: undefined,
+                                      expression: undefined,
+                                    },
+                                  };
+                                }
+                                if (opt.id === "single_select") {
+                                  return {
+                                    ...prev,
+                                    metadata: { ...prev.metadata, kind: "ordinal_grade" },
+                                    scoring: {
+                                      ...prev.scoring,
+                                      method: "single_select",
+                                      formula_id: undefined,
+                                      expression: undefined,
+                                    },
+                                  };
+                                }
+                                if (opt.id === "built_in_formula") {
+                                  return {
+                                    ...prev,
+                                    metadata: { ...prev.metadata, kind: "formula" },
+                                    scoring: {
+                                      ...prev.scoring,
+                                      method: "formula",
+                                      formula_id: prev.scoring.formula_id ?? "abc_2",
+                                      expression: undefined,
+                                    },
+                                  };
+                                }
+                                const defaultExpr =
+                                  prev.scoring.expression ??
+                                  (prev.scoring.formula_id
+                                    ? FORMULA_METADATA[prev.scoring.formula_id].equation
+                                    : prev.items.map((i) => i.id).join(" + "));
+                                const nextMethod =
+                                  prev.scoring.method === "single_select"
+                                    ? "formula"
+                                    : prev.scoring.method;
+                                const nextKind =
+                                  nextMethod === "formula" ? "formula" : "point_sum";
+                                return {
+                                  ...prev,
+                                  metadata: { ...prev.metadata, kind: nextKind },
+                                  scoring: {
+                                    ...prev.scoring,
+                                    method: nextMethod,
+                                    expression: defaultExpr,
+                                  },
+                                };
+                              });
+                            }}
+                            className={`rounded-xl border p-3 text-left transition-colors ${
+                              active
+                                ? "border-[#0E7490] bg-[#0E7490]/10 text-[#0E7490] dark:text-cyan-300"
+                                : "border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/60"
+                            }`}
+                          >
+                            <div className="font-bold text-xs">{opt.title}</div>
+                            <div className="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                              {opt.desc}
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Built-in Formula Details */}
+                  {calcMode === "built_in_formula" && (
+                    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 p-3.5 space-y-2.5">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <span className="font-semibold text-[11px] uppercase tracking-wider text-slate-500">
+                          Published Clinical Equation
+                        </span>
+                        {draft.scoring.formula_id && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const eq =
+                                FORMULA_METADATA[draft.scoring.formula_id!].equation;
+                              setDraft((prev) =>
+                                prev
+                                  ? {
+                                      ...prev,
+                                      scoring: {
+                                        ...prev.scoring,
+                                        expression: eq,
+                                      },
+                                    }
+                                  : prev
+                              );
+                            }}
+                            className="rounded-lg border border-[#0E7490]/40 bg-[#0E7490]/10 px-2.5 py-1 text-[11px] font-semibold text-[#0E7490] dark:text-cyan-300 hover:bg-[#0E7490]/20"
+                          >
+                            Customize as Expression
+                          </button>
+                        )}
+                      </div>
+                      <select
+                        value={draft.scoring.formula_id ?? "abc_2"}
+                        onChange={(e) =>
+                          setDraft((prev) =>
+                            prev
+                              ? {
+                                  ...prev,
+                                  scoring: {
+                                    ...prev.scoring,
+                                    formula_id: e.target.value as FormulaId,
+                                  },
+                                }
+                              : prev
+                          )
+                        }
+                        className={inputClass}
+                      >
+                        {(Object.keys(FORMULA_METADATA) as FormulaId[]).map((fid) => (
+                          <option key={fid} value={fid}>
+                            {FORMULA_METADATA[fid].label}
+                          </option>
+                        ))}
+                      </select>
+                      {draft.scoring.formula_id && (
+                        <div className="space-y-1">
+                          <div className="rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2 font-mono-tech text-xs font-semibold text-[#0E7490] dark:text-cyan-300">
+                            {FORMULA_METADATA[draft.scoring.formula_id].equation}
+                          </div>
+                          <p className="text-[11px] text-slate-500">
+                            {FORMULA_METADATA[draft.scoring.formula_id].description}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Custom Math Expression Editor */}
+                  {calcMode === "custom_expression" && (
+                    <div className="rounded-xl border border-[#0E7490]/30 bg-[#0E7490]/5 dark:bg-cyan-950/20 p-3.5 space-y-3">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <span className="inline-flex items-center gap-1.5 font-bold text-xs text-[#0E7490] dark:text-cyan-300">
+                          <Calculator className="w-3.5 h-3.5" aria-hidden="true" />
+                          <span>Custom Math Expression</span>
+                        </span>
+                        {expressionValidation && (
+                          <span
+                            className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${
+                              expressionValidation.valid
+                                ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300"
+                                : "bg-rose-500/15 text-rose-700 dark:text-rose-300"
+                            }`}
+                          >
+                            {expressionValidation.valid
+                              ? "Expression valid"
+                              : expressionValidation.error}
+                          </span>
+                        )}
+                      </div>
+
+                      <textarea
+                        rows={2}
+                        value={draft.scoring.expression ?? ""}
+                        placeholder="e.g., (a * b * c) / 2  or  if(age >= 60, item_1 * 2, item_1)"
+                        onChange={(e) =>
+                          setDraft((prev) =>
+                            prev
+                              ? {
+                                  ...prev,
+                                  scoring: {
+                                    ...prev.scoring,
+                                    expression: e.target.value,
+                                  },
+                                }
+                              : prev
+                          )
+                        }
+                        className={`${inputClass} font-mono-tech font-semibold`}
+                      />
+
+                      <div>
+                        <span className="text-[11px] font-semibold text-slate-500 block mb-1.5">
+                          Click an item variable to insert into expression:
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {draft.items.map((it) => (
+                            <button
+                              key={it.id}
+                              type="button"
+                              onClick={() =>
+                                setDraft((prev) => {
+                                  if (!prev) return prev;
+                                  const cur = prev.scoring.expression ?? "";
+                                  const sep =
+                                    cur.length > 0 && !/[\s(+\-*/^,<>=]$/.test(cur)
+                                      ? " + "
+                                      : "";
+                                  return {
+                                    ...prev,
+                                    scoring: {
+                                      ...prev.scoring,
+                                      expression: `${cur}${sep}${it.id}`,
+                                    },
+                                  };
+                                })
+                              }
+                              className="inline-flex items-center gap-1 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1 text-[11px] hover:border-[#0E7490] transition-colors"
+                              title={it.label}
+                            >
+                              <span className="font-mono-tech font-bold text-[#0E7490] dark:text-cyan-400">
+                                {it.id}
+                              </span>
+                              <span className="text-slate-500 truncate max-w-[140px]">
+                                ({it.code || it.label})
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <p className="text-[11px] text-slate-500 leading-relaxed">
+                        Supported operators: <span className="font-mono-tech font-semibold">+ - * / ^ ( )</span> and comparisons <span className="font-mono-tech font-semibold">&lt; &lt;= &gt; &gt;= == !=</span>. Functions:{" "}
+                        <span className="font-mono-tech font-semibold">
+                          min(), max(), abs(), sqrt(), round(), floor(), ceil(), pow(), ln(), log10(), exp(), if(cond, a, b)
+                        </span>.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Score Range & Output Formatting */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2 border-t border-slate-200 dark:border-slate-800">
+                    <label className="block">
+                      <span className="font-semibold block mb-1 text-[11px]">
+                        Min Score
+                      </span>
+                      <input
+                        type="number"
+                        step="any"
+                        value={draft.scoring.min_score}
+                        onChange={(e) => {
+                          const n = Number(e.target.value);
+                          setDraft((prev) =>
+                            prev
+                              ? {
+                                  ...prev,
+                                  scoring: {
+                                    ...prev.scoring,
+                                    min_score: Number.isFinite(n) ? n : 0,
+                                  },
+                                }
+                              : prev
+                          );
+                        }}
+                        className={`${inputClass} font-mono-tech`}
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="font-semibold block mb-1 text-[11px]">
+                        Max Score (blank = open)
+                      </span>
+                      <input
+                        type="number"
+                        step="any"
+                        value={draft.scoring.max_score ?? ""}
+                        placeholder="No upper limit"
+                        onChange={(e) => {
+                          const raw = e.target.value.trim();
+                          const n = Number(raw);
+                          setDraft((prev) =>
+                            prev
+                              ? {
+                                  ...prev,
+                                  scoring: {
+                                    ...prev.scoring,
+                                    max_score:
+                                      raw && Number.isFinite(n) ? n : null,
+                                  },
+                                }
+                              : prev
+                          );
+                        }}
+                        className={`${inputClass} font-mono-tech`}
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="font-semibold block mb-1 text-[11px]">
+                        Result Unit (optional)
+                      </span>
+                      <input
+                        type="text"
+                        value={draft.scoring.unit ?? ""}
+                        placeholder="pts, mL, mEq/L"
+                        onChange={(e) =>
+                          setDraft((prev) =>
+                            prev
+                              ? {
+                                  ...prev,
+                                  scoring: {
+                                    ...prev.scoring,
+                                    unit: e.target.value || undefined,
+                                  },
+                                }
+                              : prev
+                          )
+                        }
+                        className={inputClass}
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="font-semibold block mb-1 text-[11px]">
+                        Decimal Precision
+                      </span>
+                      <select
+                        value={
+                          draft.scoring.precision ??
+                          (draft.scoring.method === "formula" ? 1 : 0)
+                        }
+                        onChange={(e) =>
+                          setDraft((prev) =>
+                            prev
+                              ? {
+                                  ...prev,
+                                  scoring: {
+                                    ...prev.scoring,
+                                    precision: Number(e.target.value),
+                                  },
+                                }
+                              : prev
+                          )
+                        }
+                        className={`${inputClass} font-mono-tech`}
+                      >
+                        <option value={0}>0 (Integer)</option>
+                        <option value={1}>1 decimal</option>
+                        <option value={2}>2 decimals</option>
+                        <option value={3}>3 decimals</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Live Formula Tester */}
+                <div className={cardClass}>
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="inline-flex items-center gap-1.5 font-bold text-xs text-[#0E7490] dark:text-cyan-300">
+                      <FlaskConical className="w-4 h-4" aria-hidden="true" />
+                      <span>Live Formula Tester</span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setTestInputs({})}
+                      className="text-[11px] font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+                    >
+                      Clear Test Inputs
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                    {draft.items.map((it) => {
+                      if (it.kind === "select") {
+                        const val =
+                          typeof testInputs[it.id] === "string"
+                            ? (testInputs[it.id] as string)
+                            : "";
+                        return (
+                          <label key={it.id} className="block">
+                            <span className="font-semibold block mb-1 text-[11px] truncate">
+                              {it.code ? `${it.code} — ` : ""}
+                              {it.label}
+                            </span>
+                            <select
+                              value={val}
+                              onChange={(e) =>
+                                setTestInputs((prev) => ({
+                                  ...prev,
+                                  [it.id]: e.target.value || undefined,
+                                }))
+                              }
+                              className={inputClass}
+                            >
+                              <option value="">Select…</option>
+                              {it.options.map((o) => (
+                                <option key={o.id} value={o.id}>
+                                  {o.label} (
+                                  {o.is_untestable ? "UN" : `${o.points ?? 0}`})
+                                </option>
+                              ))}
+                            </select>
+                          </label>
+                        );
+                      }
+
+                      const cur = testInputs[it.id];
+                      const rawStr =
+                        typeof cur === "object" && cur !== null
+                          ? String(cur.value ?? "")
+                          : typeof cur === "number" || typeof cur === "string"
+                            ? String(cur)
+                            : "";
+                      return (
+                        <label key={it.id} className="block">
+                          <span className="font-semibold block mb-1 text-[11px] truncate">
+                            {it.label} ({it.canonical_unit})
+                          </span>
+                          <input
+                            type="number"
+                            step="any"
+                            value={rawStr}
+                            placeholder={`${it.min_canonical}–${it.max_canonical}`}
+                            onChange={(e) =>
+                              setTestInputs((prev) => ({
+                                ...prev,
+                                [it.id]: {
+                                  value: e.target.value,
+                                  unit: it.canonical_unit,
+                                },
+                              }))
+                            }
+                            className={`${inputClass} font-mono-tech`}
+                          />
+                        </label>
+                      );
+                    })}
+                  </div>
+
+                  <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 px-3.5 py-2.5 flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                        Test Result:
+                      </span>
+                      <span className="font-mono-tech text-xl font-bold text-[#0E7490] dark:text-cyan-300">
+                        {liveTestEval.formattedScore ?? "—"}
+                      </span>
+                      {draft.scoring.unit && (
+                        <span className="font-mono-tech text-xs text-slate-500">
+                          {draft.scoring.unit}
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-xs">
+                      {liveTestEval.fieldErrors.length > 0 ? (
+                        <span className="text-rose-600 dark:text-rose-400 font-semibold">
+                          {liveTestEval.fieldErrors[0].message}
+                        </span>
+                      ) : liveTestEval.band ? (
+                        <span className="font-semibold text-slate-700 dark:text-slate-200">
+                          Band: {liveTestEval.band.label}
+                        </span>
+                      ) : (
+                        <span className="text-slate-500">
+                          {liveTestEval.answeredCount}/{liveTestEval.requiredCount} required answered
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* TAB 3: RESULT BANDS */}
             {activeTab === "interpretation" && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between gap-2">
@@ -1873,7 +2467,7 @@ export function EditScaleBlockModal({
                     .map((s) => SECTION_LABELS[s])
                     .join(", ")}`}
             </span>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <button
                 type="button"
                 onClick={onClose}
@@ -1884,16 +2478,33 @@ export function EditScaleBlockModal({
               </button>
               <button
                 type="button"
-                onClick={handleSave}
+                onClick={() => handleSave("draft")}
                 disabled={saving || changedSections.length === 0}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#0E7490] text-white text-xs font-bold hover:bg-cyan-800 disabled:opacity-50"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#0E7490] text-[#0E7490] dark:text-cyan-300 text-xs font-bold hover:bg-[#0E7490]/10 disabled:opacity-45"
               >
                 {saving ? (
                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
                 ) : (
                   <Check className="w-3.5 h-3.5" />
                 )}
-                <span>Save Draft &amp; Sync</span>
+                <span>Save Draft</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleSave("verified")}
+                disabled={saving || (changedSections.length === 0 && isCurrentlyVerified)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 disabled:opacity-45"
+              >
+                {saving ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                )}
+                <span>
+                  {changedSections.length === 0 && !isCurrentlyVerified
+                    ? "Verify Scale"
+                    : "Save & Verify"}
+                </span>
               </button>
             </div>
           </div>
@@ -1916,9 +2527,10 @@ export function EditScaleBlockModal({
           }}
           onResolve={async (resolved) => {
             const targetRev = conflictRow.rev;
+            const mode = pendingSaveMode;
             setConflictRow(null);
             setPendingMine(null);
-            await submitUpdate(resolved, targetRev);
+            await submitUpdate(resolved, targetRev, mode);
           }}
         />
       )}

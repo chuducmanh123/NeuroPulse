@@ -114,5 +114,81 @@
     "year": 1987,
     "pmid": "3605570",
     "doi": "10.1177/0310057X8701500214"
+  },
+  {
+    "id": "score2-2021",
+    "citation": "SCORE2 working group and ESC Cardiovascular risk collaboration. SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe. Eur Heart J. 2021;42(25):2439-2454.",
+    "year": 2021,
+    "pmid": "34120177",
+    "doi": "10.1093/eurheartj/ehab309"
+  },
+  {
+    "id": "score2op-2021",
+    "citation": "SCORE2-OP working group and ESC Cardiovascular risk collaboration. SCORE2-OP risk prediction algorithms: estimating incident cardiovascular event risk in older persons in four geographical risk regions. Eur Heart J. 2021;42(25):2455-2467.",
+    "year": 2021,
+    "pmid": "34120185",
+    "doi": "10.1093/eurheartj/ehab312"
+  },
+  {
+    "id": "score2diabetes-2023",
+    "citation": "SCORE2-Diabetes Working Group and the ESC Cardiovascular Risk Collaboration. SCORE2-Diabetes: 10-year cardiovascular risk estimation in type 2 diabetes in Europe. Eur Heart J. 2023;44(28):2544-2556.",
+    "year": 2023,
+    "pmid": "37247330",
+    "doi": "10.1093/eurheartj/ehad260"
+  },
+  {
+    "id": "marx-2023-esc-dm",
+    "citation": "Marx N, Federici M, Schütt K, et al. 2023 ESC Guidelines for the management of cardiovascular disease in patients with diabetes. Eur Heart J. 2023;44(39):4043-4140.",
+    "year": 2023,
+    "pmid": "37622663",
+    "doi": "10.1093/eurheartj/ehad192"
+  },
+  {
+    "id": "goff-2014-ascvd",
+    "citation": "Goff DC Jr, Lloyd-Jones DM, Bennett G, et al. 2013 ACC/AHA guideline on the assessment of cardiovascular risk: a report of the American College of Cardiology/American Heart Association Task Force on Practice Guidelines. Circulation. 2014;129(25 Suppl 2):S49-S73.",
+    "year": 2014,
+    "pmid": "24222018",
+    "doi": "10.1161/01.cir.0000437741.48606.98"
+  },
+  {
+    "id": "hageman-2022-smart2",
+    "citation": "Hageman SHJ, McKay AJ, Ueda P, et al. Estimation of recurrent atherosclerotic cardiovascular event risk in patients with established cardiovascular disease: the updated SMART2 algorithm. Eur Heart J. 2022;43(18):1715-1727.",
+    "year": 2022,
+    "pmid": "35165703",
+    "doi": "10.1093/eurheartj/ehac056"
+  },
+  {
+    "id": "khan-2024-prevent",
+    "citation": "Khan SS, Matsushita K, Sang Y, et al. Development and Validation of the American Heart Association's PREVENT Equations. Circulation. 2024;149(6):430-449.",
+    "year": 2024,
+    "pmid": "37947085",
+    "doi": "10.1161/CIRCULATIONAHA.123.067626"
+  },
+  {
+    "id": "fox-2014-grace2",
+    "citation": "Fox KA, Fitzgerald G, Puymirat E, et al. Should patients with acute coronary disease be stratified for management according to their risk? Derivation, external validation and outcomes using the updated GRACE risk score. BMJ Open. 2014;4(2):e004425.",
+    "year": 2014,
+    "pmid": "24561498",
+    "doi": "10.1136/bmjopen-2013-004425"
+  },
+  {
+    "id": "hara-2022-grace2",
+    "citation": "Hara H, Takahashi K, van Klaveren D, et al. External validation of the GRACE 2.0 risk score in patients with acute coronary syndrome. EuroIntervention. 2022;17(16):1362-1364.",
+    "year": 2022,
+    "doi": "10.4244/EIJ-D-21-00612"
+  },
+  {
+    "id": "winther-2020-rfcl",
+    "citation": "Winther S, Schmidt SE, Mayrhofer T, et al. Incorporating Coronary Calcification Into Pre-Test Assessment of the Likelihood of Coronary Artery Disease. J Am Coll Cardiol. 2020;76(21):2421-2432.",
+    "year": 2020,
+    "pmid": "33213720",
+    "doi": "10.1016/j.jacc.2020.09.585"
+  },
+  {
+    "id": "vrints-2024-ccs",
+    "citation": "Vrints C, Andreotti F, Koskinas KC, et al. 2024 ESC Guidelines for the management of chronic coronary syndromes. Eur Heart J. 2024;45(36):3415-3537.",
+    "year": 2024,
+    "pmid": "39210710",
+    "doi": "10.1093/eurheartj/ehae177"
   }
 ]

@@ -434,7 +434,11 @@ export function NeuroCalcAdminSection({
         onSaved={async (updatedRow) => {
           await syncState.applyLocalWrite(updatedRow);
           window.dispatchEvent(new CustomEvent("neurocalc_scale_updated"));
-          setActionMsg(`Saved draft changes for '${updatedRow.slug}' (rev ${updatedRow.rev}).`);
+          setActionMsg(
+            updatedRow.data.status === "verified"
+              ? `Verified & saved '${updatedRow.slug}' (rev ${updatedRow.rev}).`
+              : `Saved draft changes for '${updatedRow.slug}' (rev ${updatedRow.rev}).`
+          );
         }}
       />
 

@@ -1,0 +1,214 @@
+{
+  "id": "prevent",
+  "schema_version": 1,
+  "metadata": {
+    "name": "AHA PREVENT (10-Year Total CVD Risk, Base Model)",
+    "short_name": "PREVENT",
+    "aliases": ["AHA PREVENT", "PREVENT Total CVD"],
+    "subspecialties": ["Stroke", "Other"],
+    "kind": "formula",
+    "summary": "Race-free 2024 AHA PREVENT base equation estimating 10-year risk of total cardiovascular disease (ASCVD + heart failure) in adults aged 30–79 years.",
+    "time_estimate": "~1 min",
+    "clinical_pearls": [
+      "Omits race as a biological variable and incorporates kidney function (eGFR) and treatment status (antihypertensive & statin use).",
+      "Risk strata: <5% Low, 5.0–7.4% Borderline, 7.5–19.9% Intermediate, >=20% High."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "sex",
+      "label": "Biological Sex",
+      "required": true,
+      "options": [
+        { "id": "female", "label": "Female", "points": 0, "badge": "F" },
+        { "id": "male", "label": "Male", "points": 1, "badge": "M" }
+      ]
+    },
+    {
+      "kind": "numeric",
+      "id": "age",
+      "label": "Age",
+      "required": true,
+      "canonical_unit": "years",
+      "units": [{ "unit": "years", "label": "years", "to_canonical_factor": 1 }],
+      "min_canonical": 30,
+      "max_canonical": 79,
+      "step": 1
+    },
+    {
+      "kind": "numeric",
+      "id": "total_chol",
+      "label": "Total Cholesterol",
+      "required": true,
+      "canonical_unit": "mmol/L",
+      "units": [
+        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 1 },
+        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 0.02586 }
+      ],
+      "min_canonical": 3.36,
+      "max_canonical": 8.28,
+      "step": 0.1
+    },
+    {
+      "kind": "numeric",
+      "id": "hdl_chol",
+      "label": "HDL Cholesterol",
+      "required": true,
+      "canonical_unit": "mmol/L",
+      "units": [
+        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 1 },
+        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 0.02586 }
+      ],
+      "min_canonical": 0.51,
+      "max_canonical": 2.59,
+      "step": 0.05
+    },
+    {
+      "kind": "numeric",
+      "id": "sbp",
+      "label": "Systolic Blood Pressure",
+      "required": true,
+      "canonical_unit": "mmHg",
+      "units": [{ "unit": "mmHg", "label": "mmHg", "to_canonical_factor": 1 }],
+      "min_canonical": 90,
+      "max_canonical": 200,
+      "step": 1
+    },
+    {
+      "kind": "numeric",
+      "id": "egfr",
+      "label": "eGFR (CKD-EPI)",
+      "required": true,
+      "canonical_unit": "mL/min/1.73m²",
+      "units": [{ "unit": "mL/min/1.73m²", "label": "mL/min/1.73m²", "to_canonical_factor": 1 }],
+      "min_canonical": 15,
+      "max_canonical": 150,
+      "step": 1
+    },
+    {
+      "kind": "select",
+      "id": "diabetes",
+      "label": "Diabetes Mellitus",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No", "points": 0 },
+        { "id": "yes", "label": "Yes", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "smoker",
+      "label": "Current Smoking",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No", "points": 0 },
+        { "id": "yes", "label": "Yes", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "bp_treated",
+      "label": "On Antihypertensive Medication",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No", "points": 0 },
+        { "id": "yes", "label": "Yes", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "statin",
+      "label": "On Statin Therapy",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No", "points": 0 },
+        { "id": "yes", "label": "Yes", "points": 1 }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "formula",
+    "min_score": 0,
+    "max_score": 100,
+    "unit": "%",
+    "precision": 1,
+    "formula_id": "prevent_10y_cvd"
+  },
+  "interpretation": [
+    {
+      "id": "prev_low",
+      "min": 0,
+      "max": 4.9,
+      "label": "Low Risk (<5.0%)",
+      "severity": "normal",
+      "summary": "Low 10-year total CVD risk (<5%). Reinforce healthy lifestyle habits.",
+      "refs": [{ "source_id": "khan-2024-prevent", "locator": "Supp. Table S12" }]
+    },
+    {
+      "id": "prev_borderline",
+      "min": 5.0,
+      "max": 7.4,
+      "label": "Borderline Risk (5.0–7.4%)",
+      "severity": "mild",
+      "summary": "Borderline 10-year total CVD risk (5.0–7.4%). Assess CKM risk enhancers.",
+      "refs": [{ "source_id": "khan-2024-prevent", "locator": "Supp. Table S12" }]
+    },
+    {
+      "id": "prev_intermediate",
+      "min": 7.5,
+      "max": 19.9,
+      "label": "Intermediate Risk (7.5–19.9%)",
+      "severity": "moderate",
+      "summary": "Intermediate 10-year total CVD risk (7.5–19.9%). Initiate shared decision-making for statin/BP optimization.",
+      "refs": [{ "source_id": "khan-2024-prevent", "locator": "Supp. Table S12" }]
+    },
+    {
+      "id": "prev_high",
+      "min": 20.0,
+      "max": null,
+      "label": "High Risk (>=20.0%)",
+      "severity": "critical",
+      "summary": "High 10-year total CVD risk (>=20%). Intensive pharmacologic risk reduction indicated.",
+      "refs": [{ "source_id": "khan-2024-prevent", "locator": "Supp. Table S12" }]
+    }
+  ],
+  "assessment_guides": [],
+  "references": [
+    {
+      "id": "khan-2024-prevent",
+      "citation": "Khan SS, Matsushita K, Sang Y, et al. Development and Validation of the American Heart Association's PREVENT Equations. Circulation. 2024;149(6):430-449.",
+      "year": 2024,
+      "pmid": "37947085",
+      "doi": "10.1161/CIRCULATIONAHA.123.067626"
+    }
+  ],
+  "test_cases": [
+    {
+      "name": "55yo Female baseline (TC 5.0, HDL 1.3, SBP 130, eGFR 90, no DM/smoke/meds) -> 3.6%",
+      "inputs": { "sex": "female", "age": 55, "total_chol": 5.0, "hdl_chol": 1.3, "sbp": 130, "egfr": 90, "diabetes": "no", "smoker": "no", "bp_treated": "no", "statin": "no" },
+      "expected_score": 3.6,
+      "expected_band_id": "prev_low"
+    },
+    {
+      "name": "55yo Male baseline (TC 5.0, HDL 1.3, SBP 130, eGFR 90, no DM/smoke/meds) -> 4.7%",
+      "inputs": { "sex": "male", "age": 55, "total_chol": 5.0, "hdl_chol": 1.3, "sbp": 130, "egfr": 90, "diabetes": "no", "smoker": "no", "bp_treated": "no", "statin": "no" },
+      "expected_score": 4.7,
+      "expected_band_id": "prev_low"
+    },
+    {
+      "name": "65yo Male, TC 220 mg/dL, HDL 42 mg/dL, SBP 145, eGFR 68, DM, treated BP -> 23.3%",
+      "inputs": { "sex": "male", "age": 65, "total_chol": { "value": 220, "unit": "mg/dL" }, "hdl_chol": { "value": 42, "unit": "mg/dL" }, "sbp": 145, "egfr": 68, "diabetes": "yes", "smoker": "no", "bp_treated": "yes", "statin": "no" },
+      "expected_score": 23.3,
+      "expected_band_id": "prev_high"
+    },
+    {
+      "name": "72yo Female, TC 6.0, HDL 1.1, SBP 165, eGFR 45, DM, smoker, BP tx -> 43.3%",
+      "inputs": { "sex": "female", "age": 72, "total_chol": 6.0, "hdl_chol": 1.1, "sbp": 165, "egfr": 45, "diabetes": "yes", "smoker": "yes", "bp_treated": "yes", "statin": "no" },
+      "expected_score": 43.3,
+      "expected_band_id": "prev_high"
+    }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

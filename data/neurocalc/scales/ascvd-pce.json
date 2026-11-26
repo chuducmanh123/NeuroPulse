@@ -1,0 +1,195 @@
+{
+  "id": "ascvd-pce",
+  "schema_version": 1,
+  "metadata": {
+    "name": "ASCVD Risk Estimator (2013 ACC/AHA Pooled Cohort Equations)",
+    "short_name": "ASCVD PCE",
+    "aliases": ["Pooled Cohort Equations", "10-year ASCVD risk"],
+    "subspecialties": ["Stroke", "Other"],
+    "kind": "formula",
+    "summary": "Estimates 10-year risk of a first hard atherosclerotic cardiovascular disease event (nonfatal MI, CHD death, or fatal/nonfatal stroke) in adults aged 40–79.",
+    "time_estimate": "~1 min",
+    "clinical_pearls": [
+      "Risk categories per ACC/AHA Primary Prevention guidelines: <5% Low, 5.0–7.4% Borderline, 7.5–19.9% Intermediate, >=20% High.",
+      "For patients of Asian or Hispanic/Latino ancestry, White/Other coefficients are used per ACC/AHA guidance, though risk may be over- or underestimated depending on subgroup."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "sex_race",
+      "label": "Sex & Race Cohort",
+      "required": true,
+      "options": [
+        { "id": "white_female", "label": "White / Other Female", "points": 0 },
+        { "id": "aa_female", "label": "African American Female", "points": 1 },
+        { "id": "white_male", "label": "White / Other Male", "points": 2 },
+        { "id": "aa_male", "label": "African American Male", "points": 3 }
+      ]
+    },
+    {
+      "kind": "numeric",
+      "id": "age",
+      "label": "Age",
+      "required": true,
+      "canonical_unit": "years",
+      "units": [{ "unit": "years", "label": "years", "to_canonical_factor": 1 }],
+      "min_canonical": 40,
+      "max_canonical": 79,
+      "step": 1
+    },
+    {
+      "kind": "numeric",
+      "id": "total_chol",
+      "label": "Total Cholesterol",
+      "required": true,
+      "canonical_unit": "mg/dL",
+      "units": [
+        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 1 },
+        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 38.67 }
+      ],
+      "min_canonical": 130,
+      "max_canonical": 320,
+      "step": 1
+    },
+    {
+      "kind": "numeric",
+      "id": "hdl_chol",
+      "label": "HDL Cholesterol",
+      "required": true,
+      "canonical_unit": "mg/dL",
+      "units": [
+        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 1 },
+        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 38.67 }
+      ],
+      "min_canonical": 20,
+      "max_canonical": 100,
+      "step": 1
+    },
+    {
+      "kind": "numeric",
+      "id": "sbp",
+      "label": "Systolic Blood Pressure",
+      "required": true,
+      "canonical_unit": "mmHg",
+      "units": [{ "unit": "mmHg", "label": "mmHg", "to_canonical_factor": 1 }],
+      "min_canonical": 90,
+      "max_canonical": 200,
+      "step": 1
+    },
+    {
+      "kind": "select",
+      "id": "bp_treated",
+      "label": "On Antihypertensive Treatment",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No (Untreated)", "points": 0 },
+        { "id": "yes", "label": "Yes (Treated)", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "diabetes",
+      "label": "Diabetes Mellitus",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No", "points": 0 },
+        { "id": "yes", "label": "Yes", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "smoker",
+      "label": "Current Smoker",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No", "points": 0 },
+        { "id": "yes", "label": "Yes", "points": 1 }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "formula",
+    "min_score": 0,
+    "max_score": 100,
+    "unit": "%",
+    "precision": 1,
+    "formula_id": "ascvd_pce"
+  },
+  "interpretation": [
+    {
+      "id": "ascvd_low",
+      "min": 0,
+      "max": 4.9,
+      "label": "Low Risk (<5.0%)",
+      "severity": "normal",
+      "summary": "Emphasize lifestyle modification; statin therapy generally not indicated unless LDL-C >=190 mg/dL.",
+      "refs": [{ "source_id": "goff-2014-ascvd", "locator": "Table A" }]
+    },
+    {
+      "id": "ascvd_borderline",
+      "min": 5.0,
+      "max": 7.4,
+      "label": "Borderline Risk (5.0–7.4%)",
+      "severity": "mild",
+      "summary": "Discuss risk-enhancing factors; moderate-intensity statin may be considered if enhancers present.",
+      "refs": [{ "source_id": "goff-2014-ascvd", "locator": "Table A" }]
+    },
+    {
+      "id": "ascvd_intermediate",
+      "min": 7.5,
+      "max": 19.9,
+      "label": "Intermediate Risk (7.5–19.9%)",
+      "severity": "moderate",
+      "summary": "Initiate clinician–patient risk discussion; moderate-intensity statin generally recommended (or CAC scoring if uncertain).",
+      "refs": [{ "source_id": "goff-2014-ascvd", "locator": "Table A" }]
+    },
+    {
+      "id": "ascvd_high",
+      "min": 20.0,
+      "max": null,
+      "label": "High Risk (>=20.0%)",
+      "severity": "critical",
+      "summary": "High-intensity statin therapy (>=50% LDL-C reduction) and intensive BP control recommended.",
+      "refs": [{ "source_id": "goff-2014-ascvd", "locator": "Table A" }]
+    }
+  ],
+  "assessment_guides": [],
+  "references": [
+    {
+      "id": "goff-2014-ascvd",
+      "citation": "Goff DC Jr, Lloyd-Jones DM, Bennett G, et al. 2013 ACC/AHA guideline on the assessment of cardiovascular risk: a report of the American College of Cardiology/American Heart Association Task Force on Practice Guidelines. Circulation. 2014;129(25 Suppl 2):S49-S73.",
+      "year": 2014,
+      "pmid": "24222018",
+      "doi": "10.1161/01.cir.0000437741.48606.98"
+    }
+  ],
+  "test_cases": [
+    {
+      "name": "Goff 2014 Table A worked example: 55yo White Male, TC 213, HDL 50, Untreated SBP 120 -> 5.4%",
+      "inputs": { "sex_race": "white_male", "age": 55, "total_chol": 213, "hdl_chol": 50, "sbp": 120, "bp_treated": "no", "diabetes": "no", "smoker": "no" },
+      "expected_score": 5.4,
+      "expected_band_id": "ascvd_borderline"
+    },
+    {
+      "name": "55yo White Female, TC 213, HDL 50, Untreated SBP 120, no DM, no smoking -> 2.1%",
+      "inputs": { "sex_race": "white_female", "age": 55, "total_chol": 213, "hdl_chol": 50, "sbp": 120, "bp_treated": "no", "diabetes": "no", "smoker": "no" },
+      "expected_score": 2.1,
+      "expected_band_id": "ascvd_low"
+    },
+    {
+      "name": "62yo African American Female, TC 220, HDL 45, Treated SBP 150, DM, non-smoker",
+      "inputs": { "sex_race": "aa_female", "age": 62, "total_chol": 220, "hdl_chol": 45, "sbp": 150, "bp_treated": "yes", "diabetes": "yes", "smoker": "no" },
+      "expected_score": 29.9,
+      "expected_band_id": "ascvd_high"
+    },
+    {
+      "name": "68yo African American Male, TC 240, HDL 38, Treated SBP 160, DM, smoker",
+      "inputs": { "sex_race": "aa_male", "age": 68, "total_chol": 240, "hdl_chol": 38, "sbp": 160, "bp_treated": "yes", "diabetes": "yes", "smoker": "yes" },
+      "expected_score": 68.0,
+      "expected_band_id": "ascvd_high"
+    }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

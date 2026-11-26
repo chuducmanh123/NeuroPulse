@@ -1,0 +1,195 @@
+{
+  "id": "rf-cl",
+  "schema_version": 1,
+  "metadata": {
+    "name": "RF-CL (Risk Factor-Weighted Clinical Likelihood of Obstructive CAD)",
+    "short_name": "RF-CL",
+    "aliases": ["ESC 2024 CCS Pre-Test Probability", "Winther RF-CL"],
+    "subspecialties": ["Other"],
+    "kind": "formula",
+    "summary": "Estimates the pre-test clinical likelihood (%) of obstructive coronary artery disease in patients with stable chest pain or dyspnoea (2024 ESC CCS Guidelines Figure 4).",
+    "time_estimate": "< 1 min",
+    "clinical_pearls": [
+      "Score EITHER chest pain characteristics (0–3) OR exertional dyspnoea (2 points), not both simultaneously.",
+      "<=5% Very Low likelihood identifies patients in whom routine further diagnostic testing may be deferred."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "sex",
+      "label": "Biological Sex",
+      "required": true,
+      "options": [
+        { "id": "female", "label": "Female", "points": 0, "badge": "F" },
+        { "id": "male", "label": "Male", "points": 1, "badge": "M" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "age_group",
+      "label": "Age Bracket",
+      "required": true,
+      "options": [
+        { "id": "30_39", "label": "30–39 years", "points": 0 },
+        { "id": "40_49", "label": "40–49 years", "points": 1 },
+        { "id": "50_59", "label": "50–59 years", "points": 2 },
+        { "id": "60_69", "label": "60–69 years", "points": 3 },
+        { "id": "70_80", "label": "70–80 years", "points": 4 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "symptom_score",
+      "label": "Symptom Score (Chest Pain Features 0–3, or Dyspnoea = 2)",
+      "subtitle": "1 pt each: (1) constricting retrosternal/neck/jaw/arm discomfort, (2) provoked by exertion/emotion, (3) relieved by rest/nitrates <=5 min.",
+      "required": true,
+      "options": [
+        { "id": "s0_1", "label": "0–1 points (Non-anginal / 1 feature)", "points": 0, "badge": "0–1" },
+        { "id": "s2", "label": "2 points (2 chest pain features OR exertional dyspnoea)", "points": 1, "badge": "2" },
+        { "id": "s3", "label": "3 points (All 3 typical angina features)", "points": 2, "badge": "3" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "rf_family_hx",
+      "label": "RF 1: Family History of Premature CAD (1st-degree: M <55y, F <65y)",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No", "points": 0 },
+        { "id": "yes", "label": "Yes", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "rf_smoking",
+      "label": "RF 2: Smoking (Current or Former)",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No", "points": 0 },
+        { "id": "yes", "label": "Yes", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "rf_dyslipidemia",
+      "label": "RF 3: Dyslipidemia",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No", "points": 0 },
+        { "id": "yes", "label": "Yes", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "rf_hypertension",
+      "label": "RF 4: Hypertension",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No", "points": 0 },
+        { "id": "yes", "label": "Yes", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "rf_diabetes",
+      "label": "RF 5: Diabetes Mellitus",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No", "points": 0 },
+        { "id": "yes", "label": "Yes", "points": 1 }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "formula",
+    "min_score": 0,
+    "max_score": 100,
+    "unit": "%",
+    "precision": 0,
+    "formula_id": "rf_cl"
+  },
+  "interpretation": [
+    {
+      "id": "rfcl_very_low",
+      "min": 0,
+      "max": 5,
+      "label": "Very Low Likelihood (<=5%)",
+      "severity": "normal",
+      "summary": "Deferring further diagnostic testing is recommended unless compelling clinical modifiers exist.",
+      "refs": [{ "source_id": "vrints-2024-ccs", "locator": "Figure 4" }]
+    },
+    {
+      "id": "rfcl_low",
+      "min": 6,
+      "max": 15,
+      "label": "Low Likelihood (>5% to 15%)",
+      "severity": "mild",
+      "summary": "Consider CACS-CL reclassification or non-invasive testing if clinically indicated.",
+      "refs": [{ "source_id": "vrints-2024-ccs", "locator": "Figure 4" }]
+    },
+    {
+      "id": "rfcl_moderate",
+      "min": 16,
+      "max": 50,
+      "label": "Moderate Likelihood (>15% to 50%)",
+      "severity": "moderate",
+      "summary": "Non-invasive anatomical (CCTA) or functional imaging recommended.",
+      "refs": [{ "source_id": "vrints-2024-ccs", "locator": "Figure 4" }]
+    },
+    {
+      "id": "rfcl_high",
+      "min": 51,
+      "max": null,
+      "label": "High Likelihood (>50%)",
+      "severity": "critical",
+      "summary": "Functional imaging or invasive coronary angiography strongly recommended.",
+      "refs": [{ "source_id": "vrints-2024-ccs", "locator": "Figure 4" }]
+    }
+  ],
+  "assessment_guides": [],
+  "references": [
+    {
+      "id": "winther-2020-rfcl",
+      "citation": "Winther S, Schmidt SE, Mayrhofer T, et al. Incorporating Coronary Calcification Into Pre-Test Assessment of the Likelihood of Coronary Artery Disease. J Am Coll Cardiol. 2020;76(21):2421-2432.",
+      "year": 2020,
+      "pmid": "33213720",
+      "doi": "10.1016/j.jacc.2020.09.585"
+    },
+    {
+      "id": "vrints-2024-ccs",
+      "citation": "Vrints C, Andreotti F, Koskinas KC, et al. 2024 ESC Guidelines for the management of chronic coronary syndromes. Eur Heart J. 2024;45(36):3415-3537.",
+      "year": 2024,
+      "pmid": "39210710",
+      "doi": "10.1093/eurheartj/ehae177"
+    }
+  ],
+  "test_cases": [
+    {
+      "name": "Female 40-49, symptom 0-1, 0 RF -> 1% (Very Low)",
+      "inputs": { "sex": "female", "age_group": "40_49", "symptom_score": "s0_1", "rf_family_hx": "no", "rf_smoking": "no", "rf_dyslipidemia": "no", "rf_hypertension": "no", "rf_diabetes": "no" },
+      "expected_score": 1,
+      "expected_band_id": "rfcl_very_low"
+    },
+    {
+      "name": "Male 50-59, symptom 2, 2 RF -> 10% (Low)",
+      "inputs": { "sex": "male", "age_group": "50_59", "symptom_score": "s2", "rf_family_hx": "no", "rf_smoking": "yes", "rf_dyslipidemia": "no", "rf_hypertension": "yes", "rf_diabetes": "no" },
+      "expected_score": 10,
+      "expected_band_id": "rfcl_low"
+    },
+    {
+      "name": "Male 70-80, symptom 3, 4 RF -> 39% (Moderate)",
+      "inputs": { "sex": "male", "age_group": "70_80", "symptom_score": "s3", "rf_family_hx": "yes", "rf_smoking": "yes", "rf_dyslipidemia": "yes", "rf_hypertension": "yes", "rf_diabetes": "no" },
+      "expected_score": 39,
+      "expected_band_id": "rfcl_moderate"
+    },
+    {
+      "name": "Female 60-69, symptom 3, 3 RF -> 14% (Low)",
+      "inputs": { "sex": "female", "age_group": "60_69", "symptom_score": "s3", "rf_family_hx": "no", "rf_smoking": "yes", "rf_dyslipidemia": "yes", "rf_hypertension": "yes", "rf_diabetes": "no" },
+      "expected_score": 14,
+      "expected_band_id": "rfcl_low"
+    }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}
