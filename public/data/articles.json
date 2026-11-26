@@ -1,5 +1,129 @@
 [
   {
+    "id": "10.1056/nejmc2608489",
+    "title": "Dual-Target Adaptive Deep-Brain Stimulation for Tourette Syndrome",
+    "journal": {
+      "name": "The New England Journal of Medicine",
+      "short_name": "NEJM",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-26T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Okun Michael S.",
+      "Gómez Durán Julieth",
+      "Lowor Grace T.",
+      "Hook Matthew P.",
+      "Pontone Gregory M.",
+      "Bowers Dawn",
+      "Arias Franchesca",
+      "Allen William",
+      "Cagle Jackson",
+      "Rafferty Emily C.",
+      "Korytov Irina",
+      "Malaty Irene",
+      "Foote Kelly D.",
+      "Butson Christopher R.",
+      "Gunduz Aysegul"
+    ],
+    "doi_url": "https://doi.org/10.1056/nejmc2608489",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Brain"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at NEJM via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jama.2026.22999",
+    "title": "What Is Idiopathic Normal Pressure Hydrocephalus?",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-11-25T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Walter Kristin L."
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.22999",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Hydrocephalus"
+      ]
+    },
+    "abstract": "This JAMA Patient Page describes how common idiopathic normal pressure hydrocephalus is, the risk factors, and how it is diagnosed and treated.",
+    "ai_takeaways": {
+      "conclusion_vi": "This JAMA Patient Page provides a concise, patient-facing overview of idiopathic normal pressure hydrocephalus, covering its epidemiology, risk factors, diagnostic evaluation, and treatment options.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true,
+      "study_type": "Review"
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218865",
+    "title": "Implications of EASO's New Obesity Definition Across Aging Cohorts",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-25T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Li Xin-Yue",
+      "Xu Ying",
+      "Huang Hui-Juan",
+      "Liang Yong-Hui",
+      "Zheng Xiang-Yi",
+      "Wu Xian-Bo",
+      "Zhou Rui"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218865",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: Although visceral adiposity and metabolic comorbidities may increase risks of dementia and mortality, the implications of the newly proposed European Association for the Study of Obesity (EASO) framework remain unclear. We aimed to describe the prevalence of obesity under the EASO framework vs traditional body mass index (BMI) criteria and to examine their associations with incident dementia and all-cause mortality. METHODS: We used data from the English Longitudinal Study on Ageing (ELSA) and China Health and Retirement Longitudinal Study (CHARLS). Participants were classified using the EASO framework, which integrates BMI, waist-to-height ratio, and obesity-related comorbidities. Dementia was defined using validated algorithmic criteria or self-reported physician diagnosis; all-cause mortality was ascertained from death registries, medical records, or interviews with relatives. Associations between obesity phenotypes and outcomes were examined using Cox proportional hazards models, with cohort-specific hazard ratios (HRs) pooled using random-effects meta-analysis. RESULTS: Among 18,944 participants (mean age: ELSA 65.9 ± 9.3 years, CHARLS 58.2 ± 9.7 years; 54.3% and 53.2% female, respectively), 17,617 were included in the dementia analysis and 18,197 for mortality analysis, with a median follow-up of 8.2 years (CHARLS) and 11.5 years (ELSA). Under the EASO framework, 24.9% of CHARLS participants and 37.7% of ELSA participants were classified as obese. Compared with normal weight, EASO-defined overweight was associated with lower dementia (HRpooled: 0.61 [0.45-0.81]) and mortality (HRpooled: 0.32 [0.13-0.81]) risks; EASO-defined obesity was also associated with lower mortality risk (HRpooled: 0.79 [0.10-0.89]). When using normal weight without comorbidity as reference, EASO-defined obesity was linked to increased dementia risk (HRpooled: 1.93 [1.50-2.48]); although the increased mortality risk was only significant in CHARLS, the pooled overall estimate remained positive (HRpooled: 1.30 [1.01-1.68]). BMI-defined obesity showed similar patterns but did not capture the protective associations observed for overweight. Among individuals newly classified as having obesity, the most prevalent comorbidities were diabetes (35.1%) and hypertension (42.6%). DISCUSSION: The EASO definition substantially reclassified obesity status in both Chinese and British older adults and revealed associations with dementia and mortality distinct from BMI alone. Although the observational design and self-reported dementia outcomes limited generalizability, our findings suggest that incorporating fat distribution and comorbidities assessment is crucial for clinical risk stratification.",
+    "ai_takeaways": {
+      "conclusion_vi": "In two aging cohorts (n=18,944), EASO-defined obesity—incorporating fat distribution and comorbidities—was associated with increased dementia (HR 1.93, 95% CI 1.50-2.48) and mortality (HR 1.30, 95% CI 1.01-1.68) risks versus normal weight without comorbidities. Incorporating these factors improves clinical risk stratification beyond BMI alone.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
     "id": "10.1161/strokeaha.126.055602",
     "title": "Predictors of Recovery From Aphasia After Stroke",
     "journal": {
@@ -92,10 +216,14 @@
       "subspecialty": "Dementia",
       "subspecialties": [
         "Dementia",
-        "Neuromuscular"
+        "Neuromuscular",
+        "Stroke"
       ],
       "topics": [
-        "Neurology"
+        "Alzheimer",
+        "Dementia",
+        "Cerebral",
+        "Brain"
       ]
     },
     "abstract": "BACKGROUND AND OBJECTIVES: Brain pathologies are common in the elderly; however, their contribution to Alzheimer dementia risk and cognitive decline in those who die as centenarians remain unclear. This study examines the frequency of Alzheimer disease neuropathologic changes (ADNC), limbic-predominant age-related TDP-43 encephalopathy neuropathologic change (LATE-NC), and other brain pathologies and their association with Alzheimer dementia risk and cognitive decline in centenarians. METHODS: This clinicopathologic study included older participants from the Religious Orders Study and Rush Memory and Aging Project, 2 ongoing clinicopathologic cohort studies of aging and dementia, who underwent annual clinical evaluations and autopsy. Participants were evaluated annually for cognitive status and followed for a mean (SD) of 11.4 (5.3) years before death. Neuropathologic evaluation included ADNC (and separately β-amyloid load and tangle density), LATE-NC, presence or absence of neocortical Lewy bodies (LBs), hippocampal sclerosis of aging (HS-A), primary age-related tauopathy (PART), and 5 cerebrovascular disease (CVD) pathologies including arteriolosclerosis, atherosclerosis, cerebral amyloid angiopathy, macroinfarcts, and microinfarcts. Multivariable regression and linear mixed-effects models were applied. RESULTS: A total of 104 centenarians were included in this study. The mean (SD) age at death was 102 (1.9) years, 84% were female, 58% had Alzheimer dementia, 21% had mild cognitive impairment (MCI), and 21% had no cognitive impairment (NCI). All 3 clinical diagnostic groups exhibited pathologies, including any type of CVD (94%), ADNC (72%; 73% of them were intermediate and 27% of them were high), LATE-NC (58%, 30% of them exhibiting HS-A), HS-A (18%, 95% had LATE-NC), PART (28%), and neocortical LBs (11%). Mixed pathologies, particularly ADNC + LATE-NC + CVD, were common in the Alzheimer dementia group (52%) compared with NCI (36%) and MCI (23%). After adjusted for age at death, sex, education, and other brain pathologies, only LATE-NC and tangles (specifically intermediate/high ADNC with Braak stage V) were associated with more rapid decline in global cognition and increased odds of Alzheimer dementia. DISCUSSION: Brain pathology, but not dementia, is nearly inevitable in those who die as centenarians. LATE-NC and tangles are the key contributors to cognitive decline. Future study investigating resilience factors may inform preventive strategies.",
@@ -131,12 +259,13 @@
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218832",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Epilepsy",
       "subspecialties": [
-        "Other"
+        "Epilepsy",
+        "Movement Disorders"
       ],
       "topics": [
-        "Neurology"
+        "Chorea"
       ]
     },
     "abstract": "Hemichorea is a rare movement disorder that can arise from a diversity of causes. In this case, a 7-year-old boy presented with subacute onset of involuntary movements involving the left upper extremity. This case highlights the importance of careful characterization of abnormal movements in children, as distinguishing chorea from myoclonus, tics, or epileptic automatisms directs subsequent diagnostic testing. It also underscores the broad differential diagnosis of hemichorea in pediatric patients and the need to consider systemic and vascular processes when imaging reveals focal findings. Through stepwise clinical reasoning, this case illustrates how integrating movement phenomenology with neuroimaging and systemic evaluation can uncover an underlying unifying diagnosis.",
@@ -190,12 +319,12 @@
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218585",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Movement Disorders",
       "subspecialties": [
-        "Other"
+        "Movement Disorders"
       ],
       "topics": [
-        "Neurology"
+        "Parkinson"
       ]
     },
     "abstract": "BACKGROUND AND OBJECTIVES: Physiotherapy is a crucial element of care strategies for parkinsonian syndromes, especially in atypical parkinsonian disorders (APDs), where levodopa response is limited. Preliminary studies in APDs have reported improvements in walking and motor functions; however, small sample sizes represented a common limitation because of the rare nature of these diseases. The Mobility in Atypical Parkinsonism: a Trial of Physiotherapy (MobilityAPP) aims to investigate the superiority of gait-focused physiotherapy (GPT) in improving self-paced gait speed, compared with standard physiotherapy (SPT). METHODS: This double-blind, randomized controlled trial was conducted in 5 centers across Europe. Patients with multiple system atrophy, progressive supranuclear palsy, and Parkinson disease (PD) were recruited through outpatient clinics or from specialized wards. Patients were included if they had a Hoehn and Yahr stage below 4 and excluded if their medication had been adapted recently or ambulation was influenced by other preconditions. After a 1-week home monitoring of physical activity, participants were randomized (1:1) to inpatient GPT or SPT for 2 weeks, followed by 5 weeks of home-based training. The primary outcome was the pre-post change in self-paced gait speed, measured with wearable sensors during a standardized 2 × 10-m walking test. Secondary outcomes included clinical scores, patient-reported outcomes (PROMs), and digital mobility measures from daily life. Repeated-measures analysis of variance was used to assess primary and secondary outcomes. RESULTS: Of 167 patients screened, 160 were included (mean age 67.4, 51.2% female) and 151 completed the study per protocol (85 with APD, 66 with PD; 76 GPT, 75 SPT). GPT was comparable to SPT in improving self-paced gait speed (95% CI -0.04 to 0.04; p = 0.949). However, positive changes in daily-life mobility metrics were observed that favored the GPT intervention. Furthermore, encouraging effects were observed in both study arms regarding balance and both patient and clinical global impressions of change. DISCUSSION: This randomized controlled trial provides evidence for the effectiveness of physiotherapy in APD. Physiotherapy led to promising results on daily-life mobility, clinical scales, and PROMs. Although GPT was not superior to SPT, the intervention was safe, well tolerated, and contributed to a perceived improvement in functional disability. A ceiling effect associated with the high self-paced speed of participants with PD has been observed as a potential limitation. TRIAL REGISTRATION INFORMATION: NCT04608604 (clinicaltrials.gov/study/NCT04608604), registered on October 23, 2020. CLASSIFICATION OF EVIDENCE: This study provides Class I evidence that, in patients with PD and atypical Parkinsonian syndromes, GPT and SPT resulted in similar self-paced gait speeds.",
@@ -714,7 +843,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218634",
-    "title": "Embracing the Potential of Digital Technologies in Neurorehabilitation Trials",
+    "title": "Embracing the Potential of Digital Technologies in Neurorehabilitation Trials.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -727,7 +856,7 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Moccia Marcello"
+      "Moccia M."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218634",
     "neurology_classification": {
@@ -1722,15 +1851,119 @@
     "neurology_classification": {
       "subspecialty": "Dementia",
       "subspecialties": [
-        "Dementia"
+        "Dementia",
+        "Stroke"
       ],
       "topics": [
+        "Alzheimer",
+        "Dementia",
+        "Cerebral",
         "Amyloid"
       ]
     },
     "abstract": "BACKGROUND AND OBJECTIVES: Alzheimer disease (AD) and cerebral small vessel disease frequently coexist, and their hallmarks, amyloid pathology and white matter hyperintensities (WMHs), are each associated with cognitive decline. Whether these associations are independent or interactive remains unclear. This study investigated their joint associations with cognitive decline across the clinical continuum. METHODS: This longitudinal study included 2 observational cohorts: the harmonization cohort, which recruited participants from Singaporean community and memory clinics, and the Alzheimer's Disease Neuroimaging Initiative (ADNI), a multisite study in North America. Participants underwent MRI, amyloid biomarker assessments (plasma phosphorylated-tau 217 or amyloid PET), and neuropsychological assessments. Linear mixed-effects models evaluated independent and interactive associations of the amyloid biomarker and WMHs with cognitive decline, stratified by clinical stage. RESULTS: The study included 448 participants from harmonization (mean age 72.45 ± 8.13 years; 56% female) and 1,245 from ADNI (72.56 ± 7.35; 49% female). Among cognitively normal (CN) individuals, statistical interactions between the amyloid biomarker and WMHs were detected in both cohorts, with the joint association exceeding the sum of their individual associations: in harmonization, for global cognition (amyloid biomarker × WMHs × time β = -0.042, 95% CI -0.068 to -0.016, p = 0.002), memory and executive function; in ADNI, for global cognition (β = -0.081, -0.136 to -0.026, p = 0.004) and memory. At mild cognitive impairment (MCI), no interaction was detected; both markers were independently associated with decline in several domains (global cognition, memory, and executive function in harmonization; memory and language in ADNI), whereas an association was detected for the amyloid biomarker only in the remaining domains. At dementia, the amyloid biomarker was associated with decline in harmonization, while WMHs were not; neither reached significance in ADNI, likely reflecting the shorter follow-up. DISCUSSION: The joint association of amyloid pathology and WMHs with cognitive decline was stage dependent: at CN, it exceeded the sum of their individual associations; at MCI, both markers were independently associated with decline; and at dementia, an association was detected for the amyloid biomarker only. Clinical stage and WMH burden may therefore warrant consideration when interpreting disease-modifying therapy responses. However, the observational design limits causal inference, and the interaction reported is statistical rather than necessarily biological.",
     "ai_takeaways": {
       "conclusion_vi": "In two observational cohorts, amyloid pathology and white matter hyperintensities interacted synergistically to accelerate global cognitive decline in cognitively normal individuals (harmonization β = -0.042, p = 0.002; ADNI β = -0.081, p = 0.004), but acted independently at mild cognitive impairment, highlighting stage-dependent effects.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1002/ana.78409",
+    "title": "Clinical Impairment in Advanced Alzheimer's (High Alzheimer's Disease Neuropathological Change) Correlates with Quantitative Neurofibrillary Tangle Measures and Co-pathologies.",
+    "journal": {
+      "name": "Annals of Neurology",
+      "short_name": "Ann Neurol",
+      "badge_bg": "#EDE9FE",
+      "badge_text": "#5B21B6"
+    },
+    "pub_date": "2026-11-24T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Yushkevich PA",
+      "Robinson JL",
+      "Cai H",
+      "Athalye C",
+      "Lyu X",
+      "Khodakarami Z",
+      "Denning AE",
+      "Levorse LM",
+      "Ittyerah R",
+      "Mechanic-Hamilton D",
+      "Ohm DT",
+      "Irwin DJ",
+      "Lee EB",
+      "Das SR",
+      "Brown CA"
+    ],
+    "doi_url": "https://doi.org/10.1002/ana.78409",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia",
+        "Neuromuscular",
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Alzheimer",
+        "Dementia",
+        "Brain",
+        "Tau"
+      ]
+    },
+    "abstract": "The current diagnostic criteria for Alzheimer's disease (AD) define discrete biological stages of the disease. Whereas discrete staging simplifies diagnosis, treatment, and participant stratification in clinical trials, discrete disease categories may mask a considerable range of variability in disease severity, even at what is pathologically considered \"end stage\" disease. We aimed to characterize the contributions of phosphorylated tau neurofibrillary tangle (NFT) pathology and co-pathologies to variability in dementia severity in brain donors diagnosed with a high level of AD neuropathological change (ADNC). In a cohort of 197 donors with a primary diagnosis of high ADNC, we computed the association between quantitative measures of neocortical NFT load and an informant-based measure of clinical impairment. We examined the impact of co-pathologies on residuals from the canonical pathology-impairment relationship estimated in donors without known significant co-pathologies. We found a positive association (Spearman ρ195=0.321 ) between cortical NFT load and the clinical impairment measure. Clinical impairment was significantly greater than expected for NFT load in presence of co-pathologies, including limbic-predominant age-related TDP-43 encephalopathy (stage 2 or 3) and cerebrovascular disease. In donors with limbic and neocortical subtypes of Lewy pathology, neocortical α -synuclein burden was associated with greater than expected clinical impairment. Categorizing high ADNC as a single homogeneous category masks a considerable range of pathological severity that contributes to clinical impairment. Complementing discrete staging with continuous measures of tau pathology and probabilistic measures of co-pathologies will improve clinicopathologic studies needed for a precision approach to diagnosis and treatment. ANN NEUROL 2026.",
+    "ai_takeaways": {
+      "conclusion_vi": "In 197 brain donors with high Alzheimer's disease neuropathological change, quantitative neocortical neurofibrillary tangle load correlated with clinical impairment (Spearman ρ195=0.321). Co-pathologies—including LATE (stage 2–3), cerebrovascular disease, and neocortical α-synuclein in limbic/neocortical Lewy pathology—independently contributed to greater-than-expected dementia severity.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
+    "id": "10.1002/ana.78408",
+    "title": "Plasma Metabolic Proteomics Links Phenoconversion and Disease-Specific Brain 18 F-fluorodeoxyglucose Positron Emission Tomography Pattern Expressions in Isolated REM Sleep Behavior Disorder.",
+    "journal": {
+      "name": "Annals of Neurology",
+      "short_name": "Ann Neurol",
+      "badge_bg": "#EDE9FE",
+      "badge_text": "#5B21B6"
+    },
+    "pub_date": "2026-11-24T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Kim R",
+      "Kim H",
+      "Lee S",
+      "Jin B",
+      "Kim S",
+      "Choi S",
+      "Yoon EJ",
+      "Kim YK",
+      "Lee JY."
+    ],
+    "doi_url": "https://doi.org/10.1002/ana.78408",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia",
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson",
+        "Dementia",
+        "Brain"
+      ]
+    },
+    "abstract": "Cellular metabolic dysfunction has emerged as a key contributor to neurodegeneration, but its role in Lewy body disease (LBD), particularly during prodromal stages, remains unclear. We investigated targeted blood-based proteomic profiles related to metabolic pathways across the REM sleep behavior disorder (RBD)-LBD continuum, and explored their potential as biomarkers of disease severity and phenoconversion. In this prospective cohort study, we enrolled 116 patients across the RBD-LBD continuum, including 47 with polysomnography-confirmed isolated RBD (iRBD), 45 with Parkinson's disease (PD) with RBD, and 24 with dementia with Lewy bodies (DLB) with RBD, along with 30 age-matched healthy controls. Plasma concentrations of 92 metabolism-related proteins were measured using a proximity extension assay. Motor function, neuropsychological assessments, and brain 18F-fluorodeoxyglucose positron emission tomography imaging were obtained. Patients with iRBD were prospectively followed for up to 4 years to monitor phenoconversion. Compared with controls, 16 differentially expressed metabolism-related proteins were identified across the RBD-LBD continuum, with predominant enrichment in neutrophil degranulation pathways. These protein alterations were mainly observed in patients with clinically manifest LBD, with DOPA decarboxylase demonstrating the most prominent differential expression and significant correlations with levodopa equivalent daily dose. In contrast, only N-terminal pro-B-type natriuretic peptide (NT-proBNP) was significantly upregulated in patients with iRBD. Elevated NT-proBNP levels were associated with orthostatic intolerance, increased PD- and DLB-related metabolic brain pattern expressions, and earlier phenoconversion. Plasma metabolic proteins showed stage-specific alterations across the RBD-LBD continuum. NT-proBNP may have potential as a marker of short-term phenoconversion risk in iRBD. ANN NEUROL 2026.",
+    "ai_takeaways": {
+      "conclusion_vi": "In this prospective cohort of 116 patients across the RBD-LBD continuum, plasma NT-proBNP was uniquely upregulated in isolated RBD and associated with orthostatic intolerance, PD/DLB-related FDG-PET brain patterns, and earlier phenoconversion. Conversely, DOPA decarboxylase alterations occurred primarily in clinically manifest Lewy body disease.",
       "clinical_significance": "Clinical significance for Dementia practice.",
       "ai_verified": true,
       "study_type": "Original Article"
@@ -2380,9 +2613,9 @@
       "badge_text": "#991B1B"
     },
     "pub_date": "2026-11-23T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Sur Nicole B."
@@ -2394,14 +2627,16 @@
         "Stroke"
       ],
       "topics": [
-        "Stroke"
+        "Stroke",
+        "Ischemic"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "abstract": "Sleep-disordered breathing (SDB) is associated with unfavorable outcomes in acute stroke; however, long-term outcomes remain underexplored with conflicting cohort-based evidence.In this cohort study from the Bern Sleep-Stroke Registry, Yang and colleagues examined associations of SDB during acute stroke or transient ischemic attack with all-cause mortality, major adverse cardiovascular events, and functional outcomes.SDB was measured by respiratory polygraphy within 3 days of hospital admission and defined by the apnea-hypopnea index (AHI) as mild (AHI, 5/h to <15/h), moderate (AHI, 15/h to <30/h), and severe (AHI ≥30/h).Among 1082 patients with acute stroke/transient ischemic attack (mean age, 66 years; 63% men), 77% had SDB, the mean AHI was 19/h, and 6% had central sleep apnea.All-cause mortality occurred in 16.5% after a mean follow-up of 51 months, although major adverse cardiovascular event occurred in 17% after a mean followup of 48 months.After multivariable adjustment, severe SDB was independently associated with all-cause mortality (adjusted hazard ratio, 1.73 [95% CI, 1.04-2.89]).Mild, moderate, and severe SDB were independently associated with an increased risk (roughly 2-fold) of major adverse cardiovascular event.Moreover, moderate and severe SDB were independently associated with unfavorable 3-month functional outcomes after multivariable adjustment.When SDB was modeled as an ordinal variable, a linear trend was observed with increasing risk for all-cause mortality, major adverse cardiovascular event, and unfavorable 3-month functional outcomes with increasing SDB severity.Patients with severe SDB more often had cardioembolic stroke, and those with moderate-severe SDB and atrial fibrillation had a higher risk of all-cause mortality.These findings highlight the high prevalence of SDB after acute stroke/transient ischemic attack and its association with adverse short-and long-term outcomes, underscoring the potential importance of screening for SDB after stroke/transient ischemic attack and of further research to determine whether treatment improves clinical outcomes.See p 3632.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In a Bern Sleep-Stroke Registry cohort of 1,082 patients with acute stroke or TIA, 77% had sleep-disordered breathing (SDB). Severe SDB independently predicted all-cause mortality (aHR 1.73, 95% CI 1.04–2.89), while mild-to-severe SDB increased major adverse cardiovascular events roughly 2-fold and moderate-to-severe SDB worsened 3-month functional outcomes.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true,
+      "study_type": "Original Article"
     }
   },
   {
@@ -13590,7 +13825,8 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Multiple sclerosis"
+        "Multiple sclerosis",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -33063,6 +33299,40 @@
     "ai_takeaways": {
       "conclusion_vi": "",
       "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(15)00185-4",
+    "title": "Non-invasive ventilation and diaphragmatic pacing in ALS",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2015-07-30T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Mitsumoto Hiroshi"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(15)00185-4",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Als"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
       "ai_verified": false
     }
   },
