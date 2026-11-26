@@ -105,11 +105,28 @@ export function ClinicalPathwaysTab({
         setApiPathways(data.pathways);
       }
     } catch {
-      // Offline: rely on syncPathways from IndexedDB
+      // Offline: rely on syncPathways from IndexedDB, or fall back to local snapshot
+      if (syncPathways.length === 0) {
+        try {
+          const localRes = await fetch("/data/neuroguide_pathways.json", {
+            cache: "no-store",
+          });
+          if (localRes.ok) {
+            const localData = (await localRes.json()) as {
+              pathways?: ClinicalPathwayDoc[];
+            };
+            if (Array.isArray(localData?.pathways)) {
+              setApiPathways(localData.pathways);
+            }
+          }
+        } catch {
+          // Ignore local fallback error
+        }
+      }
     } finally {
       setIsLoading(false);
     }
-  }, [isAdminVerified]);
+  }, [isAdminVerified, syncPathways.length]);
 
   useEffect(() => {
     fetchPathways();

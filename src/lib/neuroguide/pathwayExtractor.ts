@@ -3,15 +3,22 @@ import path from "node:path";
 import type { SubspecialtyType } from "../../types/neuroguide.ts";
 import type {
   BilingualText,
+  PathwayAbbreviation,
   PathwayChecklistItem,
+  PathwayChoiceLayout,
+  PathwayCompoundItem,
   PathwayDomain,
   PathwayEdge,
+  PathwayFootnote,
   PathwayNode,
   PathwayNodeKind,
   PathwaySourceType,
   PathwayValidationResult,
 } from "../../types/clinicalPathways.ts";
-import { GEMINI_WATERFALL_MODELS, recordGeminiFallback } from "../gemini/models.ts";
+import {
+  callGeminiWaterfallJson,
+  GEMINI_WATERFALL_MODELS,
+} from "../gemini/models.ts";
 import { normalizePathwaySlug, validateClinicalPathway } from "./pathwayValidator.ts";
 import { PathwayServiceError, type CreatePathwayDraftInput } from "./pathwayService.ts";
 
@@ -40,6 +47,7 @@ export interface ExtractPathwayImageInput {
   apiKey?: string;
   fetchImpl?: typeof fetch;
   models?: readonly string[];
+  timeoutMs?: number;
 }
 
 export interface ExtractPathwayResult {
@@ -52,7 +60,9 @@ export interface ExtractPathwayResult {
 
 const VALID_NODE_KINDS = new Set<PathwayNodeKind>([
   "entry",
+  "section",
   "decision",
+  "criteria",
   "checklist",
   "action",
   "diagnosis",
@@ -60,6 +70,13 @@ const VALID_NODE_KINDS = new Set<PathwayNodeKind>([
 ]);
 
 const VALID_EDGE_TONES = new Set(["default", "positive", "warning", "danger"]);
+const VALID_CHOICE_LAYOUTS = new Set<PathwayChoiceLayout>([
+  "auto",
+  "binary",
+  "grid2",
+  "row3",
+  "stack",
+]);
 
 function parseEnvFileForKey(filePath: string): string {
   if (!fs.existsSync(filePath)) return "";
@@ -102,7 +119,7 @@ export function buildPathwayExtractionPrompt(
     ? `\nAdditional instructions from clinician admin: ${metadata.additionalInstructions.trim()}`
     : "";
 
-  return `You are a clinical neurology informatics specialist extracting a structured interactive step-by-step clinical pathway from an uploaded flowchart image.
+  return `You are a clinical neurology informatics specialist extracting a structured interactive clinical pathway from an uploaded flowchart image, modeled on the AHA/ACC Clinical Practice Guidelines interactive pathway standard.
 
 Source context:
 - Source Type: ${sourceLabel}
@@ -111,28 +128,64 @@ Source context:
 - Subspecialty: ${metadata.subspecialty}
 - Clinical Domain: ${metadata.domain}${metadata.figureRef ? `\n- Figure / Page: ${metadata.figureRef}` : ""}${metadata.title ? `\n- Preferred Title: ${metadata.title}` : ""}${extra}
 
-CRITICAL RULES:
-1. Transcribe EVERY box, clinical question, threshold, drug/dosing cue, contraindication/warning, and arrow label VERBATIM in English ("en") from the image.
-2. NEVER hallucinate or invent clinical criteria, dosages, or branches that are not explicitly shown in the image.
-3. For every "en" field, provide a concise, clinically accurate Vietnamese translation in "vi" while keeping standard medical terms, drug names, and scores (NIHSS, mRS, ASPECTS, IVT, EVT, tPA, TNK, etc.) intact.
-4. If the image shows Class/LOE recommendations (e.g. "Class I, LOE A", "COR 1", "Strong recommendation"), include "evidenceBadge" and map "tier" (1=Class I/Strong FOR, 2=Class IIa/Moderate, 3=Class IIb/Weak, 4=Expert Consensus, 5=Class III/Harm). Omit "tier" if not stated.
-5. If any part of the flowchart is blurry, cut off, or ambiguous, record it clearly in "confidenceNotes".
-6. Every "targetNodeId" in "edges" MUST match a valid "id" in "nodes". Terminal diagnosis/treatment nodes should have "edges": [].
+CRITICAL CLINICAL & UX RULES (AHA INTERACTIVE STANDARD):
+1. VERBATIM & ZERO HALLUCINATION: Transcribe EVERY box, clinical question, threshold, drug/dosing cue, contraindication/warning, and arrow label VERBATIM in English ("en") — never paraphrase or shorten box titles (e.g. keep "Patient's BP Thresholds and Recommendations for Treatment and Follow-Up" verbatim, do NOT rename it to "Category"). NEVER invent clinical criteria, dosages, or branches not shown in the image.
+2. BILINGUAL: For every "en" field, provide a concise, clinically accurate Vietnamese translation in "vi" while keeping standard medical terms, drug names, and scores (NIHSS, mRS, ASPECTS, IVT, EVT, tPA, TNK, etc.) intact. Every decision branch label in "edges[]" MUST have both "en" and "vi".
+3. ZERO REDUNDANT CLICKS (AUTO-UNFOLD LINEAR FLOWS):
+   - NEVER invent fake 1-branch decision prompts like "Proceed", "Next step", "Management", or "Evaluate results" — linear single-edge nodes auto-unfold automatically in the UI.
+   - If the entry box splits directly into multiple branches (e.g. 4 BP stages, 3 statin groups, 4 risk tiers), make "entryNodeId" a "decision" node directly so the clinician can tap immediately on screen 1.
+   - NEVER create echo/wrapper nodes that repeat an incoming branch label with 1 outgoing edge; point branch edges directly to the actual action, recommendation, or next decision node.
+4. MERGE LABELS & KEEP CHOICE LABELS SHORT:
+   - When a classification/prep box immediately splits into branches (e.g. "Severe hypertension" -> ED / OPT, or "Baseline lipid profile" -> 3 statin groups), use that label as the "title" of the "decision" node instead of a separate node.
+   - Keep branch "edges[].label" concise (<= 8-10 words). Put multi-bullet goals, conditions, or dosing inside the target "action"/"treatment" node's "body".
+5. CRITERIA LISTS ("Any of:") vs CHECKLISTS:
+   - If a branch leads to an "Any of:" bulleted eligibility/risk-feature list, use kind: "criteria" (displayed for rapid visual check, NOT split into multiple Yes/No questions).
+   - Reserve kind: "checklist" strictly for explicit pass/fail inclusion+exclusion eligibility tables.
+6. COMPOUND "AND" / "OR" CARDS:
+   - When two recommendations are explicitly paired by "AND" or "OR" (e.g. "BP-lowering medication AND Reassess in 1 mo", or "Aortic dissection ... OR Pheochromocytoma ..."), group them in ONE node using "compoundOperator": "AND" | "OR" and "compoundItems": [...] with each item's own "tier" and "evidenceBadge".
+   - Set "title.en" concisely to summarize the pair (e.g. "BP-lowering medication AND Reassess in 1 mo"), while "compoundItems" holds each distinct sub-card.
+7. STRICT COR ATTRIBUTION:
+   - ONLY set "tier" (1=Class I/Strong FOR, 2=Class IIa/Moderate, 3=Class IIb/Weak, 4=Expert Consensus, 5=Class III Harm/No Benefit) and "evidenceBadge" on "action", "treatment", "diagnosis" nodes or "compoundItems" where explicitly stated in the image.
+   - NEVER put "tier" or "evidenceBadge" on "decision", "entry", "section", or "criteria" nodes.
+8. SWIMLANES, SECTION BANNERS & MATRIX COLLAPSE:
+   - Horizontal or vertical shaded swimlane/banner bands spanning columns (e.g. "Promote Lifestyle Therapy at All Thresholds", "BP Level-Only", "Risk-Based Thresholds...") MUST be extracted as "kind": "section" banner node(s) placed immediately BEFORE the step(s) in that band — NEVER put inside the "body" of an action/treatment card.
+   - IMPORTANT GRAPH TOPOLOGY FOR SWIMLANES: A "section" node has ONLY 1 outgoing edge. When a horizontal band spans multiple parallel columns that continue to DIFFERENT downstream steps, create ONE "section" node per branch immediately before that branch's box inside the band (e.g. n_sec_normal -> n_lifestyle_normal, n_sec_elev -> n_lifestyle_elev, n_sec_stage1 -> n_lifestyle_stage1, n_sec_stage2 -> n_lifestyle_stage2). NEVER emit a floating/disconnected "section" node with "edges": [] or unreachable from "entryNodeId".
+   - If a matrix branch has only 1 valid path (no real sub-choice), collapse fixed context into the criteria/outcome card instead of chaining 1-edge decision nodes.
+9. FOOTNOTES, ABBREVIATIONS & LOOPS:
+   - Keep "*", "†", "‡" markers in node titles. Extract ALL figure caption abbreviations into top-level "abbreviations", AND extract ALL symbol definitions (*, †, ‡) plus any methodology/calculator/explanatory notes from the figure caption (e.g. "Based on the PREVENT calculator...") into top-level "footnotes" (use the symbol or "Note" as "symbol").
+   - When a routine ongoing follow-up box loops back solely to indicate ongoing periodic monitoring (e.g. "BP goal met? = YES -> Reassess in 3-6 mo" with an arrow returning to "BP goal met?"), represent it cleanly as a terminal "treatment" node with "(Ongoing)" in the title ("edges": []), matching AHA's "Reassess in 3-6 mo (Ongoing)".
+   - When keeping an active treatment/diagnostic loop-back arrow (e.g. "Consider intensification -> BP-lowering medication" or "Serial ECG -> STEMI?"), set "autoUnrollLoop": true.
+   - For diagnostic reassessment loops like "Stage 1 Hypertension? = NO -> Reassess in 3-6 mo", connect "NO" back to the existing "Reassess in 3-6 mo" node with a descriptive bilingual label (never generic "Continue").
+10. GRAPH INTEGRITY & TERMINAL KINDS:
+   - Every node in "nodes[]" MUST be reachable from "entryNodeId" (zero orphan nodes).
+   - Every "targetNodeId" MUST match a valid "id" in "nodes".
+   - EVERY terminal leaf node ("edges": []) MUST use "kind": "treatment" or "diagnosis" (NEVER "action" or "section"), including follow-up endpoints like "Reassess in 1 y" or "Reassess in 3-6 mo (Ongoing)".
 
 Return ONLY valid JSON matching this exact structure:
 {
   "title": { "en": "string", "vi": "string" },
   "summary": { "en": "string", "vi": "string" },
   "entryNodeId": "n1",
+  "abbreviations": [
+    { "term": "IVT", "expansion": { "en": "Intravenous thrombolysis", "vi": "Tiêu sợi huyết tĩnh mạch" } }
+  ],
+  "footnotes": [
+    { "symbol": "*", "text": { "en": "Footnote definition from figure caption", "vi": "Chú thích từ hình gốc" } }
+  ],
   "nodes": [
     {
       "id": "n1",
-      "kind": "entry | decision | checklist | action | diagnosis | treatment",
+      "kind": "entry | section | decision | criteria | checklist | action | diagnosis | treatment",
       "title": { "en": "string", "vi": "string" },
       "body": { "en": "string", "vi": "string" },
       "warning": { "en": "string", "vi": "string" },
       "tier": 1,
-      "evidenceBadge": "Class I, LOE A",
+      "evidenceBadge": "Class 1",
+      "choiceLayout": "auto | binary | grid2 | row3 | stack",
+      "compoundOperator": "AND | OR",
+      "compoundItems": [
+        { "title": { "en": "string", "vi": "string" }, "body": { "en": "string", "vi": "string" }, "tier": 1, "evidenceBadge": "Class 1" }
+      ],
       "checklistItems": [
         { "id": "c1", "label": { "en": "string", "vi": "string" }, "role": "inclusion | exclusion" }
       ],
@@ -143,7 +196,8 @@ Return ONLY valid JSON matching this exact structure:
           "sublabel": { "en": "string", "vi": "string" },
           "targetNodeId": "n2",
           "tone": "default | positive | warning | danger",
-          "checklistTrigger": "pass | fail"
+          "checklistTrigger": "pass | fail",
+          "autoUnrollLoop": false
         }
       ],
       "clinicalPearl": { "en": "string", "vi": "string" }
@@ -252,8 +306,49 @@ export function normalizeExtractedPathwayPayload(
     const body = sanitizeBilingual(rawNode.body);
     const warning = sanitizeBilingual(rawNode.warning);
     const clinicalPearl = sanitizeBilingual(rawNode.clinicalPearl);
-    const tier = sanitizeTier(rawNode.tier);
-    const evidenceBadge = asNonEmptyString(rawNode.evidenceBadge) || undefined;
+
+    const isNonRecommendationKind =
+      kind === "decision" ||
+      kind === "entry" ||
+      kind === "section" ||
+      kind === "criteria";
+    const tier = isNonRecommendationKind ? undefined : sanitizeTier(rawNode.tier);
+    const evidenceBadge = isNonRecommendationKind
+      ? undefined
+      : asNonEmptyString(rawNode.evidenceBadge) || undefined;
+
+    const rawChoiceLayout = asNonEmptyString(rawNode.choiceLayout) as PathwayChoiceLayout;
+    const choiceLayout = VALID_CHOICE_LAYOUTS.has(rawChoiceLayout)
+      ? rawChoiceLayout
+      : undefined;
+
+    const rawCompoundOp = asNonEmptyString(rawNode.compoundOperator).toUpperCase();
+    const compoundOperator =
+      rawCompoundOp === "AND" || rawCompoundOp === "OR"
+        ? (rawCompoundOp as "AND" | "OR")
+        : undefined;
+
+    const compoundItems: PathwayCompoundItem[] | undefined = Array.isArray(
+      rawNode.compoundItems
+    )
+      ? rawNode.compoundItems
+          .map((item): PathwayCompoundItem | null => {
+            if (!item || typeof item !== "object") return null;
+            const rec = item as Record<string, unknown>;
+            const cTitle = sanitizeBilingual(rec.title);
+            if (!cTitle) return null;
+            const cBody = sanitizeBilingual(rec.body);
+            const cTier = sanitizeTier(rec.tier);
+            const cBadge = asNonEmptyString(rec.evidenceBadge) || undefined;
+            return {
+              title: cTitle,
+              ...(cBody ? { body: cBody } : {}),
+              ...(cTier !== undefined ? { tier: cTier } : {}),
+              ...(cBadge ? { evidenceBadge: cBadge } : {}),
+            };
+          })
+          .filter((x): x is PathwayCompoundItem => x !== null)
+      : undefined;
 
     const checklistItems: PathwayChecklistItem[] | undefined = Array.isArray(
       rawNode.checklistItems
@@ -280,7 +375,10 @@ export function normalizeExtractedPathwayPayload(
         const rec = edge as Record<string, unknown>;
         const targetNodeId = asNonEmptyString(rec.targetNodeId);
         if (!targetNodeId) return null;
-        const label = sanitizeBilingual(rec.label, "Continue") ?? { en: "Continue" };
+        const label = sanitizeBilingual(rec.label) ?? {
+          en: "Continue",
+          vi: "Tiếp tục",
+        };
         const sublabel = sanitizeBilingual(rec.sublabel);
         const rawTone = asNonEmptyString(rec.tone);
         const tone = VALID_EDGE_TONES.has(rawTone)
@@ -290,6 +388,7 @@ export function normalizeExtractedPathwayPayload(
           rec.checklistTrigger === "pass" || rec.checklistTrigger === "fail"
             ? rec.checklistTrigger
             : undefined;
+        const autoUnrollLoop = rec.autoUnrollLoop === true ? true : undefined;
 
         return {
           id: asNonEmptyString(rec.id) || `${cleanId}_e${idx + 1}`,
@@ -298,18 +397,33 @@ export function normalizeExtractedPathwayPayload(
           targetNodeId,
           tone,
           ...(checklistTrigger ? { checklistTrigger } : {}),
+          ...(autoUnrollLoop ? { autoUnrollLoop } : {}),
         };
       })
       .filter((x): x is PathwayEdge => x !== null);
 
+    const normalizedKind: PathwayNodeKind =
+      edges.length === 0 && kind === "action"
+        ? ctx.metadata.domain === "diagnosis"
+          ? "diagnosis"
+          : "treatment"
+        : kind;
+
     nodes.push({
       id: cleanId,
-      kind,
+      kind: normalizedKind,
       title: nodeTitle,
       ...(body ? { body } : {}),
       ...(warning ? { warning } : {}),
       ...(tier !== undefined ? { tier } : {}),
       ...(evidenceBadge ? { evidenceBadge } : {}),
+      ...(choiceLayout && choiceLayout !== "auto" ? { choiceLayout } : {}),
+      ...(compoundItems && compoundItems.length > 0
+        ? {
+            compoundOperator: compoundOperator ?? "AND",
+            compoundItems,
+          }
+        : {}),
       ...(checklistItems && checklistItems.length > 0 ? { checklistItems } : {}),
       edges,
       ...(clinicalPearl ? { clinicalPearl } : {}),
@@ -328,9 +442,83 @@ export function normalizeExtractedPathwayPayload(
 
   const rawEntryId = asNonEmptyString(obj.entryNodeId);
   const mappedEntryId = rawIdToNormalizedId.get(rawEntryId) || rawEntryId;
-  const entryNodeId = usedIds.has(mappedEntryId)
+  let entryNodeId = usedIds.has(mappedEntryId)
     ? mappedEntryId
     : nodes[0]?.id || "n1";
+
+  // Compact strictly empty non-entry echo nodes (1 outgoing edge, no body/tier/warning/pearl,
+  // title verbatim matches incoming edge label) while preserving 2-node entry -> terminal flows.
+  const normalizeText = (s?: string) =>
+    (s || "")
+      .trim()
+      .toLowerCase()
+      .replace(/[*†‡.,:;!?()[\]{}'"`]+/g, "")
+      .replace(/\s+/g, " ");
+
+  const echoIdsToRemove = new Set<string>();
+  const nodeById = new Map(nodes.map((n) => [n.id, n]));
+  for (const parent of nodes) {
+    for (const edge of parent.edges) {
+      const target = nodeById.get(edge.targetNodeId);
+      if (!target) continue;
+      if (target.id === entryNodeId || target.kind === "entry" || target.kind === "checklist") {
+        continue;
+      }
+      if (target.edges.length !== 1) continue;
+      if (
+        target.body?.en?.trim() ||
+        target.warning?.en?.trim() ||
+        target.clinicalPearl?.en?.trim() ||
+        target.tier !== undefined ||
+        target.evidenceBadge?.trim() ||
+        (target.compoundItems && target.compoundItems.length > 0)
+      ) {
+        continue;
+      }
+      if (normalizeText(target.title.en) === normalizeText(edge.label.en)) {
+        const nextTargetId = target.edges[0].targetNodeId;
+        if (nextTargetId && nextTargetId !== target.id) {
+          edge.targetNodeId = nextTargetId;
+          echoIdsToRemove.add(target.id);
+        }
+      }
+    }
+  }
+  const compactedNodes =
+    echoIdsToRemove.size > 0
+      ? nodes.filter((n) => !echoIdsToRemove.has(n.id))
+      : nodes;
+  if (compactedNodes.length > 0 && !compactedNodes.some((n) => n.id === entryNodeId)) {
+    entryNodeId = compactedNodes[0].id;
+  }
+
+  const abbreviations: PathwayAbbreviation[] | undefined = Array.isArray(
+    obj.abbreviations
+  )
+    ? obj.abbreviations
+        .map((item): PathwayAbbreviation | null => {
+          if (!item || typeof item !== "object") return null;
+          const rec = item as Record<string, unknown>;
+          const term = asNonEmptyString(rec.term);
+          const expansion = sanitizeBilingual(rec.expansion);
+          if (!term || !expansion) return null;
+          return { term, expansion };
+        })
+        .filter((x): x is PathwayAbbreviation => x !== null)
+    : undefined;
+
+  const footnotes: PathwayFootnote[] | undefined = Array.isArray(obj.footnotes)
+    ? obj.footnotes
+        .map((item): PathwayFootnote | null => {
+          if (!item || typeof item !== "object") return null;
+          const rec = item as Record<string, unknown>;
+          const symbol = asNonEmptyString(rec.symbol) || "*";
+          const text = sanitizeBilingual(rec.text);
+          if (!text) return null;
+          return { symbol, text };
+        })
+        .filter((x): x is PathwayFootnote => x !== null)
+    : undefined;
 
   const confidenceNotes = Array.isArray(obj.confidenceNotes)
     ? obj.confidenceNotes
@@ -367,7 +555,9 @@ export function normalizeExtractedPathwayPayload(
       ...(ctx.fileName ? { fileName: ctx.fileName } : {}),
     },
     entryNodeId,
-    nodes,
+    nodes: compactedNodes,
+    ...(abbreviations && abbreviations.length > 0 ? { abbreviations } : {}),
+    ...(footnotes && footnotes.length > 0 ? { footnotes } : {}),
     extractionMeta: {
       model: ctx.model,
       extractedAt: new Date().toISOString(),
@@ -390,114 +580,49 @@ export async function extractPathwayFromImage(
     );
   }
 
-  const fetchFn = input.fetchImpl ?? fetch;
-  const models = input.models ?? GEMINI_WATERFALL_MODELS;
   const prompt = buildPathwayExtractionPrompt(input.metadata);
   const base64Image = input.imageBuffer.toString("base64");
-  let lastErrorReason = "Unknown Gemini extraction failure";
 
-  for (let i = 0; i < models.length; i++) {
-    const model = models[i];
-    const nextModel = models[i + 1];
-    try {
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
-      const res = await fetchFn(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-goog-api-key": apiKey,
+  const result = await callGeminiWaterfallJson({
+    source: "neuroguide/pathwayExtractor",
+    apiKey,
+    models: input.models ?? GEMINI_WATERFALL_MODELS,
+    fetchImpl: input.fetchImpl,
+    timeoutMs: input.timeoutMs,
+    temperature: 0.15,
+    responseMimeType: "application/json",
+    parts: [
+      {
+        inlineData: {
+          mimeType: input.mimeType,
+          data: base64Image,
         },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                {
-                  inlineData: {
-                    mimeType: input.mimeType,
-                    data: base64Image,
-                  },
-                },
-                { text: prompt },
-              ],
-            },
-          ],
-          generationConfig: {
-            temperature: 0.15,
-            responseMimeType: "application/json",
-          },
-        }),
-      });
+      },
+      { text: prompt },
+    ],
+  });
 
-      if (!res.ok) {
-        lastErrorReason = res.statusText || `HTTP ${res.status}`;
-        recordGeminiFallback({
-          source: "neuroguide/pathwayExtractor",
-          failedModel: model,
-          status: res.status,
-          reason: lastErrorReason,
-          nextModel,
-        });
-        continue;
-      }
-
-      const data = (await res.json()) as {
-        candidates?: Array<{
-          content?: {
-            parts?: Array<{ text?: string; thought?: boolean }>;
-          };
-        }>;
-      };
-      const parts = data?.candidates?.[0]?.content?.parts || [];
-      const textParts = parts
-        .filter((p) => Boolean(p?.text) && !p?.thought)
-        .map((p) => p.text as string);
-      let rawJson = textParts.join("").trim();
-      if (!rawJson && parts[0]?.text) {
-        rawJson = parts[0].text.trim();
-      }
-
-      if (!rawJson) {
-        lastErrorReason = "Empty response from Gemini Vision";
-        recordGeminiFallback({
-          source: "neuroguide/pathwayExtractor",
-          failedModel: model,
-          reason: lastErrorReason,
-          nextModel,
-        });
-        continue;
-      }
-
-      rawJson = rawJson.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "");
-      const parsed = JSON.parse(rawJson) as unknown;
-      const normalized = normalizeExtractedPathwayPayload(parsed, {
-        imageUrl: input.imageUrl,
-        imageSha256: input.imageSha256,
-        mimeType: input.mimeType,
-        fileName: input.fileName,
-        metadata: input.metadata,
-        model,
-      });
-
-      return {
-        ok: true,
-        draft: normalized.draft,
-        validation: normalized.validation,
-        model,
-        confidenceNotes: normalized.confidenceNotes,
-      };
-    } catch (err) {
-      lastErrorReason = err instanceof Error ? err.message : "Network or JSON parse error";
-      recordGeminiFallback({
-        source: "neuroguide/pathwayExtractor",
-        failedModel: model,
-        reason: lastErrorReason,
-        nextModel,
-      });
-    }
+  if (!result.ok) {
+    throw new PathwayServiceError(
+      "STORAGE_ERROR",
+      `All Gemini Vision models failed to extract flowchart: ${result.lastErrorReason}`
+    );
   }
 
-  throw new PathwayServiceError(
-    "STORAGE_ERROR",
-    `All Gemini Vision models failed to extract flowchart: ${lastErrorReason}`
-  );
+  const normalized = normalizeExtractedPathwayPayload(result.data, {
+    imageUrl: input.imageUrl,
+    imageSha256: input.imageSha256,
+    mimeType: input.mimeType,
+    fileName: input.fileName,
+    metadata: input.metadata,
+    model: result.model,
+  });
+
+  return {
+    ok: true,
+    draft: normalized.draft,
+    validation: normalized.validation,
+    model: result.model,
+    confidenceNotes: normalized.confidenceNotes,
+  };
 }

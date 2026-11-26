@@ -24,11 +24,32 @@ export interface PathwaySourceMeta {
 
 export type PathwayNodeKind =
   | "entry"
+  | "section"
   | "decision"
+  | "criteria"
   | "checklist"
   | "action"
   | "diagnosis"
   | "treatment";
+
+export type PathwayChoiceLayout = "auto" | "binary" | "grid2" | "row3" | "stack";
+
+export interface PathwayAbbreviation {
+  term: string;
+  expansion: BilingualText;
+}
+
+export interface PathwayFootnote {
+  symbol: string;
+  text: BilingualText;
+}
+
+export interface PathwayCompoundItem {
+  title: BilingualText;
+  body?: BilingualText;
+  tier?: NormalizedTier;
+  evidenceBadge?: string;
+}
 
 export interface PathwayChecklistItem {
   id: string;
@@ -43,6 +64,8 @@ export interface PathwayEdge {
   targetNodeId: string;
   tone?: "default" | "positive" | "warning" | "danger";
   checklistTrigger?: "pass" | "fail";
+  /** When true on a loop-back edge, auto-unrolls one pass down to the next decision node */
+  autoUnrollLoop?: boolean;
 }
 
 export interface PathwayNode {
@@ -54,6 +77,11 @@ export interface PathwayNode {
   tier?: NormalizedTier;
   evidenceBadge?: string;
   checklistItems?: PathwayChecklistItem[];
+  /** AHA-style paired/parallel compound items (AND / OR) rendered inside one cohesive card */
+  compoundOperator?: "AND" | "OR";
+  compoundItems?: PathwayCompoundItem[];
+  /** Optional explicit grid layout override for multi-branch decision cards */
+  choiceLayout?: PathwayChoiceLayout;
   edges: PathwayEdge[];
   ecosystemLinks?: EcosystemLink[];
   clinicalPearl?: BilingualText;
@@ -82,6 +110,8 @@ export interface ClinicalPathwayDoc {
   };
   entryNodeId: string;
   nodes: PathwayNode[];
+  abbreviations?: PathwayAbbreviation[];
+  footnotes?: PathwayFootnote[];
   status: PathwayStatus;
   /** Optimistic concurrency & Merkle metadata (= neuroguide_protocols) */
   rev: number;

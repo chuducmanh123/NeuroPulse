@@ -1,0 +1,332 @@
+{
+  "uid": "cc9f65b3-7603-4be3-ae9e-ddcfd1535a26",
+  "slug": "management-of-periprocedural-anticoagulation-in-patients-with-af-aha-acc-accp-hrs-2023",
+  "title": {
+    "en": "Management of Periprocedural Anticoagulation in Patients With AF",
+    "vi": "Quản lý kháng đông chu phẫu ở bệnh nhân rung nhĩ (AF)"
+  },
+  "domain": "combined",
+  "source": {
+    "url": "10.1161/CIR.0000000000001193",
+    "year": 2023,
+    "title": "2023 ACC AHA ACCP HRS Guideline for the Diagnosis and Management of Atrial Fibrillation",
+    "figureRef": "e51",
+    "sourceType": "guideline",
+    "organizationOrAuthor": "AHA/ACC/ACCP/HRS"
+  },
+  "status": "published",
+  "summary": {
+    "en": "Algorithmic recommendations for managing oral anticoagulation (Warfarin and DOACs) in patients with atrial fibrillation undergoing invasive procedures or surgeries, including pacemaker/ICD implants.",
+    "vi": "Khuyến cáo theo thuật toán để quản lý thuốc kháng đông đường uống (Warfarin và DOAC) ở bệnh nhân rung nhĩ trải qua các thủ thuật xâm lấn hoặc phẫu thuật, bao gồm cả cấy máy tạo nhịp/ICD."
+  },
+  "createdAt": "2026-11-25T03:41:58.501818+00:00",
+  "updatedAt": "2026-11-25T03:42:18.289338+00:00",
+  "reviewedAt": "2026-11-25T03:42:10.187Z",
+  "reviewedBy": "admin",
+  "entryNodeId": "n_entry",
+  "subspecialty": "Stroke",
+  "extractionMeta": {
+    "model": "gemini-3.6-flash",
+    "extractedAt": "2026-11-25T03:40:56.885Z",
+    "confidenceNotes": [
+      "Transcribed directly from Figure 15: Flowchart for Management of Periprocedural Anticoagulation in Patients With AF (2023 ACC/AHA/ACCP/HRS Guidelines).",
+      "Color mapping matches Table 2 guidelines: Green = Class 1, Yellow = Class 2a, Red = Class 3 Harm."
+    ]
+  },
+  "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795578028519-Screenshot_2026-11-25_103745.png",
+  "sourceImageMeta": {
+    "fileName": "Screenshot_2026-11-25_103745.png",
+    "mimeType": "image/png"
+  },
+  "sourceImageSha256": "2e4c4b4fb098315385d70241dad4dd3246fced692d0f8a7a8530d34c811d88fd",
+  "allowDuplicateImage": false,
+  "nodes": [
+    {
+      "id": "n_entry",
+      "body": {
+        "en": "Initial assessment of patients with atrial fibrillation scheduled for an invasive procedure or surgical intervention.",
+        "vi": "Đánh giá ban đầu cho bệnh nhân rung nhĩ có chỉ định thủ thuật xâm lấn hoặc can thiệp phẫu thuật."
+      },
+      "kind": "entry",
+      "edges": [
+        {
+          "id": "e_to_unsafe",
+          "tone": "default",
+          "label": {
+            "en": "Procedure cannot be performed safely on uninterrupted anticoagulation",
+            "vi": "Thủ thuật không thể thực hiện an toàn nếu tiếp tục kháng đông không gián đoạn"
+          },
+          "targetNodeId": "n_unsafe_uninterrupted"
+        },
+        {
+          "id": "e_to_pm_icd",
+          "tone": "default",
+          "label": {
+            "en": "Procedure is a pacemaker or ICD implant",
+            "vi": "Thủ thuật là cấy máy tạo nhịp hoặc ICD"
+          },
+          "targetNodeId": "n_pm_icd"
+        }
+      ],
+      "title": {
+        "en": "Patients with AF undergoing invasive procedure or surgery",
+        "vi": "Bệnh nhân rung nhĩ (AF) cần phẫu thuật hoặc thủ thuật xâm lấn"
+      },
+      "blockUid": "b806456f-50e2-45f4-99a7-8ada193b295e",
+      "blockRev": 2
+    },
+    {
+      "id": "n_unsafe_uninterrupted",
+      "body": {
+        "en": "Invasive procedures or surgeries requiring interruption of anticoagulation to minimize bleeding risk.",
+        "vi": "Các thủ thuật xâm lấn hoặc phẫu thuật yêu cầu tạm ngưng kháng đông để giảm thiểu nguy cơ xuất huyết."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e_unsafe_to_cessation",
+          "tone": "default",
+          "label": {
+            "en": "Proceed to interruption strategy",
+            "vi": "Tiến hành chiến lược tạm ngưng"
+          },
+          "targetNodeId": "n_temp_cessation"
+        }
+      ],
+      "title": {
+        "en": "Procedure cannot be performed safely on uninterrupted anticoagulation",
+        "vi": "Thủ thuật không thể thực hiện an toàn khi duy trì kháng đông liên tục"
+      },
+      "blockUid": "2e93819e-5df3-401e-97cc-f2713cae8d05",
+      "blockRev": 2
+    },
+    {
+      "id": "n_temp_cessation",
+      "body": {
+        "en": "Temporary cessation of oral anticoagulation without bridging is recommended (excluding those with recent stroke or TIA, or a mechanical valve) (1)",
+        "vi": "Khuyến cáo tạm ngưng kháng đông đường uống mà không dùng liệu pháp bắc cầu (ngoại trừ những bệnh nhân có đột quỵ/TIA gần đây, hoặc có van tim cơ học) (1)"
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e_cessation_to_bridging_harm",
+          "tone": "danger",
+          "label": {
+            "en": "Holding warfarin",
+            "vi": "Tạm ngưng warfarin"
+          },
+          "targetNodeId": "n_bridging_harm"
+        },
+        {
+          "id": "e_cessation_to_doac_timing",
+          "tone": "default",
+          "label": {
+            "en": "DOAC management",
+            "vi": "Quản lý DOAC"
+          },
+          "targetNodeId": "n_doac_timing"
+        }
+      ],
+      "title": {
+        "en": "Temporary cessation of oral anticoagulation without bridging",
+        "vi": "Tạm ngưng kháng đông đường uống không dùng bắc cầu"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "8080cec1-0191-48ce-95e1-50a43ca74c0d",
+      "blockRev": 2
+    },
+    {
+      "id": "n_bridging_harm",
+      "body": {
+        "en": "Bridging with low-molecular-weight heparin should not be administered (except in patients with mechanical valve or recent stroke or TIA) (3: Harm)",
+        "vi": "Không nên dùng liệu pháp bắc cầu bằng heparin trọng lượng phân tử thấp (ngoại trừ ở bệnh nhân có van cơ học hoặc đột quỵ/TIA gần đây) (3: Gây hại)"
+      },
+      "kind": "treatment",
+      "tier": 5,
+      "edges": [],
+      "title": {
+        "en": "Avoid LMWH Bridging",
+        "vi": "Tránh bắc cầu bằng LMWH"
+      },
+      "evidenceBadge": "COR 3: Harm",
+      "blockUid": "54b0040b-ce36-4ee6-9f91-b6d397252ec4",
+      "blockRev": 2
+    },
+    {
+      "id": "n_doac_timing",
+      "body": {
+        "en": "Timing of interruption of DOAC should be guided by the specific agent, renal function, and the bleeding risk (1)",
+        "vi": "Thời điểm tạm ngưng DOAC nên dựa trên loại thuốc cụ thể, chức năng thận và nguy cơ xuất huyết (1)"
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e_timing_to_resumption",
+          "tone": "default",
+          "label": {
+            "en": "Anticoagulation resumption",
+            "vi": "Tái sử dụng kháng đông"
+          },
+          "targetNodeId": "n_doac_resumption"
+        }
+      ],
+      "title": {
+        "en": "Timing of DOAC Interruption",
+        "vi": "Thời điểm tạm ngưng DOAC"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "ee7e54a8-dbee-40bd-a64b-e0d193d5662b",
+      "blockRev": 2
+    },
+    {
+      "id": "n_doac_resumption",
+      "body": {
+        "en": "Resumption of anticoagulation the day after low bleeding risk surgery and between the evening of the second day and the evening of the third day after high bleeding risk surgery (2a)",
+        "vi": "Tái sử dụng lại thuốc kháng đông vào ngày hôm sau đối với phẫu thuật nguy cơ xuất huyết thấp, và giữa tối ngày thứ hai đến tối ngày thứ ba đối với phẫu thuật nguy cơ xuất huyết cao (2a)"
+      },
+      "kind": "treatment",
+      "tier": 2,
+      "edges": [],
+      "title": {
+        "en": "Resumption of Anticoagulation",
+        "vi": "Tái sử dụng lại kháng đông"
+      },
+      "evidenceBadge": "COR 2a",
+      "blockUid": "ff969ce3-9f68-4e9e-8858-32a584cc9f4a",
+      "blockRev": 2
+    },
+    {
+      "id": "n_pm_icd",
+      "body": {
+        "en": "Evaluation for patients undergoing implantation of a permanent pacemaker or implantable cardioverter-defibrillator (ICD).",
+        "vi": "Đánh giá cho bệnh nhân chuẩn bị cấy máy tạo nhịp vĩnh viễn hoặc máy khử rung tim (ICD)."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e_pm_to_warfarin_check",
+          "tone": "default",
+          "label": {
+            "en": "On Warfarin assessment",
+            "vi": "Đánh giá ở bệnh nhân dùng Warfarin"
+          },
+          "targetNodeId": "n_warfarin_risk_check"
+        },
+        {
+          "id": "e_pm_to_doac_check",
+          "tone": "default",
+          "label": {
+            "en": "On DOAC assessment",
+            "vi": "Đánh giá ở bệnh nhân dùng DOAC"
+          },
+          "targetNodeId": "n_doac_pm_icd"
+        }
+      ],
+      "title": {
+        "en": "Procedure is a pacemaker or ICD implant",
+        "vi": "Thủ thuật cấy máy tạo nhịp hoặc ICD"
+      },
+      "blockUid": "1dfdae35-32da-4bae-a93d-d08c5d2958cc",
+      "blockRev": 2
+    },
+    {
+      "id": "n_warfarin_risk_check",
+      "body": {
+        "en": "Evaluate whether the patient on warfarin has a thromboembolism (TE) risk ≥5%.",
+        "vi": "Đánh giá xem bệnh nhân đang dùng warfarin có nguy cơ thuyên tắc mạch (TE) ≥5% hay không."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e_warfarin_risk_yes",
+          "tone": "positive",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n_continued_warfarin"
+        },
+        {
+          "id": "e_warfarin_risk_no",
+          "tone": "default",
+          "label": {
+            "en": "NO",
+            "vi": "KHÔNG"
+          },
+          "targetNodeId": "n_temp_cessation"
+        }
+      ],
+      "title": {
+        "en": "On warfarin, risk of TEs ≥5%",
+        "vi": "Đang dùng warfarin, nguy cơ thuyên tắc mạch (TEs) ≥5%"
+      },
+      "blockUid": "323d2d53-1cc8-4d8f-9147-2180606f144c",
+      "blockRev": 2
+    },
+    {
+      "id": "n_continued_warfarin",
+      "body": {
+        "en": "Continued anticoagulation in preference to interruption of warfarin and bridging (1)",
+        "vi": "Ưu tiên tiếp tục dùng thuốc kháng đông hơn là tạm ngưng warfarin và dùng liệu pháp bắc cầu (1)"
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "Continued Anticoagulation (Warfarin)",
+        "vi": "Tiếp tục dùng kháng đông (Warfarin)"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "726f64ea-ecda-4dd7-a803-04cc59192d56",
+      "blockRev": 2
+    },
+    {
+      "id": "n_doac_pm_icd",
+      "body": {
+        "en": "Patients taking DOAC with CHA2DS2-VASc score ≥2 or equivalent risk of stroke undergoing pacemaker or ICD implant.",
+        "vi": "Bệnh nhân đang dùng DOAC có điểm CHA2DS2-VASc ≥2 hoặc nguy cơ đột quỵ tương đương thực hiện cấy máy tạo nhịp hoặc ICD."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e_doac_pm_icd_to_rec",
+          "tone": "default",
+          "label": {
+            "en": "Management strategy",
+            "vi": "Chiến lược quản lý"
+          },
+          "targetNodeId": "n_doac_uninterrupted_or_interrupted"
+        }
+      ],
+      "title": {
+        "en": "CHA2DS2-VASc score ≥2 or equivalent risk of stroke, on DOAC",
+        "vi": "Điểm CHA2DS2-VASc ≥2 hoặc nguy cơ đột quỵ tương đương, đang dùng DOAC"
+      },
+      "blockUid": "97df2afe-cd77-4b58-ba80-bb2402bb8686",
+      "blockRev": 2
+    },
+    {
+      "id": "n_doac_uninterrupted_or_interrupted",
+      "body": {
+        "en": "Either uninterrupted or interrupted DOAC (2a)",
+        "vi": "Có thể chọn duy trì không gián đoạn hoặc tạm ngưng DOAC (2a)"
+      },
+      "kind": "treatment",
+      "tier": 2,
+      "edges": [],
+      "title": {
+        "en": "Uninterrupted or Interrupted DOAC",
+        "vi": "Duy trì hoặc tạm ngưng DOAC"
+      },
+      "evidenceBadge": "COR 2a",
+      "blockUid": "7f8e10d0-3df6-4659-8163-df7400999fca",
+      "blockRev": 2
+    }
+  ],
+  "rev": 2,
+  "changeSeq": 1552,
+  "protocolHash": "9810cbf09252ebcb79c8ffedf38acc67dde62f028d98f8c17df6718ea2ecd60a",
+  "deletedAt": null
+}

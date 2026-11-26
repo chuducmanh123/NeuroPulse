@@ -1,0 +1,294 @@
+{
+  "uid": "8c2cc710-359c-4f3b-a058-79ad4ffc2ce9",
+  "slug": "diagnostic-pathway-for-possible-primary-myocardial-infarction-esc-acc-aha-whf-eacts-sts-scai-2026",
+  "title": {
+    "en": "Diagnostic pathway for possible primary myocardial infarction",
+    "vi": "Quy trình chẩn đoán nghi ngờ nhồi máu cơ tim nguyên phát"
+  },
+  "domain": "diagnosis",
+  "source": {
+    "url": "10.1093/eurheartj/ehag101",
+    "year": 2026,
+    "title": "2026 ESC/ACC/AHA/WHF/EACTS/STS/SCAI Fifth Universal Definition of Myocardial Infarction",
+    "figureRef": "11",
+    "sourceType": "guideline",
+    "organizationOrAuthor": "ESC/ACC/AHA/WHF/EACTS/STS/SCAI"
+  },
+  "status": "published",
+  "summary": {
+    "en": "Algorithm for the clinical assessment, working diagnosis, angiographic and imaging evaluation, and final diagnostic classification of patients presenting with symptoms of acute myocardial ischaemia.",
+    "vi": "Thuật toán đánh giá lâm sàng, chẩn đoán ban đầu, chụp mạch vành, chẩn đoán hình ảnh tim và phân loại chẩn đoán xác định cho bệnh nhân có triệu chứng thiếu máu cục bộ cơ tim cấp tính."
+  },
+  "createdAt": "2026-11-25T09:40:15.881337+00:00",
+  "updatedAt": "2026-11-25T09:40:35.624308+00:00",
+  "reviewedAt": "2026-11-25T09:40:28.883Z",
+  "reviewedBy": "admin",
+  "entryNodeId": "n_setting",
+  "subspecialty": "Other",
+  "extractionMeta": {
+    "model": "gemini-3.6-flash",
+    "extractedAt": "2026-11-25T09:32:03.664Z",
+    "confidenceNotes": [
+      "All visible text, codes (BA41.xx), footnotes (a-e), and decision paths transcribed accurately."
+    ]
+  },
+  "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795599078908-Screenshot_2026-11-25_162930.png",
+  "sourceImageMeta": {
+    "fileName": "Screenshot_2026-11-25_162930.png",
+    "mimeType": "image/png"
+  },
+  "sourceImageSha256": "970879d6d56e85766f40dc58c69661d3176387c0cd9357d722dfd4d68c4188db",
+  "allowDuplicateImage": false,
+  "nodes": [
+    {
+      "id": "n_setting",
+      "body": {
+        "en": "Spontaneous presentation with symptoms of acute myocardial ischaemia.",
+        "vi": "Biểu hiện tự phát với các triệu chứng của thiếu máu cục bộ cơ tim cấp tính."
+      },
+      "kind": "entry",
+      "edges": [
+        {
+          "id": "e_to_assess",
+          "tone": "default",
+          "label": {
+            "en": "Proceed to ECG / Clinical Assessment",
+            "vi": "Tiến hành đánh giá ECG / Lâm sàng"
+          },
+          "targetNodeId": "n_clinical_assess"
+        }
+      ],
+      "title": {
+        "en": "Clinical Setting: Acute Myocardial Ischaemia",
+        "vi": "Bối cảnh lâm sàng: Thiếu máu cục bộ cơ tim cấp tính"
+      },
+      "blockUid": "7a456236-392e-4a18-8539-5c2bf94dd126",
+      "blockRev": 2
+    },
+    {
+      "id": "n_clinical_assess",
+      "body": {
+        "en": "Evaluate initial electrocardiogram for ST-segment elevation or equivalent patterns.",
+        "vi": "Đánh giá điện tâm đồ ban đầu xem có ST chênh lên hoặc các dạng tương đương."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e_st_elev",
+          "tone": "danger",
+          "label": {
+            "en": "ST-segment elevation",
+            "vi": "Đoạn ST chênh lên"
+          },
+          "targetNodeId": "n_stemi_workup"
+        },
+        {
+          "id": "e_non_st_elev",
+          "tone": "warning",
+          "label": {
+            "en": "Non-ST-segment elevation",
+            "vi": "Đoạn ST không chênh lên"
+          },
+          "targetNodeId": "n_nstemi_workup"
+        }
+      ],
+      "title": {
+        "en": "Clinical Assessment & ECG Findings",
+        "vi": "Đánh giá lâm sàng & Kết quả Điện tâm đồ (ECG)"
+      },
+      "clinicalPearl": {
+        "en": "ST-segment elevation includes other electrocardiographic changes indicative of possible acute coronary occlusion.",
+        "vi": "ST chênh lên bao gồm các biến đổi điện tâm đồ khác gợi ý khả năng tắc động mạch vành cấp tính."
+      },
+      "blockUid": "8e2f1667-b564-434f-a820-f42791ad4051",
+      "blockRev": 2
+    },
+    {
+      "id": "n_stemi_workup",
+      "body": {
+        "en": "- Biomarker results not needed for working diagnosis.\n- Working diagnosis: ST-segment elevation myocardial infarction (STEMI) [BA41.09].",
+        "vi": "Không cần kết quả chất chỉ điểm sinh học (biomarker) để đưa ra chẩn đoán ban đầu."
+      },
+      "kind": "action",
+      "edges": [
+        {
+          "id": "e_to_wd_stemi",
+          "tone": "default",
+          "label": {
+            "en": "Proceed to invasive / non-invasive evaluation",
+            "vi": "Chuyển sang đánh giá xâm lấn / không xâm lấn"
+          },
+          "targetNodeId": "n_coronary_angio"
+        }
+      ],
+      "title": {
+        "en": "STEMI Pathway Assessment",
+        "vi": "Đánh giá theo nhánh STEMI"
+      },
+      "clinicalPearl": {
+        "en": "For patients with a working diagnosis of STEMI, acute myocardial injury is necessary to confirm the final diagnosis later.",
+        "vi": "Đối với bệnh nhân có chẩn đoán ban đầu là STEMI, xác nhận tổn thương cơ tim cấp là bắt buộc để khẳng định chẩn đoán cuối cùng."
+      },
+      "blockUid": "39415e88-b59b-40a8-9dca-3bbea42b0e1d",
+      "blockRev": 2
+    },
+    {
+      "id": "n_nstemi_workup",
+      "body": {
+        "en": "- Acute myocardial injury on serial biomarker testing.\n- Working diagnosis: Non-ST-segment elevation myocardial infarction (NSTEMI) [BA41.19].",
+        "vi": "Tổn thương cơ tim cấp tính trên xét nghiệm chất chỉ điểm sinh học theo chuỗi."
+      },
+      "kind": "action",
+      "edges": [
+        {
+          "id": "e_to_wd_nstemi",
+          "tone": "default",
+          "label": {
+            "en": "Proceed to invasive / non-invasive evaluation",
+            "vi": "Chuyển sang đánh giá xâm lấn / không xâm lấn"
+          },
+          "targetNodeId": "n_coronary_angio"
+        }
+      ],
+      "title": {
+        "en": "NSTEMI Pathway Biomarker Testing",
+        "vi": "Xét nghiệm chất chỉ điểm sinh học theo nhánh NSTEMI"
+      },
+      "clinicalPearl": {
+        "en": "Defined as rise and/or fall of cardiac troponin I or T values with at least one value above the sex-specific 99th percentile upper reference limit on serial testing.",
+        "vi": "Được xác định bởi sự tăng và/hoặc giảm của troponin I hoặc T cơ tim với ít nhất một giá trị vượt giới hạn tham chiếu trên bách phân vị thứ 99 theo giới tính."
+      },
+      "blockUid": "75a7a1cc-569b-4bc6-bad8-0befb9896618",
+      "blockRev": 2
+    },
+    {
+      "id": "n_coronary_angio",
+      "body": {
+        "en": "Evaluate coronary anatomy and acute coronary pathology.",
+        "vi": "Đánh giá giải phẫu động mạch vành và các bệnh lý động mạch vành cấp tính."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e_pathology_found",
+          "tone": "danger",
+          "label": {
+            "en": "Acute coronary pathology identified",
+            "vi": "Phát hiện bệnh lý động mạch vành cấp tính"
+          },
+          "sublabel": {
+            "en": "Atherothrombosis or SCAD, embolism, vasospasm, restenosis, stent thrombosis, graft failure >30d",
+            "vi": "Huyết khối do xơ vữa hoặc bóc tách tự phát, thuyên tắc, co thắt, tái hẹp, huyết khối stent, hỏng cầu nối >30 ngày"
+          },
+          "targetNodeId": "n_fd_confirmed"
+        },
+        {
+          "id": "e_no_pathology",
+          "tone": "warning",
+          "label": {
+            "en": "No acute coronary pathology identified",
+            "vi": "Không phát hiện bệnh lý động mạch vành cấp tính"
+          },
+          "sublabel": {
+            "en": "Includes MINOCA patients",
+            "vi": "Bao gồm cả bệnh nhân MINOCA"
+          },
+          "targetNodeId": "n_cardiac_imaging"
+        }
+      ],
+      "title": {
+        "en": "Coronary Angiography ± Intravascular Imaging / Functional Testing",
+        "vi": "Chụp động mạch vành ± Hình ảnh học trong lòng mạch / Thăm dò chức năng"
+      },
+      "clinicalPearl": {
+        "en": "Where coronary angiography and cardiac imaging are not available or appropriate, a final diagnosis can be assigned based on biomarkers, ECG, and clinical criteria alone (coded as BA41.09 or BA41.19).",
+        "vi": "Nơi không có sẵn chụp mạch vành và hình ảnh học tim hoặc không phù hợp, chẩn đoán xác định có thể dựa vào chất chỉ điểm sinh học, ECG và tiêu chuẩn lâm sàng (mã hóa BA41.09 hoặc BA41.19)."
+      },
+      "blockUid": "f37b13f6-89f0-477e-988a-6e955f0360dd",
+      "blockRev": 2
+    },
+    {
+      "id": "n_cardiac_imaging",
+      "body": {
+        "en": "New or presumed new regional wall motion abnormality or absence of viable myocardium in a pattern consistent with an ischaemic aetiology?",
+        "vi": "Có rối loạn vận động vùng mới hoặc giả định mới, hoặc mất cơ tim sống theo hình thái phù hợp với nguyên nhân thiếu máu cục bộ không?"
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e_imaging_yes",
+          "tone": "warning",
+          "label": {
+            "en": "Yes",
+            "vi": "Có"
+          },
+          "targetNodeId": "n_fd_undetermined"
+        },
+        {
+          "id": "e_imaging_no",
+          "tone": "positive",
+          "label": {
+            "en": "No",
+            "vi": "Không"
+          },
+          "targetNodeId": "n_fd_excluded"
+        }
+      ],
+      "title": {
+        "en": "Cardiac Imaging Evaluation",
+        "vi": "Đánh giá Hình ảnh học tim"
+      },
+      "blockUid": "3a6be0cd-0ef8-4636-976a-d34d025705f1",
+      "blockRev": 2
+    },
+    {
+      "id": "n_fd_confirmed",
+      "body": {
+        "en": "Confirmed acute coronary pathology (ICD-11 codes: BA41.01-07 or BA41.11-17).",
+        "vi": "Đã xác nhận bệnh lý động mạch vành cấp tính (Mã ICD-11: BA41.01-07 hoặc BA41.11-17)."
+      },
+      "kind": "diagnosis",
+      "edges": [],
+      "title": {
+        "en": "FINAL DIAGNOSIS: STEMI or NSTEMI due to confirmed acute coronary pathology",
+        "vi": "CHẨN ĐOÁN XÁC ĐỊNH: STEMI hoặc NSTEMI do bệnh lý động mạch vành cấp tính đã xác định"
+      },
+      "blockUid": "92c3fbe0-de32-4f01-b5b4-e7f9093e6180",
+      "blockRev": 2
+    },
+    {
+      "id": "n_fd_undetermined",
+      "body": {
+        "en": "Undetermined aetiology despite cardiac imaging evidence of ischaemia (ICD-11 codes: BA41.08 or BA41.18).",
+        "vi": "Chưa rõ nguyên nhân mặc dù có bằng chứng thiếu máu cục bộ trên hình ảnh học tim (Mã ICD-11: BA41.08 hoặc BA41.18)."
+      },
+      "kind": "diagnosis",
+      "edges": [],
+      "title": {
+        "en": "FINAL DIAGNOSIS: STEMI or NSTEMI of undetermined aetiology",
+        "vi": "CHẨN ĐOÁN XÁC ĐỊNH: STEMI hoặc NSTEMI không rõ nguyên nhân"
+      },
+      "blockUid": "cedd037e-9a36-406b-a0f0-42821526d14f",
+      "blockRev": 2
+    },
+    {
+      "id": "n_fd_excluded",
+      "body": {
+        "en": "Myocardial infarction is excluded based on negative cardiac imaging and lack of acute coronary pathology.",
+        "vi": "Nhồi máu cơ tim bị loại trừ dựa trên hình ảnh học tim âm tính và không có bệnh lý động mạch vành cấp tính."
+      },
+      "kind": "diagnosis",
+      "edges": [],
+      "title": {
+        "en": "FINAL DIAGNOSIS: Myocardial infarction excluded",
+        "vi": "CHẨN ĐOÁN XÁC ĐỊNH: Loại trừ nhồi máu cơ tim"
+      },
+      "blockUid": "db6530dc-6f70-4764-a05e-43f3721a95b0",
+      "blockRev": 2
+    }
+  ],
+  "rev": 2,
+  "changeSeq": 1690,
+  "protocolHash": "e734b90c26cc95482cfe72ff0fdb2598e0bb95c8f6924f0c6a95089af959310e",
+  "deletedAt": null
+}

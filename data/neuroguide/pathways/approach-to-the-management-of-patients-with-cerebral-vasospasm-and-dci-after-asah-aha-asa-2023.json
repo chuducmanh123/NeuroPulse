@@ -1,0 +1,474 @@
+{
+  "uid": "a4cdc532-8d22-4d47-8574-867a1913df49",
+  "slug": "approach-to-the-management-of-patients-with-cerebral-vasospasm-and-dci-after-asah-aha-asa-2023",
+  "title": {
+    "en": "Approach to the Management of Patients with Cerebral Vasospasm and DCI After aSAH",
+    "vi": "Tiếp cận Quản lý Bệnh nhân Co thắt Mạch não và Thiếu máu Não Cục bộ Muộn (DCI) sau Xuất huyết Dưới nhện do Vỡ Túi cùng (aSAH)"
+  },
+  "domain": "treatment",
+  "source": {
+    "url": "10.1161/STR.0000000000000436",
+    "year": 2023,
+    "title": "2023 AHA ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage",
+    "figureRef": "e340",
+    "sourceType": "guideline",
+    "organizationOrAuthor": "AHA/ASA"
+  },
+  "status": "published",
+  "summary": {
+    "en": "An evidence-based clinical decision flowchart for monitoring, medical management, and endovascular rescue therapy in patients with aneurysmal subarachnoid hemorrhage (aSAH) at risk for or developing cerebral vasospasm and delayed cerebral ischemia (DCI).",
+    "vi": "Sơ đồ thuật toán lâm sàng dựa trên bằng chứng để theo dõi, điều trị nội khoa và điều trị giải cứu can thiệp nội mạch ở bệnh nhân xuất huyết dưới nhện do vỡ túi ngực (aSAH) có nguy cơ hoặc đang tiến triển co thắt mạch máu não và thiếu máu cục bộ bộ não muộn (DCI)."
+  },
+  "createdAt": "2026-11-25T03:33:14.563611+00:00",
+  "updatedAt": "2026-11-25T03:33:37.420241+00:00",
+  "reviewedAt": "2026-11-25T03:33:27.681Z",
+  "reviewedBy": "admin",
+  "entryNodeId": "n1",
+  "subspecialty": "Stroke",
+  "extractionMeta": {
+    "model": "gemini-3.6-flash",
+    "extractedAt": "2026-11-25T03:25:16.451Z",
+    "confidenceNotes": [
+      "Transcribed directly from Figure 3 of the 2023 AHA/ASA aSAH Guideline (page e340). All class ratings and arrows accurately represented."
+    ]
+  },
+  "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795577088510-Screenshot_2026-11-25_102243.png",
+  "sourceImageMeta": {
+    "fileName": "Screenshot_2026-11-25_102243.png",
+    "mimeType": "image/png"
+  },
+  "sourceImageSha256": "ab77128c672663d92afef80e5d7197405ad95d428ddb980625d9b7905d467856",
+  "allowDuplicateImage": false,
+  "nodes": [
+    {
+      "id": "n1",
+      "body": {
+        "en": "Initial presentation of aneurysmal subarachnoid hemorrhage.",
+        "vi": "Bệnh nhân khởi phát xuất huyết dưới nhện do vỡ túi ngực."
+      },
+      "kind": "entry",
+      "edges": [
+        {
+          "id": "e1-2",
+          "tone": "default",
+          "label": {
+            "en": "Initiate baseline therapy",
+            "vi": "Bắt đầu điều trị nền tảng"
+          },
+          "targetNodeId": "n2"
+        }
+      ],
+      "title": {
+        "en": "Patient with aSAH",
+        "vi": "Bệnh nhân bị aSAH"
+      },
+      "blockUid": "dab9658c-8729-467c-af3d-533c698ca372",
+      "blockRev": 2
+    },
+    {
+      "id": "n2",
+      "body": {
+        "en": "Administer oral nimodipine to all patients with aSAH.",
+        "vi": "Cho tất cả bệnh nhân aSAH dùng nimodipine đường uống."
+      },
+      "kind": "action",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e2-3",
+          "tone": "default",
+          "label": {
+            "en": "Next step",
+            "vi": "Bước tiếp theo"
+          },
+          "targetNodeId": "n3"
+        }
+      ],
+      "title": {
+        "en": "Oral Nimodipine",
+        "vi": "Nimodipine đường uống"
+      },
+      "evidenceBadge": "Class 1",
+      "blockUid": "fbc4ab20-ecf0-4d17-b176-418cde48c5cb",
+      "blockRev": 2
+    },
+    {
+      "id": "n3",
+      "body": {
+        "en": "Perform frequent, structured neurological assessments.",
+        "vi": "Thực hiện đánh giá thần kinh định kỳ, có cấu trúc."
+      },
+      "kind": "action",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e3-4",
+          "tone": "default",
+          "label": {
+            "en": "Reliable neurological exam",
+            "vi": "Khám thần kinh tin cậy"
+          },
+          "targetNodeId": "n4"
+        },
+        {
+          "id": "e3-5",
+          "tone": "warning",
+          "label": {
+            "en": "Unreliable neurological exam",
+            "vi": "Khám thần kinh không tin cậy"
+          },
+          "targetNodeId": "n5"
+        }
+      ],
+      "title": {
+        "en": "Regular Neurological Exams",
+        "vi": "Khám thần kinh định kỳ"
+      },
+      "evidenceBadge": "Class 1",
+      "blockUid": "6fff3fda-bb42-4bb6-9560-23698a8d41fd",
+      "blockRev": 2
+    },
+    {
+      "id": "n4",
+      "body": {
+        "en": "Perform transcranial Doppler (TCD) monitoring for reliable exam patients.",
+        "vi": "Thực hiện theo dõi Doppler xuyên sọ (TCD) cho bệnh nhân có thể thăm khám thần kinh tin cậy."
+      },
+      "kind": "action",
+      "tier": 2,
+      "edges": [
+        {
+          "id": "e4-6",
+          "tone": "default",
+          "label": {
+            "en": "Consider invasive monitoring",
+            "vi": "Cân nhắc theo dõi xâm lấn"
+          },
+          "targetNodeId": "n6"
+        },
+        {
+          "id": "e4-7",
+          "tone": "default",
+          "label": {
+            "en": "Proceed to management strategy",
+            "vi": "Chuyển sang chiến lược quản lý"
+          },
+          "targetNodeId": "n7"
+        }
+      ],
+      "title": {
+        "en": "TCD Monitoring",
+        "vi": "Theo dõi TCD (Siêu âm Doppler xuyên sọ)"
+      },
+      "evidenceBadge": "Class 2a",
+      "blockUid": "33e88673-2afd-4d16-bcd5-77011dba49ac",
+      "blockRev": 2
+    },
+    {
+      "id": "n5",
+      "body": {
+        "en": "Perform TCD monitoring and continuous electroencephalography (cEEG) for patients with an unreliable neurological exam.",
+        "vi": "Thực hiện theo dõi TCD và điện não đồ liên tục (cEEG) cho bệnh nhân có kết quả khám thần kinh không tin cậy."
+      },
+      "kind": "action",
+      "tier": 2,
+      "edges": [
+        {
+          "id": "e5-6",
+          "tone": "default",
+          "label": {
+            "en": "Consider invasive monitoring",
+            "vi": "Cân nhắc theo dõi xâm lấn"
+          },
+          "targetNodeId": "n6"
+        },
+        {
+          "id": "e5-7",
+          "tone": "default",
+          "label": {
+            "en": "Proceed to management strategy",
+            "vi": "Chuyển sang chiến lược quản lý"
+          },
+          "targetNodeId": "n7"
+        }
+      ],
+      "title": {
+        "en": "TCD Monitoring & cEEG",
+        "vi": "Theo dõi TCD & cEEG"
+      },
+      "evidenceBadge": "Class 2a",
+      "blockUid": "96d40168-4218-4d81-8078-8780658eae7f",
+      "blockRev": 2
+    },
+    {
+      "id": "n6",
+      "body": {
+        "en": "Consider invasive multimodality neuromonitoring techniques when appropriate.",
+        "vi": "Cân nhắc áp dụng các kỹ thuật theo dõi thần kinh đa thông số xâm lấn khi thích hợp."
+      },
+      "kind": "action",
+      "tier": 3,
+      "edges": [
+        {
+          "id": "e6-7",
+          "tone": "default",
+          "label": {
+            "en": "Proceed",
+            "vi": "Tiếp tục"
+          },
+          "targetNodeId": "n7"
+        }
+      ],
+      "title": {
+        "en": "Consider Invasive Multimodality Neuromonitoring",
+        "vi": "Cân nhắc theo dõi thần kinh đa thông số xâm lấn"
+      },
+      "evidenceBadge": "Class 2b",
+      "blockUid": "e945aeae-cf21-4560-905b-e5a4e13d3224",
+      "blockRev": 2
+    },
+    {
+      "id": "n7",
+      "body": {
+        "en": "Do not perform prophylactic hemodynamic augmentation in asymptomatic patients.",
+        "vi": "Không áp dụng liệu pháp tăng cường huyết động để phòng ngừa ở bệnh nhân chưa có triệu chứng."
+      },
+      "kind": "action",
+      "tier": 5,
+      "edges": [
+        {
+          "id": "e7-8",
+          "tone": "default",
+          "label": {
+            "en": "Monitor for deterioration",
+            "vi": "Theo dõi dấu hiệu diễn tiến xấu"
+          },
+          "targetNodeId": "n8"
+        }
+      ],
+      "title": {
+        "en": "Avoid Prophylactic Hemodynamic Augmentation",
+        "vi": "Tránh tăng cường huyết động dự phòng"
+      },
+      "warning": {
+        "en": "Prophylactic hemodynamic augmentation is Class 3: Harm.",
+        "vi": "Tăng cường huyết động dự phòng thuộc Phân loại 3: Có hại."
+      },
+      "evidenceBadge": "Class 3: Harm",
+      "blockUid": "7f026965-b471-4d51-ae48-ff769e824430",
+      "blockRev": 2
+    },
+    {
+      "id": "n8",
+      "body": {
+        "en": "Worsening neurologically or on monitoring when neurological examination is unreliable.",
+        "vi": "Tình trạng thần kinh xấu đi hoặc phát hiện bất thường trên thông số theo dõi khi khám thần kinh không tin cậy."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e8-9",
+          "tone": "warning",
+          "label": {
+            "en": "Worsening detected",
+            "vi": "Phát hiện diễn tiến xấu"
+          },
+          "targetNodeId": "n9"
+        }
+      ],
+      "title": {
+        "en": "Neurological or Monitoring Worsening",
+        "vi": "Diễn tiến xấu về thần kinh hoặc trên thông số theo dõi"
+      },
+      "blockUid": "99c78aca-2524-4e45-a38d-c48e365ed943",
+      "blockRev": 2
+    },
+    {
+      "id": "n9",
+      "body": {
+        "en": "- Address examination confounders\n- Elevate blood pressure\n- Ensure euvolemia\n- Additional imaging as indicated (eg, CT/CTA)",
+        "vi": "- Xử trí các yếu tố gây nhiễu kết quả khám\n- Nâng huyết áp\n- Đảm bảo thể tích tuần hoàn bình thường (euvolemia)\n- Chẩn đoán hình ảnh bổ sung theo chỉ định (ví dụ: CT/CTA)"
+      },
+      "kind": "action",
+      "tier": 2,
+      "edges": [
+        {
+          "id": "e9-10",
+          "tone": "default",
+          "label": {
+            "en": "Evaluate response",
+            "vi": "Đánh giá đáp ứng"
+          },
+          "targetNodeId": "n10"
+        }
+      ],
+      "title": {
+        "en": "Initial Medical Management of DCI/Vasospasm",
+        "vi": "Xử trí nội khoa ban đầu cho DCI/Co thắt mạch"
+      },
+      "evidenceBadge": "Class 2a",
+      "blockUid": "0788a418-63a3-47af-ad56-a5fa3a2c64e0",
+      "blockRev": 2
+    },
+    {
+      "id": "n10",
+      "body": {
+        "en": "Assess whether neurological deficits or neuromonitoring abnormalities have resolved after initial medical management.",
+        "vi": "Đánh giá xem khuyết tật thần kinh hoặc bất thường theo dõi thần kinh đã thuyên giảm sau xử trí nội khoa ban đầu chưa."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e10-11",
+          "tone": "positive",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n11"
+        },
+        {
+          "id": "e10-12",
+          "tone": "danger",
+          "label": {
+            "en": "NO",
+            "vi": "KHÔNG"
+          },
+          "targetNodeId": "n12"
+        }
+      ],
+      "title": {
+        "en": "Worsening Resolves?",
+        "vi": "Tình trạng xấu đi có cải thiện không?"
+      },
+      "blockUid": "29551cda-056f-4bc7-bc30-c2cbb53e444b",
+      "blockRev": 2
+    },
+    {
+      "id": "n11",
+      "body": {
+        "en": "Continue baseline monitoring protocols.",
+        "vi": "Tiếp tục quy trình theo dõi nền tảng."
+      },
+      "kind": "action",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e11-8",
+          "tone": "default",
+          "label": {
+            "en": "Re-evaluate if new worsening occurs",
+            "vi": "Đánh giá lại nếu có diễn tiến xấu mới"
+          },
+          "targetNodeId": "n8"
+        }
+      ],
+      "title": {
+        "en": "Continue Monitoring",
+        "vi": "Tiếp tục theo dõi"
+      },
+      "evidenceBadge": "Class 1",
+      "blockUid": "f5c8da23-75d1-408d-aebd-6ed39549049a",
+      "blockRev": 2
+    },
+    {
+      "id": "n12",
+      "body": {
+        "en": "Proceed to endovascular rescue therapy with intra-arterial (IA) spasmolytic +/- angioplasty.",
+        "vi": "Tiến hành điều trị giải cứu can thiệp nội mạch bằng thuốc giãn mạch bơm động mạch (IA) +/- tạo hình mạch (angioplasty)."
+      },
+      "kind": "treatment",
+      "tier": 3,
+      "edges": [
+        {
+          "id": "e12-13",
+          "tone": "default",
+          "label": {
+            "en": "Assess post-procedure response",
+            "vi": "Đánh giá đáp ứng sau thủ thuật"
+          },
+          "targetNodeId": "n13"
+        }
+      ],
+      "title": {
+        "en": "Endovascular Rescue Therapy",
+        "vi": "Điều trị giải cứu can thiệp nội mạch"
+      },
+      "evidenceBadge": "Class 2b",
+      "blockUid": "4a90df2e-84d7-4114-a8c9-423618976298",
+      "blockRev": 2
+    },
+    {
+      "id": "n13",
+      "body": {
+        "en": "Assess clinical/neuromonitoring response following endovascular rescue therapy.",
+        "vi": "Đánh giá đáp ứng lâm sàng / theo dõi thần kinh sau điều trị giải cứu can thiệp nội mạch."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e13-11",
+          "tone": "positive",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n11"
+        },
+        {
+          "id": "e13-14",
+          "tone": "danger",
+          "label": {
+            "en": "NO",
+            "vi": "KHÔNG"
+          },
+          "targetNodeId": "n14"
+        }
+      ],
+      "title": {
+        "en": "Worsening Resolves?",
+        "vi": "Tình trạng xấu đi có cải thiện không?"
+      },
+      "blockUid": "216052b6-0a51-4d23-a70c-2434ef0e060a",
+      "blockRev": 2
+    },
+    {
+      "id": "n14",
+      "body": {
+        "en": "Imaging for DCI explains deficit or other explanation for exam?",
+        "vi": "Hình ảnh học về DCI có giải thích được khuyết tật thần kinh hoặc có nguyên nhân khác giải thích cho kết quả khám không?"
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e14-11",
+          "tone": "positive",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n11"
+        },
+        {
+          "id": "e14-12",
+          "tone": "danger",
+          "label": {
+            "en": "NO",
+            "vi": "KHÔNG"
+          },
+          "targetNodeId": "n12"
+        }
+      ],
+      "title": {
+        "en": "Imaging/Deficit Explanation Check",
+        "vi": "Kiểm tra nguyên nhân trên hình ảnh / khuyết tật thần kinh"
+      },
+      "blockUid": "7f9681ac-113c-47e5-89a0-3b3670d01f5c",
+      "blockRev": 2
+    }
+  ],
+  "rev": 2,
+  "changeSeq": 1504,
+  "protocolHash": "7f4a44f7033a1caea1e044da592028fb1a749c1f15f5a5be6768c21e02319d68",
+  "deletedAt": null
+}

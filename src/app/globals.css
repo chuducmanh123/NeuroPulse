@@ -467,9 +467,25 @@ html.night-shift .bento-card:hover {
   animation: pathwayChoiceIn 260ms var(--apple-ease) both;
 }
 
+@keyframes pathwayStackIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-pathway-stack-in {
+  animation: pathwayStackIn 300ms var(--apple-ease) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-pathway-step,
-  .animate-pathway-choice {
+  .animate-pathway-choice,
+  .animate-pathway-stack-in {
     animation: none !important;
   }
 }

@@ -1,0 +1,397 @@
+{
+  "uid": "dfd85319-6d1f-4500-a1f7-e5e82413ff57",
+  "slug": "management-of-anticoagulant-related-hemorrhage-aha-asa-2022",
+  "title": {
+    "en": "Management of anticoagulant-related hemorrhage",
+    "vi": "Xử trí xuất huyết liên quan đến thuốc kháng đông"
+  },
+  "domain": "combined",
+  "source": {
+    "url": "10.1161/STR.0000000000000407",
+    "year": 2022,
+    "title": "2022 AHA ASA Guideline for the Management of PatientsWith Spontaneous Intracerebral Hemorrhage",
+    "figureRef": "e301",
+    "sourceType": "guideline",
+    "organizationOrAuthor": "AHA/ASA"
+  },
+  "status": "published",
+  "summary": {
+    "en": "Step-by-step clinical pathway for the immediate discontinuation and rapid reversal of anticoagulation in patients presenting with intracerebral hemorrhage (ICH).",
+    "vi": "Quy trình lâm sàng từng bước để ngừng ngay lập tức và đảo ngược nhanh chóng tình trạng kháng đông ở bệnh nhân xuất huyết não (ICH)."
+  },
+  "createdAt": "2026-11-25T04:01:58.834938+00:00",
+  "updatedAt": "2026-11-25T09:12:29.87829+00:00",
+  "reviewedAt": "2026-11-25T04:02:11.538Z",
+  "reviewedBy": "admin",
+  "entryNodeId": "n1",
+  "subspecialty": "Stroke",
+  "extractionMeta": {
+    "model": "gemini-3.5-flash-lite",
+    "extractedAt": "2026-11-25T04:01:17.170Z",
+    "confidenceNotes": [
+      "All flowchart text, branches, and class recommendations transcribed verbatim from Figure 2."
+    ]
+  },
+  "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795579264381-Screenshot_2026-11-25_110011.png",
+  "sourceImageMeta": {
+    "fileName": "Screenshot_2026-11-25_110011.png",
+    "mimeType": "image/png"
+  },
+  "sourceImageSha256": "3984bb115a6dbfedc9a3892e6e82f88ac0226fec9c18b5621d63f01ac6d8168b",
+  "allowDuplicateImage": false,
+  "nodes": [
+    {
+      "id": "n1",
+      "body": {
+        "en": "Initial presentation of a patient with intracerebral hemorrhage on active anticoagulation therapy.",
+        "vi": "Biểu hiện ban đầu của bệnh nhân xuất huyết não đang điều trị bằng thuốc kháng đông hoạt tính."
+      },
+      "kind": "entry",
+      "edges": [
+        {
+          "id": "e1",
+          "tone": "default",
+          "label": {
+            "en": "Management",
+            "vi": "Tiếp cận điều trị"
+          },
+          "targetNodeId": "n2"
+        }
+      ],
+      "title": {
+        "en": "Patients with ICH on anticoagulation",
+        "vi": "Bệnh nhân bị xuất huyết não đang dùng thuốc kháng đông"
+      },
+      "blockUid": "ca8ad901-ee0b-4dd7-95af-82c861f1a961",
+      "blockRev": 3
+    },
+    {
+      "id": "n2",
+      "body": {
+        "en": "Rapid reversal should be performed as soon as possible.",
+        "vi": "Cần tiến hành đảo ngược nhanh càng sớm càng tốt."
+      },
+      "kind": "action",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e2",
+          "tone": "default",
+          "label": {
+            "en": "Vitamin K Antagonists",
+            "vi": "Kháng Vitamin K"
+          },
+          "targetNodeId": "n3"
+        },
+        {
+          "id": "e3",
+          "tone": "default",
+          "label": {
+            "en": "Dabigatran",
+            "vi": "Dabigatran"
+          },
+          "targetNodeId": "n4"
+        },
+        {
+          "id": "e4",
+          "tone": "default",
+          "label": {
+            "en": "Factor Xa-Inhibitors",
+            "vi": "Ức chế yếu tố Xa"
+          },
+          "targetNodeId": "n5"
+        },
+        {
+          "id": "e5",
+          "tone": "default",
+          "label": {
+            "en": "Heparins",
+            "vi": "Heparin"
+          },
+          "targetNodeId": "n6"
+        }
+      ],
+      "title": {
+        "en": "Discontinue anticoagulation therapy immediately",
+        "vi": "Ngừng ngay lập tức liệu pháp kháng đông"
+      },
+      "evidenceBadge": "Class 1",
+      "blockUid": "9e74a662-9914-49fe-8ffd-77c785dd036e",
+      "blockRev": 2
+    },
+    {
+      "id": "n3",
+      "body": {
+        "en": "Determine INR level to guide 4-factor PCC dosing.",
+        "vi": "Xác định mức INR để hướng dẫn liều PCC 4 yếu tố."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e6",
+          "tone": "default",
+          "label": {
+            "en": "INR 1.3 - 1.9",
+            "vi": "INR 1.3 - 1.9"
+          },
+          "targetNodeId": "n7"
+        },
+        {
+          "id": "e7",
+          "tone": "default",
+          "label": {
+            "en": "INR >= 2.0",
+            "vi": "INR >= 2.0"
+          },
+          "targetNodeId": "n8"
+        }
+      ],
+      "title": {
+        "en": "Vitamin K Antagonists: Check INR",
+        "vi": "Kháng Vitamin K: Kiểm tra INR"
+      },
+      "blockUid": "d1211b67-4a55-4b72-a8c7-82ce960518f0",
+      "blockRev": 2
+    },
+    {
+      "id": "n4",
+      "body": {
+        "en": "- Evaluate timing of last DOAC dose. Activated charcoal if DOAC < 2 hrs (potential efficacy up to 8 hrs).\n- Check hospital availability of idarucizumab for dabigatran reversal.",
+        "vi": "Đánh giá thời điểm dùng liều DOAC cuối cùng."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e8",
+          "tone": "default",
+          "label": {
+            "en": "Idarucizumab is available",
+            "vi": "Idarucizumab có sẵn"
+          },
+          "targetNodeId": "n16"
+        },
+        {
+          "id": "n4_e1",
+          "tone": "default",
+          "label": {
+            "en": "Idarucizumab is not available",
+            "vi": "Idarucizumab không có sẵn"
+          },
+          "targetNodeId": "n17"
+        }
+      ],
+      "title": {
+        "en": "Dabigatran: History of when last dose taken",
+        "vi": "Dabigatran: Tiền sử thời điểm uống liều cuối"
+      },
+      "blockUid": "770b254d-2043-49ed-9e06-5ee843753236",
+      "blockRev": 3
+    },
+    {
+      "id": "n5",
+      "body": {
+        "en": "- Evaluate timing of last DOAC dose. Activated charcoal if DOAC < 2 hrs (potential efficacy up to 8 hrs).\n- Check hospital availability of andexanet alfa for factor Xa inhibitor reversal.",
+        "vi": "Đánh giá thời điểm dùng liều DOAC cuối cùng."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e9",
+          "tone": "default",
+          "label": {
+            "en": "Andexanet alfa is available",
+            "vi": "Andexanet alfa có sẵn"
+          },
+          "targetNodeId": "n18"
+        },
+        {
+          "id": "n5_e1",
+          "tone": "default",
+          "label": {
+            "en": "Andexanet alfa is not available",
+            "vi": "Andexanet alfa không có sẵn"
+          },
+          "targetNodeId": "n19"
+        }
+      ],
+      "title": {
+        "en": "Factor Xa-Inhibitors: History of when last dose taken",
+        "vi": "Ức chế yếu tố Xa: Tiền sử thời điểm uống liều cuối"
+      },
+      "blockUid": "04a08444-694c-4f8b-80eb-f3a925df66c6",
+      "blockRev": 3
+    },
+    {
+      "id": "n6",
+      "body": {
+        "en": "Select type of heparin: Unfractionated Heparin or Low Molecular Weight Heparin.",
+        "vi": "Chọn loại heparin: Heparin không phân đoạn hoặc Heparin trọng lượng phân tử thấp."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e10",
+          "tone": "default",
+          "label": {
+            "en": "Unfractionated Heparin",
+            "vi": "Heparin không phân đoạn"
+          },
+          "targetNodeId": "n11"
+        },
+        {
+          "id": "e11",
+          "tone": "default",
+          "label": {
+            "en": "Low Molecular Weight Heparin",
+            "vi": "Heparin trọng lượng phân tử thấp"
+          },
+          "targetNodeId": "n12"
+        }
+      ],
+      "title": {
+        "en": "Heparins evaluation",
+        "vi": "Đánh giá Heparin"
+      },
+      "blockUid": "d5356248-ff32-4a40-a6d3-9286c3e29bc6",
+      "blockRev": 2
+    },
+    {
+      "id": "n7",
+      "body": {
+        "en": "- Administer 4-factor prothrombin complex concentrate 10-20 IU/kg for INR 1.3 - 1.9 (Class 2b)\n- Followed by IV Vitamin K (Class 1)",
+        "vi": "Sử dụng phức hợp prothrombin 4 yếu tố 10-20 IU/kg cho INR 1.3 - 1.9."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "4-F PCC 10-20 IU/kg",
+        "vi": "PCC 4 yếu tố 10-20 IU/kg"
+      },
+      "blockUid": "411e4d24-bc00-49e9-b2e8-303099c43514",
+      "blockRev": 3
+    },
+    {
+      "id": "n8",
+      "body": {
+        "en": "- Administer 4-factor prothrombin complex concentrate 25-50 IU/kg for INR >= 2.0 (Class 1)\n- Followed by IV Vitamin K (Class 1)",
+        "vi": "Sử dụng phức hợp prothrombin 4 yếu tố 25-50 IU/kg cho INR >= 2.0."
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "4-F PCC 25-50 IU/kg",
+        "vi": "PCC 4 yếu tố 25-50 IU/kg"
+      },
+      "evidenceBadge": "Class 1",
+      "blockUid": "fb3b26b6-0996-461f-9ccc-12edeaf41b41",
+      "blockRev": 3
+    },
+    {
+      "id": "n11",
+      "body": {
+        "en": "Administer protamine for unfractionated heparin reversal.",
+        "vi": "Sử dụng protamine để đảo ngược heparin không phân đoạn."
+      },
+      "kind": "treatment",
+      "tier": 2,
+      "edges": [],
+      "title": {
+        "en": "Protamine (Unfractionated Heparin reversal)",
+        "vi": "Protamine (Đảo ngược Heparin không phân đoạn)"
+      },
+      "evidenceBadge": "Class 2a",
+      "blockUid": "1934b256-4321-437c-aeef-49e62170f9df",
+      "blockRev": 2
+    },
+    {
+      "id": "n12",
+      "body": {
+        "en": "Administer protamine for low molecular weight heparin reversal.",
+        "vi": "Sử dụng protamine để đảo ngược heparin trọng lượng phân tử thấp."
+      },
+      "kind": "treatment",
+      "tier": 3,
+      "edges": [],
+      "title": {
+        "en": "Protamine (Low Molecular Weight Heparin reversal)",
+        "vi": "Protamine (Đảo ngược Heparin trọng lượng phân tử thấp)"
+      },
+      "evidenceBadge": "Class 2b",
+      "blockUid": "87ce9963-3f02-4acf-b217-f6a108a6a502",
+      "blockRev": 2
+    },
+    {
+      "id": "n16",
+      "body": {
+        "en": "Administer idarucizumab.",
+        "vi": "Sử dụng idarucizumab."
+      },
+      "kind": "treatment",
+      "tier": 2,
+      "edges": [],
+      "title": {
+        "en": "Idarucizumab",
+        "vi": "Idarucizumab"
+      },
+      "evidenceBadge": "Class 2a",
+      "blockUid": "b0c2a4aa-aa10-4ed7-87c6-000a02cc0a4a",
+      "blockRev": 2
+    },
+    {
+      "id": "n17",
+      "body": {
+        "en": "Administer PCCs or aPCC and/or consider renal replacement therapy.",
+        "vi": "Sử dụng PCC hoặc aPCC và/hoặc cân nhắc liệu pháp thay thế thận."
+      },
+      "kind": "treatment",
+      "tier": 3,
+      "edges": [],
+      "title": {
+        "en": "PCCs or aPCC and/or renal replacement therapy",
+        "vi": "PCC hoặc aPCC và/hoặc liệu pháp thay thế thận"
+      },
+      "evidenceBadge": "Class 2b",
+      "blockUid": "a9e029b4-7fb0-44e7-a0e9-2d9c6ba20788",
+      "blockRev": 2
+    },
+    {
+      "id": "n18",
+      "body": {
+        "en": "Administer andexanet alfa.",
+        "vi": "Sử dụng andexanet alfa."
+      },
+      "kind": "treatment",
+      "tier": 2,
+      "edges": [],
+      "title": {
+        "en": "Andexanet alfa",
+        "vi": "Andexanet alfa"
+      },
+      "evidenceBadge": "Class 2a",
+      "blockUid": "0bc40411-8fab-440b-ac37-2a5395a6b03d",
+      "blockRev": 2
+    },
+    {
+      "id": "n19",
+      "body": {
+        "en": "Administer 4-factor PCC or aPCC.",
+        "vi": "Sử dụng PCC 4 yếu tố hoặc aPCC."
+      },
+      "kind": "treatment",
+      "tier": 3,
+      "edges": [],
+      "title": {
+        "en": "4 Factor PCC or aPCC",
+        "vi": "PCC 4 yếu tố hoặc aPCC"
+      },
+      "evidenceBadge": "Class 2b",
+      "blockUid": "a4d0e2e2-5d27-4795-9c4a-2ea692251f2f",
+      "blockRev": 2
+    }
+  ],
+  "rev": 3,
+  "changeSeq": 1667,
+  "protocolHash": "5e396b69aa9060a74aac68565cc777f4ae40a2ddee218697f1c89d3b3fad48bc",
+  "deletedAt": null
+}

@@ -1,0 +1,4507 @@
+{
+  "syncedAt": "2026-11-26T01:49:33.065Z",
+  "source": "SUPABASE_SYNC_V2",
+  "maxSeq": 1690,
+  "rootHash": "598cde0ca820236b860d61a08d26296e11bdadd0d8707a1d91735a1ce2584b6d",
+  "count": 10,
+  "pathways": [
+    {
+      "uid": "6e095e30-51ab-4ac7-ae95-d929a8dbc951",
+      "slug": "active-bleeding-associated-with-oral-anticoagulant-aha-acc-accp-hrs-2023",
+      "title": {
+        "en": "Active Bleeding Associated With Oral Anticoagulant",
+        "vi": "Xuất huyết đang hoạt động liên quan đến thuốc chống đông đường uống"
+      },
+      "domain": "combined",
+      "source": {
+        "url": "10.1161/CIR.0000000000001193",
+        "year": 2023,
+        "title": "2023 ACC AHA ACCP HRS Guideline for the Diagnosis and Management of Atrial Fibrillation",
+        "figureRef": "e48",
+        "sourceType": "guideline",
+        "organizationOrAuthor": "AHA/ACC/ACCP/HRS"
+      },
+      "status": "published",
+      "summary": {
+        "en": "Management pathway for active bleeding associated with oral anticoagulants (Factor Xa inhibitors, Dabigatran, and Warfarin), categorized by severity into minor bleeding, non-life-threatening bleeding, and life-threatening or uncontrolled major bleeding.",
+        "vi": "Phác đồ xử trí xuất huyết đang hoạt động liên quan đến thuốc chống đông đường uống (chất ức chế yếu tố Xa, Dabigatran và Warfarin), phân loại theo mức độ nghiêm trọng gồm xuất huyết nhẹ, xuất huyết không đe dọa tính mạng và xuất huyết nặng đe dọa tính mạng hoặc không kiểm soát được."
+      },
+      "createdAt": "2026-11-25T03:37:44.076257+00:00",
+      "updatedAt": "2026-11-25T03:38:04.980886+00:00",
+      "reviewedAt": "2026-11-25T03:37:55.408Z",
+      "reviewedBy": "admin",
+      "entryNodeId": "n1",
+      "subspecialty": "Stroke",
+      "extractionMeta": {
+        "model": "gemini-3.5-flash",
+        "extractedAt": "2026-11-25T03:36:29.595Z",
+        "confidenceNotes": []
+      },
+      "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795577760936-Screenshot_2026-11-25_103423.png",
+      "sourceImageMeta": {
+        "fileName": "Screenshot_2026-11-25_103423.png",
+        "mimeType": "image/png"
+      },
+      "sourceImageSha256": "4d36d2417d0bb299857afa63fe99175254b6d85ab6eba66e927f52eb72103bf1",
+      "allowDuplicateImage": false,
+      "nodes": [
+        {
+          "id": "n1",
+          "body": {
+            "en": "Assess severity of bleeding and clinical status.",
+            "vi": "Đánh giá mức độ nghiêm trọng của xuất huyết và tình trạng lâm sàng."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e1",
+              "tone": "default",
+              "label": {
+                "en": "Minor bleeding",
+                "vi": "Xuất huyết nhẹ"
+              },
+              "targetNodeId": "n2"
+            },
+            {
+              "id": "e2",
+              "tone": "danger",
+              "label": {
+                "en": "Life-threatening or uncontrolled major bleeding",
+                "vi": "Xuất huyết nặng đe dọa tính mạng hoặc không kiểm soát được"
+              },
+              "targetNodeId": "n4"
+            },
+            {
+              "id": "e3",
+              "tone": "warning",
+              "label": {
+                "en": "Non-life-threatening bleeding",
+                "vi": "Xuất huyết không đe dọa tính mạng"
+              },
+              "targetNodeId": "n3"
+            }
+          ],
+          "title": {
+            "en": "Active bleeding associated with oral anticoagulant",
+            "vi": "Xuất huyết đang hoạt động liên quan đến thuốc chống đông đường uống"
+          },
+          "blockUid": "1754eb32-08c3-4025-b7cd-c54f7fd0ae67",
+          "blockRev": 2
+        },
+        {
+          "id": "n2",
+          "body": {
+            "en": "• Supportive measures\n• May hold an anticoagulant until hemostasis is achieved",
+            "vi": "• Các biện pháp hỗ trợ\n• Có thể tạm ngưng thuốc chống đông cho đến khi đạt được cầm máu"
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "Minor bleeding management",
+            "vi": "Xử trí xuất huyết nhẹ"
+          },
+          "blockUid": "40b71d16-b5a7-405b-836a-eb1e71c6d707",
+          "blockRev": 2
+        },
+        {
+          "id": "n3",
+          "body": {
+            "en": "• Supportive measures\n• Consider hemodialysis (dabigatran)\n• Hold an anticoagulant",
+            "vi": "• Các biện pháp hỗ trợ\n• Cân nhắc lọc máu nhân tạo (đối với dabigatran)\n• Ngưng thuốc chống đông"
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "Non-life-threatening bleeding management",
+            "vi": "Xử trí xuất huyết không đe dọa tính mạng"
+          },
+          "blockUid": "3d697e9b-bc38-4aea-b9c0-9b3f2e8af7d6",
+          "blockRev": 2
+        },
+        {
+          "id": "n4",
+          "body": {
+            "en": "Identify which oral anticoagulant the patient is currently taking.",
+            "vi": "Xác định loại thuốc chống đông đường uống bệnh nhân đang sử dụng."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e4",
+              "tone": "default",
+              "label": {
+                "en": "Factor Xa inhibitor",
+                "vi": "Chất ức chế yếu tố Xa"
+              },
+              "targetNodeId": "n5"
+            },
+            {
+              "id": "e5",
+              "tone": "default",
+              "label": {
+                "en": "Dabigatran",
+                "vi": "Dabigatran"
+              },
+              "targetNodeId": "n6"
+            },
+            {
+              "id": "e6",
+              "tone": "default",
+              "label": {
+                "en": "Warfarin",
+                "vi": "Warfarin"
+              },
+              "targetNodeId": "n7"
+            }
+          ],
+          "title": {
+            "en": "Life-threatening bleeding or uncontrolled major bleeding",
+            "vi": "Xuất huyết nặng đe dọa tính mạng hoặc không kiểm soát được"
+          },
+          "blockUid": "c81537f1-53d3-41c9-b5ed-7236727ea29f",
+          "blockRev": 2
+        },
+        {
+          "id": "n5",
+          "body": {
+            "en": "Select specific reversal agent or PCC based on drug and availability.",
+            "vi": "Lựa chọn chất đảo ngược đặc hiệu hoặc PCC dựa trên loại thuốc và tính sẵn có."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e7",
+              "tone": "positive",
+              "label": {
+                "en": "Andexanet alfa",
+                "vi": "Andexanet alfa"
+              },
+              "targetNodeId": "n5a"
+            },
+            {
+              "id": "e8",
+              "tone": "positive",
+              "label": {
+                "en": "4-factor PCC",
+                "vi": "PCC 4 yếu tố"
+              },
+              "targetNodeId": "n5b"
+            }
+          ],
+          "title": {
+            "en": "Factor Xa inhibitor reversal options",
+            "vi": "Các lựa chọn đảo ngược tác dụng của chất ức chế yếu tố Xa"
+          },
+          "blockUid": "bfdd1340-0132-4cfa-bfec-82dd2d728b05",
+          "blockRev": 2
+        },
+        {
+          "id": "n5a",
+          "body": {
+            "en": "For apixaban or rivaroxaban (1, B-NR)\nFor edoxaban (1, C-LD)",
+            "vi": "Dành cho apixaban hoặc rivaroxaban (1, B-NR)\nDành cho edoxaban (1, C-LD)"
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "Andexanet alfa",
+            "vi": "Andexanet alfa"
+          },
+          "evidenceBadge": "COR 1, LOE B-NR / C-LD",
+          "blockUid": "23b65ce6-717c-4d51-84fe-5d3447c7c9a3",
+          "blockRev": 2
+        },
+        {
+          "id": "n5b",
+          "body": {
+            "en": "Oral factor Xa inhibitors (1, C-LD)",
+            "vi": "Các chất ức chế yếu tố Xa đường uống (1, C-LD)"
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "4-factor PCC",
+            "vi": "PCC 4 yếu tố"
+          },
+          "evidenceBadge": "COR 1, LOE C-LD",
+          "blockUid": "218b7e5f-b1e2-402b-a40b-ac3f1178f8f7",
+          "blockRev": 2
+        },
+        {
+          "id": "n6",
+          "body": {
+            "en": "Select specific antidote or activated PCC.",
+            "vi": "Lựa chọn chất giải độc đặc hiệu hoặc PCC hoạt hóa."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e9",
+              "tone": "positive",
+              "label": {
+                "en": "Idarucizumab available",
+                "vi": "Có Idarucizumab"
+              },
+              "targetNodeId": "n6a"
+            },
+            {
+              "id": "e10",
+              "tone": "warning",
+              "label": {
+                "en": "Idarucizumab not available",
+                "vi": "Không có Idarucizumab"
+              },
+              "targetNodeId": "n6b"
+            }
+          ],
+          "title": {
+            "en": "Dabigatran reversal options",
+            "vi": "Các lựa chọn đảo ngược tác dụng của Dabigatran"
+          },
+          "blockUid": "b7339396-1280-447a-9134-73fb5b230927",
+          "blockRev": 2
+        },
+        {
+          "id": "n6a",
+          "body": {
+            "en": "Idarucizumab (1, B-NR)",
+            "vi": "Idarucizumab (1, B-NR)"
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "Idarucizumab",
+            "vi": "Idarucizumab"
+          },
+          "evidenceBadge": "COR 1, LOE B-NR",
+          "blockUid": "8b167088-1a97-4281-9ae7-3d5ad69cbf8a",
+          "blockRev": 2
+        },
+        {
+          "id": "n6b",
+          "body": {
+            "en": "Activated PCC if idarucizumab is not available (2a, C-LD)",
+            "vi": "PCC hoạt hóa nếu idarucizumab không có sẵn (2a, C-LD)"
+          },
+          "kind": "treatment",
+          "tier": 2,
+          "edges": [],
+          "title": {
+            "en": "Activated PCC if idarucizumab is not available",
+            "vi": "PCC hoạt hóa nếu idarucizumab không có sẵn"
+          },
+          "evidenceBadge": "COR 2a, LOE C-LD",
+          "blockUid": "e1b2d4c2-3ee4-434d-a1aa-5b0a5d83056e",
+          "blockRev": 2
+        },
+        {
+          "id": "n7",
+          "body": {
+            "en": "4-factor PCC and intravenous vitamin K (1, A)",
+            "vi": "PCC 4 yếu tố và vitamin K đường tĩnh mạch (1, A)"
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "Warfarin reversal",
+            "vi": "Đảo ngược tác dụng của Warfarin"
+          },
+          "evidenceBadge": "COR 1, LOE A",
+          "blockUid": "b88b3417-2444-4066-952f-80d357e50b33",
+          "blockRev": 2
+        }
+      ],
+      "rev": 2,
+      "changeSeq": 1528,
+      "protocolHash": "1511b1eaf0db1d9196fb69b168228009e94b51594c735c83341a8c6b47d56b00",
+      "deletedAt": null
+    },
+    {
+      "uid": "3e75f9e2-fae0-405a-aaa1-97fd477ced8b",
+      "slug": "algorithm-for-management-of-ais-eligibility-for-evt-aha-asa-2026",
+      "title": {
+        "en": "Algorithm for management of AIS eligibility for EVT",
+        "vi": "Lưu đồ đánh giá điều kiện chỉ định EVT trong đột quỵ thiếu máu não cấp (AIS)"
+      },
+      "domain": "treatment",
+      "source": {
+        "url": "10.1161/STR.0000000000000513",
+        "year": 2026,
+        "title": "2026 AHA ASA Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+        "figureRef": "e61",
+        "sourceType": "guideline",
+        "organizationOrAuthor": "AHA/ASA"
+      },
+      "status": "published",
+      "summary": {
+        "en": "Step-by-step AHA/ASA 2026 algorithm evaluating endovascular thrombectomy (EVT) eligibility in acute ischemic stroke (AIS) across Population, Vessel Occlusion, Time from Onset, Tissue Injury, Baseline Function, Stroke Severity, and Evidence for EVT (Class of Recommendation).",
+        "vi": "Lưu đồ từng bước của AHA/ASA 2026 đánh giá điều kiện lấy huyết khối cơ học (EVT) trong đột quỵ thiếu máu não cấp (AIS) theo Quần thể bệnh nhân, Tắc mạch, Thời gian từ khi khởi phát, Tổn thương mô, Chức năng nền, Mức độ nặng đột quỵ và Bằng chứng cho EVT (COR)."
+      },
+      "createdAt": "2026-11-25T03:12:26.041447+00:00",
+      "updatedAt": "2026-11-25T03:12:55.523239+00:00",
+      "reviewedAt": "2026-11-25T03:12:37.229Z",
+      "reviewedBy": "admin",
+      "entryNodeId": "n1",
+      "subspecialty": "Stroke",
+      "extractionMeta": {
+        "model": "gemini-4-hydrogen",
+        "extractedAt": "2026-11-25T02:59:43.303Z",
+        "confidenceNotes": [
+          "Footnotes for the symbols '*' (in LVO*) and '†' (in Patients aged ≥18 y†) are not visible within the cropped figure.",
+          "The abbreviation 'IDD' is shown in gray boxes under Evidence for EVT without an expansion in the figure or legend.",
+          "COR 3-No Benefit ('3: No Benefit' on the 'No EVT' terminal box) is mapped to tier 5 (Class III) with evidenceBadge 'COR 3: No Benefit'; COR 3-Harm appears in the legend but has no branches in the diagram.",
+          "In the Basilar artery branch, 'NIHSS ≥10' and 'NIHSS 6–9' (with italicized label 'Stroke Severity') appear inside the 'Baseline Function' column beneath 'mRS 0–1'."
+        ]
+      },
+      "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795575518647-Screenshot_2026-11-25_095712.png",
+      "sourceImageMeta": {
+        "fileName": "Screenshot_2026-11-25_095712.png",
+        "mimeType": "image/png"
+      },
+      "sourceImageSha256": "731dcd505bb38bb401810a6935f4dba9ed3c403ef5ca6acf1beedc87ec29a65f",
+      "allowDuplicateImage": false,
+      "nodes": [
+        {
+          "id": "n1",
+          "body": {
+            "en": "Select the patient age group to determine EVT eligibility pathway.",
+            "vi": "Chọn nhóm tuổi của bệnh nhân để xác định nhánh đánh giá điều kiện EVT."
+          },
+          "kind": "entry",
+          "edges": [
+            {
+              "id": "e1",
+              "tone": "default",
+              "label": {
+                "en": "Patients aged ≤28 d",
+                "vi": "Bệnh nhân ≤28 ngày tuổi"
+              },
+              "targetNodeId": "n2"
+            },
+            {
+              "id": "e2",
+              "tone": "default",
+              "label": {
+                "en": "Patients aged 28 d–5 y",
+                "vi": "Bệnh nhân 28 ngày–5 tuổi"
+              },
+              "targetNodeId": "n4"
+            },
+            {
+              "id": "e3",
+              "tone": "default",
+              "label": {
+                "en": "Patients aged 6–17 y",
+                "vi": "Bệnh nhân 6–17 tuổi"
+              },
+              "targetNodeId": "n7"
+            },
+            {
+              "id": "e4",
+              "tone": "default",
+              "label": {
+                "en": "Patients aged ≥18 y",
+                "vi": "Bệnh nhân ≥18 tuổi†"
+              },
+              "targetNodeId": "n13"
+            }
+          ],
+          "title": {
+            "en": "Population",
+            "vi": "Quần thể bệnh nhân"
+          },
+          "blockUid": "4935a243-7e47-4696-ae70-d87ce5dcbd38",
+          "blockRev": 2
+        },
+        {
+          "id": "n2",
+          "body": {
+            "en": "Confirm vessel occlusion type.",
+            "vi": "Xác nhận loại tắc mạch."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e5",
+              "tone": "default",
+              "label": {
+                "en": "LVO*",
+                "vi": "LVO*"
+              },
+              "targetNodeId": "n3"
+            }
+          ],
+          "title": {
+            "en": "Vessel Occlusion (Patients aged ≤28 d)",
+            "vi": "Tắc mạch (Bệnh nhân ≤28 ngày tuổi)"
+          },
+          "blockUid": "385615c2-d0c6-470f-80c1-fe85f00d9d1d",
+          "blockRev": 2
+        },
+        {
+          "id": "n3",
+          "body": {
+            "en": "Assess time from symptom onset.",
+            "vi": "Đánh giá thời gian từ khi khởi phát triệu chứng."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e6",
+              "tone": "warning",
+              "label": {
+                "en": "0–24 h",
+                "vi": "0–24 giờ"
+              },
+              "targetNodeId": "n201"
+            }
+          ],
+          "title": {
+            "en": "Time from Onset (Patients aged ≤28 d, LVO*)",
+            "vi": "Thời gian từ khi khởi phát (Bệnh nhân ≤28 ngày tuổi, LVO*)"
+          },
+          "blockUid": "3ac37f41-b0fd-406d-9ecc-353fed1b7576",
+          "blockRev": 2
+        },
+        {
+          "id": "n4",
+          "body": {
+            "en": "Confirm vessel occlusion type.",
+            "vi": "Xác nhận loại tắc mạch."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e7",
+              "tone": "default",
+              "label": {
+                "en": "LVO*",
+                "vi": "LVO*"
+              },
+              "targetNodeId": "n5"
+            }
+          ],
+          "title": {
+            "en": "Vessel Occlusion (Patients aged 28 d–5 y)",
+            "vi": "Tắc mạch (Bệnh nhân 28 ngày–5 tuổi)"
+          },
+          "blockUid": "ec190b44-9929-4f7c-87f8-6e794c70d019",
+          "blockRev": 2
+        },
+        {
+          "id": "n5",
+          "body": {
+            "en": "Assess time from symptom onset.",
+            "vi": "Đánh giá thời gian từ khi khởi phát triệu chứng."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e8",
+              "tone": "default",
+              "label": {
+                "en": "0–24 h",
+                "vi": "0–24 giờ"
+              },
+              "targetNodeId": "n6"
+            }
+          ],
+          "title": {
+            "en": "Time from Onset (Patients aged 28 d–5 y, LVO*)",
+            "vi": "Thời gian từ khi khởi phát (Bệnh nhân 28 ngày–5 tuổi, LVO*)"
+          },
+          "blockUid": "5127425c-97fe-4075-92e1-97abf6553331",
+          "blockRev": 2
+        },
+        {
+          "id": "n6",
+          "body": {
+            "en": "Evaluate tissue injury status.",
+            "vi": "Đánh giá tình trạng tổn thương mô."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e9",
+              "tone": "warning",
+              "label": {
+                "en": "Salvageable Brain Tissue",
+                "vi": "Mô não còn khả năng cứu vãn"
+              },
+              "targetNodeId": "n202"
+            }
+          ],
+          "title": {
+            "en": "Tissue Injury (Patients aged 28 d–5 y, LVO*, 0–24 h)",
+            "vi": "Tổn thương mô (Bệnh nhân 28 ngày–5 tuổi, LVO*, 0–24 giờ)"
+          },
+          "blockUid": "6e2ef30c-7fbe-4d68-a3ad-c637ba01df1a",
+          "blockRev": 2
+        },
+        {
+          "id": "n7",
+          "body": {
+            "en": "Confirm vessel occlusion type.",
+            "vi": "Xác nhận loại tắc mạch."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e10",
+              "tone": "default",
+              "label": {
+                "en": "LVO*",
+                "vi": "LVO*"
+              },
+              "targetNodeId": "n8"
+            }
+          ],
+          "title": {
+            "en": "Vessel Occlusion (Patients aged 6–17 y)",
+            "vi": "Tắc mạch (Bệnh nhân 6–17 tuổi)"
+          },
+          "blockUid": "9849d24f-e40d-480a-a57a-855ab0da56ca",
+          "blockRev": 2
+        },
+        {
+          "id": "n8",
+          "body": {
+            "en": "Select time window from symptom onset.",
+            "vi": "Chọn cửa sổ thời gian từ khi khởi phát triệu chứng."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e11",
+              "tone": "default",
+              "label": {
+                "en": "0–6 h",
+                "vi": "0–6 giờ"
+              },
+              "targetNodeId": "n9"
+            },
+            {
+              "id": "e12",
+              "tone": "default",
+              "label": {
+                "en": "6–24 h",
+                "vi": "6–24 giờ"
+              },
+              "targetNodeId": "n10"
+            },
+            {
+              "id": "e13",
+              "tone": "warning",
+              "label": {
+                "en": ">24 h",
+                "vi": ">24 giờ"
+              },
+              "targetNodeId": "n203"
+            }
+          ],
+          "title": {
+            "en": "Time from Onset (Patients aged 6–17 y, LVO*)",
+            "vi": "Thời gian từ khi khởi phát (Bệnh nhân 6–17 tuổi, LVO*)"
+          },
+          "blockUid": "57d0e906-a977-457f-a7a8-3f5793ebdba8",
+          "blockRev": 2
+        },
+        {
+          "id": "n9",
+          "body": {
+            "en": "Evaluate tissue injury status.",
+            "vi": "Đánh giá tình trạng tổn thương mô."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e14",
+              "tone": "positive",
+              "label": {
+                "en": "Salvageable Brain Tissue",
+                "vi": "Mô não còn khả năng cứu vãn"
+              },
+              "targetNodeId": "n204"
+            }
+          ],
+          "title": {
+            "en": "Tissue Injury (Patients aged 6–17 y, LVO*, 0–6 h)",
+            "vi": "Tổn thương mô (Bệnh nhân 6–17 tuổi, LVO*, 0–6 giờ)"
+          },
+          "blockUid": "0d6084ff-91b1-44ac-a394-62f2537e130a",
+          "blockRev": 2
+        },
+        {
+          "id": "n10",
+          "body": {
+            "en": "Evaluate tissue injury status.",
+            "vi": "Đánh giá tình trạng tổn thương mô."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e15",
+              "tone": "positive",
+              "label": {
+                "en": "Salvageable Brain Tissue",
+                "vi": "Mô não còn khả năng cứu vãn"
+              },
+              "targetNodeId": "n205"
+            }
+          ],
+          "title": {
+            "en": "Tissue Injury (Patients aged 6–17 y, LVO*, 6–24 h)",
+            "vi": "Tổn thương mô (Bệnh nhân 6–17 tuổi, LVO*, 6–24 giờ)"
+          },
+          "blockUid": "c6a3f308-2771-4e28-8926-c4b93e673f5b",
+          "blockRev": 2
+        },
+        {
+          "id": "n13",
+          "body": {
+            "en": "Select the site/type of vessel occlusion.",
+            "vi": "Chọn vị trí/loại tắc mạch."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e16",
+              "tone": "default",
+              "label": {
+                "en": "LVO*",
+                "vi": "LVO*"
+              },
+              "targetNodeId": "n14"
+            },
+            {
+              "id": "e17",
+              "tone": "default",
+              "label": {
+                "en": "MVO (Dominant M2)",
+                "vi": "MVO (M2 ưu thế)"
+              },
+              "targetNodeId": "n30"
+            },
+            {
+              "id": "e18",
+              "tone": "default",
+              "label": {
+                "en": "MVO (Non dominant M2) or DVO",
+                "vi": "MVO (M2 không ưu thế) hoặc DVO"
+              },
+              "targetNodeId": "n33"
+            },
+            {
+              "id": "e19",
+              "tone": "default",
+              "label": {
+                "en": "Basilar artery",
+                "vi": "Động mạch thân nền"
+              },
+              "targetNodeId": "n34"
+            }
+          ],
+          "title": {
+            "en": "Vessel Occlusion (Patients aged ≥18 y)",
+            "vi": "Tắc mạch (Bệnh nhân ≥18 tuổi)"
+          },
+          "blockUid": "ee64afa5-a89e-4ba3-96d8-9e143730f66f",
+          "blockRev": 2
+        },
+        {
+          "id": "n14",
+          "body": {
+            "en": "Select time window from symptom onset.",
+            "vi": "Chọn cửa sổ thời gian từ khi khởi phát triệu chứng."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e20",
+              "tone": "default",
+              "label": {
+                "en": "0–6 h",
+                "vi": "0–6 giờ"
+              },
+              "targetNodeId": "n15"
+            },
+            {
+              "id": "e21",
+              "tone": "default",
+              "label": {
+                "en": "6–24 h",
+                "vi": "6–24 giờ"
+              },
+              "targetNodeId": "n22"
+            },
+            {
+              "id": "e22",
+              "tone": "warning",
+              "label": {
+                "en": ">24 h",
+                "vi": ">24 giờ"
+              },
+              "targetNodeId": "n206"
+            }
+          ],
+          "title": {
+            "en": "Time from Onset (Patients aged ≥18 y, LVO*)",
+            "vi": "Thời gian từ khi khởi phát (Bệnh nhân ≥18 tuổi, LVO*)"
+          },
+          "blockUid": "01a22f3e-ec56-43af-9b8b-0ff75982ff16",
+          "blockRev": 2
+        },
+        {
+          "id": "n15",
+          "body": {
+            "en": "Select ASPECTS score category.",
+            "vi": "Chọn phân nhóm điểm ASPECTS."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e23",
+              "tone": "default",
+              "label": {
+                "en": "ASPECTS 6-10",
+                "vi": "ASPECTS 6-10"
+              },
+              "targetNodeId": "n16"
+            },
+            {
+              "id": "e24",
+              "tone": "default",
+              "label": {
+                "en": "ASPECTS 3–5",
+                "vi": "ASPECTS 3–5"
+              },
+              "targetNodeId": "n17"
+            },
+            {
+              "id": "e25",
+              "tone": "default",
+              "label": {
+                "en": "ASPECTS 0–2",
+                "vi": "ASPECTS 0–2"
+              },
+              "targetNodeId": "n18"
+            }
+          ],
+          "title": {
+            "en": "Tissue Injury (≥18 y, LVO*, 0–6 h)",
+            "vi": "Tổn thương mô (≥18 tuổi, LVO*, 0–6 giờ)"
+          },
+          "blockUid": "59236c69-05fe-486f-9c13-6298f125609d",
+          "blockRev": 2
+        },
+        {
+          "id": "n16",
+          "body": {
+            "en": "Select baseline mRS score.",
+            "vi": "Chọn điểm mRS nền."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e26",
+              "tone": "positive",
+              "label": {
+                "en": "mRS 0–1",
+                "vi": "mRS 0–1"
+              },
+              "targetNodeId": "n207"
+            },
+            {
+              "id": "e27",
+              "tone": "positive",
+              "label": {
+                "en": "mRS 2",
+                "vi": "mRS 2"
+              },
+              "targetNodeId": "n208"
+            },
+            {
+              "id": "e28",
+              "tone": "warning",
+              "label": {
+                "en": "mRS 3–4",
+                "vi": "mRS 3–4"
+              },
+              "targetNodeId": "n209"
+            },
+            {
+              "id": "e29",
+              "tone": "warning",
+              "label": {
+                "en": "mRS >4",
+                "vi": "mRS >4"
+              },
+              "targetNodeId": "n210"
+            }
+          ],
+          "title": {
+            "en": "Baseline Function (≥18 y, LVO*, 0–6 h, ASPECTS 6-10)",
+            "vi": "Chức năng nền (≥18 tuổi, LVO*, 0–6 giờ, ASPECTS 6-10)"
+          },
+          "blockUid": "ee8db2f6-4565-4c9d-b3fd-e6cc10c8b095",
+          "blockRev": 2
+        },
+        {
+          "id": "n17",
+          "body": {
+            "en": "Select baseline mRS score.",
+            "vi": "Chọn điểm mRS nền."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e30",
+              "tone": "positive",
+              "label": {
+                "en": "mRS 0–1",
+                "vi": "mRS 0–1"
+              },
+              "targetNodeId": "n211"
+            },
+            {
+              "id": "e31",
+              "tone": "warning",
+              "label": {
+                "en": "mRS ≥2",
+                "vi": "mRS ≥2"
+              },
+              "targetNodeId": "n212"
+            }
+          ],
+          "title": {
+            "en": "Baseline Function (≥18 y, LVO*, 0–6 h, ASPECTS 3–5)",
+            "vi": "Chức năng nền (≥18 tuổi, LVO*, 0–6 giờ, ASPECTS 3–5)"
+          },
+          "blockUid": "f3db1c9f-6067-4baf-8aa8-c1f89dfe85f8",
+          "blockRev": 2
+        },
+        {
+          "id": "n18",
+          "body": {
+            "en": "Select baseline mRS score.",
+            "vi": "Chọn điểm mRS nền."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e32",
+              "tone": "positive",
+              "label": {
+                "en": "mRS 0–1",
+                "vi": "mRS 0–1"
+              },
+              "targetNodeId": "n213"
+            },
+            {
+              "id": "e33",
+              "tone": "warning",
+              "label": {
+                "en": "mRS ≥2",
+                "vi": "mRS ≥2"
+              },
+              "targetNodeId": "n214"
+            }
+          ],
+          "title": {
+            "en": "Baseline Function (≥18 y, LVO*, 0–6 h, ASPECTS 0–2)",
+            "vi": "Chức năng nền (≥18 tuổi, LVO*, 0–6 giờ, ASPECTS 0–2)"
+          },
+          "blockUid": "535eecf2-6a5b-4c10-8b27-61340f399df0",
+          "blockRev": 2
+        },
+        {
+          "id": "n22",
+          "body": {
+            "en": "Select ASPECTS score category.",
+            "vi": "Chọn phân nhóm điểm ASPECTS."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e34",
+              "tone": "default",
+              "label": {
+                "en": "ASPECTS 6–10",
+                "vi": "ASPECTS 6–10"
+              },
+              "targetNodeId": "n23"
+            },
+            {
+              "id": "e35",
+              "tone": "default",
+              "label": {
+                "en": "ASPECTS 3–5",
+                "vi": "ASPECTS 3–5"
+              },
+              "targetNodeId": "n24"
+            }
+          ],
+          "title": {
+            "en": "Tissue Injury (≥18 y, LVO*, 6–24 h)",
+            "vi": "Tổn thương mô (≥18 tuổi, LVO*, 6–24 giờ)"
+          },
+          "blockUid": "9dc04a75-94cc-4eab-919f-05d31ceb86c1",
+          "blockRev": 2
+        },
+        {
+          "id": "n23",
+          "body": {
+            "en": "Select baseline mRS score.",
+            "vi": "Chọn điểm mRS nền."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e36",
+              "tone": "positive",
+              "label": {
+                "en": "mRS 0–1",
+                "vi": "mRS 0–1"
+              },
+              "targetNodeId": "n215"
+            },
+            {
+              "id": "e37",
+              "tone": "warning",
+              "label": {
+                "en": "mRS ≥2",
+                "vi": "mRS ≥2"
+              },
+              "targetNodeId": "n216"
+            }
+          ],
+          "title": {
+            "en": "Baseline Function (≥18 y, LVO*, 6–24 h, ASPECTS 6–10)",
+            "vi": "Chức năng nền (≥18 tuổi, LVO*, 6–24 giờ, ASPECTS 6–10)"
+          },
+          "blockUid": "b779288c-ebe3-4113-9a8d-de0889659644",
+          "blockRev": 2
+        },
+        {
+          "id": "n24",
+          "body": {
+            "en": "Select baseline mRS score.",
+            "vi": "Chọn điểm mRS nền."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e38",
+              "tone": "positive",
+              "label": {
+                "en": "mRS 0–1",
+                "vi": "mRS 0–1"
+              },
+              "targetNodeId": "n217"
+            },
+            {
+              "id": "e39",
+              "tone": "warning",
+              "label": {
+                "en": "mRS ≥2",
+                "vi": "mRS ≥2"
+              },
+              "targetNodeId": "n218"
+            }
+          ],
+          "title": {
+            "en": "Baseline Function (≥18 y, LVO*, 6–24 h, ASPECTS 3–5)",
+            "vi": "Chức năng nền (≥18 tuổi, LVO*, 6–24 giờ, ASPECTS 3–5)"
+          },
+          "blockUid": "0654dc23-8a41-4deb-ac19-49e22bd32828",
+          "blockRev": 2
+        },
+        {
+          "id": "n30",
+          "body": {
+            "en": "Select time window from symptom onset.",
+            "vi": "Chọn cửa sổ thời gian từ khi khởi phát triệu chứng."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e40",
+              "tone": "default",
+              "label": {
+                "en": "0–6 h",
+                "vi": "0–6 giờ"
+              },
+              "targetNodeId": "n31"
+            },
+            {
+              "id": "e41",
+              "tone": "warning",
+              "label": {
+                "en": ">6 h",
+                "vi": ">6 giờ"
+              },
+              "targetNodeId": "n219"
+            }
+          ],
+          "title": {
+            "en": "Time from Onset (≥18 y, MVO (Dominant M2))",
+            "vi": "Thời gian từ khi khởi phát (≥18 tuổi, MVO (M2 ưu thế))"
+          },
+          "blockUid": "20017f6f-612c-4794-bb90-acb6a576b475",
+          "blockRev": 2
+        },
+        {
+          "id": "n31",
+          "body": {
+            "en": "Assess ASPECTS score.",
+            "vi": "Đánh giá điểm ASPECTS."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e42",
+              "tone": "default",
+              "label": {
+                "en": "ASPECTS 6–10",
+                "vi": "ASPECTS 6–10"
+              },
+              "targetNodeId": "n32"
+            }
+          ],
+          "title": {
+            "en": "Tissue Injury (≥18 y, MVO (Dominant M2), 0–6 h)",
+            "vi": "Tổn thương mô (≥18 tuổi, MVO (M2 ưu thế), 0–6 giờ)"
+          },
+          "blockUid": "4788e518-2046-489f-94b6-a7e709dbcbb0",
+          "blockRev": 2
+        },
+        {
+          "id": "n32",
+          "body": {
+            "en": "Assess baseline mRS score.",
+            "vi": "Đánh giá điểm mRS nền."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e43",
+              "tone": "positive",
+              "label": {
+                "en": "mRS 0–1",
+                "vi": "mRS 0–1"
+              },
+              "targetNodeId": "n220"
+            }
+          ],
+          "title": {
+            "en": "Baseline Function (≥18 y, MVO (Dominant M2), 0–6 h, ASPECTS 6–10)",
+            "vi": "Chức năng nền (≥18 tuổi, MVO (M2 ưu thế), 0–6 giờ, ASPECTS 6–10)"
+          },
+          "blockUid": "92f77345-3110-4e7a-aec6-801f612f5f90",
+          "blockRev": 2
+        },
+        {
+          "id": "n33",
+          "body": {
+            "en": "Assess time from symptom onset.",
+            "vi": "Đánh giá thời gian từ khi khởi phát triệu chứng."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e44",
+              "tone": "danger",
+              "label": {
+                "en": "0–24 h",
+                "vi": "0–24 giờ"
+              },
+              "targetNodeId": "n221"
+            }
+          ],
+          "title": {
+            "en": "Time from Onset (≥18 y, MVO (Non dominant M2) or DVO)",
+            "vi": "Thời gian từ khi khởi phát (≥18 tuổi, MVO (M2 không ưu thế) hoặc DVO)"
+          },
+          "blockUid": "a3a7caae-8adc-4a59-80a0-274c97354d75",
+          "blockRev": 2
+        },
+        {
+          "id": "n34",
+          "body": {
+            "en": "Assess time from symptom onset.",
+            "vi": "Đánh giá thời gian từ khi khởi phát triệu chứng."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e45",
+              "tone": "default",
+              "label": {
+                "en": "0–24 h",
+                "vi": "0–24 giờ"
+              },
+              "targetNodeId": "n35"
+            }
+          ],
+          "title": {
+            "en": "Time from Onset (≥18 y, Basilar artery)",
+            "vi": "Thời gian từ khi khởi phát (≥18 tuổi, Động mạch thân nền)"
+          },
+          "blockUid": "c2cd33c5-2906-4cf5-9aae-7391ec4e8905",
+          "blockRev": 2
+        },
+        {
+          "id": "n35",
+          "body": {
+            "en": "Assess PC ASPECTS score.",
+            "vi": "Đánh giá điểm PC ASPECTS."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e46",
+              "tone": "default",
+              "label": {
+                "en": "PC ASPECTS ≥6",
+                "vi": "PC ASPECTS ≥6"
+              },
+              "targetNodeId": "n36"
+            }
+          ],
+          "title": {
+            "en": "Tissue Injury (≥18 y, Basilar artery, 0–24 h)",
+            "vi": "Tổn thương mô (≥18 tuổi, Động mạch thân nền, 0–24 giờ)"
+          },
+          "blockUid": "8bc168c7-4210-49c8-9a5d-1e362a1e9b23",
+          "blockRev": 2
+        },
+        {
+          "id": "n36",
+          "body": {
+            "en": "Select baseline mRS score.",
+            "vi": "Chọn điểm mRS nền."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e47",
+              "tone": "default",
+              "label": {
+                "en": "mRS 0–1",
+                "vi": "mRS 0–1"
+              },
+              "targetNodeId": "n37"
+            },
+            {
+              "id": "e48",
+              "tone": "warning",
+              "label": {
+                "en": "mRS ≥2",
+                "vi": "mRS ≥2"
+              },
+              "targetNodeId": "n224"
+            }
+          ],
+          "title": {
+            "en": "Baseline Function (≥18 y, Basilar artery, 0–24 h, PC ASPECTS ≥6)",
+            "vi": "Chức năng nền (≥18 tuổi, Động mạch thân nền, 0–24 giờ, PC ASPECTS ≥6)"
+          },
+          "blockUid": "d719b80c-f962-4263-8b61-c5a65a787c2c",
+          "blockRev": 2
+        },
+        {
+          "id": "n37",
+          "body": {
+            "en": "Select NIHSS stroke severity category.",
+            "vi": "Chọn phân nhóm mức độ nặng đột quỵ theo NIHSS."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e49",
+              "tone": "positive",
+              "label": {
+                "en": "NIHSS ≥10",
+                "vi": "NIHSS ≥10"
+              },
+              "targetNodeId": "n222"
+            },
+            {
+              "id": "e50",
+              "tone": "warning",
+              "label": {
+                "en": "NIHSS 6–9",
+                "vi": "NIHSS 6–9"
+              },
+              "targetNodeId": "n223"
+            }
+          ],
+          "title": {
+            "en": "Stroke Severity (≥18 y, Basilar artery, 0–24 h, PC ASPECTS ≥6, mRS 0–1)",
+            "vi": "Mức độ nặng đột quỵ (≥18 tuổi, Động mạch thân nền, 0–24 giờ, PC ASPECTS ≥6, mRS 0–1)"
+          },
+          "blockUid": "841ef2ab-0532-4423-9ec2-f2f3fed3ba28",
+          "blockRev": 2
+        },
+        {
+          "id": "n201",
+          "body": {
+            "en": "Evidence for EVT: IDD (Patients aged ≤28 d, LVO*, 0–24 h).",
+            "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≤28 ngày tuổi, LVO*, 0–24 giờ)."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "IDD",
+            "vi": "IDD"
+          },
+          "blockUid": "f6d7a241-784c-45a4-83ab-f0a7df3e3da0",
+          "blockRev": 2
+        },
+        {
+          "id": "n202",
+          "body": {
+            "en": "Evidence for EVT: EVT (COR 2b) for Patients aged 28 d–5 y, LVO*, 0–24 h, Salvageable Brain Tissue.",
+            "vi": "Bằng chứng cho EVT: EVT (COR 2b) cho Bệnh nhân 28 ngày–5 tuổi, LVO*, 0–24 giờ, Mô não còn khả năng cứu vãn."
+          },
+          "kind": "treatment",
+          "tier": 3,
+          "edges": [],
+          "title": {
+            "en": "EVT",
+            "vi": "EVT"
+          },
+          "evidenceBadge": "COR 2b",
+          "blockUid": "381e44dc-69b7-4998-87f5-ef3e1082c2ba",
+          "blockRev": 2
+        },
+        {
+          "id": "n203",
+          "body": {
+            "en": "Evidence for EVT: IDD (Patients aged 6–17 y, LVO*, >24 h).",
+            "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân 6–17 tuổi, LVO*, >24 giờ)."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "IDD",
+            "vi": "IDD"
+          },
+          "blockUid": "9574e3af-81a5-4e59-a2de-e6d9d9fa3a20",
+          "blockRev": 2
+        },
+        {
+          "id": "n204",
+          "body": {
+            "en": "Evidence for EVT: EVT (COR 2a) for Patients aged 6–17 y, LVO*, 0–6 h, Salvageable Brain Tissue.",
+            "vi": "Bằng chứng cho EVT: EVT (COR 2a) cho Bệnh nhân 6–17 tuổi, LVO*, 0–6 giờ, Mô não còn khả năng cứu vãn."
+          },
+          "kind": "treatment",
+          "tier": 2,
+          "edges": [],
+          "title": {
+            "en": "EVT",
+            "vi": "EVT"
+          },
+          "evidenceBadge": "COR 2a",
+          "blockUid": "981a2f0b-2a76-4b8c-9593-274110929a68",
+          "blockRev": 2
+        },
+        {
+          "id": "n205",
+          "body": {
+            "en": "Evidence for EVT: EVT (COR 2a) for Patients aged 6–17 y, LVO*, 6–24 h, Salvageable Brain Tissue.",
+            "vi": "Bằng chứng cho EVT: EVT (COR 2a) cho Bệnh nhân 6–17 tuổi, LVO*, 6–24 giờ, Mô não còn khả năng cứu vãn."
+          },
+          "kind": "treatment",
+          "tier": 2,
+          "edges": [],
+          "title": {
+            "en": "EVT",
+            "vi": "EVT"
+          },
+          "evidenceBadge": "COR 2a",
+          "blockUid": "6236ec13-aaf5-40a2-a6e9-4fc92cff4886",
+          "blockRev": 2
+        },
+        {
+          "id": "n206",
+          "body": {
+            "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, LVO*, >24 h).",
+            "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, LVO*, >24 giờ)."
+          },
+          "kind": "diagnosis",
+          "edges": [],
+          "title": {
+            "en": "IDD",
+            "vi": "IDD"
+          },
+          "blockUid": "03eba03a-fb7d-4c20-8262-5e0ceaed9798",
+          "blockRev": 2
+        },
+        {
+          "id": "n207",
+          "body": {
+            "en": "Evidence for EVT: EVT (COR 1) for Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 6-10, mRS 0–1.",
+            "vi": "Bằng chứng cho EVT: EVT (COR 1) cho Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 6-10, mRS 0–1."
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "EVT",
+            "vi": "EVT"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "8b9fd106-f68a-40af-80c5-259f91dd205b",
+          "blockRev": 2
+        },
+        {
+          "id": "n208",
+          "body": {
+            "en": "Evidence for EVT: EVT (COR 2a) for Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 6-10, mRS 2.",
+            "vi": "Bằng chứng cho EVT: EVT (COR 2a) cho Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 6-10, mRS 2."
+          },
+          "kind": "treatment",
+          "tier": 2,
+          "edges": [],
+          "title": {
+            "en": "EVT",
+            "vi": "EVT"
+          },
+          "evidenceBadge": "COR 2a",
+          "blockUid": "5de7c3dd-dd73-443c-92bd-83606df86db1",
+          "blockRev": 2
+        },
+        {
+          "id": "n209",
+          "body": {
+            "en": "Evidence for EVT: EVT (COR 2b) for Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 6-10, mRS 3–4.",
+            "vi": "Bằng chứng cho EVT: EVT (COR 2b) cho Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 6-10, mRS 3–4."
+          },
+          "kind": "treatment",
+          "tier": 3,
+          "edges": [],
+          "title": {
+            "en": "EVT",
+            "vi": "EVT"
+          },
+          "evidenceBadge": "COR 2b",
+          "blockUid": "7fefe3be-fdbb-4fac-ba24-f94c40db753c",
+          "blockRev": 2
+        },
+        {
+          "id": "n210",
+          "body": {
+            "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 6-10, mRS >4).",
+            "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 6-10, mRS >4)."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "IDD",
+            "vi": "IDD"
+          },
+          "blockUid": "e4ca3177-7912-4f43-878d-416d8b4cd3d6",
+          "blockRev": 2
+        },
+        {
+          "id": "n211",
+          "body": {
+            "en": "Evidence for EVT: EVT (COR 1) for Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 3–5, mRS 0–1.",
+            "vi": "Bằng chứng cho EVT: EVT (COR 1) cho Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 3–5, mRS 0–1."
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "EVT",
+            "vi": "EVT"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "08467231-3528-41b4-84ad-3b8f08905b3d",
+          "blockRev": 2
+        },
+        {
+          "id": "n212",
+          "body": {
+            "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 3–5, mRS ≥2).",
+            "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 3–5, mRS ≥2)."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "IDD",
+            "vi": "IDD"
+          },
+          "blockUid": "68061d9b-cb0a-4be4-8761-6e92a76923f5",
+          "blockRev": 2
+        },
+        {
+          "id": "n213",
+          "body": {
+            "en": "Evidence for EVT: EVT (COR 2a) for Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 0–2, mRS 0–1.",
+            "vi": "Bằng chứng cho EVT: EVT (COR 2a) cho Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 0–2, mRS 0–1."
+          },
+          "kind": "treatment",
+          "tier": 2,
+          "edges": [],
+          "title": {
+            "en": "EVT",
+            "vi": "EVT"
+          },
+          "evidenceBadge": "COR 2a",
+          "blockUid": "4143186d-61c1-4265-919f-6d8b3dc728fd",
+          "blockRev": 2
+        },
+        {
+          "id": "n214",
+          "body": {
+            "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 0–2, mRS ≥2).",
+            "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 0–2, mRS ≥2)."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "IDD",
+            "vi": "IDD"
+          },
+          "blockUid": "1d77b2c7-b789-4e20-9f2e-92037507e58a",
+          "blockRev": 2
+        },
+        {
+          "id": "n215",
+          "body": {
+            "en": "Evidence for EVT: EVT (COR 1) for Patients aged ≥18 y†, LVO*, 6–24 h, ASPECTS 6–10, mRS 0–1.",
+            "vi": "Bằng chứng cho EVT: EVT (COR 1) cho Bệnh nhân ≥18 tuổi†, LVO*, 6–24 giờ, ASPECTS 6–10, mRS 0–1."
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "EVT",
+            "vi": "EVT"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "eefede2c-f890-411e-9aed-9997e631489b",
+          "blockRev": 2
+        },
+        {
+          "id": "n216",
+          "body": {
+            "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, LVO*, 6–24 h, ASPECTS 6–10, mRS ≥2).",
+            "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, LVO*, 6–24 giờ, ASPECTS 6–10, mRS ≥2)."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "IDD",
+            "vi": "IDD"
+          },
+          "blockUid": "2660bda4-2525-4711-a099-fcf6655836b3",
+          "blockRev": 2
+        },
+        {
+          "id": "n217",
+          "body": {
+            "en": "Evidence for EVT: EVT (COR 1) for Patients aged ≥18 y†, LVO*, 6–24 h, ASPECTS 3–5, mRS 0–1.",
+            "vi": "Bằng chứng cho EVT: EVT (COR 1) cho Bệnh nhân ≥18 tuổi†, LVO*, 6–24 giờ, ASPECTS 3–5, mRS 0–1."
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "EVT",
+            "vi": "EVT"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "5bdf7fbc-ff6d-42a7-8ca2-03a133010faa",
+          "blockRev": 2
+        },
+        {
+          "id": "n218",
+          "body": {
+            "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, LVO*, 6–24 h, ASPECTS 3–5, mRS ≥2).",
+            "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, LVO*, 6–24 giờ, ASPECTS 3–5, mRS ≥2)."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "IDD",
+            "vi": "IDD"
+          },
+          "blockUid": "9029842d-b066-4332-9cb1-2be0dac5b9c2",
+          "blockRev": 2
+        },
+        {
+          "id": "n219",
+          "body": {
+            "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, MVO (Dominant M2), >6 h).",
+            "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, MVO (M2 ưu thế), >6 giờ)."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "IDD",
+            "vi": "IDD"
+          },
+          "blockUid": "20720903-1a23-401a-b735-5e7e047a09d6",
+          "blockRev": 2
+        },
+        {
+          "id": "n220",
+          "body": {
+            "en": "Evidence for EVT: EVT (COR 2a) for Patients aged ≥18 y†, MVO (Dominant M2), 0–6 h, ASPECTS 6–10, mRS 0–1.",
+            "vi": "Bằng chứng cho EVT: EVT (COR 2a) cho Bệnh nhân ≥18 tuổi†, MVO (M2 ưu thế), 0–6 giờ, ASPECTS 6–10, mRS 0–1."
+          },
+          "kind": "treatment",
+          "tier": 2,
+          "edges": [],
+          "title": {
+            "en": "EVT",
+            "vi": "EVT"
+          },
+          "evidenceBadge": "COR 2a",
+          "blockUid": "e3bf8ce8-8641-49d1-a986-862b09396bd4",
+          "blockRev": 2
+        },
+        {
+          "id": "n221",
+          "body": {
+            "en": "Evidence for EVT: No EVT (COR 3: No Benefit) for Patients aged ≥18 y†, MVO (Non dominant M2) or DVO, 0–24 h.",
+            "vi": "Bằng chứng cho EVT: Không EVT (COR 3: No Benefit) cho Bệnh nhân ≥18 tuổi†, MVO (M2 không ưu thế) hoặc DVO, 0–24 giờ."
+          },
+          "kind": "treatment",
+          "tier": 5,
+          "edges": [],
+          "title": {
+            "en": "No EVT",
+            "vi": "Không EVT"
+          },
+          "evidenceBadge": "COR 3: No Benefit",
+          "blockUid": "981c5da7-a40b-48f0-91d1-6ba20c3bb4f8",
+          "blockRev": 2
+        },
+        {
+          "id": "n222",
+          "body": {
+            "en": "Evidence for EVT: EVT (COR 1) for Patients aged ≥18 y†, Basilar artery, 0–24 h, PC ASPECTS ≥6, mRS 0–1, NIHSS ≥10.",
+            "vi": "Bằng chứng cho EVT: EVT (COR 1) cho Bệnh nhân ≥18 tuổi†, Động mạch thân nền, 0–24 giờ, PC ASPECTS ≥6, mRS 0–1, NIHSS ≥10."
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "EVT",
+            "vi": "EVT"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "119bfe43-e2a8-482c-8ba2-d8fd1fc22985",
+          "blockRev": 2
+        },
+        {
+          "id": "n223",
+          "body": {
+            "en": "Evidence for EVT: EVT (COR 2b) for Patients aged ≥18 y†, Basilar artery, 0–24 h, PC ASPECTS ≥6, mRS 0–1, NIHSS 6–9 (Stroke Severity).",
+            "vi": "Bằng chứng cho EVT: EVT (COR 2b) cho Bệnh nhân ≥18 tuổi†, Động mạch thân nền, 0–24 giờ, PC ASPECTS ≥6, mRS 0–1, NIHSS 6–9 (Mức độ nặng đột quỵ)."
+          },
+          "kind": "treatment",
+          "tier": 3,
+          "edges": [],
+          "title": {
+            "en": "EVT",
+            "vi": "EVT"
+          },
+          "evidenceBadge": "COR 2b",
+          "blockUid": "a064f806-274b-4566-80a6-d7daeee7355a",
+          "blockRev": 2
+        },
+        {
+          "id": "n224",
+          "body": {
+            "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, Basilar artery, 0–24 h, PC ASPECTS ≥6, mRS ≥2).",
+            "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, Động mạch thân nền, 0–24 giờ, PC ASPECTS ≥6, mRS ≥2)."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "IDD",
+            "vi": "IDD"
+          },
+          "blockUid": "d28566b8-53a4-4aad-93bd-9e76f509f71d",
+          "blockRev": 2
+        }
+      ],
+      "rev": 2,
+      "changeSeq": 1446,
+      "protocolHash": "5e1b084e863c78be02201092267d98cbc3d76fe60237e5a8888cd326be0383fc",
+      "deletedAt": null
+    },
+    {
+      "uid": "feaa99ad-6429-490c-a7e3-18d42da44d30",
+      "slug": "anticoagulation-for-typical-cti-dependent-afl-aha-acc-accp-hrs-2023",
+      "title": {
+        "en": "Anticoagulation for Typical (CTI-Dependent) AFL",
+        "vi": "Kháng đông cho cuồng nhĩ điển hình (phụ thuộc CTI)"
+      },
+      "domain": "combined",
+      "source": {
+        "url": "10.1161/CIR.0000000000001193",
+        "year": 2023,
+        "title": "2023 ACC AHA ACCP HRS Guideline for the Diagnosis and Management of Atrial Fibrillation",
+        "figureRef": "e58",
+        "sourceType": "guideline",
+        "organizationOrAuthor": "AHA/ACC/ACCP/HRS"
+      },
+      "status": "published",
+      "summary": {
+        "en": "Clinical pathway for anticoagulation management in patients with typical (cavotricuspid isthmus-dependent) atrial flutter based on rhythm/rate control strategy, ablation success, prior AF history, and thromboembolic risk profile.",
+        "vi": "Phác đồ lâm sàng xử trí kháng đông ở bệnh nhân cuồng nhĩ điển hình (phụ thuộc eo tĩnh mạch chủ dưới - van ba lá) dựa trên chiến lược kiểm soát tần số/nhịp, kết quả triệt đốt, tiền sử rung nhĩ và hồ sơ nguy cơ thuyên tắc huyết khối."
+      },
+      "createdAt": "2026-11-25T03:59:35.311008+00:00",
+      "updatedAt": "2026-11-25T03:59:58.313361+00:00",
+      "reviewedAt": "2026-11-25T03:59:47.508Z",
+      "reviewedBy": "admin",
+      "entryNodeId": "n1",
+      "subspecialty": "Stroke",
+      "extractionMeta": {
+        "model": "gemini-4-hydrogen",
+        "extractedAt": "2026-11-25T03:55:59.562Z",
+        "confidenceNotes": [
+          "All boxes, footnotes, and Class of Recommendation numbers (1, 2b) are clearly legible.",
+          "The arrow from 'High-risk thromboembolic profile' splits into a dashed arrow leading to 'Consider anticoagulation if high-risk features for development of AF† (2b)' and a solid arrow joining 'Low-risk thromboembolic profile' to 'Monitor off anticoagulation (clinical follow-up and arrhythmia monitoring) (1)'; the solid arrow does not carry an explicit text label on the arrow itself."
+        ]
+      },
+      "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795578939652-Screenshot_2026-11-25_105432.png",
+      "sourceImageMeta": {
+        "fileName": "Screenshot_2026-11-25_105432.png",
+        "mimeType": "image/png"
+      },
+      "sourceImageSha256": "3ab860c80d1c925f92e6806d42d2f38602dc9ecdc89b3f570aa4d67f61662705",
+      "allowDuplicateImage": false,
+      "nodes": [
+        {
+          "id": "n1",
+          "body": {
+            "en": "Typical (cavotricuspid isthmus-dependent) atrial flutter.",
+            "vi": "Cuồng nhĩ điển hình (phụ thuộc eo tĩnh mạch chủ dưới - van ba lá)."
+          },
+          "kind": "entry",
+          "edges": [
+            {
+              "id": "e1",
+              "tone": "default",
+              "label": {
+                "en": "Rate control or rhythm control with antiarrhythmic therapy",
+                "vi": "Kiểm soát tần số hoặc kiểm soát nhịp bằng thuốc chống loạn nhịp"
+              },
+              "targetNodeId": "n2"
+            },
+            {
+              "id": "e2",
+              "tone": "warning",
+              "label": {
+                "en": "Unsuccessful typical AFL ablation (without plans for re-do ablation)",
+                "vi": "Triệt đốt AFL điển hình thất bại (không có kế hoạch triệt đốt lại)"
+              },
+              "targetNodeId": "n3"
+            },
+            {
+              "id": "e3",
+              "tone": "positive",
+              "label": {
+                "en": "Successful typical AFL ablation*",
+                "vi": "Triệt đốt AFL điển hình thành công*"
+              },
+              "targetNodeId": "n4"
+            }
+          ],
+          "title": {
+            "en": "Typical (CTI-dependent) AFL",
+            "vi": "Cuồng nhĩ điển hình (phụ thuộc CTI)"
+          },
+          "clinicalPearl": {
+            "en": "AF indicates atrial fibrillation; AFL, atrial flutter; COPD, chronic obstructive pulmonary disease; and CTI, cavotricuspid isthmus.",
+            "vi": "AF: rung nhĩ (atrial fibrillation); AFL: cuồng nhĩ (atrial flutter); COPD: bệnh phổi tắc nghẽn mạn tính; CTI: eo tĩnh mạch chủ dưới - van ba lá (cavotricuspid isthmus)."
+          },
+          "blockUid": "870113e2-0f3d-4f4d-8057-87570be08f83",
+          "blockRev": 2
+        },
+        {
+          "id": "n2",
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e4",
+              "tone": "positive",
+              "label": {
+                "en": "Proceed to anticoagulation management",
+                "vi": "Tiếp tục xử trí kháng đông"
+              },
+              "targetNodeId": "n5"
+            }
+          ],
+          "title": {
+            "en": "Rate control or rhythm control with antiarrhythmic therapy",
+            "vi": "Kiểm soát tần số hoặc kiểm soát nhịp bằng thuốc chống loạn nhịp"
+          },
+          "blockUid": "fd001bce-06cd-4b61-98fb-dfa375534f20",
+          "blockRev": 2
+        },
+        {
+          "id": "n3",
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e5",
+              "tone": "positive",
+              "label": {
+                "en": "Proceed to anticoagulation management",
+                "vi": "Tiếp tục xử trí kháng đông"
+              },
+              "targetNodeId": "n5"
+            }
+          ],
+          "title": {
+            "en": "Unsuccessful typical AFL ablation (without plans for re-do ablation)",
+            "vi": "Triệt đốt AFL điển hình thất bại (không có kế hoạch triệt đốt lại)"
+          },
+          "blockUid": "8739e18a-b04a-4bf0-b2b3-324f8aff35f3",
+          "blockRev": 2
+        },
+        {
+          "id": "n4",
+          "body": {
+            "en": "*Intraprocedural documentation of bidirectional block.",
+            "vi": "*Ghi nhận block hai chiều trong thủ thuật."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e6",
+              "tone": "default",
+              "label": {
+                "en": "Known prior history of AF",
+                "vi": "Đã biết tiền sử AF trước đó"
+              },
+              "targetNodeId": "n6"
+            },
+            {
+              "id": "e7",
+              "tone": "default",
+              "label": {
+                "en": "No known prior history of AF",
+                "vi": "Không có tiền sử AF được biết trước đó"
+              },
+              "targetNodeId": "n7"
+            }
+          ],
+          "title": {
+            "en": "Successful typical AFL ablation*",
+            "vi": "Triệt đốt AFL điển hình thành công*"
+          },
+          "blockUid": "2ff45df4-2312-40df-9aab-02cb37ec1367",
+          "blockRev": 2
+        },
+        {
+          "id": "n5",
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "Anticoagulation according to same risk profile as AF (1)",
+            "vi": "Kháng đông theo cùng hồ sơ nguy cơ như AF (1)"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "f23364df-9d6b-4686-913d-114413004ed3",
+          "blockRev": 2
+        },
+        {
+          "id": "n6",
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e8",
+              "tone": "positive",
+              "label": {
+                "en": "Proceed to anticoagulation management",
+                "vi": "Tiếp tục xử trí kháng đông"
+              },
+              "targetNodeId": "n8"
+            }
+          ],
+          "title": {
+            "en": "Known prior history of AF",
+            "vi": "Đã biết tiền sử AF trước đó"
+          },
+          "blockUid": "4872dca9-3ba5-45c0-b567-7b1a239a0176",
+          "blockRev": 2
+        },
+        {
+          "id": "n7",
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e9",
+              "tone": "warning",
+              "label": {
+                "en": "High-risk thromboembolic profile",
+                "vi": "Hồ sơ nguy cơ thuyên tắc huyết khối cao"
+              },
+              "targetNodeId": "n9"
+            },
+            {
+              "id": "e10",
+              "tone": "positive",
+              "label": {
+                "en": "Low-risk thromboembolic profile",
+                "vi": "Hồ sơ nguy cơ thuyên tắc huyết khối thấp"
+              },
+              "targetNodeId": "n10"
+            }
+          ],
+          "title": {
+            "en": "No known prior history of AF",
+            "vi": "Không có tiền sử AF được biết trước đó"
+          },
+          "blockUid": "3fefdc68-0b1e-411d-86d4-628aef67a700",
+          "blockRev": 2
+        },
+        {
+          "id": "n8",
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "Anticoagulation according to same risk profile as AF (1)",
+            "vi": "Kháng đông theo cùng hồ sơ nguy cơ như AF (1)"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "c72bad06-76b8-4118-a145-ce513b4571af",
+          "blockRev": 2
+        },
+        {
+          "id": "n9",
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e11",
+              "tone": "warning",
+              "label": {
+                "en": "If high-risk features for development of AF†",
+                "vi": "Nếu có đặc điểm nguy cơ cao tiến triển thành AF†"
+              },
+              "sublabel": {
+                "en": "Dashed pathway",
+                "vi": "Nhánh nét đứt"
+              },
+              "targetNodeId": "n11"
+            },
+            {
+              "id": "e12",
+              "tone": "positive",
+              "label": {
+                "en": "Without high-risk features for development of AF / monitoring pathway",
+                "vi": "Theo dõi không dùng kháng đông"
+              },
+              "sublabel": {
+                "en": "Solid pathway",
+                "vi": "Nhánh nét liền"
+              },
+              "targetNodeId": "n12"
+            }
+          ],
+          "title": {
+            "en": "High-risk thromboembolic profile",
+            "vi": "Hồ sơ nguy cơ thuyên tắc huyết khối cao"
+          },
+          "blockUid": "db6e71c4-8660-47cd-93fc-ebc7f7564e62",
+          "blockRev": 2
+        },
+        {
+          "id": "n10",
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e13",
+              "tone": "positive",
+              "label": {
+                "en": "Proceed to monitoring off anticoagulation",
+                "vi": "Tiếp tục theo dõi không dùng kháng đông"
+              },
+              "targetNodeId": "n12"
+            }
+          ],
+          "title": {
+            "en": "Low-risk thromboembolic profile",
+            "vi": "Hồ sơ nguy cơ thuyên tắc huyết khối thấp"
+          },
+          "blockUid": "72f6ab0a-7ef3-445a-ac19-8ff35b00124b",
+          "blockRev": 2
+        },
+        {
+          "id": "n11",
+          "kind": "treatment",
+          "tier": 3,
+          "edges": [],
+          "title": {
+            "en": "Consider anticoagulation if high-risk features for development of AF† (2b)",
+            "vi": "Cân nhắc kháng đông nếu có đặc điểm nguy cơ cao tiến triển thành AF† (2b)"
+          },
+          "clinicalPearl": {
+            "en": "†For example, left atrial enlargement, inducible AF, COPD, concomitant heart failure.",
+            "vi": "†Ví dụ: giãn nhĩ trái, AF có thể gây khởi phát, COPD, suy tim đi kèm."
+          },
+          "evidenceBadge": "COR 2b",
+          "blockUid": "38cb79f2-e291-443e-8d6c-54c514a5bdf3",
+          "blockRev": 2
+        },
+        {
+          "id": "n12",
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "Monitor off anticoagulation (clinical follow-up and arrhythmia monitoring) (1)",
+            "vi": "Theo dõi không dùng kháng đông (theo dõi lâm sàng và theo dõi loạn nhịp) (1)"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "67973efc-b7ad-42a0-8671-3d54e37d983b",
+          "blockRev": 2
+        }
+      ],
+      "rev": 2,
+      "changeSeq": 1578,
+      "protocolHash": "e452c1ade9398cff5e717a64ae66148be2be463637698422bdc1781b6d80db0d",
+      "deletedAt": null
+    },
+    {
+      "uid": "a4cdc532-8d22-4d47-8574-867a1913df49",
+      "slug": "approach-to-the-management-of-patients-with-cerebral-vasospasm-and-dci-after-asah-aha-asa-2023",
+      "title": {
+        "en": "Approach to the Management of Patients with Cerebral Vasospasm and DCI After aSAH",
+        "vi": "Tiếp cận Quản lý Bệnh nhân Co thắt Mạch não và Thiếu máu Não Cục bộ Muộn (DCI) sau Xuất huyết Dưới nhện do Vỡ Túi cùng (aSAH)"
+      },
+      "domain": "treatment",
+      "source": {
+        "url": "10.1161/STR.0000000000000436",
+        "year": 2023,
+        "title": "2023 AHA ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage",
+        "figureRef": "e340",
+        "sourceType": "guideline",
+        "organizationOrAuthor": "AHA/ASA"
+      },
+      "status": "published",
+      "summary": {
+        "en": "An evidence-based clinical decision flowchart for monitoring, medical management, and endovascular rescue therapy in patients with aneurysmal subarachnoid hemorrhage (aSAH) at risk for or developing cerebral vasospasm and delayed cerebral ischemia (DCI).",
+        "vi": "Sơ đồ thuật toán lâm sàng dựa trên bằng chứng để theo dõi, điều trị nội khoa và điều trị giải cứu can thiệp nội mạch ở bệnh nhân xuất huyết dưới nhện do vỡ túi ngực (aSAH) có nguy cơ hoặc đang tiến triển co thắt mạch máu não và thiếu máu cục bộ bộ não muộn (DCI)."
+      },
+      "createdAt": "2026-11-25T03:33:14.563611+00:00",
+      "updatedAt": "2026-11-25T03:33:37.420241+00:00",
+      "reviewedAt": "2026-11-25T03:33:27.681Z",
+      "reviewedBy": "admin",
+      "entryNodeId": "n1",
+      "subspecialty": "Stroke",
+      "extractionMeta": {
+        "model": "gemini-3.6-flash",
+        "extractedAt": "2026-11-25T03:25:16.451Z",
+        "confidenceNotes": [
+          "Transcribed directly from Figure 3 of the 2023 AHA/ASA aSAH Guideline (page e340). All class ratings and arrows accurately represented."
+        ]
+      },
+      "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795577088510-Screenshot_2026-11-25_102243.png",
+      "sourceImageMeta": {
+        "fileName": "Screenshot_2026-11-25_102243.png",
+        "mimeType": "image/png"
+      },
+      "sourceImageSha256": "ab77128c672663d92afef80e5d7197405ad95d428ddb980625d9b7905d467856",
+      "allowDuplicateImage": false,
+      "nodes": [
+        {
+          "id": "n1",
+          "body": {
+            "en": "Initial presentation of aneurysmal subarachnoid hemorrhage.",
+            "vi": "Bệnh nhân khởi phát xuất huyết dưới nhện do vỡ túi ngực."
+          },
+          "kind": "entry",
+          "edges": [
+            {
+              "id": "e1-2",
+              "tone": "default",
+              "label": {
+                "en": "Initiate baseline therapy",
+                "vi": "Bắt đầu điều trị nền tảng"
+              },
+              "targetNodeId": "n2"
+            }
+          ],
+          "title": {
+            "en": "Patient with aSAH",
+            "vi": "Bệnh nhân bị aSAH"
+          },
+          "blockUid": "dab9658c-8729-467c-af3d-533c698ca372",
+          "blockRev": 2
+        },
+        {
+          "id": "n2",
+          "body": {
+            "en": "Administer oral nimodipine to all patients with aSAH.",
+            "vi": "Cho tất cả bệnh nhân aSAH dùng nimodipine đường uống."
+          },
+          "kind": "action",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e2-3",
+              "tone": "default",
+              "label": {
+                "en": "Next step",
+                "vi": "Bước tiếp theo"
+              },
+              "targetNodeId": "n3"
+            }
+          ],
+          "title": {
+            "en": "Oral Nimodipine",
+            "vi": "Nimodipine đường uống"
+          },
+          "evidenceBadge": "Class 1",
+          "blockUid": "fbc4ab20-ecf0-4d17-b176-418cde48c5cb",
+          "blockRev": 2
+        },
+        {
+          "id": "n3",
+          "body": {
+            "en": "Perform frequent, structured neurological assessments.",
+            "vi": "Thực hiện đánh giá thần kinh định kỳ, có cấu trúc."
+          },
+          "kind": "action",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e3-4",
+              "tone": "default",
+              "label": {
+                "en": "Reliable neurological exam",
+                "vi": "Khám thần kinh tin cậy"
+              },
+              "targetNodeId": "n4"
+            },
+            {
+              "id": "e3-5",
+              "tone": "warning",
+              "label": {
+                "en": "Unreliable neurological exam",
+                "vi": "Khám thần kinh không tin cậy"
+              },
+              "targetNodeId": "n5"
+            }
+          ],
+          "title": {
+            "en": "Regular Neurological Exams",
+            "vi": "Khám thần kinh định kỳ"
+          },
+          "evidenceBadge": "Class 1",
+          "blockUid": "6fff3fda-bb42-4bb6-9560-23698a8d41fd",
+          "blockRev": 2
+        },
+        {
+          "id": "n4",
+          "body": {
+            "en": "Perform transcranial Doppler (TCD) monitoring for reliable exam patients.",
+            "vi": "Thực hiện theo dõi Doppler xuyên sọ (TCD) cho bệnh nhân có thể thăm khám thần kinh tin cậy."
+          },
+          "kind": "action",
+          "tier": 2,
+          "edges": [
+            {
+              "id": "e4-6",
+              "tone": "default",
+              "label": {
+                "en": "Consider invasive monitoring",
+                "vi": "Cân nhắc theo dõi xâm lấn"
+              },
+              "targetNodeId": "n6"
+            },
+            {
+              "id": "e4-7",
+              "tone": "default",
+              "label": {
+                "en": "Proceed to management strategy",
+                "vi": "Chuyển sang chiến lược quản lý"
+              },
+              "targetNodeId": "n7"
+            }
+          ],
+          "title": {
+            "en": "TCD Monitoring",
+            "vi": "Theo dõi TCD (Siêu âm Doppler xuyên sọ)"
+          },
+          "evidenceBadge": "Class 2a",
+          "blockUid": "33e88673-2afd-4d16-bcd5-77011dba49ac",
+          "blockRev": 2
+        },
+        {
+          "id": "n5",
+          "body": {
+            "en": "Perform TCD monitoring and continuous electroencephalography (cEEG) for patients with an unreliable neurological exam.",
+            "vi": "Thực hiện theo dõi TCD và điện não đồ liên tục (cEEG) cho bệnh nhân có kết quả khám thần kinh không tin cậy."
+          },
+          "kind": "action",
+          "tier": 2,
+          "edges": [
+            {
+              "id": "e5-6",
+              "tone": "default",
+              "label": {
+                "en": "Consider invasive monitoring",
+                "vi": "Cân nhắc theo dõi xâm lấn"
+              },
+              "targetNodeId": "n6"
+            },
+            {
+              "id": "e5-7",
+              "tone": "default",
+              "label": {
+                "en": "Proceed to management strategy",
+                "vi": "Chuyển sang chiến lược quản lý"
+              },
+              "targetNodeId": "n7"
+            }
+          ],
+          "title": {
+            "en": "TCD Monitoring & cEEG",
+            "vi": "Theo dõi TCD & cEEG"
+          },
+          "evidenceBadge": "Class 2a",
+          "blockUid": "96d40168-4218-4d81-8078-8780658eae7f",
+          "blockRev": 2
+        },
+        {
+          "id": "n6",
+          "body": {
+            "en": "Consider invasive multimodality neuromonitoring techniques when appropriate.",
+            "vi": "Cân nhắc áp dụng các kỹ thuật theo dõi thần kinh đa thông số xâm lấn khi thích hợp."
+          },
+          "kind": "action",
+          "tier": 3,
+          "edges": [
+            {
+              "id": "e6-7",
+              "tone": "default",
+              "label": {
+                "en": "Proceed",
+                "vi": "Tiếp tục"
+              },
+              "targetNodeId": "n7"
+            }
+          ],
+          "title": {
+            "en": "Consider Invasive Multimodality Neuromonitoring",
+            "vi": "Cân nhắc theo dõi thần kinh đa thông số xâm lấn"
+          },
+          "evidenceBadge": "Class 2b",
+          "blockUid": "e945aeae-cf21-4560-905b-e5a4e13d3224",
+          "blockRev": 2
+        },
+        {
+          "id": "n7",
+          "body": {
+            "en": "Do not perform prophylactic hemodynamic augmentation in asymptomatic patients.",
+            "vi": "Không áp dụng liệu pháp tăng cường huyết động để phòng ngừa ở bệnh nhân chưa có triệu chứng."
+          },
+          "kind": "action",
+          "tier": 5,
+          "edges": [
+            {
+              "id": "e7-8",
+              "tone": "default",
+              "label": {
+                "en": "Monitor for deterioration",
+                "vi": "Theo dõi dấu hiệu diễn tiến xấu"
+              },
+              "targetNodeId": "n8"
+            }
+          ],
+          "title": {
+            "en": "Avoid Prophylactic Hemodynamic Augmentation",
+            "vi": "Tránh tăng cường huyết động dự phòng"
+          },
+          "warning": {
+            "en": "Prophylactic hemodynamic augmentation is Class 3: Harm.",
+            "vi": "Tăng cường huyết động dự phòng thuộc Phân loại 3: Có hại."
+          },
+          "evidenceBadge": "Class 3: Harm",
+          "blockUid": "7f026965-b471-4d51-ae48-ff769e824430",
+          "blockRev": 2
+        },
+        {
+          "id": "n8",
+          "body": {
+            "en": "Worsening neurologically or on monitoring when neurological examination is unreliable.",
+            "vi": "Tình trạng thần kinh xấu đi hoặc phát hiện bất thường trên thông số theo dõi khi khám thần kinh không tin cậy."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e8-9",
+              "tone": "warning",
+              "label": {
+                "en": "Worsening detected",
+                "vi": "Phát hiện diễn tiến xấu"
+              },
+              "targetNodeId": "n9"
+            }
+          ],
+          "title": {
+            "en": "Neurological or Monitoring Worsening",
+            "vi": "Diễn tiến xấu về thần kinh hoặc trên thông số theo dõi"
+          },
+          "blockUid": "99c78aca-2524-4e45-a38d-c48e365ed943",
+          "blockRev": 2
+        },
+        {
+          "id": "n9",
+          "body": {
+            "en": "- Address examination confounders\n- Elevate blood pressure\n- Ensure euvolemia\n- Additional imaging as indicated (eg, CT/CTA)",
+            "vi": "- Xử trí các yếu tố gây nhiễu kết quả khám\n- Nâng huyết áp\n- Đảm bảo thể tích tuần hoàn bình thường (euvolemia)\n- Chẩn đoán hình ảnh bổ sung theo chỉ định (ví dụ: CT/CTA)"
+          },
+          "kind": "action",
+          "tier": 2,
+          "edges": [
+            {
+              "id": "e9-10",
+              "tone": "default",
+              "label": {
+                "en": "Evaluate response",
+                "vi": "Đánh giá đáp ứng"
+              },
+              "targetNodeId": "n10"
+            }
+          ],
+          "title": {
+            "en": "Initial Medical Management of DCI/Vasospasm",
+            "vi": "Xử trí nội khoa ban đầu cho DCI/Co thắt mạch"
+          },
+          "evidenceBadge": "Class 2a",
+          "blockUid": "0788a418-63a3-47af-ad56-a5fa3a2c64e0",
+          "blockRev": 2
+        },
+        {
+          "id": "n10",
+          "body": {
+            "en": "Assess whether neurological deficits or neuromonitoring abnormalities have resolved after initial medical management.",
+            "vi": "Đánh giá xem khuyết tật thần kinh hoặc bất thường theo dõi thần kinh đã thuyên giảm sau xử trí nội khoa ban đầu chưa."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e10-11",
+              "tone": "positive",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n11"
+            },
+            {
+              "id": "e10-12",
+              "tone": "danger",
+              "label": {
+                "en": "NO",
+                "vi": "KHÔNG"
+              },
+              "targetNodeId": "n12"
+            }
+          ],
+          "title": {
+            "en": "Worsening Resolves?",
+            "vi": "Tình trạng xấu đi có cải thiện không?"
+          },
+          "blockUid": "29551cda-056f-4bc7-bc30-c2cbb53e444b",
+          "blockRev": 2
+        },
+        {
+          "id": "n11",
+          "body": {
+            "en": "Continue baseline monitoring protocols.",
+            "vi": "Tiếp tục quy trình theo dõi nền tảng."
+          },
+          "kind": "action",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e11-8",
+              "tone": "default",
+              "label": {
+                "en": "Re-evaluate if new worsening occurs",
+                "vi": "Đánh giá lại nếu có diễn tiến xấu mới"
+              },
+              "targetNodeId": "n8"
+            }
+          ],
+          "title": {
+            "en": "Continue Monitoring",
+            "vi": "Tiếp tục theo dõi"
+          },
+          "evidenceBadge": "Class 1",
+          "blockUid": "f5c8da23-75d1-408d-aebd-6ed39549049a",
+          "blockRev": 2
+        },
+        {
+          "id": "n12",
+          "body": {
+            "en": "Proceed to endovascular rescue therapy with intra-arterial (IA) spasmolytic +/- angioplasty.",
+            "vi": "Tiến hành điều trị giải cứu can thiệp nội mạch bằng thuốc giãn mạch bơm động mạch (IA) +/- tạo hình mạch (angioplasty)."
+          },
+          "kind": "treatment",
+          "tier": 3,
+          "edges": [
+            {
+              "id": "e12-13",
+              "tone": "default",
+              "label": {
+                "en": "Assess post-procedure response",
+                "vi": "Đánh giá đáp ứng sau thủ thuật"
+              },
+              "targetNodeId": "n13"
+            }
+          ],
+          "title": {
+            "en": "Endovascular Rescue Therapy",
+            "vi": "Điều trị giải cứu can thiệp nội mạch"
+          },
+          "evidenceBadge": "Class 2b",
+          "blockUid": "4a90df2e-84d7-4114-a8c9-423618976298",
+          "blockRev": 2
+        },
+        {
+          "id": "n13",
+          "body": {
+            "en": "Assess clinical/neuromonitoring response following endovascular rescue therapy.",
+            "vi": "Đánh giá đáp ứng lâm sàng / theo dõi thần kinh sau điều trị giải cứu can thiệp nội mạch."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e13-11",
+              "tone": "positive",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n11"
+            },
+            {
+              "id": "e13-14",
+              "tone": "danger",
+              "label": {
+                "en": "NO",
+                "vi": "KHÔNG"
+              },
+              "targetNodeId": "n14"
+            }
+          ],
+          "title": {
+            "en": "Worsening Resolves?",
+            "vi": "Tình trạng xấu đi có cải thiện không?"
+          },
+          "blockUid": "216052b6-0a51-4d23-a70c-2434ef0e060a",
+          "blockRev": 2
+        },
+        {
+          "id": "n14",
+          "body": {
+            "en": "Imaging for DCI explains deficit or other explanation for exam?",
+            "vi": "Hình ảnh học về DCI có giải thích được khuyết tật thần kinh hoặc có nguyên nhân khác giải thích cho kết quả khám không?"
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e14-11",
+              "tone": "positive",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n11"
+            },
+            {
+              "id": "e14-12",
+              "tone": "danger",
+              "label": {
+                "en": "NO",
+                "vi": "KHÔNG"
+              },
+              "targetNodeId": "n12"
+            }
+          ],
+          "title": {
+            "en": "Imaging/Deficit Explanation Check",
+            "vi": "Kiểm tra nguyên nhân trên hình ảnh / khuyết tật thần kinh"
+          },
+          "blockUid": "7f9681ac-113c-47e5-89a0-3b3670d01f5c",
+          "blockRev": 2
+        }
+      ],
+      "rev": 2,
+      "changeSeq": 1504,
+      "protocolHash": "7f4a44f7033a1caea1e044da592028fb1a749c1f15f5a5be6768c21e02319d68",
+      "deletedAt": null
+    },
+    {
+      "uid": "a69f4d40-0139-4936-abb2-387aed95b154",
+      "slug": "dapt-for-minor-noncardioembolic-ais-and-tia-aha-asa-2026",
+      "title": {
+        "en": "DAPT for minor noncardioembolic AIS and TIA",
+        "vi": "DAPT cho đột quỵ thiếu máu cục bộ cấp nhẹ không do từ tim và TIA"
+      },
+      "domain": "treatment",
+      "source": {
+        "url": "10.1161/STR.0000000000000513",
+        "year": 2026,
+        "title": "2026 AHA ASA Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+        "figureRef": "e63",
+        "sourceType": "guideline",
+        "organizationOrAuthor": "AHA/ASA"
+      },
+      "status": "published",
+      "summary": {
+        "en": "AHA/ASA 2026 clinical decision flowchart for dual antiplatelet therapy (DAPT) selection in acute noncardioembolic ischemic stroke (AIS) and transient ischemic attack (TIA), stratified by timing from last known normal (LKN), severity scores (NIHSS, ABCD2), arterial stenosis, and CYP2C19 allele testing.",
+        "vi": "Lưu đồ ra quyết định lâm sàng AHA/ASA 2026 cho lựa chọn liệu pháp kháng tiểu cầu kép (DAPT) trong đột quỵ thiếu máu cục bộ cấp (AIS) không do từ tim và cơn thiếu máu não thoáng qua (TIA), phân tầng theo thời gian từ thời điểm bình thường cuối cùng (LKN), điểm số mức độ nặng (NIHSS, ABCD2), hẹp động mạch và xét nghiệm allele CYP2C19."
+      },
+      "createdAt": "2026-11-24T12:08:32.717495+00:00",
+      "updatedAt": "2026-11-24T12:08:54.767871+00:00",
+      "reviewedAt": "2026-11-24T12:08:43.891Z",
+      "reviewedBy": "admin",
+      "entryNodeId": "n_entry",
+      "subspecialty": "Stroke",
+      "extractionMeta": {
+        "model": "gemini-3.5-flash",
+        "extractedAt": "2026-11-24T12:05:51.487Z",
+        "confidenceNotes": [
+          "All flowchart text, decision branches, trial tags (CHANCE, POINT, THALES, INSPIRES, CHANCE 2), and COR recommendation levels (COR 1, COR 2a, COR 2b) parsed verbatim."
+        ]
+      },
+      "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795521905684-Screenshot_2026-11-24_190252.png",
+      "sourceImageMeta": {
+        "fileName": "Screenshot_2026-11-24_190252.png",
+        "mimeType": "image/png"
+      },
+      "sourceImageSha256": "f34214f603dbd3e3c740ff60740a771686d1c97bb8227931dffdf3f3b3bc941f",
+      "allowDuplicateImage": false,
+      "nodes": [
+        {
+          "id": "n_entry",
+          "body": {
+            "en": "Initial presentation of noncardioembolic acute ischemic stroke or transient ischemic attack.",
+            "vi": "Bệnh cảnh ban đầu của đột quỵ thiếu máu cục bộ cấp không do từ tim hoặc cơn thiếu máu cục bộ thoáng qua."
+          },
+          "kind": "entry",
+          "edges": [
+            {
+              "id": "e_entry_to_revasc",
+              "tone": "default",
+              "label": {
+                "en": "Evaluate revascularization",
+                "vi": "Đánh giá tái thông mạch"
+              },
+              "targetNodeId": "n_revasc"
+            }
+          ],
+          "title": {
+            "en": "Acute noncardioembolic ischemic stroke or TIA",
+            "vi": "Đột quỵ thiếu máu cục bộ cấp không do từ tim hoặc TIA"
+          },
+          "blockUid": "fc93e6e0-27a0-4f20-b5a8-bf3bcf7333bb",
+          "blockRev": 2
+        },
+        {
+          "id": "n_revasc",
+          "body": {
+            "en": "Determine eligibility for intravenous thrombolysis or mechanical thrombectomy.",
+            "vi": "Xác định khả năng đủ điều kiện tiêu sợi huyết tĩnh mạch hoặc lấy huyết khối bằng dụng cụ cơ học."
+          },
+          "kind": "decision",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e_revasc_yes",
+              "tone": "positive",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n_thrombolysis_mt"
+            },
+            {
+              "id": "e_revasc_no",
+              "tone": "default",
+              "label": {
+                "en": "NO",
+                "vi": "KHÔNG"
+              },
+              "targetNodeId": "n_lkn_24"
+            }
+          ],
+          "title": {
+            "en": "Eligible for revascularization?",
+            "vi": "Có đủ điều kiện tái thông mạch không?"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "b79b8bb0-3713-40d7-b702-6c204eed3c51",
+          "blockRev": 2
+        },
+        {
+          "id": "n_thrombolysis_mt",
+          "body": {
+            "en": "Proceed to acute revascularization pathways (intravenous thrombolysis and/or mechanical thrombectomy).",
+            "vi": "Chuyển sang phác đồ tái thông mạch cấp (tiêu sợi huyết tĩnh mạch và/hoặc lấy huyết khối cơ học)."
+          },
+          "kind": "action",
+          "edges": [],
+          "title": {
+            "en": "Thrombolysis and MT section",
+            "vi": "Phần Tiêu sợi huyết và Lấy huyết khối cơ học"
+          },
+          "blockUid": "9deead01-eb99-473f-8772-516af45d91aa",
+          "blockRev": 2
+        },
+        {
+          "id": "n_lkn_24",
+          "body": {
+            "en": "Is the time from last known normal (LKN) less than 24 hours?",
+            "vi": "Thời gian kể từ thời điểm bình thường cuối cùng (LKN) có dưới 24 giờ không?"
+          },
+          "kind": "decision",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e_lkn_24_yes",
+              "tone": "positive",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n_nihss_3_abcd2_4"
+            },
+            {
+              "id": "e_lkn_24_no",
+              "tone": "warning",
+              "label": {
+                "en": "NO",
+                "vi": "KHÔNG"
+              },
+              "targetNodeId": "n_athero_50"
+            }
+          ],
+          "title": {
+            "en": "LKN <24 hr",
+            "vi": "LKN <24 giờ"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "29e9a89a-666b-4647-984f-b0a7606d16cf",
+          "blockRev": 2
+        },
+        {
+          "id": "n_nihss_3_abcd2_4",
+          "body": {
+            "en": "Assess severity: Minor ischemic stroke (NIHSS ≤3) or high-risk TIA (ABCD2 ≥4).",
+            "vi": "Đánh giá mức độ nặng: Đột quỵ thiếu máu cục bộ nhẹ (NIHSS ≤3) hoặc TIA nguy cơ cao (ABCD2 ≥4)."
+          },
+          "kind": "decision",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e_nihss_3_yes",
+              "tone": "positive",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n_cyp2c19_testing"
+            },
+            {
+              "id": "e_nihss_3_no",
+              "tone": "default",
+              "label": {
+                "en": "NO",
+                "vi": "KHÔNG"
+              },
+              "targetNodeId": "n_nihss_4_5"
+            }
+          ],
+          "title": {
+            "en": "NIHSS ≤3 or ABCD2 ≥4",
+            "vi": "NIHSS ≤3 hoặc ABCD2 ≥4"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "8a94a85e-cb0b-46b3-b5c1-f690f7a5faf2",
+          "blockRev": 2
+        },
+        {
+          "id": "n_cyp2c19_testing",
+          "body": {
+            "en": "Allele testing to determine whether the patient carries a CYP2C19 loss-of-function (LOF) allele (*2, *3).",
+            "vi": "Xét nghiệm allele để xác định bệnh nhân có mang allele mất chức năng CYP2C19 (*2, *3) hay không."
+          },
+          "kind": "decision",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e_cyp2c19_yes",
+              "tone": "warning",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n_dapt_chance2"
+            },
+            {
+              "id": "e_cyp2c19_no",
+              "tone": "positive",
+              "label": {
+                "en": "NO / Not tested",
+                "vi": "KHÔNG / Chưa xét nghiệm"
+              },
+              "targetNodeId": "n_dapt_chance_point"
+            }
+          ],
+          "title": {
+            "en": "CYP2C19 Loss of function allele carrier",
+            "vi": "Người mang allele mất chức năng CYP2C19"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "8c091b2d-7fd7-4eb8-bdb3-257e7acd869e",
+          "blockRev": 2
+        },
+        {
+          "id": "n_dapt_chance_point",
+          "body": {
+            "en": "• Clopidogrel + Aspirin × 21–90 days (COR 1) [CHANCE, POINT]\nOR\n• Ticagrelor + Aspirin × 30 days (COR 2b) [THALES]",
+            "vi": "• Clopidogrel + Aspirin × 21–90 ngày (COR 1) [CHANCE, POINT]\nHOẶC\n• Ticagrelor + Aspirin × 30 ngày (COR 2b) [THALES]"
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "DAPT Strategy (Non-carrier or Unscreened)",
+            "vi": "Chiến lược DAPT (Không mang allele hoặc Không xét nghiệm)"
+          },
+          "evidenceBadge": "COR 1 / COR 2b",
+          "blockUid": "63bac30f-1e2d-41a2-966a-84d3cffc8c2c",
+          "blockRev": 2
+        },
+        {
+          "id": "n_dapt_chance2",
+          "body": {
+            "en": "• Ticagrelor + Aspirin × 21 days (COR 2b) [CHANCE 2]",
+            "vi": "• Ticagrelor + Aspirin × 21 ngày (COR 2b) [CHANCE 2]"
+          },
+          "kind": "treatment",
+          "tier": 3,
+          "edges": [],
+          "title": {
+            "en": "DAPT Strategy (CYP2C19 LOF Carrier)",
+            "vi": "Chiến lược DAPT (Mang allele mất chức năng CYP2C19)"
+          },
+          "evidenceBadge": "COR 2b",
+          "blockUid": "b27a8c83-116e-403c-901e-a10e8f2fb68f",
+          "blockRev": 2
+        },
+        {
+          "id": "n_nihss_4_5",
+          "body": {
+            "en": "Is the NIHSS score 4 or 5?",
+            "vi": "Điểm NIHSS có từ 4 đến 5 không?"
+          },
+          "kind": "decision",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e_nihss_4_5_yes",
+              "tone": "positive",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n_dapt_nihss_4_5"
+            },
+            {
+              "id": "e_nihss_4_5_no",
+              "tone": "default",
+              "label": {
+                "en": "NO",
+                "vi": "KHÔNG"
+              },
+              "targetNodeId": "n_sapt_1"
+            }
+          ],
+          "title": {
+            "en": "NIHSS 4–5",
+            "vi": "NIHSS 4–5"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "fa829310-ad83-4e60-98ba-6b3d8389f909",
+          "blockRev": 2
+        },
+        {
+          "id": "n_dapt_nihss_4_5",
+          "body": {
+            "en": "• Clopidogrel + Aspirin × 21 days (COR 2a) [INSPIRES (patients with presumed athero)]\nOR\n• Ticagrelor + Aspirin × 30 days (COR 2b) [THALES]",
+            "vi": "• Clopidogrel + Aspirin × 21 ngày (COR 2a) [INSPIRES (bệnh nhân nghi ngờ do xơ vữa)]\nHOẶC\n• Ticagrelor + Aspirin × 30 ngày (COR 2b) [THALES]"
+          },
+          "kind": "treatment",
+          "tier": 2,
+          "edges": [],
+          "title": {
+            "en": "DAPT Strategy (NIHSS 4–5)",
+            "vi": "Chiến lược DAPT (NIHSS 4–5)"
+          },
+          "evidenceBadge": "COR 2a / COR 2b",
+          "blockUid": "14d1fe7a-0548-4e1c-92ac-6f77768da3b9",
+          "blockRev": 2
+        },
+        {
+          "id": "n_athero_50",
+          "body": {
+            "en": "Is there intracranial or extracranial atherosclerotic stenosis >50%?",
+            "vi": "Có hẹp do xơ vữa động mạch trong hoặc ngoài sọ >50% không?"
+          },
+          "kind": "decision",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e_athero_yes",
+              "tone": "positive",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n_lkn_24_72"
+            },
+            {
+              "id": "e_athero_no",
+              "tone": "default",
+              "label": {
+                "en": "NO",
+                "vi": "KHÔNG"
+              },
+              "targetNodeId": "n_sapt_2"
+            }
+          ],
+          "title": {
+            "en": "Athero (>50%)",
+            "vi": "Xơ vữa động mạch (>50%)"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "82dab79e-37ae-4c67-85eb-39f256d8c2f8",
+          "blockRev": 2
+        },
+        {
+          "id": "n_lkn_24_72",
+          "body": {
+            "en": "Is last known normal between 24–72 hours with NIHSS ≤5 or ABCD2 ≥4?",
+            "vi": "Thời gian LKN từ 24–72 giờ đi kèm NIHSS ≤5 hoặc ABCD2 ≥4?"
+          },
+          "kind": "decision",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e_lkn_24_72_yes",
+              "tone": "positive",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n_dapt_inspires"
+            },
+            {
+              "id": "e_lkn_24_72_no",
+              "tone": "default",
+              "label": {
+                "en": "NO",
+                "vi": "KHÔNG"
+              },
+              "targetNodeId": "n_sapt_3"
+            }
+          ],
+          "title": {
+            "en": "LKN 24–72 hr + NIHSS ≤5 or ABCD2 ≥4",
+            "vi": "LKN 24–72 giờ + NIHSS ≤5 hoặc ABCD2 ≥4"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "13186d4e-eef5-444f-a6fb-40a66d983bfa",
+          "blockRev": 2
+        },
+        {
+          "id": "n_dapt_inspires",
+          "body": {
+            "en": "• Clopidogrel + Aspirin × 21 days (COR 2a) [INSPIRES]",
+            "vi": "• Clopidogrel + Aspirin × 21 ngày (COR 2a) [INSPIRES]"
+          },
+          "kind": "treatment",
+          "tier": 2,
+          "edges": [],
+          "title": {
+            "en": "DAPT Strategy (LKN 24–72 hr with Athero)",
+            "vi": "Chiến lược DAPT (LKN 24–72 giờ kèm xơ vữa)"
+          },
+          "evidenceBadge": "COR 2a",
+          "blockUid": "7af66078-cce5-41b0-998a-0c7e1edc10a5",
+          "blockRev": 2
+        },
+        {
+          "id": "n_sapt_1",
+          "body": {
+            "en": "Single antiplatelet therapy (SAPT) indicated.",
+            "vi": "Chỉ định liệu pháp kháng tiểu cầu đơn (SAPT)."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "SAPT",
+            "vi": "SAPT (Liệu pháp kháng tiểu cầu đơn)"
+          },
+          "blockUid": "ba37f218-177e-49b4-9703-6f8bea47cba5",
+          "blockRev": 2
+        },
+        {
+          "id": "n_sapt_2",
+          "body": {
+            "en": "Single antiplatelet therapy (SAPT) indicated.",
+            "vi": "Chỉ định liệu pháp kháng tiểu cầu đơn (SAPT)."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "SAPT",
+            "vi": "SAPT (Liệu pháp kháng tiểu cầu đơn)"
+          },
+          "blockUid": "6b32f9c8-29db-4fae-ae60-6779e0897397",
+          "blockRev": 2
+        },
+        {
+          "id": "n_sapt_3",
+          "body": {
+            "en": "Single antiplatelet therapy (SAPT) indicated.",
+            "vi": "Chỉ định liệu pháp kháng tiểu cầu đơn (SAPT)."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "SAPT",
+            "vi": "SAPT (Liệu pháp kháng tiểu cầu đơn)"
+          },
+          "blockUid": "a9e8154d-0ab0-41bb-9652-2c05bae31ac0",
+          "blockRev": 2
+        }
+      ],
+      "rev": 2,
+      "changeSeq": 1342,
+      "protocolHash": "9a3bca46d3757e2124a0912285376cdc7614ecdb08f67db7b06137e7cd3df51c",
+      "deletedAt": null
+    },
+    {
+      "uid": "8c2cc710-359c-4f3b-a058-79ad4ffc2ce9",
+      "slug": "diagnostic-pathway-for-possible-primary-myocardial-infarction-esc-acc-aha-whf-eacts-sts-scai-2026",
+      "title": {
+        "en": "Diagnostic pathway for possible primary myocardial infarction",
+        "vi": "Quy trình chẩn đoán nghi ngờ nhồi máu cơ tim nguyên phát"
+      },
+      "domain": "diagnosis",
+      "source": {
+        "url": "10.1093/eurheartj/ehag101",
+        "year": 2026,
+        "title": "2026 ESC/ACC/AHA/WHF/EACTS/STS/SCAI Fifth Universal Definition of Myocardial Infarction",
+        "figureRef": "11",
+        "sourceType": "guideline",
+        "organizationOrAuthor": "ESC/ACC/AHA/WHF/EACTS/STS/SCAI"
+      },
+      "status": "published",
+      "summary": {
+        "en": "Algorithm for the clinical assessment, working diagnosis, angiographic and imaging evaluation, and final diagnostic classification of patients presenting with symptoms of acute myocardial ischaemia.",
+        "vi": "Thuật toán đánh giá lâm sàng, chẩn đoán ban đầu, chụp mạch vành, chẩn đoán hình ảnh tim và phân loại chẩn đoán xác định cho bệnh nhân có triệu chứng thiếu máu cục bộ cơ tim cấp tính."
+      },
+      "createdAt": "2026-11-25T09:40:15.881337+00:00",
+      "updatedAt": "2026-11-25T09:40:35.624308+00:00",
+      "reviewedAt": "2026-11-25T09:40:28.883Z",
+      "reviewedBy": "admin",
+      "entryNodeId": "n_setting",
+      "subspecialty": "Other",
+      "extractionMeta": {
+        "model": "gemini-3.6-flash",
+        "extractedAt": "2026-11-25T09:32:03.664Z",
+        "confidenceNotes": [
+          "All visible text, codes (BA41.xx), footnotes (a-e), and decision paths transcribed accurately."
+        ]
+      },
+      "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795599078908-Screenshot_2026-11-25_162930.png",
+      "sourceImageMeta": {
+        "fileName": "Screenshot_2026-11-25_162930.png",
+        "mimeType": "image/png"
+      },
+      "sourceImageSha256": "970879d6d56e85766f40dc58c69661d3176387c0cd9357d722dfd4d68c4188db",
+      "allowDuplicateImage": false,
+      "nodes": [
+        {
+          "id": "n_setting",
+          "body": {
+            "en": "Spontaneous presentation with symptoms of acute myocardial ischaemia.",
+            "vi": "Biểu hiện tự phát với các triệu chứng của thiếu máu cục bộ cơ tim cấp tính."
+          },
+          "kind": "entry",
+          "edges": [
+            {
+              "id": "e_to_assess",
+              "tone": "default",
+              "label": {
+                "en": "Proceed to ECG / Clinical Assessment",
+                "vi": "Tiến hành đánh giá ECG / Lâm sàng"
+              },
+              "targetNodeId": "n_clinical_assess"
+            }
+          ],
+          "title": {
+            "en": "Clinical Setting: Acute Myocardial Ischaemia",
+            "vi": "Bối cảnh lâm sàng: Thiếu máu cục bộ cơ tim cấp tính"
+          },
+          "blockUid": "7a456236-392e-4a18-8539-5c2bf94dd126",
+          "blockRev": 2
+        },
+        {
+          "id": "n_clinical_assess",
+          "body": {
+            "en": "Evaluate initial electrocardiogram for ST-segment elevation or equivalent patterns.",
+            "vi": "Đánh giá điện tâm đồ ban đầu xem có ST chênh lên hoặc các dạng tương đương."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e_st_elev",
+              "tone": "danger",
+              "label": {
+                "en": "ST-segment elevation",
+                "vi": "Đoạn ST chênh lên"
+              },
+              "targetNodeId": "n_stemi_workup"
+            },
+            {
+              "id": "e_non_st_elev",
+              "tone": "warning",
+              "label": {
+                "en": "Non-ST-segment elevation",
+                "vi": "Đoạn ST không chênh lên"
+              },
+              "targetNodeId": "n_nstemi_workup"
+            }
+          ],
+          "title": {
+            "en": "Clinical Assessment & ECG Findings",
+            "vi": "Đánh giá lâm sàng & Kết quả Điện tâm đồ (ECG)"
+          },
+          "clinicalPearl": {
+            "en": "ST-segment elevation includes other electrocardiographic changes indicative of possible acute coronary occlusion.",
+            "vi": "ST chênh lên bao gồm các biến đổi điện tâm đồ khác gợi ý khả năng tắc động mạch vành cấp tính."
+          },
+          "blockUid": "8e2f1667-b564-434f-a820-f42791ad4051",
+          "blockRev": 2
+        },
+        {
+          "id": "n_stemi_workup",
+          "body": {
+            "en": "- Biomarker results not needed for working diagnosis.\n- Working diagnosis: ST-segment elevation myocardial infarction (STEMI) [BA41.09].",
+            "vi": "Không cần kết quả chất chỉ điểm sinh học (biomarker) để đưa ra chẩn đoán ban đầu."
+          },
+          "kind": "action",
+          "edges": [
+            {
+              "id": "e_to_wd_stemi",
+              "tone": "default",
+              "label": {
+                "en": "Proceed to invasive / non-invasive evaluation",
+                "vi": "Chuyển sang đánh giá xâm lấn / không xâm lấn"
+              },
+              "targetNodeId": "n_coronary_angio"
+            }
+          ],
+          "title": {
+            "en": "STEMI Pathway Assessment",
+            "vi": "Đánh giá theo nhánh STEMI"
+          },
+          "clinicalPearl": {
+            "en": "For patients with a working diagnosis of STEMI, acute myocardial injury is necessary to confirm the final diagnosis later.",
+            "vi": "Đối với bệnh nhân có chẩn đoán ban đầu là STEMI, xác nhận tổn thương cơ tim cấp là bắt buộc để khẳng định chẩn đoán cuối cùng."
+          },
+          "blockUid": "39415e88-b59b-40a8-9dca-3bbea42b0e1d",
+          "blockRev": 2
+        },
+        {
+          "id": "n_nstemi_workup",
+          "body": {
+            "en": "- Acute myocardial injury on serial biomarker testing.\n- Working diagnosis: Non-ST-segment elevation myocardial infarction (NSTEMI) [BA41.19].",
+            "vi": "Tổn thương cơ tim cấp tính trên xét nghiệm chất chỉ điểm sinh học theo chuỗi."
+          },
+          "kind": "action",
+          "edges": [
+            {
+              "id": "e_to_wd_nstemi",
+              "tone": "default",
+              "label": {
+                "en": "Proceed to invasive / non-invasive evaluation",
+                "vi": "Chuyển sang đánh giá xâm lấn / không xâm lấn"
+              },
+              "targetNodeId": "n_coronary_angio"
+            }
+          ],
+          "title": {
+            "en": "NSTEMI Pathway Biomarker Testing",
+            "vi": "Xét nghiệm chất chỉ điểm sinh học theo nhánh NSTEMI"
+          },
+          "clinicalPearl": {
+            "en": "Defined as rise and/or fall of cardiac troponin I or T values with at least one value above the sex-specific 99th percentile upper reference limit on serial testing.",
+            "vi": "Được xác định bởi sự tăng và/hoặc giảm của troponin I hoặc T cơ tim với ít nhất một giá trị vượt giới hạn tham chiếu trên bách phân vị thứ 99 theo giới tính."
+          },
+          "blockUid": "75a7a1cc-569b-4bc6-bad8-0befb9896618",
+          "blockRev": 2
+        },
+        {
+          "id": "n_coronary_angio",
+          "body": {
+            "en": "Evaluate coronary anatomy and acute coronary pathology.",
+            "vi": "Đánh giá giải phẫu động mạch vành và các bệnh lý động mạch vành cấp tính."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e_pathology_found",
+              "tone": "danger",
+              "label": {
+                "en": "Acute coronary pathology identified",
+                "vi": "Phát hiện bệnh lý động mạch vành cấp tính"
+              },
+              "sublabel": {
+                "en": "Atherothrombosis or SCAD, embolism, vasospasm, restenosis, stent thrombosis, graft failure >30d",
+                "vi": "Huyết khối do xơ vữa hoặc bóc tách tự phát, thuyên tắc, co thắt, tái hẹp, huyết khối stent, hỏng cầu nối >30 ngày"
+              },
+              "targetNodeId": "n_fd_confirmed"
+            },
+            {
+              "id": "e_no_pathology",
+              "tone": "warning",
+              "label": {
+                "en": "No acute coronary pathology identified",
+                "vi": "Không phát hiện bệnh lý động mạch vành cấp tính"
+              },
+              "sublabel": {
+                "en": "Includes MINOCA patients",
+                "vi": "Bao gồm cả bệnh nhân MINOCA"
+              },
+              "targetNodeId": "n_cardiac_imaging"
+            }
+          ],
+          "title": {
+            "en": "Coronary Angiography ± Intravascular Imaging / Functional Testing",
+            "vi": "Chụp động mạch vành ± Hình ảnh học trong lòng mạch / Thăm dò chức năng"
+          },
+          "clinicalPearl": {
+            "en": "Where coronary angiography and cardiac imaging are not available or appropriate, a final diagnosis can be assigned based on biomarkers, ECG, and clinical criteria alone (coded as BA41.09 or BA41.19).",
+            "vi": "Nơi không có sẵn chụp mạch vành và hình ảnh học tim hoặc không phù hợp, chẩn đoán xác định có thể dựa vào chất chỉ điểm sinh học, ECG và tiêu chuẩn lâm sàng (mã hóa BA41.09 hoặc BA41.19)."
+          },
+          "blockUid": "f37b13f6-89f0-477e-988a-6e955f0360dd",
+          "blockRev": 2
+        },
+        {
+          "id": "n_cardiac_imaging",
+          "body": {
+            "en": "New or presumed new regional wall motion abnormality or absence of viable myocardium in a pattern consistent with an ischaemic aetiology?",
+            "vi": "Có rối loạn vận động vùng mới hoặc giả định mới, hoặc mất cơ tim sống theo hình thái phù hợp với nguyên nhân thiếu máu cục bộ không?"
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e_imaging_yes",
+              "tone": "warning",
+              "label": {
+                "en": "Yes",
+                "vi": "Có"
+              },
+              "targetNodeId": "n_fd_undetermined"
+            },
+            {
+              "id": "e_imaging_no",
+              "tone": "positive",
+              "label": {
+                "en": "No",
+                "vi": "Không"
+              },
+              "targetNodeId": "n_fd_excluded"
+            }
+          ],
+          "title": {
+            "en": "Cardiac Imaging Evaluation",
+            "vi": "Đánh giá Hình ảnh học tim"
+          },
+          "blockUid": "3a6be0cd-0ef8-4636-976a-d34d025705f1",
+          "blockRev": 2
+        },
+        {
+          "id": "n_fd_confirmed",
+          "body": {
+            "en": "Confirmed acute coronary pathology (ICD-11 codes: BA41.01-07 or BA41.11-17).",
+            "vi": "Đã xác nhận bệnh lý động mạch vành cấp tính (Mã ICD-11: BA41.01-07 hoặc BA41.11-17)."
+          },
+          "kind": "diagnosis",
+          "edges": [],
+          "title": {
+            "en": "FINAL DIAGNOSIS: STEMI or NSTEMI due to confirmed acute coronary pathology",
+            "vi": "CHẨN ĐOÁN XÁC ĐỊNH: STEMI hoặc NSTEMI do bệnh lý động mạch vành cấp tính đã xác định"
+          },
+          "blockUid": "92c3fbe0-de32-4f01-b5b4-e7f9093e6180",
+          "blockRev": 2
+        },
+        {
+          "id": "n_fd_undetermined",
+          "body": {
+            "en": "Undetermined aetiology despite cardiac imaging evidence of ischaemia (ICD-11 codes: BA41.08 or BA41.18).",
+            "vi": "Chưa rõ nguyên nhân mặc dù có bằng chứng thiếu máu cục bộ trên hình ảnh học tim (Mã ICD-11: BA41.08 hoặc BA41.18)."
+          },
+          "kind": "diagnosis",
+          "edges": [],
+          "title": {
+            "en": "FINAL DIAGNOSIS: STEMI or NSTEMI of undetermined aetiology",
+            "vi": "CHẨN ĐOÁN XÁC ĐỊNH: STEMI hoặc NSTEMI không rõ nguyên nhân"
+          },
+          "blockUid": "cedd037e-9a36-406b-a0f0-42821526d14f",
+          "blockRev": 2
+        },
+        {
+          "id": "n_fd_excluded",
+          "body": {
+            "en": "Myocardial infarction is excluded based on negative cardiac imaging and lack of acute coronary pathology.",
+            "vi": "Nhồi máu cơ tim bị loại trừ dựa trên hình ảnh học tim âm tính và không có bệnh lý động mạch vành cấp tính."
+          },
+          "kind": "diagnosis",
+          "edges": [],
+          "title": {
+            "en": "FINAL DIAGNOSIS: Myocardial infarction excluded",
+            "vi": "CHẨN ĐOÁN XÁC ĐỊNH: Loại trừ nhồi máu cơ tim"
+          },
+          "blockUid": "db6530dc-6f70-4764-a05e-43f3721a95b0",
+          "blockRev": 2
+        }
+      ],
+      "rev": 2,
+      "changeSeq": 1690,
+      "protocolHash": "e734b90c26cc95482cfe72ff0fdb2598e0bb95c8f6924f0c6a95089af959310e",
+      "deletedAt": null
+    },
+    {
+      "uid": "dfd85319-6d1f-4500-a1f7-e5e82413ff57",
+      "slug": "management-of-anticoagulant-related-hemorrhage-aha-asa-2022",
+      "title": {
+        "en": "Management of anticoagulant-related hemorrhage",
+        "vi": "Xử trí xuất huyết liên quan đến thuốc kháng đông"
+      },
+      "domain": "combined",
+      "source": {
+        "url": "10.1161/STR.0000000000000407",
+        "year": 2022,
+        "title": "2022 AHA ASA Guideline for the Management of PatientsWith Spontaneous Intracerebral Hemorrhage",
+        "figureRef": "e301",
+        "sourceType": "guideline",
+        "organizationOrAuthor": "AHA/ASA"
+      },
+      "status": "published",
+      "summary": {
+        "en": "Step-by-step clinical pathway for the immediate discontinuation and rapid reversal of anticoagulation in patients presenting with intracerebral hemorrhage (ICH).",
+        "vi": "Quy trình lâm sàng từng bước để ngừng ngay lập tức và đảo ngược nhanh chóng tình trạng kháng đông ở bệnh nhân xuất huyết não (ICH)."
+      },
+      "createdAt": "2026-11-25T04:01:58.834938+00:00",
+      "updatedAt": "2026-11-25T09:12:29.87829+00:00",
+      "reviewedAt": "2026-11-25T04:02:11.538Z",
+      "reviewedBy": "admin",
+      "entryNodeId": "n1",
+      "subspecialty": "Stroke",
+      "extractionMeta": {
+        "model": "gemini-3.5-flash-lite",
+        "extractedAt": "2026-11-25T04:01:17.170Z",
+        "confidenceNotes": [
+          "All flowchart text, branches, and class recommendations transcribed verbatim from Figure 2."
+        ]
+      },
+      "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795579264381-Screenshot_2026-11-25_110011.png",
+      "sourceImageMeta": {
+        "fileName": "Screenshot_2026-11-25_110011.png",
+        "mimeType": "image/png"
+      },
+      "sourceImageSha256": "3984bb115a6dbfedc9a3892e6e82f88ac0226fec9c18b5621d63f01ac6d8168b",
+      "allowDuplicateImage": false,
+      "nodes": [
+        {
+          "id": "n1",
+          "body": {
+            "en": "Initial presentation of a patient with intracerebral hemorrhage on active anticoagulation therapy.",
+            "vi": "Biểu hiện ban đầu của bệnh nhân xuất huyết não đang điều trị bằng thuốc kháng đông hoạt tính."
+          },
+          "kind": "entry",
+          "edges": [
+            {
+              "id": "e1",
+              "tone": "default",
+              "label": {
+                "en": "Management",
+                "vi": "Tiếp cận điều trị"
+              },
+              "targetNodeId": "n2"
+            }
+          ],
+          "title": {
+            "en": "Patients with ICH on anticoagulation",
+            "vi": "Bệnh nhân bị xuất huyết não đang dùng thuốc kháng đông"
+          },
+          "blockUid": "ca8ad901-ee0b-4dd7-95af-82c861f1a961",
+          "blockRev": 3
+        },
+        {
+          "id": "n2",
+          "body": {
+            "en": "Rapid reversal should be performed as soon as possible.",
+            "vi": "Cần tiến hành đảo ngược nhanh càng sớm càng tốt."
+          },
+          "kind": "action",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e2",
+              "tone": "default",
+              "label": {
+                "en": "Vitamin K Antagonists",
+                "vi": "Kháng Vitamin K"
+              },
+              "targetNodeId": "n3"
+            },
+            {
+              "id": "e3",
+              "tone": "default",
+              "label": {
+                "en": "Dabigatran",
+                "vi": "Dabigatran"
+              },
+              "targetNodeId": "n4"
+            },
+            {
+              "id": "e4",
+              "tone": "default",
+              "label": {
+                "en": "Factor Xa-Inhibitors",
+                "vi": "Ức chế yếu tố Xa"
+              },
+              "targetNodeId": "n5"
+            },
+            {
+              "id": "e5",
+              "tone": "default",
+              "label": {
+                "en": "Heparins",
+                "vi": "Heparin"
+              },
+              "targetNodeId": "n6"
+            }
+          ],
+          "title": {
+            "en": "Discontinue anticoagulation therapy immediately",
+            "vi": "Ngừng ngay lập tức liệu pháp kháng đông"
+          },
+          "evidenceBadge": "Class 1",
+          "blockUid": "9e74a662-9914-49fe-8ffd-77c785dd036e",
+          "blockRev": 2
+        },
+        {
+          "id": "n3",
+          "body": {
+            "en": "Determine INR level to guide 4-factor PCC dosing.",
+            "vi": "Xác định mức INR để hướng dẫn liều PCC 4 yếu tố."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e6",
+              "tone": "default",
+              "label": {
+                "en": "INR 1.3 - 1.9",
+                "vi": "INR 1.3 - 1.9"
+              },
+              "targetNodeId": "n7"
+            },
+            {
+              "id": "e7",
+              "tone": "default",
+              "label": {
+                "en": "INR >= 2.0",
+                "vi": "INR >= 2.0"
+              },
+              "targetNodeId": "n8"
+            }
+          ],
+          "title": {
+            "en": "Vitamin K Antagonists: Check INR",
+            "vi": "Kháng Vitamin K: Kiểm tra INR"
+          },
+          "blockUid": "d1211b67-4a55-4b72-a8c7-82ce960518f0",
+          "blockRev": 2
+        },
+        {
+          "id": "n4",
+          "body": {
+            "en": "- Evaluate timing of last DOAC dose. Activated charcoal if DOAC < 2 hrs (potential efficacy up to 8 hrs).\n- Check hospital availability of idarucizumab for dabigatran reversal.",
+            "vi": "Đánh giá thời điểm dùng liều DOAC cuối cùng."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e8",
+              "tone": "default",
+              "label": {
+                "en": "Idarucizumab is available",
+                "vi": "Idarucizumab có sẵn"
+              },
+              "targetNodeId": "n16"
+            },
+            {
+              "id": "n4_e1",
+              "tone": "default",
+              "label": {
+                "en": "Idarucizumab is not available",
+                "vi": "Idarucizumab không có sẵn"
+              },
+              "targetNodeId": "n17"
+            }
+          ],
+          "title": {
+            "en": "Dabigatran: History of when last dose taken",
+            "vi": "Dabigatran: Tiền sử thời điểm uống liều cuối"
+          },
+          "blockUid": "770b254d-2043-49ed-9e06-5ee843753236",
+          "blockRev": 3
+        },
+        {
+          "id": "n5",
+          "body": {
+            "en": "- Evaluate timing of last DOAC dose. Activated charcoal if DOAC < 2 hrs (potential efficacy up to 8 hrs).\n- Check hospital availability of andexanet alfa for factor Xa inhibitor reversal.",
+            "vi": "Đánh giá thời điểm dùng liều DOAC cuối cùng."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e9",
+              "tone": "default",
+              "label": {
+                "en": "Andexanet alfa is available",
+                "vi": "Andexanet alfa có sẵn"
+              },
+              "targetNodeId": "n18"
+            },
+            {
+              "id": "n5_e1",
+              "tone": "default",
+              "label": {
+                "en": "Andexanet alfa is not available",
+                "vi": "Andexanet alfa không có sẵn"
+              },
+              "targetNodeId": "n19"
+            }
+          ],
+          "title": {
+            "en": "Factor Xa-Inhibitors: History of when last dose taken",
+            "vi": "Ức chế yếu tố Xa: Tiền sử thời điểm uống liều cuối"
+          },
+          "blockUid": "04a08444-694c-4f8b-80eb-f3a925df66c6",
+          "blockRev": 3
+        },
+        {
+          "id": "n6",
+          "body": {
+            "en": "Select type of heparin: Unfractionated Heparin or Low Molecular Weight Heparin.",
+            "vi": "Chọn loại heparin: Heparin không phân đoạn hoặc Heparin trọng lượng phân tử thấp."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e10",
+              "tone": "default",
+              "label": {
+                "en": "Unfractionated Heparin",
+                "vi": "Heparin không phân đoạn"
+              },
+              "targetNodeId": "n11"
+            },
+            {
+              "id": "e11",
+              "tone": "default",
+              "label": {
+                "en": "Low Molecular Weight Heparin",
+                "vi": "Heparin trọng lượng phân tử thấp"
+              },
+              "targetNodeId": "n12"
+            }
+          ],
+          "title": {
+            "en": "Heparins evaluation",
+            "vi": "Đánh giá Heparin"
+          },
+          "blockUid": "d5356248-ff32-4a40-a6d3-9286c3e29bc6",
+          "blockRev": 2
+        },
+        {
+          "id": "n7",
+          "body": {
+            "en": "- Administer 4-factor prothrombin complex concentrate 10-20 IU/kg for INR 1.3 - 1.9 (Class 2b)\n- Followed by IV Vitamin K (Class 1)",
+            "vi": "Sử dụng phức hợp prothrombin 4 yếu tố 10-20 IU/kg cho INR 1.3 - 1.9."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "4-F PCC 10-20 IU/kg",
+            "vi": "PCC 4 yếu tố 10-20 IU/kg"
+          },
+          "blockUid": "411e4d24-bc00-49e9-b2e8-303099c43514",
+          "blockRev": 3
+        },
+        {
+          "id": "n8",
+          "body": {
+            "en": "- Administer 4-factor prothrombin complex concentrate 25-50 IU/kg for INR >= 2.0 (Class 1)\n- Followed by IV Vitamin K (Class 1)",
+            "vi": "Sử dụng phức hợp prothrombin 4 yếu tố 25-50 IU/kg cho INR >= 2.0."
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "4-F PCC 25-50 IU/kg",
+            "vi": "PCC 4 yếu tố 25-50 IU/kg"
+          },
+          "evidenceBadge": "Class 1",
+          "blockUid": "fb3b26b6-0996-461f-9ccc-12edeaf41b41",
+          "blockRev": 3
+        },
+        {
+          "id": "n11",
+          "body": {
+            "en": "Administer protamine for unfractionated heparin reversal.",
+            "vi": "Sử dụng protamine để đảo ngược heparin không phân đoạn."
+          },
+          "kind": "treatment",
+          "tier": 2,
+          "edges": [],
+          "title": {
+            "en": "Protamine (Unfractionated Heparin reversal)",
+            "vi": "Protamine (Đảo ngược Heparin không phân đoạn)"
+          },
+          "evidenceBadge": "Class 2a",
+          "blockUid": "1934b256-4321-437c-aeef-49e62170f9df",
+          "blockRev": 2
+        },
+        {
+          "id": "n12",
+          "body": {
+            "en": "Administer protamine for low molecular weight heparin reversal.",
+            "vi": "Sử dụng protamine để đảo ngược heparin trọng lượng phân tử thấp."
+          },
+          "kind": "treatment",
+          "tier": 3,
+          "edges": [],
+          "title": {
+            "en": "Protamine (Low Molecular Weight Heparin reversal)",
+            "vi": "Protamine (Đảo ngược Heparin trọng lượng phân tử thấp)"
+          },
+          "evidenceBadge": "Class 2b",
+          "blockUid": "87ce9963-3f02-4acf-b217-f6a108a6a502",
+          "blockRev": 2
+        },
+        {
+          "id": "n16",
+          "body": {
+            "en": "Administer idarucizumab.",
+            "vi": "Sử dụng idarucizumab."
+          },
+          "kind": "treatment",
+          "tier": 2,
+          "edges": [],
+          "title": {
+            "en": "Idarucizumab",
+            "vi": "Idarucizumab"
+          },
+          "evidenceBadge": "Class 2a",
+          "blockUid": "b0c2a4aa-aa10-4ed7-87c6-000a02cc0a4a",
+          "blockRev": 2
+        },
+        {
+          "id": "n17",
+          "body": {
+            "en": "Administer PCCs or aPCC and/or consider renal replacement therapy.",
+            "vi": "Sử dụng PCC hoặc aPCC và/hoặc cân nhắc liệu pháp thay thế thận."
+          },
+          "kind": "treatment",
+          "tier": 3,
+          "edges": [],
+          "title": {
+            "en": "PCCs or aPCC and/or renal replacement therapy",
+            "vi": "PCC hoặc aPCC và/hoặc liệu pháp thay thế thận"
+          },
+          "evidenceBadge": "Class 2b",
+          "blockUid": "a9e029b4-7fb0-44e7-a0e9-2d9c6ba20788",
+          "blockRev": 2
+        },
+        {
+          "id": "n18",
+          "body": {
+            "en": "Administer andexanet alfa.",
+            "vi": "Sử dụng andexanet alfa."
+          },
+          "kind": "treatment",
+          "tier": 2,
+          "edges": [],
+          "title": {
+            "en": "Andexanet alfa",
+            "vi": "Andexanet alfa"
+          },
+          "evidenceBadge": "Class 2a",
+          "blockUid": "0bc40411-8fab-440b-ac37-2a5395a6b03d",
+          "blockRev": 2
+        },
+        {
+          "id": "n19",
+          "body": {
+            "en": "Administer 4-factor PCC or aPCC.",
+            "vi": "Sử dụng PCC 4 yếu tố hoặc aPCC."
+          },
+          "kind": "treatment",
+          "tier": 3,
+          "edges": [],
+          "title": {
+            "en": "4 Factor PCC or aPCC",
+            "vi": "PCC 4 yếu tố hoặc aPCC"
+          },
+          "evidenceBadge": "Class 2b",
+          "blockUid": "a4d0e2e2-5d27-4795-9c4a-2ea692251f2f",
+          "blockRev": 2
+        }
+      ],
+      "rev": 3,
+      "changeSeq": 1667,
+      "protocolHash": "5e396b69aa9060a74aac68565cc777f4ae40a2ddee218697f1c89d3b3fad48bc",
+      "deletedAt": null
+    },
+    {
+      "uid": "cc9f65b3-7603-4be3-ae9e-ddcfd1535a26",
+      "slug": "management-of-periprocedural-anticoagulation-in-patients-with-af-aha-acc-accp-hrs-2023",
+      "title": {
+        "en": "Management of Periprocedural Anticoagulation in Patients With AF",
+        "vi": "Quản lý kháng đông chu phẫu ở bệnh nhân rung nhĩ (AF)"
+      },
+      "domain": "combined",
+      "source": {
+        "url": "10.1161/CIR.0000000000001193",
+        "year": 2023,
+        "title": "2023 ACC AHA ACCP HRS Guideline for the Diagnosis and Management of Atrial Fibrillation",
+        "figureRef": "e51",
+        "sourceType": "guideline",
+        "organizationOrAuthor": "AHA/ACC/ACCP/HRS"
+      },
+      "status": "published",
+      "summary": {
+        "en": "Algorithmic recommendations for managing oral anticoagulation (Warfarin and DOACs) in patients with atrial fibrillation undergoing invasive procedures or surgeries, including pacemaker/ICD implants.",
+        "vi": "Khuyến cáo theo thuật toán để quản lý thuốc kháng đông đường uống (Warfarin và DOAC) ở bệnh nhân rung nhĩ trải qua các thủ thuật xâm lấn hoặc phẫu thuật, bao gồm cả cấy máy tạo nhịp/ICD."
+      },
+      "createdAt": "2026-11-25T03:41:58.501818+00:00",
+      "updatedAt": "2026-11-25T03:42:18.289338+00:00",
+      "reviewedAt": "2026-11-25T03:42:10.187Z",
+      "reviewedBy": "admin",
+      "entryNodeId": "n_entry",
+      "subspecialty": "Stroke",
+      "extractionMeta": {
+        "model": "gemini-3.6-flash",
+        "extractedAt": "2026-11-25T03:40:56.885Z",
+        "confidenceNotes": [
+          "Transcribed directly from Figure 15: Flowchart for Management of Periprocedural Anticoagulation in Patients With AF (2023 ACC/AHA/ACCP/HRS Guidelines).",
+          "Color mapping matches Table 2 guidelines: Green = Class 1, Yellow = Class 2a, Red = Class 3 Harm."
+        ]
+      },
+      "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795578028519-Screenshot_2026-11-25_103745.png",
+      "sourceImageMeta": {
+        "fileName": "Screenshot_2026-11-25_103745.png",
+        "mimeType": "image/png"
+      },
+      "sourceImageSha256": "2e4c4b4fb098315385d70241dad4dd3246fced692d0f8a7a8530d34c811d88fd",
+      "allowDuplicateImage": false,
+      "nodes": [
+        {
+          "id": "n_entry",
+          "body": {
+            "en": "Initial assessment of patients with atrial fibrillation scheduled for an invasive procedure or surgical intervention.",
+            "vi": "Đánh giá ban đầu cho bệnh nhân rung nhĩ có chỉ định thủ thuật xâm lấn hoặc can thiệp phẫu thuật."
+          },
+          "kind": "entry",
+          "edges": [
+            {
+              "id": "e_to_unsafe",
+              "tone": "default",
+              "label": {
+                "en": "Procedure cannot be performed safely on uninterrupted anticoagulation",
+                "vi": "Thủ thuật không thể thực hiện an toàn nếu tiếp tục kháng đông không gián đoạn"
+              },
+              "targetNodeId": "n_unsafe_uninterrupted"
+            },
+            {
+              "id": "e_to_pm_icd",
+              "tone": "default",
+              "label": {
+                "en": "Procedure is a pacemaker or ICD implant",
+                "vi": "Thủ thuật là cấy máy tạo nhịp hoặc ICD"
+              },
+              "targetNodeId": "n_pm_icd"
+            }
+          ],
+          "title": {
+            "en": "Patients with AF undergoing invasive procedure or surgery",
+            "vi": "Bệnh nhân rung nhĩ (AF) cần phẫu thuật hoặc thủ thuật xâm lấn"
+          },
+          "blockUid": "b806456f-50e2-45f4-99a7-8ada193b295e",
+          "blockRev": 2
+        },
+        {
+          "id": "n_unsafe_uninterrupted",
+          "body": {
+            "en": "Invasive procedures or surgeries requiring interruption of anticoagulation to minimize bleeding risk.",
+            "vi": "Các thủ thuật xâm lấn hoặc phẫu thuật yêu cầu tạm ngưng kháng đông để giảm thiểu nguy cơ xuất huyết."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e_unsafe_to_cessation",
+              "tone": "default",
+              "label": {
+                "en": "Proceed to interruption strategy",
+                "vi": "Tiến hành chiến lược tạm ngưng"
+              },
+              "targetNodeId": "n_temp_cessation"
+            }
+          ],
+          "title": {
+            "en": "Procedure cannot be performed safely on uninterrupted anticoagulation",
+            "vi": "Thủ thuật không thể thực hiện an toàn khi duy trì kháng đông liên tục"
+          },
+          "blockUid": "2e93819e-5df3-401e-97cc-f2713cae8d05",
+          "blockRev": 2
+        },
+        {
+          "id": "n_temp_cessation",
+          "body": {
+            "en": "Temporary cessation of oral anticoagulation without bridging is recommended (excluding those with recent stroke or TIA, or a mechanical valve) (1)",
+            "vi": "Khuyến cáo tạm ngưng kháng đông đường uống mà không dùng liệu pháp bắc cầu (ngoại trừ những bệnh nhân có đột quỵ/TIA gần đây, hoặc có van tim cơ học) (1)"
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e_cessation_to_bridging_harm",
+              "tone": "danger",
+              "label": {
+                "en": "Holding warfarin",
+                "vi": "Tạm ngưng warfarin"
+              },
+              "targetNodeId": "n_bridging_harm"
+            },
+            {
+              "id": "e_cessation_to_doac_timing",
+              "tone": "default",
+              "label": {
+                "en": "DOAC management",
+                "vi": "Quản lý DOAC"
+              },
+              "targetNodeId": "n_doac_timing"
+            }
+          ],
+          "title": {
+            "en": "Temporary cessation of oral anticoagulation without bridging",
+            "vi": "Tạm ngưng kháng đông đường uống không dùng bắc cầu"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "8080cec1-0191-48ce-95e1-50a43ca74c0d",
+          "blockRev": 2
+        },
+        {
+          "id": "n_bridging_harm",
+          "body": {
+            "en": "Bridging with low-molecular-weight heparin should not be administered (except in patients with mechanical valve or recent stroke or TIA) (3: Harm)",
+            "vi": "Không nên dùng liệu pháp bắc cầu bằng heparin trọng lượng phân tử thấp (ngoại trừ ở bệnh nhân có van cơ học hoặc đột quỵ/TIA gần đây) (3: Gây hại)"
+          },
+          "kind": "treatment",
+          "tier": 5,
+          "edges": [],
+          "title": {
+            "en": "Avoid LMWH Bridging",
+            "vi": "Tránh bắc cầu bằng LMWH"
+          },
+          "evidenceBadge": "COR 3: Harm",
+          "blockUid": "54b0040b-ce36-4ee6-9f91-b6d397252ec4",
+          "blockRev": 2
+        },
+        {
+          "id": "n_doac_timing",
+          "body": {
+            "en": "Timing of interruption of DOAC should be guided by the specific agent, renal function, and the bleeding risk (1)",
+            "vi": "Thời điểm tạm ngưng DOAC nên dựa trên loại thuốc cụ thể, chức năng thận và nguy cơ xuất huyết (1)"
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e_timing_to_resumption",
+              "tone": "default",
+              "label": {
+                "en": "Anticoagulation resumption",
+                "vi": "Tái sử dụng kháng đông"
+              },
+              "targetNodeId": "n_doac_resumption"
+            }
+          ],
+          "title": {
+            "en": "Timing of DOAC Interruption",
+            "vi": "Thời điểm tạm ngưng DOAC"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "ee7e54a8-dbee-40bd-a64b-e0d193d5662b",
+          "blockRev": 2
+        },
+        {
+          "id": "n_doac_resumption",
+          "body": {
+            "en": "Resumption of anticoagulation the day after low bleeding risk surgery and between the evening of the second day and the evening of the third day after high bleeding risk surgery (2a)",
+            "vi": "Tái sử dụng lại thuốc kháng đông vào ngày hôm sau đối với phẫu thuật nguy cơ xuất huyết thấp, và giữa tối ngày thứ hai đến tối ngày thứ ba đối với phẫu thuật nguy cơ xuất huyết cao (2a)"
+          },
+          "kind": "treatment",
+          "tier": 2,
+          "edges": [],
+          "title": {
+            "en": "Resumption of Anticoagulation",
+            "vi": "Tái sử dụng lại kháng đông"
+          },
+          "evidenceBadge": "COR 2a",
+          "blockUid": "ff969ce3-9f68-4e9e-8858-32a584cc9f4a",
+          "blockRev": 2
+        },
+        {
+          "id": "n_pm_icd",
+          "body": {
+            "en": "Evaluation for patients undergoing implantation of a permanent pacemaker or implantable cardioverter-defibrillator (ICD).",
+            "vi": "Đánh giá cho bệnh nhân chuẩn bị cấy máy tạo nhịp vĩnh viễn hoặc máy khử rung tim (ICD)."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e_pm_to_warfarin_check",
+              "tone": "default",
+              "label": {
+                "en": "On Warfarin assessment",
+                "vi": "Đánh giá ở bệnh nhân dùng Warfarin"
+              },
+              "targetNodeId": "n_warfarin_risk_check"
+            },
+            {
+              "id": "e_pm_to_doac_check",
+              "tone": "default",
+              "label": {
+                "en": "On DOAC assessment",
+                "vi": "Đánh giá ở bệnh nhân dùng DOAC"
+              },
+              "targetNodeId": "n_doac_pm_icd"
+            }
+          ],
+          "title": {
+            "en": "Procedure is a pacemaker or ICD implant",
+            "vi": "Thủ thuật cấy máy tạo nhịp hoặc ICD"
+          },
+          "blockUid": "1dfdae35-32da-4bae-a93d-d08c5d2958cc",
+          "blockRev": 2
+        },
+        {
+          "id": "n_warfarin_risk_check",
+          "body": {
+            "en": "Evaluate whether the patient on warfarin has a thromboembolism (TE) risk ≥5%.",
+            "vi": "Đánh giá xem bệnh nhân đang dùng warfarin có nguy cơ thuyên tắc mạch (TE) ≥5% hay không."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e_warfarin_risk_yes",
+              "tone": "positive",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n_continued_warfarin"
+            },
+            {
+              "id": "e_warfarin_risk_no",
+              "tone": "default",
+              "label": {
+                "en": "NO",
+                "vi": "KHÔNG"
+              },
+              "targetNodeId": "n_temp_cessation"
+            }
+          ],
+          "title": {
+            "en": "On warfarin, risk of TEs ≥5%",
+            "vi": "Đang dùng warfarin, nguy cơ thuyên tắc mạch (TEs) ≥5%"
+          },
+          "blockUid": "323d2d53-1cc8-4d8f-9147-2180606f144c",
+          "blockRev": 2
+        },
+        {
+          "id": "n_continued_warfarin",
+          "body": {
+            "en": "Continued anticoagulation in preference to interruption of warfarin and bridging (1)",
+            "vi": "Ưu tiên tiếp tục dùng thuốc kháng đông hơn là tạm ngưng warfarin và dùng liệu pháp bắc cầu (1)"
+          },
+          "kind": "treatment",
+          "tier": 1,
+          "edges": [],
+          "title": {
+            "en": "Continued Anticoagulation (Warfarin)",
+            "vi": "Tiếp tục dùng kháng đông (Warfarin)"
+          },
+          "evidenceBadge": "COR 1",
+          "blockUid": "726f64ea-ecda-4dd7-a803-04cc59192d56",
+          "blockRev": 2
+        },
+        {
+          "id": "n_doac_pm_icd",
+          "body": {
+            "en": "Patients taking DOAC with CHA2DS2-VASc score ≥2 or equivalent risk of stroke undergoing pacemaker or ICD implant.",
+            "vi": "Bệnh nhân đang dùng DOAC có điểm CHA2DS2-VASc ≥2 hoặc nguy cơ đột quỵ tương đương thực hiện cấy máy tạo nhịp hoặc ICD."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e_doac_pm_icd_to_rec",
+              "tone": "default",
+              "label": {
+                "en": "Management strategy",
+                "vi": "Chiến lược quản lý"
+              },
+              "targetNodeId": "n_doac_uninterrupted_or_interrupted"
+            }
+          ],
+          "title": {
+            "en": "CHA2DS2-VASc score ≥2 or equivalent risk of stroke, on DOAC",
+            "vi": "Điểm CHA2DS2-VASc ≥2 hoặc nguy cơ đột quỵ tương đương, đang dùng DOAC"
+          },
+          "blockUid": "97df2afe-cd77-4b58-ba80-bb2402bb8686",
+          "blockRev": 2
+        },
+        {
+          "id": "n_doac_uninterrupted_or_interrupted",
+          "body": {
+            "en": "Either uninterrupted or interrupted DOAC (2a)",
+            "vi": "Có thể chọn duy trì không gián đoạn hoặc tạm ngưng DOAC (2a)"
+          },
+          "kind": "treatment",
+          "tier": 2,
+          "edges": [],
+          "title": {
+            "en": "Uninterrupted or Interrupted DOAC",
+            "vi": "Duy trì hoặc tạm ngưng DOAC"
+          },
+          "evidenceBadge": "COR 2a",
+          "blockUid": "7f8e10d0-3df6-4659-8163-df7400999fca",
+          "blockRev": 2
+        }
+      ],
+      "rev": 2,
+      "changeSeq": 1552,
+      "protocolHash": "9810cbf09252ebcb79c8ffedf38acc67dde62f028d98f8c17df6718ea2ecd60a",
+      "deletedAt": null
+    },
+    {
+      "uid": "7e7a345b-b789-4c2b-b3f6-c66e0e4e57dc",
+      "slug": "surgical-management-of-ivh-aha-asa-2022",
+      "title": {
+        "en": "Surgical management of IVH",
+        "vi": "Quản lý phẫu thuật xuất huyết não thất (IVH)"
+      },
+      "domain": "combined",
+      "source": {
+        "url": "10.1161/STR.0000000000000407",
+        "year": 2022,
+        "title": "2022 AHA ASA Guideline for the Management of PatientsWith Spontaneous Intracerebral Hemorrhage",
+        "figureRef": "e321",
+        "sourceType": "guideline",
+        "organizationOrAuthor": "AHA/ASA"
+      },
+      "status": "published",
+      "summary": {
+        "en": "Algorithmic decision pathway for the surgical management of spontaneous intraventricular hemorrhage (IVH) based on AHA/ASA guidelines.",
+        "vi": "Sơ đồ thuật toán quyết định xử trí phẫu thuật xuất huyết não thất tự phát (IVH) dựa trên hướng dẫn của AHA/ASA."
+      },
+      "createdAt": "2026-11-25T04:04:05.925148+00:00",
+      "updatedAt": "2026-11-25T08:24:28.423984+00:00",
+      "reviewedAt": "2026-11-25T04:04:18.402Z",
+      "reviewedBy": "admin",
+      "entryNodeId": "n1",
+      "subspecialty": "Stroke",
+      "extractionMeta": {
+        "model": "gemini-3.5-flash-lite",
+        "extractedAt": "2026-11-25T04:03:49.747Z",
+        "confidenceNotes": [
+          "All text transcribed verbatim from the flowchart diagram and legend notes."
+        ]
+      },
+      "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795579420265-Screenshot_2026-11-25_110246.png",
+      "sourceImageMeta": {
+        "fileName": "Screenshot_2026-11-25_110246.png",
+        "mimeType": "image/png"
+      },
+      "sourceImageSha256": "3b8334d5a690075be3116070408cc20ae1ce33d806301bf4e6356813358e86ce",
+      "allowDuplicateImage": false,
+      "nodes": [
+        {
+          "id": "n1",
+          "body": {
+            "en": "Initial assessment for surgical management of intraventricular hemorrhage.",
+            "vi": "Đánh giá ban đầu để xử trí phẫu thuật xuất huyết não thất."
+          },
+          "kind": "entry",
+          "edges": [
+            {
+              "id": "e1",
+              "tone": "default",
+              "label": {
+                "en": "Spontaneous IVH + Obstructive Hydrocephalus",
+                "vi": "IVH tự phát + Não úng thủy tắc nghẽn"
+              },
+              "targetNodeId": "n2"
+            },
+            {
+              "id": "e2",
+              "tone": "default",
+              "label": {
+                "en": "Spontaneous ICH <30mL, GCS >3, IVH requiring EVD",
+                "vi": "ICH tự phát <30mL, GCS >3, IVH cần đặt dẫn lưu não thất ngoài (EVD)"
+              },
+              "targetNodeId": "n3"
+            },
+            {
+              "id": "e3",
+              "tone": "default",
+              "label": {
+                "en": "Spontaneous ICH <30mL, IVH requiring EVD",
+                "vi": "ICH tự phát <30mL, IVH cần đặt dẫn lưu não thất ngoài (EVD)"
+              },
+              "targetNodeId": "n4"
+            }
+          ],
+          "title": {
+            "en": "IVH Surgical Management",
+            "vi": "Quản lý phẫu thuật IVH"
+          },
+          "blockUid": "267b8fb8-59cf-4570-9452-4e9f50b5c6fe",
+          "blockRev": 2
+        },
+        {
+          "id": "n2",
+          "body": {
+            "en": "Spontaneous intraventricular hemorrhage presenting with obstructive hydrocephalus.",
+            "vi": "Xuất huyết não thất tự phát kèm theo não úng thủy tắc nghẽn."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e4",
+              "tone": "default",
+              "label": {
+                "en": "EVD",
+                "vi": "Dẫn lưu não thất ngoài (EVD)"
+              },
+              "targetNodeId": "n5"
+            }
+          ],
+          "title": {
+            "en": "Spontaneous IVH + Obstructive Hydrocephalus",
+            "vi": "IVH tự phát + Não úng thủy tắc nghẽn"
+          },
+          "blockUid": "288b7164-453d-42ef-8abc-bdda90ba9c95",
+          "blockRev": 2
+        },
+        {
+          "id": "n3",
+          "body": {
+            "en": "Spontaneous intracerebral hemorrhage <30mL with GCS >3 and IVH requiring EVD.",
+            "vi": "Xuất huyết trong não tự phát <30mL với GCS >3 và IVH cần đặt EVD."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e5",
+              "tone": "default",
+              "label": {
+                "en": "EVD + Thrombolytic",
+                "vi": "EVD + Thuốc tiêu sợi huyết"
+              },
+              "targetNodeId": "n6"
+            }
+          ],
+          "title": {
+            "en": "Spontaneous ICH <30mL, GCS >3, IVH requiring EVD",
+            "vi": "ICH tự phát <30mL, GCS >3, IVH cần đặt EVD"
+          },
+          "blockUid": "6f7b6300-0d5d-458c-9002-4f48933a65ef",
+          "blockRev": 2
+        },
+        {
+          "id": "n4",
+          "body": {
+            "en": "Spontaneous intracerebral hemorrhage <30mL with IVH requiring EVD.",
+            "vi": "Xuất huyết trong não tự phát <30mL với IVH cần đặt EVD."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e6",
+              "tone": "default",
+              "label": {
+                "en": "Neuroendoscopy + EVD +/- Thrombolytic",
+                "vi": "Nội soi thần kinh + EVD +/- Thuốc tiêu sợi huyết"
+              },
+              "targetNodeId": "n7"
+            }
+          ],
+          "title": {
+            "en": "Spontaneous ICH <30mL, IVH requiring EVD",
+            "vi": "ICH tự phát <30mL, IVH cần đặt EVD"
+          },
+          "blockUid": "09cad5ea-a73c-4873-b69f-88e14f551a54",
+          "blockRev": 2
+        },
+        {
+          "id": "n5",
+          "body": {
+            "en": "External Ventricular Drain placement.\n- Mortality Reduction (Class 1)\n- Functional Outcome Benefit (Class2b*)",
+            "vi": "Đặt dẫn lưu não thất ngoài."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "EVD",
+            "vi": "Dẫn lưu não thất ngoài (EVD)"
+          },
+          "blockUid": "43160ecc-cf0b-463c-ba77-820ac7189dfa",
+          "blockRev": 3
+        },
+        {
+          "id": "n6",
+          "body": {
+            "en": "External ventricular drain combined with thrombolytic therapy.\n- Mortality Reduction (Class 2a)\n- Functional Outcome Benefit (Class 2b†)",
+            "vi": "Dẫn lưu não thất ngoài kết hợp liệu pháp tiêu sợi huyết."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "EVD + Thrombolytic",
+            "vi": "EVD + Thuốc tiêu sợi huyết"
+          },
+          "blockUid": "2746cd0c-8235-4474-b894-623f0f996d25",
+          "blockRev": 3
+        },
+        {
+          "id": "n7",
+          "body": {
+            "en": "Neuroendoscopic intervention with EVD and optional thrombolytic therapy.\n- Functional Outcome Benefit (Class 2b†)\n- Reduced Permanent Shunting (Class 2b†)",
+            "vi": "Can thiệp nội soi thần kinh kết hợp EVD và có thể dùng thuốc tiêu sợi huyết."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "Neuroendoscopy + EVD +/- Thrombolytic",
+            "vi": "Nội soi thần kinh + EVD +/- Thuốc tiêu sợi huyết"
+          },
+          "blockUid": "b2390144-4c97-425c-8b59-abc521c65839",
+          "blockRev": 3
+        }
+      ],
+      "rev": 3,
+      "changeSeq": 1656,
+      "protocolHash": "d16b887b2028e215ce4cc066c0d7672a8b0ba5754264fd77dab52339d96812a4",
+      "deletedAt": null
+    },
+    {
+      "uid": "7d87ce02-d69c-4c5b-b049-be45d63243f9",
+      "slug": "workflow-for-patients-with-symptoms-concerning-for-asah-aha-asa-2023",
+      "title": {
+        "en": "Workflow for patients with symptoms concerning for aSAH",
+        "vi": "Quy trình chẩn đoán cho bệnh nhân có triệu chứng nghi ngờ xuất huyết dưới nhện do vỡ phình mạch (aSAH)"
+      },
+      "domain": "diagnosis",
+      "source": {
+        "url": "10.1161/STR.0000000000000436",
+        "year": 2023,
+        "title": "2023 AHA ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage",
+        "figureRef": "e323",
+        "sourceType": "guideline",
+        "organizationOrAuthor": "AHA/ASA"
+      },
+      "status": "published",
+      "summary": {
+        "en": "Algorithmic approach to evaluating acute onset severe headache for aneurysmal subarachnoid hemorrhage (aSAH) stratified by onset time (<6 vs. ≥6 hours) and neurological deficits, utilizing NCCT, lumbar puncture, and CTA/DSA.",
+        "vi": "Tiếp cận theo thuật toán đánh giá đau đầu cấp tính mức độ nặng nghi ngờ xuất huyết dưới nhện do vỡ phình mạch (aSAH), phân tầng theo thời gian khởi phát (<6 so với ≥6 giờ) và thâm hụt thần kinh, sử dụng CT đầu không cản quang, chọc dò tủy sống và CTA/DSA."
+      },
+      "createdAt": "2026-11-25T03:22:47.672067+00:00",
+      "updatedAt": "2026-11-25T09:26:09.495486+00:00",
+      "reviewedAt": "2026-11-25T03:23:01.015Z",
+      "reviewedBy": "admin",
+      "entryNodeId": "n1",
+      "subspecialty": "Stroke",
+      "extractionMeta": {
+        "model": "gemini-3.6-flash",
+        "extractedAt": "2026-11-25T03:19:47.582Z",
+        "confidenceNotes": [
+          "Diagram layout fully legible and unambiguous.",
+          "Class of Recommendation tiers accurately mapped: Class 1 -> Tier 1, Class 2a -> Tier 2, Class 2b -> Tier 3."
+        ]
+      },
+      "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795576748357-Screenshot_2026-11-25_101338.png",
+      "sourceImageMeta": {
+        "fileName": "Screenshot_2026-11-25_101338.png",
+        "mimeType": "image/png"
+      },
+      "sourceImageSha256": "024f462f066f9b738499704b98d3499bd476391f6378897cafc9dc435cd04ac9",
+      "allowDuplicateImage": false,
+      "nodes": [
+        {
+          "id": "n1",
+          "body": {
+            "en": "Presentation with sudden, severe headache ('thunderclap headache') concerning for subarachnoid hemorrhage.",
+            "vi": "Khởi phát đau đầu đột ngột, dữ dội ('đau đầu sét đánh') nghi ngờ xuất huyết dưới nhện."
+          },
+          "kind": "entry",
+          "edges": [
+            {
+              "id": "e1_2",
+              "tone": "default",
+              "label": {
+                "en": "Apply Ottawa SAH Rule at physician discretion (Class 2b) and access timing",
+                "vi": "Áp dụng quy tắc Ottawa SAH theo quyết định của bác sĩ (Class 2b) và đánh giá thời gian khởi phát"
+              },
+              "targetNodeId": "n_triage"
+            }
+          ],
+          "title": {
+            "en": "Patient presents with acute onset severe headache",
+            "vi": "Bệnh nhân nhập viện vì đau đầu cấp tính mức độ nặng"
+          },
+          "blockUid": "80b5d705-b728-4ce4-bede-0603ea3f87b3",
+          "blockRev": 3
+        },
+        {
+          "id": "n_triage",
+          "body": {
+            "en": "Evaluate symptom onset timing and presence of any new neurological deficits.",
+            "vi": "Đánh giá thời điểm khởi phát triệu chứng và sự hiện diện của bất kỳ thâm hụt thần kinh mới nào."
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e_triage_early",
+              "tone": "default",
+              "label": {
+                "en": "<6 hours AND no new neurological deficit",
+                "vi": "<6 giờ VÀ không có thâm hụt thần kinh mới"
+              },
+              "targetNodeId": "n_ct_early"
+            },
+            {
+              "id": "e_triage_late",
+              "tone": "warning",
+              "label": {
+                "en": "≥6 hours OR new neurological deficit",
+                "vi": "≥6 giờ HOẶC có thâm hụt thần kinh mới"
+              },
+              "targetNodeId": "n_ct_late"
+            }
+          ],
+          "title": {
+            "en": "Time & Neurological Deficit Stratification",
+            "vi": "Phân tầng Thời gian khởi phát & Thâm hụt thần kinh"
+          },
+          "blockUid": "5befb5b5-b68a-4361-9a5c-1c3b846542f5",
+          "blockRev": 2
+        },
+        {
+          "id": "n_ct_early",
+          "body": {
+            "en": "Perform noncontrast cranial CT scan within 6 hours of headache onset in neurologically intact patients.",
+            "vi": "Chụp CT đầu không cản quang trong vòng 6 giờ từ khi khởi phát đau đầu ở bệnh nhân không có thâm hụt thần kinh."
+          },
+          "kind": "action",
+          "tier": 2,
+          "edges": [
+            {
+              "id": "e_ct_early_dx",
+              "tone": "default",
+              "label": {
+                "en": "Evaluate CT results",
+                "vi": "Đánh giá kết quả CT"
+              },
+              "targetNodeId": "n_sah_dx_early"
+            }
+          ],
+          "title": {
+            "en": "Noncontrast head CT",
+            "vi": "CT đầu không cản quang"
+          },
+          "evidenceBadge": "Class 2a",
+          "blockUid": "80bada49-d956-4633-a006-b29a816e4c50",
+          "blockRev": 2
+        },
+        {
+          "id": "n_sah_dx_early",
+          "body": {
+            "en": "Is subarachnoid hemorrhage confirmed on the noncontrast head CT?",
+            "vi": "Có phát hiện xuất huyết dưới nhện trên CT đầu không cản quang hay không?"
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e_early_sah_yes",
+              "tone": "positive",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n_cta_dsa"
+            },
+            {
+              "id": "e_early_sah_no",
+              "tone": "default",
+              "label": {
+                "en": "NO",
+                "vi": "KHÔNG"
+              },
+              "targetNodeId": "n_workup_1"
+            }
+          ],
+          "title": {
+            "en": "SAH Dx?",
+            "vi": "Chẩn đoán SAH?"
+          },
+          "blockUid": "2c1b9561-73c7-4aaa-86d4-e0057249dde5",
+          "blockRev": 2
+        },
+        {
+          "id": "n_ct_late",
+          "body": {
+            "en": "Perform noncontrast cranial CT scan for presentation ≥6 hours from onset or presence of new neurological deficit.",
+            "vi": "Chụp CT đầu không cản quang khi nhập viện ≥6 giờ từ khi khởi phát hoặc có thâm hụt thần kinh mới."
+          },
+          "kind": "action",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e_ct_late_dx",
+              "tone": "default",
+              "label": {
+                "en": "Evaluate CT results",
+                "vi": "Đánh giá kết quả CT"
+              },
+              "targetNodeId": "n_sah_dx_late"
+            }
+          ],
+          "title": {
+            "en": "Noncontrast head CT",
+            "vi": "CT đầu không cản quang"
+          },
+          "evidenceBadge": "Class 1",
+          "blockUid": "faf2d78d-12a5-4b5c-a8b2-13fcb1172cc0",
+          "blockRev": 2
+        },
+        {
+          "id": "n_sah_dx_late",
+          "body": {
+            "en": "Is subarachnoid hemorrhage confirmed on the noncontrast head CT?",
+            "vi": "Có phát hiện xuất huyết dưới nhện trên CT đầu không cản quang hay không?"
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e_late_sah_yes",
+              "tone": "positive",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n_cta_dsa"
+            },
+            {
+              "id": "e_late_sah_no",
+              "tone": "warning",
+              "label": {
+                "en": "NO",
+                "vi": "KHÔNG"
+              },
+              "targetNodeId": "n_lp"
+            }
+          ],
+          "title": {
+            "en": "SAH Dx?",
+            "vi": "Chẩn đoán SAH?"
+          },
+          "blockUid": "3fb0ccc5-5d22-4ba9-ae08-2be61bf6f385",
+          "blockRev": 2
+        },
+        {
+          "id": "n_lp",
+          "body": {
+            "en": "Perform lumbar puncture to evaluate CSF for bilirubin/xanthochromia and RBCs following negative head CT.",
+            "vi": "Thực hiện chọc dò tủy sống để tìm bilirubin/vàng dịch não tủy (xanthochromia) và hồng cầu sau khi CT đầu âm tính."
+          },
+          "kind": "action",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e_lp_dx",
+              "tone": "default",
+              "label": {
+                "en": "Evaluate CSF results",
+                "vi": "Đánh giá kết quả dịch não tủy"
+              },
+              "targetNodeId": "n_xantho_dx"
+            }
+          ],
+          "title": {
+            "en": "Lumbar Puncture",
+            "vi": "Chọc dò tủy sống"
+          },
+          "evidenceBadge": "Class 1",
+          "blockUid": "6e446020-71a0-4061-8401-8bfaf14b4f8f",
+          "blockRev": 2
+        },
+        {
+          "id": "n_xantho_dx",
+          "body": {
+            "en": "Is xanthochromia (or persistent high RBC count) present in CSF analysis?",
+            "vi": "Có tình trạng vàng dịch não tủy (hoặc số lượng hồng cầu cao kéo dài) trong phân tích dịch não tủy hay không?"
+          },
+          "kind": "decision",
+          "edges": [
+            {
+              "id": "e_xantho_yes",
+              "tone": "positive",
+              "label": {
+                "en": "YES",
+                "vi": "CÓ"
+              },
+              "targetNodeId": "n_cta_dsa"
+            },
+            {
+              "id": "e_xantho_no",
+              "tone": "default",
+              "label": {
+                "en": "NO",
+                "vi": "KHÔNG"
+              },
+              "targetNodeId": "n_workup_2"
+            }
+          ],
+          "title": {
+            "en": "Xanthochromia Dx?",
+            "vi": "Chẩn đoán Xanthochromia (Vàng dịch não tủy)?"
+          },
+          "blockUid": "9e9be852-51a1-4c07-944f-171fc2f9a8a8",
+          "blockRev": 2
+        },
+        {
+          "id": "n_cta_dsa",
+          "body": {
+            "en": "Perform Computed Tomography Angiography (CTA) or Digital Subtraction Angiography (DSA) to identify causative aneurysm or vascular lesion.",
+            "vi": "Chụp cắt lớp vi tính mạch máu (CTA) hoặc Chụp mạch máu xóa nền (DSA) để phát hiện phình mạch hoặc tổn thương mạch máu nguyên nhân."
+          },
+          "kind": "action",
+          "tier": 1,
+          "edges": [
+            {
+              "id": "e_cta_tx",
+              "tone": "positive",
+              "label": {
+                "en": "Aneurysm confirmed / Workup complete",
+                "vi": "Xác nhận phình mạch / Hoàn tất thăm dò"
+              },
+              "targetNodeId": "n_treatment"
+            }
+          ],
+          "title": {
+            "en": "CTA/DSA",
+            "vi": "Chụp CTA/DSA"
+          },
+          "evidenceBadge": "Class 1",
+          "blockUid": "1705ecd1-c03b-49c6-a808-55ea201ba4aa",
+          "blockRev": 2
+        },
+        {
+          "id": "n_treatment",
+          "body": {
+            "en": "Establish multidisciplinary plan for aneurysm repair (coiling vs. clipping) and medical management of aSAH.",
+            "vi": "Lập kế hoạch đa chuyên khoa để can thiệp phình mạch (can thiệp nội mạch cuộn coil hoặc phẫu thuật kẹp clip) và điều trị nội khoa aSAH."
+          },
+          "kind": "treatment",
+          "edges": [],
+          "title": {
+            "en": "Determine optimal treatment strategy",
+            "vi": "Xác định chiến lược điều trị tối ưu"
+          },
+          "blockUid": "c1305a90-9f01-4cb2-9ce2-91f13d8fad31",
+          "blockRev": 2
+        },
+        {
+          "id": "n_workup_1",
+          "body": {
+            "en": "aSAH effectively excluded for early presentation (<6h) with high-sensitivity NCCT. Consider alternative etiology for headache.",
+            "vi": "Đã loại trừ aSAH trên CT không cản quang độ nhạy cao ở thời điểm sớm (<6h). Cần xem xét các nguyên nhân gây đau đầu khác."
+          },
+          "kind": "diagnosis",
+          "edges": [],
+          "title": {
+            "en": "Work-up at physician discretion",
+            "vi": "Thực hiện chẩn đoán/thăm dò theo quyết định của bác sĩ"
+          },
+          "blockUid": "b2ab3e1c-52e6-4922-816e-2a78d846970d",
+          "blockRev": 2
+        },
+        {
+          "id": "n_workup_2",
+          "body": {
+            "en": "aSAH excluded by negative head CT and negative CSF xanthochromia. Investigate alternative causes of acute headache.",
+            "vi": "Đã loại trừ aSAH nhờ CT đầu âm tính và xét nghiệm vàng dịch não tủy âm tính. Đánh giá các nguyên nhân đau đầu cấp tính khác."
+          },
+          "kind": "diagnosis",
+          "edges": [],
+          "title": {
+            "en": "Work-up at physician discretion",
+            "vi": "Thực hiện chẩn đoán/thăm dò theo quyết định của bác sĩ"
+          },
+          "blockUid": "d03f5abf-c844-457a-b288-3cf6513c1723",
+          "blockRev": 2
+        }
+      ],
+      "rev": 3,
+      "changeSeq": 1670,
+      "protocolHash": "92b88f94a7e6e7ea9d10a63d946d4504232bcaccc252265e71261374ca3fad98",
+      "deletedAt": null
+    }
+  ]
+}

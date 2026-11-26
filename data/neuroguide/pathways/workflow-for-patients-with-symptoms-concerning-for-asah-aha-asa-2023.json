@@ -1,0 +1,363 @@
+{
+  "uid": "7d87ce02-d69c-4c5b-b049-be45d63243f9",
+  "slug": "workflow-for-patients-with-symptoms-concerning-for-asah-aha-asa-2023",
+  "title": {
+    "en": "Workflow for patients with symptoms concerning for aSAH",
+    "vi": "Quy trình chẩn đoán cho bệnh nhân có triệu chứng nghi ngờ xuất huyết dưới nhện do vỡ phình mạch (aSAH)"
+  },
+  "domain": "diagnosis",
+  "source": {
+    "url": "10.1161/STR.0000000000000436",
+    "year": 2023,
+    "title": "2023 AHA ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage",
+    "figureRef": "e323",
+    "sourceType": "guideline",
+    "organizationOrAuthor": "AHA/ASA"
+  },
+  "status": "published",
+  "summary": {
+    "en": "Algorithmic approach to evaluating acute onset severe headache for aneurysmal subarachnoid hemorrhage (aSAH) stratified by onset time (<6 vs. ≥6 hours) and neurological deficits, utilizing NCCT, lumbar puncture, and CTA/DSA.",
+    "vi": "Tiếp cận theo thuật toán đánh giá đau đầu cấp tính mức độ nặng nghi ngờ xuất huyết dưới nhện do vỡ phình mạch (aSAH), phân tầng theo thời gian khởi phát (<6 so với ≥6 giờ) và thâm hụt thần kinh, sử dụng CT đầu không cản quang, chọc dò tủy sống và CTA/DSA."
+  },
+  "createdAt": "2026-11-25T03:22:47.672067+00:00",
+  "updatedAt": "2026-11-25T09:26:09.495486+00:00",
+  "reviewedAt": "2026-11-25T03:23:01.015Z",
+  "reviewedBy": "admin",
+  "entryNodeId": "n1",
+  "subspecialty": "Stroke",
+  "extractionMeta": {
+    "model": "gemini-3.6-flash",
+    "extractedAt": "2026-11-25T03:19:47.582Z",
+    "confidenceNotes": [
+      "Diagram layout fully legible and unambiguous.",
+      "Class of Recommendation tiers accurately mapped: Class 1 -> Tier 1, Class 2a -> Tier 2, Class 2b -> Tier 3."
+    ]
+  },
+  "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795576748357-Screenshot_2026-11-25_101338.png",
+  "sourceImageMeta": {
+    "fileName": "Screenshot_2026-11-25_101338.png",
+    "mimeType": "image/png"
+  },
+  "sourceImageSha256": "024f462f066f9b738499704b98d3499bd476391f6378897cafc9dc435cd04ac9",
+  "allowDuplicateImage": false,
+  "nodes": [
+    {
+      "id": "n1",
+      "body": {
+        "en": "Presentation with sudden, severe headache ('thunderclap headache') concerning for subarachnoid hemorrhage.",
+        "vi": "Khởi phát đau đầu đột ngột, dữ dội ('đau đầu sét đánh') nghi ngờ xuất huyết dưới nhện."
+      },
+      "kind": "entry",
+      "edges": [
+        {
+          "id": "e1_2",
+          "tone": "default",
+          "label": {
+            "en": "Apply Ottawa SAH Rule at physician discretion (Class 2b) and access timing",
+            "vi": "Áp dụng quy tắc Ottawa SAH theo quyết định của bác sĩ (Class 2b) và đánh giá thời gian khởi phát"
+          },
+          "targetNodeId": "n_triage"
+        }
+      ],
+      "title": {
+        "en": "Patient presents with acute onset severe headache",
+        "vi": "Bệnh nhân nhập viện vì đau đầu cấp tính mức độ nặng"
+      },
+      "blockUid": "80b5d705-b728-4ce4-bede-0603ea3f87b3",
+      "blockRev": 3
+    },
+    {
+      "id": "n_triage",
+      "body": {
+        "en": "Evaluate symptom onset timing and presence of any new neurological deficits.",
+        "vi": "Đánh giá thời điểm khởi phát triệu chứng và sự hiện diện của bất kỳ thâm hụt thần kinh mới nào."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e_triage_early",
+          "tone": "default",
+          "label": {
+            "en": "<6 hours AND no new neurological deficit",
+            "vi": "<6 giờ VÀ không có thâm hụt thần kinh mới"
+          },
+          "targetNodeId": "n_ct_early"
+        },
+        {
+          "id": "e_triage_late",
+          "tone": "warning",
+          "label": {
+            "en": "≥6 hours OR new neurological deficit",
+            "vi": "≥6 giờ HOẶC có thâm hụt thần kinh mới"
+          },
+          "targetNodeId": "n_ct_late"
+        }
+      ],
+      "title": {
+        "en": "Time & Neurological Deficit Stratification",
+        "vi": "Phân tầng Thời gian khởi phát & Thâm hụt thần kinh"
+      },
+      "blockUid": "5befb5b5-b68a-4361-9a5c-1c3b846542f5",
+      "blockRev": 2
+    },
+    {
+      "id": "n_ct_early",
+      "body": {
+        "en": "Perform noncontrast cranial CT scan within 6 hours of headache onset in neurologically intact patients.",
+        "vi": "Chụp CT đầu không cản quang trong vòng 6 giờ từ khi khởi phát đau đầu ở bệnh nhân không có thâm hụt thần kinh."
+      },
+      "kind": "action",
+      "tier": 2,
+      "edges": [
+        {
+          "id": "e_ct_early_dx",
+          "tone": "default",
+          "label": {
+            "en": "Evaluate CT results",
+            "vi": "Đánh giá kết quả CT"
+          },
+          "targetNodeId": "n_sah_dx_early"
+        }
+      ],
+      "title": {
+        "en": "Noncontrast head CT",
+        "vi": "CT đầu không cản quang"
+      },
+      "evidenceBadge": "Class 2a",
+      "blockUid": "80bada49-d956-4633-a006-b29a816e4c50",
+      "blockRev": 2
+    },
+    {
+      "id": "n_sah_dx_early",
+      "body": {
+        "en": "Is subarachnoid hemorrhage confirmed on the noncontrast head CT?",
+        "vi": "Có phát hiện xuất huyết dưới nhện trên CT đầu không cản quang hay không?"
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e_early_sah_yes",
+          "tone": "positive",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n_cta_dsa"
+        },
+        {
+          "id": "e_early_sah_no",
+          "tone": "default",
+          "label": {
+            "en": "NO",
+            "vi": "KHÔNG"
+          },
+          "targetNodeId": "n_workup_1"
+        }
+      ],
+      "title": {
+        "en": "SAH Dx?",
+        "vi": "Chẩn đoán SAH?"
+      },
+      "blockUid": "2c1b9561-73c7-4aaa-86d4-e0057249dde5",
+      "blockRev": 2
+    },
+    {
+      "id": "n_ct_late",
+      "body": {
+        "en": "Perform noncontrast cranial CT scan for presentation ≥6 hours from onset or presence of new neurological deficit.",
+        "vi": "Chụp CT đầu không cản quang khi nhập viện ≥6 giờ từ khi khởi phát hoặc có thâm hụt thần kinh mới."
+      },
+      "kind": "action",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e_ct_late_dx",
+          "tone": "default",
+          "label": {
+            "en": "Evaluate CT results",
+            "vi": "Đánh giá kết quả CT"
+          },
+          "targetNodeId": "n_sah_dx_late"
+        }
+      ],
+      "title": {
+        "en": "Noncontrast head CT",
+        "vi": "CT đầu không cản quang"
+      },
+      "evidenceBadge": "Class 1",
+      "blockUid": "faf2d78d-12a5-4b5c-a8b2-13fcb1172cc0",
+      "blockRev": 2
+    },
+    {
+      "id": "n_sah_dx_late",
+      "body": {
+        "en": "Is subarachnoid hemorrhage confirmed on the noncontrast head CT?",
+        "vi": "Có phát hiện xuất huyết dưới nhện trên CT đầu không cản quang hay không?"
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e_late_sah_yes",
+          "tone": "positive",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n_cta_dsa"
+        },
+        {
+          "id": "e_late_sah_no",
+          "tone": "warning",
+          "label": {
+            "en": "NO",
+            "vi": "KHÔNG"
+          },
+          "targetNodeId": "n_lp"
+        }
+      ],
+      "title": {
+        "en": "SAH Dx?",
+        "vi": "Chẩn đoán SAH?"
+      },
+      "blockUid": "3fb0ccc5-5d22-4ba9-ae08-2be61bf6f385",
+      "blockRev": 2
+    },
+    {
+      "id": "n_lp",
+      "body": {
+        "en": "Perform lumbar puncture to evaluate CSF for bilirubin/xanthochromia and RBCs following negative head CT.",
+        "vi": "Thực hiện chọc dò tủy sống để tìm bilirubin/vàng dịch não tủy (xanthochromia) và hồng cầu sau khi CT đầu âm tính."
+      },
+      "kind": "action",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e_lp_dx",
+          "tone": "default",
+          "label": {
+            "en": "Evaluate CSF results",
+            "vi": "Đánh giá kết quả dịch não tủy"
+          },
+          "targetNodeId": "n_xantho_dx"
+        }
+      ],
+      "title": {
+        "en": "Lumbar Puncture",
+        "vi": "Chọc dò tủy sống"
+      },
+      "evidenceBadge": "Class 1",
+      "blockUid": "6e446020-71a0-4061-8401-8bfaf14b4f8f",
+      "blockRev": 2
+    },
+    {
+      "id": "n_xantho_dx",
+      "body": {
+        "en": "Is xanthochromia (or persistent high RBC count) present in CSF analysis?",
+        "vi": "Có tình trạng vàng dịch não tủy (hoặc số lượng hồng cầu cao kéo dài) trong phân tích dịch não tủy hay không?"
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e_xantho_yes",
+          "tone": "positive",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n_cta_dsa"
+        },
+        {
+          "id": "e_xantho_no",
+          "tone": "default",
+          "label": {
+            "en": "NO",
+            "vi": "KHÔNG"
+          },
+          "targetNodeId": "n_workup_2"
+        }
+      ],
+      "title": {
+        "en": "Xanthochromia Dx?",
+        "vi": "Chẩn đoán Xanthochromia (Vàng dịch não tủy)?"
+      },
+      "blockUid": "9e9be852-51a1-4c07-944f-171fc2f9a8a8",
+      "blockRev": 2
+    },
+    {
+      "id": "n_cta_dsa",
+      "body": {
+        "en": "Perform Computed Tomography Angiography (CTA) or Digital Subtraction Angiography (DSA) to identify causative aneurysm or vascular lesion.",
+        "vi": "Chụp cắt lớp vi tính mạch máu (CTA) hoặc Chụp mạch máu xóa nền (DSA) để phát hiện phình mạch hoặc tổn thương mạch máu nguyên nhân."
+      },
+      "kind": "action",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e_cta_tx",
+          "tone": "positive",
+          "label": {
+            "en": "Aneurysm confirmed / Workup complete",
+            "vi": "Xác nhận phình mạch / Hoàn tất thăm dò"
+          },
+          "targetNodeId": "n_treatment"
+        }
+      ],
+      "title": {
+        "en": "CTA/DSA",
+        "vi": "Chụp CTA/DSA"
+      },
+      "evidenceBadge": "Class 1",
+      "blockUid": "1705ecd1-c03b-49c6-a808-55ea201ba4aa",
+      "blockRev": 2
+    },
+    {
+      "id": "n_treatment",
+      "body": {
+        "en": "Establish multidisciplinary plan for aneurysm repair (coiling vs. clipping) and medical management of aSAH.",
+        "vi": "Lập kế hoạch đa chuyên khoa để can thiệp phình mạch (can thiệp nội mạch cuộn coil hoặc phẫu thuật kẹp clip) và điều trị nội khoa aSAH."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "Determine optimal treatment strategy",
+        "vi": "Xác định chiến lược điều trị tối ưu"
+      },
+      "blockUid": "c1305a90-9f01-4cb2-9ce2-91f13d8fad31",
+      "blockRev": 2
+    },
+    {
+      "id": "n_workup_1",
+      "body": {
+        "en": "aSAH effectively excluded for early presentation (<6h) with high-sensitivity NCCT. Consider alternative etiology for headache.",
+        "vi": "Đã loại trừ aSAH trên CT không cản quang độ nhạy cao ở thời điểm sớm (<6h). Cần xem xét các nguyên nhân gây đau đầu khác."
+      },
+      "kind": "diagnosis",
+      "edges": [],
+      "title": {
+        "en": "Work-up at physician discretion",
+        "vi": "Thực hiện chẩn đoán/thăm dò theo quyết định của bác sĩ"
+      },
+      "blockUid": "b2ab3e1c-52e6-4922-816e-2a78d846970d",
+      "blockRev": 2
+    },
+    {
+      "id": "n_workup_2",
+      "body": {
+        "en": "aSAH excluded by negative head CT and negative CSF xanthochromia. Investigate alternative causes of acute headache.",
+        "vi": "Đã loại trừ aSAH nhờ CT đầu âm tính và xét nghiệm vàng dịch não tủy âm tính. Đánh giá các nguyên nhân đau đầu cấp tính khác."
+      },
+      "kind": "diagnosis",
+      "edges": [],
+      "title": {
+        "en": "Work-up at physician discretion",
+        "vi": "Thực hiện chẩn đoán/thăm dò theo quyết định của bác sĩ"
+      },
+      "blockUid": "d03f5abf-c844-457a-b288-3cf6513c1723",
+      "blockRev": 2
+    }
+  ],
+  "rev": 3,
+  "changeSeq": 1670,
+  "protocolHash": "92b88f94a7e6e7ea9d10a63d946d4504232bcaccc252265e71261374ca3fad98",
+  "deletedAt": null
+}

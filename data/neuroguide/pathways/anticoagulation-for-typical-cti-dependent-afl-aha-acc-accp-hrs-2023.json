@@ -1,0 +1,338 @@
+{
+  "uid": "feaa99ad-6429-490c-a7e3-18d42da44d30",
+  "slug": "anticoagulation-for-typical-cti-dependent-afl-aha-acc-accp-hrs-2023",
+  "title": {
+    "en": "Anticoagulation for Typical (CTI-Dependent) AFL",
+    "vi": "Kháng đông cho cuồng nhĩ điển hình (phụ thuộc CTI)"
+  },
+  "domain": "combined",
+  "source": {
+    "url": "10.1161/CIR.0000000000001193",
+    "year": 2023,
+    "title": "2023 ACC AHA ACCP HRS Guideline for the Diagnosis and Management of Atrial Fibrillation",
+    "figureRef": "e58",
+    "sourceType": "guideline",
+    "organizationOrAuthor": "AHA/ACC/ACCP/HRS"
+  },
+  "status": "published",
+  "summary": {
+    "en": "Clinical pathway for anticoagulation management in patients with typical (cavotricuspid isthmus-dependent) atrial flutter based on rhythm/rate control strategy, ablation success, prior AF history, and thromboembolic risk profile.",
+    "vi": "Phác đồ lâm sàng xử trí kháng đông ở bệnh nhân cuồng nhĩ điển hình (phụ thuộc eo tĩnh mạch chủ dưới - van ba lá) dựa trên chiến lược kiểm soát tần số/nhịp, kết quả triệt đốt, tiền sử rung nhĩ và hồ sơ nguy cơ thuyên tắc huyết khối."
+  },
+  "createdAt": "2026-11-25T03:59:35.311008+00:00",
+  "updatedAt": "2026-11-25T03:59:58.313361+00:00",
+  "reviewedAt": "2026-11-25T03:59:47.508Z",
+  "reviewedBy": "admin",
+  "entryNodeId": "n1",
+  "subspecialty": "Stroke",
+  "extractionMeta": {
+    "model": "gemini-4-hydrogen",
+    "extractedAt": "2026-11-25T03:55:59.562Z",
+    "confidenceNotes": [
+      "All boxes, footnotes, and Class of Recommendation numbers (1, 2b) are clearly legible.",
+      "The arrow from 'High-risk thromboembolic profile' splits into a dashed arrow leading to 'Consider anticoagulation if high-risk features for development of AF† (2b)' and a solid arrow joining 'Low-risk thromboembolic profile' to 'Monitor off anticoagulation (clinical follow-up and arrhythmia monitoring) (1)'; the solid arrow does not carry an explicit text label on the arrow itself."
+    ]
+  },
+  "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795578939652-Screenshot_2026-11-25_105432.png",
+  "sourceImageMeta": {
+    "fileName": "Screenshot_2026-11-25_105432.png",
+    "mimeType": "image/png"
+  },
+  "sourceImageSha256": "3ab860c80d1c925f92e6806d42d2f38602dc9ecdc89b3f570aa4d67f61662705",
+  "allowDuplicateImage": false,
+  "nodes": [
+    {
+      "id": "n1",
+      "body": {
+        "en": "Typical (cavotricuspid isthmus-dependent) atrial flutter.",
+        "vi": "Cuồng nhĩ điển hình (phụ thuộc eo tĩnh mạch chủ dưới - van ba lá)."
+      },
+      "kind": "entry",
+      "edges": [
+        {
+          "id": "e1",
+          "tone": "default",
+          "label": {
+            "en": "Rate control or rhythm control with antiarrhythmic therapy",
+            "vi": "Kiểm soát tần số hoặc kiểm soát nhịp bằng thuốc chống loạn nhịp"
+          },
+          "targetNodeId": "n2"
+        },
+        {
+          "id": "e2",
+          "tone": "warning",
+          "label": {
+            "en": "Unsuccessful typical AFL ablation (without plans for re-do ablation)",
+            "vi": "Triệt đốt AFL điển hình thất bại (không có kế hoạch triệt đốt lại)"
+          },
+          "targetNodeId": "n3"
+        },
+        {
+          "id": "e3",
+          "tone": "positive",
+          "label": {
+            "en": "Successful typical AFL ablation*",
+            "vi": "Triệt đốt AFL điển hình thành công*"
+          },
+          "targetNodeId": "n4"
+        }
+      ],
+      "title": {
+        "en": "Typical (CTI-dependent) AFL",
+        "vi": "Cuồng nhĩ điển hình (phụ thuộc CTI)"
+      },
+      "clinicalPearl": {
+        "en": "AF indicates atrial fibrillation; AFL, atrial flutter; COPD, chronic obstructive pulmonary disease; and CTI, cavotricuspid isthmus.",
+        "vi": "AF: rung nhĩ (atrial fibrillation); AFL: cuồng nhĩ (atrial flutter); COPD: bệnh phổi tắc nghẽn mạn tính; CTI: eo tĩnh mạch chủ dưới - van ba lá (cavotricuspid isthmus)."
+      },
+      "blockUid": "870113e2-0f3d-4f4d-8057-87570be08f83",
+      "blockRev": 2
+    },
+    {
+      "id": "n2",
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e4",
+          "tone": "positive",
+          "label": {
+            "en": "Proceed to anticoagulation management",
+            "vi": "Tiếp tục xử trí kháng đông"
+          },
+          "targetNodeId": "n5"
+        }
+      ],
+      "title": {
+        "en": "Rate control or rhythm control with antiarrhythmic therapy",
+        "vi": "Kiểm soát tần số hoặc kiểm soát nhịp bằng thuốc chống loạn nhịp"
+      },
+      "blockUid": "fd001bce-06cd-4b61-98fb-dfa375534f20",
+      "blockRev": 2
+    },
+    {
+      "id": "n3",
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e5",
+          "tone": "positive",
+          "label": {
+            "en": "Proceed to anticoagulation management",
+            "vi": "Tiếp tục xử trí kháng đông"
+          },
+          "targetNodeId": "n5"
+        }
+      ],
+      "title": {
+        "en": "Unsuccessful typical AFL ablation (without plans for re-do ablation)",
+        "vi": "Triệt đốt AFL điển hình thất bại (không có kế hoạch triệt đốt lại)"
+      },
+      "blockUid": "8739e18a-b04a-4bf0-b2b3-324f8aff35f3",
+      "blockRev": 2
+    },
+    {
+      "id": "n4",
+      "body": {
+        "en": "*Intraprocedural documentation of bidirectional block.",
+        "vi": "*Ghi nhận block hai chiều trong thủ thuật."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e6",
+          "tone": "default",
+          "label": {
+            "en": "Known prior history of AF",
+            "vi": "Đã biết tiền sử AF trước đó"
+          },
+          "targetNodeId": "n6"
+        },
+        {
+          "id": "e7",
+          "tone": "default",
+          "label": {
+            "en": "No known prior history of AF",
+            "vi": "Không có tiền sử AF được biết trước đó"
+          },
+          "targetNodeId": "n7"
+        }
+      ],
+      "title": {
+        "en": "Successful typical AFL ablation*",
+        "vi": "Triệt đốt AFL điển hình thành công*"
+      },
+      "blockUid": "2ff45df4-2312-40df-9aab-02cb37ec1367",
+      "blockRev": 2
+    },
+    {
+      "id": "n5",
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "Anticoagulation according to same risk profile as AF (1)",
+        "vi": "Kháng đông theo cùng hồ sơ nguy cơ như AF (1)"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "f23364df-9d6b-4686-913d-114413004ed3",
+      "blockRev": 2
+    },
+    {
+      "id": "n6",
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e8",
+          "tone": "positive",
+          "label": {
+            "en": "Proceed to anticoagulation management",
+            "vi": "Tiếp tục xử trí kháng đông"
+          },
+          "targetNodeId": "n8"
+        }
+      ],
+      "title": {
+        "en": "Known prior history of AF",
+        "vi": "Đã biết tiền sử AF trước đó"
+      },
+      "blockUid": "4872dca9-3ba5-45c0-b567-7b1a239a0176",
+      "blockRev": 2
+    },
+    {
+      "id": "n7",
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e9",
+          "tone": "warning",
+          "label": {
+            "en": "High-risk thromboembolic profile",
+            "vi": "Hồ sơ nguy cơ thuyên tắc huyết khối cao"
+          },
+          "targetNodeId": "n9"
+        },
+        {
+          "id": "e10",
+          "tone": "positive",
+          "label": {
+            "en": "Low-risk thromboembolic profile",
+            "vi": "Hồ sơ nguy cơ thuyên tắc huyết khối thấp"
+          },
+          "targetNodeId": "n10"
+        }
+      ],
+      "title": {
+        "en": "No known prior history of AF",
+        "vi": "Không có tiền sử AF được biết trước đó"
+      },
+      "blockUid": "3fefdc68-0b1e-411d-86d4-628aef67a700",
+      "blockRev": 2
+    },
+    {
+      "id": "n8",
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "Anticoagulation according to same risk profile as AF (1)",
+        "vi": "Kháng đông theo cùng hồ sơ nguy cơ như AF (1)"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "c72bad06-76b8-4118-a145-ce513b4571af",
+      "blockRev": 2
+    },
+    {
+      "id": "n9",
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e11",
+          "tone": "warning",
+          "label": {
+            "en": "If high-risk features for development of AF†",
+            "vi": "Nếu có đặc điểm nguy cơ cao tiến triển thành AF†"
+          },
+          "sublabel": {
+            "en": "Dashed pathway",
+            "vi": "Nhánh nét đứt"
+          },
+          "targetNodeId": "n11"
+        },
+        {
+          "id": "e12",
+          "tone": "positive",
+          "label": {
+            "en": "Without high-risk features for development of AF / monitoring pathway",
+            "vi": "Theo dõi không dùng kháng đông"
+          },
+          "sublabel": {
+            "en": "Solid pathway",
+            "vi": "Nhánh nét liền"
+          },
+          "targetNodeId": "n12"
+        }
+      ],
+      "title": {
+        "en": "High-risk thromboembolic profile",
+        "vi": "Hồ sơ nguy cơ thuyên tắc huyết khối cao"
+      },
+      "blockUid": "db6e71c4-8660-47cd-93fc-ebc7f7564e62",
+      "blockRev": 2
+    },
+    {
+      "id": "n10",
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e13",
+          "tone": "positive",
+          "label": {
+            "en": "Proceed to monitoring off anticoagulation",
+            "vi": "Tiếp tục theo dõi không dùng kháng đông"
+          },
+          "targetNodeId": "n12"
+        }
+      ],
+      "title": {
+        "en": "Low-risk thromboembolic profile",
+        "vi": "Hồ sơ nguy cơ thuyên tắc huyết khối thấp"
+      },
+      "blockUid": "72f6ab0a-7ef3-445a-ac19-8ff35b00124b",
+      "blockRev": 2
+    },
+    {
+      "id": "n11",
+      "kind": "treatment",
+      "tier": 3,
+      "edges": [],
+      "title": {
+        "en": "Consider anticoagulation if high-risk features for development of AF† (2b)",
+        "vi": "Cân nhắc kháng đông nếu có đặc điểm nguy cơ cao tiến triển thành AF† (2b)"
+      },
+      "clinicalPearl": {
+        "en": "†For example, left atrial enlargement, inducible AF, COPD, concomitant heart failure.",
+        "vi": "†Ví dụ: giãn nhĩ trái, AF có thể gây khởi phát, COPD, suy tim đi kèm."
+      },
+      "evidenceBadge": "COR 2b",
+      "blockUid": "38cb79f2-e291-443e-8d6c-54c514a5bdf3",
+      "blockRev": 2
+    },
+    {
+      "id": "n12",
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "Monitor off anticoagulation (clinical follow-up and arrhythmia monitoring) (1)",
+        "vi": "Theo dõi không dùng kháng đông (theo dõi lâm sàng và theo dõi loạn nhịp) (1)"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "67973efc-b7ad-42a0-8671-3d54e37d983b",
+      "blockRev": 2
+    }
+  ],
+  "rev": 2,
+  "changeSeq": 1578,
+  "protocolHash": "e452c1ade9398cff5e717a64ae66148be2be463637698422bdc1781b6d80db0d",
+  "deletedAt": null
+}

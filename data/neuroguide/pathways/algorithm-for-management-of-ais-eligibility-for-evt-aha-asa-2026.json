@@ -1,0 +1,1321 @@
+{
+  "uid": "3e75f9e2-fae0-405a-aaa1-97fd477ced8b",
+  "slug": "algorithm-for-management-of-ais-eligibility-for-evt-aha-asa-2026",
+  "title": {
+    "en": "Algorithm for management of AIS eligibility for EVT",
+    "vi": "Lưu đồ đánh giá điều kiện chỉ định EVT trong đột quỵ thiếu máu não cấp (AIS)"
+  },
+  "domain": "treatment",
+  "source": {
+    "url": "10.1161/STR.0000000000000513",
+    "year": 2026,
+    "title": "2026 AHA ASA Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+    "figureRef": "e61",
+    "sourceType": "guideline",
+    "organizationOrAuthor": "AHA/ASA"
+  },
+  "status": "published",
+  "summary": {
+    "en": "Step-by-step AHA/ASA 2026 algorithm evaluating endovascular thrombectomy (EVT) eligibility in acute ischemic stroke (AIS) across Population, Vessel Occlusion, Time from Onset, Tissue Injury, Baseline Function, Stroke Severity, and Evidence for EVT (Class of Recommendation).",
+    "vi": "Lưu đồ từng bước của AHA/ASA 2026 đánh giá điều kiện lấy huyết khối cơ học (EVT) trong đột quỵ thiếu máu não cấp (AIS) theo Quần thể bệnh nhân, Tắc mạch, Thời gian từ khi khởi phát, Tổn thương mô, Chức năng nền, Mức độ nặng đột quỵ và Bằng chứng cho EVT (COR)."
+  },
+  "createdAt": "2026-11-25T03:12:26.041447+00:00",
+  "updatedAt": "2026-11-25T03:12:55.523239+00:00",
+  "reviewedAt": "2026-11-25T03:12:37.229Z",
+  "reviewedBy": "admin",
+  "entryNodeId": "n1",
+  "subspecialty": "Stroke",
+  "extractionMeta": {
+    "model": "gemini-4-hydrogen",
+    "extractedAt": "2026-11-25T02:59:43.303Z",
+    "confidenceNotes": [
+      "Footnotes for the symbols '*' (in LVO*) and '†' (in Patients aged ≥18 y†) are not visible within the cropped figure.",
+      "The abbreviation 'IDD' is shown in gray boxes under Evidence for EVT without an expansion in the figure or legend.",
+      "COR 3-No Benefit ('3: No Benefit' on the 'No EVT' terminal box) is mapped to tier 5 (Class III) with evidenceBadge 'COR 3: No Benefit'; COR 3-Harm appears in the legend but has no branches in the diagram.",
+      "In the Basilar artery branch, 'NIHSS ≥10' and 'NIHSS 6–9' (with italicized label 'Stroke Severity') appear inside the 'Baseline Function' column beneath 'mRS 0–1'."
+    ]
+  },
+  "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795575518647-Screenshot_2026-11-25_095712.png",
+  "sourceImageMeta": {
+    "fileName": "Screenshot_2026-11-25_095712.png",
+    "mimeType": "image/png"
+  },
+  "sourceImageSha256": "731dcd505bb38bb401810a6935f4dba9ed3c403ef5ca6acf1beedc87ec29a65f",
+  "allowDuplicateImage": false,
+  "nodes": [
+    {
+      "id": "n1",
+      "body": {
+        "en": "Select the patient age group to determine EVT eligibility pathway.",
+        "vi": "Chọn nhóm tuổi của bệnh nhân để xác định nhánh đánh giá điều kiện EVT."
+      },
+      "kind": "entry",
+      "edges": [
+        {
+          "id": "e1",
+          "tone": "default",
+          "label": {
+            "en": "Patients aged ≤28 d",
+            "vi": "Bệnh nhân ≤28 ngày tuổi"
+          },
+          "targetNodeId": "n2"
+        },
+        {
+          "id": "e2",
+          "tone": "default",
+          "label": {
+            "en": "Patients aged 28 d–5 y",
+            "vi": "Bệnh nhân 28 ngày–5 tuổi"
+          },
+          "targetNodeId": "n4"
+        },
+        {
+          "id": "e3",
+          "tone": "default",
+          "label": {
+            "en": "Patients aged 6–17 y",
+            "vi": "Bệnh nhân 6–17 tuổi"
+          },
+          "targetNodeId": "n7"
+        },
+        {
+          "id": "e4",
+          "tone": "default",
+          "label": {
+            "en": "Patients aged ≥18 y",
+            "vi": "Bệnh nhân ≥18 tuổi†"
+          },
+          "targetNodeId": "n13"
+        }
+      ],
+      "title": {
+        "en": "Population",
+        "vi": "Quần thể bệnh nhân"
+      },
+      "blockUid": "4935a243-7e47-4696-ae70-d87ce5dcbd38",
+      "blockRev": 2
+    },
+    {
+      "id": "n2",
+      "body": {
+        "en": "Confirm vessel occlusion type.",
+        "vi": "Xác nhận loại tắc mạch."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e5",
+          "tone": "default",
+          "label": {
+            "en": "LVO*",
+            "vi": "LVO*"
+          },
+          "targetNodeId": "n3"
+        }
+      ],
+      "title": {
+        "en": "Vessel Occlusion (Patients aged ≤28 d)",
+        "vi": "Tắc mạch (Bệnh nhân ≤28 ngày tuổi)"
+      },
+      "blockUid": "385615c2-d0c6-470f-80c1-fe85f00d9d1d",
+      "blockRev": 2
+    },
+    {
+      "id": "n3",
+      "body": {
+        "en": "Assess time from symptom onset.",
+        "vi": "Đánh giá thời gian từ khi khởi phát triệu chứng."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e6",
+          "tone": "warning",
+          "label": {
+            "en": "0–24 h",
+            "vi": "0–24 giờ"
+          },
+          "targetNodeId": "n201"
+        }
+      ],
+      "title": {
+        "en": "Time from Onset (Patients aged ≤28 d, LVO*)",
+        "vi": "Thời gian từ khi khởi phát (Bệnh nhân ≤28 ngày tuổi, LVO*)"
+      },
+      "blockUid": "3ac37f41-b0fd-406d-9ecc-353fed1b7576",
+      "blockRev": 2
+    },
+    {
+      "id": "n4",
+      "body": {
+        "en": "Confirm vessel occlusion type.",
+        "vi": "Xác nhận loại tắc mạch."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e7",
+          "tone": "default",
+          "label": {
+            "en": "LVO*",
+            "vi": "LVO*"
+          },
+          "targetNodeId": "n5"
+        }
+      ],
+      "title": {
+        "en": "Vessel Occlusion (Patients aged 28 d–5 y)",
+        "vi": "Tắc mạch (Bệnh nhân 28 ngày–5 tuổi)"
+      },
+      "blockUid": "ec190b44-9929-4f7c-87f8-6e794c70d019",
+      "blockRev": 2
+    },
+    {
+      "id": "n5",
+      "body": {
+        "en": "Assess time from symptom onset.",
+        "vi": "Đánh giá thời gian từ khi khởi phát triệu chứng."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e8",
+          "tone": "default",
+          "label": {
+            "en": "0–24 h",
+            "vi": "0–24 giờ"
+          },
+          "targetNodeId": "n6"
+        }
+      ],
+      "title": {
+        "en": "Time from Onset (Patients aged 28 d–5 y, LVO*)",
+        "vi": "Thời gian từ khi khởi phát (Bệnh nhân 28 ngày–5 tuổi, LVO*)"
+      },
+      "blockUid": "5127425c-97fe-4075-92e1-97abf6553331",
+      "blockRev": 2
+    },
+    {
+      "id": "n6",
+      "body": {
+        "en": "Evaluate tissue injury status.",
+        "vi": "Đánh giá tình trạng tổn thương mô."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e9",
+          "tone": "warning",
+          "label": {
+            "en": "Salvageable Brain Tissue",
+            "vi": "Mô não còn khả năng cứu vãn"
+          },
+          "targetNodeId": "n202"
+        }
+      ],
+      "title": {
+        "en": "Tissue Injury (Patients aged 28 d–5 y, LVO*, 0–24 h)",
+        "vi": "Tổn thương mô (Bệnh nhân 28 ngày–5 tuổi, LVO*, 0–24 giờ)"
+      },
+      "blockUid": "6e2ef30c-7fbe-4d68-a3ad-c637ba01df1a",
+      "blockRev": 2
+    },
+    {
+      "id": "n7",
+      "body": {
+        "en": "Confirm vessel occlusion type.",
+        "vi": "Xác nhận loại tắc mạch."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e10",
+          "tone": "default",
+          "label": {
+            "en": "LVO*",
+            "vi": "LVO*"
+          },
+          "targetNodeId": "n8"
+        }
+      ],
+      "title": {
+        "en": "Vessel Occlusion (Patients aged 6–17 y)",
+        "vi": "Tắc mạch (Bệnh nhân 6–17 tuổi)"
+      },
+      "blockUid": "9849d24f-e40d-480a-a57a-855ab0da56ca",
+      "blockRev": 2
+    },
+    {
+      "id": "n8",
+      "body": {
+        "en": "Select time window from symptom onset.",
+        "vi": "Chọn cửa sổ thời gian từ khi khởi phát triệu chứng."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e11",
+          "tone": "default",
+          "label": {
+            "en": "0–6 h",
+            "vi": "0–6 giờ"
+          },
+          "targetNodeId": "n9"
+        },
+        {
+          "id": "e12",
+          "tone": "default",
+          "label": {
+            "en": "6–24 h",
+            "vi": "6–24 giờ"
+          },
+          "targetNodeId": "n10"
+        },
+        {
+          "id": "e13",
+          "tone": "warning",
+          "label": {
+            "en": ">24 h",
+            "vi": ">24 giờ"
+          },
+          "targetNodeId": "n203"
+        }
+      ],
+      "title": {
+        "en": "Time from Onset (Patients aged 6–17 y, LVO*)",
+        "vi": "Thời gian từ khi khởi phát (Bệnh nhân 6–17 tuổi, LVO*)"
+      },
+      "blockUid": "57d0e906-a977-457f-a7a8-3f5793ebdba8",
+      "blockRev": 2
+    },
+    {
+      "id": "n9",
+      "body": {
+        "en": "Evaluate tissue injury status.",
+        "vi": "Đánh giá tình trạng tổn thương mô."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e14",
+          "tone": "positive",
+          "label": {
+            "en": "Salvageable Brain Tissue",
+            "vi": "Mô não còn khả năng cứu vãn"
+          },
+          "targetNodeId": "n204"
+        }
+      ],
+      "title": {
+        "en": "Tissue Injury (Patients aged 6–17 y, LVO*, 0–6 h)",
+        "vi": "Tổn thương mô (Bệnh nhân 6–17 tuổi, LVO*, 0–6 giờ)"
+      },
+      "blockUid": "0d6084ff-91b1-44ac-a394-62f2537e130a",
+      "blockRev": 2
+    },
+    {
+      "id": "n10",
+      "body": {
+        "en": "Evaluate tissue injury status.",
+        "vi": "Đánh giá tình trạng tổn thương mô."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e15",
+          "tone": "positive",
+          "label": {
+            "en": "Salvageable Brain Tissue",
+            "vi": "Mô não còn khả năng cứu vãn"
+          },
+          "targetNodeId": "n205"
+        }
+      ],
+      "title": {
+        "en": "Tissue Injury (Patients aged 6–17 y, LVO*, 6–24 h)",
+        "vi": "Tổn thương mô (Bệnh nhân 6–17 tuổi, LVO*, 6–24 giờ)"
+      },
+      "blockUid": "c6a3f308-2771-4e28-8926-c4b93e673f5b",
+      "blockRev": 2
+    },
+    {
+      "id": "n13",
+      "body": {
+        "en": "Select the site/type of vessel occlusion.",
+        "vi": "Chọn vị trí/loại tắc mạch."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e16",
+          "tone": "default",
+          "label": {
+            "en": "LVO*",
+            "vi": "LVO*"
+          },
+          "targetNodeId": "n14"
+        },
+        {
+          "id": "e17",
+          "tone": "default",
+          "label": {
+            "en": "MVO (Dominant M2)",
+            "vi": "MVO (M2 ưu thế)"
+          },
+          "targetNodeId": "n30"
+        },
+        {
+          "id": "e18",
+          "tone": "default",
+          "label": {
+            "en": "MVO (Non dominant M2) or DVO",
+            "vi": "MVO (M2 không ưu thế) hoặc DVO"
+          },
+          "targetNodeId": "n33"
+        },
+        {
+          "id": "e19",
+          "tone": "default",
+          "label": {
+            "en": "Basilar artery",
+            "vi": "Động mạch thân nền"
+          },
+          "targetNodeId": "n34"
+        }
+      ],
+      "title": {
+        "en": "Vessel Occlusion (Patients aged ≥18 y)",
+        "vi": "Tắc mạch (Bệnh nhân ≥18 tuổi)"
+      },
+      "blockUid": "ee64afa5-a89e-4ba3-96d8-9e143730f66f",
+      "blockRev": 2
+    },
+    {
+      "id": "n14",
+      "body": {
+        "en": "Select time window from symptom onset.",
+        "vi": "Chọn cửa sổ thời gian từ khi khởi phát triệu chứng."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e20",
+          "tone": "default",
+          "label": {
+            "en": "0–6 h",
+            "vi": "0–6 giờ"
+          },
+          "targetNodeId": "n15"
+        },
+        {
+          "id": "e21",
+          "tone": "default",
+          "label": {
+            "en": "6–24 h",
+            "vi": "6–24 giờ"
+          },
+          "targetNodeId": "n22"
+        },
+        {
+          "id": "e22",
+          "tone": "warning",
+          "label": {
+            "en": ">24 h",
+            "vi": ">24 giờ"
+          },
+          "targetNodeId": "n206"
+        }
+      ],
+      "title": {
+        "en": "Time from Onset (Patients aged ≥18 y, LVO*)",
+        "vi": "Thời gian từ khi khởi phát (Bệnh nhân ≥18 tuổi, LVO*)"
+      },
+      "blockUid": "01a22f3e-ec56-43af-9b8b-0ff75982ff16",
+      "blockRev": 2
+    },
+    {
+      "id": "n15",
+      "body": {
+        "en": "Select ASPECTS score category.",
+        "vi": "Chọn phân nhóm điểm ASPECTS."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e23",
+          "tone": "default",
+          "label": {
+            "en": "ASPECTS 6-10",
+            "vi": "ASPECTS 6-10"
+          },
+          "targetNodeId": "n16"
+        },
+        {
+          "id": "e24",
+          "tone": "default",
+          "label": {
+            "en": "ASPECTS 3–5",
+            "vi": "ASPECTS 3–5"
+          },
+          "targetNodeId": "n17"
+        },
+        {
+          "id": "e25",
+          "tone": "default",
+          "label": {
+            "en": "ASPECTS 0–2",
+            "vi": "ASPECTS 0–2"
+          },
+          "targetNodeId": "n18"
+        }
+      ],
+      "title": {
+        "en": "Tissue Injury (≥18 y, LVO*, 0–6 h)",
+        "vi": "Tổn thương mô (≥18 tuổi, LVO*, 0–6 giờ)"
+      },
+      "blockUid": "59236c69-05fe-486f-9c13-6298f125609d",
+      "blockRev": 2
+    },
+    {
+      "id": "n16",
+      "body": {
+        "en": "Select baseline mRS score.",
+        "vi": "Chọn điểm mRS nền."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e26",
+          "tone": "positive",
+          "label": {
+            "en": "mRS 0–1",
+            "vi": "mRS 0–1"
+          },
+          "targetNodeId": "n207"
+        },
+        {
+          "id": "e27",
+          "tone": "positive",
+          "label": {
+            "en": "mRS 2",
+            "vi": "mRS 2"
+          },
+          "targetNodeId": "n208"
+        },
+        {
+          "id": "e28",
+          "tone": "warning",
+          "label": {
+            "en": "mRS 3–4",
+            "vi": "mRS 3–4"
+          },
+          "targetNodeId": "n209"
+        },
+        {
+          "id": "e29",
+          "tone": "warning",
+          "label": {
+            "en": "mRS >4",
+            "vi": "mRS >4"
+          },
+          "targetNodeId": "n210"
+        }
+      ],
+      "title": {
+        "en": "Baseline Function (≥18 y, LVO*, 0–6 h, ASPECTS 6-10)",
+        "vi": "Chức năng nền (≥18 tuổi, LVO*, 0–6 giờ, ASPECTS 6-10)"
+      },
+      "blockUid": "ee8db2f6-4565-4c9d-b3fd-e6cc10c8b095",
+      "blockRev": 2
+    },
+    {
+      "id": "n17",
+      "body": {
+        "en": "Select baseline mRS score.",
+        "vi": "Chọn điểm mRS nền."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e30",
+          "tone": "positive",
+          "label": {
+            "en": "mRS 0–1",
+            "vi": "mRS 0–1"
+          },
+          "targetNodeId": "n211"
+        },
+        {
+          "id": "e31",
+          "tone": "warning",
+          "label": {
+            "en": "mRS ≥2",
+            "vi": "mRS ≥2"
+          },
+          "targetNodeId": "n212"
+        }
+      ],
+      "title": {
+        "en": "Baseline Function (≥18 y, LVO*, 0–6 h, ASPECTS 3–5)",
+        "vi": "Chức năng nền (≥18 tuổi, LVO*, 0–6 giờ, ASPECTS 3–5)"
+      },
+      "blockUid": "f3db1c9f-6067-4baf-8aa8-c1f89dfe85f8",
+      "blockRev": 2
+    },
+    {
+      "id": "n18",
+      "body": {
+        "en": "Select baseline mRS score.",
+        "vi": "Chọn điểm mRS nền."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e32",
+          "tone": "positive",
+          "label": {
+            "en": "mRS 0–1",
+            "vi": "mRS 0–1"
+          },
+          "targetNodeId": "n213"
+        },
+        {
+          "id": "e33",
+          "tone": "warning",
+          "label": {
+            "en": "mRS ≥2",
+            "vi": "mRS ≥2"
+          },
+          "targetNodeId": "n214"
+        }
+      ],
+      "title": {
+        "en": "Baseline Function (≥18 y, LVO*, 0–6 h, ASPECTS 0–2)",
+        "vi": "Chức năng nền (≥18 tuổi, LVO*, 0–6 giờ, ASPECTS 0–2)"
+      },
+      "blockUid": "535eecf2-6a5b-4c10-8b27-61340f399df0",
+      "blockRev": 2
+    },
+    {
+      "id": "n22",
+      "body": {
+        "en": "Select ASPECTS score category.",
+        "vi": "Chọn phân nhóm điểm ASPECTS."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e34",
+          "tone": "default",
+          "label": {
+            "en": "ASPECTS 6–10",
+            "vi": "ASPECTS 6–10"
+          },
+          "targetNodeId": "n23"
+        },
+        {
+          "id": "e35",
+          "tone": "default",
+          "label": {
+            "en": "ASPECTS 3–5",
+            "vi": "ASPECTS 3–5"
+          },
+          "targetNodeId": "n24"
+        }
+      ],
+      "title": {
+        "en": "Tissue Injury (≥18 y, LVO*, 6–24 h)",
+        "vi": "Tổn thương mô (≥18 tuổi, LVO*, 6–24 giờ)"
+      },
+      "blockUid": "9dc04a75-94cc-4eab-919f-05d31ceb86c1",
+      "blockRev": 2
+    },
+    {
+      "id": "n23",
+      "body": {
+        "en": "Select baseline mRS score.",
+        "vi": "Chọn điểm mRS nền."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e36",
+          "tone": "positive",
+          "label": {
+            "en": "mRS 0–1",
+            "vi": "mRS 0–1"
+          },
+          "targetNodeId": "n215"
+        },
+        {
+          "id": "e37",
+          "tone": "warning",
+          "label": {
+            "en": "mRS ≥2",
+            "vi": "mRS ≥2"
+          },
+          "targetNodeId": "n216"
+        }
+      ],
+      "title": {
+        "en": "Baseline Function (≥18 y, LVO*, 6–24 h, ASPECTS 6–10)",
+        "vi": "Chức năng nền (≥18 tuổi, LVO*, 6–24 giờ, ASPECTS 6–10)"
+      },
+      "blockUid": "b779288c-ebe3-4113-9a8d-de0889659644",
+      "blockRev": 2
+    },
+    {
+      "id": "n24",
+      "body": {
+        "en": "Select baseline mRS score.",
+        "vi": "Chọn điểm mRS nền."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e38",
+          "tone": "positive",
+          "label": {
+            "en": "mRS 0–1",
+            "vi": "mRS 0–1"
+          },
+          "targetNodeId": "n217"
+        },
+        {
+          "id": "e39",
+          "tone": "warning",
+          "label": {
+            "en": "mRS ≥2",
+            "vi": "mRS ≥2"
+          },
+          "targetNodeId": "n218"
+        }
+      ],
+      "title": {
+        "en": "Baseline Function (≥18 y, LVO*, 6–24 h, ASPECTS 3–5)",
+        "vi": "Chức năng nền (≥18 tuổi, LVO*, 6–24 giờ, ASPECTS 3–5)"
+      },
+      "blockUid": "0654dc23-8a41-4deb-ac19-49e22bd32828",
+      "blockRev": 2
+    },
+    {
+      "id": "n30",
+      "body": {
+        "en": "Select time window from symptom onset.",
+        "vi": "Chọn cửa sổ thời gian từ khi khởi phát triệu chứng."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e40",
+          "tone": "default",
+          "label": {
+            "en": "0–6 h",
+            "vi": "0–6 giờ"
+          },
+          "targetNodeId": "n31"
+        },
+        {
+          "id": "e41",
+          "tone": "warning",
+          "label": {
+            "en": ">6 h",
+            "vi": ">6 giờ"
+          },
+          "targetNodeId": "n219"
+        }
+      ],
+      "title": {
+        "en": "Time from Onset (≥18 y, MVO (Dominant M2))",
+        "vi": "Thời gian từ khi khởi phát (≥18 tuổi, MVO (M2 ưu thế))"
+      },
+      "blockUid": "20017f6f-612c-4794-bb90-acb6a576b475",
+      "blockRev": 2
+    },
+    {
+      "id": "n31",
+      "body": {
+        "en": "Assess ASPECTS score.",
+        "vi": "Đánh giá điểm ASPECTS."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e42",
+          "tone": "default",
+          "label": {
+            "en": "ASPECTS 6–10",
+            "vi": "ASPECTS 6–10"
+          },
+          "targetNodeId": "n32"
+        }
+      ],
+      "title": {
+        "en": "Tissue Injury (≥18 y, MVO (Dominant M2), 0–6 h)",
+        "vi": "Tổn thương mô (≥18 tuổi, MVO (M2 ưu thế), 0–6 giờ)"
+      },
+      "blockUid": "4788e518-2046-489f-94b6-a7e709dbcbb0",
+      "blockRev": 2
+    },
+    {
+      "id": "n32",
+      "body": {
+        "en": "Assess baseline mRS score.",
+        "vi": "Đánh giá điểm mRS nền."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e43",
+          "tone": "positive",
+          "label": {
+            "en": "mRS 0–1",
+            "vi": "mRS 0–1"
+          },
+          "targetNodeId": "n220"
+        }
+      ],
+      "title": {
+        "en": "Baseline Function (≥18 y, MVO (Dominant M2), 0–6 h, ASPECTS 6–10)",
+        "vi": "Chức năng nền (≥18 tuổi, MVO (M2 ưu thế), 0–6 giờ, ASPECTS 6–10)"
+      },
+      "blockUid": "92f77345-3110-4e7a-aec6-801f612f5f90",
+      "blockRev": 2
+    },
+    {
+      "id": "n33",
+      "body": {
+        "en": "Assess time from symptom onset.",
+        "vi": "Đánh giá thời gian từ khi khởi phát triệu chứng."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e44",
+          "tone": "danger",
+          "label": {
+            "en": "0–24 h",
+            "vi": "0–24 giờ"
+          },
+          "targetNodeId": "n221"
+        }
+      ],
+      "title": {
+        "en": "Time from Onset (≥18 y, MVO (Non dominant M2) or DVO)",
+        "vi": "Thời gian từ khi khởi phát (≥18 tuổi, MVO (M2 không ưu thế) hoặc DVO)"
+      },
+      "blockUid": "a3a7caae-8adc-4a59-80a0-274c97354d75",
+      "blockRev": 2
+    },
+    {
+      "id": "n34",
+      "body": {
+        "en": "Assess time from symptom onset.",
+        "vi": "Đánh giá thời gian từ khi khởi phát triệu chứng."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e45",
+          "tone": "default",
+          "label": {
+            "en": "0–24 h",
+            "vi": "0–24 giờ"
+          },
+          "targetNodeId": "n35"
+        }
+      ],
+      "title": {
+        "en": "Time from Onset (≥18 y, Basilar artery)",
+        "vi": "Thời gian từ khi khởi phát (≥18 tuổi, Động mạch thân nền)"
+      },
+      "blockUid": "c2cd33c5-2906-4cf5-9aae-7391ec4e8905",
+      "blockRev": 2
+    },
+    {
+      "id": "n35",
+      "body": {
+        "en": "Assess PC ASPECTS score.",
+        "vi": "Đánh giá điểm PC ASPECTS."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e46",
+          "tone": "default",
+          "label": {
+            "en": "PC ASPECTS ≥6",
+            "vi": "PC ASPECTS ≥6"
+          },
+          "targetNodeId": "n36"
+        }
+      ],
+      "title": {
+        "en": "Tissue Injury (≥18 y, Basilar artery, 0–24 h)",
+        "vi": "Tổn thương mô (≥18 tuổi, Động mạch thân nền, 0–24 giờ)"
+      },
+      "blockUid": "8bc168c7-4210-49c8-9a5d-1e362a1e9b23",
+      "blockRev": 2
+    },
+    {
+      "id": "n36",
+      "body": {
+        "en": "Select baseline mRS score.",
+        "vi": "Chọn điểm mRS nền."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e47",
+          "tone": "default",
+          "label": {
+            "en": "mRS 0–1",
+            "vi": "mRS 0–1"
+          },
+          "targetNodeId": "n37"
+        },
+        {
+          "id": "e48",
+          "tone": "warning",
+          "label": {
+            "en": "mRS ≥2",
+            "vi": "mRS ≥2"
+          },
+          "targetNodeId": "n224"
+        }
+      ],
+      "title": {
+        "en": "Baseline Function (≥18 y, Basilar artery, 0–24 h, PC ASPECTS ≥6)",
+        "vi": "Chức năng nền (≥18 tuổi, Động mạch thân nền, 0–24 giờ, PC ASPECTS ≥6)"
+      },
+      "blockUid": "d719b80c-f962-4263-8b61-c5a65a787c2c",
+      "blockRev": 2
+    },
+    {
+      "id": "n37",
+      "body": {
+        "en": "Select NIHSS stroke severity category.",
+        "vi": "Chọn phân nhóm mức độ nặng đột quỵ theo NIHSS."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e49",
+          "tone": "positive",
+          "label": {
+            "en": "NIHSS ≥10",
+            "vi": "NIHSS ≥10"
+          },
+          "targetNodeId": "n222"
+        },
+        {
+          "id": "e50",
+          "tone": "warning",
+          "label": {
+            "en": "NIHSS 6–9",
+            "vi": "NIHSS 6–9"
+          },
+          "targetNodeId": "n223"
+        }
+      ],
+      "title": {
+        "en": "Stroke Severity (≥18 y, Basilar artery, 0–24 h, PC ASPECTS ≥6, mRS 0–1)",
+        "vi": "Mức độ nặng đột quỵ (≥18 tuổi, Động mạch thân nền, 0–24 giờ, PC ASPECTS ≥6, mRS 0–1)"
+      },
+      "blockUid": "841ef2ab-0532-4423-9ec2-f2f3fed3ba28",
+      "blockRev": 2
+    },
+    {
+      "id": "n201",
+      "body": {
+        "en": "Evidence for EVT: IDD (Patients aged ≤28 d, LVO*, 0–24 h).",
+        "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≤28 ngày tuổi, LVO*, 0–24 giờ)."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "IDD",
+        "vi": "IDD"
+      },
+      "blockUid": "f6d7a241-784c-45a4-83ab-f0a7df3e3da0",
+      "blockRev": 2
+    },
+    {
+      "id": "n202",
+      "body": {
+        "en": "Evidence for EVT: EVT (COR 2b) for Patients aged 28 d–5 y, LVO*, 0–24 h, Salvageable Brain Tissue.",
+        "vi": "Bằng chứng cho EVT: EVT (COR 2b) cho Bệnh nhân 28 ngày–5 tuổi, LVO*, 0–24 giờ, Mô não còn khả năng cứu vãn."
+      },
+      "kind": "treatment",
+      "tier": 3,
+      "edges": [],
+      "title": {
+        "en": "EVT",
+        "vi": "EVT"
+      },
+      "evidenceBadge": "COR 2b",
+      "blockUid": "381e44dc-69b7-4998-87f5-ef3e1082c2ba",
+      "blockRev": 2
+    },
+    {
+      "id": "n203",
+      "body": {
+        "en": "Evidence for EVT: IDD (Patients aged 6–17 y, LVO*, >24 h).",
+        "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân 6–17 tuổi, LVO*, >24 giờ)."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "IDD",
+        "vi": "IDD"
+      },
+      "blockUid": "9574e3af-81a5-4e59-a2de-e6d9d9fa3a20",
+      "blockRev": 2
+    },
+    {
+      "id": "n204",
+      "body": {
+        "en": "Evidence for EVT: EVT (COR 2a) for Patients aged 6–17 y, LVO*, 0–6 h, Salvageable Brain Tissue.",
+        "vi": "Bằng chứng cho EVT: EVT (COR 2a) cho Bệnh nhân 6–17 tuổi, LVO*, 0–6 giờ, Mô não còn khả năng cứu vãn."
+      },
+      "kind": "treatment",
+      "tier": 2,
+      "edges": [],
+      "title": {
+        "en": "EVT",
+        "vi": "EVT"
+      },
+      "evidenceBadge": "COR 2a",
+      "blockUid": "981a2f0b-2a76-4b8c-9593-274110929a68",
+      "blockRev": 2
+    },
+    {
+      "id": "n205",
+      "body": {
+        "en": "Evidence for EVT: EVT (COR 2a) for Patients aged 6–17 y, LVO*, 6–24 h, Salvageable Brain Tissue.",
+        "vi": "Bằng chứng cho EVT: EVT (COR 2a) cho Bệnh nhân 6–17 tuổi, LVO*, 6–24 giờ, Mô não còn khả năng cứu vãn."
+      },
+      "kind": "treatment",
+      "tier": 2,
+      "edges": [],
+      "title": {
+        "en": "EVT",
+        "vi": "EVT"
+      },
+      "evidenceBadge": "COR 2a",
+      "blockUid": "6236ec13-aaf5-40a2-a6e9-4fc92cff4886",
+      "blockRev": 2
+    },
+    {
+      "id": "n206",
+      "body": {
+        "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, LVO*, >24 h).",
+        "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, LVO*, >24 giờ)."
+      },
+      "kind": "diagnosis",
+      "edges": [],
+      "title": {
+        "en": "IDD",
+        "vi": "IDD"
+      },
+      "blockUid": "03eba03a-fb7d-4c20-8262-5e0ceaed9798",
+      "blockRev": 2
+    },
+    {
+      "id": "n207",
+      "body": {
+        "en": "Evidence for EVT: EVT (COR 1) for Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 6-10, mRS 0–1.",
+        "vi": "Bằng chứng cho EVT: EVT (COR 1) cho Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 6-10, mRS 0–1."
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "EVT",
+        "vi": "EVT"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "8b9fd106-f68a-40af-80c5-259f91dd205b",
+      "blockRev": 2
+    },
+    {
+      "id": "n208",
+      "body": {
+        "en": "Evidence for EVT: EVT (COR 2a) for Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 6-10, mRS 2.",
+        "vi": "Bằng chứng cho EVT: EVT (COR 2a) cho Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 6-10, mRS 2."
+      },
+      "kind": "treatment",
+      "tier": 2,
+      "edges": [],
+      "title": {
+        "en": "EVT",
+        "vi": "EVT"
+      },
+      "evidenceBadge": "COR 2a",
+      "blockUid": "5de7c3dd-dd73-443c-92bd-83606df86db1",
+      "blockRev": 2
+    },
+    {
+      "id": "n209",
+      "body": {
+        "en": "Evidence for EVT: EVT (COR 2b) for Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 6-10, mRS 3–4.",
+        "vi": "Bằng chứng cho EVT: EVT (COR 2b) cho Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 6-10, mRS 3–4."
+      },
+      "kind": "treatment",
+      "tier": 3,
+      "edges": [],
+      "title": {
+        "en": "EVT",
+        "vi": "EVT"
+      },
+      "evidenceBadge": "COR 2b",
+      "blockUid": "7fefe3be-fdbb-4fac-ba24-f94c40db753c",
+      "blockRev": 2
+    },
+    {
+      "id": "n210",
+      "body": {
+        "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 6-10, mRS >4).",
+        "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 6-10, mRS >4)."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "IDD",
+        "vi": "IDD"
+      },
+      "blockUid": "e4ca3177-7912-4f43-878d-416d8b4cd3d6",
+      "blockRev": 2
+    },
+    {
+      "id": "n211",
+      "body": {
+        "en": "Evidence for EVT: EVT (COR 1) for Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 3–5, mRS 0–1.",
+        "vi": "Bằng chứng cho EVT: EVT (COR 1) cho Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 3–5, mRS 0–1."
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "EVT",
+        "vi": "EVT"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "08467231-3528-41b4-84ad-3b8f08905b3d",
+      "blockRev": 2
+    },
+    {
+      "id": "n212",
+      "body": {
+        "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 3–5, mRS ≥2).",
+        "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 3–5, mRS ≥2)."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "IDD",
+        "vi": "IDD"
+      },
+      "blockUid": "68061d9b-cb0a-4be4-8761-6e92a76923f5",
+      "blockRev": 2
+    },
+    {
+      "id": "n213",
+      "body": {
+        "en": "Evidence for EVT: EVT (COR 2a) for Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 0–2, mRS 0–1.",
+        "vi": "Bằng chứng cho EVT: EVT (COR 2a) cho Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 0–2, mRS 0–1."
+      },
+      "kind": "treatment",
+      "tier": 2,
+      "edges": [],
+      "title": {
+        "en": "EVT",
+        "vi": "EVT"
+      },
+      "evidenceBadge": "COR 2a",
+      "blockUid": "4143186d-61c1-4265-919f-6d8b3dc728fd",
+      "blockRev": 2
+    },
+    {
+      "id": "n214",
+      "body": {
+        "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, LVO*, 0–6 h, ASPECTS 0–2, mRS ≥2).",
+        "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, LVO*, 0–6 giờ, ASPECTS 0–2, mRS ≥2)."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "IDD",
+        "vi": "IDD"
+      },
+      "blockUid": "1d77b2c7-b789-4e20-9f2e-92037507e58a",
+      "blockRev": 2
+    },
+    {
+      "id": "n215",
+      "body": {
+        "en": "Evidence for EVT: EVT (COR 1) for Patients aged ≥18 y†, LVO*, 6–24 h, ASPECTS 6–10, mRS 0–1.",
+        "vi": "Bằng chứng cho EVT: EVT (COR 1) cho Bệnh nhân ≥18 tuổi†, LVO*, 6–24 giờ, ASPECTS 6–10, mRS 0–1."
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "EVT",
+        "vi": "EVT"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "eefede2c-f890-411e-9aed-9997e631489b",
+      "blockRev": 2
+    },
+    {
+      "id": "n216",
+      "body": {
+        "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, LVO*, 6–24 h, ASPECTS 6–10, mRS ≥2).",
+        "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, LVO*, 6–24 giờ, ASPECTS 6–10, mRS ≥2)."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "IDD",
+        "vi": "IDD"
+      },
+      "blockUid": "2660bda4-2525-4711-a099-fcf6655836b3",
+      "blockRev": 2
+    },
+    {
+      "id": "n217",
+      "body": {
+        "en": "Evidence for EVT: EVT (COR 1) for Patients aged ≥18 y†, LVO*, 6–24 h, ASPECTS 3–5, mRS 0–1.",
+        "vi": "Bằng chứng cho EVT: EVT (COR 1) cho Bệnh nhân ≥18 tuổi†, LVO*, 6–24 giờ, ASPECTS 3–5, mRS 0–1."
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "EVT",
+        "vi": "EVT"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "5bdf7fbc-ff6d-42a7-8ca2-03a133010faa",
+      "blockRev": 2
+    },
+    {
+      "id": "n218",
+      "body": {
+        "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, LVO*, 6–24 h, ASPECTS 3–5, mRS ≥2).",
+        "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, LVO*, 6–24 giờ, ASPECTS 3–5, mRS ≥2)."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "IDD",
+        "vi": "IDD"
+      },
+      "blockUid": "9029842d-b066-4332-9cb1-2be0dac5b9c2",
+      "blockRev": 2
+    },
+    {
+      "id": "n219",
+      "body": {
+        "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, MVO (Dominant M2), >6 h).",
+        "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, MVO (M2 ưu thế), >6 giờ)."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "IDD",
+        "vi": "IDD"
+      },
+      "blockUid": "20720903-1a23-401a-b735-5e7e047a09d6",
+      "blockRev": 2
+    },
+    {
+      "id": "n220",
+      "body": {
+        "en": "Evidence for EVT: EVT (COR 2a) for Patients aged ≥18 y†, MVO (Dominant M2), 0–6 h, ASPECTS 6–10, mRS 0–1.",
+        "vi": "Bằng chứng cho EVT: EVT (COR 2a) cho Bệnh nhân ≥18 tuổi†, MVO (M2 ưu thế), 0–6 giờ, ASPECTS 6–10, mRS 0–1."
+      },
+      "kind": "treatment",
+      "tier": 2,
+      "edges": [],
+      "title": {
+        "en": "EVT",
+        "vi": "EVT"
+      },
+      "evidenceBadge": "COR 2a",
+      "blockUid": "e3bf8ce8-8641-49d1-a986-862b09396bd4",
+      "blockRev": 2
+    },
+    {
+      "id": "n221",
+      "body": {
+        "en": "Evidence for EVT: No EVT (COR 3: No Benefit) for Patients aged ≥18 y†, MVO (Non dominant M2) or DVO, 0–24 h.",
+        "vi": "Bằng chứng cho EVT: Không EVT (COR 3: No Benefit) cho Bệnh nhân ≥18 tuổi†, MVO (M2 không ưu thế) hoặc DVO, 0–24 giờ."
+      },
+      "kind": "treatment",
+      "tier": 5,
+      "edges": [],
+      "title": {
+        "en": "No EVT",
+        "vi": "Không EVT"
+      },
+      "evidenceBadge": "COR 3: No Benefit",
+      "blockUid": "981c5da7-a40b-48f0-91d1-6ba20c3bb4f8",
+      "blockRev": 2
+    },
+    {
+      "id": "n222",
+      "body": {
+        "en": "Evidence for EVT: EVT (COR 1) for Patients aged ≥18 y†, Basilar artery, 0–24 h, PC ASPECTS ≥6, mRS 0–1, NIHSS ≥10.",
+        "vi": "Bằng chứng cho EVT: EVT (COR 1) cho Bệnh nhân ≥18 tuổi†, Động mạch thân nền, 0–24 giờ, PC ASPECTS ≥6, mRS 0–1, NIHSS ≥10."
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "EVT",
+        "vi": "EVT"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "119bfe43-e2a8-482c-8ba2-d8fd1fc22985",
+      "blockRev": 2
+    },
+    {
+      "id": "n223",
+      "body": {
+        "en": "Evidence for EVT: EVT (COR 2b) for Patients aged ≥18 y†, Basilar artery, 0–24 h, PC ASPECTS ≥6, mRS 0–1, NIHSS 6–9 (Stroke Severity).",
+        "vi": "Bằng chứng cho EVT: EVT (COR 2b) cho Bệnh nhân ≥18 tuổi†, Động mạch thân nền, 0–24 giờ, PC ASPECTS ≥6, mRS 0–1, NIHSS 6–9 (Mức độ nặng đột quỵ)."
+      },
+      "kind": "treatment",
+      "tier": 3,
+      "edges": [],
+      "title": {
+        "en": "EVT",
+        "vi": "EVT"
+      },
+      "evidenceBadge": "COR 2b",
+      "blockUid": "a064f806-274b-4566-80a6-d7daeee7355a",
+      "blockRev": 2
+    },
+    {
+      "id": "n224",
+      "body": {
+        "en": "Evidence for EVT: IDD (Patients aged ≥18 y†, Basilar artery, 0–24 h, PC ASPECTS ≥6, mRS ≥2).",
+        "vi": "Bằng chứng cho EVT: IDD (Bệnh nhân ≥18 tuổi†, Động mạch thân nền, 0–24 giờ, PC ASPECTS ≥6, mRS ≥2)."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "IDD",
+        "vi": "IDD"
+      },
+      "blockUid": "d28566b8-53a4-4aad-93bd-9e76f509f71d",
+      "blockRev": 2
+    }
+  ],
+  "rev": 2,
+  "changeSeq": 1446,
+  "protocolHash": "5e1b084e863c78be02201092267d98cbc3d76fe60237e5a8888cd326be0383fc",
+  "deletedAt": null
+}

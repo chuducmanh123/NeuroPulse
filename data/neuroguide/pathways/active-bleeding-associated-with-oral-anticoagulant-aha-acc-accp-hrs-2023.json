@@ -1,0 +1,315 @@
+{
+  "uid": "6e095e30-51ab-4ac7-ae95-d929a8dbc951",
+  "slug": "active-bleeding-associated-with-oral-anticoagulant-aha-acc-accp-hrs-2023",
+  "title": {
+    "en": "Active Bleeding Associated With Oral Anticoagulant",
+    "vi": "Xuất huyết đang hoạt động liên quan đến thuốc chống đông đường uống"
+  },
+  "domain": "combined",
+  "source": {
+    "url": "10.1161/CIR.0000000000001193",
+    "year": 2023,
+    "title": "2023 ACC AHA ACCP HRS Guideline for the Diagnosis and Management of Atrial Fibrillation",
+    "figureRef": "e48",
+    "sourceType": "guideline",
+    "organizationOrAuthor": "AHA/ACC/ACCP/HRS"
+  },
+  "status": "published",
+  "summary": {
+    "en": "Management pathway for active bleeding associated with oral anticoagulants (Factor Xa inhibitors, Dabigatran, and Warfarin), categorized by severity into minor bleeding, non-life-threatening bleeding, and life-threatening or uncontrolled major bleeding.",
+    "vi": "Phác đồ xử trí xuất huyết đang hoạt động liên quan đến thuốc chống đông đường uống (chất ức chế yếu tố Xa, Dabigatran và Warfarin), phân loại theo mức độ nghiêm trọng gồm xuất huyết nhẹ, xuất huyết không đe dọa tính mạng và xuất huyết nặng đe dọa tính mạng hoặc không kiểm soát được."
+  },
+  "createdAt": "2026-11-25T03:37:44.076257+00:00",
+  "updatedAt": "2026-11-25T03:38:04.980886+00:00",
+  "reviewedAt": "2026-11-25T03:37:55.408Z",
+  "reviewedBy": "admin",
+  "entryNodeId": "n1",
+  "subspecialty": "Stroke",
+  "extractionMeta": {
+    "model": "gemini-3.5-flash",
+    "extractedAt": "2026-11-25T03:36:29.595Z",
+    "confidenceNotes": []
+  },
+  "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795577760936-Screenshot_2026-11-25_103423.png",
+  "sourceImageMeta": {
+    "fileName": "Screenshot_2026-11-25_103423.png",
+    "mimeType": "image/png"
+  },
+  "sourceImageSha256": "4d36d2417d0bb299857afa63fe99175254b6d85ab6eba66e927f52eb72103bf1",
+  "allowDuplicateImage": false,
+  "nodes": [
+    {
+      "id": "n1",
+      "body": {
+        "en": "Assess severity of bleeding and clinical status.",
+        "vi": "Đánh giá mức độ nghiêm trọng của xuất huyết và tình trạng lâm sàng."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e1",
+          "tone": "default",
+          "label": {
+            "en": "Minor bleeding",
+            "vi": "Xuất huyết nhẹ"
+          },
+          "targetNodeId": "n2"
+        },
+        {
+          "id": "e2",
+          "tone": "danger",
+          "label": {
+            "en": "Life-threatening or uncontrolled major bleeding",
+            "vi": "Xuất huyết nặng đe dọa tính mạng hoặc không kiểm soát được"
+          },
+          "targetNodeId": "n4"
+        },
+        {
+          "id": "e3",
+          "tone": "warning",
+          "label": {
+            "en": "Non-life-threatening bleeding",
+            "vi": "Xuất huyết không đe dọa tính mạng"
+          },
+          "targetNodeId": "n3"
+        }
+      ],
+      "title": {
+        "en": "Active bleeding associated with oral anticoagulant",
+        "vi": "Xuất huyết đang hoạt động liên quan đến thuốc chống đông đường uống"
+      },
+      "blockUid": "1754eb32-08c3-4025-b7cd-c54f7fd0ae67",
+      "blockRev": 2
+    },
+    {
+      "id": "n2",
+      "body": {
+        "en": "• Supportive measures\n• May hold an anticoagulant until hemostasis is achieved",
+        "vi": "• Các biện pháp hỗ trợ\n• Có thể tạm ngưng thuốc chống đông cho đến khi đạt được cầm máu"
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "Minor bleeding management",
+        "vi": "Xử trí xuất huyết nhẹ"
+      },
+      "blockUid": "40b71d16-b5a7-405b-836a-eb1e71c6d707",
+      "blockRev": 2
+    },
+    {
+      "id": "n3",
+      "body": {
+        "en": "• Supportive measures\n• Consider hemodialysis (dabigatran)\n• Hold an anticoagulant",
+        "vi": "• Các biện pháp hỗ trợ\n• Cân nhắc lọc máu nhân tạo (đối với dabigatran)\n• Ngưng thuốc chống đông"
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "Non-life-threatening bleeding management",
+        "vi": "Xử trí xuất huyết không đe dọa tính mạng"
+      },
+      "blockUid": "3d697e9b-bc38-4aea-b9c0-9b3f2e8af7d6",
+      "blockRev": 2
+    },
+    {
+      "id": "n4",
+      "body": {
+        "en": "Identify which oral anticoagulant the patient is currently taking.",
+        "vi": "Xác định loại thuốc chống đông đường uống bệnh nhân đang sử dụng."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e4",
+          "tone": "default",
+          "label": {
+            "en": "Factor Xa inhibitor",
+            "vi": "Chất ức chế yếu tố Xa"
+          },
+          "targetNodeId": "n5"
+        },
+        {
+          "id": "e5",
+          "tone": "default",
+          "label": {
+            "en": "Dabigatran",
+            "vi": "Dabigatran"
+          },
+          "targetNodeId": "n6"
+        },
+        {
+          "id": "e6",
+          "tone": "default",
+          "label": {
+            "en": "Warfarin",
+            "vi": "Warfarin"
+          },
+          "targetNodeId": "n7"
+        }
+      ],
+      "title": {
+        "en": "Life-threatening bleeding or uncontrolled major bleeding",
+        "vi": "Xuất huyết nặng đe dọa tính mạng hoặc không kiểm soát được"
+      },
+      "blockUid": "c81537f1-53d3-41c9-b5ed-7236727ea29f",
+      "blockRev": 2
+    },
+    {
+      "id": "n5",
+      "body": {
+        "en": "Select specific reversal agent or PCC based on drug and availability.",
+        "vi": "Lựa chọn chất đảo ngược đặc hiệu hoặc PCC dựa trên loại thuốc và tính sẵn có."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e7",
+          "tone": "positive",
+          "label": {
+            "en": "Andexanet alfa",
+            "vi": "Andexanet alfa"
+          },
+          "targetNodeId": "n5a"
+        },
+        {
+          "id": "e8",
+          "tone": "positive",
+          "label": {
+            "en": "4-factor PCC",
+            "vi": "PCC 4 yếu tố"
+          },
+          "targetNodeId": "n5b"
+        }
+      ],
+      "title": {
+        "en": "Factor Xa inhibitor reversal options",
+        "vi": "Các lựa chọn đảo ngược tác dụng của chất ức chế yếu tố Xa"
+      },
+      "blockUid": "bfdd1340-0132-4cfa-bfec-82dd2d728b05",
+      "blockRev": 2
+    },
+    {
+      "id": "n5a",
+      "body": {
+        "en": "For apixaban or rivaroxaban (1, B-NR)\nFor edoxaban (1, C-LD)",
+        "vi": "Dành cho apixaban hoặc rivaroxaban (1, B-NR)\nDành cho edoxaban (1, C-LD)"
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "Andexanet alfa",
+        "vi": "Andexanet alfa"
+      },
+      "evidenceBadge": "COR 1, LOE B-NR / C-LD",
+      "blockUid": "23b65ce6-717c-4d51-84fe-5d3447c7c9a3",
+      "blockRev": 2
+    },
+    {
+      "id": "n5b",
+      "body": {
+        "en": "Oral factor Xa inhibitors (1, C-LD)",
+        "vi": "Các chất ức chế yếu tố Xa đường uống (1, C-LD)"
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "4-factor PCC",
+        "vi": "PCC 4 yếu tố"
+      },
+      "evidenceBadge": "COR 1, LOE C-LD",
+      "blockUid": "218b7e5f-b1e2-402b-a40b-ac3f1178f8f7",
+      "blockRev": 2
+    },
+    {
+      "id": "n6",
+      "body": {
+        "en": "Select specific antidote or activated PCC.",
+        "vi": "Lựa chọn chất giải độc đặc hiệu hoặc PCC hoạt hóa."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e9",
+          "tone": "positive",
+          "label": {
+            "en": "Idarucizumab available",
+            "vi": "Có Idarucizumab"
+          },
+          "targetNodeId": "n6a"
+        },
+        {
+          "id": "e10",
+          "tone": "warning",
+          "label": {
+            "en": "Idarucizumab not available",
+            "vi": "Không có Idarucizumab"
+          },
+          "targetNodeId": "n6b"
+        }
+      ],
+      "title": {
+        "en": "Dabigatran reversal options",
+        "vi": "Các lựa chọn đảo ngược tác dụng của Dabigatran"
+      },
+      "blockUid": "b7339396-1280-447a-9134-73fb5b230927",
+      "blockRev": 2
+    },
+    {
+      "id": "n6a",
+      "body": {
+        "en": "Idarucizumab (1, B-NR)",
+        "vi": "Idarucizumab (1, B-NR)"
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "Idarucizumab",
+        "vi": "Idarucizumab"
+      },
+      "evidenceBadge": "COR 1, LOE B-NR",
+      "blockUid": "8b167088-1a97-4281-9ae7-3d5ad69cbf8a",
+      "blockRev": 2
+    },
+    {
+      "id": "n6b",
+      "body": {
+        "en": "Activated PCC if idarucizumab is not available (2a, C-LD)",
+        "vi": "PCC hoạt hóa nếu idarucizumab không có sẵn (2a, C-LD)"
+      },
+      "kind": "treatment",
+      "tier": 2,
+      "edges": [],
+      "title": {
+        "en": "Activated PCC if idarucizumab is not available",
+        "vi": "PCC hoạt hóa nếu idarucizumab không có sẵn"
+      },
+      "evidenceBadge": "COR 2a, LOE C-LD",
+      "blockUid": "e1b2d4c2-3ee4-434d-a1aa-5b0a5d83056e",
+      "blockRev": 2
+    },
+    {
+      "id": "n7",
+      "body": {
+        "en": "4-factor PCC and intravenous vitamin K (1, A)",
+        "vi": "PCC 4 yếu tố và vitamin K đường tĩnh mạch (1, A)"
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "Warfarin reversal",
+        "vi": "Đảo ngược tác dụng của Warfarin"
+      },
+      "evidenceBadge": "COR 1, LOE A",
+      "blockUid": "b88b3417-2444-4066-952f-80d357e50b33",
+      "blockRev": 2
+    }
+  ],
+  "rev": 2,
+  "changeSeq": 1528,
+  "protocolHash": "1511b1eaf0db1d9196fb69b168228009e94b51594c735c83341a8c6b47d56b00",
+  "deletedAt": null
+}

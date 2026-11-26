@@ -1,0 +1,453 @@
+{
+  "uid": "a69f4d40-0139-4936-abb2-387aed95b154",
+  "slug": "dapt-for-minor-noncardioembolic-ais-and-tia-aha-asa-2026",
+  "title": {
+    "en": "DAPT for minor noncardioembolic AIS and TIA",
+    "vi": "DAPT cho đột quỵ thiếu máu cục bộ cấp nhẹ không do từ tim và TIA"
+  },
+  "domain": "treatment",
+  "source": {
+    "url": "10.1161/STR.0000000000000513",
+    "year": 2026,
+    "title": "2026 AHA ASA Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+    "figureRef": "e63",
+    "sourceType": "guideline",
+    "organizationOrAuthor": "AHA/ASA"
+  },
+  "status": "published",
+  "summary": {
+    "en": "AHA/ASA 2026 clinical decision flowchart for dual antiplatelet therapy (DAPT) selection in acute noncardioembolic ischemic stroke (AIS) and transient ischemic attack (TIA), stratified by timing from last known normal (LKN), severity scores (NIHSS, ABCD2), arterial stenosis, and CYP2C19 allele testing.",
+    "vi": "Lưu đồ ra quyết định lâm sàng AHA/ASA 2026 cho lựa chọn liệu pháp kháng tiểu cầu kép (DAPT) trong đột quỵ thiếu máu cục bộ cấp (AIS) không do từ tim và cơn thiếu máu não thoáng qua (TIA), phân tầng theo thời gian từ thời điểm bình thường cuối cùng (LKN), điểm số mức độ nặng (NIHSS, ABCD2), hẹp động mạch và xét nghiệm allele CYP2C19."
+  },
+  "createdAt": "2026-11-24T12:08:32.717495+00:00",
+  "updatedAt": "2026-11-24T12:08:54.767871+00:00",
+  "reviewedAt": "2026-11-24T12:08:43.891Z",
+  "reviewedBy": "admin",
+  "entryNodeId": "n_entry",
+  "subspecialty": "Stroke",
+  "extractionMeta": {
+    "model": "gemini-3.5-flash",
+    "extractedAt": "2026-11-24T12:05:51.487Z",
+    "confidenceNotes": [
+      "All flowchart text, decision branches, trial tags (CHANCE, POINT, THALES, INSPIRES, CHANCE 2), and COR recommendation levels (COR 1, COR 2a, COR 2b) parsed verbatim."
+    ]
+  },
+  "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795521905684-Screenshot_2026-11-24_190252.png",
+  "sourceImageMeta": {
+    "fileName": "Screenshot_2026-11-24_190252.png",
+    "mimeType": "image/png"
+  },
+  "sourceImageSha256": "f34214f603dbd3e3c740ff60740a771686d1c97bb8227931dffdf3f3b3bc941f",
+  "allowDuplicateImage": false,
+  "nodes": [
+    {
+      "id": "n_entry",
+      "body": {
+        "en": "Initial presentation of noncardioembolic acute ischemic stroke or transient ischemic attack.",
+        "vi": "Bệnh cảnh ban đầu của đột quỵ thiếu máu cục bộ cấp không do từ tim hoặc cơn thiếu máu cục bộ thoáng qua."
+      },
+      "kind": "entry",
+      "edges": [
+        {
+          "id": "e_entry_to_revasc",
+          "tone": "default",
+          "label": {
+            "en": "Evaluate revascularization",
+            "vi": "Đánh giá tái thông mạch"
+          },
+          "targetNodeId": "n_revasc"
+        }
+      ],
+      "title": {
+        "en": "Acute noncardioembolic ischemic stroke or TIA",
+        "vi": "Đột quỵ thiếu máu cục bộ cấp không do từ tim hoặc TIA"
+      },
+      "blockUid": "fc93e6e0-27a0-4f20-b5a8-bf3bcf7333bb",
+      "blockRev": 2
+    },
+    {
+      "id": "n_revasc",
+      "body": {
+        "en": "Determine eligibility for intravenous thrombolysis or mechanical thrombectomy.",
+        "vi": "Xác định khả năng đủ điều kiện tiêu sợi huyết tĩnh mạch hoặc lấy huyết khối bằng dụng cụ cơ học."
+      },
+      "kind": "decision",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e_revasc_yes",
+          "tone": "positive",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n_thrombolysis_mt"
+        },
+        {
+          "id": "e_revasc_no",
+          "tone": "default",
+          "label": {
+            "en": "NO",
+            "vi": "KHÔNG"
+          },
+          "targetNodeId": "n_lkn_24"
+        }
+      ],
+      "title": {
+        "en": "Eligible for revascularization?",
+        "vi": "Có đủ điều kiện tái thông mạch không?"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "b79b8bb0-3713-40d7-b702-6c204eed3c51",
+      "blockRev": 2
+    },
+    {
+      "id": "n_thrombolysis_mt",
+      "body": {
+        "en": "Proceed to acute revascularization pathways (intravenous thrombolysis and/or mechanical thrombectomy).",
+        "vi": "Chuyển sang phác đồ tái thông mạch cấp (tiêu sợi huyết tĩnh mạch và/hoặc lấy huyết khối cơ học)."
+      },
+      "kind": "action",
+      "edges": [],
+      "title": {
+        "en": "Thrombolysis and MT section",
+        "vi": "Phần Tiêu sợi huyết và Lấy huyết khối cơ học"
+      },
+      "blockUid": "9deead01-eb99-473f-8772-516af45d91aa",
+      "blockRev": 2
+    },
+    {
+      "id": "n_lkn_24",
+      "body": {
+        "en": "Is the time from last known normal (LKN) less than 24 hours?",
+        "vi": "Thời gian kể từ thời điểm bình thường cuối cùng (LKN) có dưới 24 giờ không?"
+      },
+      "kind": "decision",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e_lkn_24_yes",
+          "tone": "positive",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n_nihss_3_abcd2_4"
+        },
+        {
+          "id": "e_lkn_24_no",
+          "tone": "warning",
+          "label": {
+            "en": "NO",
+            "vi": "KHÔNG"
+          },
+          "targetNodeId": "n_athero_50"
+        }
+      ],
+      "title": {
+        "en": "LKN <24 hr",
+        "vi": "LKN <24 giờ"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "29e9a89a-666b-4647-984f-b0a7606d16cf",
+      "blockRev": 2
+    },
+    {
+      "id": "n_nihss_3_abcd2_4",
+      "body": {
+        "en": "Assess severity: Minor ischemic stroke (NIHSS ≤3) or high-risk TIA (ABCD2 ≥4).",
+        "vi": "Đánh giá mức độ nặng: Đột quỵ thiếu máu cục bộ nhẹ (NIHSS ≤3) hoặc TIA nguy cơ cao (ABCD2 ≥4)."
+      },
+      "kind": "decision",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e_nihss_3_yes",
+          "tone": "positive",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n_cyp2c19_testing"
+        },
+        {
+          "id": "e_nihss_3_no",
+          "tone": "default",
+          "label": {
+            "en": "NO",
+            "vi": "KHÔNG"
+          },
+          "targetNodeId": "n_nihss_4_5"
+        }
+      ],
+      "title": {
+        "en": "NIHSS ≤3 or ABCD2 ≥4",
+        "vi": "NIHSS ≤3 hoặc ABCD2 ≥4"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "8a94a85e-cb0b-46b3-b5c1-f690f7a5faf2",
+      "blockRev": 2
+    },
+    {
+      "id": "n_cyp2c19_testing",
+      "body": {
+        "en": "Allele testing to determine whether the patient carries a CYP2C19 loss-of-function (LOF) allele (*2, *3).",
+        "vi": "Xét nghiệm allele để xác định bệnh nhân có mang allele mất chức năng CYP2C19 (*2, *3) hay không."
+      },
+      "kind": "decision",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e_cyp2c19_yes",
+          "tone": "warning",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n_dapt_chance2"
+        },
+        {
+          "id": "e_cyp2c19_no",
+          "tone": "positive",
+          "label": {
+            "en": "NO / Not tested",
+            "vi": "KHÔNG / Chưa xét nghiệm"
+          },
+          "targetNodeId": "n_dapt_chance_point"
+        }
+      ],
+      "title": {
+        "en": "CYP2C19 Loss of function allele carrier",
+        "vi": "Người mang allele mất chức năng CYP2C19"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "8c091b2d-7fd7-4eb8-bdb3-257e7acd869e",
+      "blockRev": 2
+    },
+    {
+      "id": "n_dapt_chance_point",
+      "body": {
+        "en": "• Clopidogrel + Aspirin × 21–90 days (COR 1) [CHANCE, POINT]\nOR\n• Ticagrelor + Aspirin × 30 days (COR 2b) [THALES]",
+        "vi": "• Clopidogrel + Aspirin × 21–90 ngày (COR 1) [CHANCE, POINT]\nHOẶC\n• Ticagrelor + Aspirin × 30 ngày (COR 2b) [THALES]"
+      },
+      "kind": "treatment",
+      "tier": 1,
+      "edges": [],
+      "title": {
+        "en": "DAPT Strategy (Non-carrier or Unscreened)",
+        "vi": "Chiến lược DAPT (Không mang allele hoặc Không xét nghiệm)"
+      },
+      "evidenceBadge": "COR 1 / COR 2b",
+      "blockUid": "63bac30f-1e2d-41a2-966a-84d3cffc8c2c",
+      "blockRev": 2
+    },
+    {
+      "id": "n_dapt_chance2",
+      "body": {
+        "en": "• Ticagrelor + Aspirin × 21 days (COR 2b) [CHANCE 2]",
+        "vi": "• Ticagrelor + Aspirin × 21 ngày (COR 2b) [CHANCE 2]"
+      },
+      "kind": "treatment",
+      "tier": 3,
+      "edges": [],
+      "title": {
+        "en": "DAPT Strategy (CYP2C19 LOF Carrier)",
+        "vi": "Chiến lược DAPT (Mang allele mất chức năng CYP2C19)"
+      },
+      "evidenceBadge": "COR 2b",
+      "blockUid": "b27a8c83-116e-403c-901e-a10e8f2fb68f",
+      "blockRev": 2
+    },
+    {
+      "id": "n_nihss_4_5",
+      "body": {
+        "en": "Is the NIHSS score 4 or 5?",
+        "vi": "Điểm NIHSS có từ 4 đến 5 không?"
+      },
+      "kind": "decision",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e_nihss_4_5_yes",
+          "tone": "positive",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n_dapt_nihss_4_5"
+        },
+        {
+          "id": "e_nihss_4_5_no",
+          "tone": "default",
+          "label": {
+            "en": "NO",
+            "vi": "KHÔNG"
+          },
+          "targetNodeId": "n_sapt_1"
+        }
+      ],
+      "title": {
+        "en": "NIHSS 4–5",
+        "vi": "NIHSS 4–5"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "fa829310-ad83-4e60-98ba-6b3d8389f909",
+      "blockRev": 2
+    },
+    {
+      "id": "n_dapt_nihss_4_5",
+      "body": {
+        "en": "• Clopidogrel + Aspirin × 21 days (COR 2a) [INSPIRES (patients with presumed athero)]\nOR\n• Ticagrelor + Aspirin × 30 days (COR 2b) [THALES]",
+        "vi": "• Clopidogrel + Aspirin × 21 ngày (COR 2a) [INSPIRES (bệnh nhân nghi ngờ do xơ vữa)]\nHOẶC\n• Ticagrelor + Aspirin × 30 ngày (COR 2b) [THALES]"
+      },
+      "kind": "treatment",
+      "tier": 2,
+      "edges": [],
+      "title": {
+        "en": "DAPT Strategy (NIHSS 4–5)",
+        "vi": "Chiến lược DAPT (NIHSS 4–5)"
+      },
+      "evidenceBadge": "COR 2a / COR 2b",
+      "blockUid": "14d1fe7a-0548-4e1c-92ac-6f77768da3b9",
+      "blockRev": 2
+    },
+    {
+      "id": "n_athero_50",
+      "body": {
+        "en": "Is there intracranial or extracranial atherosclerotic stenosis >50%?",
+        "vi": "Có hẹp do xơ vữa động mạch trong hoặc ngoài sọ >50% không?"
+      },
+      "kind": "decision",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e_athero_yes",
+          "tone": "positive",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n_lkn_24_72"
+        },
+        {
+          "id": "e_athero_no",
+          "tone": "default",
+          "label": {
+            "en": "NO",
+            "vi": "KHÔNG"
+          },
+          "targetNodeId": "n_sapt_2"
+        }
+      ],
+      "title": {
+        "en": "Athero (>50%)",
+        "vi": "Xơ vữa động mạch (>50%)"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "82dab79e-37ae-4c67-85eb-39f256d8c2f8",
+      "blockRev": 2
+    },
+    {
+      "id": "n_lkn_24_72",
+      "body": {
+        "en": "Is last known normal between 24–72 hours with NIHSS ≤5 or ABCD2 ≥4?",
+        "vi": "Thời gian LKN từ 24–72 giờ đi kèm NIHSS ≤5 hoặc ABCD2 ≥4?"
+      },
+      "kind": "decision",
+      "tier": 1,
+      "edges": [
+        {
+          "id": "e_lkn_24_72_yes",
+          "tone": "positive",
+          "label": {
+            "en": "YES",
+            "vi": "CÓ"
+          },
+          "targetNodeId": "n_dapt_inspires"
+        },
+        {
+          "id": "e_lkn_24_72_no",
+          "tone": "default",
+          "label": {
+            "en": "NO",
+            "vi": "KHÔNG"
+          },
+          "targetNodeId": "n_sapt_3"
+        }
+      ],
+      "title": {
+        "en": "LKN 24–72 hr + NIHSS ≤5 or ABCD2 ≥4",
+        "vi": "LKN 24–72 giờ + NIHSS ≤5 hoặc ABCD2 ≥4"
+      },
+      "evidenceBadge": "COR 1",
+      "blockUid": "13186d4e-eef5-444f-a6fb-40a66d983bfa",
+      "blockRev": 2
+    },
+    {
+      "id": "n_dapt_inspires",
+      "body": {
+        "en": "• Clopidogrel + Aspirin × 21 days (COR 2a) [INSPIRES]",
+        "vi": "• Clopidogrel + Aspirin × 21 ngày (COR 2a) [INSPIRES]"
+      },
+      "kind": "treatment",
+      "tier": 2,
+      "edges": [],
+      "title": {
+        "en": "DAPT Strategy (LKN 24–72 hr with Athero)",
+        "vi": "Chiến lược DAPT (LKN 24–72 giờ kèm xơ vữa)"
+      },
+      "evidenceBadge": "COR 2a",
+      "blockUid": "7af66078-cce5-41b0-998a-0c7e1edc10a5",
+      "blockRev": 2
+    },
+    {
+      "id": "n_sapt_1",
+      "body": {
+        "en": "Single antiplatelet therapy (SAPT) indicated.",
+        "vi": "Chỉ định liệu pháp kháng tiểu cầu đơn (SAPT)."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "SAPT",
+        "vi": "SAPT (Liệu pháp kháng tiểu cầu đơn)"
+      },
+      "blockUid": "ba37f218-177e-49b4-9703-6f8bea47cba5",
+      "blockRev": 2
+    },
+    {
+      "id": "n_sapt_2",
+      "body": {
+        "en": "Single antiplatelet therapy (SAPT) indicated.",
+        "vi": "Chỉ định liệu pháp kháng tiểu cầu đơn (SAPT)."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "SAPT",
+        "vi": "SAPT (Liệu pháp kháng tiểu cầu đơn)"
+      },
+      "blockUid": "6b32f9c8-29db-4fae-ae60-6779e0897397",
+      "blockRev": 2
+    },
+    {
+      "id": "n_sapt_3",
+      "body": {
+        "en": "Single antiplatelet therapy (SAPT) indicated.",
+        "vi": "Chỉ định liệu pháp kháng tiểu cầu đơn (SAPT)."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "SAPT",
+        "vi": "SAPT (Liệu pháp kháng tiểu cầu đơn)"
+      },
+      "blockUid": "a9e8154d-0ab0-41bb-9652-2c05bae31ac0",
+      "blockRev": 2
+    }
+  ],
+  "rev": 2,
+  "changeSeq": 1342,
+  "protocolHash": "9a3bca46d3757e2124a0912285376cdc7614ecdb08f67db7b06137e7cd3df51c",
+  "deletedAt": null
+}

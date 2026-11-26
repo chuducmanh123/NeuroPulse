@@ -1146,7 +1146,7 @@ export default function NeuroGuidePage() {
 
   return (
     <ViewTransition name="app-neuroguide" share="app-morph" default="none">
-      <main className="min-h-screen bg-[var(--bg-paper)] text-[var(--text-ink)] transition-colors duration-200 pb-10 overflow-x-hidden">
+      <main className="min-h-screen bg-[var(--bg-paper)] text-[var(--text-ink)] transition-colors duration-200 pb-10 overflow-x-clip">
       {/* Unified Sticky App Header */}
       <header className="sticky top-0 z-30 border-b border-[var(--border-hairline)] bg-[var(--bg-paper)]/95 px-4 py-3.5 backdrop-blur-md sm:px-8">
         <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-3">

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { filterValidNeuroPulseArticles } from "@/utils/articleFilter";
@@ -15,6 +16,7 @@ import {
   Eye,
   FileText,
   FlaskConical,
+  GitBranch,
   Microscope,
   Moon,
   Newspaper,
@@ -35,6 +37,7 @@ import { AppSwitcher } from "@/components/ecosystem/AppSwitcher";
 import { AdminTab } from "@/components/neurocase/tabs/AdminTab";
 import { AdminPreviewModal } from "@/components/neurocase/modals/AdminPreviewModal";
 import { ClinicalCase, CaseDifficulty } from "@/types/clinicalCase";
+import type { ClinicalPathwayDoc } from "@/types/clinicalPathways";
 import { GuidelineDoc, SubspecialtyType, PivotalTrialRecord } from "@/types/neuroguide";
 import { MOCK_GUIDELINE_DOCS } from "@/data/neuroguideMockData";
 import { PIVOTAL_TRIALS_SEED } from "@/data/pivotalTrialsSeed";
@@ -45,11 +48,22 @@ import { NotebookLMUploadModal } from "@/components/neuroguide/NotebookLMUploadM
 import { EditGuidelineModal } from "@/components/neuroguide/EditGuidelineModal";
 import { PivotalTrialsAdminTab } from "@/components/neuroguide/PivotalTrialsAdminTab";
 import { PivotalTrialModal } from "@/components/neuroguide/PivotalTrialModal";
+import { ClinicalPathwaysAdminTab } from "@/components/neuroguide/pathways/ClinicalPathwaysAdminTab";
 import {
   getStoredAdminToken,
   storeAdminToken,
   clearStoredAdminToken,
+  getAdminHeaders,
 } from "@/utils/clientAuth";
+
+const PathwayAdminModal = dynamic(
+  () => import("@/components/neuroguide/pathways/PathwayAdminModal").then((m) => m.PathwayAdminModal),
+  { ssr: false }
+);
+const PathwayStepRunner = dynamic(
+  () => import("@/components/neuroguide/pathways/PathwayStepRunner").then((m) => m.PathwayStepRunner),
+  { ssr: false }
+);
 import { useNeuroRxDrugs } from "@/hooks/useNeuroRxDrugs";
 import { NeuroRxAdminSection } from "@/components/neurorx/admin/NeuroRxAdminSection";
 
@@ -158,7 +172,16 @@ export default function AdminCommandCenter() {
   const neuroRxDrugCount = neuroRxSync.drugs.length;
 
   // Guideline Review & Radar Combined State
-  const [guidelineSubTab, setGuidelineSubTab] = useState<"queue" | "repository" | "trials">("queue");
+  const [guidelineSubTab, setGuidelineSubTab] = useState<"queue" | "repository" | "trials" | "pathways">("queue");
+  const [adminPathways, setAdminPathways] = useState<ClinicalPathwayDoc[]>([]);
+  const [isLoadingPathways, setIsLoadingPathways] = useState(false);
+  const [pathwayBusyUid, setPathwayBusyUid] = useState<string | null>(null);
+  const [pathwayModal, setPathwayModal] = useState<{
+    open: boolean;
+    mode: "create" | "edit";
+    pathway: ClinicalPathwayDoc | null;
+  }>({ open: false, mode: "create", pathway: null });
+  const [previewPathway, setPreviewPathway] = useState<ClinicalPathwayDoc | null>(null);
   const [repoSearchQuery, setRepoSearchQuery] = useState("");
   const [repoSocietyFilter, setRepoSocietyFilter] = useState("ALL");
   const [reviewQueueCount, setReviewQueueCount] = useState<number>(0);
@@ -270,12 +293,76 @@ export default function AdminCommandCenter() {
     }
   };
 
+  const fetchAdminPathways = async () => {
+    setIsLoadingPathways(true);
+    try {
+      const res = await fetch(
+        "/api/neuroguide/pathways?includeDrafts=1&includeArchived=1&includeDeleted=1",
+        {
+          headers: getAdminHeaders(),
+          cache: "no-store",
+        }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        if (data?.ok && Array.isArray(data.pathways)) {
+          setAdminPathways(data.pathways);
+        }
+      }
+    } catch (e) {
+      console.warn("Could not fetch clinical pathways in admin:", e);
+    } finally {
+      setIsLoadingPathways(false);
+    }
+  };
+
+  const handleDeleteAdminPathway = async (p: ClinicalPathwayDoc) => {
+    if (!window.confirm(`Soft-delete pathway "${p.title.en}"?`)) return;
+    setPathwayBusyUid(p.uid);
+    try {
+      const res = await fetch(
+        `/api/neuroguide/pathways/${p.uid}?baseRev=${p.rev}`,
+        { method: "DELETE", headers: getAdminHeaders() }
+      );
+      const body = await res.json();
+      if (res.ok && body?.ok) {
+        setRadarMessage(`Moved "${p.title.en}" to Deleted (30-day retention).`);
+        await fetchAdminPathways();
+      } else {
+        alert(body?.error || "Failed to delete pathway.");
+      }
+    } finally {
+      setPathwayBusyUid(null);
+    }
+  };
+
+  const handleRestoreAdminPathway = async (p: ClinicalPathwayDoc) => {
+    setPathwayBusyUid(p.uid);
+    try {
+      const res = await fetch(`/api/neuroguide/pathways/${p.uid}/restore`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAdminHeaders() },
+        body: JSON.stringify({ baseRev: p.rev }),
+      });
+      const body = await res.json();
+      if (res.ok && body?.ok) {
+        setRadarMessage(`Restored "${p.title.en}" as Draft.`);
+        await fetchAdminPathways();
+      } else {
+        alert(body?.error || "Failed to restore pathway.");
+      }
+    } finally {
+      setPathwayBusyUid(null);
+    }
+  };
+
   useEffect(() => {
     if (isAdminVerified) {
       refreshCasesFromServer();
       fetchReviewQueueCount();
       fetchHealthDiagnostics();
       fetchGuidelinesList();
+      fetchAdminPathways();
     }
   }, [isAdminVerified]);
 
@@ -1443,7 +1530,7 @@ export default function AdminCommandCenter() {
 
             {/* SUB-TABS & ACTION TOOLBAR */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 <button
                   type="button"
                   onClick={() => setGuidelineSubTab("queue")}
@@ -1519,6 +1606,32 @@ export default function AdminCommandCenter() {
                     }`}
                   >
                     {pivotalTrials.length}
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setGuidelineSubTab("pathways")}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 cursor-pointer ${
+                    guidelineSubTab === "pathways"
+                      ? "bg-[#C25934] text-white shadow-xs ring-1 ring-orange-400/40"
+                      : darkMode
+                      ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                      : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                  }`}
+                >
+                  <GitBranch className="w-3.5 h-3.5" />
+                  <span>Clinical Pathways</span>
+                  <span
+                    className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
+                      guidelineSubTab === "pathways"
+                        ? "bg-black/20 text-current"
+                        : darkMode
+                        ? "bg-slate-700 text-slate-300"
+                        : "bg-white text-slate-600"
+                    }`}
+                  >
+                    {adminPathways.filter((p) => !p.deletedAt).length}
                   </span>
                 </button>
               </div>
@@ -1754,6 +1867,26 @@ export default function AdminCommandCenter() {
                   setShowTrialModal(true);
                 }}
                 onDeleteTrial={handleDeleteTrial}
+              />
+            )}
+
+            {/* SUB-TAB 4: CLINICAL PATHWAYS */}
+            {guidelineSubTab === "pathways" && (
+              <ClinicalPathwaysAdminTab
+                darkMode={darkMode}
+                pathways={adminPathways}
+                isLoading={isLoadingPathways}
+                busyUid={pathwayBusyUid}
+                onRefresh={fetchAdminPathways}
+                onCreateNew={() =>
+                  setPathwayModal({ open: true, mode: "create", pathway: null })
+                }
+                onEdit={(p) =>
+                  setPathwayModal({ open: true, mode: "edit", pathway: p })
+                }
+                onPreview={(p) => setPreviewPathway(p)}
+                onDelete={handleDeleteAdminPathway}
+                onRestore={handleRestoreAdminPathway}
               />
             )}
           </div>
@@ -2110,6 +2243,59 @@ export default function AdminCommandCenter() {
               fetchPivotalTrials();
             }}
           />
+        )}
+
+        {pathwayModal.open && (
+          <PathwayAdminModal
+            isOpen={pathwayModal.open}
+            mode={pathwayModal.mode}
+            initialPathway={pathwayModal.pathway}
+            darkMode={darkMode}
+            onClose={() =>
+              setPathwayModal((prev) => ({ ...prev, open: false }))
+            }
+            onSaved={(saved) => {
+              setRadarMessage(
+                saved.status === "published"
+                  ? `Published clinical pathway "${saved.title.en}".`
+                  : `Saved clinical pathway draft "${saved.title.en}" (rev ${saved.rev}).`
+              );
+              fetchAdminPathways();
+            }}
+          />
+        )}
+
+        {previewPathway && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-xs"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setPreviewPathway(null);
+            }}
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="w-full max-w-3xl max-h-[90vh] flex flex-col rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] shadow-2xl overflow-hidden">
+              <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border-hairline)] bg-[var(--bg-surface)]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                  Pathway Live Preview
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setPreviewPathway(null)}
+                  className="p-1 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-ink)] cursor-pointer"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+              <div className="p-4 sm:p-5 overflow-y-auto">
+                <PathwayStepRunner
+                  pathway={previewPathway}
+                  darkMode={darkMode}
+                  isPreviewMode={true}
+                />
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>

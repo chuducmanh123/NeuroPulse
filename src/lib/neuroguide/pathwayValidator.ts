@@ -178,11 +178,14 @@ export function validateClinicalPathway(
       });
     }
 
-    if (node.kind === "action" && edges.length === 0) {
+    if (
+      (node.kind === "action" || node.kind === "section" || node.kind === "criteria") &&
+      edges.length === 0
+    ) {
       warnings.push({
         code: "NON_TERMINAL_LEAF",
         severity: "warning",
-        message: `${stepLabel} is marked as Action but has no next steps — consider changing its type to Diagnosis or Treatment.`,
+        message: `${stepLabel} is marked as ${node.kind} but has no next steps — consider changing its type to Diagnosis or Treatment.`,
         nodeId,
       });
     }
@@ -211,7 +214,7 @@ export function validateClinicalPathway(
           edgeId: edge.id,
         });
       }
-      if (!edge.label?.vi?.trim()) {
+      if (edges.length >= 2 && !edge.label?.vi?.trim()) {
         warnings.push({
           code: "MISSING_VI_TRANSLATION",
           severity: "warning",

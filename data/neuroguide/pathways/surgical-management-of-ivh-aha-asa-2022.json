@@ -1,0 +1,211 @@
+{
+  "uid": "7e7a345b-b789-4c2b-b3f6-c66e0e4e57dc",
+  "slug": "surgical-management-of-ivh-aha-asa-2022",
+  "title": {
+    "en": "Surgical management of IVH",
+    "vi": "Quản lý phẫu thuật xuất huyết não thất (IVH)"
+  },
+  "domain": "combined",
+  "source": {
+    "url": "10.1161/STR.0000000000000407",
+    "year": 2022,
+    "title": "2022 AHA ASA Guideline for the Management of PatientsWith Spontaneous Intracerebral Hemorrhage",
+    "figureRef": "e321",
+    "sourceType": "guideline",
+    "organizationOrAuthor": "AHA/ASA"
+  },
+  "status": "published",
+  "summary": {
+    "en": "Algorithmic decision pathway for the surgical management of spontaneous intraventricular hemorrhage (IVH) based on AHA/ASA guidelines.",
+    "vi": "Sơ đồ thuật toán quyết định xử trí phẫu thuật xuất huyết não thất tự phát (IVH) dựa trên hướng dẫn của AHA/ASA."
+  },
+  "createdAt": "2026-11-25T04:04:05.925148+00:00",
+  "updatedAt": "2026-11-25T08:24:28.423984+00:00",
+  "reviewedAt": "2026-11-25T04:04:18.402Z",
+  "reviewedBy": "admin",
+  "entryNodeId": "n1",
+  "subspecialty": "Stroke",
+  "extractionMeta": {
+    "model": "gemini-3.5-flash-lite",
+    "extractedAt": "2026-11-25T04:03:49.747Z",
+    "confidenceNotes": [
+      "All text transcribed verbatim from the flowchart diagram and legend notes."
+    ]
+  },
+  "sourceImageUrl": "https://keahcwuhmjubcvanizdg.supabase.co/storage/v1/object/public/pathway-images/pathway-1795579420265-Screenshot_2026-11-25_110246.png",
+  "sourceImageMeta": {
+    "fileName": "Screenshot_2026-11-25_110246.png",
+    "mimeType": "image/png"
+  },
+  "sourceImageSha256": "3b8334d5a690075be3116070408cc20ae1ce33d806301bf4e6356813358e86ce",
+  "allowDuplicateImage": false,
+  "nodes": [
+    {
+      "id": "n1",
+      "body": {
+        "en": "Initial assessment for surgical management of intraventricular hemorrhage.",
+        "vi": "Đánh giá ban đầu để xử trí phẫu thuật xuất huyết não thất."
+      },
+      "kind": "entry",
+      "edges": [
+        {
+          "id": "e1",
+          "tone": "default",
+          "label": {
+            "en": "Spontaneous IVH + Obstructive Hydrocephalus",
+            "vi": "IVH tự phát + Não úng thủy tắc nghẽn"
+          },
+          "targetNodeId": "n2"
+        },
+        {
+          "id": "e2",
+          "tone": "default",
+          "label": {
+            "en": "Spontaneous ICH <30mL, GCS >3, IVH requiring EVD",
+            "vi": "ICH tự phát <30mL, GCS >3, IVH cần đặt dẫn lưu não thất ngoài (EVD)"
+          },
+          "targetNodeId": "n3"
+        },
+        {
+          "id": "e3",
+          "tone": "default",
+          "label": {
+            "en": "Spontaneous ICH <30mL, IVH requiring EVD",
+            "vi": "ICH tự phát <30mL, IVH cần đặt dẫn lưu não thất ngoài (EVD)"
+          },
+          "targetNodeId": "n4"
+        }
+      ],
+      "title": {
+        "en": "IVH Surgical Management",
+        "vi": "Quản lý phẫu thuật IVH"
+      },
+      "blockUid": "267b8fb8-59cf-4570-9452-4e9f50b5c6fe",
+      "blockRev": 2
+    },
+    {
+      "id": "n2",
+      "body": {
+        "en": "Spontaneous intraventricular hemorrhage presenting with obstructive hydrocephalus.",
+        "vi": "Xuất huyết não thất tự phát kèm theo não úng thủy tắc nghẽn."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e4",
+          "tone": "default",
+          "label": {
+            "en": "EVD",
+            "vi": "Dẫn lưu não thất ngoài (EVD)"
+          },
+          "targetNodeId": "n5"
+        }
+      ],
+      "title": {
+        "en": "Spontaneous IVH + Obstructive Hydrocephalus",
+        "vi": "IVH tự phát + Não úng thủy tắc nghẽn"
+      },
+      "blockUid": "288b7164-453d-42ef-8abc-bdda90ba9c95",
+      "blockRev": 2
+    },
+    {
+      "id": "n3",
+      "body": {
+        "en": "Spontaneous intracerebral hemorrhage <30mL with GCS >3 and IVH requiring EVD.",
+        "vi": "Xuất huyết trong não tự phát <30mL với GCS >3 và IVH cần đặt EVD."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e5",
+          "tone": "default",
+          "label": {
+            "en": "EVD + Thrombolytic",
+            "vi": "EVD + Thuốc tiêu sợi huyết"
+          },
+          "targetNodeId": "n6"
+        }
+      ],
+      "title": {
+        "en": "Spontaneous ICH <30mL, GCS >3, IVH requiring EVD",
+        "vi": "ICH tự phát <30mL, GCS >3, IVH cần đặt EVD"
+      },
+      "blockUid": "6f7b6300-0d5d-458c-9002-4f48933a65ef",
+      "blockRev": 2
+    },
+    {
+      "id": "n4",
+      "body": {
+        "en": "Spontaneous intracerebral hemorrhage <30mL with IVH requiring EVD.",
+        "vi": "Xuất huyết trong não tự phát <30mL với IVH cần đặt EVD."
+      },
+      "kind": "decision",
+      "edges": [
+        {
+          "id": "e6",
+          "tone": "default",
+          "label": {
+            "en": "Neuroendoscopy + EVD +/- Thrombolytic",
+            "vi": "Nội soi thần kinh + EVD +/- Thuốc tiêu sợi huyết"
+          },
+          "targetNodeId": "n7"
+        }
+      ],
+      "title": {
+        "en": "Spontaneous ICH <30mL, IVH requiring EVD",
+        "vi": "ICH tự phát <30mL, IVH cần đặt EVD"
+      },
+      "blockUid": "09cad5ea-a73c-4873-b69f-88e14f551a54",
+      "blockRev": 2
+    },
+    {
+      "id": "n5",
+      "body": {
+        "en": "External Ventricular Drain placement.\n- Mortality Reduction (Class 1)\n- Functional Outcome Benefit (Class2b*)",
+        "vi": "Đặt dẫn lưu não thất ngoài."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "EVD",
+        "vi": "Dẫn lưu não thất ngoài (EVD)"
+      },
+      "blockUid": "43160ecc-cf0b-463c-ba77-820ac7189dfa",
+      "blockRev": 3
+    },
+    {
+      "id": "n6",
+      "body": {
+        "en": "External ventricular drain combined with thrombolytic therapy.\n- Mortality Reduction (Class 2a)\n- Functional Outcome Benefit (Class 2b†)",
+        "vi": "Dẫn lưu não thất ngoài kết hợp liệu pháp tiêu sợi huyết."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "EVD + Thrombolytic",
+        "vi": "EVD + Thuốc tiêu sợi huyết"
+      },
+      "blockUid": "2746cd0c-8235-4474-b894-623f0f996d25",
+      "blockRev": 3
+    },
+    {
+      "id": "n7",
+      "body": {
+        "en": "Neuroendoscopic intervention with EVD and optional thrombolytic therapy.\n- Functional Outcome Benefit (Class 2b†)\n- Reduced Permanent Shunting (Class 2b†)",
+        "vi": "Can thiệp nội soi thần kinh kết hợp EVD và có thể dùng thuốc tiêu sợi huyết."
+      },
+      "kind": "treatment",
+      "edges": [],
+      "title": {
+        "en": "Neuroendoscopy + EVD +/- Thrombolytic",
+        "vi": "Nội soi thần kinh + EVD +/- Thuốc tiêu sợi huyết"
+      },
+      "blockUid": "b2390144-4c97-425c-8b59-abc521c65839",
+      "blockRev": 3
+    }
+  ],
+  "rev": 3,
+  "changeSeq": 1656,
+  "protocolHash": "d16b887b2028e215ce4cc066c0d7672a8b0ba5754264fd77dab52339d96812a4",
+  "deletedAt": null
+}
