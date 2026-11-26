@@ -1,0 +1,142 @@
+{
+  "id": "mrs",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Modified Rankin Scale",
+    "short_name": "mRS",
+    "aliases": ["Rankin", "functional outcome", "disability"],
+    "subspecialties": ["Stroke", "Neurocritical Care"],
+    "kind": "ordinal_grade",
+    "summary": "7-grade ordinal measure of global disability and functional independence after stroke.",
+    "time_estimate": "< 1 min",
+    "clinical_pearls": [
+      "Evaluate actual performance and assistance required in daily life, not theoretical capacity.",
+      "Pre-stroke mRS is critical when determining acute thrombectomy eligibility."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "mrs_grade",
+      "label": "Functional Disability Grade",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No symptoms at all", "points": 0, "badge": "Grade 0" },
+        { "id": "1", "label": "No significant disability despite symptoms; able to carry out all usual duties and activities", "points": 1, "badge": "Grade 1" },
+        { "id": "2", "label": "Slight disability; unable to carry out all previous activities, but able to look after own affairs without assistance", "points": 2, "badge": "Grade 2" },
+        { "id": "3", "label": "Moderate disability; requiring some help, but able to walk without assistance", "points": 3, "badge": "Grade 3" },
+        { "id": "4", "label": "Moderately severe disability; unable to walk without assistance and unable to attend to own bodily needs without assistance", "points": 4, "badge": "Grade 4" },
+        { "id": "5", "label": "Severe disability; bedridden, incontinent, and requiring constant nursing care and attention", "points": 5, "badge": "Grade 5" },
+        { "id": "6", "label": "Dead", "points": 6, "badge": "Grade 6" }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "single_select",
+    "min_score": 0,
+    "max_score": 6,
+    "unit": "grade",
+    "precision": 0
+  },
+  "interpretation": [
+    {
+      "id": "mrs_excellent",
+      "min": 0,
+      "max": 1,
+      "label": "Excellent Functional Outcome",
+      "severity": "normal",
+      "summary": "mRS 0–1: no symptoms or no significant disability; full return to usual activities.",
+      "refs": [{ "source_id": "vanswieten-1988-mrs", "locator": "Table 1" }]
+    },
+    {
+      "id": "mrs_independent",
+      "min": 2,
+      "max": 2,
+      "label": "Functional Independence (Slight Disability)",
+      "severity": "mild",
+      "summary": "mRS 2: independent in self-care and household affairs, though some pre-stroke activities are restricted.",
+      "refs": [{ "source_id": "vanswieten-1988-mrs", "locator": "Table 1" }]
+    },
+    {
+      "id": "mrs_dependent",
+      "min": 3,
+      "max": 4,
+      "label": "Moderate to Moderately Severe Disability",
+      "severity": "moderate",
+      "summary": "mRS 3–4: requires assistance with instrumental or basic ADLs.",
+      "refs": [{ "source_id": "vanswieten-1988-mrs", "locator": "Table 1" }]
+    },
+    {
+      "id": "mrs_severe",
+      "min": 5,
+      "max": 6,
+      "label": "Severe Disability or Death",
+      "severity": "critical",
+      "summary": "mRS 5–6: bedridden requiring constant nursing care, or death.",
+      "refs": [{ "source_id": "vanswieten-1988-mrs", "locator": "Table 1" }]
+    }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_mrs_2",
+      "target_type": "option",
+      "target_id": "mrs_grade",
+      "option_id": "2",
+      "title": "Distinguishing mRS 1 vs mRS 2",
+      "bedside_steps": [
+        "Ask if the patient had to stop work, hobbies, driving, or social activities they previously performed."
+      ],
+      "pitfalls_and_exceptions": [
+        "If they can still do ALL usual activities despite mild symptoms -> mRS 1.",
+        "If they had to give up any pre-stroke activity (e.g., driving or job) but need zero help from another person -> mRS 2."
+      ],
+      "refs": [{ "source_id": "vanswieten-1988-mrs", "locator": "p. 605" }]
+    },
+    {
+      "id": "guide_mrs_3",
+      "target_type": "option",
+      "target_id": "mrs_grade",
+      "option_id": "3",
+      "title": "Distinguishing mRS 2 vs mRS 3 (Independence Threshold)",
+      "bedside_steps": [
+        "Check whether the patient needs help from another person for shopping, finances, cooking, or housework."
+      ],
+      "pitfalls_and_exceptions": [
+        "Using a cane/walker independently WITHOUT human assistance still allows mRS 3 (or 2 if no ADL help needed).",
+        "Needing help with instrumental ADLs (bills, cooking, transport) places the patient in mRS 3 even if walking independently."
+      ],
+      "refs": [{ "source_id": "vanswieten-1988-mrs", "locator": "p. 605" }]
+    },
+    {
+      "id": "guide_mrs_4",
+      "target_type": "option",
+      "target_id": "mrs_grade",
+      "option_id": "4",
+      "title": "Distinguishing mRS 3 vs mRS 4",
+      "bedside_steps": [
+        "Assess whether the patient can walk without physical help from another person and manage toileting/dressing."
+      ],
+      "pitfalls_and_exceptions": [
+        "If unable to walk without human assistance OR unable to attend to own bodily needs -> mRS 4.",
+        "A patient who requires constant 24-hour nursing supervision and is bedridden/incontinent -> mRS 5."
+      ],
+      "refs": [{ "source_id": "vanswieten-1988-mrs", "locator": "p. 605" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "vanswieten-1988-mrs",
+      "citation": "van Swieten JC, Koudstaal PJ, Visser MC, Schouten HJ, van Gijn J. Interobserver agreement for the assessment of handicap in stroke patients. Stroke. 1988;19(5):604-607.",
+      "year": 1988,
+      "pmid": "3363593"
+    }
+  ],
+  "test_cases": [
+    { "name": "Grade 0", "inputs": { "mrs_grade": "0" }, "expected_score": 0, "expected_band_id": "mrs_excellent" },
+    { "name": "Grade 2", "inputs": { "mrs_grade": "2" }, "expected_score": 2, "expected_band_id": "mrs_independent" },
+    { "name": "Grade 3", "inputs": { "mrs_grade": "3" }, "expected_score": 3, "expected_band_id": "mrs_dependent" },
+    { "name": "Grade 6", "inputs": { "mrs_grade": "6" }, "expected_score": 6, "expected_band_id": "mrs_severe" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

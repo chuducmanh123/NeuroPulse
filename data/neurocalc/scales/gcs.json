@@ -1,0 +1,129 @@
+{
+  "id": "gcs",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Glasgow Coma Scale",
+    "short_name": "GCS",
+    "aliases": ["coma scale", "consciousness"],
+    "subspecialties": ["Neurocritical Care", "Stroke"],
+    "kind": "point_sum",
+    "summary": "Bedside consciousness assessment across Eye, Verbal, and Motor responses (range 3–15).",
+    "time_estimate": "< 1 min",
+    "clinical_pearls": [
+      "Always record the best response observed in each domain; report E/V/M subscores alongside total.",
+      "For intubated patients, document V1T rather than guessing verbal output."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "gcs_eye",
+      "code": "E",
+      "label": "Eye Opening",
+      "required": true,
+      "options": [
+        { "id": "e4", "label": "Spontaneous", "points": 4 },
+        { "id": "e3", "label": "To verbal command / speech", "points": 3 },
+        { "id": "e2", "label": "To pressure / painful stimulus", "points": 2 },
+        { "id": "e1", "label": "None", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "gcs_verbal",
+      "code": "V",
+      "label": "Verbal Response",
+      "required": true,
+      "options": [
+        { "id": "v5", "label": "Oriented", "points": 5 },
+        { "id": "v4", "label": "Confused", "points": 4 },
+        { "id": "v3", "label": "Inappropriate / single words", "points": 3 },
+        { "id": "v2", "label": "Incomprehensible sounds", "points": 2 },
+        { "id": "v1", "label": "None (or intubated — record as 1T)", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "gcs_motor",
+      "code": "M",
+      "label": "Best Motor Response",
+      "required": true,
+      "options": [
+        { "id": "m6", "label": "Obeys commands", "points": 6 },
+        { "id": "m5", "label": "Localizes to pain", "points": 5 },
+        { "id": "m4", "label": "Normal flexion (withdrawal from pain)", "points": 4 },
+        { "id": "m3", "label": "Abnormal flexion (decorticate posturing)", "points": 3 },
+        { "id": "m2", "label": "Extension (decerebrate posturing)", "points": 2 },
+        { "id": "m1", "label": "None", "points": 1 }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "sum",
+    "min_score": 3,
+    "max_score": 15,
+    "unit": "points",
+    "precision": 0
+  },
+  "interpretation": [
+    {
+      "id": "gcs_severe",
+      "min": 3,
+      "max": 8,
+      "label": "Severe Consciousness Impairment (Coma)",
+      "severity": "critical",
+      "summary": "GCS 3–8: coma range; evaluate airway protection and urgent neuroimaging.",
+      "refs": [{ "source_id": "teasdale-1974-gcs", "locator": "p. 82" }]
+    },
+    {
+      "id": "gcs_moderate",
+      "min": 9,
+      "max": 12,
+      "label": "Moderate Consciousness Impairment",
+      "severity": "moderate",
+      "summary": "GCS 9–12: moderate impairment requiring close neurological monitoring.",
+      "refs": [{ "source_id": "teasdale-1974-gcs", "locator": "p. 82" }]
+    },
+    {
+      "id": "gcs_mild",
+      "min": 13,
+      "max": 15,
+      "label": "Mild / Normal Consciousness",
+      "severity": "normal",
+      "summary": "GCS 13–15: mild impairment or normal alertness.",
+      "refs": [{ "source_id": "teasdale-1974-gcs", "locator": "p. 82" }]
+    }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_gcs_motor",
+      "target_type": "item",
+      "target_id": "gcs_motor",
+      "title": "Motor Response — Localizing vs Withdrawal vs Abnormal Flexion",
+      "bedside_steps": [
+        "Apply fingertip pressure to the nailbed first; if no localization, apply central stimulus (supraorbital notch or trapezius squeeze)."
+      ],
+      "pitfalls_and_exceptions": [
+        "Localizing (M5): hand crosses the midline or rises above the clavicle toward the central stimulus.",
+        "Normal flexion (M4): rapid elbow flexion away from stimulus; Abnormal flexion (M3): slow, stereotyped adduction/flexion with wrist flexion."
+      ],
+      "refs": [{ "source_id": "teasdale-1974-gcs", "locator": "p. 82-83" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "teasdale-1974-gcs",
+      "citation": "Teasdale G, Jennett B. Assessment of coma and impaired consciousness. A practical scale. Lancet. 1974;2(7872):81-84.",
+      "year": 1974,
+      "pmid": "4136544"
+    }
+  ],
+  "test_cases": [
+    { "name": "Minimum (3)", "inputs": { "gcs_eye": "e1", "gcs_verbal": "v1", "gcs_motor": "m1" }, "expected_score": 3, "expected_band_id": "gcs_severe" },
+    { "name": "Borderline coma (8)", "inputs": { "gcs_eye": "e2", "gcs_verbal": "v2", "gcs_motor": "m4" }, "expected_score": 8, "expected_band_id": "gcs_severe" },
+    { "name": "Moderate (10)", "inputs": { "gcs_eye": "e3", "gcs_verbal": "v3", "gcs_motor": "m4" }, "expected_score": 10, "expected_band_id": "gcs_moderate" },
+    { "name": "Maximum (15)", "inputs": { "gcs_eye": "e4", "gcs_verbal": "v5", "gcs_motor": "m6" }, "expected_score": 15, "expected_band_id": "gcs_mild" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

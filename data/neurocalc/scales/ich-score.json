@@ -1,0 +1,117 @@
+{
+  "id": "ich-score",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Intracerebral Hemorrhage (ICH) Score",
+    "short_name": "ICH Score",
+    "aliases": ["Hemphill ICH", "ICH mortality"],
+    "subspecialties": ["Stroke", "Neurocritical Care"],
+    "kind": "point_sum",
+    "summary": "6-point baseline risk stratification tool for 30-day mortality in spontaneous intracerebral hemorrhage.",
+    "time_estimate": "< 1 min",
+    "clinical_pearls": [
+      "Do NOT use the ICH Score alone as a basis for early withdrawal of life-sustaining treatment (self-fulfilling prophecy bias)."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "ich_gcs",
+      "label": "GCS Score (at initial presentation)",
+      "required": true,
+      "options": [
+        { "id": "13_15", "label": "GCS 13–15", "points": 0 },
+        { "id": "5_12", "label": "GCS 5–12", "points": 1 },
+        { "id": "3_4", "label": "GCS 3–4", "points": 2 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "ich_vol",
+      "label": "ICH Volume (ABC/2 on initial CT)",
+      "required": true,
+      "options": [
+        { "id": "lt30", "label": "< 30 mL", "points": 0 },
+        { "id": "ge30", "label": ">= 30 mL", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "ich_ivh",
+      "label": "Intraventricular Hemorrhage (IVH)",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No", "points": 0 },
+        { "id": "yes", "label": "Yes", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "ich_infra",
+      "label": "Infratentorial Origin of Hemorrhage",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No (supratentorial)", "points": 0 },
+        { "id": "yes", "label": "Yes (brainstem or cerebellum)", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "ich_age",
+      "label": "Age",
+      "required": true,
+      "options": [
+        { "id": "lt80", "label": "< 80 years", "points": 0 },
+        { "id": "ge80", "label": ">= 80 years", "points": 1 }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "sum",
+    "min_score": 0,
+    "max_score": 6,
+    "unit": "points",
+    "precision": 0
+  },
+  "interpretation": [
+    { "id": "ich_0", "min": 0, "max": 0, "label": "ICH Score 0 (0% 30-day mortality in derivation)", "severity": "normal", "summary": "Lowest baseline risk stratum.", "refs": [{ "source_id": "hemphill-2001-ich", "locator": "Table 2" }] },
+    { "id": "ich_1", "min": 1, "max": 1, "label": "ICH Score 1 (13% 30-day mortality in derivation)", "severity": "mild", "summary": "Low-to-moderate baseline risk.", "refs": [{ "source_id": "hemphill-2001-ich", "locator": "Table 2" }] },
+    { "id": "ich_2", "min": 2, "max": 2, "label": "ICH Score 2 (26% 30-day mortality in derivation)", "severity": "moderate", "summary": "Moderate baseline severity.", "refs": [{ "source_id": "hemphill-2001-ich", "locator": "Table 2" }] },
+    { "id": "ich_3", "min": 3, "max": 3, "label": "ICH Score 3 (72% 30-day mortality in derivation)", "severity": "severe", "summary": "High baseline severity.", "refs": [{ "source_id": "hemphill-2001-ich", "locator": "Table 2" }] },
+    { "id": "ich_4", "min": 4, "max": 4, "label": "ICH Score 4 (97% 30-day mortality in derivation)", "severity": "critical", "summary": "Very high baseline severity; avoid early nihilism.", "refs": [{ "source_id": "hemphill-2001-ich", "locator": "Table 2" }] },
+    { "id": "ich_5_6", "min": 5, "max": 6, "label": "ICH Score 5–6 (100% 30-day mortality in derivation)", "severity": "critical", "summary": "Extreme baseline severity; aggressive initial care still warranted unless prior wishes dictate otherwise.", "refs": [{ "source_id": "hemphill-2001-ich", "locator": "Table 2" }] }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_ich_scale",
+      "target_type": "scale",
+      "target_id": "ich-score",
+      "chip_label": "Prognosis Caveat",
+      "title": "ICH Score Timing & Prognostic Caveat",
+      "bedside_steps": [
+        "Use post-resuscitation GCS upon neurosurgical/ICU evaluation and ABC/2 hematoma volume on the initial CT."
+      ],
+      "pitfalls_and_exceptions": [
+        "Historical 30-day mortality percentages were confounded by early do-not-resuscitate/withdrawal orders.",
+        "AHA/ASA guidelines advise against using baseline severity scores alone to limit care within the first 24–48 hours."
+      ],
+      "refs": [{ "source_id": "hemphill-2001-ich", "locator": "p. 895" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "hemphill-2001-ich",
+      "citation": "Hemphill JC 3rd, Bonovich DC, Besmertis L, Manley GT, Johnston SC. The ICH score: a simple, reliable grading scale for intracerebral hemorrhage. Stroke. 2001;32(4):891-897.",
+      "year": 2001,
+      "pmid": "11283388"
+    }
+  ],
+  "test_cases": [
+    { "name": "Score 0", "inputs": { "ich_gcs": "13_15", "ich_vol": "lt30", "ich_ivh": "no", "ich_infra": "no", "ich_age": "lt80" }, "expected_score": 0, "expected_band_id": "ich_0" },
+    { "name": "Score 2", "inputs": { "ich_gcs": "5_12", "ich_vol": "ge30", "ich_ivh": "no", "ich_infra": "no", "ich_age": "lt80" }, "expected_score": 2, "expected_band_id": "ich_2" },
+    { "name": "Score 4", "inputs": { "ich_gcs": "3_4", "ich_vol": "ge30", "ich_ivh": "yes", "ich_infra": "no", "ich_age": "lt80" }, "expected_score": 4, "expected_band_id": "ich_4" },
+    { "name": "Score 6", "inputs": { "ich_gcs": "3_4", "ich_vol": "ge30", "ich_ivh": "yes", "ich_infra": "yes", "ich_age": "ge80" }, "expected_score": 6, "expected_band_id": "ich_5_6" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

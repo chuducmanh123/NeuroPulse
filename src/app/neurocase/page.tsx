@@ -313,16 +313,36 @@ export default function NeuroCasePage() {
       localStorage.getItem("neurocase_admin_token") ||
       "";
     const headers: Record<string, string> = adminToken ? { "x-admin-token": adminToken } : {};
+    const cachedEtag = hasLocalCache ? localStorage.getItem("neurocase_cached_etag_v2") || "" : "";
+    if (cachedEtag) {
+      headers["If-None-Match"] = cachedEtag;
+    }
 
     fetch("/api/neurocase", { cache: "no-store", headers })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((cloudCases: ClinicalCase[] | null) => {
+      .then(async (r) => {
+        if (r.status === 304) {
+          return { notModified: true as const, data: null as ClinicalCase[] | null, etag: null as string | null };
+        }
+        if (!r.ok) {
+          return { notModified: false as const, data: null as ClinicalCase[] | null, etag: null as string | null };
+        }
+        const data = (await r.json()) as ClinicalCase[];
+        return { notModified: false as const, data, etag: r.headers.get("etag") };
+      })
+      .then(({ notModified, data: cloudCases, etag }) => {
         if (cancelled) return;
+        if (notModified) {
+          setLoading(false);
+          return;
+        }
         if (Array.isArray(cloudCases) && cloudCases.length > 0) {
           hasCloudData = true;
           applyCasesData(cloudCases);
           try {
             localStorage.setItem("neurocase_cached_cases_v2", JSON.stringify(cloudCases));
+            if (etag) {
+              localStorage.setItem("neurocase_cached_etag_v2", etag);
+            }
           } catch {}
         }
         setLoading(false);
@@ -342,20 +362,32 @@ export default function NeuroCasePage() {
     setIsSyncingServer(true);
     setServerSyncSuccess("");
     try {
+      const adminToken =
+        sessionStorage.getItem("neurocase_admin_token") ||
+        localStorage.getItem("neurocase_admin_token") ||
+        "";
+      const headers: Record<string, string> = {
+        "Cache-Control": "no-store, no-cache, must-revalidate",
+        Pragma: "no-cache",
+      };
+      if (adminToken) {
+        headers["x-admin-token"] = adminToken;
+      }
       const res = await fetch(`/api/neurocase?t=${Date.now()}`, {
         cache: "no-store",
-        headers: {
-          "Cache-Control": "no-store, no-cache, must-revalidate",
-          Pragma: "no-cache",
-        },
+        headers,
       });
       if (!res.ok) {
         throw new Error(`HTTP ${res.status}`);
       }
+      const etag = res.headers.get("etag");
       const data: ClinicalCase[] = await res.json();
       if (Array.isArray(data) && data.length > 0) {
         setCases(data);
         localStorage.setItem("neurocase_cached_cases_v2", JSON.stringify(data));
+        if (etag) {
+          localStorage.setItem("neurocase_cached_etag_v2", etag);
+        }
         setServerSyncSuccess(`✓ Synchronized with server (${data.length} cases)`);
         setTimeout(() => setServerSyncSuccess(""), 4000);
       } else {

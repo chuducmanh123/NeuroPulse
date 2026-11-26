@@ -1,17 +1,116 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import { loadMergedNeuroGuideData } from "@/lib/neuroguide/guidelineStorage";
+import {
+  isNeuroGuideSyncV2Enabled,
+  loadMergedNeuroGuideData,
+} from "@/lib/neuroguide/guidelineStorage";
+import { SupabaseNeuroGuideRepo } from "@/lib/neuroguide/sync/repoSupabase";
+import { getOrLoadMerkleCached } from "@/lib/sync/merkleCache";
+import { hasSupabaseAdminConfig, supabaseAdmin } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
+
+interface LightweightProtocolMeta {
+  slug: string;
+  protocol_type: string;
+  status: string;
+  deleted_at: string | null;
+  updated_at: string | null;
+}
 
 /**
  * GET /api/neuroguide/version
  * Ultra-lightweight endpoint (~150 bytes) for SWR freshness verification.
- * Allows client to verify data freshness in milliseconds without downloading 300KB+ payloads.
+ * When Sync v2 is enabled, reads only `neuroguide_sync_state` (~200 B) and
+ * `neuroguide_protocols` metadata (~5 KB, cached by `(maxSeq, rootHash)`)
+ * instead of loading 5+ MB of content blocks.
  */
 export async function GET() {
   try {
+    if (isNeuroGuideSyncV2Enabled() && hasSupabaseAdminConfig()) {
+      try {
+        const repo = new SupabaseNeuroGuideRepo();
+        const state = await repo.getSyncState();
+        const meta = await getOrLoadMerkleCached({
+          namespace: "neuroguide-version-v2",
+          stateKey: `${state.maxSeq}:${state.rootHash}`,
+          tags: ["neuroguide:graph"],
+          ttlSeconds: 3600,
+          loader: async () => {
+            const { data, error } = await supabaseAdmin
+              .from("neuroguide_protocols")
+              .select("slug, protocol_type, status, deleted_at, updated_at");
+            if (error) {
+              throw new Error(error.message);
+            }
+            const rows = Array.isArray(data) ? (data as LightweightProtocolMeta[]) : [];
+            const activeSlugs = new Set<string>();
+            const deletedSlugs = new Set<string>();
+            let totalGuidelines = 0;
+            let totalConferences = 0;
+            let maxUpdatedAt = "";
+
+            for (const r of rows) {
+              const slug = String(r.slug || "").toLowerCase().trim();
+              const pType = String(r.protocol_type || "").toLowerCase().trim();
+              const status = String(r.status || "").toLowerCase().trim();
+              if (r.updated_at && String(r.updated_at) > maxUpdatedAt) {
+                maxUpdatedAt = String(r.updated_at);
+              }
+
+              if (r.deleted_at !== null) {
+                if (pType === "guideline" && slug) {
+                  deletedSlugs.add(slug);
+                }
+                continue;
+              }
+
+              if (pType === "conference") {
+                totalConferences += 1;
+              } else if (
+                pType === "guideline" &&
+                status !== "draft" &&
+                status !== "pending" &&
+                status !== "pending_review"
+              ) {
+                totalGuidelines += 1;
+                if (slug) activeSlugs.add(slug);
+              }
+            }
+
+            const deletedGuidelineIds = Array.from(deletedSlugs).filter(
+              (s) => !activeSlugs.has(s)
+            );
+
+            return {
+              version: maxUpdatedAt || `v2-seq-${state.maxSeq}`,
+              totalGuidelines,
+              totalConferences,
+              deletedGuidelineIds,
+            };
+          },
+        });
+
+        return NextResponse.json(
+          {
+            status: "success",
+            ...meta,
+            maxSeq: state.maxSeq,
+            rootHash: state.rootHash,
+          },
+          {
+            headers: {
+              "Cache-Control": "no-store, no-cache, must-revalidate",
+              Pragma: "no-cache",
+            },
+          }
+        );
+      } catch {
+        // Fall back to legacy merged loader if Sync v2 metadata query fails
+      }
+    }
+
     const CLOUD_JSON = path.join(process.cwd(), "public", "data", "neuroguide_cloud.json");
     let localDeletedIds: string[] = [];
     let cloudLastSynced = "";

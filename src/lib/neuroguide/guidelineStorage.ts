@@ -29,6 +29,7 @@ import {
   isEsoPfoGuideline,
 } from "./esoPicoGrouper.ts";
 import { SupabaseNeuroGuideRepo } from "./sync/repoSupabase.ts";
+import { clearMerkleMemoryCache, getOrLoadMerkleCached } from "../sync/merkleCache.ts";
 import {
   loadNeuroGuideCatalogFromSyncV2,
   mirrorStorePayloadToV2Repo,
@@ -583,11 +584,37 @@ export function mergeRecommendationAtoms(
   return Array.from(map.values());
 }
 
+const NEUROGUIDE_CACHE_TAG = "neuroguide-merged-data";
+
+export async function safeRevalidateNeuroGuideCache(): Promise<void> {
+  clearMerkleMemoryCache("neuroguide-merged-v2");
+  clearMerkleMemoryCache("neuroguide-version-v2");
+  try {
+    const { revalidateTag } = await import("next/cache");
+    revalidateTag(NEUROGUIDE_CACHE_TAG, { expire: 0 });
+  } catch {
+    // Ignore when running outside Next.js runtime (e.g., CLI sync scripts)
+  }
+}
+
+async function runWithNeuroGuideCache<T>(fn: () => Promise<T>): Promise<T> {
+  try {
+    const { unstable_cache } = await import("next/cache");
+    const cachedFn = unstable_cache(fn, ["neuroguide-merged-data-v1"], {
+      tags: [NEUROGUIDE_CACHE_TAG],
+      revalidate: 300,
+    });
+    return await cachedFn();
+  } catch {
+    return await fn();
+  }
+}
+
 /**
  * Loads and merges all NeuroGuide data across storage tiers:
  * Supabase (Single Source of Truth) -> Local Disk Fallback -> Static Mock Baseline
  */
-export async function loadMergedNeuroGuideData(): Promise<{
+async function loadMergedNeuroGuideDataUncached(): Promise<{
   guidelines: GuidelineDoc[];
   conferences: ConferenceEvent[];
   scenarios: ClinicalScenario[];
@@ -905,6 +932,75 @@ export async function loadMergedNeuroGuideData(): Promise<{
   };
 }
 
+export async function loadMergedNeuroGuideData(): Promise<
+  Awaited<ReturnType<typeof loadMergedNeuroGuideDataUncached>>
+> {
+  if (isNeuroGuideSyncV2Enabled() && hasSupabaseAdminConfig()) {
+    try {
+      const state = await new SupabaseNeuroGuideRepo().getSyncState();
+      return await getOrLoadMerkleCached({
+        namespace: "neuroguide-merged-v2",
+        stateKey: `${state.maxSeq}:${state.rootHash}`,
+        tags: [NEUROGUIDE_CACHE_TAG, "neuroguide:graph"],
+        ttlSeconds: 3600,
+        loader: loadMergedNeuroGuideDataUncached,
+      });
+    } catch {
+      // Fall back to standard Next.js cache if Sync v2 state check fails
+    }
+  }
+  return runWithNeuroGuideCache(loadMergedNeuroGuideDataUncached);
+}
+
+async function getSystemMetadataFromSupabase(): Promise<Partial<SupabaseNeuroGuidePayload> | null> {
+  if (!hasSupabaseAdminConfig()) return null;
+  try {
+    const [sysRes, delRes] = await Promise.all([
+      supabaseAdmin
+        .from("neuroguide_docs")
+        .select("data")
+        .eq("id", "system_clinical_scenarios")
+        .maybeSingle(),
+      supabaseAdmin
+        .from("neuroguide_docs")
+        .select("id, status")
+        .in("status", ["deleted", "rejected"]),
+    ]);
+
+    const deletedSet = new Set<string>();
+    const sysData = (sysRes.data as { data?: Record<string, unknown> } | null)?.data;
+    if (Array.isArray(sysData?.deletedGuidelineIds)) {
+      for (const x of sysData.deletedGuidelineIds) {
+        if (x) deletedSet.add(String(x).toLowerCase().trim());
+      }
+    }
+    if (Array.isArray(delRes.data)) {
+      for (const row of delRes.data as Array<{ id?: string }>) {
+        if (row?.id) deletedSet.add(String(row.id).toLowerCase().trim());
+      }
+    }
+
+    return {
+      deletedGuidelineIds: Array.from(deletedSet),
+      deletedTrialIds: Array.isArray(sysData?.deletedTrialIds)
+        ? sysData.deletedTrialIds.map((x) => String(x || "").toLowerCase().trim()).filter(Boolean)
+        : [],
+      pivotalTrials: Array.isArray(sysData?.pivotalTrials)
+        ? (sysData.pivotalTrials as PivotalTrialRecord[])
+        : undefined,
+      customRecLabels:
+        sysData?.customRecLabels && typeof sysData.customRecLabels === "object"
+          ? (sysData.customRecLabels as Record<string, RecommendationLabelOutput>)
+          : undefined,
+      conferences: Array.isArray(sysData?.conferences)
+        ? (sysData.conferences as ConferenceEvent[])
+        : undefined,
+    };
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Persists NeuroGuide data payload to active cloud storage (Supabase with local fallback)
  */
@@ -931,7 +1027,9 @@ export async function saveNeuroGuideToActiveStorage(payload: {
   let existingConferences = payload.conferences;
   if (!effectiveDeletedIds || !effectiveDeletedTrialIds || !existingPivotalTrials || !existingCustomLabels || existingConferences === undefined) {
     try {
-      const existingSupabase = hasSupabaseAdminConfig() ? await getFromSupabase() : null;
+      const existingSupabase = hasSupabaseAdminConfig()
+        ? await getSystemMetadataFromSupabase()
+        : null;
       const existingLocal = await getFromLocalDisk();
       if (!effectiveDeletedIds) {
         effectiveDeletedIds = Array.from(
@@ -1039,9 +1137,11 @@ export async function saveNeuroGuideToActiveStorage(payload: {
       }
     }
     if (sbRes.ok) {
+      await safeRevalidateNeuroGuideCache();
       return { success: true, storage: "supabase" };
     }
     if (localOk) {
+      await safeRevalidateNeuroGuideCache();
       return { success: true, storage: "local-disk", error: sbRes.error };
     }
     return { success: false, storage: "failed", error: sbRes.error || "Supabase write error" };

@@ -1,0 +1,117 @@
+{
+  "id": "serum-osmolality",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Calculated Serum Osmolality",
+    "short_name": "Serum Osmolality",
+    "aliases": ["osmolality", "osmolar gap", "mannitol monitoring"],
+    "subspecialties": ["Neurocritical Care", "Stroke"],
+    "kind": "formula",
+    "summary": "Calculates serum osmolality (2×Na + Glucose/18 + BUN/2.8 [+ Ethanol/4.6]) for osmolal gap and osmotherapy monitoring.",
+    "time_estimate": "< 30 sec",
+    "clinical_pearls": [
+      "An osmolal gap (Measured − Calculated > 10 mOsm/kg) suggests unmeasured osmoles such as mannitol, methanol, ethylene glycol, or propylene glycol."
+    ]
+  },
+  "items": [
+    {
+      "kind": "numeric",
+      "id": "sodium",
+      "label": "Serum Sodium",
+      "required": true,
+      "canonical_unit": "mEq/L",
+      "units": [{ "unit": "mEq/L", "label": "mEq/L (mmol/L)", "to_canonical_factor": 1 }],
+      "min_canonical": 90,
+      "max_canonical": 190,
+      "step": 0.5
+    },
+    {
+      "kind": "numeric",
+      "id": "glucose",
+      "label": "Serum Glucose",
+      "required": true,
+      "canonical_unit": "mg/dL",
+      "units": [
+        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 1 },
+        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 18 }
+      ],
+      "min_canonical": 10,
+      "max_canonical": 2000,
+      "step": 1
+    },
+    {
+      "kind": "numeric",
+      "id": "bun",
+      "label": "Blood Urea Nitrogen (BUN)",
+      "required": true,
+      "canonical_unit": "mg/dL",
+      "units": [
+        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 1 },
+        { "unit": "mmol/L", "label": "Urea mmol/L", "to_canonical_factor": 2.8 }
+      ],
+      "min_canonical": 1,
+      "max_canonical": 250,
+      "step": 0.5
+    },
+    {
+      "kind": "numeric",
+      "id": "ethanol",
+      "label": "Serum Ethanol",
+      "required": false,
+      "canonical_unit": "mg/dL",
+      "units": [
+        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 1 },
+        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 4.6 }
+      ],
+      "min_canonical": 0,
+      "max_canonical": 800,
+      "step": 1
+    }
+  ],
+  "scoring": {
+    "method": "formula",
+    "min_score": 150,
+    "max_score": null,
+    "unit": "mOsm/kg",
+    "precision": 1,
+    "formula_id": "serum_osmolality"
+  },
+  "interpretation": [
+    { "id": "osm_hypo", "min": 150, "max": 274.9, "label": "Hypo-osmolar (< 275 mOsm/kg)", "severity": "moderate", "summary": "Low calculated osmolality; evaluate for hypotonic hyponatremia.", "refs": [{ "source_id": "worthley-1987-osm", "locator": "p. 200" }] },
+    { "id": "osm_norm", "min": 275, "max": 295, "label": "Normal Reference Range (275–295 mOsm/kg)", "severity": "normal", "summary": "Normal calculated serum osmolality.", "refs": [{ "source_id": "worthley-1987-osm", "locator": "p. 200" }] },
+    { "id": "osm_hyper", "min": 295.1, "max": 320, "label": "Hyperosmolar (295.1–320 mOsm/kg)", "severity": "mild", "summary": "Mild-to-moderate hyperosmolality (typical therapeutic window during hypertonic saline / mannitol osmotherapy).", "refs": [{ "source_id": "worthley-1987-osm", "locator": "p. 200" }] },
+    { "id": "osm_crit", "min": 320.1, "max": null, "label": "Marked Hyperosmolality (> 320 mOsm/kg)", "severity": "critical", "summary": "Exceeds traditional 320 mOsm/kg osmotherapy ceiling; assess renal function and osmolal gap.", "refs": [{ "source_id": "worthley-1987-osm", "locator": "p. 200" }] }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_osm_scale",
+      "target_type": "scale",
+      "target_id": "serum-osmolality",
+      "chip_label": "Osmolal Gap",
+      "title": "Osmolal Gap & Mannitol Monitoring",
+      "bedside_steps": [
+        "Compare measured serum osmolality (freezing-point depression) minus calculated osmolality."
+      ],
+      "pitfalls_and_exceptions": [
+        "During mannitol therapy, the osmolal gap (typically target < 20–55 mOsm/kg) reflects circulating mannitol clearance better than serum osmolality alone."
+      ],
+      "refs": [{ "source_id": "worthley-1987-osm", "locator": "p. 201" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "worthley-1987-osm",
+      "citation": "Worthley LI, Guerin M, Pain RW. For calculating osmolality, the simplest formula is the best. Anaesth Intensive Care. 1987;15(2):199-202.",
+      "year": 1987,
+      "pmid": "3605570"
+    }
+  ],
+  "test_cases": [
+    { "name": "Normal 290.0", "inputs": { "sodium": 140, "glucose": 90, "bun": 14 }, "expected_score": 290.0, "expected_band_id": "osm_norm" },
+    { "name": "SI units 290.0", "inputs": { "sodium": 140, "glucose": { "value": 5, "unit": "mmol/L" }, "bun": { "value": 5, "unit": "mmol/L" } }, "expected_score": 290.0, "expected_band_id": "osm_norm" },
+    { "name": "With ethanol 310.0", "inputs": { "sodium": 140, "glucose": 90, "bun": 14, "ethanol": 92 }, "expected_score": 310.0, "expected_band_id": "osm_hyper" },
+    { "name": "Marked hyperosmolar 330.0", "inputs": { "sodium": 155, "glucose": 180, "bun": 28 }, "expected_score": 330.0, "expected_band_id": "osm_crit" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

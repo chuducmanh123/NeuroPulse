@@ -1,0 +1,439 @@
+{
+  "id": "nihss",
+  "schema_version": 1,
+  "metadata": {
+    "name": "National Institutes of Health Stroke Scale",
+    "short_name": "NIHSS",
+    "aliases": ["NIH Stroke Scale", "stroke severity"],
+    "subspecialties": ["Stroke", "Neurocritical Care"],
+    "kind": "point_sum",
+    "summary": "Standardized 15-item bedside neurological examination quantifying acute stroke impairment.",
+    "time_estimate": "~3–5 min",
+    "clinical_pearls": [
+      "Score what the patient actually does, not what you think they can do; never coach unless specified.",
+      "Do not go back and change earlier scores based on subsequent items.",
+      "Untestable (UN) items are excluded from the numeric sum and documented separately."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "nihss_1a",
+      "code": "1a",
+      "label": "Level of Consciousness (LOC)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Alert; keenly responsive", "points": 0 },
+        { "id": "1", "label": "Not alert; arousable by minor stimulation to obey, answer, or respond", "points": 1 },
+        { "id": "2", "label": "Not alert; requires repeated or painful stimulation to make movements", "points": 2 },
+        { "id": "3", "label": "Responds only with reflex motor/autonomic effects, or totally unresponsive/flaccid", "points": 3 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_1b",
+      "code": "1b",
+      "label": "LOC Questions (Month & Age)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Answers both questions correctly", "points": 0 },
+        { "id": "1", "label": "Answers one question correctly (or intubated / dysarthric / language barrier)", "points": 1 },
+        { "id": "2", "label": "Answers neither question correctly (or aphasic / stuporous)", "points": 2 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_1c",
+      "code": "1c",
+      "label": "LOC Commands (Open/Close Eyes & Grip/Release)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Performs both tasks correctly", "points": 0 },
+        { "id": "1", "label": "Performs one task correctly", "points": 1 },
+        { "id": "2", "label": "Performs neither task correctly", "points": 2 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_2",
+      "code": "2",
+      "label": "Best Gaze (Horizontal Eye Movements)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Normal", "points": 0 },
+        { "id": "1", "label": "Partial gaze palsy (abnormal in one/both eyes, or overcome by oculocephalic)", "points": 1 },
+        { "id": "2", "label": "Forced deviation or total gaze paresis not overcome by oculocephalic maneuver", "points": 2 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_3",
+      "code": "3",
+      "label": "Visual Fields",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No visual loss", "points": 0 },
+        { "id": "1", "label": "Partial hemianopia", "points": 1 },
+        { "id": "2", "label": "Complete hemianopia", "points": 2 },
+        { "id": "3", "label": "Bilateral hemianopia (blind including cortical blindness)", "points": 3 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_4",
+      "code": "4",
+      "label": "Facial Palsy",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Normal symmetrical movements", "points": 0 },
+        { "id": "1", "label": "Minor paralysis (flattened nasolabial fold, asymmetry on smiling)", "points": 1 },
+        { "id": "2", "label": "Partial paralysis (total or near-total paralysis of lower face)", "points": 2 },
+        { "id": "3", "label": "Complete paralysis of one or both sides (absence of upper and lower facial movement)", "points": 3 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_5a",
+      "code": "5a",
+      "label": "Motor Arm — Left (10-second hold)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No drift; limb holds 90° (or 45° supine) for full 10 seconds", "points": 0 },
+        { "id": "1", "label": "Drift; holds 90° (or 45°) but drifts down before 10 seconds without hitting bed", "points": 1 },
+        { "id": "2", "label": "Some effort against gravity; cannot reach/maintain 90° (or 45°), drifts down to bed", "points": 2 },
+        { "id": "3", "label": "No effort against gravity; limb falls", "points": 3 },
+        { "id": "4", "label": "No movement", "points": 4 },
+        { "id": "un", "label": "Untestable (amputation or joint fusion at shoulder)", "points": null, "is_untestable": true }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_5b",
+      "code": "5b",
+      "label": "Motor Arm — Right (10-second hold)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No drift; limb holds 90° (or 45° supine) for full 10 seconds", "points": 0 },
+        { "id": "1", "label": "Drift; holds 90° (or 45°) but drifts down before 10 seconds without hitting bed", "points": 1 },
+        { "id": "2", "label": "Some effort against gravity; cannot reach/maintain 90° (or 45°), drifts down to bed", "points": 2 },
+        { "id": "3", "label": "No effort against gravity; limb falls", "points": 3 },
+        { "id": "4", "label": "No movement", "points": 4 },
+        { "id": "un", "label": "Untestable (amputation or joint fusion at shoulder)", "points": null, "is_untestable": true }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_6a",
+      "code": "6a",
+      "label": "Motor Leg — Left (5-second hold at 30° supine)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No drift; leg holds 30° position for full 5 seconds", "points": 0 },
+        { "id": "1", "label": "Drift; leg falls by the end of 5-second period but does not hit bed", "points": 1 },
+        { "id": "2", "label": "Some effort against gravity; leg falls to bed by 5 seconds", "points": 2 },
+        { "id": "3", "label": "No effort against gravity; leg falls to bed immediately", "points": 3 },
+        { "id": "4", "label": "No movement", "points": 4 },
+        { "id": "un", "label": "Untestable (amputation or joint fusion at hip)", "points": null, "is_untestable": true }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_6b",
+      "code": "6b",
+      "label": "Motor Leg — Right (5-second hold at 30° supine)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No drift; leg holds 30° position for full 5 seconds", "points": 0 },
+        { "id": "1", "label": "Drift; leg falls by the end of 5-second period but does not hit bed", "points": 1 },
+        { "id": "2", "label": "Some effort against gravity; leg falls to bed by 5 seconds", "points": 2 },
+        { "id": "3", "label": "No effort against gravity; leg falls to bed immediately", "points": 3 },
+        { "id": "4", "label": "No movement", "points": 4 },
+        { "id": "un", "label": "Untestable (amputation or joint fusion at hip)", "points": null, "is_untestable": true }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_7",
+      "code": "7",
+      "label": "Limb Ataxia",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Absent (or paralyzed / unable to understand)", "points": 0 },
+        { "id": "1", "label": "Present in one limb", "points": 1 },
+        { "id": "2", "label": "Present in two limbs", "points": 2 },
+        { "id": "un", "label": "Untestable (amputation or joint fusion)", "points": null, "is_untestable": true }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_8",
+      "code": "8",
+      "label": "Sensory",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Normal; no sensory loss", "points": 0 },
+        { "id": "1", "label": "Mild-to-moderate sensory loss (less sharp/dull, or aware of being touched)", "points": 1 },
+        { "id": "2", "label": "Severe or total sensory loss (not aware of being touched; or coma/bilateral deficit)", "points": 2 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_9",
+      "code": "9",
+      "label": "Best Language",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No aphasia; normal", "points": 0 },
+        { "id": "1", "label": "Mild-to-moderate aphasia (some loss of fluency/comprehension; communication possible)", "points": 1 },
+        { "id": "2", "label": "Severe aphasia (fragmentary expression; listener carries burden of communication)", "points": 2 },
+        { "id": "3", "label": "Mute, global aphasia; no usable speech or auditory comprehension", "points": 3 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_10",
+      "code": "10",
+      "label": "Dysarthria",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Normal", "points": 0 },
+        { "id": "1", "label": "Mild-to-moderate dysarthria (slurs some words; can be understood with difficulty)", "points": 1 },
+        { "id": "2", "label": "Severe dysarthria (unintelligible slurred speech, or mute/anarthric)", "points": 2 },
+        { "id": "un", "label": "Untestable (intubated or other physical barrier)", "points": null, "is_untestable": true }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nihss_11",
+      "code": "11",
+      "label": "Extinction and Inattention (Neglect)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No abnormality", "points": 0 },
+        { "id": "1", "label": "Visual, tactile, auditory, spatial, or personal inattention (extinction in 1 modality)", "points": 1 },
+        { "id": "2", "label": "Profound hemi-inattention or extinction to more than one modality", "points": 2 }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "sum",
+    "min_score": 0,
+    "max_score": 42,
+    "unit": "points",
+    "precision": 0,
+    "untestable_policy": "exclude_and_flag",
+    "subscores": [
+      { "id": "loc", "label": "LOC (1a–1c)", "item_ids": ["nihss_1a", "nihss_1b", "nihss_1c"] },
+      { "id": "motor", "label": "Motor (5a–6b)", "item_ids": ["nihss_5a", "nihss_5b", "nihss_6a", "nihss_6b"] },
+      { "id": "language_speech", "label": "Language & Speech (9–10)", "item_ids": ["nihss_9", "nihss_10"] }
+    ]
+  },
+  "interpretation": [
+    {
+      "id": "nihss_0",
+      "min": 0,
+      "max": 0,
+      "label": "No Stroke Symptoms",
+      "severity": "normal",
+      "summary": "Score 0: no measurable deficit on standard NIHSS items.",
+      "clinical_note": "Posterior circulation or isolated subtle deficits may still be present.",
+      "refs": [{ "source_id": "brott-1989-nihss", "locator": "Table 1" }]
+    },
+    {
+      "id": "nihss_minor",
+      "min": 1,
+      "max": 4,
+      "label": "Minor Stroke",
+      "severity": "mild",
+      "summary": "Score 1–4: minor neurological deficit.",
+      "clinical_note": "Assess whether deficits are disabling (e.g., aphasia, hemianopia, hand weakness) for reperfusion decisions.",
+      "refs": [{ "source_id": "brott-1989-nihss", "locator": "Table 1" }]
+    },
+    {
+      "id": "nihss_moderate",
+      "min": 5,
+      "max": 15,
+      "label": "Moderate Stroke",
+      "severity": "moderate",
+      "summary": "Score 5–15: moderate acute neurological deficit.",
+      "refs": [{ "source_id": "brott-1989-nihss", "locator": "Table 1" }]
+    },
+    {
+      "id": "nihss_mod_severe",
+      "min": 16,
+      "max": 20,
+      "label": "Moderate-to-Severe Stroke",
+      "severity": "severe",
+      "summary": "Score 16–20: moderate-to-severe stroke; high likelihood of large vessel occlusion.",
+      "refs": [{ "source_id": "brott-1989-nihss", "locator": "Table 1" }]
+    },
+    {
+      "id": "nihss_severe",
+      "min": 21,
+      "max": 42,
+      "label": "Severe Stroke",
+      "severity": "critical",
+      "summary": "Score 21–42: severe stroke with high morbidity and mortality risk.",
+      "refs": [{ "source_id": "brott-1989-nihss", "locator": "Table 1" }]
+    }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_nihss_scale",
+      "target_type": "scale",
+      "target_id": "nihss",
+      "chip_label": "NIHSS Rules",
+      "title": "NIHSS Core Administration Rules & Coma Cascade",
+      "bedside_steps": [
+        "Administer items strictly in order (1a through 11).",
+        "Record the patient's first effort; do not coach or allow repeated attempts except where specified (1b, 1c)."
+      ],
+      "pitfalls_and_exceptions": [
+        "If 1a = 3 (coma): score 1b = 2, 1c = 2, 4 = 3 (if unresponsive), 5a/5b/6a/6b = 4, 7 = 0, 8 = 2, 9 = 3, 10 = 2 (unless intubated -> UN), 11 = 2.",
+        "Only use UN for amputation/joint fusion (items 5, 6, 7) or intubation/physical barrier (item 10)."
+      ],
+      "refs": [{ "source_id": "brott-1989-nihss", "locator": "Appendix / Instructions" }]
+    },
+    {
+      "id": "guide_nihss_1b",
+      "target_type": "item",
+      "target_id": "nihss_1b",
+      "title": "Item 1b: LOC Questions — Intubation & Language Rules",
+      "bedside_steps": [
+        "Ask the patient for the current month and their age.",
+        "Only the initial answer counts; partial credit is not given for being close."
+      ],
+      "pitfalls_and_exceptions": [
+        "Intubated patients, severe dysarthria, or non-aphasic language barriers who cannot speak are scored 1 (not 2).",
+        "Aphasic or stuporous patients who do not comprehend the questions are scored 2."
+      ],
+      "refs": [{ "source_id": "brott-1989-nihss", "locator": "Item 1b" }]
+    },
+    {
+      "id": "guide_nihss_5a",
+      "target_type": "item",
+      "target_id": "nihss_5a",
+      "title": "Item 5a/5b: Motor Arm Technique & UN Criteria",
+      "bedside_steps": [
+        "Extend arm 90° if sitting or 45° if supine, palms down, and release.",
+        "Count aloud from 1 to 10 seconds while watching for downward drift."
+      ],
+      "pitfalls_and_exceptions": [
+        "Score 1 only if the arm drifts before 10 seconds without hitting the bed.",
+        "Score 2 if there is some effort against gravity but the arm hits the bed before 10 seconds.",
+        "Score UN ONLY for amputation or shoulder joint fusion (never for IV lines or weakness)."
+      ],
+      "refs": [{ "source_id": "brott-1989-nihss", "locator": "Item 5" }]
+    },
+    {
+      "id": "guide_nihss_7",
+      "target_type": "item",
+      "target_id": "nihss_7",
+      "title": "Item 7: Limb Ataxia — Weakness Rule",
+      "bedside_steps": [
+        "Test finger-nose-finger and heel-knee-shin bilaterally with eyes open."
+      ],
+      "pitfalls_and_exceptions": [
+        "Score ataxia ONLY if present out of proportion to weakness.",
+        "In a paralyzed limb (score 4) or patient who cannot understand, score 0 (absent), NOT UN."
+      ],
+      "refs": [{ "source_id": "brott-1989-nihss", "locator": "Item 7" }]
+    },
+    {
+      "id": "guide_nihss_9",
+      "target_type": "item",
+      "target_id": "nihss_9",
+      "title": "Item 9: Best Language (Text Prompts)",
+      "bedside_steps": [
+        "Assess comprehension and fluency throughout the exam, then ask the patient to read the standard sentences and name common bedside objects (e.g., watch, pen, chair, key, glove).",
+        "For intubated patients, assess written responses or comprehension."
+      ],
+      "exam_prompts": [
+        "Read aloud: \"You know how.\"",
+        "Read aloud: \"Down to earth.\"",
+        "Read aloud: \"I got home from work.\"",
+        "Read aloud: \"Near the table in the dining room.\"",
+        "Read aloud: \"They heard him speak on the radio last night.\""
+      ],
+      "pitfalls_and_exceptions": [
+        "Score 3 only if mute/global aphasia with no usable speech or auditory comprehension.",
+        "Visual loss should not penalize item 9: place objects in the patient's hand to identify if blind."
+      ],
+      "refs": [{ "source_id": "brott-1989-nihss", "locator": "Item 9" }]
+    },
+    {
+      "id": "guide_nihss_10",
+      "target_type": "item",
+      "target_id": "nihss_10",
+      "title": "Item 10: Dysarthria (Standard Word List)",
+      "bedside_steps": [
+        "Ask the patient to read or repeat the standard word list below without telling them why articulation is being tested."
+      ],
+      "exam_prompts": [
+        "Words: MAMA · TIP-TOP · FIFTY-FIFTY · THANKS · HUCKLEBERRY · BASEBALL PLAYER"
+      ],
+      "pitfalls_and_exceptions": [
+        "Score UN ONLY if intubated or a physical barrier prevents speaking.",
+        "If severe aphasia prevents reading/repeating, assess clarity of any spontaneous speech; if mute, score 2."
+      ],
+      "refs": [{ "source_id": "brott-1989-nihss", "locator": "Item 10" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "brott-1989-nihss",
+      "citation": "Brott T, Adams HP Jr, Olinger CP, et al. Measurements of acute cerebral infarction: a clinical examination scale. Stroke. 1989;20(7):864-870.",
+      "year": 1989,
+      "pmid": "2749846"
+    }
+  ],
+  "test_cases": [
+    {
+      "name": "All normal (score 0)",
+      "inputs": {
+        "nihss_1a": "0", "nihss_1b": "0", "nihss_1c": "0", "nihss_2": "0",
+        "nihss_3": "0", "nihss_4": "0", "nihss_5a": "0", "nihss_5b": "0",
+        "nihss_6a": "0", "nihss_6b": "0", "nihss_7": "0", "nihss_8": "0",
+        "nihss_9": "0", "nihss_10": "0", "nihss_11": "0"
+      },
+      "expected_score": 0,
+      "expected_band_id": "nihss_0"
+    },
+    {
+      "name": "Minor stroke (score 4)",
+      "inputs": {
+        "nihss_1a": "0", "nihss_1b": "0", "nihss_1c": "0", "nihss_2": "0",
+        "nihss_3": "0", "nihss_4": "1", "nihss_5a": "1", "nihss_5b": "0",
+        "nihss_6a": "0", "nihss_6b": "0", "nihss_7": "0", "nihss_8": "1",
+        "nihss_9": "0", "nihss_10": "1", "nihss_11": "0"
+      },
+      "expected_score": 4,
+      "expected_band_id": "nihss_minor"
+    },
+    {
+      "name": "Moderate stroke with UN arm and intubated dysarthria",
+      "inputs": {
+        "nihss_1a": "1", "nihss_1b": "1", "nihss_1c": "0", "nihss_2": "1",
+        "nihss_3": "2", "nihss_4": "2", "nihss_5a": "un", "nihss_5b": "0",
+        "nihss_6a": "2", "nihss_6b": "0", "nihss_7": "0", "nihss_8": "1",
+        "nihss_9": "2", "nihss_10": "un", "nihss_11": "1"
+      },
+      "expected_score": 13,
+      "expected_band_id": "nihss_moderate",
+      "expected_untestable_ids": ["nihss_5a", "nihss_10"]
+    },
+    {
+      "name": "Maximum score (42)",
+      "inputs": {
+        "nihss_1a": "3", "nihss_1b": "2", "nihss_1c": "2", "nihss_2": "2",
+        "nihss_3": "3", "nihss_4": "3", "nihss_5a": "4", "nihss_5b": "4",
+        "nihss_6a": "4", "nihss_6b": "4", "nihss_7": "2", "nihss_8": "2",
+        "nihss_9": "3", "nihss_10": "2", "nihss_11": "2"
+      },
+      "expected_score": 42,
+      "expected_band_id": "nihss_severe"
+    }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

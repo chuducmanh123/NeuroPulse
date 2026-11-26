@@ -1,0 +1,118 @@
+[
+  {
+    "id": "brott-1989-nihss",
+    "citation": "Brott T, Adams HP Jr, Olinger CP, et al. Measurements of acute cerebral infarction: a clinical examination scale. Stroke. 1989;20(7):864-870.",
+    "year": 1989,
+    "pmid": "2749846",
+    "doi": "10.1161/01.str.20.7.864"
+  },
+  {
+    "id": "vanswieten-1988-mrs",
+    "citation": "van Swieten JC, Koudstaal PJ, Visser MC, Schouten HJ, van Gijn J. Interobserver agreement for the assessment of handicap in stroke patients. Stroke. 1988;19(5):604-607.",
+    "year": 1988,
+    "pmid": "3363593",
+    "doi": "10.1161/01.str.19.5.604"
+  },
+  {
+    "id": "teasdale-1974-gcs",
+    "citation": "Teasdale G, Jennett B. Assessment of coma and impaired consciousness. A practical scale. Lancet. 1974;2(7872):81-84.",
+    "year": 1974,
+    "pmid": "4136544",
+    "doi": "10.1016/s0140-6736(74)91639-0"
+  },
+  {
+    "id": "wijdicks-2005-four",
+    "citation": "Wijdicks EF, Bamlet WR, Maramattom BV, Manno EM, McClelland RL. Validation of a new coma scale: The FOUR score. Ann Neurol. 2005;58(4):585-593.",
+    "year": 2005,
+    "pmid": "16178024",
+    "doi": "10.1002/ana.20611"
+  },
+  {
+    "id": "hemphill-2001-ich",
+    "citation": "Hemphill JC 3rd, Bonovich DC, Besmertis L, Manley GT, Johnston SC. The ICH score: a simple, reliable grading scale for intracerebral hemorrhage. Stroke. 2001;32(4):891-897.",
+    "year": 2001,
+    "pmid": "11283388",
+    "doi": "10.1161/01.str.32.4.891"
+  },
+  {
+    "id": "kothari-1996-abc2",
+    "citation": "Kothari RU, Brott T, Broderick JP, et al. The ABCs of measuring intracerebral hemorrhage volumes. Stroke. 1996;27(8):1304-1305.",
+    "year": 1996,
+    "pmid": "8711791",
+    "doi": "10.1161/01.str.27.8.1304"
+  },
+  {
+    "id": "johnston-2007-abcd2",
+    "citation": "Johnston SC, Rothwell PM, Nguyen-Huynh MN, et al. Validation and refinement of scores to predict very early stroke risk after transient ischaemic attack. Lancet. 2007;369(9558):283-292.",
+    "year": 2007,
+    "pmid": "17258668",
+    "doi": "10.1016/S0140-6736(07)60150-0"
+  },
+  {
+    "id": "lip-2010-cha2ds2vasc",
+    "citation": "Lip GY, Nieuwlaat R, Pisters R, Lane DA, Crijns HJ. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-based approach: the Euro Heart Survey on atrial fibrillation. Chest. 2010;137(2):263-272.",
+    "year": 2010,
+    "pmid": "19762550",
+    "doi": "10.1378/chest.09-1584"
+  },
+  {
+    "id": "pisters-2010-hasbled",
+    "citation": "Pisters R, Lane DA, Nieuwlaat R, de Vos CB, Crijns HJ, Lip GY. A novel user-friendly score (HAS-BLED) to assess 1-year risk of major bleeding in patients with atrial fibrillation: the Euro Heart Survey. Chest. 2010;138(5):1093-1100.",
+    "year": 2010,
+    "pmid": "20299623",
+    "doi": "10.1378/chest.10-0134"
+  },
+  {
+    "id": "teasdale-1988-wfns",
+    "citation": "Teasdale GM, Drake CG, Hunt W, et al. A universal subarachnoid hemorrhage scale: report of a committee of the World Federation of Neurosurgical Societies. J Neurol Neurosurg Psychiatry. 1988;51(11):1457.",
+    "year": 1988,
+    "pmid": "3236024",
+    "doi": "10.1136/jnnp.51.11.1457"
+  },
+  {
+    "id": "hunt-hess-1968",
+    "citation": "Hunt WE, Hess RM. Surgical risk as related to time of intervention in the repair of intracranial aneurysms. J Neurosurg. 1968;28(1):14-20.",
+    "year": 1968,
+    "pmid": "5635959",
+    "doi": "10.3171/jns.1968.28.1.0014"
+  },
+  {
+    "id": "mahoney-1965-barthel",
+    "citation": "Mahoney FI, Barthel DW. Functional evaluation: the Barthel Index. Md State Med J. 1965;14:61-65.",
+    "year": 1965,
+    "pmid": "14258950"
+  },
+  {
+    "id": "wolfe-1999-mgadl",
+    "citation": "Wolfe GI, Herbelin L, Nations SP, Foster B, Bryan WW, Barohn RJ. Myasthenia gravis activities of daily living profile. Neurology. 1999;52(7):1487-1489.",
+    "year": 1999,
+    "pmid": "10227640",
+    "doi": "10.1212/wnl.52.7.1487"
+  },
+  {
+    "id": "goetz-2004-hy",
+    "citation": "Goetz CG, Poewe W, Rascol O, et al. Movement Disorder Society Task Force report on the Hoehn and Yahr staging scale: status and recommendations. Mov Disord. 2004;19(9):1020-1028.",
+    "year": 2004,
+    "pmid": "15372591",
+    "doi": "10.1002/mds.20213"
+  },
+  {
+    "id": "katz-1973-na",
+    "citation": "Katz MA. Hyperglycemia-induced hyponatremia—calculation of expected serum sodium depression. N Engl J Med. 1973;289(16):843-844.",
+    "year": 1973,
+    "pmid": "4763428",
+    "doi": "10.1056/NEJM197310182891607"
+  },
+  {
+    "id": "winter-1988-phenytoin",
+    "citation": "Winter ME, Tozer TN. Phenytoin. In: Evans WE, Schentag JJ, Jusko WJ, eds. Applied Pharmacokinetics: Principles of Therapeutic Drug Monitoring. 2nd ed. 1986;493-539.",
+    "year": 1986
+  },
+  {
+    "id": "worthley-1987-osm",
+    "citation": "Worthley LI, Guerin M, Pain RW. For calculating osmolality, the simplest formula is the best. Anaesth Intensive Care. 1987;15(2):199-202.",
+    "year": 1987,
+    "pmid": "3605570",
+    "doi": "10.1177/0310057X8701500214"
+  }
+]

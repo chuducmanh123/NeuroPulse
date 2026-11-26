@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { unstable_cache, revalidateTag } from "next/cache";
 import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
@@ -14,7 +15,16 @@ import {
 } from "@/utils/security";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
+
+const NEUROCASE_CACHE_TAG = "neurocase-cases";
+
+function revalidateNeurocaseCache(): void {
+  try {
+    revalidateTag(NEUROCASE_CACHE_TAG, { expire: 0 });
+  } catch {
+    // Ignore outside Next.js request/cache context
+  }
+}
 
 const CASES_FILE_PATH = path.join(process.cwd(), "public", "data", "cases.json");
 const PENDING_CASES_FILE_PATH = path.join(process.cwd(), "data", "neurocase_pending_cases.json");
@@ -330,6 +340,7 @@ async function saveToActiveStorage(cases: ClinicalCase[]): Promise<{
   if (hasSupabaseAdminConfig()) {
     const sbOk = await setToSupabase(cases);
     if (sbOk) {
+      revalidateNeurocaseCache();
       return { success: true, storage: "supabase" };
     }
   }
@@ -362,6 +373,31 @@ async function saveToActiveStorage(cases: ClinicalCase[]): Promise<{
   }
 }
 
+const fetchCachedSupabaseCases = unstable_cache(
+  async (): Promise<{ cases: ClinicalCase[]; deletedIds: string[] } | null> => {
+    const res = await getFromSupabase();
+    if (!res) return null;
+    return {
+      cases: res.cases,
+      deletedIds: Array.from(res.deletedIds),
+    };
+  },
+  ["neurocase-supabase-cases-v1"],
+  {
+    tags: [NEUROCASE_CACHE_TAG],
+    revalidate: 300,
+  }
+);
+
+async function getCachedFromSupabase(): Promise<{ cases: ClinicalCase[]; deletedIds: Set<string> } | null> {
+  const cached = await fetchCachedSupabaseCases();
+  if (!cached) return null;
+  return {
+    cases: cached.cases,
+    deletedIds: new Set(cached.deletedIds),
+  };
+}
+
 /**
  * GET /api/neurocase
  * Hybrid merge: combines remote Supabase dynamic store with repo bundled cases.json
@@ -391,7 +427,7 @@ export async function GET(req: Request) {
     let backend = "local-file";
 
     if (hasSupabaseAdminConfig()) {
-      const sbResult = await getFromSupabase();
+      const sbResult = await getCachedFromSupabase();
       if (sbResult) {
         if (sbResult.cases.length > 0) {
           dynamicCases = sbResult.cases;
@@ -431,12 +467,41 @@ export async function GET(req: Request) {
       ? merged
       : merged.filter((c) => !c.status || c.status === "approved");
 
-    return NextResponse.json(filtered, {
+    const cacheControl = isAdmin
+      ? "no-store, no-cache, must-revalidate"
+      : "public, s-maxage=60, stale-while-revalidate=300";
+
+    const payloadJson = JSON.stringify(filtered);
+    const hash = crypto.createHash("sha256").update(payloadJson).digest("hex");
+    const etag = `"nc-${isAdmin ? "adm" : "pub"}-${hash.slice(0, 16)}"`;
+
+    const ifNoneMatch = req.headers.get("if-none-match");
+    if (
+      ifNoneMatch &&
+      ifNoneMatch
+        .split(",")
+        .some((part) => {
+          const t = part.trim().replace(/^W\//i, "");
+          return t === "*" || t === etag;
+        })
+    ) {
+      return new NextResponse(null, {
+        status: 304,
+        headers: {
+          ETag: etag,
+          "Cache-Control": cacheControl,
+          "X-Storage-Backend": backend,
+          "X-Total-Cases": String(filtered.length),
+        },
+      });
+    }
+
+    return new NextResponse(payloadJson, {
       status: 200,
       headers: {
-        "Cache-Control": isAdmin
-          ? "no-store, no-cache, must-revalidate"
-          : "public, s-maxage=60, stale-while-revalidate=300",
+        "Content-Type": "application/json",
+        ETag: etag,
+        "Cache-Control": cacheControl,
         "X-Storage-Backend": backend,
         "X-Total-Cases": String(filtered.length),
       },
@@ -546,6 +611,7 @@ export async function POST(req: Request) {
       let saveResult: { success: boolean; storage: string; error?: string; warning?: string };
       if (hasSupabaseAdminConfig()) {
         const ok = await upsertSingleCaseToSupabase(safeCase);
+        if (ok) revalidateNeurocaseCache();
         saveResult = ok
           ? { success: true, storage: "supabase" }
           : { success: false, storage: "supabase", error: "Failed to persist submission." };
@@ -575,23 +641,43 @@ export async function POST(req: Request) {
     // Admin Operation A: Update single case status / daily
     if (body.action === "update_status" && body.caseId && body.newStatus) {
       const currentList = await fetchCurrentCases();
+      const changedCases: ClinicalCase[] = [];
       const updatedList = currentList.map((c) => {
         if (c.id === body.caseId) {
-          return {
+          const nextCase: ClinicalCase = {
             ...c,
             status: body.newStatus,
             is_daily_challenge: body.newStatus === "approved" ? Boolean(body.makeDaily) : false,
             archive_only: body.newStatus === "approved" ? !body.makeDaily : false,
             published_date: body.targetDailyDate || c.published_date,
           };
+          changedCases.push(nextCase);
+          return nextCase;
         }
         if (body.makeDaily && c.is_daily_challenge && c.published_date === body.targetDailyDate) {
-          return { ...c, is_daily_challenge: false, archive_only: true };
+          const nextCase: ClinicalCase = {
+            ...c,
+            is_daily_challenge: false,
+            archive_only: true,
+          };
+          changedCases.push(nextCase);
+          return nextCase;
         }
         return c;
       });
 
-      const saveResult = await saveToActiveStorage(updatedList);
+      let saveResult: { success: boolean; storage: string; error?: string; warning?: string };
+      if (hasSupabaseAdminConfig() && changedCases.length > 0) {
+        const sbOk = await setToSupabase(changedCases);
+        if (sbOk) {
+          revalidateNeurocaseCache();
+          saveResult = { success: true, storage: "supabase" };
+        } else {
+          saveResult = await saveToActiveStorage(updatedList);
+        }
+      } else {
+        saveResult = await saveToActiveStorage(updatedList);
+      }
       return NextResponse.json({
         success: saveResult.success,
         storage: saveResult.storage,
@@ -604,7 +690,13 @@ export async function POST(req: Request) {
     if (body.action === "delete_case" && body.caseId) {
       if (hasSupabaseAdminConfig()) {
         await recordDeletedIdInSupabase(body.caseId);
-        await deleteFromSupabase(body.caseId);
+        const deletedOk = await deleteFromSupabase(body.caseId);
+        revalidateNeurocaseCache();
+        return NextResponse.json({
+          success: deletedOk,
+          storage: "supabase",
+          deletedCaseId: body.caseId,
+        });
       }
       if (KV_URL && KV_TOKEN) {
         await recordDeletedIdInKv(body.caseId);

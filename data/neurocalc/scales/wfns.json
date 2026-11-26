@@ -1,0 +1,69 @@
+{
+  "id": "wfns",
+  "schema_version": 1,
+  "metadata": {
+    "name": "World Federation of Neurosurgical Societies (WFNS) SAH Scale",
+    "short_name": "WFNS",
+    "aliases": ["SAH grade", "subarachnoid hemorrhage"],
+    "subspecialties": ["Neurocritical Care", "Stroke"],
+    "kind": "ordinal_grade",
+    "summary": "5-grade aneurysmal subarachnoid hemorrhage scale combining GCS and presence of motor deficit.",
+    "time_estimate": "< 1 min",
+    "clinical_pearls": [
+      "Reassess WFNS grade after resuscitation or EVD placement for acute hydrocephalus."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "wfns_grade",
+      "label": "WFNS SAH Grade",
+      "required": true,
+      "options": [
+        { "id": "1", "label": "GCS 15, no motor deficit", "points": 1, "badge": "Grade I" },
+        { "id": "2", "label": "GCS 13–14, no motor deficit", "points": 2, "badge": "Grade II" },
+        { "id": "3", "label": "GCS 13–14, with motor deficit", "points": 3, "badge": "Grade III" },
+        { "id": "4", "label": "GCS 7–12, with or without motor deficit", "points": 4, "badge": "Grade IV" },
+        { "id": "5", "label": "GCS 3–6, with or without motor deficit", "points": 5, "badge": "Grade V" }
+      ]
+    }
+  ],
+  "scoring": { "method": "single_select", "min_score": 1, "max_score": 5, "unit": "grade", "precision": 0 },
+  "interpretation": [
+    { "id": "wfns_good", "min": 1, "max": 2, "label": "Good-Grade SAH (WFNS I–II)", "severity": "mild", "summary": "Good baseline neurological grade; favorable prognosis with prompt aneurysm securing.", "refs": [{ "source_id": "teasdale-1988-wfns", "locator": "Table 1" }] },
+    { "id": "wfns_mid", "min": 3, "max": 3, "label": "Intermediate Grade SAH (WFNS III)", "severity": "moderate", "summary": "GCS 13–14 with focal motor deficit.", "refs": [{ "source_id": "teasdale-1988-wfns", "locator": "Table 1" }] },
+    { "id": "wfns_poor", "min": 4, "max": 5, "label": "Poor-Grade SAH (WFNS IV–V)", "severity": "critical", "summary": "Poor baseline grade; evaluate for reversible hydrocephalus/ICP and neurocritical care support.", "refs": [{ "source_id": "teasdale-1988-wfns", "locator": "Table 1" }] }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_wfns_3",
+      "target_type": "option",
+      "target_id": "wfns_grade",
+      "option_id": "3",
+      "title": "WFNS Grade II vs Grade III (Motor Deficit)",
+      "bedside_steps": [
+        "Verify whether the patient has hemiparesis/limb motor deficit (or aphasia in some centers) with GCS 13–14."
+      ],
+      "pitfalls_and_exceptions": [
+        "An isolated cranial nerve palsy (e.g., CN III palsy from PCom aneurysm) without limb motor deficit does NOT upgrade Grade II to Grade III."
+      ],
+      "refs": [{ "source_id": "teasdale-1988-wfns", "locator": "p. 1457" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "teasdale-1988-wfns",
+      "citation": "Teasdale GM, Drake CG, Hunt W, et al. A universal subarachnoid hemorrhage scale: report of a committee of the World Federation of Neurosurgical Societies. J Neurol Neurosurg Psychiatry. 1988;51(11):1457.",
+      "year": 1988,
+      "pmid": "3236024"
+    }
+  ],
+  "test_cases": [
+    { "name": "Grade I", "inputs": { "wfns_grade": "1" }, "expected_score": 1, "expected_band_id": "wfns_good" },
+    { "name": "Grade II", "inputs": { "wfns_grade": "2" }, "expected_score": 2, "expected_band_id": "wfns_good" },
+    { "name": "Grade III", "inputs": { "wfns_grade": "3" }, "expected_score": 3, "expected_band_id": "wfns_mid" },
+    { "name": "Grade V", "inputs": { "wfns_grade": "5" }, "expected_score": 5, "expected_band_id": "wfns_poor" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

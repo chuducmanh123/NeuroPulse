@@ -1,0 +1,70 @@
+{
+  "id": "hunt-and-hess",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Hunt and Hess Scale for Subarachnoid Hemorrhage",
+    "short_name": "Hunt & Hess",
+    "aliases": ["Hunt Hess", "SAH clinical grade"],
+    "subspecialties": ["Neurocritical Care", "Stroke"],
+    "kind": "ordinal_grade",
+    "summary": "5-grade clinical classification of aneurysmal subarachnoid hemorrhage severity.",
+    "time_estimate": "< 1 min",
+    "clinical_pearls": [
+      "Original Hunt & Hess criteria add +1 grade for serious systemic disease (e.g., severe HTN, diabetes, COPD) or severe angiographic vasospasm."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "hh_grade",
+      "label": "Hunt and Hess Clinical Grade",
+      "required": true,
+      "options": [
+        { "id": "1", "label": "Asymptomatic, or minimal headache and slight nuchal rigidity", "points": 1, "badge": "Grade I" },
+        { "id": "2", "label": "Moderate-to-severe headache, nuchal rigidity, no neurological deficit other than cranial nerve palsy", "points": 2, "badge": "Grade II" },
+        { "id": "3", "label": "Drowsiness, confusion, or mild focal neurological deficit", "points": 3, "badge": "Grade III" },
+        { "id": "4", "label": "Stupor, moderate-to-severe hemiparesis, possible early decerebrate rigidity", "points": 4, "badge": "Grade IV" },
+        { "id": "5", "label": "Deep coma, decerebrate rigidity, moribund appearance", "points": 5, "badge": "Grade V" }
+      ]
+    }
+  ],
+  "scoring": { "method": "single_select", "min_score": 1, "max_score": 5, "unit": "grade", "precision": 0 },
+  "interpretation": [
+    { "id": "hh_good", "min": 1, "max": 2, "label": "Good Clinical Grade (I–II)", "severity": "mild", "summary": "Alert without encephalopathy or limb weakness.", "refs": [{ "source_id": "hunt-hess-1968", "locator": "Table 1" }] },
+    { "id": "hh_mid", "min": 3, "max": 3, "label": "Intermediate Grade (III)", "severity": "moderate", "summary": "Drowsiness/confusion or mild focal deficit.", "refs": [{ "source_id": "hunt-hess-1968", "locator": "Table 1" }] },
+    { "id": "hh_poor", "min": 4, "max": 5, "label": "Poor Clinical Grade (IV–V)", "severity": "critical", "summary": "Stupor or coma; urgent ICU stabilization and ICP/hydrocephalus evaluation.", "refs": [{ "source_id": "hunt-hess-1968", "locator": "Table 1" }] }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_hh_2",
+      "target_type": "option",
+      "target_id": "hh_grade",
+      "option_id": "2",
+      "title": "Hunt & Hess Grade II vs Grade III",
+      "bedside_steps": [
+        "Check alertness and screen for cranial nerve palsies vs limb motor/sensory/speech deficits."
+      ],
+      "pitfalls_and_exceptions": [
+        "Isolated cranial nerve palsy (e.g., CN III) remains Grade II if the patient is fully alert.",
+        "Any drowsiness/confusion or mild focal limb/language deficit upgrades to Grade III."
+      ],
+      "refs": [{ "source_id": "hunt-hess-1968", "locator": "Table 1" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "hunt-hess-1968",
+      "citation": "Hunt WE, Hess RM. Surgical risk as related to time of intervention in the repair of intracranial aneurysms. J Neurosurg. 1968;28(1):14-20.",
+      "year": 1968,
+      "pmid": "5635959"
+    }
+  ],
+  "test_cases": [
+    { "name": "Grade I", "inputs": { "hh_grade": "1" }, "expected_score": 1, "expected_band_id": "hh_good" },
+    { "name": "Grade II", "inputs": { "hh_grade": "2" }, "expected_score": 2, "expected_band_id": "hh_good" },
+    { "name": "Grade III", "inputs": { "hh_grade": "3" }, "expected_score": 3, "expected_band_id": "hh_mid" },
+    { "name": "Grade V", "inputs": { "hh_grade": "5" }, "expected_score": 5, "expected_band_id": "hh_poor" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

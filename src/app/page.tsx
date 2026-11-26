@@ -60,14 +60,14 @@ const BENTO_APPS: BentoAppConfig[] = [
   {
     id: "neurocalc",
     name: "NeuroCalc",
-    badge: "SOON",
-    isComingSoon: true,
+    badge: "BETA",
+    href: "/neurocalc",
     accent: "#0E7490",
     cardTint: "#F4FAFC",
     cardHover: "#E8F5F8",
     cardTintDark: "#162024",
     cardHoverDark: "#1C292E",
-    pillText: "COMING SOON",
+    pillText: "LAUNCH APP ↗",
     illustration: <NeuroCalcIllustration />,
   },
   {

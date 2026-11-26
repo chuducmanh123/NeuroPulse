@@ -9,6 +9,7 @@ import {
 } from "@/lib/neuroguide/storeAdapter";
 import {
   loadMergedNeuroGuideData,
+  safeRevalidateNeuroGuideCache,
   saveNeuroGuideToActiveStorage,
   getCoreTopicKey,
   normalizeGuidelineTitle,
@@ -251,6 +252,171 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    const countOnly =
+      request.nextUrl.searchParams.get("countOnly") === "1" ||
+      request.nextUrl.searchParams.get("countOnly") === "true";
+
+    if (countOnly) {
+      const localRecordsMap = new Map<string, GuidelineRecord>();
+      for (const dir of [STORE_DIR, TMP_DIR]) {
+        if (!fs.existsSync(dir)) continue;
+        try {
+          const files = fs.readdirSync(dir).filter((f) => f.endsWith("_latest.json"));
+          for (const f of files) {
+            try {
+              const parsed: GuidelineRecord = JSON.parse(
+                fs.readFileSync(path.join(dir, f), "utf-8")
+              );
+              if (parsed && parsed.guideline_id) {
+                localRecordsMap.set(f, parsed);
+              }
+            } catch {}
+          }
+        } catch {}
+      }
+
+      const supabaseApprovedKeys = new Set<string>();
+      const supabaseDeletedKeys = new Set<string>();
+      const supabasePendingKeys = new Set<string>();
+      const pendingFetchIds: string[] = [];
+
+      if (hasSupabaseAdminConfig()) {
+        try {
+          let metaRows: Array<{ id: string; status?: string; pending_count?: unknown }> | null =
+            null;
+          const metaRes = await supabaseAdmin
+            .from("neuroguide_docs")
+            .select("id, status, pending_count:data->_reviewRecord->>pending_count");
+          if (!metaRes.error && Array.isArray(metaRes.data)) {
+            metaRows = metaRes.data as Array<{
+              id: string;
+              status?: string;
+              pending_count?: unknown;
+            }>;
+          } else {
+            const fallbackRes = await supabaseAdmin
+              .from("neuroguide_docs")
+              .select("id, status");
+            if (Array.isArray(fallbackRes.data)) {
+              metaRows = fallbackRes.data as Array<{ id: string; status?: string }>;
+            }
+          }
+
+          if (Array.isArray(metaRows)) {
+            for (const row of metaRows) {
+              const rowId = String(row.id || "").trim();
+              if (!rowId || rowId === "system_clinical_scenarios" || rowId.startsWith("neurorx_")) {
+                continue;
+              }
+              const lowerId = rowId.toLowerCase();
+              const rowStatus = String(row.status || "approved").toLowerCase().trim();
+              if (rowStatus === "deleted" || rowStatus === "rejected") {
+                supabaseDeletedKeys.add(lowerId);
+              } else if (rowStatus === "pending" || rowStatus === "pending_review") {
+                supabasePendingKeys.add(lowerId);
+                pendingFetchIds.push(rowId);
+              } else {
+                const embeddedPending = Number(row.pending_count || 0);
+                if (embeddedPending > 0) {
+                  supabasePendingKeys.add(lowerId);
+                  pendingFetchIds.push(rowId);
+                } else {
+                  supabaseApprovedKeys.add(lowerId);
+                }
+              }
+            }
+
+            if (pendingFetchIds.length > 0) {
+              const { data: pendingRows } = await supabaseAdmin
+                .from("neuroguide_docs")
+                .select("id, status, data")
+                .in("id", pendingFetchIds);
+              if (Array.isArray(pendingRows)) {
+                for (const row of pendingRows as any[]) {
+                  const rowId = String(row.id || row.data?.id || "").trim();
+                  const fileName = `${rowId}_latest.json`;
+                  const embeddedRec = row.data?._reviewRecord as GuidelineRecord | undefined;
+                  const rebuiltRec =
+                    embeddedRec &&
+                    Array.isArray(embeddedRec.recommendations) &&
+                    embeddedRec.recommendations.length > 0
+                      ? embeddedRec
+                      : row.data && Array.isArray(row.data.allPracticeChanges)
+                      ? (buildGuidelineRecordFromDoc(
+                          row.data as GuidelineDoc,
+                          "PENDING_REVIEW"
+                        ) as GuidelineRecord)
+                      : null;
+                  if (rebuiltRec) {
+                    localRecordsMap.set(fileName, rebuiltRec);
+                  }
+                }
+              }
+            }
+
+            // Only fetch system_clinical_scenarios.deletedGuidelineIds if local candidates remain
+            const hasLocalCandidates = Array.from(localRecordsMap.keys()).some((f) => {
+              const clean = f.replace(/_latest\.json$/i, "").toLowerCase();
+              return !supabaseApprovedKeys.has(clean) && !supabasePendingKeys.has(clean);
+            });
+            if (hasLocalCandidates) {
+              const { data: sysRow } = await supabaseAdmin
+                .from("neuroguide_docs")
+                .select("data")
+                .eq("id", "system_clinical_scenarios")
+                .maybeSingle();
+              const delList = (sysRow as { data?: { deletedGuidelineIds?: unknown[] } } | null)
+                ?.data?.deletedGuidelineIds;
+              if (Array.isArray(delList)) {
+                for (const x of delList) {
+                  if (x) supabaseDeletedKeys.add(String(x).toLowerCase().trim());
+                }
+              }
+            }
+          }
+        } catch (sbErr) {
+          console.warn("countOnly metadata fallback in review-queue:", sbErr);
+        }
+      }
+
+      for (const pk of supabasePendingKeys) {
+        supabaseDeletedKeys.delete(pk);
+      }
+
+      const seenRecKeys = new Set<string>();
+      for (const [file, record] of localRecordsMap.entries()) {
+        const cleanFileName = file.replace(/_latest\.json$/i, "").toLowerCase();
+        const fileGId = (record.guideline_id || "").toLowerCase().trim();
+        const isPending =
+          supabasePendingKeys.has(fileGId) || supabasePendingKeys.has(cleanFileName);
+        if (!isPending) {
+          if (
+            supabaseDeletedKeys.has(fileGId) ||
+            supabaseDeletedKeys.has(cleanFileName) ||
+            supabaseApprovedKeys.has(fileGId) ||
+            supabaseApprovedKeys.has(cleanFileName)
+          ) {
+            continue;
+          }
+        }
+        for (const rec of record.recommendations || []) {
+          const st = (rec.approval_status || "").toUpperCase();
+          if (st === "PENDING_REVIEW" || st === "PENDING") {
+            seenRecKeys.add(`${record.guideline_id}::${rec.rec_id}`);
+          }
+        }
+      }
+
+      return NextResponse.json(
+        {
+          ok: true,
+          total: seenRecKeys.size,
+          countOnly: true,
+        },
+        { headers: { "Cache-Control": "no-store" } }
+      );
+    }
+
     const activeData = await loadMergedNeuroGuideData();
     const { recordsMap, supabaseApprovedKeys, supabaseDeletedKeys, supabasePendingKeys } = await loadUnifiedStoreRecords();
 
@@ -768,6 +934,7 @@ export async function POST(request: NextRequest) {
         } catch (sbErr) {
           console.warn("Lỗi cập nhật trạng thái deleted trên Supabase:", sbErr);
         }
+        await safeRevalidateNeuroGuideCache();
       }
 
       return NextResponse.json({

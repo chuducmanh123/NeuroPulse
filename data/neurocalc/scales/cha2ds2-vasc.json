@@ -1,0 +1,87 @@
+{
+  "id": "cha2ds2-vasc",
+  "schema_version": 1,
+  "metadata": {
+    "name": "CHA2DS2-VASc Score for Atrial Fibrillation Stroke Risk",
+    "short_name": "CHA2DS2-VASc",
+    "aliases": ["CHADS2-VASc", "AF stroke risk"],
+    "subspecialties": ["Stroke"],
+    "kind": "point_sum",
+    "summary": "9-point thromboembolic stroke risk score in non-valvular atrial fibrillation.",
+    "time_estimate": "< 1 min",
+    "clinical_pearls": [
+      "Female sex (Sc) alone without other risk factors (score 1 in women) does not by itself trigger anticoagulation in major AF guidelines."
+    ]
+  },
+  "items": [
+    { "kind": "select", "id": "chf", "code": "C", "label": "Congestive Heart Failure / LV Dysfunction", "required": true, "options": [{ "id": "no", "label": "No", "points": 0 }, { "id": "yes", "label": "Yes", "points": 1 }] },
+    { "kind": "select", "id": "htn", "code": "H", "label": "Hypertension", "required": true, "options": [{ "id": "no", "label": "No", "points": 0 }, { "id": "yes", "label": "Yes", "points": 1 }] },
+    { "kind": "select", "id": "age", "code": "A2", "label": "Age", "required": true, "options": [{ "id": "lt65", "label": "< 65 years", "points": 0 }, { "id": "65_74", "label": "65–74 years", "points": 1 }, { "id": "ge75", "label": ">= 75 years", "points": 2 }] },
+    { "kind": "select", "id": "dm", "code": "D", "label": "Diabetes Mellitus", "required": true, "options": [{ "id": "no", "label": "No", "points": 0 }, { "id": "yes", "label": "Yes", "points": 1 }] },
+    { "kind": "select", "id": "stroke", "code": "S2", "label": "Prior Stroke, TIA, or Thromboembolism", "required": true, "options": [{ "id": "no", "label": "No", "points": 0 }, { "id": "yes", "label": "Yes", "points": 2 }] },
+    { "kind": "select", "id": "vasc", "code": "V", "label": "Vascular Disease (prior MI, PAD, or aortic plaque)", "required": true, "options": [{ "id": "no", "label": "No", "points": 0 }, { "id": "yes", "label": "Yes", "points": 1 }] },
+    { "kind": "select", "id": "sex", "code": "Sc", "label": "Sex Category", "required": true, "options": [{ "id": "male", "label": "Male", "points": 0 }, { "id": "female", "label": "Female", "points": 1 }] }
+  ],
+  "scoring": { "method": "sum", "min_score": 0, "max_score": 9, "unit": "points", "precision": 0 },
+  "interpretation": [
+    {
+      "id": "cha_low",
+      "min": 0,
+      "max": 0,
+      "label": "Low Risk (Score 0)",
+      "severity": "normal",
+      "summary": "Score 0: truly low thromboembolic risk (~0–0.2%/year); anticoagulation generally not indicated.",
+      "refs": [{ "source_id": "lip-2010-cha2ds2vasc", "locator": "Table 3" }]
+    },
+    {
+      "id": "cha_mod",
+      "min": 1,
+      "max": 1,
+      "label": "Intermediate / Sex-Modified Risk (Score 1)",
+      "severity": "mild",
+      "summary": "Score 1: consider oral anticoagulation in men; if score is 1 solely due to female sex, anticoagulation is generally not indicated.",
+      "refs": [{ "source_id": "lip-2010-cha2ds2vasc", "locator": "Table 3" }]
+    },
+    {
+      "id": "cha_high",
+      "min": 2,
+      "max": 9,
+      "label": "Elevated Thromboembolic Risk (Score >= 2)",
+      "severity": "severe",
+      "summary": "Score >= 2: oral anticoagulation recommended (barring contraindications; note female sex-only modifier if total = 2 in women with 1 non-sex factor).",
+      "refs": [{ "source_id": "lip-2010-cha2ds2vasc", "locator": "Table 3" }]
+    }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_cha_sex",
+      "target_type": "item",
+      "target_id": "sex",
+      "title": "Female Sex Risk-Modifier Rule",
+      "bedside_steps": [
+        "Count non-sex risk factors first when applying guideline anticoagulation thresholds."
+      ],
+      "pitfalls_and_exceptions": [
+        "Score 1 in a female with zero other risk factors carries the same low risk as score 0 in a male.",
+        "Any prior ischemic stroke or TIA automatically adds +2 points, placing the patient in the anticoagulation-indicated stratum."
+      ],
+      "refs": [{ "source_id": "lip-2010-cha2ds2vasc", "locator": "p. 266" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "lip-2010-cha2ds2vasc",
+      "citation": "Lip GY, Nieuwlaat R, Pisters R, Lane DA, Crijns HJ. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-based approach: the Euro Heart Survey on atrial fibrillation. Chest. 2010;137(2):263-272.",
+      "year": 2010,
+      "pmid": "19762550"
+    }
+  ],
+  "test_cases": [
+    { "name": "Score 0", "inputs": { "chf": "no", "htn": "no", "age": "lt65", "dm": "no", "stroke": "no", "vasc": "no", "sex": "male" }, "expected_score": 0, "expected_band_id": "cha_low" },
+    { "name": "Female-only Score 1", "inputs": { "chf": "no", "htn": "no", "age": "lt65", "dm": "no", "stroke": "no", "vasc": "no", "sex": "female" }, "expected_score": 1, "expected_band_id": "cha_mod" },
+    { "name": "Prior stroke Score 2", "inputs": { "chf": "no", "htn": "no", "age": "lt65", "dm": "no", "stroke": "yes", "vasc": "no", "sex": "male" }, "expected_score": 2, "expected_band_id": "cha_high" },
+    { "name": "Max Score 9", "inputs": { "chf": "yes", "htn": "yes", "age": "ge75", "dm": "yes", "stroke": "yes", "vasc": "yes", "sex": "female" }, "expected_score": 9, "expected_band_id": "cha_high" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

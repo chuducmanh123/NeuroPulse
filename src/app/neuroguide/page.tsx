@@ -44,6 +44,7 @@ import {
   mergePivotalTrialsWithConferences,
 } from "../../data/pivotalTrialsSeed";
 import {
+  MOCK_CONFERENCE_EVENTS,
   MOCK_GUIDELINE_DOCS,
   MOCK_RECOMMENDATION_ATOMS,
 } from "../../data/neuroguideMockData";
@@ -460,7 +461,7 @@ export default function NeuroGuidePage() {
         : "";
     if (!token) return;
     try {
-      const res = await fetch("/api/neuroguide/review-queue", {
+      const res = await fetch("/api/neuroguide/review-queue?countOnly=1", {
         headers: { "x-admin-token": token },
         cache: "no-store",
       });
@@ -475,23 +476,25 @@ export default function NeuroGuidePage() {
 
   useEffect(() => {
     fetchQueueCount();
-    // Load Clinical Navigator store (Pivotal Trials + Custom Labels)
-    fetch("/api/neuroguide/navigator", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => {
-        if (d?.ok) {
-          if (Array.isArray(d.deletedTrialIds)) {
-            setDeletedTrialIds(d.deletedTrialIds);
+    // When Sync v2 is enabled, pivotalTrials & customRecLabels are hydrated from the Merkle graph.
+    if (!isSyncV2) {
+      fetch("/api/neuroguide/navigator", { cache: "no-store" })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => {
+          if (d?.ok) {
+            if (Array.isArray(d.deletedTrialIds)) {
+              setDeletedTrialIds(d.deletedTrialIds);
+            }
+            if (Array.isArray(d.pivotalTrials) && d.pivotalTrials.length > 0) {
+              setPivotalTrials(d.pivotalTrials);
+            }
+            if (d.customRecLabels) {
+              setCustomRecLabels(d.customRecLabels);
+            }
           }
-          if (Array.isArray(d.pivotalTrials) && d.pivotalTrials.length > 0) {
-            setPivotalTrials(d.pivotalTrials);
-          }
-          if (d.customRecLabels) {
-            setCustomRecLabels(d.customRecLabels);
-          }
-        }
-      })
-      .catch(() => {});
+        })
+        .catch(() => {});
+    }
 
     // Load local NeuroPulse articles for Section 5 (Related NeuroPulse Literature)
     fetch("/data/articles.json")
@@ -502,7 +505,7 @@ export default function NeuroGuidePage() {
         }
       })
       .catch(() => {});
-  }, []);
+  }, [isSyncV2]);
 
   const publishedPathwayCount = useMemo(
     () => clinicalPathways.filter((p) => p.status === "published" && !p.deletedAt).length,
@@ -856,6 +859,12 @@ export default function NeuroGuidePage() {
       // Bỏ qua lỗi truy cập storage
     }
 
+    // Khi Sync v2 bật, useNeuroGuideSync đã đồng bộ delta qua IndexedDB + Merkle tree;
+    // bỏ qua gọi thừa /api/neuroguide/version và /api/neuroguide/sync-guidelines lúc mount.
+    if (isSyncV2) {
+      return;
+    }
+
     // 2. KIỂM TRA PHIÊN BẢN SIÊU NHẸ (~150 bytes qua /api/neuroguide/version)
     fetch("/api/neuroguide/version", { cache: "no-store" })
       .then((res) => (res.ok ? res.json() : null))
@@ -960,11 +969,19 @@ export default function NeuroGuidePage() {
 
     const catalog = reconstructCatalogFromSyncGraph(syncState.derived, {
       guidelines: MOCK_GUIDELINE_DOCS,
+      conferences: MOCK_CONFERENCE_EVENTS,
       recommendationAtoms: MOCK_RECOMMENDATION_ATOMS,
       pivotalTrials: PIVOTAL_TRIALS_SEED,
     });
     const valid = filterValidGuidelines(catalog.guidelines, catalog.deletedGuidelineIds);
     setGuidelineDocs(valid);
+    const effectiveConfs =
+      Array.isArray(catalog.conferences) && catalog.conferences.length > 0
+        ? catalog.conferences
+        : conferences;
+    if (Array.isArray(catalog.conferences) && catalog.conferences.length > 0) {
+      setConferences(catalog.conferences);
+    }
     if (catalog.recommendationAtoms.length > 0) {
       setRecommendationAtoms(catalog.recommendationAtoms);
     }
@@ -973,7 +990,7 @@ export default function NeuroGuidePage() {
       setPivotalTrials((prev) =>
         mergePivotalTrialsWithConferences(
           catalog.pivotalTrials.length > 0 ? catalog.pivotalTrials : prev,
-          conferences,
+          effectiveConfs,
           catalog.deletedTrialIds,
         ),
       );
@@ -984,6 +1001,22 @@ export default function NeuroGuidePage() {
     if (Array.isArray(catalog.clinicalPathways)) {
       setClinicalPathways(catalog.clinicalPathways);
     }
+    try {
+      localStorage.setItem(
+        SWR_STORAGE_KEY,
+        JSON.stringify({
+          version: syncState.lastSyncAt || `v2-seq-${syncState.lastSeq}`,
+          guidelines: valid,
+          conferences: effectiveConfs,
+          scenarios: catalog.scenarios,
+          recommendationAtoms: catalog.recommendationAtoms,
+          deletedIds: catalog.deletedGuidelineIds,
+          timestamp: Date.now(),
+        }),
+      );
+    } catch {
+      // ignore storage quota errors
+    }
     setIsInitialLoading(false);
   }, [
     isSyncV2,
@@ -991,6 +1024,28 @@ export default function NeuroGuidePage() {
     syncState.blocksByUid.size,
     syncState.protocolsByUid.size,
   ]);
+
+  // Safety fallback: if Sync v2 fails on a client, fall back once to legacy endpoints
+  const syncV2FallbackTriggeredRef = useRef(false);
+  useEffect(() => {
+    if (!isSyncV2 || syncState.status !== "error" || syncV2FallbackTriggeredRef.current) {
+      return;
+    }
+    syncV2FallbackTriggeredRef.current = true;
+    reloadGuidelines(false);
+    fetch("/api/neuroguide/navigator", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (d?.ok) {
+          if (Array.isArray(d.deletedTrialIds)) setDeletedTrialIds(d.deletedTrialIds);
+          if (Array.isArray(d.pivotalTrials) && d.pivotalTrials.length > 0) {
+            setPivotalTrials(d.pivotalTrials);
+          }
+          if (d.customRecLabels) setCustomRecLabels(d.customRecLabels);
+        }
+      })
+      .catch(() => {});
+  }, [isSyncV2, syncState.status]);
 
   // Sync dark mode with ecosystem standards
   useEffect(() => {

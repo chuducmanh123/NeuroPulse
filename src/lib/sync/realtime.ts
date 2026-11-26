@@ -38,6 +38,7 @@ export interface CreateRealtimeSyncBridgeOptions<TRow extends SyncRowLike> {
   table?: string;
   debounceMs?: number;
   pollIntervalMs?: number;
+  visibilityCooldownMs?: number;
 }
 
 export interface RealtimeSyncBridge {
@@ -109,13 +110,15 @@ export function createRealtimeSyncBridge<TRow extends SyncRowLike>(
     schema = "public",
     table = "neurorx_sync_state",
     debounceMs = 300,
-    pollIntervalMs = 60_000,
+    pollIntervalMs = 180_000,
+    visibilityCooldownMs = 20_000,
   } = options;
 
   let stopped = false;
   let debounceTimer: ReturnType<typeof setTimeout> | null = null;
   let pollTimer: ReturnType<typeof setInterval> | null = null;
   let pendingSignal: ExtractedSignal | null = null;
+  let lastPullAt = 0;
 
   function mergePendingSignal(next: ExtractedSignal): void {
     if (!pendingSignal) {
@@ -143,6 +146,7 @@ export function createRealtimeSyncBridge<TRow extends SyncRowLike>(
     const signal = pendingSignal ?? { unconditional: true, maxSeq: null, rootHash: null };
     pendingSignal = null;
     if (shouldPullForSignal(signal, engine.getSnapshot())) {
+      lastPullAt = Date.now();
       void engine.pull();
     }
   }
@@ -173,7 +177,9 @@ export function createRealtimeSyncBridge<TRow extends SyncRowLike>(
 
   const handleVisibilityChange = () => {
     if (typeof document !== "undefined" && document.visibilityState === "visible") {
-      triggerSignal();
+      if (visibilityCooldownMs <= 0 || Date.now() - lastPullAt >= visibilityCooldownMs) {
+        triggerSignal();
+      }
     }
   };
 

@@ -1,0 +1,74 @@
+{
+  "id": "hoehn-and-yahr",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Modified Hoehn and Yahr Staging Scale",
+    "short_name": "Hoehn & Yahr",
+    "aliases": ["H&Y", "Parkinson staging"],
+    "subspecialties": ["Movement Disorders"],
+    "kind": "ordinal_grade",
+    "summary": "8-stage global clinical staging scale (0–5) for Parkinson's disease motor progression and postural instability.",
+    "time_estimate": "< 1 min",
+    "clinical_pearls": [
+      "Document whether staging was performed in the medication ON or OFF state."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "hy_stage",
+      "label": "Modified Hoehn and Yahr Stage",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No signs of disease", "points": 0, "badge": "Stage 0" },
+        { "id": "1", "label": "Unilateral involvement only", "points": 1, "badge": "Stage 1" },
+        { "id": "1_5", "label": "Unilateral and axial involvement", "points": 1.5, "badge": "Stage 1.5" },
+        { "id": "2", "label": "Bilateral involvement without impairment of balance", "points": 2, "badge": "Stage 2" },
+        { "id": "2_5", "label": "Mild bilateral disease with recovery on pull test", "points": 2.5, "badge": "Stage 2.5" },
+        { "id": "3", "label": "Mild-to-moderate bilateral disease; some postural instability; physically independent", "points": 3, "badge": "Stage 3" },
+        { "id": "4", "label": "Severe disability; still able to walk or stand unassisted", "points": 4, "badge": "Stage 4" },
+        { "id": "5", "label": "Wheelchair bound or bedridden unless aided", "points": 5, "badge": "Stage 5" }
+      ]
+    }
+  ],
+  "scoring": { "method": "single_select", "min_score": 0, "max_score": 5, "unit": "stage", "precision": 1 },
+  "interpretation": [
+    { "id": "hy_early", "min": 0, "max": 1.5, "label": "Early / Unilateral Disease (Stage 0–1.5)", "severity": "mild", "summary": "No signs or unilateral/axial involvement without bilateral limb disease.", "refs": [{ "source_id": "goetz-2004-hy", "locator": "Table 1" }] },
+    { "id": "hy_bilat", "min": 2, "max": 2.5, "label": "Bilateral Without Significant Instability (Stage 2–2.5)", "severity": "moderate", "summary": "Bilateral motor signs with preserved balance or spontaneous recovery on pull test.", "refs": [{ "source_id": "goetz-2004-hy", "locator": "Table 1" }] },
+    { "id": "hy_postural", "min": 3, "max": 3, "label": "Postural Instability Milestone (Stage 3)", "severity": "severe", "summary": "Impaired postural reflexes (unable to recover on pull test) but still physically independent.", "refs": [{ "source_id": "goetz-2004-hy", "locator": "Table 1" }] },
+    { "id": "hy_adv", "min": 4, "max": 5, "label": "Advanced / Severe Disability (Stage 4–5)", "severity": "critical", "summary": "Severe functional limitation or wheelchair/bedbound without assistance.", "refs": [{ "source_id": "goetz-2004-hy", "locator": "Table 1" }] }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_hy_2_5",
+      "target_type": "option",
+      "target_id": "hy_stage",
+      "option_id": "2_5",
+      "title": "Pull Test: Stage 2.5 vs Stage 3",
+      "bedside_steps": [
+        "Stand behind the patient, warn them, and give a brisk backward pull at the shoulders."
+      ],
+      "pitfalls_and_exceptions": [
+        "Taking 3+ backward steps but recovering balance unaided -> Stage 2.5.",
+        "Would fall if not caught by the examiner -> Stage 3 (provided still physically independent in ADLs)."
+      ],
+      "refs": [{ "source_id": "goetz-2004-hy", "locator": "p. 1022" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "goetz-2004-hy",
+      "citation": "Goetz CG, Poewe W, Rascol O, et al. Movement Disorder Society Task Force report on the Hoehn and Yahr staging scale: status and recommendations. Mov Disord. 2004;19(9):1020-1028.",
+      "year": 2004,
+      "pmid": "15372591"
+    }
+  ],
+  "test_cases": [
+    { "name": "Stage 1", "inputs": { "hy_stage": "1" }, "expected_score": 1.0, "expected_band_id": "hy_early" },
+    { "name": "Stage 2.5", "inputs": { "hy_stage": "2_5" }, "expected_score": 2.5, "expected_band_id": "hy_bilat" },
+    { "name": "Stage 3", "inputs": { "hy_stage": "3" }, "expected_score": 3.0, "expected_band_id": "hy_postural" },
+    { "name": "Stage 5", "inputs": { "hy_stage": "5" }, "expected_score": 5.0, "expected_band_id": "hy_adv" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

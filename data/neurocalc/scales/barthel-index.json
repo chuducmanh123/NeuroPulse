@@ -1,0 +1,68 @@
+{
+  "id": "barthel-index",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Barthel Index of Activities of Daily Living",
+    "short_name": "Barthel Index",
+    "aliases": ["BI", "ADL index", "functional independence"],
+    "subspecialties": ["Stroke", "Other"],
+    "kind": "point_sum",
+    "summary": "10-item ordinal index (0–100) measuring functional independence in basic activities of daily living.",
+    "time_estimate": "~2–3 min",
+    "clinical_pearls": [
+      "Score what the patient actually does over the past 24–48 hours, not what they could theoretically do.",
+      "Use of assistive devices (e.g., grab bars, walker, wheelchair) does NOT reduce independence points if no human help is needed."
+    ]
+  },
+  "items": [
+    { "kind": "select", "id": "bi_feeding", "code": "1", "label": "Feeding", "required": true, "options": [{ "id": "0", "label": "Unable", "points": 0 }, { "id": "5", "label": "Needs help cutting, spreading butter, or requires modified diet", "points": 5 }, { "id": "10", "label": "Independent", "points": 10 }] },
+    { "kind": "select", "id": "bi_bathing", "code": "2", "label": "Bathing", "required": true, "options": [{ "id": "0", "label": "Dependent", "points": 0 }, { "id": "5", "label": "Independent (or in shower)", "points": 5 }] },
+    { "kind": "select", "id": "bi_grooming", "code": "3", "label": "Grooming (face, hair, teeth, shaving)", "required": true, "options": [{ "id": "0", "label": "Needs help with personal care", "points": 0 }, { "id": "5", "label": "Independent", "points": 5 }] },
+    { "kind": "select", "id": "bi_dressing", "code": "4", "label": "Dressing", "required": true, "options": [{ "id": "0", "label": "Dependent", "points": 0 }, { "id": "5", "label": "Needs help but can do about half unaided", "points": 5 }, { "id": "10", "label": "Independent (including buttons, zips, laces)", "points": 10 }] },
+    { "kind": "select", "id": "bi_bowels", "code": "5", "label": "Bowels", "required": true, "options": [{ "id": "0", "label": "Incontinent (or needs to be given enemas)", "points": 0 }, { "id": "5", "label": "Occasional accident", "points": 5 }, { "id": "10", "label": "Continent", "points": 10 }] },
+    { "kind": "select", "id": "bi_bladder", "code": "6", "label": "Bladder", "required": true, "options": [{ "id": "0", "label": "Incontinent, or catheterized and unable to manage alone", "points": 0 }, { "id": "5", "label": "Occasional accident", "points": 5 }, { "id": "10", "label": "Continent", "points": 10 }] },
+    { "kind": "select", "id": "bi_toilet", "code": "7", "label": "Toilet Use", "required": true, "options": [{ "id": "0", "label": "Dependent", "points": 0 }, { "id": "5", "label": "Needs some help, but can do something alone", "points": 5 }, { "id": "10", "label": "Independent (on and off, dressing, wiping)", "points": 10 }] },
+    { "kind": "select", "id": "bi_transfers", "code": "8", "label": "Transfers (Bed to Chair and Back)", "required": true, "options": [{ "id": "0", "label": "Unable, no sitting balance", "points": 0 }, { "id": "5", "label": "Major help (one or two people, physical), can sit", "points": 5 }, { "id": "10", "label": "Minor help (verbal or physical)", "points": 10 }, { "id": "15", "label": "Independent", "points": 15 }] },
+    { "kind": "select", "id": "bi_mobility", "code": "9", "label": "Mobility (on Level Surfaces)", "required": true, "options": [{ "id": "0", "label": "Immobile or < 50 yards", "points": 0 }, { "id": "5", "label": "Wheelchair independent, including corners, > 50 yards", "points": 5 }, { "id": "10", "label": "Walks with help of one person (verbal or physical) > 50 yards", "points": 10 }, { "id": "15", "label": "Independent (may use any aid, e.g., stick) > 50 yards", "points": 15 }] },
+    { "kind": "select", "id": "bi_stairs", "code": "10", "label": "Stairs", "required": true, "options": [{ "id": "0", "label": "Unable", "points": 0 }, { "id": "5", "label": "Needs help (verbal, physical, carrying aid)", "points": 5 }, { "id": "10", "label": "Independent", "points": 10 }] }
+  ],
+  "scoring": { "method": "sum", "min_score": 0, "max_score": 100, "unit": "points", "precision": 0 },
+  "interpretation": [
+    { "id": "bi_total", "min": 0, "max": 20, "label": "Total Dependency (0–20)", "severity": "critical", "summary": "Requires full assistance with basic ADLs.", "refs": [{ "source_id": "mahoney-1965-barthel", "locator": "p. 61-65" }] },
+    { "id": "bi_severe", "min": 21, "max": 60, "label": "Severe Dependency (21–60)", "severity": "severe", "summary": "Substantial assistance required across multiple ADLs.", "refs": [{ "source_id": "mahoney-1965-barthel", "locator": "p. 61-65" }] },
+    { "id": "bi_moderate", "min": 61, "max": 90, "label": "Moderate Dependency (61–90)", "severity": "moderate", "summary": "Partially independent; requires targeted ADL assistance.", "refs": [{ "source_id": "mahoney-1965-barthel", "locator": "p. 61-65" }] },
+    { "id": "bi_slight", "min": 91, "max": 99, "label": "Slight Dependency (91–99)", "severity": "mild", "summary": "Nearly independent with minimal residual assistance.", "refs": [{ "source_id": "mahoney-1965-barthel", "locator": "p. 61-65" }] },
+    { "id": "bi_indep", "min": 100, "max": 100, "label": "Fully Independent (100)", "severity": "normal", "summary": "Independent in all 10 basic ADL domains.", "refs": [{ "source_id": "mahoney-1965-barthel", "locator": "p. 61-65" }] }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_bi_mobility",
+      "target_type": "item",
+      "target_id": "bi_mobility",
+      "title": "Mobility — Wheelchair vs Assisted Walking",
+      "bedside_steps": [
+        "Verify actual ambulation distance (> 50 yards) and whether another person provides physical or verbal supervision."
+      ],
+      "pitfalls_and_exceptions": [
+        "Wheelchair independence (> 50 yards) scores 5, whereas walking > 50 yards with one person's help scores 10."
+      ],
+      "refs": [{ "source_id": "mahoney-1965-barthel", "locator": "p. 63" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "mahoney-1965-barthel",
+      "citation": "Mahoney FI, Barthel DW. Functional evaluation: the Barthel Index. Md State Med J. 1965;14:61-65.",
+      "year": 1965,
+      "pmid": "14258950"
+    }
+  ],
+  "test_cases": [
+    { "name": "Total dependency (0)", "inputs": { "bi_feeding": "0", "bi_bathing": "0", "bi_grooming": "0", "bi_dressing": "0", "bi_bowels": "0", "bi_bladder": "0", "bi_toilet": "0", "bi_transfers": "0", "bi_mobility": "0", "bi_stairs": "0" }, "expected_score": 0, "expected_band_id": "bi_total" },
+    { "name": "Moderate (75)", "inputs": { "bi_feeding": "10", "bi_bathing": "0", "bi_grooming": "5", "bi_dressing": "5", "bi_bowels": "10", "bi_bladder": "10", "bi_toilet": "5", "bi_transfers": "15", "bi_mobility": "10", "bi_stairs": "5" }, "expected_score": 75, "expected_band_id": "bi_moderate" },
+    { "name": "Slight (95)", "inputs": { "bi_feeding": "10", "bi_bathing": "5", "bi_grooming": "5", "bi_dressing": "10", "bi_bowels": "10", "bi_bladder": "10", "bi_toilet": "10", "bi_transfers": "15", "bi_mobility": "15", "bi_stairs": "5" }, "expected_score": 95, "expected_band_id": "bi_slight" },
+    { "name": "Fully independent (100)", "inputs": { "bi_feeding": "10", "bi_bathing": "5", "bi_grooming": "5", "bi_dressing": "10", "bi_bowels": "10", "bi_bladder": "10", "bi_toilet": "10", "bi_transfers": "15", "bi_mobility": "15", "bi_stairs": "10" }, "expected_score": 100, "expected_band_id": "bi_indep" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

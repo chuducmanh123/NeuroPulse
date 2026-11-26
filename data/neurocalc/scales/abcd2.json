@@ -1,0 +1,137 @@
+{
+  "id": "abcd2",
+  "schema_version": 1,
+  "metadata": {
+    "name": "ABCD2 Score for TIA",
+    "short_name": "ABCD2",
+    "aliases": ["TIA risk", "transient ischemic attack"],
+    "subspecialties": ["Stroke"],
+    "kind": "point_sum",
+    "summary": "7-point score estimating 2-, 7-, and 90-day stroke risk after transient ischemic attack.",
+    "time_estimate": "< 1 min",
+    "clinical_pearls": [
+      "Low ABCD2 (0–3) does NOT exclude high-risk etiologies such as symptomatic carotid stenosis, atrial fibrillation, or crescendo TIA."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "abcd2_age",
+      "code": "A",
+      "label": "Age >= 60 years",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No (< 60 years)", "points": 0 },
+        { "id": "yes", "label": "Yes (>= 60 years)", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "abcd2_bp",
+      "code": "B",
+      "label": "Initial Blood Pressure >= 140/90 mmHg",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No (< 140/90 mmHg)", "points": 0 },
+        { "id": "yes", "label": "Yes (SBP >= 140 OR DBP >= 90 mmHg)", "points": 1 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "abcd2_clinical",
+      "code": "C",
+      "label": "Clinical Features of TIA",
+      "required": true,
+      "options": [
+        { "id": "other", "label": "Other symptoms (e.g., isolated sensory loss, visual symptoms, ataxia)", "points": 0 },
+        { "id": "speech", "label": "Speech disturbance without weakness", "points": 1 },
+        { "id": "weakness", "label": "Unilateral weakness (with or without speech disturbance)", "points": 2 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "abcd2_duration",
+      "code": "D",
+      "label": "Duration of Symptoms",
+      "required": true,
+      "options": [
+        { "id": "lt10", "label": "< 10 minutes", "points": 0 },
+        { "id": "10_59", "label": "10–59 minutes", "points": 1 },
+        { "id": "ge60", "label": ">= 60 minutes", "points": 2 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "abcd2_dm",
+      "code": "D2",
+      "label": "Diabetes Mellitus",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No", "points": 0 },
+        { "id": "yes", "label": "Yes", "points": 1 }
+      ]
+    }
+  ],
+  "scoring": { "method": "sum", "min_score": 0, "max_score": 7, "unit": "points", "precision": 0 },
+  "interpretation": [
+    {
+      "id": "abcd2_low",
+      "min": 0,
+      "max": 3,
+      "label": "Low 2-Day Stroke Risk (~1.0%)",
+      "severity": "mild",
+      "summary": "ABCD2 0–3: lower early risk, but urgent vessel/cardiac workup is still required.",
+      "refs": [{ "source_id": "johnston-2007-abcd2", "locator": "Table 3" }]
+    },
+    {
+      "id": "abcd2_mod",
+      "min": 4,
+      "max": 5,
+      "label": "Moderate 2-Day Stroke Risk (~4.1%)",
+      "severity": "moderate",
+      "summary": "ABCD2 4–5: moderate early stroke risk; urgent evaluation and secondary prevention indicated.",
+      "refs": [{ "source_id": "johnston-2007-abcd2", "locator": "Table 3" }]
+    },
+    {
+      "id": "abcd2_high",
+      "min": 6,
+      "max": 7,
+      "label": "High 2-Day Stroke Risk (~8.1%)",
+      "severity": "critical",
+      "summary": "ABCD2 6–7: high early stroke risk; immediate inpatient/rapid-access TIA workup.",
+      "refs": [{ "source_id": "johnston-2007-abcd2", "locator": "Table 3" }]
+    }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_abcd2_clinical",
+      "target_type": "item",
+      "target_id": "abcd2_clinical",
+      "title": "Clinical Features Hierarchy",
+      "bedside_steps": [
+        "Score the highest-weighting feature present during the TIA episode."
+      ],
+      "pitfalls_and_exceptions": [
+        "If BOTH unilateral weakness and speech disturbance occurred, score 2 (not 3).",
+        "Negative DWI-MRI does not rule out TIA; positive DWI-MRI indicates acute ischemic stroke."
+      ],
+      "refs": [{ "source_id": "johnston-2007-abcd2", "locator": "p. 285" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "johnston-2007-abcd2",
+      "citation": "Johnston SC, Rothwell PM, Nguyen-Huynh MN, et al. Validation and refinement of scores to predict very early stroke risk after transient ischaemic attack. Lancet. 2007;369(9558):283-292.",
+      "year": 2007,
+      "pmid": "17258668"
+    }
+  ],
+  "test_cases": [
+    { "name": "Score 0", "inputs": { "abcd2_age": "no", "abcd2_bp": "no", "abcd2_clinical": "other", "abcd2_duration": "lt10", "abcd2_dm": "no" }, "expected_score": 0, "expected_band_id": "abcd2_low" },
+    { "name": "Score 3 (Low boundary)", "inputs": { "abcd2_age": "yes", "abcd2_bp": "no", "abcd2_clinical": "speech", "abcd2_duration": "10_59", "abcd2_dm": "no" }, "expected_score": 3, "expected_band_id": "abcd2_low" },
+    { "name": "Score 4 (Moderate boundary)", "inputs": { "abcd2_age": "yes", "abcd2_bp": "yes", "abcd2_clinical": "weakness", "abcd2_duration": "lt10", "abcd2_dm": "no" }, "expected_score": 4, "expected_band_id": "abcd2_mod" },
+    { "name": "Score 7 (Max)", "inputs": { "abcd2_age": "yes", "abcd2_bp": "yes", "abcd2_clinical": "weakness", "abcd2_duration": "ge60", "abcd2_dm": "yes" }, "expected_score": 7, "expected_band_id": "abcd2_high" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

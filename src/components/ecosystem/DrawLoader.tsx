@@ -7,6 +7,7 @@ export type DrawLoaderVariant =
   | "book"
   | "case"
   | "rx"
+  | "calc"
   | "pulse"
   | "brain";
 
@@ -200,6 +201,26 @@ export function DrawLoaderIcon({
             pathLength={1}
             className="ink-delay-2"
             d="M10.5 16.5 C12.5 16.5 14 18 14 20 M29.5 16.5 C27.5 16.5 26 18 26 20"
+          />
+        </>
+      )}
+
+      {variant === "calc" && (
+        <>
+          <rect pathLength={1} x="9" y="5.5" width="22" height="29" rx="3" />
+          <rect
+            pathLength={1}
+            className="ink-delay-1"
+            x="13"
+            y="9.5"
+            width="14"
+            height="5.5"
+            rx="1"
+          />
+          <path
+            pathLength={1}
+            className="ink-delay-2"
+            d="M14 20.5 H16.5 M20 20.5 H22.5 M25.5 20.5 H27 M14 25.5 H16.5 M20 25.5 H22.5 M14 30.5 H16.5 M20 30.5 H22.5 M25.5 25.5 V30.5"
           />
         </>
       )}

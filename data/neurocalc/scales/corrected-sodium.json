@@ -1,0 +1,92 @@
+{
+  "id": "corrected-sodium",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Corrected Sodium for Hyperglycemia (Katz Formula)",
+    "short_name": "Corrected Na",
+    "aliases": ["Katz sodium", "hyperglycemia hyponatremia"],
+    "subspecialties": ["Neurocritical Care", "Stroke"],
+    "kind": "formula",
+    "summary": "Estimates true serum sodium in hyperglycemia using Katz's 1.6 mEq/L per 100 mg/dL correction factor.",
+    "time_estimate": "< 30 sec",
+    "clinical_pearls": [
+      "No correction is added when serum glucose is <= 100 mg/dL (5.55 mmol/L).",
+      "For extreme hyperglycemia (> 400 mg/dL), some clinicians also compare with Hillier's 2.4 factor."
+    ]
+  },
+  "items": [
+    {
+      "kind": "numeric",
+      "id": "measured_na",
+      "label": "Measured Serum Sodium",
+      "required": true,
+      "canonical_unit": "mEq/L",
+      "units": [
+        { "unit": "mEq/L", "label": "mEq/L (mmol/L)", "to_canonical_factor": 1 }
+      ],
+      "min_canonical": 90,
+      "max_canonical": 190,
+      "step": 0.5
+    },
+    {
+      "kind": "numeric",
+      "id": "glucose",
+      "label": "Serum Glucose",
+      "required": true,
+      "canonical_unit": "mg/dL",
+      "units": [
+        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 1 },
+        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 18.0182 }
+      ],
+      "min_canonical": 10,
+      "max_canonical": 2000,
+      "step": 1
+    }
+  ],
+  "scoring": {
+    "method": "formula",
+    "min_score": 90,
+    "max_score": 250,
+    "unit": "mEq/L",
+    "precision": 1,
+    "formula_id": "corrected_na_katz"
+  },
+  "interpretation": [
+    { "id": "cna_low", "min": 90, "max": 134.9, "label": "True Hyponatremia (< 135 mEq/L)", "severity": "moderate", "summary": "Corrected sodium remains below 135 mEq/L; evaluate true hypotonic hyponatremia.", "refs": [{ "source_id": "katz-1973-na", "locator": "p. 843" }] },
+    { "id": "cna_norm", "min": 135, "max": 145, "label": "Normal Corrected Sodium (135–145 mEq/L)", "severity": "normal", "summary": "Apparent hyponatremia is accounted for by hyperglycemic osmotic shift.", "refs": [{ "source_id": "katz-1973-na", "locator": "p. 843" }] },
+    { "id": "cna_high", "min": 145.1, "max": 250, "label": "Hypernatremia (> 145 mEq/L)", "severity": "severe", "summary": "Free-water deficit present; monitor sodium closely during insulin/fluid therapy to avoid cerebral edema.", "refs": [{ "source_id": "katz-1973-na", "locator": "p. 843" }] }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_cna_scale",
+      "target_type": "scale",
+      "target_id": "corrected-sodium",
+      "chip_label": "Formula Notes",
+      "title": "Katz Formula Scope & Neuro-ICU Caveats",
+      "bedside_steps": [
+        "Use contemporaneously drawn serum sodium and glucose values."
+      ],
+      "pitfalls_and_exceptions": [
+        "Formula adds 1.6 mEq/L for each 100 mg/dL glucose above 100 mg/dL.",
+        "Rapid drops in corrected sodium (> 8–10 mEq/L/24h) during DKA/HHS treatment increase cerebral edema risk."
+      ],
+      "refs": [{ "source_id": "katz-1973-na", "locator": "p. 843-844" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "katz-1973-na",
+      "citation": "Katz MA. Hyperglycemia-induced hyponatremia—calculation of expected serum sodium depression. N Engl J Med. 1973;289(16):843-844.",
+      "year": 1973,
+      "pmid": "4763428"
+    }
+  ],
+  "test_cases": [
+    { "name": "Normalizes (130 + 400 mg/dL -> 134.8)", "inputs": { "measured_na": 130, "glucose": 400 }, "expected_score": 134.8, "expected_band_id": "cna_low" },
+    { "name": "True normal (135 + 400 -> 139.8)", "inputs": { "measured_na": 135, "glucose": 400 }, "expected_score": 139.8, "expected_band_id": "cna_norm" },
+    { "name": "SI glucose (135 + 22.2 mmol/L -> 139.8)", "inputs": { "measured_na": 135, "glucose": { "value": 22.2, "unit": "mmol/L" } }, "expected_score": 139.8, "expected_band_id": "cna_norm" },
+    { "name": "Hypernatremia (142 + 500 -> 148.4)", "inputs": { "measured_na": 142, "glucose": 500 }, "expected_score": 148.4, "expected_band_id": "cna_high" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

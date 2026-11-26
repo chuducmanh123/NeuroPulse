@@ -1,0 +1,142 @@
+{
+  "id": "four-score",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Full Outline of UnResponsiveness Score",
+    "short_name": "FOUR Score",
+    "aliases": ["FOUR", "coma score"],
+    "subspecialties": ["Neurocritical Care", "Stroke"],
+    "kind": "point_sum",
+    "summary": "16-point coma scale evaluating Eye, Motor, Brainstem reflexes, and Respiration, ideal for intubated ICU patients.",
+    "time_estimate": "~1–2 min",
+    "clinical_pearls": [
+      "Detects locked-in syndrome via vertical eye tracking/blinking on command.",
+      "Eliminates the verbal subscore limitation of GCS in intubated patients."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "four_eye",
+      "code": "E",
+      "label": "Eye Response",
+      "required": true,
+      "options": [
+        { "id": "4", "label": "Eyelids open or opened, tracking, or blinking to command", "points": 4 },
+        { "id": "3", "label": "Eyelids open but not tracking", "points": 3 },
+        { "id": "2", "label": "Eyelids closed but open to loud voice", "points": 2 },
+        { "id": "1", "label": "Eyelids closed but open to pain", "points": 1 },
+        { "id": "0", "label": "Eyelids remain closed with pain", "points": 0 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "four_motor",
+      "code": "M",
+      "label": "Motor Response",
+      "required": true,
+      "options": [
+        { "id": "4", "label": "Thumbs-up, fist, or peace sign", "points": 4 },
+        { "id": "3", "label": "Localizing to pain", "points": 3 },
+        { "id": "2", "label": "Flexion response to pain", "points": 2 },
+        { "id": "1", "label": "Extension response to pain", "points": 1 },
+        { "id": "0", "label": "No response to pain or generalized myoclonus status", "points": 0 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "four_brainstem",
+      "code": "B",
+      "label": "Brainstem Reflexes",
+      "required": true,
+      "options": [
+        { "id": "4", "label": "Pupil and corneal reflexes present", "points": 4 },
+        { "id": "3", "label": "One pupil wide and fixed", "points": 3 },
+        { "id": "2", "label": "Pupil OR corneal reflexes absent", "points": 2 },
+        { "id": "1", "label": "Pupil AND corneal reflexes absent", "points": 1 },
+        { "id": "0", "label": "Absent pupil, corneal, and cough reflex", "points": 0 }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "four_resp",
+      "code": "R",
+      "label": "Respiration",
+      "required": true,
+      "options": [
+        { "id": "4", "label": "Not intubated, regular breathing pattern", "points": 4 },
+        { "id": "3", "label": "Not intubated, Cheyne-Stokes breathing pattern", "points": 3 },
+        { "id": "2", "label": "Not intubated, irregular breathing", "points": 2 },
+        { "id": "1", "label": "Intubated, breathes above ventilator rate", "points": 1 },
+        { "id": "0", "label": "Intubated, breathes at ventilator rate or apnea", "points": 0 }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "sum",
+    "min_score": 0,
+    "max_score": 16,
+    "unit": "points",
+    "precision": 0
+  },
+  "interpretation": [
+    {
+      "id": "four_critical",
+      "min": 0,
+      "max": 4,
+      "label": "Deep Coma / Brainstem Compromise",
+      "severity": "critical",
+      "summary": "FOUR 0–4: profound coma; score 0 warrants formal brain death evaluation once confounders are excluded.",
+      "refs": [{ "source_id": "wijdicks-2005-four", "locator": "Table 1" }]
+    },
+    {
+      "id": "four_severe",
+      "min": 5,
+      "max": 8,
+      "label": "Severe Impairment",
+      "severity": "severe",
+      "summary": "FOUR 5–8: severe neurological dysfunction.",
+      "refs": [{ "source_id": "wijdicks-2005-four", "locator": "Table 1" }]
+    },
+    {
+      "id": "four_mod_mild",
+      "min": 9,
+      "max": 16,
+      "label": "Moderate Impairment to Alert",
+      "severity": "normal",
+      "summary": "FOUR 9–16: preserved brainstem reflexes and higher responsiveness.",
+      "refs": [{ "source_id": "wijdicks-2005-four", "locator": "Table 1" }]
+    }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_four_resp",
+      "target_type": "item",
+      "target_id": "four_resp",
+      "title": "Respiration Assessment in Intubated Patients",
+      "bedside_steps": [
+        "Observe ventilator flow/pressure waveforms and spontaneous respiratory rate vs set rate."
+      ],
+      "pitfalls_and_exceptions": [
+        "Score 1 if triggering spontaneous breaths above the set ventilator rate; score 0 if purely ventilator-triggered or apneic."
+      ],
+      "refs": [{ "source_id": "wijdicks-2005-four", "locator": "Table 1" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "wijdicks-2005-four",
+      "citation": "Wijdicks EF, Bamlet WR, Maramattom BV, Manno EM, McClelland RL. Validation of a new coma scale: The FOUR score. Ann Neurol. 2005;58(4):585-593.",
+      "year": 2005,
+      "pmid": "16178024"
+    }
+  ],
+  "test_cases": [
+    { "name": "Minimum (0)", "inputs": { "four_eye": "0", "four_motor": "0", "four_brainstem": "0", "four_resp": "0" }, "expected_score": 0, "expected_band_id": "four_critical" },
+    { "name": "Locked-in (12)", "inputs": { "four_eye": "4", "four_motor": "0", "four_brainstem": "4", "four_resp": "4" }, "expected_score": 12, "expected_band_id": "four_mod_mild" },
+    { "name": "Severe (8)", "inputs": { "four_eye": "1", "four_motor": "2", "four_brainstem": "4", "four_resp": "1" }, "expected_score": 8, "expected_band_id": "four_severe" },
+    { "name": "Maximum (16)", "inputs": { "four_eye": "4", "four_motor": "4", "four_brainstem": "4", "four_resp": "4" }, "expected_score": 16, "expected_band_id": "four_mod_mild" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

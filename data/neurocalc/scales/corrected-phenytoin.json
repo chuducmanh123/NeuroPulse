@@ -1,0 +1,101 @@
+{
+  "id": "corrected-phenytoin",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Corrected Phenytoin Level (Winter-Tozer Equation)",
+    "short_name": "Corrected Phenytoin",
+    "aliases": ["Winter-Tozer", "albumin phenytoin"],
+    "subspecialties": ["Epilepsy", "Neurocritical Care"],
+    "kind": "formula",
+    "summary": "Estimates total phenytoin equivalent in hypoalbuminemia and/or end-stage renal disease.",
+    "time_estimate": "< 30 sec",
+    "clinical_pearls": [
+      "Winter-Tozer is an approximation; directly measure free (unbound) phenytoin whenever available in ICU, pregnancy, or valproate co-therapy."
+    ]
+  },
+  "items": [
+    {
+      "kind": "numeric",
+      "id": "measured_phenytoin",
+      "label": "Measured Total Phenytoin",
+      "required": true,
+      "canonical_unit": "mcg/mL",
+      "units": [
+        { "unit": "mcg/mL", "label": "mcg/mL (mg/L)", "to_canonical_factor": 1 },
+        { "unit": "umol/L", "label": "µmol/L", "to_canonical_factor": 0.25227 }
+      ],
+      "min_canonical": 0.5,
+      "max_canonical": 100,
+      "step": 0.5
+    },
+    {
+      "kind": "numeric",
+      "id": "albumin",
+      "label": "Serum Albumin",
+      "required": true,
+      "canonical_unit": "g/dL",
+      "units": [
+        { "unit": "g/dL", "label": "g/dL", "to_canonical_factor": 1 },
+        { "unit": "g/L", "label": "g/L", "to_canonical_factor": 0.1 }
+      ],
+      "min_canonical": 0.5,
+      "max_canonical": 6.5,
+      "step": 0.1
+    },
+    {
+      "kind": "select",
+      "id": "renal_coefficient",
+      "label": "Renal Function Status",
+      "required": true,
+      "options": [
+        { "id": "normal", "label": "CrCl >= 10 mL/min (Standard Winter-Tozer, k = 0.2)", "points": 0.2, "badge": "k=0.2" },
+        { "id": "esrd", "label": "CrCl < 10 mL/min or Dialysis/ESRD (k = 0.1)", "points": 0.1, "badge": "k=0.1" }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "formula",
+    "min_score": 0,
+    "max_score": null,
+    "unit": "mcg/mL",
+    "precision": 1,
+    "formula_id": "corrected_phenytoin_winter_tozer"
+  },
+  "interpretation": [
+    { "id": "pht_sub", "min": 0, "max": 9.9, "label": "Subtherapeutic (< 10 mcg/mL)", "severity": "mild", "summary": "Corrected level below standard 10–20 mcg/mL reference range.", "refs": [{ "source_id": "winter-1988-phenytoin", "locator": "p. 504" }] },
+    { "id": "pht_ther", "min": 10, "max": 20, "label": "Therapeutic Range (10–20 mcg/mL)", "severity": "normal", "summary": "Within standard total phenytoin therapeutic window.", "refs": [{ "source_id": "winter-1988-phenytoin", "locator": "p. 504" }] },
+    { "id": "pht_supra", "min": 20.1, "max": 30, "label": "Supratherapeutic (20.1–30 mcg/mL)", "severity": "moderate", "summary": "Elevated; assess for nystagmus, ataxia, or sedation.", "refs": [{ "source_id": "winter-1988-phenytoin", "locator": "p. 504" }] },
+    { "id": "pht_toxic", "min": 30.1, "max": null, "label": "Toxic Range (> 30 mcg/mL)", "severity": "critical", "summary": "High risk of CNS toxicity; hold dose and obtain free phenytoin level.", "refs": [{ "source_id": "winter-1988-phenytoin", "locator": "p. 504" }] }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_pht_scale",
+      "target_type": "scale",
+      "target_id": "corrected-phenytoin",
+      "chip_label": "ICU Caveat",
+      "title": "When Winter-Tozer Underperforms",
+      "bedside_steps": [
+        "Use measured total phenytoin and serum albumin drawn on the same day."
+      ],
+      "pitfalls_and_exceptions": [
+        "Valproate, salicylates, and hyperbilirubinemia displace phenytoin from albumin independently of albumin concentration—order a free phenytoin level (target 1–2 mcg/mL) in these settings."
+      ],
+      "refs": [{ "source_id": "winter-1988-phenytoin", "locator": "p. 504-506" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "winter-1988-phenytoin",
+      "citation": "Winter ME, Tozer TN. Phenytoin. In: Evans WE, Schentag JJ, Jusko WJ, eds. Applied Pharmacokinetics: Principles of Therapeutic Drug Monitoring. 2nd ed. 1986;493-539.",
+      "year": 1986
+    }
+  ],
+  "test_cases": [
+    { "name": "Hypoalbuminemia normal renal (8, alb 2.0 -> 16.0)", "inputs": { "measured_phenytoin": 8, "albumin": 2.0, "renal_coefficient": "normal" }, "expected_score": 16.0, "expected_band_id": "pht_ther" },
+    { "name": "SI albumin g/L (8, alb 20 g/L -> 16.0)", "inputs": { "measured_phenytoin": 8, "albumin": { "value": 20, "unit": "g/L" }, "renal_coefficient": "normal" }, "expected_score": 16.0, "expected_band_id": "pht_ther" },
+    { "name": "ESRD k=0.1 (8, alb 2.0 -> 26.7)", "inputs": { "measured_phenytoin": 8, "albumin": 2.0, "renal_coefficient": "esrd" }, "expected_score": 26.7, "expected_band_id": "pht_supra" },
+    { "name": "Subtherapeutic (4, alb 4.0 -> 4.4)", "inputs": { "measured_phenytoin": 4, "albumin": 4.0, "renal_coefficient": "normal" }, "expected_score": 4.4, "expected_band_id": "pht_sub" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

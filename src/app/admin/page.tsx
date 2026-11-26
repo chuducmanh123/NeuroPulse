@@ -66,6 +66,8 @@ const PathwayStepRunner = dynamic(
 );
 import { useNeuroRxDrugs } from "@/hooks/useNeuroRxDrugs";
 import { NeuroRxAdminSection } from "@/components/neurorx/admin/NeuroRxAdminSection";
+import { useNeuroCalcScales } from "@/hooks/useNeuroCalcScales";
+import { NeuroCalcAdminSection } from "@/components/neurocalc/admin/NeuroCalcAdminSection";
 
 function getLocalTodayIso(): string {
   const d = new Date();
@@ -167,9 +169,11 @@ export default function AdminCommandCenter() {
   // =========================================================================
   // ADMIN SECTION TABS
   // =========================================================================
-  const [adminTab, setAdminTab] = useState<"neuropulse" | "neurocase" | "guidelines" | "system" | "neurorx">("neuropulse");
+  const [adminTab, setAdminTab] = useState<"neuropulse" | "neurocase" | "guidelines" | "system" | "neurorx" | "neurocalc">("neuropulse");
   const neuroRxSync = useNeuroRxDrugs({ enabled: isAdminVerified });
   const neuroRxDrugCount = neuroRxSync.drugs.length;
+  const neuroCalcSync = useNeuroCalcScales({ enabled: isAdminVerified });
+  const neuroCalcScaleCount = neuroCalcSync.scales.length;
 
   // Guideline Review & Radar Combined State
   const [guidelineSubTab, setGuidelineSubTab] = useState<"queue" | "repository" | "trials" | "pathways">("queue");
@@ -1059,17 +1063,31 @@ export default function AdminCommandCenter() {
             <div className="text-[10px] text-rose-600 dark:text-rose-400 font-medium">Dosing &amp; Interactions</div>
           </button>
 
-          <div className={`p-3 rounded-xl border opacity-75 border-l-4 border-l-purple-500 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-50 border-slate-200"}`}>
+          <button
+            type="button"
+            onClick={() => setAdminTab("neurocalc")}
+            className={`p-3 rounded-xl border text-left transition-all cursor-pointer border-l-4 border-l-cyan-600 ${
+              adminTab === "neurocalc"
+                ? darkMode
+                  ? "bg-cyan-950/30 border-cyan-500/50 shadow-xs ring-1 ring-cyan-500/30"
+                  : "bg-cyan-50/80 border-cyan-300 shadow-xs ring-1 ring-cyan-400/30"
+                : darkMode
+                ? "bg-slate-900/60 border-slate-800 hover:bg-slate-800/60 hover:border-cyan-500/40"
+                : "bg-white border-slate-200 shadow-xs hover:bg-cyan-50/40 hover:border-cyan-300"
+            }`}
+          >
             <div className="flex items-center justify-between text-slate-400 text-[11px]">
-              <span className="font-bold text-purple-600 dark:text-purple-400 flex items-center gap-1.5">
+              <span className="font-bold text-cyan-700 dark:text-cyan-400 flex items-center gap-1.5">
                 <Calculator className="w-3.5 h-3.5" />
                 <span>NeuroCalc</span>
               </span>
-              <span className="text-[9px] uppercase px-1 rounded bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold">Coming Soon</span>
+              <span className="w-2 h-2 rounded-full bg-cyan-600"></span>
             </div>
-            <div className="text-base font-bold mt-1 text-slate-700 dark:text-slate-300">Scales</div>
-            <div className="text-[10px] text-slate-500">NIHSS, mRS, ICH</div>
-          </div>
+            <div className="text-base font-black mt-1 text-slate-900 dark:text-white">
+              {neuroCalcSync.status === "syncing" && neuroCalcScaleCount === 0 ? "—" : neuroCalcScaleCount} Scales
+            </div>
+            <div className="text-[10px] text-cyan-700 dark:text-cyan-400 font-medium">NIHSS, mRS, ICH</div>
+          </button>
 
           <Link
             href="/neurovision"
@@ -1159,6 +1177,19 @@ export default function AdminCommandCenter() {
                 badgeActive: "bg-white/20 text-white",
                 badgeInactive: "bg-rose-500/15 text-rose-700 dark:text-rose-300 border border-rose-500/25",
                 dotColor: "bg-rose-500",
+              },
+              {
+                id: "neurocalc" as const,
+                label: "NeuroCalc",
+                icon: Calculator,
+                badge: String(neuroCalcScaleCount),
+                activeClass: "bg-[#0E7490] text-white shadow-md shadow-cyan-500/25 ring-1 ring-cyan-400/40",
+                inactiveClass: darkMode
+                  ? "text-slate-300 hover:bg-cyan-950/40 hover:text-cyan-300"
+                  : "text-slate-700 hover:bg-cyan-50 hover:text-cyan-800",
+                badgeActive: "bg-white/20 text-white",
+                badgeInactive: "bg-cyan-500/15 text-cyan-800 dark:text-cyan-300 border border-cyan-500/25",
+                dotColor: "bg-cyan-600",
               },
               {
                 id: "system" as const,
@@ -2139,6 +2170,13 @@ export default function AdminCommandCenter() {
         {adminTab === "neurorx" && (
           <div className="space-y-4">
             <NeuroRxAdminSection darkMode={darkMode} syncState={neuroRxSync} />
+          </div>
+        )}
+
+        {/* TAB 6: NEUROCALC SCALES & MERKLE SYNC */}
+        {adminTab === "neurocalc" && (
+          <div className="space-y-4">
+            <NeuroCalcAdminSection darkMode={darkMode} syncState={neuroCalcSync} />
           </div>
         )}
 

@@ -92,8 +92,8 @@ const APP_ITEMS: PaletteItem[] = [
     tag: "NEUROCALC",
     color: "#0E7490",
     title: "NeuroCalc — Clinical Scales",
-    subtitle: "SOON • Đang được thiết kế",
-    isComingSoon: true,
+    subtitle: "BETA • NIHSS, mRS, GCS, ICH & Bedside Formulas",
+    href: "/neurocalc",
   },
 ];
 
@@ -172,31 +172,52 @@ export function GlobalCommandPalette() {
         })
         .catch(() => {});
 
-      // 3. Lazy-load NeuroRx synced drugs via public changes endpoint
-      fetch("/api/neurorx/sync/changes?since=0&limit=500")
-        .then((res) => (res.ok ? res.json() : null))
-        .then((payload) => {
-          const rows = Array.isArray(payload?.changes) ? payload.changes : [];
-          const parsed: LazyDrugSummary[] = [];
-          for (const row of rows) {
-            if (row?.deletedAt) continue;
-            const d = row?.data;
-            if (!d || typeof d.id !== "string" || typeof d.generic_name !== "string") continue;
-            const vnList = Array.isArray(d.vn_products?.value)
-              ? d.vn_products.value
-                  .map((p: { brand_name?: string }) => p?.brand_name)
-                  .filter((b: unknown): b is string => typeof b === "string" && b.length > 0)
-              : [];
-            parsed.push({
-              id: d.id,
-              genericName: d.generic_name,
-              classes: Array.isArray(d.classes) ? d.classes : [],
-              brandNames: vnList,
-            });
+      // 3. Lazy-load NeuroRx synced drugs: read local IndexedDB first (0 Egress),
+      //    then fall back to lightweight projected /api/neurorx/search-index (~15-30 KB).
+      (async () => {
+        try {
+          const { createLocalStore } = await import("@/lib/neurorx/sync/localStore");
+          const store = createLocalStore();
+          const snap = await store.load();
+          store.close?.();
+          if (snap.rows.size > 0) {
+            const localParsed: LazyDrugSummary[] = [];
+            for (const row of snap.rows.values()) {
+              if (row.deletedAt !== null) continue;
+              const d = row.data;
+              if (!d || typeof d.id !== "string" || typeof d.generic_name !== "string") continue;
+              const vnList = Array.isArray(d.vn_products?.value)
+                ? d.vn_products.value
+                    .map((p) => p?.brand || (p as { brand_name?: string })?.brand_name)
+                    .filter((b): b is string => typeof b === "string" && b.length > 0)
+                : [];
+              localParsed.push({
+                id: d.id,
+                genericName: d.generic_name,
+                classes: Array.isArray(d.classes) ? d.classes : [],
+                brandNames: vnList,
+              });
+            }
+            if (localParsed.length > 0) {
+              setDrugs(localParsed);
+              return;
+            }
           }
-          setDrugs(parsed);
-        })
-        .catch(() => {});
+        } catch {
+          // IndexedDB unavailable or empty; fall back to lightweight search-index endpoint
+        }
+
+        try {
+          const res = await fetch("/api/neurorx/search-index");
+          if (!res.ok) return;
+          const payload = await res.json();
+          if (Array.isArray(payload?.drugs)) {
+            setDrugs(payload.drugs as LazyDrugSummary[]);
+          }
+        } catch {
+          // ignore
+        }
+      })();
     }
 
     return () => window.clearTimeout(timer);
