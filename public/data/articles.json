@@ -107,12 +107,12 @@
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218865",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Dementia",
       "subspecialties": [
-        "Other"
+        "Dementia"
       ],
       "topics": [
-        "Neurology"
+        "Dementia"
       ]
     },
     "abstract": "BACKGROUND AND OBJECTIVES: Although visceral adiposity and metabolic comorbidities may increase risks of dementia and mortality, the implications of the newly proposed European Association for the Study of Obesity (EASO) framework remain unclear. We aimed to describe the prevalence of obesity under the EASO framework vs traditional body mass index (BMI) criteria and to examine their associations with incident dementia and all-cause mortality. METHODS: We used data from the English Longitudinal Study on Ageing (ELSA) and China Health and Retirement Longitudinal Study (CHARLS). Participants were classified using the EASO framework, which integrates BMI, waist-to-height ratio, and obesity-related comorbidities. Dementia was defined using validated algorithmic criteria or self-reported physician diagnosis; all-cause mortality was ascertained from death registries, medical records, or interviews with relatives. Associations between obesity phenotypes and outcomes were examined using Cox proportional hazards models, with cohort-specific hazard ratios (HRs) pooled using random-effects meta-analysis. RESULTS: Among 18,944 participants (mean age: ELSA 65.9 ± 9.3 years, CHARLS 58.2 ± 9.7 years; 54.3% and 53.2% female, respectively), 17,617 were included in the dementia analysis and 18,197 for mortality analysis, with a median follow-up of 8.2 years (CHARLS) and 11.5 years (ELSA). Under the EASO framework, 24.9% of CHARLS participants and 37.7% of ELSA participants were classified as obese. Compared with normal weight, EASO-defined overweight was associated with lower dementia (HRpooled: 0.61 [0.45-0.81]) and mortality (HRpooled: 0.32 [0.13-0.81]) risks; EASO-defined obesity was also associated with lower mortality risk (HRpooled: 0.79 [0.10-0.89]). When using normal weight without comorbidity as reference, EASO-defined obesity was linked to increased dementia risk (HRpooled: 1.93 [1.50-2.48]); although the increased mortality risk was only significant in CHARLS, the pooled overall estimate remained positive (HRpooled: 1.30 [1.01-1.68]). BMI-defined obesity showed similar patterns but did not capture the protective associations observed for overweight. Among individuals newly classified as having obesity, the most prevalent comorbidities were diabetes (35.1%) and hypertension (42.6%). DISCUSSION: The EASO definition substantially reclassified obesity status in both Chinese and British older adults and revealed associations with dementia and mortality distinct from BMI alone. Although the observational design and self-reported dementia outcomes limited generalizability, our findings suggest that incorporating fat distribution and comorbidities assessment is crucial for clinical risk stratification.",
@@ -2269,7 +2269,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4324",
-    "title": "Reflections on the Utility of Surveillance MRIs in an Evolving MS Landscape",
+    "title": "Reflections on the Utility of Surveillance MRIs in an Evolving MS Landscape.",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -2282,8 +2282,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "McConville Kylie",
-      "Ontaneda Daniel"
+      "McConville K",
+      "Ontaneda D."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4324",
     "neurology_classification": {
@@ -2904,7 +2904,7 @@
   },
   {
     "id": "10.1001/jama.2026.20669",
-    "title": "Pediatric Medical Imaging and Brain Tumor Risk",
+    "title": "Pediatric Medical Imaging and Brain Tumor Risk.",
     "journal": {
       "name": "JAMA",
       "short_name": "JAMA",
@@ -2917,9 +2917,9 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Persiani Federica",
-      "Boldrini Luca",
-      "De Maria Ruggero"
+      "Persiani F",
+      "Boldrini L",
+      "De Maria R."
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.20669",
     "neurology_classification": {
@@ -5088,7 +5088,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4218",
-    "title": "Agent Orange and Parkinson Disease—The War Ended, the Exposure: Did Not",
+    "title": "Agent Orange and Parkinson Disease-The War Ended, the Exposure: Did Not.",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -5101,9 +5101,9 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Goldman Samuel M.",
-      "Dorsey E. Ray",
-      "Okun Michael S."
+      "Goldman SM",
+      "Dorsey ER",
+      "Okun MS."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4218",
     "neurology_classification": {
@@ -15182,7 +15182,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4165",
-    "title": "Arrival of CAR T-Cell Therapies for Stiff Person Syndrome",
+    "title": "Arrival of CAR T-Cell Therapies for Stiff Person Syndrome.",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -15195,8 +15195,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Gupta Sasha",
-      "Gelfand Jeffrey M."
+      "Gupta S",
+      "Gelfand JM."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4165",
     "neurology_classification": {
@@ -15513,7 +15513,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4491",
-    "title": "Azetukalner in Adults With Focal Seizures",
+    "title": "Azetukalner in Adults With Focal Seizures: Research Summary.",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
