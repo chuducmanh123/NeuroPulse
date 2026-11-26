@@ -28,10 +28,15 @@ import { SelectItemCard } from "./SelectItemCard";
 
 interface ScaleWorkspaceProps {
   scaleEntry: ScaleWithEffectiveStatus;
+  isAdmin?: boolean;
   onBack: () => void;
 }
 
-export function ScaleWorkspace({ scaleEntry, onBack }: ScaleWorkspaceProps) {
+export function ScaleWorkspace({
+  scaleEntry,
+  isAdmin = false,
+  onBack,
+}: ScaleWorkspaceProps) {
   const { scale } = scaleEntry;
 
   // Strictly ephemeral in-memory scoring state (zero localStorage/IndexedDB persistence).
@@ -47,8 +52,8 @@ export function ScaleWorkspace({ scaleEntry, onBack }: ScaleWorkspaceProps) {
   }, [scale.id]);
 
   const evaluation = useMemo(
-    () => evaluateScale(scale, inputs),
-    [scale, inputs]
+    () => evaluateScale(scale, inputs, { allowDraftPreview: isAdmin }),
+    [scale, inputs, isAdmin]
   );
 
   const guidesIndex = useMemo(() => {

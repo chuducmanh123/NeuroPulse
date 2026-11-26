@@ -8,8 +8,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { validateScaleRecord, validateSources } from "../../src/lib/neurocalc/validate.ts";
 import {
-  computeRecordContentHashSync,
   computeSectionHashes,
+  sealVerifiedScale,
 } from "../../src/lib/neurocalc/integrity.ts";
 import { computeJsonPatch } from "../../src/lib/neurocalc/sync/jsonPatch.ts";
 import { listAllLiveRows } from "../../src/lib/neurocalc/sync/handlers.ts";
@@ -95,17 +95,15 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  const contentHash = computeRecordContentHashSync(scale);
-  const sectionHashes = computeSectionHashes(scale);
+  const verifiedScale = sealVerifiedScale(scale, verifiedBy);
+  const contentHash = verifiedScale.verification.content_hash!;
+  const sectionHashes = computeSectionHashes(verifiedScale);
 
-  scale.status = "verified";
-  scale.verification = {
-    verified_by: verifiedBy,
-    verified_at: new Date().toISOString(),
-    content_hash: contentHash,
-  };
-
-  fs.writeFileSync(scalePath, JSON.stringify(scale, null, 2) + "\n", "utf-8");
+  fs.writeFileSync(
+    scalePath,
+    JSON.stringify(verifiedScale, null, 2) + "\n",
+    "utf-8"
+  );
 
   const hasSupabaseCreds =
     Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL) &&
@@ -114,23 +112,23 @@ async function main(): Promise<void> {
   if (!localOnly && hasSupabaseCreds) {
     const repo = new SupabaseScaleRepo();
     const liveRows = await listAllLiveRows(repo);
-    const existing = liveRows.find((r) => r.slug === scale.id);
+    const existing = liveRows.find((r) => r.slug === verifiedScale.id);
     if (existing) {
-      const patch = computeJsonPatch(existing.data, scale);
+      const patch = computeJsonPatch(existing.data, verifiedScale);
       await repo.update(
         existing.uid,
         existing.rev,
-        scale,
+        verifiedScale,
         contentHash,
         sectionHashes,
         patch,
         verifiedBy
       );
-      console.log(`☁️  Synced verified '${scale.id}' to Supabase Sync v2`);
+      console.log(`☁️  Synced verified '${verifiedScale.id}' to Supabase Sync v2`);
     }
   }
 
-  console.log(`🔒 Verified '${scale.id}' by ${verifiedBy}`);
+  console.log(`🔒 Verified '${verifiedScale.id}' by ${verifiedBy}`);
   console.log(`   content_hash: ${contentHash}`);
   console.log(`   section_hashes: ${JSON.stringify(sectionHashes)}`);
 }

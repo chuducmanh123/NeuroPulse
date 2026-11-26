@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 import type { ScaleRecord } from "../../../types/neurocalc.ts";
-import { computeRootHashFromEntries } from "./jsonPatch.ts";
+import { computeRootHashFromEntries, deepEqualSync } from "./jsonPatch.ts";
 import { RepoError, type ScaleRepo } from "./repo.ts";
 import type {
   JsonPatchOp,
@@ -195,7 +195,11 @@ export class MemoryScaleRepo implements ScaleRepo {
       throw new RepoError("INVALID_SLUG", "Scale id must be a non-empty slug");
     }
 
-    if (current.contentHash === contentHash && current.slug === slug) {
+    if (
+      current.contentHash === contentHash &&
+      current.slug === slug &&
+      deepEqualSync(current.data.verification, data.verification)
+    ) {
       return { row: clone(current), unchanged: true };
     }
 

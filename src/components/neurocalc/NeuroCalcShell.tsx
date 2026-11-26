@@ -292,6 +292,7 @@ export function NeuroCalcShell() {
           {activeScale ? (
             <ScaleWorkspace
               scaleEntry={activeScale}
+              isAdmin={isAdmin}
               onBack={() => navigateToScale(null)}
             />
           ) : (

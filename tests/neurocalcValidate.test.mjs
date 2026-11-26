@@ -6,6 +6,7 @@ import {
   computeRecordContentHashSync,
   computeSectionHashes,
   evaluateEffectiveScale,
+  sealVerifiedScale,
   threeWayMergeScale,
 } from "../src/lib/neurocalc/sync/jsonPatch.ts";
 
@@ -304,5 +305,14 @@ describe("NeuroCalc Data Validator & 6-Block Merkle Hashing (T1)", () => {
     const formulaErrs = validateScaleRecord(formula);
     assert.ok(formulaErrs.some((e) => e.path === "items[0].min_canonical"));
     assert.ok(formulaErrs.some((e) => e.path === "scoring.formula_id"));
+  });
+
+  it("seals draft scale as verified with matching content_hash", () => {
+    const draft = makeValidPointSumScale();
+    const sealed = sealVerifiedScale(draft, "Dr. Reviewer", "2026-11-26T00:00:00.000Z");
+    assert.equal(sealed.status, "verified");
+    const evaluated = evaluateEffectiveScale(sealed);
+    assert.equal(evaluated.effectiveStatus, "verified");
+    assert.equal(evaluated.hashMatches, true);
   });
 });

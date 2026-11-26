@@ -8,6 +8,7 @@ export {
   computeRootHashFromEntries,
   computeSectionHashes,
   evaluateEffectiveScale,
+  sealVerifiedScale,
   threeWayMergeScale,
 } from "./sync/jsonPatch.ts";
 export type { CalcSectionName } from "./sync/jsonPatch.ts";

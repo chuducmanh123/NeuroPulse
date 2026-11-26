@@ -57,6 +57,30 @@ export function computeRecordContentHashSync(scale: unknown): string {
 }
 
 /**
+ * Seals a ScaleRecord as `verified`, computing `verification.content_hash`
+ * AFTER setting `status: "verified"` so `evaluateEffectiveScale` matches.
+ */
+export function sealVerifiedScale(
+  scale: ScaleRecord,
+  verifiedBy: string,
+  verifiedAt: string = new Date().toISOString()
+): ScaleRecord {
+  const withVerifiedStatus: ScaleRecord = {
+    ...scale,
+    status: "verified",
+  };
+  const contentHash = computeRecordContentHashSync(withVerifiedStatus);
+  return {
+    ...withVerifiedStatus,
+    verification: {
+      verified_by: verifiedBy,
+      verified_at: verifiedAt,
+      content_hash: contentHash,
+    },
+  };
+}
+
+/**
  * Evaluates effective clinical verification status and content_hash match
  * purely from a ScaleRecord without server-only modules (`node:*`).
  */

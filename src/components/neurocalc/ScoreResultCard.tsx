@@ -130,6 +130,12 @@ export function ScoreResultCard({
         </button>
       </div>
 
+      {evaluation.effectiveStatus !== "verified" && (
+        <div className="mb-3 rounded-xl border border-amber-500/35 bg-amber-50/80 dark:bg-amber-950/30 px-3 py-2 text-[11.5px] text-amber-900 dark:text-amber-200 leading-snug">
+          <span className="font-bold">Draft Preview (Admin only)</span> — Live scoring is enabled for review. Verify this scale in Admin before clinical use.
+        </div>
+      )}
+
       {/* Primary Score Display */}
       <div className="flex items-baseline gap-2">
         <span className="font-mono-tech text-4xl font-bold tracking-tight text-[var(--text-ink)]">

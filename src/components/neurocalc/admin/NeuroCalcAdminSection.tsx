@@ -20,7 +20,7 @@ import {
   useNeuroCalcScales,
   type UseNeuroCalcScalesResult,
 } from "@/hooks/useNeuroCalcScales";
-import { computeRecordContentHashSync } from "@/lib/neurocalc/integrity";
+import { sealVerifiedScale } from "@/lib/neurocalc/integrity";
 import { CALC_SECTIONS } from "@/lib/neurocalc/sync/jsonPatch";
 import type { SyncRow } from "@/lib/neurocalc/sync/types";
 import type { ScaleRecord } from "@/types/neurocalc";
@@ -99,20 +99,47 @@ export function NeuroCalcAdminSection({
     setErrorMsg(null);
     setActionMsg(null);
     try {
-      const contentHash = computeRecordContentHashSync(scale);
-      const verifiedScale: ScaleRecord = {
-        ...scale,
-        status: "verified",
-        verification: {
-          verified_by: "Admin",
-          verified_at: new Date().toISOString(),
-          content_hash: contentHash,
-        },
-      };
-
       const token = getStoredAdminToken();
+      let currentRow = syncRow;
+
+      // Repair rows that were previously saved as `status: "verified"` with a stale `draft` content_hash.
+      // Resetting to `draft` changes `content_hash`, bypassing the Postgres `unchanged` short-circuit.
+      if (currentRow.data.status === "verified") {
+        const resetDraft: ScaleRecord = {
+          ...currentRow.data,
+          status: "draft",
+          verification: {
+            verified_by: null,
+            verified_at: null,
+            content_hash: null,
+          },
+        };
+        const resetRes = await fetch(
+          `/api/neurocalc/sync/scales/${encodeURIComponent(currentRow.uid)}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              "x-admin-token": token || "",
+            },
+            body: JSON.stringify({
+              expectedRev: currentRow.rev,
+              data: resetDraft,
+              actor: "admin",
+            }),
+          }
+        );
+        const resetJson = await resetRes.json();
+        if (!resetRes.ok || !resetJson?.row) {
+          setErrorMsg(resetJson?.error || `Verification reset failed (${resetRes.status})`);
+          return;
+        }
+        currentRow = resetJson.row as SyncRow;
+      }
+
+      const verifiedScale = sealVerifiedScale(currentRow.data, "Admin");
       const res = await fetch(
-        `/api/neurocalc/sync/scales/${encodeURIComponent(syncRow.uid)}`,
+        `/api/neurocalc/sync/scales/${encodeURIComponent(currentRow.uid)}`,
         {
           method: "PUT",
           headers: {
@@ -120,7 +147,7 @@ export function NeuroCalcAdminSection({
             "x-admin-token": token || "",
           },
           body: JSON.stringify({
-            expectedRev: syncRow.rev,
+            expectedRev: currentRow.rev,
             data: verifiedScale,
             actor: "admin",
           }),
