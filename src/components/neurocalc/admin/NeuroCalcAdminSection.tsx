@@ -340,7 +340,7 @@ export function NeuroCalcAdminSection({
                           className="inline-flex items-center gap-1 rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800"
                         >
                           <Edit className="w-3.5 h-3.5" />
-                          <span>Edit Blocks</span>
+                          <span>Edit Scale</span>
                         </button>
                         <button
                           type="button"
