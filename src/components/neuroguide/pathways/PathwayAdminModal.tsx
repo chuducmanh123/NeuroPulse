@@ -1234,95 +1234,234 @@ export function PathwayAdminModal({
                     <div className="p-4 sm:p-5 flex-1 min-h-0 overflow-y-auto space-y-4 custom-scrollbar">
                       {editorTab === "meta" && (
                         <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/50 p-3.5 space-y-3 text-xs">
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                <div>
-                                  <label className="block font-semibold mb-1">
-                                    Title (EN) *
-                                  </label>
-                                    <input
-                                      type="text"
-                                      value={draft.title.en}
-                                      onChange={(e) =>
-                                        setDraft({
-                                          ...draft,
-                                          title: { ...draft.title, en: e.target.value },
-                                        })
-                                      }
-                                      className="w-full min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
-                                    />
-                                  </div>
-                                  <div>
-                                    <label className="block font-semibold mb-1">
-                                      Title (VI)
-                                    </label>
-                                    <input
-                                      type="text"
-                                      value={draft.title.vi || ""}
-                                      onChange={(e) =>
-                                        setDraft({
-                                          ...draft,
-                                          title: { ...draft.title, vi: e.target.value },
-                                        })
-                                      }
-                                      className="w-full min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
-                                    />
-                                  </div>
-                                </div>
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                                  <div>
-                                    <label className="block font-semibold mb-1">
-                                      First Step
-                                    </label>
-                                    <CustomSelect
-                                      value={draft.entryNodeId}
-                                      onChange={(v) => setDraft({ ...draft, entryNodeId: v })}
-                                      ariaLabel="First step"
-                                      darkMode={darkMode}
-                                      accent="amber"
-                                      size="form-sm"
-                                      buttonClassName="bg-[var(--bg-surface)] shadow-none"
-                                      options={draft.nodes.map((n, idx) => ({
-                                        value: n.id,
-                                        label: `Step ${idx + 1}: ${n.title.en || n.id}`,
-                                      }))}
-                                    />
-                                  </div>
-                                  <div>
-                                    <label className="block font-semibold mb-1">
-                                      Source Title
-                                    </label>
-                                    <input
-                                      type="text"
-                                      value={draft.source.title}
-                                      onChange={(e) =>
-                                        setDraft({
-                                          ...draft,
-                                          source: { ...draft.source, title: e.target.value },
-                                        })
-                                      }
-                                      className="w-full min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
-                                    />
-                                  </div>
-                                  <div>
-                                    <label className="block font-semibold mb-1">
-                                      Year
-                                    </label>
-                                    <input
-                                      type="number"
-                                      value={draft.source.year}
-                                      onChange={(e) =>
-                                        setDraft({
-                                          ...draft,
-                                          source: {
-                                            ...draft.source,
-                                            year: Number(e.target.value),
-                                          },
-                                        })
-                                      }
-                                      className="w-full min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
-                                    />
-                                </div>
-                              </div>
+                          <div className="flex gap-2">
+                            {(["guideline", "textbook"] as const).map((t) => (
+                              <button
+                                key={t}
+                                type="button"
+                                onClick={() =>
+                                  setDraft({
+                                    ...draft,
+                                    source: { ...draft.source, sourceType: t },
+                                  })
+                                }
+                                className={`flex-1 min-h-[34px] py-1.5 rounded-lg text-xs font-bold border capitalize transition-colors cursor-pointer ${
+                                  draft.source.sourceType === t
+                                    ? "bg-[#C25934] text-white border-[#C25934]"
+                                    : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border-[var(--border-hairline)]"
+                                }`}
+                              >
+                                {t}
+                              </button>
+                            ))}
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div>
+                              <label className="block font-semibold mb-1">
+                                Title (EN) *
+                              </label>
+                              <input
+                                type="text"
+                                value={draft.title.en}
+                                onChange={(e) =>
+                                  setDraft({
+                                    ...draft,
+                                    title: { ...draft.title, en: e.target.value },
+                                  })
+                                }
+                                className="w-full min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
+                              />
+                            </div>
+                            <div>
+                              <label className="block font-semibold mb-1">
+                                Title (VI)
+                              </label>
+                              <input
+                                type="text"
+                                value={draft.title.vi || ""}
+                                onChange={(e) =>
+                                  setDraft({
+                                    ...draft,
+                                    title: { ...draft.title, vi: e.target.value },
+                                  })
+                                }
+                                className="w-full min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
+                              />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block font-semibold mb-1">
+                              Source Title *
+                            </label>
+                            <input
+                              type="text"
+                              value={draft.source.title}
+                              onChange={(e) =>
+                                setDraft({
+                                  ...draft,
+                                  source: { ...draft.source, title: e.target.value },
+                                })
+                              }
+                              placeholder="e.g. 2026 AHA/ASA Acute Ischemic Stroke Guideline"
+                              className="w-full min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <div className="sm:col-span-2">
+                              <label className="block font-semibold mb-1">
+                                Organization / Author
+                              </label>
+                              <input
+                                type="text"
+                                value={draft.source.organizationOrAuthor || ""}
+                                onChange={(e) =>
+                                  setDraft({
+                                    ...draft,
+                                    source: {
+                                      ...draft.source,
+                                      organizationOrAuthor: e.target.value,
+                                    },
+                                  })
+                                }
+                                placeholder="e.g. AHA/ASA or Adams & Victor"
+                                className="w-full min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
+                              />
+                            </div>
+                            <div>
+                              <label className="block font-semibold mb-1">
+                                Year *
+                              </label>
+                              <input
+                                type="number"
+                                value={draft.source.year}
+                                onChange={(e) =>
+                                  setDraft({
+                                    ...draft,
+                                    source: {
+                                      ...draft.source,
+                                      year: Number(e.target.value),
+                                    },
+                                  })
+                                }
+                                className="w-full min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div>
+                              <label className="block font-semibold mb-1">
+                                Subspecialty
+                              </label>
+                              <CustomSelect
+                                value={draft.subspecialty}
+                                onChange={(v) =>
+                                  setDraft({
+                                    ...draft,
+                                    subspecialty: v as SubspecialtyType,
+                                  })
+                                }
+                                ariaLabel="Pathway subspecialty"
+                                darkMode={darkMode}
+                                accent="amber"
+                                size="form-sm"
+                                buttonClassName="bg-[var(--bg-surface)] shadow-none"
+                                options={SUBSPECIALTY_OPTIONS.map((s) => ({
+                                  value: s,
+                                  label: s,
+                                }))}
+                              />
+                            </div>
+                            <div>
+                              <label className="block font-semibold mb-1">
+                                Domain
+                              </label>
+                              <CustomSelect
+                                value={draft.domain}
+                                onChange={(v) =>
+                                  setDraft({
+                                    ...draft,
+                                    domain: v as PathwayDomain,
+                                  })
+                                }
+                                ariaLabel="Pathway domain"
+                                darkMode={darkMode}
+                                accent="amber"
+                                size="form-sm"
+                                buttonClassName="bg-[var(--bg-surface)] shadow-none"
+                                options={[
+                                  { value: "diagnosis", label: "Diagnosis" },
+                                  { value: "treatment", label: "Treatment" },
+                                  { value: "combined", label: "Combined" },
+                                ]}
+                              />
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div>
+                              <label className="block font-semibold mb-1">
+                                Figure / Page Ref
+                              </label>
+                              <input
+                                type="text"
+                                value={draft.source.figureRef || ""}
+                                onChange={(e) =>
+                                  setDraft({
+                                    ...draft,
+                                    source: {
+                                      ...draft.source,
+                                      figureRef: e.target.value || undefined,
+                                    },
+                                  })
+                                }
+                                placeholder="e.g. Figure 2, p. 412"
+                                className="w-full min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
+                              />
+                            </div>
+                            <div>
+                              <label className="block font-semibold mb-1">
+                                Source URL (optional)
+                              </label>
+                              <input
+                                type="text"
+                                value={draft.source.url || ""}
+                                onChange={(e) =>
+                                  setDraft({
+                                    ...draft,
+                                    source: {
+                                      ...draft.source,
+                                      url: e.target.value || undefined,
+                                    },
+                                  })
+                                }
+                                placeholder="https://doi.org/..."
+                                className="w-full min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
+                              />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block font-semibold mb-1">
+                              First Step
+                            </label>
+                            <CustomSelect
+                              value={draft.entryNodeId}
+                              onChange={(v) => setDraft({ ...draft, entryNodeId: v })}
+                              ariaLabel="First step"
+                              darkMode={darkMode}
+                              accent="amber"
+                              size="form-sm"
+                              buttonClassName="bg-[var(--bg-surface)] shadow-none"
+                              options={draft.nodes.map((n, idx) => ({
+                                value: n.id,
+                                label: `Step ${idx + 1}: ${n.title.en || n.id}`,
+                              }))}
+                            />
+                          </div>
 
                               {/* Abbreviations Visual Editor */}
                               <div className="pt-2 border-t border-[var(--border-hairline)] space-y-2">

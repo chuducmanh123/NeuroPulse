@@ -95,23 +95,22 @@ const SAMPLE_PATHWAYS = [
 ];
 
 describe("Phase 3 — Clinical Pathways Runner Utils & Catalog Filtering", () => {
-  it("resolveBilingualDisplay respects EN default, EN+VI bilingual, and VI modes", () => {
+  it("resolveBilingualDisplay respects EN and VI modes", () => {
     const text = { en: "Acute Ischemic Stroke", vi: "Đột quỵ thiếu máu não cấp" };
 
     assert.deepEqual(resolveBilingualDisplay(text, "en"), {
       primary: "Acute Ischemic Stroke",
     });
-    assert.deepEqual(resolveBilingualDisplay(text, "bilingual"), {
-      primary: "Acute Ischemic Stroke",
-      secondary: "Đột quỵ thiếu máu não cấp",
-    });
     assert.deepEqual(resolveBilingualDisplay(text, "vi"), {
       primary: "Đột quỵ thiếu máu não cấp",
-      secondary: "Acute Ischemic Stroke",
     });
     // Fallback when vi missing
     assert.deepEqual(resolveBilingualDisplay({ en: "NIHSS >= 6" }, "vi"), {
       primary: "NIHSS >= 6",
+    });
+    // Fallback when en missing
+    assert.deepEqual(resolveBilingualDisplay({ en: "", vi: "Đột quỵ" }, "en"), {
+      primary: "Đột quỵ",
     });
   });
 

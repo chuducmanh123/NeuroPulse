@@ -22,25 +22,11 @@ export function resolveBilingualDisplay(
   const en = (text.en || "").trim();
   const vi = (text.vi || "").trim();
 
-  if (mode === "en") {
-    return { primary: en || vi };
-  }
-
   if (mode === "vi") {
-    if (vi) {
-      return {
-        primary: vi,
-        ...(en && en !== vi ? { secondary: en } : {}),
-      };
-    }
-    return { primary: en };
+    return { primary: vi || en };
   }
 
-  // bilingual: EN primary, VI secondary
-  return {
-    primary: en || vi,
-    ...(vi && vi !== en ? { secondary: vi } : {}),
-  };
+  return { primary: en || vi };
 }
 
 export interface ChecklistEvaluation {

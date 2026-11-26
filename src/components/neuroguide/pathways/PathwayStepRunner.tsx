@@ -456,7 +456,6 @@ export function PathwayStepRunner({
           [
             { id: "en", label: "EN" },
             { id: "vi", label: "VI" },
-            { id: "bilingual", label: "EN+VI" },
           ] as const
         ).map((opt) => (
           <button
@@ -962,7 +961,6 @@ export function PathwayStepRunner({
                 [
                   { id: "en", label: "EN" },
                   { id: "vi", label: "VI" },
-                  { id: "bilingual", label: "2" },
                 ] as const
               ).map((opt) => (
                 <button

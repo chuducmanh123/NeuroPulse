@@ -3,7 +3,7 @@ import type { EcosystemLink, NormalizedTier, SubspecialtyType } from "./neurogui
 export type PathwaySourceType = "guideline" | "textbook";
 export type PathwayDomain = "diagnosis" | "treatment" | "combined";
 export type PathwayStatus = "draft" | "published" | "archived";
-export type PathwayLangMode = "en" | "bilingual" | "vi";
+export type PathwayLangMode = "en" | "vi";
 
 export interface BilingualText {
   /** Primary canonical clinical text (English verbatim from source) */
