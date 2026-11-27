@@ -72,12 +72,7 @@ export function NeuroCalcShell() {
   }, []);
 
   useEffect(() => {
-    const initialDark =
-      getEcosystemDarkMode() ||
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setDarkMode(initialDark);
-    document.documentElement.classList.toggle("dark", initialDark);
-    document.documentElement.classList.toggle("night-shift", initialDark);
+    setDarkMode(getEcosystemDarkMode());
     return subscribeEcosystemDarkMode(setDarkMode);
   }, []);
 

@@ -155,7 +155,7 @@ function CompactNumericRow({
             onBlur={onBlur}
             placeholder={placeholder}
             disabled={disabled}
-            className="min-w-0 flex-1 bg-transparent px-2.5 text-base sm:text-sm font-mono-tech font-semibold text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/55 placeholder:font-normal focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            className="min-w-0 flex-1 bg-transparent px-2.5 text-sm font-mono-tech font-medium text-[var(--text-ink)] placeholder:text-[13px] placeholder:text-[var(--text-muted)]/55 placeholder:font-normal focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
           <div className="border-l border-[var(--border-hairline)] bg-[var(--bg-subtle)]/70 flex items-stretch shrink-0">
             {onToggleUnit ? (
@@ -1364,7 +1364,7 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
                     value={actualNovomix}
                     placeholder="0"
                     onChange={(e) => setActualNovomix(e.target.value)}
-                    className="w-full h-10 sm:h-8.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] px-2.5 text-base sm:text-sm font-mono-tech font-semibold text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/55 placeholder:font-normal focus:outline-none focus:border-[#0E7490]"
+                    className="w-full h-10 sm:h-8.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] px-2.5 text-sm font-mono-tech font-medium text-[var(--text-ink)] placeholder:text-[13px] placeholder:text-[var(--text-muted)]/55 placeholder:font-normal focus:outline-none focus:border-[#0E7490]"
                   />
                 </div>
                 <div>
@@ -1378,7 +1378,7 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
                     value={actualActrapid}
                     placeholder="0"
                     onChange={(e) => setActualActrapid(e.target.value)}
-                    className="w-full h-10 sm:h-8.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] px-2.5 text-base sm:text-sm font-mono-tech font-semibold text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/55 placeholder:font-normal focus:outline-none focus:border-[#0E7490]"
+                    className="w-full h-10 sm:h-8.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] px-2.5 text-sm font-mono-tech font-medium text-[var(--text-ink)] placeholder:text-[13px] placeholder:text-[var(--text-muted)]/55 placeholder:font-normal focus:outline-none focus:border-[#0E7490]"
                   />
                 </div>
               </div>
@@ -1395,7 +1395,7 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
                   value={actualIvRate}
                   placeholder="0.0"
                   onChange={(e) => setActualIvRate(e.target.value)}
-                  className="w-full h-10 sm:h-8.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] px-2.5 text-base sm:text-sm font-mono-tech font-semibold text-[var(--text-ink)] placeholder:text-[var(--text-muted)]/55 placeholder:font-normal focus:outline-none focus:border-[#0E7490]"
+                  className="w-full h-10 sm:h-8.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] px-2.5 text-sm font-mono-tech font-medium text-[var(--text-ink)] placeholder:text-[13px] placeholder:text-[var(--text-muted)]/55 placeholder:font-normal focus:outline-none focus:border-[#0E7490]"
                 />
               </div>
             )}

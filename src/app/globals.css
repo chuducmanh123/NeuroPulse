@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *, .night-shift, .night-shift *));
 
 :root {
   --bg-paper: #FAF8F5;
@@ -37,6 +38,12 @@ input,
 select,
 textarea {
   font-family: inherit !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-family: inherit !important;
+  font-variant-numeric: inherit;
 }
 
 html,
@@ -91,6 +98,12 @@ body {
 .medical-journal-app .font-mono-tech {
   font-family: "IBM Plex Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-variant-numeric: tabular-nums;
+}
+
+.medical-journal-app input::placeholder,
+.medical-journal-app textarea::placeholder {
+  font-family: "IBM Plex Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-variant-numeric: inherit;
 }
 
 /* Persistent Slim Vertical Navigation Rail (44px) */

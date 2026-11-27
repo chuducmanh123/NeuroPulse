@@ -6,6 +6,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { filterValidNeuroPulseArticles } from "@/utils/articleFilter";
 import {
+  getEcosystemDarkMode,
+  setEcosystemDarkMode,
+  subscribeEcosystemDarkMode,
+} from "@/utils/themeSync";
+import {
   AlertTriangle,
   BarChart3,
   BookOpen,
@@ -89,29 +94,14 @@ export default function AdminCommandCenter() {
   // Dark Mode State synced across ecosystem
   const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
-    const isDark =
-      localStorage.getItem("neuropulse_theme") === "dark" ||
-      localStorage.getItem("neuro_dark_mode") === "true";
-    setDarkMode(isDark);
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    setDarkMode(getEcosystemDarkMode());
+    return subscribeEcosystemDarkMode(setDarkMode);
   }, []);
 
   const toggleDarkMode = () => {
-    setDarkMode((prev) => {
-      const next = !prev;
-      localStorage.setItem("neuropulse_theme", next ? "dark" : "light");
-      localStorage.setItem("neuro_dark_mode", next ? "true" : "false");
-      if (next) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-      return next;
-    });
+    const next = !darkMode;
+    setDarkMode(next);
+    setEcosystemDarkMode(next);
   };
 
   // =========================================================================
