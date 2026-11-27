@@ -1,14 +1,131 @@
 {
   "id": "gcs",
-  "schema_version": 1,
+  "items": [
+    {
+      "id": "gcs_eye",
+      "code": "E",
+      "kind": "select",
+      "label": "Eye Opening",
+      "options": [
+        {
+          "id": "e4",
+          "label": "Spontaneous",
+          "points": 4
+        },
+        {
+          "id": "e3",
+          "label": "To verbal command / speech",
+          "points": 3
+        },
+        {
+          "id": "e2",
+          "label": "To pressure / painful stimulus",
+          "points": 2
+        },
+        {
+          "id": "e1",
+          "label": "None",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "gcs_verbal",
+      "code": "V",
+      "kind": "select",
+      "label": "Verbal Response",
+      "options": [
+        {
+          "id": "v5",
+          "label": "Oriented",
+          "points": 5
+        },
+        {
+          "id": "v4",
+          "label": "Confused",
+          "points": 4
+        },
+        {
+          "id": "v3",
+          "label": "Inappropriate / single words",
+          "points": 3
+        },
+        {
+          "id": "v2",
+          "label": "Incomprehensible sounds",
+          "points": 2
+        },
+        {
+          "id": "v1",
+          "label": "None (or intubated — record as 1T)",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "gcs_motor",
+      "code": "M",
+      "kind": "select",
+      "label": "Best Motor Response",
+      "options": [
+        {
+          "id": "m6",
+          "label": "Obeys commands",
+          "points": 6
+        },
+        {
+          "id": "m5",
+          "label": "Localizes to pain",
+          "points": 5
+        },
+        {
+          "id": "m4",
+          "label": "Normal flexion (withdrawal from pain)",
+          "points": 4
+        },
+        {
+          "id": "m3",
+          "label": "Abnormal flexion (decorticate posturing)",
+          "points": 3
+        },
+        {
+          "id": "m2",
+          "label": "Extension (decerebrate posturing)",
+          "points": 2
+        },
+        {
+          "id": "m1",
+          "label": "None",
+          "points": 1
+        }
+      ],
+      "required": true
+    }
+  ],
+  "status": "verified",
+  "scoring": {
+    "unit": "points",
+    "method": "sum",
+    "max_score": 15,
+    "min_score": 3,
+    "precision": 0
+  },
   "metadata": {
-    "name": "Glasgow Coma Scale",
-    "short_name": "GCS",
-    "aliases": ["coma scale", "consciousness"],
-    "subspecialties": ["Neurocritical Care", "Stroke"],
     "kind": "point_sum",
+    "name": "Glasgow Coma Scale (GCS)",
+    "aliases": [
+      "coma scale",
+      "consciousness"
+    ],
     "summary": "Bedside consciousness assessment across Eye, Verbal, and Motor responses (range 3–15).",
+    "short_name": "GCS",
     "time_estimate": "< 1 min",
+    "subspecialties": [
+      "Neurocritical Care",
+      "Stroke"
+    ],
     "clinical_pearls": [
       "Always record the best response observed in each domain; report E/V/M subscores alongside total.",
       "For intubated patients, document V1T rather than guessing verbal output.",
@@ -18,102 +135,6 @@
       "Pitfall — Simplified alternatives: Scores like the Simplified Motor Score (SMS) perform similarly for initial ED/prehospital triage, but lack the longitudinal trending validation of full GCS."
     ]
   },
-  "items": [
-    {
-      "kind": "select",
-      "id": "gcs_eye",
-      "code": "E",
-      "label": "Eye Opening",
-      "required": true,
-      "options": [
-        { "id": "e4", "label": "Spontaneous", "points": 4 },
-        { "id": "e3", "label": "To verbal command / speech", "points": 3 },
-        { "id": "e2", "label": "To pressure / painful stimulus", "points": 2 },
-        { "id": "e1", "label": "None", "points": 1 }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "gcs_verbal",
-      "code": "V",
-      "label": "Verbal Response",
-      "required": true,
-      "options": [
-        { "id": "v5", "label": "Oriented", "points": 5 },
-        { "id": "v4", "label": "Confused", "points": 4 },
-        { "id": "v3", "label": "Inappropriate / single words", "points": 3 },
-        { "id": "v2", "label": "Incomprehensible sounds", "points": 2 },
-        { "id": "v1", "label": "None (or intubated — record as 1T)", "points": 1 }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "gcs_motor",
-      "code": "M",
-      "label": "Best Motor Response",
-      "required": true,
-      "options": [
-        { "id": "m6", "label": "Obeys commands", "points": 6 },
-        { "id": "m5", "label": "Localizes to pain", "points": 5 },
-        { "id": "m4", "label": "Normal flexion (withdrawal from pain)", "points": 4 },
-        { "id": "m3", "label": "Abnormal flexion (decorticate posturing)", "points": 3 },
-        { "id": "m2", "label": "Extension (decerebrate posturing)", "points": 2 },
-        { "id": "m1", "label": "None", "points": 1 }
-      ]
-    }
-  ],
-  "scoring": {
-    "method": "sum",
-    "min_score": 3,
-    "max_score": 15,
-    "unit": "points",
-    "precision": 0
-  },
-  "interpretation": [
-    {
-      "id": "gcs_severe",
-      "min": 3,
-      "max": 8,
-      "label": "Severe Consciousness Impairment (Coma)",
-      "severity": "critical",
-      "summary": "GCS 3–8: coma range; evaluate airway protection and urgent neuroimaging.",
-      "refs": [{ "source_id": "teasdale-1974-gcs", "locator": "p. 82" }]
-    },
-    {
-      "id": "gcs_moderate",
-      "min": 9,
-      "max": 12,
-      "label": "Moderate Consciousness Impairment",
-      "severity": "moderate",
-      "summary": "GCS 9–12: moderate impairment requiring close neurological monitoring.",
-      "refs": [{ "source_id": "teasdale-1974-gcs", "locator": "p. 82" }]
-    },
-    {
-      "id": "gcs_mild",
-      "min": 13,
-      "max": 15,
-      "label": "Mild / Normal Consciousness",
-      "severity": "normal",
-      "summary": "GCS 13–15: mild impairment or normal alertness.",
-      "refs": [{ "source_id": "teasdale-1974-gcs", "locator": "p. 82" }]
-    }
-  ],
-  "assessment_guides": [
-    {
-      "id": "guide_gcs_motor",
-      "target_type": "item",
-      "target_id": "gcs_motor",
-      "title": "Motor Response — Localizing vs Withdrawal vs Abnormal Flexion",
-      "bedside_steps": [
-        "Apply fingertip pressure to the nailbed first; if no localization, apply central stimulus (supraorbital notch or trapezius squeeze)."
-      ],
-      "pitfalls_and_exceptions": [
-        "Localizing (M5): hand crosses the midline or rises above the clavicle toward the central stimulus.",
-        "Normal flexion (M4): rapid elbow flexion away from stimulus; Abnormal flexion (M3): slow, stereotyped adduction/flexion with wrist flexion."
-      ],
-      "refs": [{ "source_id": "teasdale-1974-gcs", "locator": "p. 82-83" }]
-    }
-  ],
   "references": [
     {
       "id": "teasdale-1974-gcs",
@@ -149,11 +170,116 @@
     }
   ],
   "test_cases": [
-    { "name": "Minimum (3)", "inputs": { "gcs_eye": "e1", "gcs_verbal": "v1", "gcs_motor": "m1" }, "expected_score": 3, "expected_band_id": "gcs_severe" },
-    { "name": "Borderline coma (8)", "inputs": { "gcs_eye": "e2", "gcs_verbal": "v2", "gcs_motor": "m4" }, "expected_score": 8, "expected_band_id": "gcs_severe" },
-    { "name": "Moderate (10)", "inputs": { "gcs_eye": "e3", "gcs_verbal": "v3", "gcs_motor": "m4" }, "expected_score": 10, "expected_band_id": "gcs_moderate" },
-    { "name": "Maximum (15)", "inputs": { "gcs_eye": "e4", "gcs_verbal": "v5", "gcs_motor": "m6" }, "expected_score": 15, "expected_band_id": "gcs_mild" }
+    {
+      "name": "Minimum (3)",
+      "inputs": {
+        "gcs_eye": "e1",
+        "gcs_motor": "m1",
+        "gcs_verbal": "v1"
+      },
+      "expected_score": 3,
+      "expected_band_id": "gcs_severe"
+    },
+    {
+      "name": "Borderline coma (8)",
+      "inputs": {
+        "gcs_eye": "e2",
+        "gcs_motor": "m4",
+        "gcs_verbal": "v2"
+      },
+      "expected_score": 8,
+      "expected_band_id": "gcs_severe"
+    },
+    {
+      "name": "Moderate (10)",
+      "inputs": {
+        "gcs_eye": "e3",
+        "gcs_motor": "m4",
+        "gcs_verbal": "v3"
+      },
+      "expected_score": 10,
+      "expected_band_id": "gcs_moderate"
+    },
+    {
+      "name": "Maximum (15)",
+      "inputs": {
+        "gcs_eye": "e4",
+        "gcs_motor": "m6",
+        "gcs_verbal": "v5"
+      },
+      "expected_score": 15,
+      "expected_band_id": "gcs_mild"
+    }
   ],
-  "status": "draft",
-  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+  "verification": {
+    "verified_by": "Admin",
+    "verified_at": "2026-11-27T09:08:45.682Z",
+    "content_hash": "27708eeaf4e9246ba48448aa8ee453e2fad2a1c640d1b6a95a28796d0e5e97aa"
+  },
+  "interpretation": [
+    {
+      "id": "gcs_severe",
+      "max": 8,
+      "min": 3,
+      "refs": [
+        {
+          "locator": "p. 82",
+          "source_id": "teasdale-1974-gcs"
+        }
+      ],
+      "label": "Severe Consciousness Impairment (Coma)",
+      "summary": "GCS 3–8: coma range; evaluate airway protection and urgent neuroimaging.",
+      "severity": "critical"
+    },
+    {
+      "id": "gcs_moderate",
+      "max": 12,
+      "min": 9,
+      "refs": [
+        {
+          "locator": "p. 82",
+          "source_id": "teasdale-1974-gcs"
+        }
+      ],
+      "label": "Moderate Consciousness Impairment",
+      "summary": "GCS 9–12: moderate impairment requiring close neurological monitoring.",
+      "severity": "moderate"
+    },
+    {
+      "id": "gcs_mild",
+      "max": 15,
+      "min": 13,
+      "refs": [
+        {
+          "locator": "p. 82",
+          "source_id": "teasdale-1974-gcs"
+        }
+      ],
+      "label": "Mild / Normal Consciousness",
+      "summary": "GCS 13–15: mild impairment or normal alertness.",
+      "severity": "normal"
+    }
+  ],
+  "schema_version": 1,
+  "assessment_guides": [
+    {
+      "id": "guide_gcs_motor",
+      "refs": [
+        {
+          "locator": "p. 82-83",
+          "source_id": "teasdale-1974-gcs"
+        }
+      ],
+      "title": "Motor Response — Localizing vs Withdrawal vs Abnormal Flexion",
+      "target_id": "gcs_motor",
+      "target_type": "item",
+      "bedside_steps": [
+        "Apply fingertip pressure to the nailbed first; if no localization, apply central stimulus (supraorbital notch or trapezius squeeze)."
+      ],
+      "pitfalls_and_exceptions": [
+        "Localizing (M5): hand crosses the midline or rises above the clavicle toward the central stimulus.",
+        "Normal flexion (M4): rapid elbow flexion away from stimulus; Abnormal flexion (M3): slow, stereotyped adduction/flexion with wrist flexion."
+      ]
+    }
+  ]
 }

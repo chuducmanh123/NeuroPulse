@@ -1,14 +1,261 @@
 {
   "id": "mg-adl",
-  "schema_version": 1,
+  "items": [
+    {
+      "id": "mg_talking",
+      "code": "1",
+      "kind": "select",
+      "label": "Talking",
+      "options": [
+        {
+          "id": "0",
+          "label": "Normal",
+          "points": 0
+        },
+        {
+          "id": "1",
+          "label": "Intermittent slurring or nasal speech",
+          "points": 1
+        },
+        {
+          "id": "2",
+          "label": "Constant slurring or nasal speech, but can be understood",
+          "points": 2
+        },
+        {
+          "id": "3",
+          "label": "Difficult to understand speech",
+          "points": 3
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "mg_chewing",
+      "code": "2",
+      "kind": "select",
+      "label": "Chewing",
+      "options": [
+        {
+          "id": "0",
+          "label": "Normal",
+          "points": 0
+        },
+        {
+          "id": "1",
+          "label": "Fatigue with solid food",
+          "points": 1
+        },
+        {
+          "id": "2",
+          "label": "Fatigue with soft food",
+          "points": 2
+        },
+        {
+          "id": "3",
+          "label": "Gastric tube",
+          "points": 3
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "mg_swallowing",
+      "code": "3",
+      "kind": "select",
+      "label": "Swallowing",
+      "options": [
+        {
+          "id": "0",
+          "label": "Normal",
+          "points": 0
+        },
+        {
+          "id": "1",
+          "label": "Rare episode of choking",
+          "points": 1
+        },
+        {
+          "id": "2",
+          "label": "Frequent choking necessitating changes in diet",
+          "points": 2
+        },
+        {
+          "id": "3",
+          "label": "Gastric tube",
+          "points": 3
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "mg_breathing",
+      "code": "4",
+      "kind": "select",
+      "label": "Breathing",
+      "options": [
+        {
+          "id": "0",
+          "label": "Normal",
+          "points": 0
+        },
+        {
+          "id": "1",
+          "label": "Shortness of breath with exertion",
+          "points": 1
+        },
+        {
+          "id": "2",
+          "label": "Shortness of breath at rest",
+          "points": 2
+        },
+        {
+          "id": "3",
+          "label": "Ventilator dependence",
+          "points": 3
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "mg_brushing",
+      "code": "5",
+      "kind": "select",
+      "label": "Impairment of Ability to Brush Teeth or Comb Hair",
+      "options": [
+        {
+          "id": "0",
+          "label": "None",
+          "points": 0
+        },
+        {
+          "id": "1",
+          "label": "Extra effort, but no rest periods needed",
+          "points": 1
+        },
+        {
+          "id": "2",
+          "label": "Rest periods needed",
+          "points": 2
+        },
+        {
+          "id": "3",
+          "label": "Cannot do one of these functions",
+          "points": 3
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "mg_chair",
+      "code": "6",
+      "kind": "select",
+      "label": "Impairment of Ability to Arise from a Chair",
+      "options": [
+        {
+          "id": "0",
+          "label": "None",
+          "points": 0
+        },
+        {
+          "id": "1",
+          "label": "Mild, sometimes uses arms",
+          "points": 1
+        },
+        {
+          "id": "2",
+          "label": "Moderate, always uses arms",
+          "points": 2
+        },
+        {
+          "id": "3",
+          "label": "Severe, requires assistance",
+          "points": 3
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "mg_diplopia",
+      "code": "7",
+      "kind": "select",
+      "label": "Double Vision",
+      "options": [
+        {
+          "id": "0",
+          "label": "None",
+          "points": 0
+        },
+        {
+          "id": "1",
+          "label": "Occurs, but not daily",
+          "points": 1
+        },
+        {
+          "id": "2",
+          "label": "Daily, but not constant",
+          "points": 2
+        },
+        {
+          "id": "3",
+          "label": "Constant",
+          "points": 3
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "mg_ptosis",
+      "code": "8",
+      "kind": "select",
+      "label": "Eyelid Droop",
+      "options": [
+        {
+          "id": "0",
+          "label": "None",
+          "points": 0
+        },
+        {
+          "id": "1",
+          "label": "Occurs, but not daily",
+          "points": 1
+        },
+        {
+          "id": "2",
+          "label": "Daily, but not constant",
+          "points": 2
+        },
+        {
+          "id": "3",
+          "label": "Constant",
+          "points": 3
+        }
+      ],
+      "required": true
+    }
+  ],
+  "status": "verified",
+  "scoring": {
+    "unit": "points",
+    "method": "sum",
+    "max_score": 24,
+    "min_score": 0,
+    "precision": 0
+  },
   "metadata": {
-    "name": "Myasthenia Gravis Activities of Daily Living (MG-ADL) Profile",
-    "short_name": "MG-ADL",
-    "aliases": ["MGADL", "myasthenia gravis"],
-    "subspecialties": ["Neuromuscular", "Neuroimmunology"],
     "kind": "point_sum",
+    "name": "Myasthenia Gravis Activities of Daily Living (MG-ADL) Profile",
+    "aliases": [
+      "MGADL",
+      "myasthenia gravis"
+    ],
     "summary": "8-item patient-reported outcome (0–24) assessing ocular, bulbar, respiratory, and limb symptoms over the past 7 days.",
+    "short_name": "MG-ADL",
     "time_estimate": "~1–2 min",
+    "subspecialties": [
+      "Neuromuscular",
+      "Neuroimmunology"
+    ],
     "clinical_pearls": [
       "A change of >= 2 points is considered clinically meaningful.",
       "Any breathing (score >= 2) or swallowing impairment warrants urgent evaluation for impending myasthenic crisis.",
@@ -17,40 +264,6 @@
       "Pitfall — Linear weighting & comorbidities: Equal 0–3 scoring per item can understate critical deficits (e.g., ventilator dependence), while non-MG comorbidities (arthritis, stroke, depression) can falsely elevate the total; do not use alone to triage impending crisis."
     ]
   },
-  "items": [
-    { "kind": "select", "id": "mg_talking", "code": "1", "label": "Talking", "required": true, "options": [{ "id": "0", "label": "Normal", "points": 0 }, { "id": "1", "label": "Intermittent slurring or nasal speech", "points": 1 }, { "id": "2", "label": "Constant slurring or nasal speech, but can be understood", "points": 2 }, { "id": "3", "label": "Difficult to understand speech", "points": 3 }] },
-    { "kind": "select", "id": "mg_chewing", "code": "2", "label": "Chewing", "required": true, "options": [{ "id": "0", "label": "Normal", "points": 0 }, { "id": "1", "label": "Fatigue with solid food", "points": 1 }, { "id": "2", "label": "Fatigue with soft food", "points": 2 }, { "id": "3", "label": "Gastric tube", "points": 3 }] },
-    { "kind": "select", "id": "mg_swallowing", "code": "3", "label": "Swallowing", "required": true, "options": [{ "id": "0", "label": "Normal", "points": 0 }, { "id": "1", "label": "Rare episode of choking", "points": 1 }, { "id": "2", "label": "Frequent choking necessitating changes in diet", "points": 2 }, { "id": "3", "label": "Gastric tube", "points": 3 }] },
-    { "kind": "select", "id": "mg_breathing", "code": "4", "label": "Breathing", "required": true, "options": [{ "id": "0", "label": "Normal", "points": 0 }, { "id": "1", "label": "Shortness of breath with exertion", "points": 1 }, { "id": "2", "label": "Shortness of breath at rest", "points": 2 }, { "id": "3", "label": "Ventilator dependence", "points": 3 }] },
-    { "kind": "select", "id": "mg_brushing", "code": "5", "label": "Impairment of Ability to Brush Teeth or Comb Hair", "required": true, "options": [{ "id": "0", "label": "None", "points": 0 }, { "id": "1", "label": "Extra effort, but no rest periods needed", "points": 1 }, { "id": "2", "label": "Rest periods needed", "points": 2 }, { "id": "3", "label": "Cannot do one of these functions", "points": 3 }] },
-    { "kind": "select", "id": "mg_chair", "code": "6", "label": "Impairment of Ability to Arise from a Chair", "required": true, "options": [{ "id": "0", "label": "None", "points": 0 }, { "id": "1", "label": "Mild, sometimes uses arms", "points": 1 }, { "id": "2", "label": "Moderate, always uses arms", "points": 2 }, { "id": "3", "label": "Severe, requires assistance", "points": 3 }] },
-    { "kind": "select", "id": "mg_diplopia", "code": "7", "label": "Double Vision", "required": true, "options": [{ "id": "0", "label": "None", "points": 0 }, { "id": "1", "label": "Occurs, but not daily", "points": 1 }, { "id": "2", "label": "Daily, but not constant", "points": 2 }, { "id": "3", "label": "Constant", "points": 3 }] },
-    { "kind": "select", "id": "mg_ptosis", "code": "8", "label": "Eyelid Droop", "required": true, "options": [{ "id": "0", "label": "None", "points": 0 }, { "id": "1", "label": "Occurs, but not daily", "points": 1 }, { "id": "2", "label": "Daily, but not constant", "points": 2 }, { "id": "3", "label": "Constant", "points": 3 }] }
-  ],
-  "scoring": { "method": "sum", "min_score": 0, "max_score": 24, "unit": "points", "precision": 0 },
-  "interpretation": [
-    { "id": "mg_remission", "min": 0, "max": 1, "label": "Minimal / No Symptom Burden (0–1)", "severity": "normal", "summary": "Consistent with minimal symptom expression.", "refs": [{ "source_id": "wolfe-1999-mgadl", "locator": "Table 1" }] },
-    { "id": "mg_mild", "min": 2, "max": 4, "label": "Mild Symptom Burden (2–4)", "severity": "mild", "summary": "Mild functional limitation in daily activities.", "refs": [{ "source_id": "wolfe-1999-mgadl", "locator": "Table 1" }] },
-    { "id": "mg_mod", "min": 5, "max": 9, "label": "Moderate Symptom Burden (5–9)", "severity": "moderate", "summary": "Moderate symptom burden; review immunotherapy optimization.", "refs": [{ "source_id": "wolfe-1999-mgadl", "locator": "Table 1" }] },
-    { "id": "mg_sev", "min": 10, "max": 24, "label": "Severe Symptom Burden (>= 10)", "severity": "critical", "summary": "High symptom burden; screen closely for bulbar/respiratory crisis.", "refs": [{ "source_id": "wolfe-1999-mgadl", "locator": "Table 1" }] }
-  ],
-  "assessment_guides": [
-    {
-      "id": "guide_mg_scale",
-      "target_type": "scale",
-      "target_id": "mg-adl",
-      "chip_label": "Recall Window",
-      "title": "MG-ADL 7-Day Recall & Crisis Screening",
-      "bedside_steps": [
-        "Ask the patient to rate their typical status over the preceding 7 days (not just a single transient moment)."
-      ],
-      "pitfalls_and_exceptions": [
-        "Score 2 or 3 on Breathing or Swallowing requires immediate FVC/NIF assessment regardless of total score.",
-        "Ensure ocular diplopia resolves with monocular occlusion."
-      ],
-      "refs": [{ "source_id": "wolfe-1999-mgadl", "locator": "p. 1488" }]
-    }
-  ],
   "references": [
     {
       "id": "wolfe-1999-mgadl",
@@ -90,11 +303,151 @@
     }
   ],
   "test_cases": [
-    { "name": "Score 0", "inputs": { "mg_talking": "0", "mg_chewing": "0", "mg_swallowing": "0", "mg_breathing": "0", "mg_brushing": "0", "mg_chair": "0", "mg_diplopia": "0", "mg_ptosis": "0" }, "expected_score": 0, "expected_band_id": "mg_remission" },
-    { "name": "Mild (3)", "inputs": { "mg_talking": "0", "mg_chewing": "0", "mg_swallowing": "0", "mg_breathing": "0", "mg_brushing": "0", "mg_chair": "0", "mg_diplopia": "1", "mg_ptosis": "2" }, "expected_score": 3, "expected_band_id": "mg_mild" },
-    { "name": "Moderate (6)", "inputs": { "mg_talking": "1", "mg_chewing": "1", "mg_swallowing": "0", "mg_breathing": "1", "mg_brushing": "1", "mg_chair": "0", "mg_diplopia": "1", "mg_ptosis": "1" }, "expected_score": 6, "expected_band_id": "mg_mod" },
-    { "name": "Max (24)", "inputs": { "mg_talking": "3", "mg_chewing": "3", "mg_swallowing": "3", "mg_breathing": "3", "mg_brushing": "3", "mg_chair": "3", "mg_diplopia": "3", "mg_ptosis": "3" }, "expected_score": 24, "expected_band_id": "mg_sev" }
+    {
+      "name": "Score 0",
+      "inputs": {
+        "mg_chair": "0",
+        "mg_ptosis": "0",
+        "mg_chewing": "0",
+        "mg_talking": "0",
+        "mg_brushing": "0",
+        "mg_diplopia": "0",
+        "mg_breathing": "0",
+        "mg_swallowing": "0"
+      },
+      "expected_score": 0,
+      "expected_band_id": "mg_remission"
+    },
+    {
+      "name": "Mild (3)",
+      "inputs": {
+        "mg_chair": "0",
+        "mg_ptosis": "2",
+        "mg_chewing": "0",
+        "mg_talking": "0",
+        "mg_brushing": "0",
+        "mg_diplopia": "1",
+        "mg_breathing": "0",
+        "mg_swallowing": "0"
+      },
+      "expected_score": 3,
+      "expected_band_id": "mg_mild"
+    },
+    {
+      "name": "Moderate (6)",
+      "inputs": {
+        "mg_chair": "0",
+        "mg_ptosis": "1",
+        "mg_chewing": "1",
+        "mg_talking": "1",
+        "mg_brushing": "1",
+        "mg_diplopia": "1",
+        "mg_breathing": "1",
+        "mg_swallowing": "0"
+      },
+      "expected_score": 6,
+      "expected_band_id": "mg_mod"
+    },
+    {
+      "name": "Max (24)",
+      "inputs": {
+        "mg_chair": "3",
+        "mg_ptosis": "3",
+        "mg_chewing": "3",
+        "mg_talking": "3",
+        "mg_brushing": "3",
+        "mg_diplopia": "3",
+        "mg_breathing": "3",
+        "mg_swallowing": "3"
+      },
+      "expected_score": 24,
+      "expected_band_id": "mg_sev"
+    }
   ],
-  "status": "draft",
-  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+  "verification": {
+    "verified_by": "Admin",
+    "verified_at": "2026-11-27T09:08:46.466Z",
+    "content_hash": "d8e59af5ef5f901fcae2e5f649c46b19e91616ae22d4a13f5a3edc4c1d5fe8c1"
+  },
+  "interpretation": [
+    {
+      "id": "mg_remission",
+      "max": 1,
+      "min": 0,
+      "refs": [
+        {
+          "locator": "Table 1",
+          "source_id": "wolfe-1999-mgadl"
+        }
+      ],
+      "label": "Minimal / No Symptom Burden (0–1)",
+      "summary": "Consistent with minimal symptom expression.",
+      "severity": "normal"
+    },
+    {
+      "id": "mg_mild",
+      "max": 4,
+      "min": 2,
+      "refs": [
+        {
+          "locator": "Table 1",
+          "source_id": "wolfe-1999-mgadl"
+        }
+      ],
+      "label": "Mild Symptom Burden (2–4)",
+      "summary": "Mild functional limitation in daily activities.",
+      "severity": "mild"
+    },
+    {
+      "id": "mg_mod",
+      "max": 9,
+      "min": 5,
+      "refs": [
+        {
+          "locator": "Table 1",
+          "source_id": "wolfe-1999-mgadl"
+        }
+      ],
+      "label": "Moderate Symptom Burden (5–9)",
+      "summary": "Moderate symptom burden; review immunotherapy optimization.",
+      "severity": "moderate"
+    },
+    {
+      "id": "mg_sev",
+      "max": 24,
+      "min": 10,
+      "refs": [
+        {
+          "locator": "Table 1",
+          "source_id": "wolfe-1999-mgadl"
+        }
+      ],
+      "label": "Severe Symptom Burden (>= 10)",
+      "summary": "High symptom burden; screen closely for bulbar/respiratory crisis.",
+      "severity": "critical"
+    }
+  ],
+  "schema_version": 1,
+  "assessment_guides": [
+    {
+      "id": "guide_mg_scale",
+      "refs": [
+        {
+          "locator": "p. 1488",
+          "source_id": "wolfe-1999-mgadl"
+        }
+      ],
+      "title": "MG-ADL 7-Day Recall & Crisis Screening",
+      "target_id": "mg-adl",
+      "chip_label": "Recall Window",
+      "target_type": "scale",
+      "bedside_steps": [
+        "Ask the patient to rate their typical status over the preceding 7 days (not just a single transient moment)."
+      ],
+      "pitfalls_and_exceptions": [
+        "Score 2 or 3 on Breathing or Swallowing requires immediate FVC/NIF assessment regardless of total score.",
+        "Ensure ocular diplopia resolves with monocular occlusion."
+      ]
+    }
+  ]
 }

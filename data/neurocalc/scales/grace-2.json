@@ -1,14 +1,188 @@
 {
   "id": "grace-2",
-  "schema_version": 1,
+  "items": [
+    {
+      "id": "age",
+      "kind": "numeric",
+      "step": 1,
+      "label": "Age",
+      "units": [
+        {
+          "unit": "years",
+          "label": "years",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": true,
+      "max_canonical": 110,
+      "min_canonical": 18,
+      "canonical_unit": "years"
+    },
+    {
+      "id": "heart_rate",
+      "kind": "numeric",
+      "step": 1,
+      "label": "Heart Rate (Admission)",
+      "units": [
+        {
+          "unit": "bpm",
+          "label": "bpm",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": true,
+      "max_canonical": 300,
+      "min_canonical": 20,
+      "canonical_unit": "bpm"
+    },
+    {
+      "id": "sbp",
+      "kind": "numeric",
+      "step": 1,
+      "label": "Systolic Blood Pressure (Admission)",
+      "units": [
+        {
+          "unit": "mmHg",
+          "label": "mmHg",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": true,
+      "max_canonical": 300,
+      "min_canonical": 40,
+      "canonical_unit": "mmHg"
+    },
+    {
+      "id": "creatinine",
+      "kind": "numeric",
+      "step": 0.05,
+      "label": "Serum Creatinine (Admission)",
+      "units": [
+        {
+          "unit": "mg/dL",
+          "label": "mg/dL",
+          "to_canonical_factor": 1
+        },
+        {
+          "unit": "umol/L",
+          "label": "µmol/L",
+          "to_canonical_factor": 0.0113122
+        }
+      ],
+      "required": true,
+      "max_canonical": 25,
+      "min_canonical": 0.05,
+      "canonical_unit": "mg/dL"
+    },
+    {
+      "id": "killip",
+      "kind": "select",
+      "label": "Killip Class",
+      "options": [
+        {
+          "id": "k1",
+          "badge": "I",
+          "label": "Class I — No heart failure signs",
+          "points": 1
+        },
+        {
+          "id": "k2",
+          "badge": "II",
+          "label": "Class II — Rales / S3 gallop / JVD",
+          "points": 2
+        },
+        {
+          "id": "k3",
+          "badge": "III",
+          "label": "Class III — Frank pulmonary edema",
+          "points": 3
+        },
+        {
+          "id": "k4",
+          "badge": "IV",
+          "label": "Class IV — Cardiogenic shock",
+          "points": 4
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "cardiac_arrest",
+      "kind": "select",
+      "label": "Cardiac Arrest at Admission",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "positive_enzymes",
+      "kind": "select",
+      "label": "Elevated Initial Cardiac Biomarkers (Troponin / CK-MB)",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "st_deviation",
+      "kind": "select",
+      "label": "ST-Segment Deviation on ECG",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    }
+  ],
+  "status": "verified",
+  "scoring": {
+    "unit": "%",
+    "method": "formula",
+    "max_score": 100,
+    "min_score": 0,
+    "precision": 1,
+    "formula_id": "grace_2_1y_death"
+  },
   "metadata": {
-    "name": "GRACE 2.0 ACS Risk Score (1-Year Mortality)",
-    "short_name": "GRACE 2.0",
-    "aliases": ["GRACE V2", "Acute Coronary Syndrome Mortality"],
-    "subspecialties": ["Other"],
     "kind": "formula",
+    "name": "GRACE 2.0",
+    "aliases": [
+      "GRACE V2",
+      "Acute Coronary Syndrome Mortality"
+    ],
     "summary": "Non-linear restricted cubic spline Cox model (UMass GRACE Risk Score V2) estimating 1-year all-cause mortality in patients presenting with acute coronary syndrome.",
+    "short_name": "GRACE 2.0",
     "time_estimate": "~1 min",
+    "subspecialties": [
+      "Other"
+    ],
     "clinical_pearls": [
       "Replaces linear GRACE 1.0 point bins with restricted cubic splines for age, heart rate, SBP, and serum creatinine (Fox et al., BMJ Open 2014; UMass GRACE V2 2017).",
       "1-year mortality risk strata: <3% Low, 3.0–7.9% Intermediate, >=8.0% High.",
@@ -17,135 +191,6 @@
       "Pitfall — Calibration drift & unmeasured factors: Calibration can vary over time or across health systems; omits frailty, comorbidity burden, and socioeconomic factors, and relies on subjective Killip class."
     ]
   },
-  "items": [
-    {
-      "kind": "numeric",
-      "id": "age",
-      "label": "Age",
-      "required": true,
-      "canonical_unit": "years",
-      "units": [{ "unit": "years", "label": "years", "to_canonical_factor": 1 }],
-      "min_canonical": 18,
-      "max_canonical": 110,
-      "step": 1
-    },
-    {
-      "kind": "numeric",
-      "id": "heart_rate",
-      "label": "Heart Rate (Admission)",
-      "required": true,
-      "canonical_unit": "bpm",
-      "units": [{ "unit": "bpm", "label": "bpm", "to_canonical_factor": 1 }],
-      "min_canonical": 20,
-      "max_canonical": 300,
-      "step": 1
-    },
-    {
-      "kind": "numeric",
-      "id": "sbp",
-      "label": "Systolic Blood Pressure (Admission)",
-      "required": true,
-      "canonical_unit": "mmHg",
-      "units": [{ "unit": "mmHg", "label": "mmHg", "to_canonical_factor": 1 }],
-      "min_canonical": 40,
-      "max_canonical": 300,
-      "step": 1
-    },
-    {
-      "kind": "numeric",
-      "id": "creatinine",
-      "label": "Serum Creatinine (Admission)",
-      "required": true,
-      "canonical_unit": "mg/dL",
-      "units": [
-        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 1 },
-        { "unit": "umol/L", "label": "µmol/L", "to_canonical_factor": 0.0113122 }
-      ],
-      "min_canonical": 0.05,
-      "max_canonical": 25.0,
-      "step": 0.05
-    },
-    {
-      "kind": "select",
-      "id": "killip",
-      "label": "Killip Class",
-      "required": true,
-      "options": [
-        { "id": "k1", "label": "Class I — No heart failure signs", "points": 1, "badge": "I" },
-        { "id": "k2", "label": "Class II — Rales / S3 gallop / JVD", "points": 2, "badge": "II" },
-        { "id": "k3", "label": "Class III — Frank pulmonary edema", "points": 3, "badge": "III" },
-        { "id": "k4", "label": "Class IV — Cardiogenic shock", "points": 4, "badge": "IV" }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "cardiac_arrest",
-      "label": "Cardiac Arrest at Admission",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes", "points": 1 }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "positive_enzymes",
-      "label": "Elevated Initial Cardiac Biomarkers (Troponin / CK-MB)",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes", "points": 1 }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "st_deviation",
-      "label": "ST-Segment Deviation on ECG",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes", "points": 1 }
-      ]
-    }
-  ],
-  "scoring": {
-    "method": "formula",
-    "min_score": 0,
-    "max_score": 100,
-    "unit": "%",
-    "precision": 1,
-    "formula_id": "grace_2_1y_death"
-  },
-  "interpretation": [
-    {
-      "id": "grace_low",
-      "min": 0,
-      "max": 2.9,
-      "label": "Low 1-Year Mortality Risk (<3.0%)",
-      "severity": "normal",
-      "summary": "Low 1-year mortality risk after ACS; consider selective/guideline-paced invasive strategy.",
-      "refs": [{ "source_id": "fox-2014-grace2", "locator": "BMJ Open 2014" }]
-    },
-    {
-      "id": "grace_intermediate",
-      "min": 3.0,
-      "max": 7.9,
-      "label": "Intermediate 1-Year Mortality Risk (3.0–7.9%)",
-      "severity": "moderate",
-      "summary": "Intermediate 1-year mortality risk; early invasive evaluation generally appropriate.",
-      "refs": [{ "source_id": "fox-2014-grace2", "locator": "BMJ Open 2014" }]
-    },
-    {
-      "id": "grace_high",
-      "min": 8.0,
-      "max": null,
-      "label": "High 1-Year Mortality Risk (>=8.0%)",
-      "severity": "critical",
-      "summary": "High 1-year mortality risk; prioritize early invasive strategy (<24h in NSTE-ACS) and intensive secondary prevention.",
-      "refs": [{ "source_id": "fox-2014-grace2", "locator": "BMJ Open 2014" }]
-    }
-  ],
-  "assessment_guides": [],
   "references": [
     {
       "id": "fox-2014-grace2",
@@ -193,29 +238,117 @@
   "test_cases": [
     {
       "name": "50yo, HR 72, SBP 130, Cr 0.9, Killip I, no arrest/enzymes/ST -> 0.9%",
-      "inputs": { "age": 50, "heart_rate": 72, "sbp": 130, "creatinine": 0.9, "killip": "k1", "cardiac_arrest": "no", "positive_enzymes": "no", "st_deviation": "no" },
+      "inputs": {
+        "age": 50,
+        "sbp": 130,
+        "killip": "k1",
+        "creatinine": 0.9,
+        "heart_rate": 72,
+        "st_deviation": "no",
+        "cardiac_arrest": "no",
+        "positive_enzymes": "no"
+      },
       "expected_score": 0.9,
       "expected_band_id": "grace_low"
     },
     {
       "name": "68yo, HR 88, SBP 120, Cr 1.2, Killip II, enzymes+, no ST/arrest -> 13.9%",
-      "inputs": { "age": 68, "heart_rate": 88, "sbp": 120, "creatinine": 1.2, "killip": "k2", "cardiac_arrest": "no", "positive_enzymes": "yes", "st_deviation": "no" },
+      "inputs": {
+        "age": 68,
+        "sbp": 120,
+        "killip": "k2",
+        "creatinine": 1.2,
+        "heart_rate": 88,
+        "st_deviation": "no",
+        "cardiac_arrest": "no",
+        "positive_enzymes": "yes"
+      },
       "expected_score": 13.9,
       "expected_band_id": "grace_high"
     },
     {
       "name": "90yo, HR 92, SBP 139, Cr 1.06, Killip I, enzymes+, ST+ -> 27.9%",
-      "inputs": { "age": 90, "heart_rate": 92, "sbp": 139, "creatinine": 1.06, "killip": "k1", "cardiac_arrest": "no", "positive_enzymes": "yes", "st_deviation": "yes" },
+      "inputs": {
+        "age": 90,
+        "sbp": 139,
+        "killip": "k1",
+        "creatinine": 1.06,
+        "heart_rate": 92,
+        "st_deviation": "yes",
+        "cardiac_arrest": "no",
+        "positive_enzymes": "yes"
+      },
       "expected_score": 27.9,
       "expected_band_id": "grace_high"
     },
     {
       "name": "75yo, HR 110, SBP 95, Cr 150 umol/L, Killip III, arrest+, enzymes+, ST+ -> 92.3%",
-      "inputs": { "age": 75, "heart_rate": 110, "sbp": 95, "creatinine": { "value": 150, "unit": "umol/L" }, "killip": "k3", "cardiac_arrest": "yes", "positive_enzymes": "yes", "st_deviation": "yes" },
+      "inputs": {
+        "age": 75,
+        "sbp": 95,
+        "killip": "k3",
+        "creatinine": {
+          "unit": "umol/L",
+          "value": 150
+        },
+        "heart_rate": 110,
+        "st_deviation": "yes",
+        "cardiac_arrest": "yes",
+        "positive_enzymes": "yes"
+      },
       "expected_score": 92.3,
       "expected_band_id": "grace_high"
     }
   ],
-  "status": "draft",
-  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+  "verification": {
+    "verified_by": "Admin",
+    "verified_at": "2026-11-27T09:08:45.890Z",
+    "content_hash": "3172d15fdda1177bdf9970f9bc71249d220d9f64b75608418fcf71b5c34bd112"
+  },
+  "interpretation": [
+    {
+      "id": "grace_low",
+      "max": 2.9,
+      "min": 0,
+      "refs": [
+        {
+          "locator": "BMJ Open 2014",
+          "source_id": "fox-2014-grace2"
+        }
+      ],
+      "label": "Low 1-Year Mortality Risk (<3.0%)",
+      "summary": "Low 1-year mortality risk after ACS; consider selective/guideline-paced invasive strategy.",
+      "severity": "normal"
+    },
+    {
+      "id": "grace_intermediate",
+      "max": 7.9,
+      "min": 3,
+      "refs": [
+        {
+          "locator": "BMJ Open 2014",
+          "source_id": "fox-2014-grace2"
+        }
+      ],
+      "label": "Intermediate 1-Year Mortality Risk (3.0–7.9%)",
+      "summary": "Intermediate 1-year mortality risk; early invasive evaluation generally appropriate.",
+      "severity": "moderate"
+    },
+    {
+      "id": "grace_high",
+      "max": null,
+      "min": 8,
+      "refs": [
+        {
+          "locator": "BMJ Open 2014",
+          "source_id": "fox-2014-grace2"
+        }
+      ],
+      "label": "High 1-Year Mortality Risk (>=8.0%)",
+      "summary": "High 1-year mortality risk; prioritize early invasive strategy (<24h in NSTE-ACS) and intensive secondary prevention.",
+      "severity": "critical"
+    }
+  ],
+  "schema_version": 1,
+  "assessment_guides": []
 }

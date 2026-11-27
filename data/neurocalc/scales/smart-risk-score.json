@@ -1,14 +1,362 @@
 {
   "id": "smart-risk-score",
-  "schema_version": 1,
+  "items": [
+    {
+      "id": "region",
+      "kind": "select",
+      "label": "Geographic Risk Region",
+      "options": [
+        {
+          "id": "europe_low",
+          "label": "Europe — Low risk",
+          "points": 0
+        },
+        {
+          "id": "europe_moderate",
+          "label": "Europe — Moderate risk",
+          "points": 1
+        },
+        {
+          "id": "europe_high",
+          "label": "Europe — High risk",
+          "points": 2
+        },
+        {
+          "id": "europe_very_high",
+          "label": "Europe — Very high risk",
+          "points": 3
+        },
+        {
+          "id": "asia",
+          "label": "Asia (excluding Japan)",
+          "points": 4
+        },
+        {
+          "id": "north_america",
+          "label": "North America",
+          "points": 5
+        },
+        {
+          "id": "latin_america",
+          "label": "Latin America",
+          "points": 6
+        },
+        {
+          "id": "australia",
+          "label": "Australia",
+          "points": 7
+        },
+        {
+          "id": "japan",
+          "label": "Japan",
+          "points": 8
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "age",
+      "kind": "numeric",
+      "step": 1,
+      "label": "Age",
+      "units": [
+        {
+          "unit": "years",
+          "label": "years",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": true,
+      "max_canonical": 80,
+      "min_canonical": 40,
+      "canonical_unit": "years"
+    },
+    {
+      "id": "sex",
+      "kind": "select",
+      "label": "Biological Sex",
+      "options": [
+        {
+          "id": "female",
+          "badge": "F",
+          "label": "Female",
+          "points": 0
+        },
+        {
+          "id": "male",
+          "badge": "M",
+          "label": "Male",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "smoker",
+      "kind": "select",
+      "label": "Current Smoking",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "diabetes",
+      "kind": "select",
+      "label": "Diabetes Mellitus",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "sbp",
+      "kind": "numeric",
+      "step": 1,
+      "label": "Systolic Blood Pressure",
+      "units": [
+        {
+          "unit": "mmHg",
+          "label": "mmHg",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": true,
+      "max_canonical": 220,
+      "min_canonical": 70,
+      "canonical_unit": "mmHg"
+    },
+    {
+      "id": "total_chol",
+      "kind": "numeric",
+      "step": 0.1,
+      "label": "Total Cholesterol",
+      "units": [
+        {
+          "unit": "mmol/L",
+          "label": "mmol/L",
+          "to_canonical_factor": 1
+        },
+        {
+          "unit": "mg/dL",
+          "label": "mg/dL",
+          "to_canonical_factor": 0.02586
+        }
+      ],
+      "required": true,
+      "max_canonical": 12,
+      "min_canonical": 2,
+      "canonical_unit": "mmol/L"
+    },
+    {
+      "id": "hdl_chol",
+      "kind": "numeric",
+      "step": 0.1,
+      "label": "HDL Cholesterol",
+      "units": [
+        {
+          "unit": "mmol/L",
+          "label": "mmol/L",
+          "to_canonical_factor": 1
+        },
+        {
+          "unit": "mg/dL",
+          "label": "mg/dL",
+          "to_canonical_factor": 0.02586
+        }
+      ],
+      "required": true,
+      "max_canonical": 3.5,
+      "min_canonical": 0.3,
+      "canonical_unit": "mmol/L"
+    },
+    {
+      "id": "egfr",
+      "kind": "numeric",
+      "step": 1,
+      "label": "eGFR (CKD-EPI)",
+      "units": [
+        {
+          "unit": "mL/min/1.73m²",
+          "label": "mL/min/1.73m²",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": true,
+      "max_canonical": 150,
+      "min_canonical": 15,
+      "canonical_unit": "mL/min/1.73m²"
+    },
+    {
+      "id": "hscrp",
+      "kind": "numeric",
+      "step": 0.1,
+      "label": "High-Sensitivity CRP (hs-CRP)",
+      "units": [
+        {
+          "unit": "mg/L",
+          "label": "mg/L",
+          "to_canonical_factor": 1
+        },
+        {
+          "unit": "mg/dL",
+          "label": "mg/dL",
+          "to_canonical_factor": 10
+        }
+      ],
+      "required": true,
+      "max_canonical": 50,
+      "min_canonical": 0.1,
+      "canonical_unit": "mg/L"
+    },
+    {
+      "id": "years_since_diagnosis",
+      "kind": "numeric",
+      "step": 1,
+      "label": "Years Since First Vascular Event",
+      "units": [
+        {
+          "unit": "years",
+          "label": "years",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": true,
+      "max_canonical": 40,
+      "min_canonical": 0,
+      "canonical_unit": "years"
+    },
+    {
+      "id": "cad",
+      "kind": "select",
+      "label": "History of Coronary Artery Disease (CAD)",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "cerebrovascular",
+      "kind": "select",
+      "label": "History of Cerebrovascular Disease (Stroke / TIA)",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "pad",
+      "kind": "select",
+      "label": "History of Peripheral Arterial Disease (PAD)",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "aaa",
+      "kind": "select",
+      "label": "History of Abdominal Aortic Aneurysm (AAA)",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "antithrombotic",
+      "kind": "select",
+      "label": "Antithrombotic Therapy (Aspirin or Equivalent)",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes (HR 0.81 offset)",
+          "points": 1
+        }
+      ],
+      "required": true
+    }
+  ],
+  "status": "verified",
+  "scoring": {
+    "unit": "%",
+    "method": "formula",
+    "max_score": 100,
+    "min_score": 0,
+    "precision": 1,
+    "formula_id": "smart2"
+  },
   "metadata": {
-    "name": "SMART2 Risk Score (10-Year Recurrent Vascular Event Risk)",
-    "short_name": "SMART2",
-    "aliases": ["SMART risk score", "Secondary prevention MACE"],
-    "subspecialties": ["Stroke", "Other"],
     "kind": "formula",
+    "name": "SMART2 risk score",
+    "aliases": [
+      "SMART risk score",
+      "Secondary prevention MACE"
+    ],
     "summary": "Estimates 10-year risk of recurrent myocardial infarction, stroke, or vascular death in patients aged 40–80 with established atherosclerotic disease (CAD, CeVD, PAD, and/or AAA).",
+    "short_name": "SMART2",
     "time_estimate": "~2 min",
+    "subspecialties": [
+      "Other"
+    ],
     "clinical_pearls": [
       "Requires at least one manifest atherosclerotic disease location (coronary, cerebrovascular, peripheral arterial, or abdominal aortic aneurysm).",
       "Uses the updated SMART2 algorithm (Hageman et al., Eur Heart J 2022) with competing-risk and geographic E/O recalibration across 369,044 external validation patients.",
@@ -16,238 +364,6 @@
       "Pitfall — Non-European 10-year extrapolation: True 10-year follow-up in external validation was strongest in European cohorts; non-European 10-year projections rely partially on shorter-horizon extrapolation."
     ]
   },
-  "items": [
-    {
-      "kind": "select",
-      "id": "region",
-      "label": "Geographic Risk Region",
-      "required": true,
-      "options": [
-        { "id": "europe_low", "label": "Europe — Low risk", "points": 0 },
-        { "id": "europe_moderate", "label": "Europe — Moderate risk", "points": 1 },
-        { "id": "europe_high", "label": "Europe — High risk", "points": 2 },
-        { "id": "europe_very_high", "label": "Europe — Very high risk", "points": 3 },
-        { "id": "asia", "label": "Asia (excluding Japan)", "points": 4 },
-        { "id": "north_america", "label": "North America", "points": 5 },
-        { "id": "latin_america", "label": "Latin America", "points": 6 },
-        { "id": "australia", "label": "Australia", "points": 7 },
-        { "id": "japan", "label": "Japan", "points": 8 }
-      ]
-    },
-    {
-      "kind": "numeric",
-      "id": "age",
-      "label": "Age",
-      "required": true,
-      "canonical_unit": "years",
-      "units": [{ "unit": "years", "label": "years", "to_canonical_factor": 1 }],
-      "min_canonical": 40,
-      "max_canonical": 80,
-      "step": 1
-    },
-    {
-      "kind": "select",
-      "id": "sex",
-      "label": "Biological Sex",
-      "required": true,
-      "options": [
-        { "id": "female", "label": "Female", "points": 0, "badge": "F" },
-        { "id": "male", "label": "Male", "points": 1, "badge": "M" }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "smoker",
-      "label": "Current Smoking",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes", "points": 1 }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "diabetes",
-      "label": "Diabetes Mellitus",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes", "points": 1 }
-      ]
-    },
-    {
-      "kind": "numeric",
-      "id": "sbp",
-      "label": "Systolic Blood Pressure",
-      "required": true,
-      "canonical_unit": "mmHg",
-      "units": [{ "unit": "mmHg", "label": "mmHg", "to_canonical_factor": 1 }],
-      "min_canonical": 70,
-      "max_canonical": 220,
-      "step": 1
-    },
-    {
-      "kind": "numeric",
-      "id": "total_chol",
-      "label": "Total Cholesterol",
-      "required": true,
-      "canonical_unit": "mmol/L",
-      "units": [
-        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 1 },
-        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 0.02586 }
-      ],
-      "min_canonical": 2.0,
-      "max_canonical": 12.0,
-      "step": 0.1
-    },
-    {
-      "kind": "numeric",
-      "id": "hdl_chol",
-      "label": "HDL Cholesterol",
-      "required": true,
-      "canonical_unit": "mmol/L",
-      "units": [
-        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 1 },
-        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 0.02586 }
-      ],
-      "min_canonical": 0.3,
-      "max_canonical": 3.5,
-      "step": 0.1
-    },
-    {
-      "kind": "numeric",
-      "id": "egfr",
-      "label": "eGFR (CKD-EPI)",
-      "required": true,
-      "canonical_unit": "mL/min/1.73m²",
-      "units": [{ "unit": "mL/min/1.73m²", "label": "mL/min/1.73m²", "to_canonical_factor": 1 }],
-      "min_canonical": 15,
-      "max_canonical": 150,
-      "step": 1
-    },
-    {
-      "kind": "numeric",
-      "id": "hscrp",
-      "label": "High-Sensitivity CRP (hs-CRP)",
-      "required": true,
-      "canonical_unit": "mg/L",
-      "units": [
-        { "unit": "mg/L", "label": "mg/L", "to_canonical_factor": 1 },
-        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 10 }
-      ],
-      "min_canonical": 0.1,
-      "max_canonical": 50,
-      "step": 0.1
-    },
-    {
-      "kind": "numeric",
-      "id": "years_since_diagnosis",
-      "label": "Years Since First Vascular Event",
-      "required": true,
-      "canonical_unit": "years",
-      "units": [{ "unit": "years", "label": "years", "to_canonical_factor": 1 }],
-      "min_canonical": 0,
-      "max_canonical": 40,
-      "step": 1
-    },
-    {
-      "kind": "select",
-      "id": "cad",
-      "label": "History of Coronary Artery Disease (CAD)",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes", "points": 1 }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "cerebrovascular",
-      "label": "History of Cerebrovascular Disease (Stroke / TIA)",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes", "points": 1 }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "pad",
-      "label": "History of Peripheral Arterial Disease (PAD)",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes", "points": 1 }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "aaa",
-      "label": "History of Abdominal Aortic Aneurysm (AAA)",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes", "points": 1 }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "antithrombotic",
-      "label": "Antithrombotic Therapy (Aspirin or Equivalent)",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes (HR 0.81 offset)", "points": 1 }
-      ]
-    }
-  ],
-  "scoring": {
-    "method": "formula",
-    "min_score": 0,
-    "max_score": 100,
-    "unit": "%",
-    "precision": 1,
-    "formula_id": "smart2"
-  },
-  "interpretation": [
-    {
-      "id": "smart_low",
-      "min": 0,
-      "max": 9.9,
-      "label": "Lower Residual Risk (<10%)",
-      "severity": "normal",
-      "summary": "10-year recurrent vascular event risk <10%. Maintain guideline-directed secondary prevention.",
-      "refs": [{ "source_id": "hageman-2022-smart2", "locator": "Supp. Table 2" }]
-    },
-    {
-      "id": "smart_mod",
-      "min": 10.0,
-      "max": 19.9,
-      "label": "Moderate Residual Risk (10.0–19.9%)",
-      "severity": "moderate",
-      "summary": "10-year recurrent vascular event risk 10–19.9%. Review LDL-C, BP, glycemic, and antithrombotic intensification.",
-      "refs": [{ "source_id": "hageman-2022-smart2", "locator": "Supp. Table 2" }]
-    },
-    {
-      "id": "smart_high",
-      "min": 20.0,
-      "max": 29.9,
-      "label": "High Residual Risk (20.0–29.9%)",
-      "severity": "severe",
-      "summary": "10-year recurrent vascular event risk 20–29.9%. Strongly consider intensive lipid-lowering, SGLT2i/GLP-1 RA, or dual-pathway inhibition if eligible.",
-      "refs": [{ "source_id": "hageman-2022-smart2", "locator": "Supp. Table 2" }]
-    },
-    {
-      "id": "smart_very_high",
-      "min": 30.0,
-      "max": null,
-      "label": "Very High Residual Risk (>=30%)",
-      "severity": "critical",
-      "summary": "10-year recurrent vascular event risk >=30%. Urgent aggressive secondary prevention across all modifiable vascular targets.",
-      "refs": [{ "source_id": "hageman-2022-smart2", "locator": "Supp. Table 2" }]
-    }
-  ],
-  "assessment_guides": [],
   "references": [
     {
       "id": "hageman-2022-smart2",
@@ -262,28 +378,159 @@
   "test_cases": [
     {
       "name": "62yo Male, Europe Low, CeVD only, non-smoker, SBP 135, TC 4.8, HDL 1.3, eGFR 80, hsCRP 1.8, 2y, ASA -> 19.4%",
-      "inputs": { "region": "europe_low", "age": 62, "sex": "male", "smoker": "no", "diabetes": "no", "sbp": 135, "total_chol": 4.8, "hdl_chol": 1.3, "egfr": 80, "hscrp": 1.8, "years_since_diagnosis": 2, "cad": "no", "cerebrovascular": "yes", "pad": "no", "aaa": "no", "antithrombotic": "yes" },
+      "inputs": {
+        "aaa": "no",
+        "age": 62,
+        "cad": "no",
+        "pad": "no",
+        "sbp": 135,
+        "sex": "male",
+        "egfr": 80,
+        "hscrp": 1.8,
+        "region": "europe_low",
+        "smoker": "no",
+        "diabetes": "no",
+        "hdl_chol": 1.3,
+        "total_chol": 4.8,
+        "antithrombotic": "yes",
+        "cerebrovascular": "yes",
+        "years_since_diagnosis": 2
+      },
       "expected_score": 19.4,
       "expected_band_id": "smart_mod"
     },
     {
       "name": "55yo Female, Asia, CAD only, non-smoker, SBP 125, TC 4.2, HDL 1.4, eGFR 90, hsCRP 1.0, 1y, ASA -> 17.0%",
-      "inputs": { "region": "asia", "age": 55, "sex": "female", "smoker": "no", "diabetes": "no", "sbp": 125, "total_chol": 4.2, "hdl_chol": 1.4, "egfr": 90, "hscrp": 1.0, "years_since_diagnosis": 1, "cad": "yes", "cerebrovascular": "no", "pad": "no", "aaa": "no", "antithrombotic": "yes" },
-      "expected_score": 17.0,
+      "inputs": {
+        "aaa": "no",
+        "age": 55,
+        "cad": "yes",
+        "pad": "no",
+        "sbp": 125,
+        "sex": "female",
+        "egfr": 90,
+        "hscrp": 1,
+        "region": "asia",
+        "smoker": "no",
+        "diabetes": "no",
+        "hdl_chol": 1.4,
+        "total_chol": 4.2,
+        "antithrombotic": "yes",
+        "cerebrovascular": "no",
+        "years_since_diagnosis": 1
+      },
+      "expected_score": 17,
       "expected_band_id": "smart_mod"
     },
     {
       "name": "72yo Male, Europe High, CAD+PAD, smoker, DM, SBP 155, TC 6.0, HDL 1.0, eGFR 50, hsCRP 5.0, 5y, no ASA -> 96.4%",
-      "inputs": { "region": "europe_high", "age": 72, "sex": "male", "smoker": "yes", "diabetes": "yes", "sbp": 155, "total_chol": 6.0, "hdl_chol": 1.0, "egfr": 50, "hscrp": 5.0, "years_since_diagnosis": 5, "cad": "yes", "cerebrovascular": "no", "pad": "yes", "aaa": "no", "antithrombotic": "no" },
+      "inputs": {
+        "aaa": "no",
+        "age": 72,
+        "cad": "yes",
+        "pad": "yes",
+        "sbp": 155,
+        "sex": "male",
+        "egfr": 50,
+        "hscrp": 5,
+        "region": "europe_high",
+        "smoker": "yes",
+        "diabetes": "yes",
+        "hdl_chol": 1,
+        "total_chol": 6,
+        "antithrombotic": "no",
+        "cerebrovascular": "no",
+        "years_since_diagnosis": 5
+      },
       "expected_score": 96.4,
       "expected_band_id": "smart_very_high"
     },
     {
       "name": "Missing arterial disease location returns null",
-      "inputs": { "region": "europe_low", "age": 60, "sex": "male", "smoker": "no", "diabetes": "no", "sbp": 130, "total_chol": 4.5, "hdl_chol": 1.2, "egfr": 85, "hscrp": 1.5, "years_since_diagnosis": 1, "cad": "no", "cerebrovascular": "no", "pad": "no", "aaa": "no", "antithrombotic": "yes" },
+      "inputs": {
+        "aaa": "no",
+        "age": 60,
+        "cad": "no",
+        "pad": "no",
+        "sbp": 130,
+        "sex": "male",
+        "egfr": 85,
+        "hscrp": 1.5,
+        "region": "europe_low",
+        "smoker": "no",
+        "diabetes": "no",
+        "hdl_chol": 1.2,
+        "total_chol": 4.5,
+        "antithrombotic": "yes",
+        "cerebrovascular": "no",
+        "years_since_diagnosis": 1
+      },
       "expected_score": null
     }
   ],
-  "status": "draft",
-  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+  "verification": {
+    "verified_by": "Admin",
+    "verified_at": "2026-11-27T09:08:48.189Z",
+    "content_hash": "8147dde1ea6f8f6e946cc8c1536783631135b8cc2679852ddf6fcdf5bb6a7a5e"
+  },
+  "interpretation": [
+    {
+      "id": "smart_low",
+      "max": 9.9,
+      "min": 0,
+      "refs": [
+        {
+          "locator": "Supp. Table 2",
+          "source_id": "hageman-2022-smart2"
+        }
+      ],
+      "label": "Lower Residual Risk (<10%)",
+      "summary": "10-year recurrent vascular event risk <10%. Maintain guideline-directed secondary prevention.",
+      "severity": "normal"
+    },
+    {
+      "id": "smart_mod",
+      "max": 19.9,
+      "min": 10,
+      "refs": [
+        {
+          "locator": "Supp. Table 2",
+          "source_id": "hageman-2022-smart2"
+        }
+      ],
+      "label": "Moderate Residual Risk (10.0–19.9%)",
+      "summary": "10-year recurrent vascular event risk 10–19.9%. Review LDL-C, BP, glycemic, and antithrombotic intensification.",
+      "severity": "moderate"
+    },
+    {
+      "id": "smart_high",
+      "max": 29.9,
+      "min": 20,
+      "refs": [
+        {
+          "locator": "Supp. Table 2",
+          "source_id": "hageman-2022-smart2"
+        }
+      ],
+      "label": "High Residual Risk (20.0–29.9%)",
+      "summary": "10-year recurrent vascular event risk 20–29.9%. Strongly consider intensive lipid-lowering, SGLT2i/GLP-1 RA, or dual-pathway inhibition if eligible.",
+      "severity": "severe"
+    },
+    {
+      "id": "smart_very_high",
+      "max": null,
+      "min": 30,
+      "refs": [
+        {
+          "locator": "Supp. Table 2",
+          "source_id": "hageman-2022-smart2"
+        }
+      ],
+      "label": "Very High Residual Risk (>=30%)",
+      "summary": "10-year recurrent vascular event risk >=30%. Urgent aggressive secondary prevention across all modifiable vascular targets.",
+      "severity": "critical"
+    }
+  ],
+  "schema_version": 1,
+  "assessment_guides": []
 }

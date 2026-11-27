@@ -1,14 +1,200 @@
 {
   "id": "has-bled",
-  "schema_version": 1,
+  "items": [
+    {
+      "id": "hb_htn",
+      "code": "H",
+      "kind": "select",
+      "label": "Hypertension (uncontrolled SBP > 160 mmHg)",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "hb_renal",
+      "code": "A1",
+      "kind": "select",
+      "label": "Abnormal Renal Function (dialysis, transplant, or SCr >= 200 µmol/L [2.26 mg/dL])",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "hb_liver",
+      "code": "A2",
+      "kind": "select",
+      "label": "Abnormal Liver Function (cirrhosis, or bilirubin > 2x ULN with AST/ALT > 3x ULN)",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "hb_stroke",
+      "code": "S",
+      "kind": "select",
+      "label": "Stroke History",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "hb_bleed",
+      "code": "B",
+      "kind": "select",
+      "label": "Bleeding History or Predisposition",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "hb_inr",
+      "code": "L",
+      "kind": "select",
+      "label": "Labile INR (on VKA with TTR < 60%)",
+      "options": [
+        {
+          "id": "no",
+          "label": "No / Not on VKA",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "hb_age",
+      "code": "E",
+      "kind": "select",
+      "label": "Elderly (Age > 65 years)",
+      "options": [
+        {
+          "id": "no",
+          "label": "No (<= 65 years)",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes (> 65 years)",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "hb_drugs",
+      "code": "D1",
+      "kind": "select",
+      "label": "Concomitant Drugs (antiplatelets or NSAIDs)",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "hb_alcohol",
+      "code": "D2",
+      "kind": "select",
+      "label": "Alcohol Excess (>= 8 drinks/week)",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    }
+  ],
+  "status": "verified",
+  "scoring": {
+    "unit": "points",
+    "method": "sum",
+    "max_score": 9,
+    "min_score": 0,
+    "precision": 0
+  },
   "metadata": {
-    "name": "HAS-BLED Score for Major Bleeding Risk",
-    "short_name": "HAS-BLED",
-    "aliases": ["bleeding risk", "anticoagulation bleeding"],
-    "subspecialties": ["Stroke"],
     "kind": "point_sum",
+    "name": "HAS-BLED Score",
+    "aliases": [
+      "bleeding risk",
+      "anticoagulation bleeding"
+    ],
     "summary": "9-point score identifying modifiable bleeding risk factors in patients on anticoagulation for atrial fibrillation.",
+    "short_name": "HAS-BLED",
     "time_estimate": "< 1 min",
+    "subspecialties": [
+      "Stroke",
+      "Other"
+    ],
     "clinical_pearls": [
       "A high HAS-BLED score (>= 3) is NOT a contraindication to anticoagulation; it flags patients needing closer monitoring and correction of modifiable risks (BP, NSAIDs, alcohol, labile INR).",
       "Annual major bleeding rate increases progressively with higher HAS-BLED scores across both VKA- and DOAC-treated cohorts.",
@@ -17,53 +203,6 @@
       "Pitfall — Guideline stance: Major US and European AF guidelines emphasize addressing modifiable bleeding risks rather than relying on any single bleeding score cutoff to withhold anticoagulation."
     ]
   },
-  "items": [
-    { "kind": "select", "id": "hb_htn", "code": "H", "label": "Hypertension (uncontrolled SBP > 160 mmHg)", "required": true, "options": [{ "id": "no", "label": "No", "points": 0 }, { "id": "yes", "label": "Yes", "points": 1 }] },
-    { "kind": "select", "id": "hb_renal", "code": "A1", "label": "Abnormal Renal Function (dialysis, transplant, or SCr >= 200 µmol/L [2.26 mg/dL])", "required": true, "options": [{ "id": "no", "label": "No", "points": 0 }, { "id": "yes", "label": "Yes", "points": 1 }] },
-    { "kind": "select", "id": "hb_liver", "code": "A2", "label": "Abnormal Liver Function (cirrhosis, or bilirubin > 2x ULN with AST/ALT > 3x ULN)", "required": true, "options": [{ "id": "no", "label": "No", "points": 0 }, { "id": "yes", "label": "Yes", "points": 1 }] },
-    { "kind": "select", "id": "hb_stroke", "code": "S", "label": "Stroke History", "required": true, "options": [{ "id": "no", "label": "No", "points": 0 }, { "id": "yes", "label": "Yes", "points": 1 }] },
-    { "kind": "select", "id": "hb_bleed", "code": "B", "label": "Bleeding History or Predisposition", "required": true, "options": [{ "id": "no", "label": "No", "points": 0 }, { "id": "yes", "label": "Yes", "points": 1 }] },
-    { "kind": "select", "id": "hb_inr", "code": "L", "label": "Labile INR (on VKA with TTR < 60%)", "required": true, "options": [{ "id": "no", "label": "No / Not on VKA", "points": 0 }, { "id": "yes", "label": "Yes", "points": 1 }] },
-    { "kind": "select", "id": "hb_age", "code": "E", "label": "Elderly (Age > 65 years)", "required": true, "options": [{ "id": "no", "label": "No (<= 65 years)", "points": 0 }, { "id": "yes", "label": "Yes (> 65 years)", "points": 1 }] },
-    { "kind": "select", "id": "hb_drugs", "code": "D1", "label": "Concomitant Drugs (antiplatelets or NSAIDs)", "required": true, "options": [{ "id": "no", "label": "No", "points": 0 }, { "id": "yes", "label": "Yes", "points": 1 }] },
-    { "kind": "select", "id": "hb_alcohol", "code": "D2", "label": "Alcohol Excess (>= 8 drinks/week)", "required": true, "options": [{ "id": "no", "label": "No", "points": 0 }, { "id": "yes", "label": "Yes", "points": 1 }] }
-  ],
-  "scoring": { "method": "sum", "min_score": 0, "max_score": 9, "unit": "points", "precision": 0 },
-  "interpretation": [
-    {
-      "id": "hb_low_mod",
-      "min": 0,
-      "max": 2,
-      "label": "Low-to-Moderate Bleeding Risk (0–2)",
-      "severity": "normal",
-      "summary": "HAS-BLED 0–2: lower 1-year major bleeding risk (~1.0–1.9%).",
-      "refs": [{ "source_id": "pisters-2010-hasbled", "locator": "Table 3" }]
-    },
-    {
-      "id": "hb_high",
-      "min": 3,
-      "max": 9,
-      "label": "High Bleeding Risk (>= 3)",
-      "severity": "moderate",
-      "summary": "HAS-BLED >= 3: address modifiable bleeding risks and schedule closer follow-up; do not withhold indicated anticoagulation solely for high score.",
-      "refs": [{ "source_id": "pisters-2010-hasbled", "locator": "Table 3" }]
-    }
-  ],
-  "assessment_guides": [
-    {
-      "id": "guide_hb_inr",
-      "target_type": "item",
-      "target_id": "hb_inr",
-      "title": "Labile INR Rule",
-      "bedside_steps": [
-        "Apply only to patients currently taking a vitamin K antagonist (warfarin/acenocoumarol)."
-      ],
-      "pitfalls_and_exceptions": [
-        "Patients on DOACs or anticoagulation-naive patients score 0 for Labile INR."
-      ],
-      "refs": [{ "source_id": "pisters-2010-hasbled", "locator": "Table 1" }]
-    }
-  ],
   "references": [
     {
       "id": "pisters-2010-hasbled",
@@ -111,11 +250,125 @@
     }
   ],
   "test_cases": [
-    { "name": "Score 0", "inputs": { "hb_htn": "no", "hb_renal": "no", "hb_liver": "no", "hb_stroke": "no", "hb_bleed": "no", "hb_inr": "no", "hb_age": "no", "hb_drugs": "no", "hb_alcohol": "no" }, "expected_score": 0, "expected_band_id": "hb_low_mod" },
-    { "name": "Boundary 2", "inputs": { "hb_htn": "no", "hb_renal": "no", "hb_liver": "no", "hb_stroke": "yes", "hb_bleed": "no", "hb_inr": "no", "hb_age": "yes", "hb_drugs": "no", "hb_alcohol": "no" }, "expected_score": 2, "expected_band_id": "hb_low_mod" },
-    { "name": "Boundary 3", "inputs": { "hb_htn": "yes", "hb_renal": "no", "hb_liver": "no", "hb_stroke": "yes", "hb_bleed": "no", "hb_inr": "no", "hb_age": "yes", "hb_drugs": "no", "hb_alcohol": "no" }, "expected_score": 3, "expected_band_id": "hb_high" },
-    { "name": "Max 9", "inputs": { "hb_htn": "yes", "hb_renal": "yes", "hb_liver": "yes", "hb_stroke": "yes", "hb_bleed": "yes", "hb_inr": "yes", "hb_age": "yes", "hb_drugs": "yes", "hb_alcohol": "yes" }, "expected_score": 9, "expected_band_id": "hb_high" }
+    {
+      "name": "Score 0",
+      "inputs": {
+        "hb_age": "no",
+        "hb_htn": "no",
+        "hb_inr": "no",
+        "hb_bleed": "no",
+        "hb_drugs": "no",
+        "hb_liver": "no",
+        "hb_renal": "no",
+        "hb_stroke": "no",
+        "hb_alcohol": "no"
+      },
+      "expected_score": 0,
+      "expected_band_id": "hb_low_mod"
+    },
+    {
+      "name": "Boundary 2",
+      "inputs": {
+        "hb_age": "yes",
+        "hb_htn": "no",
+        "hb_inr": "no",
+        "hb_bleed": "no",
+        "hb_drugs": "no",
+        "hb_liver": "no",
+        "hb_renal": "no",
+        "hb_stroke": "yes",
+        "hb_alcohol": "no"
+      },
+      "expected_score": 2,
+      "expected_band_id": "hb_low_mod"
+    },
+    {
+      "name": "Boundary 3",
+      "inputs": {
+        "hb_age": "yes",
+        "hb_htn": "yes",
+        "hb_inr": "no",
+        "hb_bleed": "no",
+        "hb_drugs": "no",
+        "hb_liver": "no",
+        "hb_renal": "no",
+        "hb_stroke": "yes",
+        "hb_alcohol": "no"
+      },
+      "expected_score": 3,
+      "expected_band_id": "hb_high"
+    },
+    {
+      "name": "Max 9",
+      "inputs": {
+        "hb_age": "yes",
+        "hb_htn": "yes",
+        "hb_inr": "yes",
+        "hb_bleed": "yes",
+        "hb_drugs": "yes",
+        "hb_liver": "yes",
+        "hb_renal": "yes",
+        "hb_stroke": "yes",
+        "hb_alcohol": "yes"
+      },
+      "expected_score": 9,
+      "expected_band_id": "hb_high"
+    }
   ],
-  "status": "draft",
-  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+  "verification": {
+    "verified_by": "Admin",
+    "verified_at": "2026-11-27T09:08:46.006Z",
+    "content_hash": "301aba343a686f86d907e4ada9e99c12923b6cec7085473522432235cfb56b51"
+  },
+  "interpretation": [
+    {
+      "id": "hb_low_mod",
+      "max": 2,
+      "min": 0,
+      "refs": [
+        {
+          "locator": "Table 3",
+          "source_id": "pisters-2010-hasbled"
+        }
+      ],
+      "label": "Low-to-Moderate Bleeding Risk (0–2)",
+      "summary": "HAS-BLED 0–2: lower 1-year major bleeding risk (~1.0–1.9%).",
+      "severity": "normal"
+    },
+    {
+      "id": "hb_high",
+      "max": 9,
+      "min": 3,
+      "refs": [
+        {
+          "locator": "Table 3",
+          "source_id": "pisters-2010-hasbled"
+        }
+      ],
+      "label": "High Bleeding Risk (>= 3)",
+      "summary": "HAS-BLED >= 3: address modifiable bleeding risks and schedule closer follow-up; do not withhold indicated anticoagulation solely for high score.",
+      "severity": "moderate"
+    }
+  ],
+  "schema_version": 1,
+  "assessment_guides": [
+    {
+      "id": "guide_hb_inr",
+      "refs": [
+        {
+          "locator": "Table 1",
+          "source_id": "pisters-2010-hasbled"
+        }
+      ],
+      "title": "Labile INR Rule",
+      "target_id": "hb_inr",
+      "target_type": "item",
+      "bedside_steps": [
+        "Apply only to patients currently taking a vitamin K antagonist (warfarin/acenocoumarol)."
+      ],
+      "pitfalls_and_exceptions": [
+        "Patients on DOACs or anticoagulation-naive patients score 0 for Labile INR."
+      ]
+    }
+  ]
 }

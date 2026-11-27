@@ -1,14 +1,177 @@
 {
   "id": "score2",
-  "schema_version": 1,
+  "items": [
+    {
+      "id": "sex",
+      "kind": "select",
+      "label": "Biological Sex",
+      "options": [
+        {
+          "id": "female",
+          "badge": "F",
+          "label": "Female",
+          "points": 0
+        },
+        {
+          "id": "male",
+          "badge": "M",
+          "label": "Male",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "region",
+      "kind": "select",
+      "label": "ESC Cardiovascular Risk Region",
+      "options": [
+        {
+          "id": "low",
+          "badge": "Low",
+          "label": "Low-risk region (e.g., Western Europe, UK, Spain)",
+          "points": 0
+        },
+        {
+          "id": "moderate",
+          "badge": "Mod",
+          "label": "Moderate-risk region (e.g., Germany, Italy, Portugal)",
+          "points": 1
+        },
+        {
+          "id": "high",
+          "badge": "High",
+          "label": "High-risk region (e.g., Eastern/Central Europe)",
+          "points": 2
+        },
+        {
+          "id": "very_high",
+          "badge": "V.High",
+          "label": "Very-high-risk region (e.g., Eastern Europe / Central Asia)",
+          "points": 3
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "age",
+      "kind": "numeric",
+      "step": 1,
+      "label": "Age",
+      "units": [
+        {
+          "unit": "years",
+          "label": "years",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": true,
+      "max_canonical": 69,
+      "min_canonical": 40,
+      "canonical_unit": "years"
+    },
+    {
+      "id": "smoker",
+      "kind": "select",
+      "label": "Current Smoking Status",
+      "options": [
+        {
+          "id": "no",
+          "label": "Non-smoker / Former smoker",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Current smoker",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "sbp",
+      "kind": "numeric",
+      "step": 1,
+      "label": "Systolic Blood Pressure",
+      "units": [
+        {
+          "unit": "mmHg",
+          "label": "mmHg",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": true,
+      "max_canonical": 220,
+      "min_canonical": 90,
+      "canonical_unit": "mmHg"
+    },
+    {
+      "id": "total_chol",
+      "kind": "numeric",
+      "step": 0.1,
+      "label": "Total Cholesterol",
+      "units": [
+        {
+          "unit": "mmol/L",
+          "label": "mmol/L",
+          "to_canonical_factor": 1
+        },
+        {
+          "unit": "mg/dL",
+          "label": "mg/dL",
+          "to_canonical_factor": 0.02586
+        }
+      ],
+      "required": true,
+      "max_canonical": 12,
+      "min_canonical": 2,
+      "canonical_unit": "mmol/L"
+    },
+    {
+      "id": "hdl_chol",
+      "kind": "numeric",
+      "step": 0.1,
+      "label": "HDL Cholesterol",
+      "units": [
+        {
+          "unit": "mmol/L",
+          "label": "mmol/L",
+          "to_canonical_factor": 1
+        },
+        {
+          "unit": "mg/dL",
+          "label": "mg/dL",
+          "to_canonical_factor": 0.02586
+        }
+      ],
+      "required": true,
+      "max_canonical": 3.5,
+      "min_canonical": 0.4,
+      "canonical_unit": "mmol/L"
+    }
+  ],
+  "status": "verified",
+  "scoring": {
+    "unit": "%",
+    "method": "formula",
+    "max_score": 100,
+    "min_score": 0,
+    "precision": 1,
+    "formula_id": "score2"
+  },
   "metadata": {
-    "name": "SCORE2 (Systematic Coronary Risk Evaluation 2, Age 40–69)",
-    "short_name": "SCORE2",
-    "aliases": ["ESC SCORE2", "10-year CVD risk Europe"],
-    "subspecialties": ["Stroke", "Other"],
     "kind": "formula",
+    "name": "SCORE2 (Systematic Coronary Risk Evaluation 2, Age 40–69)",
+    "aliases": [
+      "ESC SCORE2",
+      "10-year CVD risk Europe"
+    ],
     "summary": "Estimates 10-year risk of fatal and non-fatal cardiovascular disease in apparently healthy adults aged 40–69 years without diabetes, recalibrated to European risk regions.",
+    "short_name": "SCORE2",
     "time_estimate": "~1 min",
+    "subspecialties": [
+      "Other"
+    ],
     "clinical_pearls": [
       "Risk thresholds depend on age: <50 years (<2.5% low-to-moderate, 2.5–7.4% high, >=7.5% very high) vs 50–69 years (<5% low-to-moderate, 5–9.9% high, >=10% very high).",
       "Do not use SCORE2 for patients with type 2 diabetes (use SCORE2-Diabetes) or established ASCVD (use SMART2), or adults >=70 years (use SCORE2-OP).",
@@ -16,176 +179,6 @@
       "Pitfall — Geographic & uncaptured risk enhancers: Derived and calibrated for European populations (interpret cautiously outside Europe); does not include Lp(a), family history, CKD, or chronic inflammatory diseases."
     ]
   },
-  "items": [
-    {
-      "kind": "select",
-      "id": "sex",
-      "label": "Biological Sex",
-      "required": true,
-      "options": [
-        { "id": "female", "label": "Female", "points": 0, "badge": "F" },
-        { "id": "male", "label": "Male", "points": 1, "badge": "M" }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "region",
-      "label": "ESC Cardiovascular Risk Region",
-      "required": true,
-      "options": [
-        { "id": "low", "label": "Low-risk region (e.g., Western Europe, UK, Spain)", "points": 0, "badge": "Low" },
-        { "id": "moderate", "label": "Moderate-risk region (e.g., Germany, Italy, Portugal)", "points": 1, "badge": "Mod" },
-        { "id": "high", "label": "High-risk region (e.g., Eastern/Central Europe)", "points": 2, "badge": "High" },
-        { "id": "very_high", "label": "Very-high-risk region (e.g., Eastern Europe / Central Asia)", "points": 3, "badge": "V.High" }
-      ]
-    },
-    {
-      "kind": "numeric",
-      "id": "age",
-      "label": "Age",
-      "required": true,
-      "canonical_unit": "years",
-      "units": [{ "unit": "years", "label": "years", "to_canonical_factor": 1 }],
-      "min_canonical": 40,
-      "max_canonical": 69,
-      "step": 1
-    },
-    {
-      "kind": "select",
-      "id": "smoker",
-      "label": "Current Smoking Status",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "Non-smoker / Former smoker", "points": 0 },
-        { "id": "yes", "label": "Current smoker", "points": 1 }
-      ]
-    },
-    {
-      "kind": "numeric",
-      "id": "sbp",
-      "label": "Systolic Blood Pressure",
-      "required": true,
-      "canonical_unit": "mmHg",
-      "units": [{ "unit": "mmHg", "label": "mmHg", "to_canonical_factor": 1 }],
-      "min_canonical": 90,
-      "max_canonical": 220,
-      "step": 1
-    },
-    {
-      "kind": "numeric",
-      "id": "total_chol",
-      "label": "Total Cholesterol",
-      "required": true,
-      "canonical_unit": "mmol/L",
-      "units": [
-        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 1 },
-        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 0.02586 }
-      ],
-      "min_canonical": 2.0,
-      "max_canonical": 12.0,
-      "step": 0.1
-    },
-    {
-      "kind": "numeric",
-      "id": "hdl_chol",
-      "label": "HDL Cholesterol",
-      "required": true,
-      "canonical_unit": "mmol/L",
-      "units": [
-        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 1 },
-        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 0.02586 }
-      ],
-      "min_canonical": 0.4,
-      "max_canonical": 3.5,
-      "step": 0.1
-    }
-  ],
-  "scoring": {
-    "method": "formula",
-    "min_score": 0,
-    "max_score": 100,
-    "unit": "%",
-    "precision": 1,
-    "formula_id": "score2"
-  },
-  "interpretation": [
-    {
-      "id": "u50_low_mod",
-      "min": 0,
-      "max": 2.4,
-      "condition": "age < 50",
-      "label": "Low-to-Moderate Risk (<2.5%, Age <50)",
-      "severity": "normal",
-      "summary": "10-year CVD risk <2.5% for adults under 50 years. Risk factor treatment generally not recommended unless specific modifiers apply.",
-      "refs": [{ "source_id": "score2-2021", "locator": "Table 2 / ESC 2021 Prevention" }]
-    },
-    {
-      "id": "u50_high",
-      "min": 2.5,
-      "max": 7.4,
-      "condition": "age < 50",
-      "label": "High Risk (2.5–7.4%, Age <50)",
-      "severity": "moderate",
-      "summary": "10-year CVD risk 2.5% to <7.5% for adults under 50 years. Consider risk factor treatment alongside lifestyle optimization.",
-      "refs": [{ "source_id": "score2-2021", "locator": "Table 2 / ESC 2021 Prevention" }]
-    },
-    {
-      "id": "u50_very_high",
-      "min": 7.5,
-      "max": null,
-      "condition": "age < 50",
-      "label": "Very High Risk (>=7.5%, Age <50)",
-      "severity": "critical",
-      "summary": "10-year CVD risk >=7.5% for adults under 50 years. Risk factor pharmacotherapy generally recommended.",
-      "refs": [{ "source_id": "score2-2021", "locator": "Table 2 / ESC 2021 Prevention" }]
-    },
-    {
-      "id": "o50_low_mod",
-      "min": 0,
-      "max": 4.9,
-      "condition": "age >= 50",
-      "label": "Low-to-Moderate Risk (<5%, Age 50–69)",
-      "severity": "normal",
-      "summary": "10-year CVD risk <5% for adults aged 50–69 years. Emphasize lifestyle measures.",
-      "refs": [{ "source_id": "score2-2021", "locator": "Table 2 / ESC 2021 Prevention" }]
-    },
-    {
-      "id": "o50_high",
-      "min": 5.0,
-      "max": 9.9,
-      "condition": "age >= 50",
-      "label": "High Risk (5.0–9.9%, Age 50–69)",
-      "severity": "moderate",
-      "summary": "10-year CVD risk 5% to <10% for adults aged 50–69 years. Consider BP and lipid-lowering therapy.",
-      "refs": [{ "source_id": "score2-2021", "locator": "Table 2 / ESC 2021 Prevention" }]
-    },
-    {
-      "id": "o50_very_high",
-      "min": 10.0,
-      "max": null,
-      "condition": "age >= 50",
-      "label": "Very High Risk (>=10%, Age 50–69)",
-      "severity": "critical",
-      "summary": "10-year CVD risk >=10% for adults aged 50–69 years. Risk factor pharmacotherapy generally recommended.",
-      "refs": [{ "source_id": "score2-2021", "locator": "Table 2 / ESC 2021 Prevention" }]
-    }
-  ],
-  "assessment_guides": [
-    {
-      "id": "guide_score2_region",
-      "target_type": "item",
-      "target_id": "region",
-      "chip_label": "Region guide",
-      "title": "Selecting ESC Cardiovascular Risk Region",
-      "bedside_steps": [
-        "Match the patient's country of residence to the WHO/ESC 4-tier CVD mortality classification (Low, Moderate, High, Very high)."
-      ],
-      "pitfalls_and_exceptions": [
-        "Regional recalibration significantly shifts absolute 10-year risk estimates for identical clinical inputs."
-      ],
-      "refs": [{ "source_id": "score2-2021", "locator": "Supplementary Methods p. 9" }]
-    }
-  ],
   "references": [
     {
       "id": "score2-2021",
@@ -225,29 +218,178 @@
   "test_cases": [
     {
       "name": "55yo Male, Low region, non-smoker, SBP 130, TC 5.5, HDL 1.3 -> 4.0%",
-      "inputs": { "sex": "male", "region": "low", "age": 55, "smoker": "no", "sbp": 130, "total_chol": 5.5, "hdl_chol": 1.3 },
-      "expected_score": 4.0,
+      "inputs": {
+        "age": 55,
+        "sbp": 130,
+        "sex": "male",
+        "region": "low",
+        "smoker": "no",
+        "hdl_chol": 1.3,
+        "total_chol": 5.5
+      },
+      "expected_score": 4,
       "expected_band_id": "o50_low_mod"
     },
     {
       "name": "45yo Male, High region, smoker, SBP 150, TC 6.5, HDL 1.0 -> 11.2%",
-      "inputs": { "sex": "male", "region": "high", "age": 45, "smoker": "yes", "sbp": 150, "total_chol": 6.5, "hdl_chol": 1.0 },
+      "inputs": {
+        "age": 45,
+        "sbp": 150,
+        "sex": "male",
+        "region": "high",
+        "smoker": "yes",
+        "hdl_chol": 1,
+        "total_chol": 6.5
+      },
       "expected_score": 11.2,
       "expected_band_id": "u50_very_high"
     },
     {
       "name": "62yo Female, Moderate region, non-smoker, SBP 140, TC 6.0, HDL 1.4 -> 5.4%",
-      "inputs": { "sex": "female", "region": "moderate", "age": 62, "smoker": "no", "sbp": 140, "total_chol": 6.0, "hdl_chol": 1.4 },
+      "inputs": {
+        "age": 62,
+        "sbp": 140,
+        "sex": "female",
+        "region": "moderate",
+        "smoker": "no",
+        "hdl_chol": 1.4,
+        "total_chol": 6
+      },
       "expected_score": 5.4,
       "expected_band_id": "o50_high"
     },
     {
       "name": "65yo Male, Very high region, smoker, SBP 160, TC 7.0, HDL 0.9 -> 40.2%",
-      "inputs": { "sex": "male", "region": "very_high", "age": 65, "smoker": "yes", "sbp": 160, "total_chol": 7.0, "hdl_chol": 0.9 },
+      "inputs": {
+        "age": 65,
+        "sbp": 160,
+        "sex": "male",
+        "region": "very_high",
+        "smoker": "yes",
+        "hdl_chol": 0.9,
+        "total_chol": 7
+      },
       "expected_score": 40.2,
       "expected_band_id": "o50_very_high"
     }
   ],
-  "status": "draft",
-  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+  "verification": {
+    "verified_by": "Admin",
+    "verified_at": "2026-11-27T09:08:47.947Z",
+    "content_hash": "945f8476e4baf754203e81da0320aa1346bf2f7502f58aff7aeb34a283f84ce3"
+  },
+  "interpretation": [
+    {
+      "id": "u50_low_mod",
+      "max": 2.4,
+      "min": 0,
+      "refs": [
+        {
+          "locator": "Table 2 / ESC 2021 Prevention",
+          "source_id": "score2-2021"
+        }
+      ],
+      "label": "Low-to-Moderate Risk (<2.5%, Age <50)",
+      "summary": "10-year CVD risk <2.5% for adults under 50 years. Risk factor treatment generally not recommended unless specific modifiers apply.",
+      "severity": "normal",
+      "condition": "age < 50"
+    },
+    {
+      "id": "u50_high",
+      "max": 7.4,
+      "min": 2.5,
+      "refs": [
+        {
+          "locator": "Table 2 / ESC 2021 Prevention",
+          "source_id": "score2-2021"
+        }
+      ],
+      "label": "High Risk (2.5–7.4%, Age <50)",
+      "summary": "10-year CVD risk 2.5% to <7.5% for adults under 50 years. Consider risk factor treatment alongside lifestyle optimization.",
+      "severity": "moderate",
+      "condition": "age < 50"
+    },
+    {
+      "id": "u50_very_high",
+      "max": null,
+      "min": 7.5,
+      "refs": [
+        {
+          "locator": "Table 2 / ESC 2021 Prevention",
+          "source_id": "score2-2021"
+        }
+      ],
+      "label": "Very High Risk (>=7.5%, Age <50)",
+      "summary": "10-year CVD risk >=7.5% for adults under 50 years. Risk factor pharmacotherapy generally recommended.",
+      "severity": "critical",
+      "condition": "age < 50"
+    },
+    {
+      "id": "o50_low_mod",
+      "max": 4.9,
+      "min": 0,
+      "refs": [
+        {
+          "locator": "Table 2 / ESC 2021 Prevention",
+          "source_id": "score2-2021"
+        }
+      ],
+      "label": "Low-to-Moderate Risk (<5%, Age 50–69)",
+      "summary": "10-year CVD risk <5% for adults aged 50–69 years. Emphasize lifestyle measures.",
+      "severity": "normal",
+      "condition": "age >= 50"
+    },
+    {
+      "id": "o50_high",
+      "max": 9.9,
+      "min": 5,
+      "refs": [
+        {
+          "locator": "Table 2 / ESC 2021 Prevention",
+          "source_id": "score2-2021"
+        }
+      ],
+      "label": "High Risk (5.0–9.9%, Age 50–69)",
+      "summary": "10-year CVD risk 5% to <10% for adults aged 50–69 years. Consider BP and lipid-lowering therapy.",
+      "severity": "moderate",
+      "condition": "age >= 50"
+    },
+    {
+      "id": "o50_very_high",
+      "max": null,
+      "min": 10,
+      "refs": [
+        {
+          "locator": "Table 2 / ESC 2021 Prevention",
+          "source_id": "score2-2021"
+        }
+      ],
+      "label": "Very High Risk (>=10%, Age 50–69)",
+      "summary": "10-year CVD risk >=10% for adults aged 50–69 years. Risk factor pharmacotherapy generally recommended.",
+      "severity": "critical",
+      "condition": "age >= 50"
+    }
+  ],
+  "schema_version": 1,
+  "assessment_guides": [
+    {
+      "id": "guide_score2_region",
+      "refs": [
+        {
+          "locator": "Supplementary Methods p. 9",
+          "source_id": "score2-2021"
+        }
+      ],
+      "title": "Selecting ESC Cardiovascular Risk Region",
+      "target_id": "region",
+      "chip_label": "Region guide",
+      "target_type": "item",
+      "bedside_steps": [
+        "Match the patient's country of residence to the WHO/ESC 4-tier CVD mortality classification (Low, Moderate, High, Very high)."
+      ],
+      "pitfalls_and_exceptions": [
+        "Regional recalibration significantly shifts absolute 10-year risk estimates for identical clinical inputs."
+      ]
+    }
+  ]
 }

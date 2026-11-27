@@ -1,139 +1,126 @@
 {
   "id": "abc-2",
-  "schema_version": 1,
+  "items": [
+    {
+      "id": "a",
+      "code": "A",
+      "kind": "numeric",
+      "step": 0.1,
+      "label": "Largest hemorrhage diameter (A)",
+      "units": [
+        {
+          "unit": "cm",
+          "label": "cm",
+          "to_canonical_factor": 1
+        },
+        {
+          "unit": "mm",
+          "label": "mm",
+          "to_canonical_factor": 0.1
+        }
+      ],
+      "required": true,
+      "subtitle": "Greatest diameter on the axial CT slice with the largest hemorrhage area.",
+      "max_canonical": 25,
+      "min_canonical": 0.1,
+      "canonical_unit": "cm"
+    },
+    {
+      "id": "b",
+      "code": "B",
+      "kind": "numeric",
+      "step": 0.1,
+      "label": "Perpendicular diameter (B)",
+      "units": [
+        {
+          "unit": "cm",
+          "label": "cm",
+          "to_canonical_factor": 1
+        },
+        {
+          "unit": "mm",
+          "label": "mm",
+          "to_canonical_factor": 0.1
+        }
+      ],
+      "required": true,
+      "subtitle": "Largest diameter perpendicular (90°) to A on the same axial slice.",
+      "max_canonical": 25,
+      "min_canonical": 0.1,
+      "canonical_unit": "cm"
+    },
+    {
+      "id": "slices",
+      "code": "C1",
+      "kind": "numeric",
+      "step": 0.5,
+      "label": "Weighted slice count",
+      "units": [
+        {
+          "unit": "slices",
+          "label": "slices",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": true,
+      "subtitle": "Sum of CT slices showing hemorrhage (1 = >75% area, 0.5 = 25–75% area, 0 = <25% area).",
+      "max_canonical": 60,
+      "min_canonical": 0.5,
+      "canonical_unit": "slices"
+    },
+    {
+      "id": "slice_thickness",
+      "code": "C2",
+      "kind": "numeric",
+      "step": 0.05,
+      "label": "CT slice thickness",
+      "units": [
+        {
+          "unit": "cm",
+          "label": "cm",
+          "to_canonical_factor": 1
+        },
+        {
+          "unit": "mm",
+          "label": "mm",
+          "to_canonical_factor": 0.1
+        }
+      ],
+      "required": true,
+      "subtitle": "Thickness of each axial CT slice (commonly 0.5 cm / 5 mm).",
+      "max_canonical": 2,
+      "min_canonical": 0.05,
+      "canonical_unit": "cm"
+    }
+  ],
+  "status": "verified",
+  "scoring": {
+    "unit": "mL",
+    "method": "formula",
+    "max_score": null,
+    "min_score": 0,
+    "precision": 1,
+    "formula_id": "abc_2"
+  },
   "metadata": {
-    "name": "ABC/2 Intracerebral Hemorrhage Volume",
-    "short_name": "ABC/2",
-    "aliases": ["ICH volume", "Kothari"],
-    "subspecialties": ["Stroke", "Neurocritical Care"],
     "kind": "formula",
+    "name": "ABC/2 for intracerebral hemorrhage (ICH) volume",
+    "aliases": [
+      "ICH volume",
+      "Kothari"
+    ],
     "summary": "Ellipsoid approximation formula for estimating parenchymal hematoma volume on non-contrast head CT.",
+    "short_name": "ABC/2",
     "time_estimate": "~1 min",
+    "subspecialties": [
+      "Stroke"
+    ],
     "clinical_pearls": [
       "Excludes intraventricular hemorrhage (IVH) and subarachnoid extension.",
       "Always measure length (A) and perpendicular width (B) accurately on the axial CT slice with the largest hemorrhage area.",
       "Pitfall — Irregular or warfarin-related ICH: For lobar, irregular, or multilobed hemorrhages (including warfarin-related ICH), ABC/2 may overestimate volume compared with computer-assisted planimetry (Huttner et al., 2006)."
     ]
   },
-  "items": [
-    {
-      "kind": "numeric",
-      "id": "a",
-      "code": "A",
-      "label": "Largest hemorrhage diameter (A)",
-      "subtitle": "Greatest diameter on the axial CT slice with the largest hemorrhage area.",
-      "required": true,
-      "canonical_unit": "cm",
-      "units": [
-        { "unit": "cm", "label": "cm", "to_canonical_factor": 1 },
-        { "unit": "mm", "label": "mm", "to_canonical_factor": 0.1 }
-      ],
-      "min_canonical": 0.1,
-      "max_canonical": 25,
-      "step": 0.1
-    },
-    {
-      "kind": "numeric",
-      "id": "b",
-      "code": "B",
-      "label": "Perpendicular diameter (B)",
-      "subtitle": "Largest diameter perpendicular (90°) to A on the same axial slice.",
-      "required": true,
-      "canonical_unit": "cm",
-      "units": [
-        { "unit": "cm", "label": "cm", "to_canonical_factor": 1 },
-        { "unit": "mm", "label": "mm", "to_canonical_factor": 0.1 }
-      ],
-      "min_canonical": 0.1,
-      "max_canonical": 25,
-      "step": 0.1
-    },
-    {
-      "kind": "numeric",
-      "id": "slices",
-      "code": "C1",
-      "label": "Weighted slice count",
-      "subtitle": "Sum of CT slices showing hemorrhage (1 = >75% area, 0.5 = 25–75% area, 0 = <25% area).",
-      "required": true,
-      "canonical_unit": "slices",
-      "units": [
-        { "unit": "slices", "label": "slices", "to_canonical_factor": 1 }
-      ],
-      "min_canonical": 0.5,
-      "max_canonical": 60,
-      "step": 0.5
-    },
-    {
-      "kind": "numeric",
-      "id": "slice_thickness",
-      "code": "C2",
-      "label": "CT slice thickness",
-      "subtitle": "Thickness of each axial CT slice (commonly 0.5 cm / 5 mm).",
-      "required": true,
-      "canonical_unit": "cm",
-      "units": [
-        { "unit": "cm", "label": "cm", "to_canonical_factor": 1 },
-        { "unit": "mm", "label": "mm", "to_canonical_factor": 0.1 }
-      ],
-      "min_canonical": 0.05,
-      "max_canonical": 2,
-      "step": 0.05
-    }
-  ],
-  "scoring": {
-    "method": "formula",
-    "min_score": 0,
-    "max_score": null,
-    "unit": "mL",
-    "precision": 1,
-    "formula_id": "abc_2"
-  },
-  "interpretation": [
-    {
-      "id": "abc2_lt30",
-      "min": 0,
-      "max": 29.9,
-      "label": "Small-to-Moderate Volume (< 30 mL)",
-      "severity": "mild",
-      "summary": "Hematoma volume < 30 mL (0 points on the ICH Score volume component).",
-      "refs": [{ "source_id": "kothari-1996-abc2", "locator": "p. 1304" }]
-    },
-    {
-      "id": "abc2_30_59",
-      "min": 30,
-      "max": 59.9,
-      "label": "Large Volume (30 – 59.9 mL)",
-      "severity": "severe",
-      "summary": "Hematoma volume >= 30 mL (adds 1 point on the ICH Score; monitor closely for herniation).",
-      "refs": [{ "source_id": "kothari-1996-abc2", "locator": "p. 1304" }]
-    },
-    {
-      "id": "abc2_ge60",
-      "min": 60,
-      "max": null,
-      "label": "Massive Volume (>= 60 mL)",
-      "severity": "critical",
-      "summary": "Hematoma volume >= 60 mL; high risk of mass effect and early neurological deterioration.",
-      "refs": [{ "source_id": "kothari-1996-abc2", "locator": "p. 1304" }]
-    }
-  ],
-  "assessment_guides": [
-    {
-      "id": "guide_abc2_slices",
-      "target_type": "item",
-      "target_id": "slices",
-      "title": "Kothari Slice-Weighting Rule (C)",
-      "bedside_steps": [
-        "Compare each axial slice containing blood to the reference slice with the largest hemorrhage area.",
-        "Assign 1.0 if area is > 75% of the largest slice, 0.5 if 25–75%, and 0 if < 25%."
-      ],
-      "pitfalls_and_exceptions": [
-        "Counting small cap slices as 1.0 instead of 0.5 or 0 systematically overestimates ICH volume.",
-        "Do not include isolated intraventricular blood when measuring A, B, or C."
-      ],
-      "refs": [{ "source_id": "kothari-1996-abc2", "locator": "p. 1304" }]
-    }
-  ],
   "references": [
     {
       "id": "kothari-1996-abc2",
@@ -154,11 +141,130 @@
     }
   ],
   "test_cases": [
-    { "name": "Small 15.0 mL", "inputs": { "a": 3, "b": 2.5, "slices": 8, "slice_thickness": 0.5 }, "expected_score": 15.0, "expected_band_id": "abc2_lt30" },
-    { "name": "Boundary 30.0 mL (mm units)", "inputs": { "a": { "value": 50, "unit": "mm" }, "b": { "value": 40, "unit": "mm" }, "slices": 6, "slice_thickness": { "value": 5, "unit": "mm" } }, "expected_score": 30.0, "expected_band_id": "abc2_30_59" },
-    { "name": "Large 62.5 mL", "inputs": { "a": 5, "b": 5, "slices": 10, "slice_thickness": 0.5 }, "expected_score": 62.5, "expected_band_id": "abc2_ge60" },
-    { "name": "Minimal 0.5 mL", "inputs": { "a": 1, "b": 1, "slices": 2, "slice_thickness": 0.5 }, "expected_score": 0.5, "expected_band_id": "abc2_lt30" }
+    {
+      "name": "Small 15.0 mL",
+      "inputs": {
+        "a": 3,
+        "b": 2.5,
+        "slices": 8,
+        "slice_thickness": 0.5
+      },
+      "expected_score": 15,
+      "expected_band_id": "abc2_lt30"
+    },
+    {
+      "name": "Boundary 30.0 mL (mm units)",
+      "inputs": {
+        "a": {
+          "unit": "mm",
+          "value": 50
+        },
+        "b": {
+          "unit": "mm",
+          "value": 40
+        },
+        "slices": 6,
+        "slice_thickness": {
+          "unit": "mm",
+          "value": 5
+        }
+      },
+      "expected_score": 30,
+      "expected_band_id": "abc2_30_59"
+    },
+    {
+      "name": "Large 62.5 mL",
+      "inputs": {
+        "a": 5,
+        "b": 5,
+        "slices": 10,
+        "slice_thickness": 0.5
+      },
+      "expected_score": 62.5,
+      "expected_band_id": "abc2_ge60"
+    },
+    {
+      "name": "Minimal 0.5 mL",
+      "inputs": {
+        "a": 1,
+        "b": 1,
+        "slices": 2,
+        "slice_thickness": 0.5
+      },
+      "expected_score": 0.5,
+      "expected_band_id": "abc2_lt30"
+    }
   ],
-  "status": "draft",
-  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+  "verification": {
+    "verified_by": "Admin",
+    "verified_at": "2026-11-27T09:08:43.928Z",
+    "content_hash": "474aafd45854ca6a749ca4a0c197f187552bda5fafa15ec28330a1f3fb10a1a9"
+  },
+  "interpretation": [
+    {
+      "id": "abc2_lt30",
+      "max": 29.9,
+      "min": 0,
+      "refs": [
+        {
+          "locator": "p. 1304",
+          "source_id": "kothari-1996-abc2"
+        }
+      ],
+      "label": "Small-to-Moderate Volume (< 30 mL)",
+      "summary": "Hematoma volume < 30 mL (0 points on the ICH Score volume component).",
+      "severity": "mild"
+    },
+    {
+      "id": "abc2_30_59",
+      "max": 59.9,
+      "min": 30,
+      "refs": [
+        {
+          "locator": "p. 1304",
+          "source_id": "kothari-1996-abc2"
+        }
+      ],
+      "label": "Large Volume (30 – 59.9 mL)",
+      "summary": "Hematoma volume >= 30 mL (adds 1 point on the ICH Score; monitor closely for herniation).",
+      "severity": "severe"
+    },
+    {
+      "id": "abc2_ge60",
+      "max": null,
+      "min": 60,
+      "refs": [
+        {
+          "locator": "p. 1304",
+          "source_id": "kothari-1996-abc2"
+        }
+      ],
+      "label": "Massive Volume (>= 60 mL)",
+      "summary": "Hematoma volume >= 60 mL; high risk of mass effect and early neurological deterioration.",
+      "severity": "critical"
+    }
+  ],
+  "schema_version": 1,
+  "assessment_guides": [
+    {
+      "id": "guide_abc2_slices",
+      "refs": [
+        {
+          "locator": "p. 1304",
+          "source_id": "kothari-1996-abc2"
+        }
+      ],
+      "title": "Kothari Slice-Weighting Rule (C)",
+      "target_id": "slices",
+      "target_type": "item",
+      "bedside_steps": [
+        "Compare each axial slice containing blood to the reference slice with the largest hemorrhage area.",
+        "Assign 1.0 if area is > 75% of the largest slice, 0.5 if 25–75%, and 0 if < 25%."
+      ],
+      "pitfalls_and_exceptions": [
+        "Counting small cap slices as 1.0 instead of 0.5 or 0 systematically overestimates ICH volume.",
+        "Do not include isolated intraventricular blood when measuring A, B, or C."
+      ]
+    }
+  ]
 }

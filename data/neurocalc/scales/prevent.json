@@ -1,14 +1,311 @@
 {
   "id": "prevent",
-  "schema_version": 1,
+  "items": [
+    {
+      "id": "sex",
+      "kind": "select",
+      "label": "Biological Sex",
+      "options": [
+        {
+          "id": "female",
+          "badge": "F",
+          "label": "Female",
+          "points": 0
+        },
+        {
+          "id": "male",
+          "badge": "M",
+          "label": "Male",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "age",
+      "kind": "numeric",
+      "step": 1,
+      "label": "Age",
+      "units": [
+        {
+          "unit": "years",
+          "label": "years",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": true,
+      "subtitle": "10-year risk: ages 30–79; 30-year risk: ages 30–59",
+      "max_canonical": 79,
+      "min_canonical": 30,
+      "canonical_unit": "years"
+    },
+    {
+      "id": "total_chol",
+      "kind": "numeric",
+      "step": 0.1,
+      "label": "Total Cholesterol",
+      "units": [
+        {
+          "unit": "mmol/L",
+          "label": "mmol/L",
+          "to_canonical_factor": 1
+        },
+        {
+          "unit": "mg/dL",
+          "label": "mg/dL",
+          "to_canonical_factor": 0.02586
+        }
+      ],
+      "required": true,
+      "max_canonical": 8.28,
+      "min_canonical": 3.36,
+      "canonical_unit": "mmol/L"
+    },
+    {
+      "id": "hdl_chol",
+      "kind": "numeric",
+      "step": 0.05,
+      "label": "HDL Cholesterol",
+      "units": [
+        {
+          "unit": "mmol/L",
+          "label": "mmol/L",
+          "to_canonical_factor": 1
+        },
+        {
+          "unit": "mg/dL",
+          "label": "mg/dL",
+          "to_canonical_factor": 0.02586
+        }
+      ],
+      "required": true,
+      "max_canonical": 2.59,
+      "min_canonical": 0.51,
+      "canonical_unit": "mmol/L"
+    },
+    {
+      "id": "sbp",
+      "kind": "numeric",
+      "step": 1,
+      "label": "Systolic Blood Pressure",
+      "units": [
+        {
+          "unit": "mmHg",
+          "label": "mmHg",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": true,
+      "max_canonical": 200,
+      "min_canonical": 90,
+      "canonical_unit": "mmHg"
+    },
+    {
+      "id": "egfr",
+      "kind": "numeric",
+      "step": 1,
+      "label": "eGFR (CKD-EPI)",
+      "units": [
+        {
+          "unit": "mL/min/1.73m²",
+          "label": "mL/min/1.73m²",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": true,
+      "max_canonical": 150,
+      "min_canonical": 15,
+      "canonical_unit": "mL/min/1.73m²"
+    },
+    {
+      "id": "diabetes",
+      "kind": "select",
+      "label": "Diabetes Mellitus",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "smoker",
+      "kind": "select",
+      "label": "Current Smoking",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "bp_treated",
+      "kind": "select",
+      "label": "On Antihypertensive Medication",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "statin",
+      "kind": "select",
+      "label": "On Statin Therapy",
+      "options": [
+        {
+          "id": "no",
+          "label": "No",
+          "points": 0
+        },
+        {
+          "id": "yes",
+          "label": "Yes",
+          "points": 1
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "bmi",
+      "kind": "numeric",
+      "step": 0.1,
+      "label": "Body Mass Index (BMI)",
+      "units": [
+        {
+          "unit": "kg/m²",
+          "label": "kg/m²",
+          "to_canonical_factor": 1
+        }
+      ],
+      "required": false,
+      "subtitle": "Required to compute Heart Failure risk (18.5–39.9 kg/m²); other endpoints still calculate if omitted.",
+      "max_canonical": 39.9,
+      "min_canonical": 18.5,
+      "canonical_unit": "kg/m²"
+    },
+    {
+      "id": "uacr",
+      "kind": "numeric",
+      "step": 0.1,
+      "label": "Urine Albumin-to-Creatinine Ratio (uACR)",
+      "units": [
+        {
+          "unit": "mg/g",
+          "label": "mg/g",
+          "to_canonical_factor": 1
+        },
+        {
+          "unit": "mg/mmol",
+          "label": "mg/mmol",
+          "to_canonical_factor": 8.84017
+        }
+      ],
+      "required": false,
+      "subtitle": "Indicated for patients with chronic kidney disease, diabetes, or hypertension.",
+      "max_canonical": 25000,
+      "min_canonical": 0.1,
+      "canonical_unit": "mg/g"
+    },
+    {
+      "id": "hba1c",
+      "kind": "numeric",
+      "step": 0.1,
+      "label": "HbA1c",
+      "units": [
+        {
+          "unit": "%",
+          "label": "% (NGSP)",
+          "to_canonical_factor": 1
+        },
+        {
+          "unit": "mmol/mol",
+          "label": "mmol/mol (IFCC)",
+          "to_canonical_factor": 0.09148,
+          "to_canonical_offset": 2.152
+        }
+      ],
+      "required": false,
+      "subtitle": "Indicated for patients with diabetes, prediabetes, gestational diabetes, or overweight/obesity.",
+      "max_canonical": 15,
+      "min_canonical": 4.5,
+      "canonical_unit": "%"
+    },
+    {
+      "id": "sdi",
+      "kind": "select",
+      "label": "Social Deprivation Index (SDI Decile)",
+      "options": [
+        {
+          "id": "decile_1_3",
+          "badge": "1–3",
+          "label": "Decile 1–3 (Least deprived)",
+          "points": 1
+        },
+        {
+          "id": "decile_4_6",
+          "badge": "4–6",
+          "label": "Decile 4–6 (Moderate deprivation)",
+          "points": 5
+        },
+        {
+          "id": "decile_7_10",
+          "badge": "7–10",
+          "label": "Decile 7–10 (Most deprived)",
+          "points": 8
+        }
+      ],
+      "required": false,
+      "subtitle": "Optional neighborhood socioeconomic deprivation decile (click selected option again or Clear to omit)."
+    }
+  ],
+  "status": "verified",
+  "scoring": {
+    "unit": "%",
+    "method": "formula",
+    "max_score": 100,
+    "min_score": 0,
+    "precision": 2,
+    "formula_id": "prevent"
+  },
   "metadata": {
-    "name": "AHA PREVENT (10-Year & 30-Year CVD Risk Equations)",
-    "short_name": "PREVENT",
-    "aliases": ["AHA PREVENT", "PREVENT Total CVD", "PREVENT ASCVD"],
-    "subspecialties": ["Stroke", "Other"],
     "kind": "formula",
+    "name": "PREVENT (10-Year & 30-Year CVD Risk Equations)",
+    "aliases": [
+      "AHA PREVENT",
+      "PREVENT Total CVD",
+      "PREVENT ASCVD"
+    ],
     "summary": "Race-free 2024 AHA PREVENT equations estimating 10-year (ages 30–79) and 30-year (ages 30–59) risks of ASCVD, heart failure, CHD, stroke, and total CVD using CKM health predictors and optional uACR, HbA1c, and SDI.",
+    "short_name": "PREVENT",
     "time_estimate": "~1–2 min",
+    "subspecialties": [
+      "Stroke",
+      "Other"
+    ],
     "clinical_pearls": [
       "Estimates both 10-year risk (validated for ages 30–79) and 30-year risk (validated for ages 30–59) across 5 endpoints: ASCVD, Heart Failure, Coronary Heart Disease, Stroke, and Total CVD.",
       "BMI (18.5–39.9 kg/m²) is used specifically in the Heart Failure models; if omitted, ASCVD, CHD, Stroke, and Total CVD risks are still computed.",
@@ -18,221 +315,6 @@
       "Pitfall — Geographic & BMI limits: Derived and validated primarily in U.S. cohorts (BMI < 18.5 or >= 40 kg/m² excluded); treatment-decision thresholds for total CVD risk are still evolving."
     ]
   },
-  "items": [
-    {
-      "kind": "select",
-      "id": "sex",
-      "label": "Biological Sex",
-      "required": true,
-      "options": [
-        { "id": "female", "label": "Female", "points": 0, "badge": "F" },
-        { "id": "male", "label": "Male", "points": 1, "badge": "M" }
-      ]
-    },
-    {
-      "kind": "numeric",
-      "id": "age",
-      "label": "Age",
-      "subtitle": "10-year risk: ages 30–79; 30-year risk: ages 30–59",
-      "required": true,
-      "canonical_unit": "years",
-      "units": [{ "unit": "years", "label": "years", "to_canonical_factor": 1 }],
-      "min_canonical": 30,
-      "max_canonical": 79,
-      "step": 1
-    },
-    {
-      "kind": "numeric",
-      "id": "total_chol",
-      "label": "Total Cholesterol",
-      "required": true,
-      "canonical_unit": "mmol/L",
-      "units": [
-        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 1 },
-        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 0.02586 }
-      ],
-      "min_canonical": 3.36,
-      "max_canonical": 8.28,
-      "step": 0.1
-    },
-    {
-      "kind": "numeric",
-      "id": "hdl_chol",
-      "label": "HDL Cholesterol",
-      "required": true,
-      "canonical_unit": "mmol/L",
-      "units": [
-        { "unit": "mmol/L", "label": "mmol/L", "to_canonical_factor": 1 },
-        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 0.02586 }
-      ],
-      "min_canonical": 0.51,
-      "max_canonical": 2.59,
-      "step": 0.05
-    },
-    {
-      "kind": "numeric",
-      "id": "sbp",
-      "label": "Systolic Blood Pressure",
-      "required": true,
-      "canonical_unit": "mmHg",
-      "units": [{ "unit": "mmHg", "label": "mmHg", "to_canonical_factor": 1 }],
-      "min_canonical": 90,
-      "max_canonical": 200,
-      "step": 1
-    },
-    {
-      "kind": "numeric",
-      "id": "egfr",
-      "label": "eGFR (CKD-EPI)",
-      "required": true,
-      "canonical_unit": "mL/min/1.73m²",
-      "units": [{ "unit": "mL/min/1.73m²", "label": "mL/min/1.73m²", "to_canonical_factor": 1 }],
-      "min_canonical": 15,
-      "max_canonical": 150,
-      "step": 1
-    },
-    {
-      "kind": "select",
-      "id": "diabetes",
-      "label": "Diabetes Mellitus",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes", "points": 1 }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "smoker",
-      "label": "Current Smoking",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes", "points": 1 }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "bp_treated",
-      "label": "On Antihypertensive Medication",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes", "points": 1 }
-      ]
-    },
-    {
-      "kind": "select",
-      "id": "statin",
-      "label": "On Statin Therapy",
-      "required": true,
-      "options": [
-        { "id": "no", "label": "No", "points": 0 },
-        { "id": "yes", "label": "Yes", "points": 1 }
-      ]
-    },
-    {
-      "kind": "numeric",
-      "id": "bmi",
-      "label": "Body Mass Index (BMI)",
-      "subtitle": "Required to compute Heart Failure risk (18.5–39.9 kg/m²); other endpoints still calculate if omitted.",
-      "required": false,
-      "canonical_unit": "kg/m²",
-      "units": [{ "unit": "kg/m²", "label": "kg/m²", "to_canonical_factor": 1 }],
-      "min_canonical": 18.5,
-      "max_canonical": 39.9,
-      "step": 0.1
-    },
-    {
-      "kind": "numeric",
-      "id": "uacr",
-      "label": "Urine Albumin-to-Creatinine Ratio (uACR)",
-      "subtitle": "Indicated for patients with chronic kidney disease, diabetes, or hypertension.",
-      "required": false,
-      "canonical_unit": "mg/g",
-      "units": [
-        { "unit": "mg/g", "label": "mg/g", "to_canonical_factor": 1 },
-        { "unit": "mg/mmol", "label": "mg/mmol", "to_canonical_factor": 8.84017 }
-      ],
-      "min_canonical": 0.1,
-      "max_canonical": 25000,
-      "step": 0.1
-    },
-    {
-      "kind": "numeric",
-      "id": "hba1c",
-      "label": "HbA1c",
-      "subtitle": "Indicated for patients with diabetes, prediabetes, gestational diabetes, or overweight/obesity.",
-      "required": false,
-      "canonical_unit": "%",
-      "units": [
-        { "unit": "%", "label": "% (NGSP)", "to_canonical_factor": 1 },
-        { "unit": "mmol/mol", "label": "mmol/mol (IFCC)", "to_canonical_factor": 0.09148, "to_canonical_offset": 2.152 }
-      ],
-      "min_canonical": 4.5,
-      "max_canonical": 15,
-      "step": 0.1
-    },
-    {
-      "kind": "select",
-      "id": "sdi",
-      "label": "Social Deprivation Index (SDI Decile)",
-      "subtitle": "Optional neighborhood socioeconomic deprivation decile (click selected option again or Clear to omit).",
-      "required": false,
-      "options": [
-        { "id": "decile_1_3", "label": "Decile 1–3 (Least deprived)", "points": 1, "badge": "1–3" },
-        { "id": "decile_4_6", "label": "Decile 4–6 (Moderate deprivation)", "points": 5, "badge": "4–6" },
-        { "id": "decile_7_10", "label": "Decile 7–10 (Most deprived)", "points": 8, "badge": "7–10" }
-      ]
-    }
-  ],
-  "scoring": {
-    "method": "formula",
-    "min_score": 0,
-    "max_score": 100,
-    "unit": "%",
-    "precision": 2,
-    "formula_id": "prevent"
-  },
-  "interpretation": [
-    {
-      "id": "prev_low",
-      "min": 0,
-      "max": 4.99,
-      "label": "Low Risk (<5.0%)",
-      "severity": "normal",
-      "summary": "Low 10-year ASCVD risk (<5.0%). Reinforce healthy lifestyle habits.",
-      "refs": [{ "source_id": "khan-2024-prevent", "locator": "Supp. Table S12" }]
-    },
-    {
-      "id": "prev_borderline",
-      "min": 5.0,
-      "max": 7.49,
-      "label": "Borderline Risk (5.0–7.49%)",
-      "severity": "mild",
-      "summary": "Borderline 10-year ASCVD risk (5.0–7.49%). Assess CKM risk enhancers.",
-      "refs": [{ "source_id": "khan-2024-prevent", "locator": "Supp. Table S12" }]
-    },
-    {
-      "id": "prev_intermediate",
-      "min": 7.5,
-      "max": 19.99,
-      "label": "Intermediate Risk (7.5–19.99%)",
-      "severity": "moderate",
-      "summary": "Intermediate 10-year ASCVD risk (7.5–19.99%). Initiate shared decision-making for statin and BP optimization.",
-      "refs": [{ "source_id": "khan-2024-prevent", "locator": "Supp. Table S12" }]
-    },
-    {
-      "id": "prev_high",
-      "min": 20.0,
-      "max": null,
-      "label": "High Risk (>=20.0%)",
-      "severity": "critical",
-      "summary": "High 10-year ASCVD risk (>=20.0%). Intensive pharmacologic risk reduction indicated.",
-      "refs": [{ "source_id": "khan-2024-prevent", "locator": "Supp. Table S12" }]
-    }
-  ],
-  "assessment_guides": [],
   "references": [
     {
       "id": "khan-2024-prevent",
@@ -281,41 +363,196 @@
   "test_cases": [
     {
       "name": "55yo Female base w/ BMI 25 -> 10y ASCVD 2.20%",
-      "inputs": { "sex": "female", "age": 55, "total_chol": 5.0, "hdl_chol": 1.3, "sbp": 130, "egfr": 90, "diabetes": "no", "smoker": "no", "bp_treated": "no", "statin": "no", "bmi": 25 },
-      "expected_score": 2.20,
+      "inputs": {
+        "age": 55,
+        "bmi": 25,
+        "sbp": 130,
+        "sex": "female",
+        "egfr": 90,
+        "smoker": "no",
+        "statin": "no",
+        "diabetes": "no",
+        "hdl_chol": 1.3,
+        "bp_treated": "no",
+        "total_chol": 5
+      },
+      "expected_score": 2.2,
       "expected_band_id": "prev_low"
     },
     {
       "name": "55yo Male base w/ BMI 25 -> 10y ASCVD 3.03%",
-      "inputs": { "sex": "male", "age": 55, "total_chol": 5.0, "hdl_chol": 1.3, "sbp": 130, "egfr": 90, "diabetes": "no", "smoker": "no", "bp_treated": "no", "statin": "no", "bmi": 25 },
+      "inputs": {
+        "age": 55,
+        "bmi": 25,
+        "sbp": 130,
+        "sex": "male",
+        "egfr": 90,
+        "smoker": "no",
+        "statin": "no",
+        "diabetes": "no",
+        "hdl_chol": 1.3,
+        "bp_treated": "no",
+        "total_chol": 5
+      },
       "expected_score": 3.03,
       "expected_band_id": "prev_low"
     },
     {
       "name": "50yo Female + uACR (10 mg/mmol) -> 10y ASCVD 11.06%",
-      "inputs": { "sex": "female", "age": 50, "total_chol": { "value": 200, "unit": "mg/dL" }, "hdl_chol": { "value": 45, "unit": "mg/dL" }, "sbp": 160, "egfr": 90, "diabetes": "yes", "smoker": "no", "bp_treated": "yes", "statin": "no", "bmi": 35, "uacr": { "value": 10, "unit": "mg/mmol" } },
+      "inputs": {
+        "age": 50,
+        "bmi": 35,
+        "sbp": 160,
+        "sex": "female",
+        "egfr": 90,
+        "uacr": {
+          "unit": "mg/mmol",
+          "value": 10
+        },
+        "smoker": "no",
+        "statin": "no",
+        "diabetes": "yes",
+        "hdl_chol": {
+          "unit": "mg/dL",
+          "value": 45
+        },
+        "bp_treated": "yes",
+        "total_chol": {
+          "unit": "mg/dL",
+          "value": 200
+        }
+      },
       "expected_score": 11.06,
       "expected_band_id": "prev_intermediate"
     },
     {
       "name": "50yo Female + HbA1c (9.2%) -> 10y ASCVD 11.23%",
-      "inputs": { "sex": "female", "age": 50, "total_chol": { "value": 200, "unit": "mg/dL" }, "hdl_chol": { "value": 45, "unit": "mg/dL" }, "sbp": 160, "egfr": 90, "diabetes": "yes", "smoker": "no", "bp_treated": "yes", "statin": "no", "bmi": 35, "hba1c": 9.2 },
+      "inputs": {
+        "age": 50,
+        "bmi": 35,
+        "sbp": 160,
+        "sex": "female",
+        "egfr": 90,
+        "hba1c": 9.2,
+        "smoker": "no",
+        "statin": "no",
+        "diabetes": "yes",
+        "hdl_chol": {
+          "unit": "mg/dL",
+          "value": 45
+        },
+        "bp_treated": "yes",
+        "total_chol": {
+          "unit": "mg/dL",
+          "value": 200
+        }
+      },
       "expected_score": 11.23,
       "expected_band_id": "prev_intermediate"
     },
     {
       "name": "58yo Male Full (uACR + HbA1c + SDI 7-10) -> 10y ASCVD 23.09%",
-      "inputs": { "sex": "male", "age": 58, "total_chol": 5.8, "hdl_chol": 1.1, "sbp": 148, "egfr": 65, "diabetes": "yes", "smoker": "yes", "bp_treated": "yes", "statin": "no", "bmi": 31, "uacr": 120, "hba1c": 8.2, "sdi": "decile_7_10" },
+      "inputs": {
+        "age": 58,
+        "bmi": 31,
+        "sbp": 148,
+        "sdi": "decile_7_10",
+        "sex": "male",
+        "egfr": 65,
+        "uacr": 120,
+        "hba1c": 8.2,
+        "smoker": "yes",
+        "statin": "no",
+        "diabetes": "yes",
+        "hdl_chol": 1.1,
+        "bp_treated": "yes",
+        "total_chol": 5.8
+      },
       "expected_score": 23.09,
       "expected_band_id": "prev_high"
     },
     {
       "name": "72yo Female base (10y only, >=60) -> 10y ASCVD 27.48%",
-      "inputs": { "sex": "female", "age": 72, "total_chol": 6.0, "hdl_chol": 1.1, "sbp": 165, "egfr": 45, "diabetes": "yes", "smoker": "yes", "bp_treated": "yes", "statin": "no", "bmi": 28 },
+      "inputs": {
+        "age": 72,
+        "bmi": 28,
+        "sbp": 165,
+        "sex": "female",
+        "egfr": 45,
+        "smoker": "yes",
+        "statin": "no",
+        "diabetes": "yes",
+        "hdl_chol": 1.1,
+        "bp_treated": "yes",
+        "total_chol": 6
+      },
       "expected_score": 27.48,
       "expected_band_id": "prev_high"
     }
   ],
-  "status": "draft",
-  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+  "verification": {
+    "verified_by": "Admin",
+    "verified_at": "2026-11-27T09:08:47.203Z",
+    "content_hash": "06ff6d11d567d09c62c10976ba00a460e943857823b12b5ff22b1d8a0b9dd02a"
+  },
+  "interpretation": [
+    {
+      "id": "prev_low",
+      "max": 4.99,
+      "min": 0,
+      "refs": [
+        {
+          "locator": "Supp. Table S12",
+          "source_id": "khan-2024-prevent"
+        }
+      ],
+      "label": "Low Risk (<5.0%)",
+      "summary": "Low 10-year ASCVD risk (<5.0%). Reinforce healthy lifestyle habits.",
+      "severity": "normal"
+    },
+    {
+      "id": "prev_borderline",
+      "max": 7.49,
+      "min": 5,
+      "refs": [
+        {
+          "locator": "Supp. Table S12",
+          "source_id": "khan-2024-prevent"
+        }
+      ],
+      "label": "Borderline Risk (5.0–7.49%)",
+      "summary": "Borderline 10-year ASCVD risk (5.0–7.49%). Assess CKM risk enhancers.",
+      "severity": "mild"
+    },
+    {
+      "id": "prev_intermediate",
+      "max": 19.99,
+      "min": 7.5,
+      "refs": [
+        {
+          "locator": "Supp. Table S12",
+          "source_id": "khan-2024-prevent"
+        }
+      ],
+      "label": "Intermediate Risk (7.5–19.99%)",
+      "summary": "Intermediate 10-year ASCVD risk (7.5–19.99%). Initiate shared decision-making for statin and BP optimization.",
+      "severity": "moderate"
+    },
+    {
+      "id": "prev_high",
+      "max": null,
+      "min": 20,
+      "refs": [
+        {
+          "locator": "Supp. Table S12",
+          "source_id": "khan-2024-prevent"
+        }
+      ],
+      "label": "High Risk (>=20.0%)",
+      "summary": "High 10-year ASCVD risk (>=20.0%). Intensive pharmacologic risk reduction indicated.",
+      "severity": "critical"
+    }
+  ],
+  "schema_version": 1,
+  "assessment_guides": []
 }
