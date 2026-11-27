@@ -126,19 +126,10 @@ async function saveFileSafe(fileName: string, dataStr: string): Promise<void> {
 }
 
 /**
- * Nạp tập hợp GuidelineRecord hợp nhất từ STORE_DIR, TMP_DIR và Supabase (neuroguide_docs).
- * Đảm bảo trên Vercel Serverless mọi Lambda instance đều nhìn thấy cùng một trạng thái Hàng đợi Duyệt.
+ * Nạp các GuidelineRecord từ STORE_DIR (kho tĩnh) và TMP_DIR (runtime Lambda).
  */
-async function loadUnifiedStoreRecords(): Promise<{
-  recordsMap: Map<string, GuidelineRecord>;
-  supabaseApprovedKeys: Set<string>;
-  supabaseDeletedKeys: Set<string>;
-  supabasePendingKeys: Set<string>;
-}> {
+function loadLocalStoreRecords(): Map<string, GuidelineRecord> {
   const recordsMap = new Map<string, GuidelineRecord>();
-  const supabaseApprovedKeys = new Set<string>();
-  const supabaseDeletedKeys = new Set<string>();
-  const supabasePendingKeys = new Set<string>();
 
   // 1. Quét từ STORE_DIR (kho tĩnh)
   if (fs.existsSync(STORE_DIR)) {
@@ -169,6 +160,24 @@ async function loadUnifiedStoreRecords(): Promise<{
       }
     } catch {}
   }
+
+  return recordsMap;
+}
+
+/**
+ * Nạp tập hợp GuidelineRecord hợp nhất từ STORE_DIR, TMP_DIR và Supabase (neuroguide_docs).
+ * Đảm bảo trên Vercel Serverless mọi Lambda instance đều nhìn thấy cùng một trạng thái Hàng đợi Duyệt.
+ */
+async function loadUnifiedStoreRecords(): Promise<{
+  recordsMap: Map<string, GuidelineRecord>;
+  supabaseApprovedKeys: Set<string>;
+  supabaseDeletedKeys: Set<string>;
+  supabasePendingKeys: Set<string>;
+}> {
+  const recordsMap = loadLocalStoreRecords();
+  const supabaseApprovedKeys = new Set<string>();
+  const supabaseDeletedKeys = new Set<string>();
+  const supabasePendingKeys = new Set<string>();
 
   // 3. Đối chiếu với Supabase (Single Source of Truth trên Cloud)
   if (hasSupabaseAdminConfig()) {
@@ -257,23 +266,7 @@ export async function GET(request: NextRequest) {
       request.nextUrl.searchParams.get("countOnly") === "true";
 
     if (countOnly) {
-      const localRecordsMap = new Map<string, GuidelineRecord>();
-      for (const dir of [STORE_DIR, TMP_DIR]) {
-        if (!fs.existsSync(dir)) continue;
-        try {
-          const files = fs.readdirSync(dir).filter((f) => f.endsWith("_latest.json"));
-          for (const f of files) {
-            try {
-              const parsed: GuidelineRecord = JSON.parse(
-                fs.readFileSync(path.join(dir, f), "utf-8")
-              );
-              if (parsed && parsed.guideline_id) {
-                localRecordsMap.set(f, parsed);
-              }
-            } catch {}
-          }
-        } catch {}
-      }
+      const localRecordsMap = loadLocalStoreRecords();
 
       const supabaseApprovedKeys = new Set<string>();
       const supabaseDeletedKeys = new Set<string>();
