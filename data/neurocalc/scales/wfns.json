@@ -5,6 +5,8 @@
       "id": "wfns_grade",
       "kind": "select",
       "label": "WFNS SAH Grade",
+      "related_scale_id": "gcs",
+      "related_scale_label": "Calculate GCS",
       "options": [
         {
           "id": "1",
@@ -61,6 +63,23 @@
     "subspecialties": [
       "Stroke"
     ],
+    "clinical_purpose": [
+      "severity",
+      "prognosis"
+    ],
+    "critical_caveat": "Reassess WFNS after resuscitation or EVD placement; acute hydrocephalus or sedation can falsely elevate pre-resuscitation grade.",
+    "when_to_use": [
+      "Objective grading of aneurysmal subarachnoid hemorrhage combining GCS strata with presence of motor deficit."
+    ],
+    "next_steps": [
+      "Coordinate urgent neurosurgical/endovascular aneurysm securing and ICU neuromonitoring for vasospasm and hydrocephalus."
+    ],
+    "links": {
+      "related_scales": [
+        "gcs",
+        "hunt-and-hess"
+      ]
+    },
     "clinical_pearls": [
       "Reassess WFNS grade after resuscitation or EVD placement for acute hydrocephalus.",
       "Combines objective Glasgow Coma Scale (GCS) strata with presence of major focal motor deficit, yielding better interobserver reliability than the Hunt and Hess scale (Degen et al., 2011).",
@@ -138,8 +157,8 @@
   ],
   "verification": {
     "verified_by": "Admin",
-    "verified_at": "2026-11-27T09:08:48.338Z",
-    "content_hash": "ee799e3e286d17a80853b3582cb54cfd050c77d048e4702fe61159a3909c9e43"
+    "verified_at": "2026-11-27T10:36:41.588Z",
+    "content_hash": "bc5b20d9a8fdf2a0a97dd9b3bd82fbb6065d400e5d937a3e245e6600a78d3644"
   },
   "interpretation": [
     {

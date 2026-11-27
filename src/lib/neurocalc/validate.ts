@@ -1,6 +1,7 @@
 import { SUBSPECIALTY_LIST } from "../../constants/subspecialties.ts";
 import { validateExpression } from "./expression.ts";
 import type {
+  ClinicalPurpose,
   FormulaId,
   RecordStatus,
   ScaleKind,
@@ -8,6 +9,7 @@ import type {
   ScaleReference,
   ScaleReferenceCategory,
   SeverityLevel,
+  UntestablePolicy,
   ValidationError,
 } from "../../types/neurocalc.ts";
 
@@ -15,6 +17,18 @@ const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const VALID_STATUSES = new Set<RecordStatus>(["draft", "verified", "retired"]);
 const VALID_KINDS = new Set<ScaleKind>(["point_sum", "ordinal_grade", "formula"]);
 const VALID_METHODS = new Set(["sum", "single_select", "formula"]);
+const VALID_CLINICAL_PURPOSES = new Set<ClinicalPurpose>([
+  "severity",
+  "prognosis",
+  "diagnosis",
+  "risk",
+  "formula",
+  "functional",
+]);
+const VALID_UNTESTABLE_POLICIES = new Set<UntestablePolicy>([
+  "exclude_and_flag",
+  "invalidate_total_and_flag",
+]);
 const VALID_SEVERITIES = new Set<SeverityLevel>([
   "normal",
   "mild",
@@ -271,6 +285,70 @@ export function validateScaleRecord(
         }
       });
     }
+
+    if (m.clinical_purpose !== undefined) {
+      if (!Array.isArray(m.clinical_purpose)) {
+        errors.push({
+          path: "metadata.clinical_purpose",
+          message: "clinical_purpose must be an array",
+        });
+      } else {
+        m.clinical_purpose.forEach((purpose, idx) => {
+          if (
+            typeof purpose !== "string" ||
+            !VALID_CLINICAL_PURPOSES.has(purpose as ClinicalPurpose)
+          ) {
+            errors.push({
+              path: `metadata.clinical_purpose[${idx}]`,
+              message: `Invalid clinical_purpose '${String(purpose)}'`,
+            });
+          }
+        });
+      }
+    }
+
+    for (const field of ["when_to_use", "next_steps"] as const) {
+      const list = m[field];
+      if (list !== undefined) {
+        if (!Array.isArray(list) || !list.every((entry) => isNonEmptyString(entry))) {
+          errors.push({
+            path: `metadata.${field}`,
+            message: `${field} must be an array of non-empty strings`,
+          });
+        }
+      }
+    }
+
+    for (const field of ["critical_caveat", "formula_display"] as const) {
+      if (m[field] !== undefined && !isNonEmptyString(m[field])) {
+        errors.push({
+          path: `metadata.${field}`,
+          message: `${field} must be a non-empty string when provided`,
+        });
+      }
+    }
+
+    if (m.links !== undefined) {
+      if (!isPlainObject(m.links)) {
+        errors.push({ path: "metadata.links", message: "links must be an object" });
+      } else if (m.links.related_scales !== undefined) {
+        if (!Array.isArray(m.links.related_scales)) {
+          errors.push({
+            path: "metadata.links.related_scales",
+            message: "related_scales must be an array of scale slugs",
+          });
+        } else {
+          m.links.related_scales.forEach((slug, idx) => {
+            if (!isNonEmptyString(slug) || !SLUG_RE.test(slug)) {
+              errors.push({
+                path: `metadata.links.related_scales[${idx}]`,
+                message: `Invalid related scale slug '${String(slug)}'`,
+              });
+            }
+          });
+        }
+      }
+    }
   }
 
   // Items (block 2)
@@ -307,6 +385,24 @@ export function validateScaleRecord(
         errors.push({
           path: `${p}.required`,
           message: "required must be a boolean",
+        });
+      }
+      if (
+        item.related_scale_id !== undefined &&
+        (!isNonEmptyString(item.related_scale_id) || !SLUG_RE.test(item.related_scale_id))
+      ) {
+        errors.push({
+          path: `${p}.related_scale_id`,
+          message: "related_scale_id must be a valid lowercase kebab-case slug",
+        });
+      }
+      if (
+        item.related_scale_label !== undefined &&
+        !isNonEmptyString(item.related_scale_label)
+      ) {
+        errors.push({
+          path: `${p}.related_scale_label`,
+          message: "related_scale_label must be a non-empty string when provided",
         });
       }
 
@@ -427,6 +523,17 @@ export function validateScaleRecord(
               )}' with to_canonical_factor: 1 and offset: 0`,
             });
           }
+          if (item.default_unit !== undefined) {
+            const hasDefaultUnit = item.units.some(
+              (u) => isPlainObject(u) && u.unit === item.default_unit
+            );
+            if (!isNonEmptyString(item.default_unit) || !hasDefaultUnit) {
+              errors.push({
+                path: `${p}.default_unit`,
+                message: `default_unit '${String(item.default_unit)}' must match one of items[].units[].unit`,
+              });
+            }
+          }
         }
       } else {
         errors.push({
@@ -516,6 +623,26 @@ export function validateScaleRecord(
             "Formula scales require a valid formula_id or a custom scoring.expression",
         });
       }
+    }
+
+    if (
+      s.untestable_policy !== undefined &&
+      (typeof s.untestable_policy !== "string" ||
+        !VALID_UNTESTABLE_POLICIES.has(s.untestable_policy as UntestablePolicy))
+    ) {
+      errors.push({
+        path: "scoring.untestable_policy",
+        message: "untestable_policy must be 'exclude_and_flag' or 'invalidate_total_and_flag'",
+      });
+    }
+    if (
+      s.display_components !== undefined &&
+      typeof s.display_components !== "boolean"
+    ) {
+      errors.push({
+        path: "scoring.display_components",
+        message: "display_components must be a boolean",
+      });
     }
 
     if (s.subscores !== undefined) {

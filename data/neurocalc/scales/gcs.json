@@ -26,6 +26,13 @@
           "id": "e1",
           "label": "None",
           "points": 1
+        },
+        {
+          "id": "e_nt",
+          "label": "Not testable (NT — e.g., severe periorbital edema/local injury)",
+          "points": null,
+          "is_untestable": true,
+          "badge": "NT"
         }
       ],
       "required": true
@@ -58,8 +65,15 @@
         },
         {
           "id": "v1",
-          "label": "None (or intubated — record as 1T)",
+          "label": "None (no verbal response, testable)",
           "points": 1
+        },
+        {
+          "id": "v_nt",
+          "label": "Not testable (NT — e.g., endotracheal intubation, tracheostomy)",
+          "points": null,
+          "is_untestable": true,
+          "badge": "NT"
         }
       ],
       "required": true
@@ -99,6 +113,13 @@
           "id": "m1",
           "label": "None",
           "points": 1
+        },
+        {
+          "id": "m_nt",
+          "label": "Not testable (NT — e.g., neuromuscular blockade, cast/paralysis)",
+          "points": null,
+          "is_untestable": true,
+          "badge": "NT"
         }
       ],
       "required": true
@@ -110,7 +131,32 @@
     "method": "sum",
     "max_score": 15,
     "min_score": 3,
-    "precision": 0
+    "precision": 0,
+    "untestable_policy": "invalidate_total_and_flag",
+    "display_components": true,
+    "subscores": [
+      {
+        "id": "eye",
+        "label": "Eye (E)",
+        "item_ids": [
+          "gcs_eye"
+        ]
+      },
+      {
+        "id": "verbal",
+        "label": "Verbal (V)",
+        "item_ids": [
+          "gcs_verbal"
+        ]
+      },
+      {
+        "id": "motor",
+        "label": "Motor (M)",
+        "item_ids": [
+          "gcs_motor"
+        ]
+      }
+    ]
   },
   "metadata": {
     "kind": "point_sum",
@@ -126,6 +172,26 @@
       "Neurocritical Care",
       "Stroke"
     ],
+    "clinical_purpose": [
+      "severity",
+      "prognosis"
+    ],
+    "critical_caveat": "Report E/V/M components alongside total; if any domain is NT (e.g., intubated), do not sum a numeric total.",
+    "when_to_use": [
+      "Initial and serial bedside assessment of impaired consciousness in trauma, stroke, ICH, and neurocritical care.",
+      "Always test and document the best observed response in each domain (Eye, Verbal, Motor)."
+    ],
+    "next_steps": [
+      "For GCS <= 8, evaluate airway protection and consider urgent neuroimaging and neurocritical care monitoring.",
+      "Track serial E/V/M trends over time; consider FOUR Score for intubated or brainstem-impaired patients."
+    ],
+    "links": {
+      "related_scales": [
+        "four-score",
+        "ich-score",
+        "wfns"
+      ]
+    },
     "clinical_pearls": [
       "Always record the best response observed in each domain; report E/V/M subscores alongside total.",
       "For intubated patients, document V1T rather than guessing verbal output.",
@@ -209,12 +275,24 @@
       },
       "expected_score": 15,
       "expected_band_id": "gcs_mild"
+    },
+    {
+      "name": "Intubated / NT verbal (E3 V(NT) M5)",
+      "inputs": {
+        "gcs_eye": "e3",
+        "gcs_motor": "m5",
+        "gcs_verbal": "v_nt"
+      },
+      "expected_score": null,
+      "expected_untestable_ids": [
+        "gcs_verbal"
+      ]
     }
   ],
   "verification": {
     "verified_by": "Admin",
-    "verified_at": "2026-11-27T09:08:45.682Z",
-    "content_hash": "27708eeaf4e9246ba48448aa8ee453e2fad2a1c640d1b6a95a28796d0e5e97aa"
+    "verified_at": "2026-11-27T10:36:39.343Z",
+    "content_hash": "e756a8e647cdafd5bfcbbf55ffe181ec4e839bc3c0569f0316eaf05bcd0e2e1e"
   },
   "interpretation": [
     {

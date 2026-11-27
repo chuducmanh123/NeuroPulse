@@ -21,6 +21,7 @@ interface ScoreResultCardProps {
   scale: ScaleRecord;
   evaluation: ScoreEvaluationResult;
   onReset: () => void;
+  onJumpToEvidence?: () => void;
 }
 
 const SEVERITY_STYLES: Record<
@@ -102,6 +103,7 @@ export function ScoreResultCard({
   scale,
   evaluation,
   onReset,
+  onJumpToEvidence,
 }: ScoreResultCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -175,6 +177,10 @@ export function ScoreResultCard({
     : SEVERITY_STYLES.info;
   const SeverityIcon = activeStyle.Icon;
   const hasAnyScore = evaluation.formattedScore !== null;
+  const hasComponentOnly = Boolean(
+    evaluation.totalInvalidatedReason && evaluation.componentNotation
+  );
+  const canCopy = hasAnyScore || hasComponentOnly;
 
   const visibleBands =
     evaluation.applicableBands.length > 0
@@ -199,25 +205,41 @@ export function ScoreResultCard({
     hasMultiResults ||
     hasUntestable ||
     hasWarnings ||
+    Boolean(evaluation.totalInvalidatedReason) ||
+    Boolean(scale.metadata.critical_caveat) ||
     visibleBands.length > 0 ||
     Boolean(activeBand) ||
     evaluation.effectiveStatus !== "verified";
 
   const handleCopy = async () => {
-    if (!hasAnyScore || evaluation.formattedScore === null) return;
+    if (!canCopy) return;
     const lines: string[] = [];
     const headerTitle = evaluation.primaryMetricLabel
       ? `${scale.metadata.short_name} — ${evaluation.primaryMetricLabel}`
       : scale.metadata.short_name;
-    lines.push(
-      `${headerTitle}: ${evaluation.formattedScore}${formatScoreUnitSuffix(scale)}`
-    );
+
+    if (hasComponentOnly) {
+      lines.push(
+        `${headerTitle}: ${evaluation.componentNotation} (Total not summed — NT component)`
+      );
+    } else if (evaluation.formattedScore !== null) {
+      const compSuffix = evaluation.componentNotation
+        ? ` (${evaluation.componentNotation})`
+        : "";
+      lines.push(
+        `${headerTitle}: ${evaluation.formattedScore}${formatScoreUnitSuffix(scale)}${compSuffix}`
+      );
+    }
 
     if (activeBand) {
       lines.push(`Interpretation: ${activeBand.label}`);
       if (activeBand.summary) {
         lines.push(activeBand.summary);
       }
+    }
+
+    if (evaluation.isComplete && scale.metadata.critical_caveat) {
+      lines.push(`Caveat: ${scale.metadata.critical_caveat}`);
     }
 
     if (hasOutputMetrics && evaluation.outputMetrics) {
@@ -322,27 +344,44 @@ export function ScoreResultCard({
                 </div>
 
                 <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-                  <div className="flex items-baseline gap-1.5 shrink-0">
-                    <span className="font-mono-tech text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-ink)] leading-none">
-                      {hasAnyScore ? evaluation.formattedScore : "—"}
-                    </span>
-                    {scale.scoring.unit === "%" &&
-                    scale.scoring.max_score === 100 ? (
-                      <span className="font-mono-tech text-sm sm:text-base font-semibold text-[var(--text-muted)]">
-                        %
+                  {hasComponentOnly ? (
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-mono-tech text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-ink)] leading-none">
+                        {evaluation.componentNotation}
                       </span>
-                    ) : scale.scoring.max_score !== null ? (
-                      <span className="font-mono-tech text-xs sm:text-sm font-semibold text-[var(--text-muted)]">
-                        / {scale.scoring.max_score} {scale.scoring.unit ?? "pts"}
+                      <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/40 bg-amber-500/15 px-2 py-0.5 text-[11px] font-bold text-amber-800 dark:text-amber-300">
+                        <AlertTriangle className="w-3 h-3 shrink-0" aria-hidden="true" />
+                        <span>Component Only (NT)</span>
                       </span>
-                    ) : (
-                      scale.scoring.unit && (
-                        <span className="font-mono-tech text-xs sm:text-sm font-semibold text-[var(--text-muted)]">
-                          {scale.scoring.unit}
+                    </div>
+                  ) : (
+                    <div className="flex items-baseline gap-1.5 shrink-0">
+                      <span className="font-mono-tech text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-ink)] leading-none">
+                        {hasAnyScore ? evaluation.formattedScore : "—"}
+                      </span>
+                      {scale.scoring.unit === "%" &&
+                      scale.scoring.max_score === 100 ? (
+                        <span className="font-mono-tech text-sm sm:text-base font-semibold text-[var(--text-muted)]">
+                          %
                         </span>
-                      )
-                    )}
-                  </div>
+                      ) : scale.scoring.max_score !== null ? (
+                        <span className="font-mono-tech text-xs sm:text-sm font-semibold text-[var(--text-muted)]">
+                          / {scale.scoring.max_score} {scale.scoring.unit ?? "pts"}
+                        </span>
+                      ) : (
+                        scale.scoring.unit && (
+                          <span className="font-mono-tech text-xs sm:text-sm font-semibold text-[var(--text-muted)]">
+                            {scale.scoring.unit}
+                          </span>
+                        )
+                      )}
+                      {evaluation.componentNotation && (
+                        <span className="ml-1 rounded-md bg-[#0E7490]/12 dark:bg-cyan-500/15 px-1.5 py-0.5 font-mono-tech text-xs font-bold text-[#0E7490] dark:text-cyan-300">
+                          {evaluation.componentNotation}
+                        </span>
+                      )}
+                    </div>
+                  )}
 
                   {activeBand ? (
                     <span
@@ -353,6 +392,10 @@ export function ScoreResultCard({
                         aria-hidden="true"
                       />
                       <span className="truncate">{activeBand.label}</span>
+                    </span>
+                  ) : evaluation.totalInvalidatedReason ? (
+                    <span className="text-xs font-medium text-amber-800 dark:text-amber-300 truncate">
+                      Total not summed (NT component)
                     </span>
                   ) : evaluation.isComplete ? (
                     <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 dark:text-emerald-400">
@@ -411,7 +454,7 @@ export function ScoreResultCard({
 
               {/* Right Controls */}
               <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-                {hasAnyScore && (
+                {canCopy && (
                   <button
                     type="button"
                     onClick={() => void handleCopy()}
@@ -506,6 +549,17 @@ export function ScoreResultCard({
                 )}
               </div>
             </div>
+
+            {/* Inline Critical Clinical Caveat */}
+            {evaluation.isComplete && scale.metadata.critical_caveat && (
+              <div className="mt-2 flex items-start gap-1.5 rounded-lg border border-amber-500/35 bg-amber-50/85 dark:bg-amber-950/35 px-2.5 py-1.5 text-[11px] text-amber-900 dark:text-amber-200 leading-snug">
+                <AlertTriangle
+                  className="w-3.5 h-3.5 shrink-0 mt-0.5 text-amber-700 dark:text-amber-300"
+                  aria-hidden="true"
+                />
+                <span>{scale.metadata.critical_caveat}</span>
+              </div>
+            )}
           </div>
 
           {/* Expanded Drawer Content */}
@@ -738,12 +792,17 @@ export function ScoreResultCard({
                 </div>
               )}
 
-              {/* Untestable (UN) Items Callout */}
-              {hasUntestable && (
-                <div className="rounded-xl border border-amber-500/35 bg-amber-50/70 dark:bg-amber-950/25 p-3">
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300 mb-1">
-                    Untestable (UN) Items ({evaluation.untestableItems.length})
+              {/* Untestable (UN/NT) Items Callout */}
+              {(hasUntestable || evaluation.totalInvalidatedReason) && (
+                <div className="rounded-xl border border-amber-500/35 bg-amber-50/70 dark:bg-amber-950/25 p-3 space-y-1.5">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300">
+                    Untestable Items ({evaluation.untestableItems.length})
                   </p>
+                  {evaluation.totalInvalidatedReason && (
+                    <p className="text-xs font-medium text-amber-950 dark:text-amber-100 leading-snug">
+                      {evaluation.totalInvalidatedReason}
+                    </p>
+                  )}
                   <ul className="space-y-0.5 text-xs text-amber-950 dark:text-amber-100/90">
                     {evaluation.untestableItems.map((u) => (
                       <li key={u.itemId}>
@@ -756,6 +815,22 @@ export function ScoreResultCard({
                       </li>
                     ))}
                   </ul>
+                </div>
+              )}
+
+              {onJumpToEvidence && (
+                <div className="pt-2 border-t border-[var(--border-hairline)] flex justify-end">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsExpanded(false);
+                      onJumpToEvidence();
+                    }}
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-[#0E7490]/35 bg-[#0E7490]/10 dark:bg-cyan-500/15 px-3 py-1.5 text-xs font-semibold text-[#0E7490] dark:text-cyan-300 hover:bg-[#0E7490]/20 transition-colors"
+                  >
+                    <span>Next Steps, Formula &amp; Evidence</span>
+                    <ChevronDown className="w-3.5 h-3.5" aria-hidden="true" />
+                  </button>
                 </div>
               )}
             </div>

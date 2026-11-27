@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { AlertTriangle, BookOpen, CheckSquare, MessageSquareQuote, X } from "lucide-react";
+import { AlertTriangle, BookOpen, CheckSquare, Eye, MessageSquareQuote, X } from "lucide-react";
 import type { AssessmentGuide, ScaleReference } from "@/types/neurocalc";
 
 interface GuideContentProps {
@@ -133,12 +133,14 @@ interface AssessmentGuideDrawerProps {
   guide: AssessmentGuide | null;
   references: ScaleReference[];
   onClose: () => void;
+  onOpenStimulus?: () => void;
 }
 
 export function AssessmentGuideDrawer({
   guide,
   references,
   onClose,
+  onOpenStimulus,
 }: AssessmentGuideDrawerProps) {
   useEffect(() => {
     if (!guide) return;
@@ -184,6 +186,22 @@ export function AssessmentGuideDrawer({
         </div>
 
         <GuideStructuredBody guide={guide} references={references} />
+
+        {onOpenStimulus && (
+          <div className="mt-5 pt-4 border-t border-[var(--border-hairline)]">
+            <button
+              type="button"
+              onClick={() => {
+                onClose();
+                onOpenStimulus();
+              }}
+              className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#0E7490] px-4 py-2.5 text-xs font-bold text-white hover:bg-[#0B5E75] transition-colors"
+            >
+              <Eye className="w-4 h-4" aria-hidden="true" />
+              <span>Open Bedside Visual Stimulus Cards</span>
+            </button>
+          </div>
+        )}
       </aside>
     </div>
   );

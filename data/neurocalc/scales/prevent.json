@@ -105,6 +105,8 @@
       "kind": "numeric",
       "step": 1,
       "label": "eGFR (CKD-EPI)",
+      "related_scale_id": "ckd-epi-egfr",
+      "related_scale_label": "Calculate eGFR",
       "units": [
         {
           "unit": "mL/min/1.73m²",
@@ -492,8 +494,8 @@
   ],
   "verification": {
     "verified_by": "Admin",
-    "verified_at": "2026-11-27T09:08:47.203Z",
-    "content_hash": "06ff6d11d567d09c62c10976ba00a460e943857823b12b5ff22b1d8a0b9dd02a"
+    "verified_at": "2026-11-27T10:36:44.611Z",
+    "content_hash": "4e7bdaa087a44146624fac9bbb96c756c557cfaa8edfb0f306ef2e7e612497ec"
   },
   "interpretation": [
     {

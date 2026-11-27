@@ -509,6 +509,27 @@
     "subspecialties": [
       "Stroke"
     ],
+    "clinical_purpose": [
+      "severity",
+      "prognosis"
+    ],
+    "critical_caveat": "A low NIHSS does NOT exclude disabling deficits (e.g., isolated aphasia, hemianopia) or posterior circulation stroke; assess disabling deficits independently for thrombolysis.",
+    "when_to_use": [
+      "Rapid quantitative baseline and serial neurological exam in suspected acute ischemic stroke.",
+      "Administer items strictly in order (1a through 11) and record the patient's first effort without coaching."
+    ],
+    "next_steps": [
+      "Use baseline NIHSS alongside time from last known well and neuroimaging to evaluate IV thrombolysis and mechanical thrombectomy eligibility.",
+      "Track serial NIHSS (e.g., post-thrombolysis, 24h) to detect early neurological improvement or deterioration."
+    ],
+    "links": {
+      "related_scales": [
+        "mrs",
+        "abcd2",
+        "gcs",
+        "ich-score"
+      ]
+    },
     "clinical_pearls": [
       "Score what the patient actually does, not what you think they can do; never coach unless specified.",
       "Do not go back and change earlier scores based on subsequent items.",
@@ -710,8 +731,8 @@
   ],
   "verification": {
     "verified_by": "Admin",
-    "verified_at": "2026-11-27T09:08:47.040Z",
-    "content_hash": "5704bcede8ee286c13707639ba4c427783e3983714b109456365885c26dcf24c"
+    "verified_at": "2026-11-27T10:36:41.034Z",
+    "content_hash": "325463cc768586ae0f7b885dc3307ef595e0a031dbd8b60c0fed3e6cda5ef72e"
   },
   "interpretation": [
     {

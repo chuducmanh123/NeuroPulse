@@ -5,6 +5,8 @@
       "id": "ich_gcs",
       "kind": "select",
       "label": "GCS Score (at initial presentation)",
+      "related_scale_id": "gcs",
+      "related_scale_label": "Calculate GCS",
       "options": [
         {
           "id": "13_15",
@@ -28,6 +30,8 @@
       "id": "ich_vol",
       "kind": "select",
       "label": "ICH Volume (ABC/2 on initial CT)",
+      "related_scale_id": "abc-2",
+      "related_scale_label": "Calculate ABC/2",
       "options": [
         {
           "id": "lt30",
@@ -119,6 +123,27 @@
       "Stroke",
       "Neurocritical Care"
     ],
+    "clinical_purpose": [
+      "prognosis",
+      "severity"
+    ],
+    "critical_caveat": "Do NOT use the ICH Score alone to withdraw life-sustaining treatment or establish early DNR orders (self-fulfilling prophecy bias).",
+    "when_to_use": [
+      "Baseline risk stratification and standardized team communication upon spontaneous intracerebral hemorrhage diagnosis.",
+      "Use post-resuscitation GCS and ABC/2 hematoma volume measured on the initial head CT."
+    ],
+    "next_steps": [
+      "Initiate guideline-directed acute ICH bundle (BP lowering, anticoagulation reversal if applicable, neurosurgical/ICU evaluation).",
+      "Avoid early care limitations based solely on baseline ICH Score within the first 24–48 hours."
+    ],
+    "links": {
+      "related_scales": [
+        "gcs",
+        "abc-2",
+        "nihss",
+        "mrs"
+      ]
+    },
     "clinical_pearls": [
       "Do NOT use the ICH Score alone as a basis for early withdrawal of life-sustaining treatment (self-fulfilling prophecy bias).",
       "Designed as a standardized grading and communication tool after ICH diagnosis rather than a serial neurological exam (unlike GCS).",
@@ -195,8 +220,8 @@
   ],
   "verification": {
     "verified_by": "Admin",
-    "verified_at": "2026-11-27T09:08:46.358Z",
-    "content_hash": "a4f912ff20aa567478dbff0ec6528e0ec602c44a09b84fd1653d63f39834fb1f"
+    "verified_at": "2026-11-27T10:36:39.914Z",
+    "content_hash": "7c834b31444fc3e2d9c70f1984a0ff0d2d7ce0e13b5350e60f341dccebaf566f"
   },
   "interpretation": [
     {

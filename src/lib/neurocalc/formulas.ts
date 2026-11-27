@@ -7,9 +7,9 @@ export const FORMULA_METADATA: Record<
 > = {
   abc_2: {
     label: "ABC/2 Intracerebral Hemorrhage Volume",
-    equation: "(a * b * c) / 2",
+    equation: "(a * b * c) / 2   (or / 3 for irregular/multinodular ICH)",
     description:
-      "Ellipsoid approximation of hematoma volume using longest diameter A, perpendicular diameter B, and slice height C (cm).",
+      "Ellipsoid approximation of hematoma volume using longest diameter A, perpendicular diameter B, and slice height C (cm), with optional ABC/3 adjustment for irregular or multinodular hemorrhages (Huttner et al., 2006).",
   },
   corrected_na_katz: {
     label: "Corrected Sodium (Katz 1973)",
@@ -227,7 +227,11 @@ export function evaluateFormula(
           ? values.slices * values.slice_thickness
           : null;
       if (c === null) return null;
-      return (a * b * c) / 2;
+      const shapeDivisor =
+        isFiniteNum(values.shape_divisor) && values.shape_divisor > 0
+          ? values.shape_divisor
+          : 2;
+      return (a * b * c) / shapeDivisor;
     }
 
     case "corrected_na_katz": {
@@ -872,6 +876,19 @@ export function evaluateFormulaDetailed(
 ): DetailedFormulaResult {
   if (formulaId === "prevent") {
     return evaluatePreventSuite(values, presentKeys);
+  }
+  if (formulaId === "abc_2") {
+    const primaryScore = evaluateFormula(formulaId, values);
+    const hasShapeSelector =
+      presentKeys?.has("shape_divisor") || isFiniteNum(values.shape_divisor);
+    return {
+      primaryScore,
+      modelLabel: hasShapeSelector
+        ? values.shape_divisor === 3
+          ? "ABC/3 (Irregular / Multinodular)"
+          : "ABC/2 (Round / Ellipsoid)"
+        : undefined,
+    };
   }
   return {
     primaryScore: evaluateFormula(formulaId, values),

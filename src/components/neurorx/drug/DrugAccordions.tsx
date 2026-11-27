@@ -674,7 +674,7 @@ export function DrugAccordions({
         </div>
       )}
 
-      {/* Accordion 4: Drug Interactions (FDA Prescribing Information) (Purple Theme) */}
+      {/* Accordion 4: Drug Interactions (Purple Theme) */}
       {hasInteractionsData && fdaInteractions && fdaInteractions.value && (
         <div className="rounded-2xl border border-[var(--border-hairline)] border-l-4 border-l-purple-500 bg-[var(--bg-surface)] shadow-xs transition-colors overflow-hidden">
           <button
@@ -690,12 +690,12 @@ export function DrugAccordions({
                 : "hover:bg-purple-50/40 text-slate-800"
             }`}
           >
-            <div className="flex items-center gap-2.5 min-w-0 flex-1 flex-wrap">
+            <div className="flex items-center gap-2.5 min-w-0 flex-1">
               <div className="p-2 rounded-xl bg-purple-500/10 text-purple-500 shrink-0">
                 <ArrowRightLeft className="w-5 h-5" />
               </div>
               <span className="text-slate-900 dark:text-white font-bold text-sm sm:text-base break-words">
-                Drug Interactions (FDA Prescribing Information)
+                Drug Interactions
               </span>
               <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold uppercase tracking-wider bg-purple-500/15 text-purple-700 dark:text-purple-300 shrink-0">
                 {fdaInteractions.value.length} {fdaInteractions.value.length === 1 ? "Class" : "Classes"}

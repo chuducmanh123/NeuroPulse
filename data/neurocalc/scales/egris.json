@@ -6,6 +6,16 @@
     "short_name": "EGRIS",
     "aliases": ["GBS respiratory score", "Guillain-Barre ventilation", "Walgaard score"],
     "subspecialties": ["Neuromuscular", "Neurocritical Care"],
+    "clinical_purpose": ["prognosis", "risk"],
+    "when_to_use": [
+      "Calculated at hospital admission in patients with Guillain-Barré syndrome to estimate 1-week mechanical ventilation risk."
+    ],
+    "next_steps": [
+      "Patients with EGRIS >= 5 (or declining FVC < 20 mL/kg / NIF > -30 cmH2O) require ICU admission and preparation for early elective intubation."
+    ],
+    "links": {
+      "related_scales": ["mrc-sum-score"]
+    },
     "kind": "point_sum",
     "summary": "3-item admission score (0–7) predicting the probability of requiring mechanical ventilation within the first week in Guillain-Barré syndrome.",
     "time_estimate": "< 1 min",
@@ -46,6 +56,8 @@
       "code": "3",
       "label": "MRC Sum Score at Admission (0–60)",
       "subtitle": "Sum of 6 bilateral muscle groups (0–5 each)",
+      "related_scale_id": "mrc-sum-score",
+      "related_scale_label": "Calculate MRC Sum",
       "required": true,
       "options": [
         { "id": "51_60", "label": "51–60 (Normal or mild weakness)", "points": 0, "badge": "0" },

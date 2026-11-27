@@ -2,6 +2,25 @@
   "id": "abc-2",
   "items": [
     {
+      "id": "shape_divisor",
+      "kind": "select",
+      "label": "Hematoma Shape",
+      "subtitle": "Standard ABC/2 assumes an ellipsoid hematoma; ABC/3 improves accuracy for irregular or multinodular bleeds (Huttner et al., 2006).",
+      "required": false,
+      "options": [
+        {
+          "id": "ellipsoid",
+          "label": "Ellipsoid (ABC/2)",
+          "points": 2
+        },
+        {
+          "id": "irregular",
+          "label": "Irregular (ABC/3)",
+          "points": 3
+        }
+      ]
+    },
+    {
       "id": "a",
       "code": "A",
       "kind": "numeric",
@@ -90,7 +109,8 @@
       "subtitle": "Thickness of each axial CT slice (commonly 0.5 cm / 5 mm).",
       "max_canonical": 2,
       "min_canonical": 0.05,
-      "canonical_unit": "cm"
+      "canonical_unit": "cm",
+      "default_unit": "mm"
     }
   ],
   "status": "verified",
@@ -115,6 +135,24 @@
     "subspecialties": [
       "Stroke"
     ],
+    "clinical_purpose": [
+      "formula",
+      "prognosis"
+    ],
+    "when_to_use": [
+      "Rapid bedside estimation of parenchymal hematoma volume on non-contrast head CT (used in ICH Score and surgical decision-making).",
+      "Note that CT slice thickness is typically reported in mm (e.g., 5 mm = 0.5 cm); exclude isolated intraventricular blood."
+    ],
+    "next_steps": [
+      "Apply the >= 30 mL threshold directly into the ICH Score for baseline risk stratification.",
+      "Volumes >= 30 mL (and especially >= 60 mL) carry elevated risk of mass effect, herniation, and early neurological deterioration."
+    ],
+    "links": {
+      "related_scales": [
+        "ich-score",
+        "gcs"
+      ]
+    },
     "clinical_pearls": [
       "Excludes intraventricular hemorrhage (IVH) and subarachnoid extension.",
       "Always measure length (A) and perpendicular width (B) accurately on the axial CT slice with the largest hemorrhage area.",
@@ -193,12 +231,24 @@
       },
       "expected_score": 0.5,
       "expected_band_id": "abc2_lt30"
+    },
+    {
+      "name": "Irregular shape (ABC/3) 10.0 mL",
+      "inputs": {
+        "shape_divisor": "irregular",
+        "a": 3,
+        "b": 2.5,
+        "slices": 8,
+        "slice_thickness": 0.5
+      },
+      "expected_score": 10,
+      "expected_band_id": "abc2_lt30"
     }
   ],
   "verification": {
     "verified_by": "Admin",
-    "verified_at": "2026-11-27T09:08:43.928Z",
-    "content_hash": "474aafd45854ca6a749ca4a0c197f187552bda5fafa15ec28330a1f3fb10a1a9"
+    "verified_at": "2026-11-27T10:36:40.481Z",
+    "content_hash": "99d3ff622206db053f93546bebe12eb46a7bceefabb952f98d3df0d14afb0213"
   },
   "interpretation": [
     {

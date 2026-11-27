@@ -49,6 +49,8 @@ export interface ScoreEvaluationResult {
   rawScore: number | null;
   score: number | null;
   formattedScore: string | null;
+  componentNotation?: string;
+  totalInvalidatedReason?: string;
   primaryMetricLabel?: string;
   modelLabel?: string;
   outputMetrics?: ComputedOutputMetric[];
@@ -159,6 +161,7 @@ export function evaluateScale(
   let answeredRequiredCount = 0;
   let answeredTotalCount = 0;
   const untestableItems: UntestableItemSummary[] = [];
+  const untestableItemIds = new Set<string>();
   const fieldErrors: NumericFieldError[] = [];
   const selectPointsById: Record<string, number | null> = {};
   const canonicalNumericById: Record<string, number> = {};
@@ -185,6 +188,7 @@ export function evaluateScale(
             code: selItem.code,
             label: selItem.label,
           });
+          untestableItemIds.add(selItem.id);
           selectPointsById[selItem.id] = 0;
         } else {
           selectPointsById[selItem.id] = opt.points ?? 0;
@@ -256,6 +260,7 @@ export function evaluateScale(
   }
 
   let rawScore: number | null = null;
+  let totalInvalidatedReason: string | undefined;
   let primaryMetricLabel: string | undefined;
   let modelLabel: string | undefined;
   let outputMetrics: ComputedOutputMetric[] | undefined;
@@ -266,7 +271,14 @@ export function evaluateScale(
       rawScore = evaluateExpression(customExpr, mergedNumeric);
     }
   } else if (scale.scoring.method === "sum") {
-    if (answeredTotalCount > 0) {
+    if (
+      scale.scoring.untestable_policy === "invalidate_total_and_flag" &&
+      untestableItems.length > 0
+    ) {
+      rawScore = null;
+      totalInvalidatedReason =
+        "Total score cannot be summed when one or more components are not testable (NT). Report individual components instead.";
+    } else if (answeredTotalCount > 0) {
       let sum = 0;
       for (const item of scale.items) {
         const val = selectPointsById[item.id];
@@ -347,7 +359,16 @@ export function evaluateScale(
   const subscores: SubscoreResult[] = (scale.scoring.subscores ?? []).map((sub) => {
     let subSum = 0;
     let subAnswered = 0;
+    let hasInvalidUntestable = false;
     for (const itemId of sub.item_ids) {
+      if (
+        scale.scoring.untestable_policy === "invalidate_total_and_flag" &&
+        untestableItemIds.has(itemId)
+      ) {
+        hasInvalidUntestable = true;
+        subAnswered += 1;
+        continue;
+      }
       const val = selectPointsById[itemId];
       if (typeof val === "number") {
         subSum += val;
@@ -357,11 +378,29 @@ export function evaluateScale(
     return {
       id: sub.id,
       label: sub.label,
-      score: subAnswered > 0 ? subSum : null,
+      score: hasInvalidUntestable ? null : subAnswered > 0 ? subSum : null,
       answeredCount: subAnswered,
       totalCount: sub.item_ids.length,
     };
   });
+
+  let componentNotation: string | undefined;
+  if (scale.scoring.display_components && answeredTotalCount > 0) {
+    const parts: string[] = [];
+    for (const item of scale.items) {
+      if (!item.code) continue;
+      if (untestableItemIds.has(item.id)) {
+        parts.push(`${item.code}(NT)`);
+      } else if (typeof selectPointsById[item.id] === "number") {
+        parts.push(`${item.code}${selectPointsById[item.id]}`);
+      } else {
+        parts.push(`${item.code}(—)`);
+      }
+    }
+    if (parts.length > 0) {
+      componentNotation = parts.join(" ");
+    }
+  }
 
   return {
     effectiveStatus,
@@ -375,6 +414,8 @@ export function evaluateScale(
     rawScore,
     score,
     formattedScore,
+    componentNotation,
+    totalInvalidatedReason,
     primaryMetricLabel,
     modelLabel,
     outputMetrics,

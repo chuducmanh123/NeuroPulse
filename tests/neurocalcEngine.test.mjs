@@ -922,4 +922,66 @@ describe("NeuroCalc Scoring Engine & Formulas (T2)", () => {
     assert.ok(preventScale.interpretation.some((b) => 7.45 >= b.min && (b.max === null || 7.45 <= b.max)));
     assert.ok(preventScale.interpretation.some((b) => 19.95 >= b.min && (b.max === null || 19.95 <= b.max)));
   });
+
+  it("supports invalidate_total_and_flag with componentNotation (GCS NT) and ABC/3 irregular shape", () => {
+    const gcsScale = sealVerified(
+      JSON.parse(
+        fs.readFileSync(
+          path.resolve(process.cwd(), "data/neurocalc/scales/gcs.json"),
+          "utf-8"
+        )
+      )
+    );
+
+    const numericGcs = evaluateScale(gcsScale, {
+      gcs_eye: "e3",
+      gcs_verbal: "v4",
+      gcs_motor: "m5",
+    });
+    assert.equal(numericGcs.isComplete, true);
+    assert.equal(numericGcs.score, 12);
+    assert.equal(numericGcs.componentNotation, "E3 V4 M5");
+    assert.equal(numericGcs.totalInvalidatedReason, undefined);
+
+    const ntGcs = evaluateScale(gcsScale, {
+      gcs_eye: "e3",
+      gcs_verbal: "v_nt",
+      gcs_motor: "m5",
+    });
+    assert.equal(ntGcs.isComplete, true);
+    assert.equal(ntGcs.score, null);
+    assert.equal(ntGcs.band, null);
+    assert.equal(ntGcs.componentNotation, "E3 V(NT) M5");
+    assert.ok(ntGcs.totalInvalidatedReason?.includes("NT"));
+    assert.deepEqual(
+      ntGcs.untestableItems.map((u) => u.itemId),
+      ["gcs_verbal"]
+    );
+
+    const abc2Scale = sealVerified(
+      JSON.parse(
+        fs.readFileSync(
+          path.resolve(process.cwd(), "data/neurocalc/scales/abc-2.json"),
+          "utf-8"
+        )
+      )
+    );
+    const defaultAbc2 = evaluateScale(abc2Scale, {
+      a: 3,
+      b: 2.5,
+      slices: 8,
+      slice_thickness: 0.5,
+    });
+    assert.equal(defaultAbc2.score, 15);
+
+    const irregularAbc3 = evaluateScale(abc2Scale, {
+      shape_divisor: "irregular",
+      a: 3,
+      b: 2.5,
+      slices: 8,
+      slice_thickness: 0.5,
+    });
+    assert.equal(irregularAbc3.score, 10);
+    assert.equal(irregularAbc3.modelLabel, "ABC/3 (Irregular / Multinodular)");
+  });
 });

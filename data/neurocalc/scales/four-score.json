@@ -160,6 +160,24 @@
       "Neurocritical Care",
       "Stroke"
     ],
+    "clinical_purpose": [
+      "severity",
+      "prognosis"
+    ],
+    "critical_caveat": "Sedatives and neuromuscular blockers artifactually depress FOUR scores; evaluate off sedation when clinically safe.",
+    "when_to_use": [
+      "Bedside coma and brainstem assessment in intubated ICU patients or when GCS verbal domain is untestable.",
+      "Detects locked-in syndrome via vertical eye tracking or blinking to command."
+    ],
+    "next_steps": [
+      "Track serial FOUR scores alongside pupillary reactivity and neuroimaging; score 0 warrants formal brain death / apnea evaluation if off confounders."
+    ],
+    "links": {
+      "related_scales": [
+        "gcs",
+        "ich-score"
+      ]
+    },
     "clinical_pearls": [
       "Detects locked-in syndrome via vertical eye tracking/blinking on command.",
       "Eliminates the verbal subscore limitation of GCS in intubated and nonverbal patients.",
@@ -250,8 +268,8 @@
   ],
   "verification": {
     "verified_by": "Admin",
-    "verified_at": "2026-11-27T09:08:45.571Z",
-    "content_hash": "d0ea35c53c4430acb94d7084620f9822f4663b4fb04414a46d226fc7ce9b0de8"
+    "verified_at": "2026-11-27T10:36:42.766Z",
+    "content_hash": "1c10d651c7e4f568f99c95599dff7a069bccf4c636da7bccd54d95964f124260"
   },
   "interpretation": [
     {

@@ -74,6 +74,22 @@
     "subspecialties": [
       "Stroke"
     ],
+    "clinical_purpose": [
+      "functional",
+      "severity"
+    ],
+    "when_to_use": [
+      "Quantify pre-stroke baseline disability (for acute reperfusion eligibility) and 90-day post-stroke functional outcome."
+    ],
+    "next_steps": [
+      "Document pre-stroke mRS alongside baseline NIHSS when evaluating acute mechanical thrombectomy or IV thrombolysis."
+    ],
+    "links": {
+      "related_scales": [
+        "nihss",
+        "barthel-index"
+      ]
+    },
     "clinical_pearls": [
       "Evaluate actual performance and assistance required in daily life, not theoretical capacity.",
       "Pre-stroke mRS is critical when determining acute thrombectomy eligibility.",
@@ -152,8 +168,8 @@
   ],
   "verification": {
     "verified_by": "Admin",
-    "verified_at": "2026-11-27T09:08:46.930Z",
-    "content_hash": "6f3f1e742a0b6f4597235c63f87cf76e744cb010122503f8fde1fe451ab18412"
+    "verified_at": "2026-11-27T10:36:43.957Z",
+    "content_hash": "7742d0098ca5868e307e36f46a6280c8c2a4c7c95010f359f2b4b0b1d74e00f9"
   },
   "interpretation": [
     {

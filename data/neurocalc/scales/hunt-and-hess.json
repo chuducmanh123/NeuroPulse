@@ -62,6 +62,23 @@
       "Neurocritical Care",
       "Stroke"
     ],
+    "clinical_purpose": [
+      "severity",
+      "prognosis"
+    ],
+    "critical_caveat": "Applies only to aneurysmal SAH; add +1 grade for serious systemic disease or severe angiographic vasospasm per original criteria.",
+    "when_to_use": [
+      "Clinical grading of aneurysmal subarachnoid hemorrhage severity on admission and during serial follow-up."
+    ],
+    "next_steps": [
+      "Coordinate urgent neurosurgical/endovascular evaluation; pair with WFNS for objective GCS-based grading."
+    ],
+    "links": {
+      "related_scales": [
+        "wfns",
+        "gcs"
+      ]
+    },
     "clinical_pearls": [
       "Original Hunt & Hess criteria add +1 grade for serious systemic disease (e.g., severe HTN, diabetes, COPD) or severe angiographic vasospasm.",
       "Originally developed to estimate surgical mortality risk in aneurysmal SAH; higher grades reflect worse neurological dysfunction and higher overall mortality.",
@@ -138,8 +155,8 @@
   ],
   "verification": {
     "verified_by": "Admin",
-    "verified_at": "2026-11-27T09:08:46.245Z",
-    "content_hash": "6ecf44d24562f31477cefe6ed00f0f5b5a8c9fe8532c1d3f7e2379b1e0880ed3"
+    "verified_at": "2026-11-27T10:36:42.156Z",
+    "content_hash": "a2b0ed306a7f3036c5afc1060fc2db554c71ff8b8d231fc4febb6ad2970d2f80"
   },
   "interpretation": [
     {

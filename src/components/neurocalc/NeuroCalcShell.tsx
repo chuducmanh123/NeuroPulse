@@ -3,29 +3,38 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
-  Activity,
   Calculator,
-  ClipboardList,
-  Layers,
   Moon,
   RefreshCw,
+  Search,
   Sun,
   Wifi,
   WifiOff,
+  Wrench,
 } from "lucide-react";
 import { AdminButton } from "@/components/ecosystem/AdminButton";
 import { AppSwitcher } from "@/components/ecosystem/AppSwitcher";
 import { MedicalDisclaimerFooter } from "@/components/ecosystem/MedicalDisclaimerFooter";
 import { useNeuroCalcScales } from "@/hooks/useNeuroCalcScales";
-import type { ScaleKind } from "@/types/neurocalc";
+import {
+  getFavoriteScaleIds,
+  getRecentScaleIds,
+  recordRecentScaleId,
+  toggleFavoriteScaleId,
+} from "@/lib/neurocalc/preferences";
 import { getStoredAdminToken } from "@/utils/clientAuth";
 import {
   getEcosystemDarkMode,
   setEcosystemDarkMode,
   subscribeEcosystemDarkMode,
 } from "@/utils/themeSync";
+import { ClinicalToolsTab } from "./ClinicalToolsTab";
 import { ScaleDirectory } from "./ScaleDirectory";
+import { ScaleQuickSwitcher } from "./ScaleQuickSwitcher";
 import { ScaleWorkspace } from "./ScaleWorkspace";
+import { InsulinTitrationTool } from "./tools/InsulinTitrationTool";
+
+type NeuroCalcTab = "scales" | "tools";
 
 export function NeuroCalcShell() {
   const searchParams = useSearchParams();
@@ -33,6 +42,25 @@ export function NeuroCalcShell() {
 
   const [darkMode, setDarkMode] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
+  const [recentIds, setRecentIds] = useState<string[]>([]);
+  const [quickSwitcherOpen, setQuickSwitcherOpen] = useState(false);
+
+  useEffect(() => {
+    setFavoriteIds(getFavoriteScaleIds());
+    setRecentIds(getRecentScaleIds());
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setQuickSwitcherOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   useEffect(() => {
     const checkAdmin = () => {
@@ -60,12 +88,22 @@ export function NeuroCalcShell() {
   };
 
   const scaleParam = searchParams.get("scale") || "";
+  const toolParam = searchParams.get("tool") || "";
+  const initialTab: NeuroCalcTab =
+    searchParams.get("tab") === "tools" || Boolean(toolParam)
+      ? "tools"
+      : "scales";
   const [selectedSlug, setSelectedSlug] = useState<string>(scaleParam);
-  const [activeTab, setActiveTab] = useState<"all" | ScaleKind>("all");
+  const [selectedTool, setSelectedTool] = useState<string>(toolParam);
+  const [activeTab, setActiveTab] = useState<NeuroCalcTab>(initialTab);
 
   useEffect(() => {
     setSelectedSlug(scaleParam);
   }, [scaleParam]);
+
+  useEffect(() => {
+    setSelectedTool(toolParam);
+  }, [toolParam]);
 
   useEffect(() => {
     const handleScaleUpdated = () => {
@@ -78,9 +116,16 @@ export function NeuroCalcShell() {
 
   useEffect(() => {
     const handlePopState = () => {
-      const nextScale =
-        new URLSearchParams(window.location.search).get("scale") || "";
+      const sp = new URLSearchParams(window.location.search);
+      const nextScale = sp.get("scale") || "";
+      const nextTool = sp.get("tool") || "";
       setSelectedSlug(nextScale);
+      setSelectedTool(nextTool);
+      if (sp.get("tab") === "tools" || nextTool) {
+        setActiveTab("tools");
+      } else {
+        setActiveTab("scales");
+      }
     };
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
@@ -89,12 +134,42 @@ export function NeuroCalcShell() {
   const navigateToScale = (slug: string | null) => {
     const nextSlug = slug ?? "";
     setSelectedSlug(nextSlug);
+    if (nextSlug) {
+      setSelectedTool("");
+      setActiveTab("scales");
+      setRecentIds(recordRecentScaleId(nextSlug));
+    }
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
+      params.delete("tab");
       if (nextSlug) {
         params.set("scale", nextSlug);
+        params.delete("tool");
       } else {
         params.delete("scale");
+      }
+      const qs = params.toString();
+      window.history.pushState(null, "", qs ? `/neurocalc?${qs}` : "/neurocalc");
+    }
+  };
+
+  const handleToggleFavorite = (slug: string) => {
+    setFavoriteIds(toggleFavoriteScaleId(slug));
+  };
+
+  const navigateToTool = (toolId: string | null) => {
+    const nextTool = toolId ?? "";
+    setSelectedTool(nextTool);
+    setSelectedSlug("");
+    setActiveTab("tools");
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      params.set("tab", "tools");
+      params.delete("scale");
+      if (nextTool) {
+        params.set("tool", nextTool);
+      } else {
+        params.delete("tool");
       }
       const qs = params.toString();
       window.history.pushState(null, "", qs ? `/neurocalc?${qs}` : "/neurocalc");
@@ -108,52 +183,26 @@ export function NeuroCalcShell() {
     );
   }, [syncState.scales, selectedSlug]);
 
-  const tabCounts = useMemo(() => {
-    let pointSum = 0;
-    let ordinalGrade = 0;
-    let formula = 0;
-    for (const entry of syncState.scales) {
-      const kind = entry.scale.metadata.kind;
-      if (kind === "point_sum") pointSum += 1;
-      else if (kind === "ordinal_grade") ordinalGrade += 1;
-      else if (kind === "formula") formula += 1;
-    }
-    return {
-      all: syncState.scales.length,
-      point_sum: pointSum,
-      ordinal_grade: ordinalGrade,
-      formula,
-    };
-  }, [syncState.scales]);
-
-  const navTabs = [
+  const navTabs: Array<{
+    id: NeuroCalcTab;
+    label: string;
+    mobileLabel: string;
+    icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+    badge: number | null;
+  }> = [
     {
-      id: "all" as const,
-      label: "All Scales",
-      mobileLabel: "All",
-      icon: Calculator,
-      badge: tabCounts.all,
-    },
-    {
-      id: "point_sum" as const,
-      label: "Point Scales",
+      id: "scales",
+      label: "Scales",
       mobileLabel: "Scales",
-      icon: ClipboardList,
-      badge: tabCounts.point_sum,
+      icon: Calculator,
+      badge: syncState.scales.length,
     },
     {
-      id: "ordinal_grade" as const,
-      label: "Ordinal Grades",
-      mobileLabel: "Grades",
-      icon: Layers,
-      badge: tabCounts.ordinal_grade,
-    },
-    {
-      id: "formula" as const,
-      label: "Bedside Formulas",
-      mobileLabel: "Formulas",
-      icon: Activity,
-      badge: tabCounts.formula,
+      id: "tools",
+      label: "Tools",
+      mobileLabel: "Tools",
+      icon: Wrench,
+      badge: null,
     },
   ];
 
@@ -192,6 +241,19 @@ export function NeuroCalcShell() {
 
           {/* Header Controls */}
           <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setQuickSwitcherOpen(true)}
+              aria-label="Quick jump to scale"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2.5 py-1.5 text-xs font-medium text-[var(--text-secondary)] hover:border-[#0E7490] hover:text-[var(--text-ink)] transition-colors"
+            >
+              <Search className="w-3.5 h-3.5 text-[#0E7490] dark:text-cyan-400" aria-hidden="true" />
+              <span className="hidden sm:inline">Quick Jump</span>
+              <kbd className="hidden md:inline-flex rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] px-1 py-0.5 font-mono-tech text-[10px] leading-none text-[var(--text-muted)]">
+                ⌘K
+              </kbd>
+            </button>
+
             {isAdmin && (
               <div className="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2.5 py-1.5 text-xs font-mono-tech font-medium text-[var(--text-secondary)]">
                 {syncState.status === "offline" ? (
@@ -249,8 +311,23 @@ export function NeuroCalcShell() {
                 type="button"
                 onClick={() => {
                   setActiveTab(tab.id);
+                  setSelectedTool("");
                   if (selectedSlug) {
                     navigateToScale(null);
+                  } else if (typeof window !== "undefined") {
+                    const params = new URLSearchParams(window.location.search);
+                    params.delete("tool");
+                    if (tab.id === "tools") {
+                      params.set("tab", "tools");
+                    } else {
+                      params.delete("tab");
+                    }
+                    const qs = params.toString();
+                    window.history.pushState(
+                      null,
+                      "",
+                      qs ? `/neurocalc?${qs}` : "/neurocalc"
+                    );
                   }
                 }}
                 className={`group relative shrink-0 pb-2.5 pt-2 text-[12px] sm:text-[13px] transition-colors ${
@@ -271,15 +348,17 @@ export function NeuroCalcShell() {
                   />
                   <span className="sm:hidden whitespace-nowrap">{tab.mobileLabel}</span>
                   <span className="hidden sm:inline whitespace-nowrap">{tab.label}</span>
-                  <span
-                    className={`px-2 py-0.5 rounded-full text-[11px] font-semibold font-mono-tech leading-none ${
-                      isActive
-                        ? "bg-[#0E7490]/15 text-[#0E7490] dark:bg-cyan-500/20 dark:text-cyan-300"
-                        : "bg-[var(--bg-subtle)] text-[var(--text-secondary)]"
-                    }`}
-                  >
-                    {tab.badge}
-                  </span>
+                  {tab.badge !== null && (
+                    <span
+                      className={`px-2 py-0.5 rounded-full text-[11px] font-semibold font-mono-tech leading-none ${
+                        isActive
+                          ? "bg-[#0E7490]/15 text-[#0E7490] dark:bg-cyan-500/20 dark:text-cyan-300"
+                          : "bg-[var(--bg-subtle)] text-[var(--text-secondary)]"
+                      }`}
+                    >
+                      {tab.badge}
+                    </span>
+                  )}
                 </span>
                 {isActive && (
                   <span className="absolute inset-x-1 bottom-0 h-[2px] rounded-full bg-[#0E7490] dark:bg-cyan-400" />
@@ -296,14 +375,25 @@ export function NeuroCalcShell() {
           {activeScale ? (
             <ScaleWorkspace
               scaleEntry={activeScale}
+              allScales={syncState.scales}
               isAdmin={isAdmin}
+              isFavorite={favoriteIds.includes(activeScale.scale.id)}
+              onToggleFavorite={handleToggleFavorite}
+              onSelectScale={(slug) => navigateToScale(slug)}
               onBack={() => navigateToScale(null)}
             />
+          ) : activeTab === "tools" ? (
+            selectedTool === "insulin-titration" ? (
+              <InsulinTitrationTool onBack={() => navigateToTool(null)} />
+            ) : (
+              <ClinicalToolsTab onSelectTool={(id) => navigateToTool(id)} />
+            )
           ) : (
             <ScaleDirectory
               scales={syncState.scales}
-              selectedKind={activeTab}
-              onResetKind={() => setActiveTab("all")}
+              favoriteIds={favoriteIds}
+              recentIds={recentIds}
+              onToggleFavorite={handleToggleFavorite}
               onSelectScale={(slug) => navigateToScale(slug)}
               isLoading={syncState.status === "loading"}
               isAdmin={isAdmin}
@@ -314,6 +404,15 @@ export function NeuroCalcShell() {
 
         <MedicalDisclaimerFooter darkMode={darkMode} />
       </div>
+
+      <ScaleQuickSwitcher
+        isOpen={quickSwitcherOpen}
+        scales={syncState.scales}
+        favoriteIds={favoriteIds}
+        recentIds={recentIds}
+        onSelectScale={(slug) => navigateToScale(slug)}
+        onClose={() => setQuickSwitcherOpen(false)}
+      />
     </div>
   );
 }

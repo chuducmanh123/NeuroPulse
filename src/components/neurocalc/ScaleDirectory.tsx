@@ -2,22 +2,36 @@
 
 import React, { useMemo, useState } from "react";
 import {
+  ArrowUpDown,
+  Clock,
   Filter,
   Layers,
   Search,
+  Star,
   X,
 } from "lucide-react";
 import { CustomSelect } from "@/components/ecosystem/CustomSelect";
 import { DrawLoader } from "@/components/ecosystem/DrawLoader";
 import { SUBSPECIALTY_LIST } from "@/constants/subspecialties";
-import type { ScaleKind, ScaleWithEffectiveStatus } from "@/types/neurocalc";
+import {
+  ALL_CLINICAL_PURPOSES,
+  inferScalePurposes,
+  PURPOSE_LABELS,
+} from "@/lib/neurocalc/preferences";
+import type {
+  ClinicalPurpose,
+  ScaleKind,
+  ScaleWithEffectiveStatus,
+} from "@/types/neurocalc";
 
-type QuickFilter = "ALL" | "GUIDES" | "VERIFIED" | "DRAFT";
+type QuickFilter = "ALL" | "FAVORITES" | "GUIDES" | "VERIFIED" | "DRAFT";
+type SortMode = "recommended" | "alpha";
 
 interface ScaleDirectoryProps {
   scales: ScaleWithEffectiveStatus[];
-  selectedKind: "all" | ScaleKind;
-  onResetKind: () => void;
+  favoriteIds: string[];
+  recentIds: string[];
+  onToggleFavorite: (slug: string) => void;
   onSelectScale: (slug: string) => void;
   isLoading: boolean;
   isAdmin: boolean;
@@ -32,6 +46,7 @@ const KIND_LABELS: Record<ScaleKind, string> = {
 
 const QUICK_FILTER_OPTIONS: Array<{ value: QuickFilter; label: string }> = [
   { value: "ALL", label: "All Scales" },
+  { value: "FAVORITES", label: "Favorites" },
   { value: "GUIDES", label: "With Guides" },
   { value: "VERIFIED", label: "Verified" },
   { value: "DRAFT", label: "Draft" },
@@ -105,8 +120,9 @@ function getSubspecialtyTheme(subspecialty: string | undefined): SubspecialtyThe
 
 export function ScaleDirectory({
   scales,
-  selectedKind,
-  onResetKind,
+  favoriteIds,
+  recentIds,
+  onToggleFavorite,
   onSelectScale,
   isLoading,
   isAdmin,
@@ -117,39 +133,44 @@ export function ScaleDirectory({
     "All Subspecialties"
   );
   const [quickFilter, setQuickFilter] = useState<QuickFilter>("ALL");
+  const [selectedPurpose, setSelectedPurpose] = useState<ClinicalPurpose | "ALL">(
+    "ALL"
+  );
+  const [sortMode, setSortMode] = useState<SortMode>("recommended");
+
+  const favoriteSet = useMemo(() => new Set(favoriteIds), [favoriteIds]);
+
+  const recentEntries = useMemo(() => {
+    const byId = new Map(scales.map((s) => [s.scale.id, s]));
+    return recentIds
+      .map((id) => byId.get(id))
+      .filter((e): e is ScaleWithEffectiveStatus => Boolean(e));
+  }, [scales, recentIds]);
 
   const subspecialtyCounts = useMemo(() => {
     const counts = new Map<string, number>();
     for (const entry of scales) {
-      if (selectedKind !== "all" && entry.scale.metadata.kind !== selectedKind) {
-        continue;
-      }
       for (const sub of entry.scale.metadata.subspecialties) {
         counts.set(sub, (counts.get(sub) ?? 0) + 1);
       }
     }
     return counts;
-  }, [scales, selectedKind]);
-
-  const kindFilteredTotal = useMemo(() => {
-    if (selectedKind === "all") return scales.length;
-    return scales.filter((e) => e.scale.metadata.kind === selectedKind).length;
-  }, [scales, selectedKind]);
+  }, [scales]);
 
   const filteredScales = useMemo(() => {
     const rawQ = query.trim().toLowerCase();
     const tokens = rawQ.split(/\s+/).filter(Boolean);
 
-    return scales.filter((entry) => {
+    const matched = scales.filter((entry) => {
       const m = entry.scale.metadata;
 
-      if (selectedKind !== "all" && m.kind !== selectedKind) {
-        return false;
-      }
       if (
         selectedSubspecialty !== "All Subspecialties" &&
         !m.subspecialties.includes(selectedSubspecialty)
       ) {
+        return false;
+      }
+      if (quickFilter === "FAVORITES" && !favoriteSet.has(entry.scale.id)) {
         return false;
       }
       if (quickFilter === "GUIDES" && entry.scale.assessment_guides.length === 0) {
@@ -161,19 +182,44 @@ export function ScaleDirectory({
       if (quickFilter === "DRAFT" && entry.effectiveStatus === "verified") {
         return false;
       }
+      if (selectedPurpose !== "ALL") {
+        const purposes = inferScalePurposes(entry.scale);
+        if (!purposes.includes(selectedPurpose)) {
+          return false;
+        }
+      }
 
       if (tokens.length === 0) return true;
 
       const haystack = `${m.short_name} ${m.name} ${m.summary} ${m.aliases.join(" ")} ${m.subspecialties.join(" ")} ${KIND_LABELS[m.kind]}`.toLowerCase();
       return tokens.every((token) => haystack.includes(token));
     });
-  }, [scales, query, selectedSubspecialty, selectedKind, quickFilter]);
+
+    return [...matched].sort((a, b) => {
+      if (sortMode === "recommended") {
+        const aFav = favoriteSet.has(a.scale.id) ? 0 : 1;
+        const bFav = favoriteSet.has(b.scale.id) ? 0 : 1;
+        if (aFav !== bFav) return aFav - bFav;
+      }
+      return a.scale.metadata.short_name.localeCompare(
+        b.scale.metadata.short_name
+      );
+    });
+  }, [
+    scales,
+    query,
+    selectedSubspecialty,
+    quickFilter,
+    selectedPurpose,
+    sortMode,
+    favoriteSet,
+  ]);
 
   const handleResetFilters = () => {
     setQuery("");
     setSelectedSubspecialty("All Subspecialties");
     setQuickFilter("ALL");
-    onResetKind();
+    setSelectedPurpose("ALL");
   };
 
   return (
@@ -189,7 +235,7 @@ export function ScaleDirectory({
               const active = selectedSubspecialty === sub;
               const count =
                 sub === "All Subspecialties"
-                  ? kindFilteredTotal
+                  ? scales.length
                   : (subspecialtyCounts.get(sub) ?? 0);
               return (
                 <button
@@ -236,6 +282,58 @@ export function ScaleDirectory({
                 </button>
               );
             })}
+          </div>
+
+          <div className="mt-5 pt-4 border-t border-[var(--border-hairline)] text-[10.5px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+            CLINICAL PURPOSE
+          </div>
+          <div className="mt-2.5 flex flex-wrap gap-1.5">
+            <button
+              type="button"
+              onClick={() => setSelectedPurpose("ALL")}
+              className={`rounded-lg border px-2.5 py-1 text-[11px] font-semibold transition-colors ${
+                selectedPurpose === "ALL"
+                  ? "border-[#0E7490] bg-[#0E7490]/15 text-[#0E7490] dark:text-cyan-300"
+                  : "border-[var(--border-hairline)] text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]"
+              }`}
+            >
+              All
+            </button>
+            {ALL_CLINICAL_PURPOSES.map((purpose) => {
+              const active = selectedPurpose === purpose;
+              return (
+                <button
+                  key={purpose}
+                  type="button"
+                  onClick={() => setSelectedPurpose(purpose)}
+                  className={`rounded-lg border px-2.5 py-1 text-[11px] font-semibold transition-colors ${
+                    active
+                      ? "border-[#0E7490] bg-[#0E7490]/15 text-[#0E7490] dark:text-cyan-300"
+                      : "border-[var(--border-hairline)] text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]"
+                  }`}
+                >
+                  {PURPOSE_LABELS[purpose]}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="mt-5 pt-4 border-t border-[var(--border-hairline)] flex items-center justify-between">
+            <span className="text-[10.5px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+              SORT ORDER
+            </span>
+            <button
+              type="button"
+              onClick={() =>
+                setSortMode((prev) =>
+                  prev === "recommended" ? "alpha" : "recommended"
+                )
+              }
+              className="inline-flex items-center gap-1 rounded-lg border border-[var(--border-hairline)] px-2 py-1 text-[11px] font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]"
+            >
+              <ArrowUpDown className="w-3 h-3" aria-hidden="true" />
+              <span>{sortMode === "recommended" ? "Favorites First" : "A–Z"}</span>
+            </button>
           </div>
         </div>
       </aside>
@@ -312,6 +410,55 @@ export function ScaleDirectory({
           </div>
         </div>
 
+        {/* Recently Used Quick Strip */}
+        {recentEntries.length > 0 && !query && (
+          <div className="flex items-center gap-2 overflow-x-auto scrollbar-none pb-0.5">
+            <span className="inline-flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-wider text-[var(--text-muted)] shrink-0">
+              <Clock className="w-3 h-3" aria-hidden="true" />
+              <span>Recent</span>
+            </span>
+            {recentEntries.map((entry) => (
+              <button
+                key={entry.scale.id}
+                type="button"
+                onClick={() => onSelectScale(entry.scale.id)}
+                className="shrink-0 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 py-1 text-xs font-semibold text-[var(--text-ink)] hover:border-[#0E7490] hover:text-[#0E7490] dark:hover:text-cyan-300 transition-colors"
+              >
+                {entry.scale.metadata.short_name}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Mobile Clinical Purpose Strip */}
+        <div className="flex lg:hidden items-center gap-1.5 overflow-x-auto scrollbar-none">
+          <button
+            type="button"
+            onClick={() => setSelectedPurpose("ALL")}
+            className={`shrink-0 rounded-lg border px-2.5 py-1 text-[11px] font-semibold ${
+              selectedPurpose === "ALL"
+                ? "border-[#0E7490] bg-[#0E7490]/15 text-[#0E7490] dark:text-cyan-300"
+                : "border-[var(--border-hairline)] text-[var(--text-secondary)]"
+            }`}
+          >
+            All Purposes
+          </button>
+          {ALL_CLINICAL_PURPOSES.map((purpose) => (
+            <button
+              key={purpose}
+              type="button"
+              onClick={() => setSelectedPurpose(purpose)}
+              className={`shrink-0 rounded-lg border px-2.5 py-1 text-[11px] font-semibold ${
+                selectedPurpose === purpose
+                  ? "border-[#0E7490] bg-[#0E7490]/15 text-[#0E7490] dark:text-cyan-300"
+                  : "border-[var(--border-hairline)] text-[var(--text-secondary)]"
+              }`}
+            >
+              {PURPOSE_LABELS[purpose]}
+            </button>
+          ))}
+        </div>
+
         {/* Scale Cards (Single-Column Stacked Editorial List matching NeuroGuide) */}
         {isLoading && scales.length === 0 ? (
           <div className="p-12 text-center rounded-2xl border border-dashed border-[var(--border-hairline)] bg-[var(--bg-surface)]/70">
@@ -357,18 +504,84 @@ export function ScaleDirectory({
               const m = scale.metadata;
               const primarySub = m.subspecialties[0];
               const theme = getSubspecialtyTheme(primarySub);
+              const purposes = inferScalePurposes(scale);
+              const primaryPurpose = purposes[0];
+              const isFav = favoriteSet.has(scale.id);
 
               return (
-                <button
+                <div
                   key={scale.id}
-                  type="button"
+                  role="button"
+                  tabIndex={0}
                   onClick={() => onSelectScale(scale.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      onSelectScale(scale.id);
+                    }
+                  }}
                   className={`group w-full rounded-2xl border transition-all text-left cursor-pointer shadow-xs px-4 py-3.5 sm:px-5 sm:py-4 ${theme.borderLeft} ${theme.cardBg} ${theme.cardBorder}`}
                 >
-                  <h3 className="text-sm sm:text-base font-bold leading-snug text-[var(--text-ink)] group-hover:text-[#0E7490] dark:group-hover:text-cyan-400 transition-colors">
-                    {m.name}
-                  </h3>
-                </button>
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                        <span className="rounded-md bg-[#0E7490]/12 dark:bg-cyan-500/20 px-2 py-0.5 font-mono-tech text-[10.5px] font-bold text-[#0E7490] dark:text-cyan-300">
+                          {m.short_name}
+                        </span>
+                        {primarySub && (
+                          <span
+                            className={`rounded-md border px-2 py-0.5 text-[10.5px] font-semibold ${theme.badge}`}
+                          >
+                            {primarySub}
+                          </span>
+                        )}
+                        {primaryPurpose && (
+                          <span className="rounded-md bg-[var(--bg-subtle)] px-2 py-0.5 text-[10.5px] font-semibold text-[var(--text-secondary)]">
+                            {PURPOSE_LABELS[primaryPurpose]}
+                          </span>
+                        )}
+                        {m.time_estimate && (
+                          <span className="inline-flex items-center gap-1 text-[10.5px] text-[var(--text-muted)]">
+                            <Clock className="w-3 h-3" aria-hidden="true" />
+                            <span>{m.time_estimate}</span>
+                          </span>
+                        )}
+                        {entry.effectiveStatus !== "verified" && (
+                          <span className="rounded-md bg-amber-500/15 px-1.5 py-0.5 text-[10px] font-bold uppercase text-amber-800 dark:text-amber-300">
+                            {entry.effectiveStatus}
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="text-sm sm:text-base font-bold leading-snug text-[var(--text-ink)] group-hover:text-[#0E7490] dark:group-hover:text-cyan-400 transition-colors">
+                        {m.name}
+                      </h3>
+                      <p className="mt-1 text-xs text-[var(--text-muted)] leading-relaxed line-clamp-2">
+                        {m.summary}
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onToggleFavorite(scale.id);
+                      }}
+                      aria-label={isFav ? `Unfavorite ${m.short_name}` : `Favorite ${m.short_name}`}
+                      title={isFav ? "Remove from favorites" : "Add to favorites"}
+                      className={`p-1.5 rounded-xl border transition-colors shrink-0 ${
+                        isFav
+                          ? "border-amber-400/50 bg-amber-500/10 text-amber-500"
+                          : "border-transparent text-[var(--text-muted)] hover:text-amber-500 hover:bg-[var(--bg-subtle)]"
+                      }`}
+                    >
+                      <Star
+                        className={`w-4 h-4 ${isFav ? "fill-amber-500" : ""}`}
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </div>
+                </div>
               );
             })}
           </div>

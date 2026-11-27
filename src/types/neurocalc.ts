@@ -1,5 +1,15 @@
 export type RecordStatus = "draft" | "verified" | "retired";
 export type ScaleKind = "point_sum" | "ordinal_grade" | "formula";
+export type ClinicalPurpose =
+  | "severity"
+  | "prognosis"
+  | "diagnosis"
+  | "risk"
+  | "formula"
+  | "functional";
+export type UntestablePolicy =
+  | "exclude_and_flag"
+  | "invalidate_total_and_flag";
 export type SeverityLevel =
   | "normal"
   | "mild"
@@ -38,11 +48,17 @@ export interface ScaleMetadata {
   subspecialties: string[];
   kind: ScaleKind;
   summary: string;
+  clinical_purpose?: ClinicalPurpose[];
+  when_to_use?: string[];
+  next_steps?: string[];
+  critical_caveat?: string;
+  formula_display?: string;
   clinical_pearls?: string[];
   time_estimate?: string;
   links?: {
     neuroguide_slug?: string;
     neurorx_slugs?: string[];
+    related_scales?: string[];
   };
 }
 
@@ -63,6 +79,8 @@ export interface SelectScaleItem {
   subtitle?: string;
   required: boolean;
   options: SelectOption[];
+  related_scale_id?: string;
+  related_scale_label?: string;
 }
 
 export interface NumericUnitOption {
@@ -80,11 +98,14 @@ export interface NumericScaleItem {
   subtitle?: string;
   required: boolean;
   canonical_unit: string;
+  default_unit?: string;
   units: NumericUnitOption[];
   min_canonical: number;
   max_canonical: number;
   step?: number;
   placeholder?: string;
+  related_scale_id?: string;
+  related_scale_label?: string;
 }
 
 export type ScaleItem = SelectScaleItem | NumericScaleItem;
@@ -103,7 +124,8 @@ export interface ScoringConfig {
   precision?: number;
   formula_id?: FormulaId;
   expression?: string;
-  untestable_policy?: "exclude_and_flag";
+  untestable_policy?: UntestablePolicy;
+  display_components?: boolean;
   subscores?: SubscoreDef[];
 }
 

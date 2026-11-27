@@ -342,4 +342,36 @@ describe("NeuroCalc Data Validator & 6-Block Merkle Hashing (T1)", () => {
     const errs = validateScaleRecord(scale);
     assert.ok(errs.some((e) => e.path === "references[1].category"));
   });
+
+  it("validates optional CDS metadata, default_unit, related_scale_id, and untestable_policy while preserving 6-section Merkle isolation", () => {
+    const scale = makeValidPointSumScale();
+    scale.metadata.clinical_purpose = ["severity", "prognosis"];
+    scale.metadata.when_to_use = ["Use at bedside."];
+    scale.metadata.next_steps = ["Order urgent imaging."];
+    scale.metadata.critical_caveat = "Do not use alone for withdrawal of care.";
+    scale.metadata.links = { related_scales: ["gcs", "abc-2"] };
+    scale.items[0].related_scale_id = "gcs";
+    scale.items[0].related_scale_label = "Calculate GCS";
+    scale.scoring.untestable_policy = "invalidate_total_and_flag";
+    scale.scoring.display_components = true;
+    assert.deepEqual(validateScaleRecord(scale), []);
+
+    // Editing metadata.when_to_use changes ONLY section_hashes.metadata
+    const baseHashes = computeSectionHashes(makeValidPointSumScale());
+    const metaHashes = computeSectionHashes(scale);
+    assert.notEqual(baseHashes.metadata, metaHashes.metadata);
+    assert.equal(baseHashes.references, metaHashes.references);
+
+    const formula = makeValidFormulaScale();
+    formula.items[0].default_unit = "mm";
+    assert.deepEqual(validateScaleRecord(formula), []);
+
+    formula.items[0].default_unit = "inches";
+    const formulaErrs = validateScaleRecord(formula);
+    assert.ok(formulaErrs.some((e) => e.path === "items[0].default_unit"));
+
+    scale.items[0].related_scale_id = "Bad_Slug";
+    const relErrs = validateScaleRecord(scale);
+    assert.ok(relErrs.some((e) => e.path === "items[0].related_scale_id"));
+  });
 });

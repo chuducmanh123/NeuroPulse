@@ -128,6 +128,24 @@
     "subspecialties": [
       "Stroke"
     ],
+    "clinical_purpose": [
+      "prognosis",
+      "risk"
+    ],
+    "critical_caveat": "A low ABCD2 score (0–3) does NOT rule out high-risk stroke etiologies such as symptomatic carotid stenosis, atrial fibrillation, or crescendo TIA.",
+    "when_to_use": [
+      "Early risk stratification after suspected transient ischemic attack (TIA) to estimate 2-, 7-, and 90-day stroke risk."
+    ],
+    "next_steps": [
+      "All suspected TIA patients require urgent neurovascular imaging (brain MRI/CT + CTA/carotid duplex) and ECG/telemetry regardless of ABCD2 score."
+    ],
+    "links": {
+      "related_scales": [
+        "nihss",
+        "cha2ds2-vasc",
+        "mrs"
+      ]
+    },
     "clinical_pearls": [
       "Low ABCD2 (0–3) does NOT exclude high-risk etiologies such as symptomatic carotid stenosis, atrial fibrillation, or crescendo TIA.",
       "Higher ABCD2 scores generally correlate with increased short-term stroke risk and higher likelihood of true TIA (Josephson et al., 2008).",
@@ -234,8 +252,8 @@
   ],
   "verification": {
     "verified_by": "Admin",
-    "verified_at": "2026-11-27T09:08:44.168Z",
-    "content_hash": "4bcb3f0ad50e1d8dd9a05da3066829e7c3a99d89ed9f258f59f4d1098ff00bbf"
+    "verified_at": "2026-11-27T10:36:43.350Z",
+    "content_hash": "46bf73f469e0ce3bcde2237b2787ff328efd8ad04e83fc7c3d930e5f7e85a63e"
   },
   "interpretation": [
     {

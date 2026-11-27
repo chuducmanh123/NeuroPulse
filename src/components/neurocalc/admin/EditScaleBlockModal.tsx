@@ -89,6 +89,8 @@ function cleanLines(lines: string[] | undefined): string[] {
 
 function normalizeDraftForSave(scale: ScaleRecord): ScaleRecord {
   const pearls = cleanLines(scale.metadata.clinical_pearls);
+  const whenToUse = cleanLines(scale.metadata.when_to_use);
+  const nextSteps = cleanLines(scale.metadata.next_steps);
   const expr = scale.scoring.expression?.trim();
   const unit = scale.scoring.unit?.trim();
   return {
@@ -99,6 +101,10 @@ function normalizeDraftForSave(scale: ScaleRecord): ScaleRecord {
       short_name: scale.metadata.short_name.trim(),
       summary: scale.metadata.summary.trim(),
       time_estimate: scale.metadata.time_estimate?.trim() || undefined,
+      critical_caveat: scale.metadata.critical_caveat?.trim() || undefined,
+      formula_display: scale.metadata.formula_display?.trim() || undefined,
+      when_to_use: whenToUse.length > 0 ? whenToUse : undefined,
+      next_steps: nextSteps.length > 0 ? nextSteps : undefined,
       clinical_pearls: pearls.length > 0 ? pearls : undefined,
     },
     scoring: {
