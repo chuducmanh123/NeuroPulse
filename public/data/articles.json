@@ -124,6 +124,64 @@
     }
   },
   {
+    "id": "10.1002/ana.78411",
+    "title": "Advanced Microstructural MRI and Clinical Characterization of Paramagnetic Rim Lesion Heterogeneity in Multiple Sclerosis",
+    "journal": {
+      "name": "Annals of Neurology",
+      "short_name": "Ann Neurol",
+      "badge_bg": "#EDE9FE",
+      "badge_text": "#5B21B6"
+    },
+    "pub_date": "2026-11-25T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Cagol Alessandro",
+      "Ocampo‐Pineda Mario",
+      "Benkert Pascal",
+      "Ayci Batuhan",
+      "Lu Po‐Jui",
+      "Schaedelin Sabine",
+      "Montobbio Noemi",
+      "Melie‐Garcia Lester",
+      "Weigel Matthias",
+      "Galbusera Riccardo",
+      "Ruberte Esther",
+      "Chen Xinjie",
+      "Yaldizli Özgür",
+      "Oechtering Johanna",
+      "D'Souza Marcus",
+      "Fischer‐Barnicol Bettina",
+      "Galli Edoardo",
+      "Derfuss Tobias",
+      "Lieb Johanna M.",
+      "Kuhle Jens",
+      "Kappos Ludwig",
+      "Sormani Maria Pia",
+      "Granziera Cristina"
+    ],
+    "doi_url": "https://doi.org/10.1002/ana.78411",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis",
+        "Brain"
+      ]
+    },
+    "abstract": "Objective: Paramagnetic rim lesions (PRLs) reflect chronic active lesions in multiple sclerosis (MS), but their microstructural heterogeneity remains unclear. We characterized quantitative magnetic resonance imaging (qMRI) abnormalities within PRLs, identified data‐driven PRL profiles, and examined their associations with disability, brain volumetry, and serum biomarkers. Methods: In this longitudinal study, 175 people with MS (pwMS) and 105 healthy controls underwent multiparametric qMRI. Clinical/serum follow‐up was available for 113 pwMS (median, 4.4 years). Lesional/perilesional qMRI metrics were derived. Principal component analysis (PCA) characterized PRL heterogeneity, and clustering identified PRL profiles. Mixed‐effects models assessed associations with disability, brain parenchymal fraction (BPF), serum neurofilament light chain (sNfL), and glial fibrillary acidic protein (sGFAP). Longitudinal and retrospective MRI assessed 2‐year cluster stability and the presence of corresponding lesions 3 years earlier, respectively. Results: PRLs showed greater lesional and perilesional microstructural abnormalities than non‐PRLs. PCA identified a dominant continuous damage dimension, along which clustering identified 2 reproducible low‐ and high‐damage profiles. High‐damage PRLs were associated with higher disability (β = 0.43; p = 0.035) and lower BPF (β = −0.25; p = 0.002), whereas low‐damage PRLs were associated with higher sNfL (β = 0.35; p = 0.010). Longitudinally, low‐damage PRLs were associated with steeper increases in disability (β interaction = 0.12; p = 0.023) and sGFAP (β interaction = 0.19; p = 0.030), and less favorable microstructural trajectories. Cluster assignments were largely stable longitudinally, and similar proportions of lesions from both clusters were already present 3 years earlier. Interpretation: PRLs exhibit clinically meaningful heterogeneity along a continuous damage spectrum, with cluster assignments largely stable longitudinally. High‐damage PRLs are associated with established neurodegeneration, whereas low‐damage PRLs show features of ongoing biological activity and worse clinical evolution, supporting the relevance of PRL heterogeneity for prognostic stratification. ANN NEUROL 2026",
+    "ai_takeaways": {
+      "conclusion_vi": "Paramagnetic rim lesions in multiple sclerosis exhibit clinically meaningful heterogeneity along a continuous damage spectrum. High-damage profiles correlate with greater baseline disability and lower brain parenchymal fraction (β = -0.25; p = 0.002), whereas low-damage profiles associate with higher baseline serum neurofilament light chain (β = 0.35; p = 0.010) and steeper long-term disability progression (β interaction = 0.12; p = 0.023).",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": true,
+      "study_type": "Original Article"
+    }
+  },
+  {
     "id": "10.1161/strokeaha.126.055602",
     "title": "Predictors of Recovery From Aphasia After Stroke",
     "journal": {
@@ -2904,7 +2962,7 @@
   },
   {
     "id": "10.1001/jama.2026.20669",
-    "title": "Pediatric Medical Imaging and Brain Tumor Risk.",
+    "title": "Pediatric Medical Imaging and Brain Tumor Risk",
     "journal": {
       "name": "JAMA",
       "short_name": "JAMA",
@@ -2917,9 +2975,9 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Persiani F",
-      "Boldrini L",
-      "De Maria R."
+      "Persiani Federica",
+      "Boldrini Luca",
+      "De Maria Ruggero"
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.20669",
     "neurology_classification": {
@@ -24028,38 +24086,6 @@
     ]
   },
   {
-    "id": "10.1002/ana.78378",
-    "title": "151st Annual Meeting of the American Neurological Association",
-    "journal": {
-      "name": "Annals of Neurology",
-      "short_name": "Ann Neurol",
-      "badge_bg": "#EDE9FE",
-      "badge_text": "#5B21B6"
-    },
-    "pub_date": "2026-10-12T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [],
-    "doi_url": "https://doi.org/10.1002/ana.78378",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurological"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Ann Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
     "id": "10.1161/strokeaha.126.056651",
     "title": "Adjuvant Systemic Hypothermia During Mechanical Thrombectomy (ReCCLAIM II): A Multicenter, Randomized, Controlled Trial",
     "journal": {
@@ -31083,6 +31109,40 @@
     }
   },
   {
+    "id": "10.1016/s1474-4422(24)00255-2",
+    "title": "Caring for the carers: the power of personal stories",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2024-06-06T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Samarasekera Udani"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(24)00255-2",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1056/nejmc2403602",
     "title": "Tenecteplase for Stroke at 4.5 to 24 Hours",
     "journal": {
@@ -32454,38 +32514,6 @@
     }
   },
   {
-    "id": "10.1212/wnl.0000000000005430",
-    "title": "What's happening in Neurology ® Clinical Practice",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2018-04-23T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [],
-    "doi_url": "https://doi.org/10.1212/wnl.0000000000005430",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
     "id": "10.1212/wnl.0000000000005346",
     "title": "Neurocognition, sleep, and PET findings in type 2 vs type 1 narcolepsy",
     "journal": {
@@ -33337,38 +33365,6 @@
     }
   },
   {
-    "id": "10.1016/s1474-4422(15)00030-7",
-    "title": "News in brief",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2015-04-12T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(15)00030-7",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
     "id": "10.1016/s1474-4422(14)70272-8",
     "title": "Raising standards in dementia care",
     "journal": {
@@ -33852,7 +33848,8 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Multiple sclerosis"
+        "Multiple sclerosis",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -33893,6 +33890,7 @@
         "Stroke"
       ],
       "topics": [
+        "Neurology",
         "Carotid"
       ]
     },
@@ -34009,7 +34007,8 @@
         "Dementia"
       ],
       "topics": [
-        "Encephalitis"
+        "Encephalitis",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -34124,38 +34123,6 @@
     "ai_takeaways": {
       "conclusion_vi": "",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(10)70012-0",
-    "title": "Errata",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2010-01-19T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(10)70012-0",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
       "ai_verified": false
     }
   },

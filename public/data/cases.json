@@ -1,5 +1,231 @@
 [
   {
+    "id": "nc-2026-071",
+    "case_code": "NC-2026-071",
+    "title": "Postpartum Thunderclap Headache Exacerbated in the Supine Position",
+    "subspecialty": "Headache & Pain",
+    "subspecialties": [
+      "Headache & Pain"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-27",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC10546625",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-023-03381-6",
+      "pmcid": "PMC10546625",
+      "pmid": "37789263",
+      "pub_year": "2023"
+    },
+    "presentation": {
+      "demographics": "33-year-old female",
+      "chief_complaint": "Sudden severe headache worsening when lying down",
+      "history_of_present_illness": "Five days after an uncomplicated spontaneous vaginal delivery without regional anesthesia, a 33-year-old primiparous woman developed a mild baseline headache. At 22:00 that evening, 10 minutes after lying supine in bed, she experienced a sudden, severe, generalized pulsatile headache peaking within 10 seconds, accompanied by nausea and chills. Her headache resolved within seconds upon standing or sitting, but rapidly recurred whenever she lay supine, preventing sleep. Over the subsequent 24 hours, these positional symptoms persisted with any attempt to lie flat, prompting emergency department evaluation.",
+      "past_medical_history": "Pregnancy complicated by uterine fibroids; no history of chronic hypertension or pre-existing neurological disorders. Transient systolic blood pressures reached 150 mmHg on postpartum day 4.",
+      "vitals": {
+        "bp": "178/110 mmHg",
+        "hr": "76 bpm",
+        "rr": "16 bpm",
+        "temp": "36.6 °C",
+        "spo2": "99% on room air"
+      },
+      "neuro_exam": "On examination, the patient was alert, fully oriented, and in acute distress when lying flat. Fundoscopic examination revealed sharp optic disc margins without papilledema. Cranial nerve examination was normal. Motor strength was 5/5 in all extremities, sensation was intact to light touch and pinprick, deep tendon reflexes were 2+ bilaterally, and plantar responses were flexor. Nuchal rigidity was absent, and Kernig and Brudzinski signs were negative.",
+      "key_labs_csf": "Laboratory evaluation demonstrated a leukocyte count of 7,390/µL, C-reactive protein level of 0.94 mg/dL, normal serum electrolytes, and normal renal and hepatic function. Serum D-dimer was elevated at 8.1 µg/mL (reference range <0.5 µg/mL). Prothrombin time, activated partial thromboplastin time, and international normalized ratio were within normal limits.",
+      "imaging": [
+        {
+          "modality": "CT and CT venography (CTV) of the head",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC10546625)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC10546625_fig1.jpg",
+          "pmcid": "PMC10546625",
+          "doi_url": "https://doi.org/10.1186/s12883-023-03381-6",
+          "caption": "Computed tomography and computed tomography venography in the case. There were no abnormalities in the brain parenchyma, and no venous occlusion",
+          "findings_summary": "Unremarkable brain parenchyma without intracranial hemorrhage, acute ischemia, or dural venous sinus thrombosis."
+        },
+        {
+          "modality": "Brain MRI (DWI, FLAIR, T2*-weighted sequences)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC10546625)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC10546625_fig2.jpg",
+          "pmcid": "PMC10546625",
+          "doi_url": "https://doi.org/10.1186/s12883-023-03381-6",
+          "caption": "Brain magnetic resonance imaging on the day 3. A : Diffusion-weighted image. B : Fluid-attenuated Inversion recovery. C : T2 star-weighted image. There were no abnormalities in the brain parenchyma, or thrombosed vein sign",
+          "findings_summary": "No acute diffusion restriction on DWI, subcortical vasogenic edema on FLAIR, or thrombosed vein sign on T2*-weighted imaging."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cerebral venous thrombosis (CVT)",
+          "peer_percentage": 18,
+          "rationale": "Incorrect. Although the hypercoagulable postpartum state, elevated D-dimer, and headache exacerbated in the supine position raise suspicion for cerebral venous thrombosis, normal CT venography and T2*-weighted MRI reliably exclude major dural sinus or cortical vein occlusion."
+        },
+        {
+          "id": "B",
+          "text": "Idiopathic intracranial hypertension (IIH)",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. While intracranial hypertension classically causes headaches exacerbated by lying flat, idiopathic intracranial hypertension presents insidiously with papilledema, transient visual obscurations, or cranial neuropathies, rather than an abrupt thunderclap headache peaking within seconds."
+        },
+        {
+          "id": "C",
+          "text": "Posterior reversible encephalopathy syndrome (PRES)",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Posterior reversible encephalopathy syndrome shares postpartum hypertension and endothelial dysregulation with this presentation, but characteristically manifests with seizures, visual loss, or encephalopathy, accompanied by subcortical parieto-occipital vasogenic edema on FLAIR MRI, which is absent here."
+        },
+        {
+          "id": "D",
+          "text": "Reversible cerebral vasoconstriction syndrome (RCVS)",
+          "peer_percentage": 60,
+          "rationale": "Correct! Reversible cerebral vasoconstriction syndrome (RCVS) is a recognized postpartum headache disorder that classically presents with recurrent thunderclap headaches. Initial noninvasive vascular imaging and brain MRI are entirely normal in up to 30% of patients during the first week of symptoms. Although RCVS headaches are typically posture-independent, marked supine exacerbation can rarely occur due to dynamic shifts in cerebral autoregulation and perfusion pressure."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Reversible cerebral vasoconstriction syndrome (RCVS)",
+      "clinical_discussion": "Thunderclap headache in the late pregnancy or postpartum period requires immediate evaluation for life-threatening secondary neurovascular etiologies, including subarachnoid hemorrhage, cerebral venous thrombosis (CVT), reversible cerebral vasoconstriction syndrome (RCVS), cervical artery dissection, posterior reversible encephalopathy syndrome (PRES), and pituitary apoplexy. In this patient, severe headache exacerbated by lying flat and relieved upon standing classically suggests elevated intracranial pressure or CVT, particularly given her hypercoagulable postpartum state and markedly elevated D-dimer. However, negative initial CT venography and T2*-weighted MRI exclude venous sinus thrombosis and focal parenchymal lesions. Furthermore, serum D-dimer is physiologically elevated in the early postpartum period and lacks diagnostic specificity for CVT.\n\nThe diagnostic inflection point in this case is recognizing that early neurovascular imaging (CTA, MRA, or conventional digital subtraction angiography) and parenchymal brain MRI are completely normal in up to 30% of patients with RCVS during the first 3 to 7 days of symptoms. Dynamic segmental cerebral vasoconstriction typically lags behind the onset of thunderclap headache by 1 to 2 weeks. In this patient, repeat MRA performed on postpartum day 10 revealed characteristic multifocal, segmental cerebral arterial stenoses (\"string-of-beads\" pattern) involving the bilateral middle, posterior, and anterior cerebral arteries, confirming RCVS. Although positional fluctuation is rare, supine positioning increases central venous and cerebral perfusion pressure, which may trigger paroxysmal surges in vascular tone and severe thunderclap pain.\n\nManagement of postpartum RCVS focuses on calcium channel blocker therapy (e.g., verapamil or nimodipine) to reduce headache frequency and severity, along with careful blood pressure regulation and strict avoidance of vasoactive triggers (such as triptans, ergots, or sympathomimetics). With conservative management and oral calcium channel blockers, clinical symptoms improve rapidly, and complete resolution of vasoconstriction on repeat vascular imaging is expected within 1 to 3 months.",
+      "teaching_points": [
+        "Initial brain MRI and noninvasive arterial imaging (CTA or MRA) may be completely normal during the first 3 to 7 days of RCVS; repeat vascular imaging at 1 to 2 weeks is frequently required to document delayed segmental vasoconstriction.",
+        "Although headache worsening in the supine position classically indicates intracranial hypertension or cerebral venous thrombosis, RCVS can occasionally present with marked supine exacerbation due to transient shifts in cerebral perfusion pressure.",
+        "Serum D-dimer levels are physiologically elevated during the early postpartum period and must not be used to anchor a diagnosis of cerebral venous thrombosis in the setting of normal dedicated venography.",
+        "First-line management for RCVS consists of oral calcium channel blockers (e.g., verapamil or nimodipine), strict avoidance of vasoactive agents, and blood pressure control."
+      ],
+      "clinical_pitfalls": [
+        "Prematurely ruling out RCVS based on normal initial neuroimaging and noninvasive angiographic studies obtained within the first week of thunderclap headache onset.",
+        "Misattributing a physiologically elevated postpartum D-dimer level to cerebral venous thrombosis despite negative dedicated venography.",
+        "Failing to discontinue or avoid vasoactive medications (such as ergot alkaloids, triptans, or over-the-counter decongestants) in a patient presenting with postpartum thunderclap headache."
+      ],
+      "related_keywords": [
+        "Reversible cerebral vasoconstriction syndrome",
+        "Postpartum thunderclap headache",
+        "Supine headache",
+        "Cerebral venous thrombosis mimic"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-072",
+    "case_code": "NC-2026-072",
+    "title": "Episodic Panic Attacks, Autonomic Symptoms, and Unilateral Hippocampal FLAIR Hyperintensity in a Young Woman",
+    "subspecialty": "Neuroimmunology",
+    "subspecialties": [
+      "Neuroimmunology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-27",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13159328",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04845-1",
+      "pmcid": "PMC13159328",
+      "pmid": "41913114",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "33-year-old female",
+      "chief_complaint": "Episodic nervousness, palpitations, insomnia, and dizziness",
+      "history_of_present_illness": "A previously healthy 33-year-old woman presented with more than 10 days of unprovoked episodic nervousness, palpitations, subjective coldness and swelling of the hands and feet, cold intolerance, neck discomfort, and sleep-onset insomnia averaging 2 to 3 hours of sleep per night. She had no antecedent viral prodrome, diarrhea, recent vaccination, or prior psychiatric history. An outside evaluation attributed her presentation to anxiety, depression, a primary sleep disorder, and cervical spondylosis with sympathetic features; cervical rehabilitation and oral zopiclone improved her sleep, but her episodic panic attacks progressively worsened. Over the ensuing 2 weeks, she developed non-rotational dizziness, occasional nausea, and mild vomiting, prompting transfer for further evaluation.",
+      "past_medical_history": "Generally healthy; no prior psychiatric, neurological, or autoimmune history.",
+      "vitals": {
+        "bp": "Not documented",
+        "hr": "Not documented",
+        "rr": "Not documented",
+        "temp": "Not documented (afebrile)",
+        "spo2": "Not documented"
+      },
+      "neuro_exam": "On transfer, she was alert, oriented, and afebrile without meningeal signs or focal cranial nerve, motor, or sensory deficits, although paroxysmal autonomic and affective episodes persisted.",
+      "key_labs_csf": "Lumbar puncture yielded clear, colorless cerebrospinal fluid (CSF) with an opening pressure of 10 cmH2O, a white blood cell count of 0 cells/µL, total protein of 24 mg/dL, and glucose of 65 mg/dL. Cranial magnetic resonance angiography (1.5T) was unremarkable. Hippocampal 3T magnetic resonance spectroscopy (MRS) demonstrated a reduced N-acetylaspartate/(choline + creatine) [NAA/(Cho + Cr)] ratio in the right hippocampus (40.8%) compared with the left hippocampus (62.8%), corresponding to a bilateral asymmetry index of 22%. Chest CT showed minimal bilateral fibrotic changes, and transvaginal ultrasonography revealed a 1.9 × 1.8 cm thin-walled, regular, anechoic cystic lesion in the left ovary.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (3T, non-contrast, DWI, and contrast-enhanced)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13159328)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13159328_fig1.jpg",
+          "pmcid": "PMC13159328",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04845-1",
+          "caption": "Cranial non-contrast + DWI + contrast-enhanced MRI (3T): The right hippocampus appears mildly enlarged compared to the contralateral side, with slight T1 and T2 prolongation, FLAIR hyperintensity, and no contrast enhancement. A focal spot-like lesion in the left frontal white matter exhibits similar prolonged T1/T2 and FLAIR hyperintensity, showing no restricted diffusion on DWI. Abbreviations: DWI: Diffusion-Weighted Imaging; T1: T1-weighted imaging; T2: T2-weighted imaging; FLAIR: Fluid-Attenuated Inversion Recovery",
+          "findings_summary": "Mild enlargement of the right hippocampus with subtle T1 prolongation, T2/FLAIR hyperintensity, and no contrast enhancement, accompanied by a non-enhancing punctate left frontal white matter lesion without restricted diffusion on DWI."
+        },
+        {
+          "modality": "Electroencephalogram (EEG)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13159328)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13159328_fig2.jpg",
+          "pmcid": "PMC13159328",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04845-1",
+          "caption": "EEG: Hyperventilation: no significant changes. Amplitude characteristics: predominantly medium-amplitude. Waveform: relatively regular. Rhythm regulation: relatively good. All leads showed scattered low-amplitude 15–18 c/s beta rhythms and activity. Eye opening/closing response: alpha rhythm. Flash stimulation: consistent with background, no photic driving phenomena observed. Abbreviations: EEG: Electroencephalogram",
+          "findings_summary": "Predominantly medium-amplitude regular background with scattered low-amplitude 15–18 Hz beta activity, preserved alpha reactivity upon eye opening and closing, and no epileptiform discharges or photic driving response."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Autoimmune limbic encephalitis",
+          "peer_percentage": 68,
+          "rationale": "Correct! Subacute paroxysmal psychiatric and autonomic symptoms accompanied by unilateral right hippocampal enlargement, T2/FLAIR hyperintensity without contrast enhancement or restricted diffusion, and a reduced hippocampal NAA/(Cho + Cr) ratio on MRS strongly support autoimmune limbic encephalitis, even in the presence of normal routine CSF parameters."
+        },
+        {
+          "id": "B",
+          "text": "Herpes simplex virus (HSV) encephalitis",
+          "peer_percentage": 16,
+          "rationale": "Incorrect. Although HSV encephalitis classically involves the mesial temporal lobe and hippocampus, it typically presents acutely with fever, altered mental status, CSF pleocytosis or elevated protein, and restricted diffusion on DWI, none of which were present in this patient."
+        },
+        {
+          "id": "C",
+          "text": "Primary panic disorder with somatic symptom manifestations",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. While her episodic nervousness, palpitations, and insomnia initially mimicked a primary anxiety or panic disorder, the progressive clinical course and objective structural and metabolic abnormalities in the right hippocampus on MRI and MRS exclude a purely functional psychiatric etiology."
+        },
+        {
+          "id": "D",
+          "text": "Mesial temporal lobe epilepsy with hippocampal sclerosis",
+          "peer_percentage": 6,
+          "rationale": "Incorrect. Hippocampal sclerosis typically causes chronic, drug-resistant focal seizures accompanied by hippocampal atrophy rather than enlargement, and this patient's EEG demonstrated no interictal epileptiform discharges."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Autoimmune encephalitis with coexisting serum anti-LGI1 and anti-GluK2 antibodies",
+      "clinical_discussion": "This patient presented with subacute paroxysmal panic attacks, palpitations, cold intolerance, and severe insomnia—an autonomic and psychiatric phenotype that initially led to misdiagnosis as a primary anxiety disorder and cervical spondylosis. In a young woman with subacute mesial temporal lobe T2/FLAIR hyperintensity, key differential diagnoses include autoimmune limbic encephalitis, viral encephalitis (particularly HSV), mesial temporal lobe epilepsy, and primary psychiatric illness. However, the absence of fever, acellular and biochemically normal CSF, lack of restricted diffusion on DWI, and absence of epileptiform discharges on EEG argued against acute infectious encephalitis or typical hippocampal sclerosis, whereas the progressive course and focal right hippocampal enlargement with reduced NAA/(Cho + Cr) on MRS pointed toward an immune-mediated limbic process.\n\nThe diagnostic inflection point occurred when paired serum and CSF neural autoantibody testing was obtained after routine CSF bacterial cultures remained negative at 7 days. Serum testing revealed dual positivity for anti-leucine-rich glioma-inactivated 1 (anti-LGI1) IgG (titer 1:30) and anti-glutamate kainate receptor subunit 2 (anti-GluK2) antibodies (titer 1:10), whereas both antibodies were negative in CSF (oligoclonal bands and IgG index were not assessed). Coexisting neural autoantibodies occur in less than 2% of antibody-positive autoimmune encephalitis cases and can produce overlapping or atypical clinical phenotypes. Anti-LGI1 antibodies predominantly target limbic and hippocampal circuitry, driving prominent autonomic dysregulation, sleep architecture disruption, and paroxysmal affective symptoms, while the reduced right hippocampal NAA/(Cho + Cr) ratio on MRS provided objective metabolic evidence of focal neuronal dysfunction.\n\nFollowing diagnostic confirmation, the patient received immunosuppressive therapy with methylprednisolone and mycophenolate mofetil, resulting in substantial clinical improvement. Because autoimmune encephalitis—including anti-LGI1 and anti-GluK2 subtypes—can occur as a paraneoplastic phenomenon, systemic tumor screening was performed and demonstrated only minimal bilateral pulmonary fibrotic changes and a benign-appearing left ovarian cyst, warranting ongoing clinical surveillance without immediate oncologic intervention. Early recognition of atypical autonomic or psychiatric presentations and prompt paired serum and CSF autoantibody testing are critical to initiating immunotherapy before irreversible limbic injury develops.",
+      "teaching_points": [
+        "Autoimmune encephalitis—particularly anti-LGI1 encephalitis—can present atypically with isolated autonomic dysfunction, severe insomnia, and paroxysmal panic attacks in the absence of overt clinical seizures or amnesia.",
+        "Both serum and CSF should be tested for neural autoantibodies when autoimmune encephalitis is suspected, as serum antibody titers may be positive even when routine CSF indices and CSF antibody assays are negative.",
+        "Normal routine CSF cell counts and protein levels do not exclude autoimmune limbic encephalitis; hippocampal T2/FLAIR hyperintensity and a decreased NAA/(Cho + Cr) ratio on MRS provide critical supportive evidence of limbic neuronal dysfunction.",
+        "Coexisting neural autoantibodies ('double-positive' autoimmune encephalitis) occur in a small subset of patients and may generate complex or atypical phenotypes requiring prompt immunotherapy and malignancy screening."
+      ],
+      "clinical_pitfalls": [
+        "Misattributing subacute paroxysmal autonomic and psychiatric symptoms (such as palpitations, insomnia, and panic attacks) to primary anxiety or somatic disorders delays neuroimaging and neural autoantibody testing.",
+        "Relying solely on CSF antibody assays or normal routine CSF biochemistry can miss serum-positive autoimmune encephalitides such as anti-LGI1 encephalitis."
+      ],
+      "related_keywords": [
+        "Autoimmune encephalitis",
+        "Anti-LGI1 antibody",
+        "Anti-GluK2 antibody",
+        "Limbic encephalitis",
+        "Hippocampal FLAIR hyperintensity"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-069",
     "case_code": "NC-2026-069",
     "title": "Acute Visual Field Loss and Hemisensory Deficit with Equivocal Early Non-Contrast CT",
