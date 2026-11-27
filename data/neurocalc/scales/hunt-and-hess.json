@@ -10,7 +10,11 @@
     "summary": "5-grade clinical classification of aneurysmal subarachnoid hemorrhage severity.",
     "time_estimate": "< 1 min",
     "clinical_pearls": [
-      "Original Hunt & Hess criteria add +1 grade for serious systemic disease (e.g., severe HTN, diabetes, COPD) or severe angiographic vasospasm."
+      "Original Hunt & Hess criteria add +1 grade for serious systemic disease (e.g., severe HTN, diabetes, COPD) or severe angiographic vasospasm.",
+      "Originally developed to estimate surgical mortality risk in aneurysmal SAH; higher grades reflect worse neurological dysfunction and higher overall mortality.",
+      "Typically scored on admission, though clinical grade can evolve during hospitalization; use clinical judgment when exam findings span multiple grade definitions.",
+      "Pitfall — Non-aneurysmal SAH excluded: Does not apply to SAH from trauma, AVM, cavernous angioma, dural AVF, venous sinus thrombosis, or mycotic/septic aneurysms.",
+      "Pitfall — Subjective interobserver variability: Relies on subjective symptom reports and physical exam findings, leading to intra- and inter-observer variability; never use as the sole decision-making tool."
     ]
   },
   "items": [
@@ -56,7 +60,31 @@
       "id": "hunt-hess-1968",
       "citation": "Hunt WE, Hess RM. Surgical risk as related to time of intervention in the repair of intracranial aneurysms. J Neurosurg. 1968;28(1):14-20.",
       "year": 1968,
-      "pmid": "5635959"
+      "pmid": "5635959",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/5635959/",
+      "category": "primary"
+    },
+    {
+      "id": "oshiro-1997-sah",
+      "citation": "Oshiro EM, Walter KA, Piantadosi S, Witham TF, Tamargo RJ. A new subarachnoid hemorrhage grading system based on the Glasgow Coma Scale: a comparison with the Hunt and Hess and World Federation of Neurological Surgeons scales in a clinical series. Neurosurgery. 1997;41(1):140-148.",
+      "year": 1997,
+      "pmid": "9218306",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9218306/",
+      "category": "validation"
+    },
+    {
+      "id": "aulmann-1998-sah",
+      "citation": "Aulmann C, Steudl WI, Feldmann U. Validation of the prognostic accuracy of neurosurgical admission scales after rupture of cerebral aneurysms. Zentralbl Neurochir. 1998;59(3):171-180.",
+      "year": 1998,
+      "pmid": "9816668",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9816668/",
+      "category": "validation"
+    },
+    {
+      "id": "st-julien-2008-sah",
+      "citation": "St Julien J, Bandeen-Roche K, Tamargo RJ. Validation of an aneurysmal subarachnoid hemorrhage grading scale in 1532 consecutive patients. Neurosurgery. 2008;63(2):204-210.",
+      "year": 2008,
+      "category": "validation"
     }
   ],
   "test_cases": [

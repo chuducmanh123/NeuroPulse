@@ -18,8 +18,20 @@ import { loadEnvLocal, readValidatedLocalScales } from "./migrate-to-v2.ts";
 async function main(): Promise<void> {
   loadEnvLocal(process.cwd());
   const apply = process.argv.includes("--apply");
+  const slugIdx = process.argv.indexOf("--slug");
+  const slugFilter =
+    slugIdx !== -1 && process.argv[slugIdx + 1]
+      ? process.argv[slugIdx + 1].trim()
+      : null;
   const dataDir = path.resolve(process.cwd(), "data", "neurocalc");
-  const localScales = readValidatedLocalScales(dataDir);
+  const allLocalScales = readValidatedLocalScales(dataDir);
+  const localScales = slugFilter
+    ? allLocalScales.filter((s) => s.id === slugFilter)
+    : allLocalScales;
+
+  if (slugFilter && localScales.length === 0) {
+    throw new Error(`No validated local scale found matching --slug '${slugFilter}'`);
+  }
 
   const repo = new SupabaseScaleRepo();
   const liveRows = await listAllLiveRows(repo);

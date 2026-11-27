@@ -1,4 +1,5 @@
 import type {
+  ComputedOutputMetric,
   InterpretationBand,
   NumericScaleItem,
   RecordStatus,
@@ -6,7 +7,7 @@ import type {
   SelectScaleItem,
 } from "../../types/neurocalc.ts";
 import { evaluateExpression } from "./expression.ts";
-import { evaluateFormula } from "./formulas.ts";
+import { evaluateFormulaDetailed } from "./formulas.ts";
 import { evaluateEffectiveScale } from "./integrity.ts";
 
 export interface NumericInputValue {
@@ -42,11 +43,16 @@ export interface ScoreEvaluationResult {
   isGated: boolean;
   isComplete: boolean;
   answeredCount: number;
+  answeredRequiredCount: number;
   requiredCount: number;
   totalItemsCount: number;
   rawScore: number | null;
   score: number | null;
   formattedScore: string | null;
+  primaryMetricLabel?: string;
+  modelLabel?: string;
+  outputMetrics?: ComputedOutputMetric[];
+  warnings?: string[];
   band: InterpretationBand | null;
   applicableBands: InterpretationBand[];
   subscores: SubscoreResult[];
@@ -136,6 +142,7 @@ export function evaluateScale(
       isGated: true,
       isComplete: false,
       answeredCount: 0,
+      answeredRequiredCount: 0,
       requiredCount,
       totalItemsCount,
       rawScore: null,
@@ -227,6 +234,8 @@ export function evaluateScale(
   const isComplete =
     answeredRequiredCount === requiredCount && fieldErrors.length === 0;
 
+  const providedKeys = new Set<string>();
+  const formulaValues: Record<string, number> = {};
   const mergedNumeric: Record<string, number> = {};
   for (const item of scale.items) {
     if (item.kind === "numeric" && !item.required) {
@@ -234,13 +243,23 @@ export function evaluateScale(
     }
   }
   for (const [k, v] of Object.entries(selectPointsById)) {
-    if (typeof v === "number") mergedNumeric[k] = v;
+    if (typeof v === "number") {
+      mergedNumeric[k] = v;
+      formulaValues[k] = v;
+      providedKeys.add(k);
+    }
   }
   for (const [k, v] of Object.entries(canonicalNumericById)) {
     mergedNumeric[k] = v;
+    formulaValues[k] = v;
+    providedKeys.add(k);
   }
 
   let rawScore: number | null = null;
+  let primaryMetricLabel: string | undefined;
+  let modelLabel: string | undefined;
+  let outputMetrics: ComputedOutputMetric[] | undefined;
+  let warnings: string[] | undefined;
   const customExpr = scale.scoring.expression?.trim();
   if (customExpr) {
     if (isComplete) {
@@ -276,7 +295,16 @@ export function evaluateScale(
     }
   } else if (scale.scoring.method === "formula") {
     if (isComplete && scale.scoring.formula_id) {
-      rawScore = evaluateFormula(scale.scoring.formula_id, mergedNumeric);
+      const detailed = evaluateFormulaDetailed(
+        scale.scoring.formula_id,
+        formulaValues,
+        providedKeys
+      );
+      rawScore = detailed.primaryScore;
+      primaryMetricLabel = detailed.primaryMetricLabel;
+      modelLabel = detailed.modelLabel;
+      outputMetrics = detailed.outputs;
+      warnings = detailed.warnings;
     }
   }
 
@@ -341,11 +369,16 @@ export function evaluateScale(
     isGated: false,
     isComplete,
     answeredCount: answeredTotalCount,
+    answeredRequiredCount,
     requiredCount,
     totalItemsCount,
     rawScore,
     score,
     formattedScore,
+    primaryMetricLabel,
+    modelLabel,
+    outputMetrics,
+    warnings,
     band,
     applicableBands,
     subscores,

@@ -11,7 +11,9 @@
     "time_estimate": "~1 min",
     "clinical_pearls": [
       "Accounts for competing risk of non-cardiovascular mortality in adults aged 70–89 years.",
-      "ESC risk thresholds for age >=70 years: <7.5% low-to-moderate, 7.5–14.9% high, >=15% very high."
+      "ESC risk thresholds for age >=70 years: <7.5% low-to-moderate, 7.5–14.9% high, >=15% very high.",
+      "Includes diabetes as a predictor variable (unlike SCORE2) because diabetes strongly modifies CVD risk in older adults.",
+      "Pitfall — Lower discrimination & frailty gap: Discrimination in older adults is modest (C-index 0.63–0.67) compared with SCORE2, and validation is limited in severely frail or multimorbid patients; not intended for established CVD or non-European populations without recalibration."
     ]
   },
   "items": [
@@ -152,7 +154,25 @@
       "citation": "SCORE2-OP working group and ESC Cardiovascular risk collaboration. SCORE2-OP risk prediction algorithms: estimating incident cardiovascular event risk in older persons in four geographical risk regions. Eur Heart J. 2021;42(25):2455-2467.",
       "year": 2021,
       "pmid": "34120185",
-      "doi": "10.1093/eurheartj/ehab312"
+      "doi": "10.1093/eurheartj/ehab312",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34120185/",
+      "category": "primary"
+    },
+    {
+      "id": "vantrier-2023-score2op-norfolk",
+      "citation": "van Trier TJ, Snaterse M, Boekholdt SM, et al. Validation of Systematic Coronary Risk Evaluation 2 (SCORE2) and SCORE2-Older Persons in the EPIC-Norfolk prospective population cohort. Eur J Prev Cardiol. 2023;zwad318.",
+      "year": 2023,
+      "pmid": "37793098",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37793098/",
+      "category": "validation"
+    },
+    {
+      "id": "belahnech-2025-score2op",
+      "citation": "Belahnech Y, Ródenas-Alesina E, Muñoz MÁ, et al. Systematic Coronary Risk Evaluation 2 for Older Persons: 10 years risk validation, clinical utility, and potential improvement. Eur J Prev Cardiol. 2025;32(7):527-536.",
+      "year": 2025,
+      "pmid": "39657030",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39657030/",
+      "category": "validation"
     }
   ],
   "test_cases": [

@@ -18,9 +18,12 @@ export type FormulaId =
   | "score2_diabetes"
   | "ascvd_pce"
   | "smart2"
+  | "prevent"
   | "prevent_10y_cvd"
   | "grace_2_1y_death"
-  | "rf_cl";
+  | "rf_cl"
+  | "cockcroft_gault_crcl"
+  | "ckd_epi_2021_egfr";
 
 export interface SourceRef {
   source_id: string;
@@ -129,6 +132,8 @@ export interface AssessmentGuide {
   refs: SourceRef[];
 }
 
+export type ScaleReferenceCategory = "primary" | "validation";
+
 export interface ScaleReference {
   id: string;
   citation: string;
@@ -136,6 +141,7 @@ export interface ScaleReference {
   pmid?: string;
   doi?: string;
   url?: string;
+  category?: ScaleReferenceCategory;
 }
 
 export interface ScaleTestCase {
@@ -175,4 +181,23 @@ export interface ScaleWithEffectiveStatus {
 export interface ValidationError {
   path: string;
   message: string;
+}
+
+export interface ComputedOutputMetric {
+  id: string;
+  label: string;
+  group: string;
+  value: number | null;
+  formattedValue: string | null;
+  unit?: string;
+  highlight?: boolean;
+  note?: string;
+}
+
+export interface DetailedFormulaResult {
+  primaryScore: number | null;
+  primaryMetricLabel?: string;
+  modelLabel?: string;
+  outputs?: ComputedOutputMetric[];
+  warnings?: string[];
 }

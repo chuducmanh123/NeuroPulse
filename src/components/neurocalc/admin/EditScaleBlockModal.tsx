@@ -41,6 +41,7 @@ import type {
   ScaleItem,
   ScaleRecord,
   ScaleReference,
+  ScaleReferenceCategory,
   SelectOption,
   SelectScaleItem,
   SeverityLevel,
@@ -1848,11 +1849,30 @@ export function EditScaleBlockModal({
                         </span>
                       ) : (
                         <span className="text-slate-500">
-                          {liveTestEval.answeredCount}/{liveTestEval.requiredCount} required answered
+                          {liveTestEval.answeredRequiredCount}/{liveTestEval.requiredCount} required answered
                         </span>
                       )}
                     </div>
                   </div>
+                  {liveTestEval.isComplete &&
+                    liveTestEval.outputMetrics &&
+                    liveTestEval.outputMetrics.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5">
+                        {liveTestEval.outputMetrics.map((m) => (
+                          <span
+                            key={m.id}
+                            className="inline-flex items-center gap-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-2 py-0.5 text-[11px]"
+                          >
+                            <span className="text-slate-500">
+                              {m.group.replace(" Risk", "")} {m.label}:
+                            </span>
+                            <span className="font-mono-tech font-bold text-slate-800 dark:text-slate-100">
+                              {m.formattedValue ?? "—"}
+                            </span>
+                          </span>
+                        ))}
+                      </div>
+                    )}
                 </div>
               </div>
             )}
@@ -2239,7 +2259,7 @@ export function EditScaleBlockModal({
 
                   <label className="block">
                     <span className="font-semibold block mb-1 text-[11px]">
-                      Clinical Pearls (one per line)
+                      Clinical Pearls and Pitfalls (one per line)
                     </span>
                     <textarea
                       rows={4}
@@ -2293,7 +2313,7 @@ export function EditScaleBlockModal({
               <div className="space-y-3">
                 <div className="flex items-center justify-between gap-2">
                   <p className="text-slate-500">
-                    Manage primary literature citations linked to this scale.
+                    Manage original/primary and validation literature citations linked to this scale.
                   </p>
                   <button
                     type="button"
@@ -2302,6 +2322,7 @@ export function EditScaleBlockModal({
                         id: `ref-${Date.now()}`,
                         citation: "Author et al. Journal. Year;Vol(Issue):Pages.",
                         year: new Date().getFullYear(),
+                        category: "primary",
                       };
                       setDraft((prev) =>
                         prev
@@ -2373,7 +2394,28 @@ export function EditScaleBlockModal({
                         />
                       </label>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-4 gap-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-5 gap-2">
+                        <label className="block">
+                          <span className="font-semibold block mb-1 text-[11px]">
+                            Category
+                          </span>
+                          <select
+                            value={ref.category ?? "primary"}
+                            onChange={(e) => {
+                              const val = e.target.value as ScaleReferenceCategory;
+                              setDraft((prev) => {
+                                if (!prev) return prev;
+                                const next = [...prev.references];
+                                next[idx] = { ...ref, category: val };
+                                return { ...prev, references: next };
+                              });
+                            }}
+                            className={inputClass}
+                          >
+                            <option value="primary">Original/Primary Reference</option>
+                            <option value="validation">Validation</option>
+                          </select>
+                        </label>
                         <label className="block">
                           <span className="font-semibold block mb-1 text-[11px]">
                             Year

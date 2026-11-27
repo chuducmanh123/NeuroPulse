@@ -11,7 +11,9 @@
     "time_estimate": "~1–2 min",
     "clinical_pearls": [
       "Do not apply SCORE2-Diabetes to patients with established ASCVD or severe target-organ damage (eGFR <45, eGFR 45–59 with microalbuminuria, proteinuria, or microvascular disease in >=3 sites)—they are automatically Very High Risk per 2023 ESC Guidelines.",
-      "Supports both IFCC HbA1c (mmol/mol) and NGSP HbA1c (%)."
+      "Supports both IFCC HbA1c (mmol/mol) and NGSP HbA1c (%).",
+      "Improves CVD risk discrimination over standard SCORE2 in type 2 diabetes by adding diabetes-specific predictors (age at diagnosis, HbA1c, eGFR).",
+      "Pitfall — Socioeconomic & non-European calibration: Calibrated for European populations; external validations report potential underestimation in lower socioeconomic groups and variable calibration in non-European cohorts."
     ]
   },
   "items": [
@@ -187,14 +189,42 @@
       "citation": "SCORE2-Diabetes Working Group and the ESC Cardiovascular Risk Collaboration. SCORE2-Diabetes: 10-year cardiovascular risk estimation in type 2 diabetes in Europe. Eur Heart J. 2023;44(28):2544-2556.",
       "year": 2023,
       "pmid": "37247330",
-      "doi": "10.1093/eurheartj/ehad260"
+      "doi": "10.1093/eurheartj/ehad260",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37247330/",
+      "category": "primary"
     },
     {
       "id": "marx-2023-esc-dm",
       "citation": "Marx N, Federici M, Schütt K, et al. 2023 ESC Guidelines for the management of cardiovascular disease in patients with diabetes. Eur Heart J. 2023;44(39):4043-4140.",
       "year": 2023,
       "pmid": "37622663",
-      "doi": "10.1093/eurheartj/ehad192"
+      "doi": "10.1093/eurheartj/ehad192",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37622663/",
+      "category": "primary"
+    },
+    {
+      "id": "alfaraj-2025-score2dm-nl",
+      "citation": "Alfaraj SA, Kist JM, Groenwold RHH, Spruit M, Mook-Kanamori D, Vos RC. External validation of SCORE2-Diabetes in The Netherlands across various socioeconomic levels in native-Dutch and non-Dutch populations. Eur J Prev Cardiol. 2025;32(7):555-563.",
+      "year": 2025,
+      "pmid": "39485827",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39485827/",
+      "category": "validation"
+    },
+    {
+      "id": "fu-2025-score2dm-cn",
+      "citation": "Fu Z, Shen P, Liang J, et al. External validation of SCORE2-Diabetes risk prediction model in Chinese patients with diabetes. Eur J Prev Cardiol. 2025.",
+      "year": 2025,
+      "pmid": "40243017",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40243017/",
+      "category": "validation"
+    },
+    {
+      "id": "enguita-german-2025-score2dm",
+      "citation": "Enguita-Germán M, Ballesteros-Domínguez MD, et al. External validation of cardiovascular risk scores in patients with type 2 diabetes using the Spanish population-based CARDIANA cohort. Eur J Prev Cardiol. 2025.",
+      "year": 2025,
+      "pmid": "40439899",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40439899/",
+      "category": "validation"
     }
   ],
   "test_cases": [

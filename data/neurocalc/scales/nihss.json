@@ -12,7 +12,14 @@
     "clinical_pearls": [
       "Score what the patient actually does, not what you think they can do; never coach unless specified.",
       "Do not go back and change earlier scores based on subsequent items.",
-      "Untestable (UN) items are excluded from the numeric sum and documented separately."
+      "Untestable (UN) items are excluded from the numeric sum and documented separately.",
+      "Objectively quantifies acute ischemic stroke severity; higher scores correlate with larger infarct volume on CT and MRI.",
+      "NIHSS scores obtained within the first 48 hours after stroke correlate with clinical outcomes at 3 months and 1 year (each 1-point increase lowers the odds of an excellent 3-month outcome by ~17% in TOAST).",
+      "Patients with a total score ≤ 4 generally have favorable outcomes and a high likelihood of functional independence regardless of treatment (~75% independent at 1 year).",
+      "Pitfall — High score & IV thrombolysis: Guidelines warn that IV tPA in patients with high NIHSS (> 22) carries increased risk of hemorrhagic conversion (17% ICH for NIHSS > 20 vs. 3% for < 10 in NINDS), though these patients also have the most severe baseline disability.",
+      "Pitfall — Posterior circulation blind spot: Even a large-territory posterior circulation stroke can present with a low or normal NIHSS score.",
+      "Pitfall — Interrater variability: Facial palsy, limb ataxia, neglect, level of consciousness, and dysarthria have lower interrater reliability and can be confounded by altered mental status; roughly 1 in 3 initial scores showed a clinically meaningful discrepancy between neurologists and emergency nurses (Comer et al., 2022).",
+      "Pitfall — Simplified alternative: The Modified NIHSS (mNIHSS) demonstrates higher interrater reliability with equivalent clinical performance, though it is less widely adopted than the original NIHSS."
     ]
   },
   "items": [
@@ -384,7 +391,91 @@
       "id": "brott-1989-nihss",
       "citation": "Brott T, Adams HP Jr, Olinger CP, et al. Measurements of acute cerebral infarction: a clinical examination scale. Stroke. 1989;20(7):864-870.",
       "year": 1989,
-      "pmid": "2749846"
+      "pmid": "2749846",
+      "doi": "10.1161/01.str.20.7.864",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2749846/",
+      "category": "primary"
+    },
+    {
+      "id": "lyden-1994-nihss",
+      "citation": "Lyden P, Brott T, Tilley B, et al. Improved reliability of the NIH Stroke Scale using video training. Stroke. 1994;25(11):2220-2226.",
+      "year": 1994,
+      "pmid": "7974549",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7974549/",
+      "category": "primary"
+    },
+    {
+      "id": "johnston-2003-nihss",
+      "citation": "Johnston KC, Connors AF Jr, Wagner DP, Haley EC Jr. Predicting outcome in ischemic stroke: external validation of predictive risk models. Stroke. 2003;34(1):200-202.",
+      "year": 2003,
+      "pmid": "12511774",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12511774/",
+      "category": "validation"
+    },
+    {
+      "id": "adams-1999-toast-nihss",
+      "citation": "Adams HP Jr, Davis PH, Leira EC, et al. Baseline NIH Stroke Scale score strongly predicts outcome after stroke: A report of the Trial of Org 10172 in Acute Stroke Treatment (TOAST). Neurology. 1999;53(1):126-131.",
+      "year": 1999,
+      "pmid": "10408548",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10408548/",
+      "category": "validation"
+    },
+    {
+      "id": "schlegel-2003-nihss",
+      "citation": "Schlegel D, Kolb SJ, Luciano JM, et al. Utility of the NIH Stroke Scale as a predictor of hospital disposition. Stroke. 2003;34(1):134-137.",
+      "year": 2003,
+      "pmid": "12511764",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12511764/",
+      "category": "validation"
+    },
+    {
+      "id": "rundek-2000-nomass",
+      "citation": "Rundek T, Mast H, Hartmann A, et al. Predictors of resource use after acute hospitalization: the Northern Manhattan Stroke Study. Neurology. 2000;55(8):1180-1187.",
+      "year": 2000,
+      "pmid": "11071497",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11071497/",
+      "category": "validation"
+    },
+    {
+      "id": "appelros-2004-nihss",
+      "citation": "Appelros P, Terént A. Characteristics of the National Institute of Health Stroke Scale: results from a population-based stroke cohort at baseline and after one year. Cerebrovasc Dis. 2004;17(1):21-27.",
+      "year": 2004,
+      "pmid": "14530634",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14530634/",
+      "category": "validation"
+    },
+    {
+      "id": "ninds-1997-ich-tpa",
+      "citation": "The NINDS t-PA Stroke Study Group. Intracerebral hemorrhage after intravenous t-PA therapy for ischemic stroke. Stroke. 1997;28(11):2109-2118.",
+      "year": 1997,
+      "pmid": "9368550",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9368550/",
+      "category": "validation"
+    },
+    {
+      "id": "yoo-2010-dwi-nihss",
+      "citation": "Yoo AJ, Barak ER, Copen WA, et al. Combining acute diffusion-weighted imaging and mean transmit time lesion volumes with National Institutes of Health Stroke Scale score improves the prediction of acute stroke outcome. Stroke. 2010;41(8):1728-1735.",
+      "year": 2010,
+      "pmid": "20595665",
+      "doi": "10.1161/STROKEAHA.110.582874",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20595665/",
+      "category": "validation"
+    },
+    {
+      "id": "comer-2022-nihss-reliability",
+      "citation": "Comer et al. National Institutes of Health Stroke Scale (NIHSS) scoring inconsistencies between neurologists and emergency room nurses. Front Neurol. 2022;13:1093392.",
+      "year": 2022,
+      "doi": "10.3389/fneur.2022.1093392",
+      "url": "https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2022.1093392/full",
+      "category": "validation"
+    },
+    {
+      "id": "stockbridge-2024-nihss-stimuli",
+      "citation": "Stockbridge et al. New Picture Stimuli for the NIH Stroke Scale: A Validation Study. Stroke. 2024;55(2).",
+      "year": 2024,
+      "doi": "10.1161/STROKEAHA.123.044384",
+      "url": "https://www.ahajournals.org/doi/10.1161/STROKEAHA.123.044384",
+      "category": "validation"
     }
   ],
   "test_cases": [

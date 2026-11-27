@@ -1,4 +1,5 @@
-import type { FormulaId } from "../../types/neurocalc.ts";
+import type { DetailedFormulaResult, FormulaId } from "../../types/neurocalc.ts";
+import { evaluatePreventSuite } from "./preventEngine.ts";
 
 export const FORMULA_METADATA: Record<
   FormulaId,
@@ -61,6 +62,12 @@ export const FORMULA_METADATA: Record<
     description:
       "Estimates 10-year recurrent MACE in patients with established atherosclerotic vascular disease with 9 regional E/O recalibrations.",
   },
+  prevent: {
+    label: "AHA PREVENT 10-Year & 30-Year CVD Risk Suite (Khan et al. 2024)",
+    equation: "100 / (1 + exp(-logOdds)) across 10y/30y x 5 outcomes",
+    description:
+      "Complete race-free AHA PREVENT equations (Base, uACR, HbA1c, SDI, Full) predicting 10-year and 30-year ASCVD, Heart Failure (with BMI), CHD, Stroke, and Total CVD.",
+  },
   prevent_10y_cvd: {
     label: "AHA PREVENT 10-Year Total CVD Risk (Khan et al. 2024)",
     equation: "100 / (1 + exp(-logOdds))",
@@ -78,6 +85,19 @@ export const FORMULA_METADATA: Record<
     equation: "LookupMatrix[sex][symptom_score][age_group][risk_factor_tier]",
     description:
       "2024 ESC Chronic Coronary Syndromes Figure 4 pre-test clinical likelihood (%) stratified by age, sex, symptom score, and 0–5 risk factors.",
+  },
+  cockcroft_gault_crcl: {
+    label: "Cockcroft-Gault Creatinine Clearance",
+    equation: "((140 - age) * weight) / (72 * creatinine) * (0.85 if female)",
+    description:
+      "Estimates creatinine clearance (mL/min) for medication renal dosing adjustments.",
+  },
+  ckd_epi_2021_egfr: {
+    label: "CKD-EPI 2021 Race-Free eGFR (Creatinine)",
+    equation:
+      "142 * min(SCr/k, 1)^a * max(SCr/k, 1)^(-1.200) * 0.9938^age * (1.012 if female)",
+    description:
+      "2021 race-free CKD-EPI creatinine equation estimating glomerular filtration rate (mL/min/1.73m²).",
   },
 };
 
@@ -611,6 +631,10 @@ export function evaluateFormula(
       return Number.isFinite(risk) ? risk * 100 : null;
     }
 
+    case "prevent": {
+      return evaluatePreventSuite(values).primaryScore;
+    }
+
     case "prevent_10y_cvd": {
       const {
         sex,
@@ -792,7 +816,64 @@ export function evaluateFormula(
       return typeof val === "number" ? val : null;
     }
 
+    case "cockcroft_gault_crcl": {
+      const { age, weight, creatinine, sex_factor } = values;
+      if (
+        !isFiniteNum(age) ||
+        !isFiniteNum(weight) ||
+        !isFiniteNum(creatinine) ||
+        !isFiniteNum(sex_factor) ||
+        creatinine <= 0 ||
+        age >= 140
+      ) {
+        return null;
+      }
+      const crcl = (((140 - age) * weight) / (72 * creatinine)) * sex_factor;
+      return Number.isFinite(crcl) ? crcl : null;
+    }
+
+    case "ckd_epi_2021_egfr": {
+      const { age, creatinine, sex } = values;
+      if (
+        !isFiniteNum(age) ||
+        !isFiniteNum(creatinine) ||
+        !isFiniteNum(sex) ||
+        creatinine <= 0
+      ) {
+        return null;
+      }
+      const isFemale = sex === 0;
+      const kappa = isFemale ? 0.7 : 0.9;
+      const alpha = isFemale ? -0.241 : -0.302;
+      const sexMult = isFemale ? 1.012 : 1.0;
+      const ratio = creatinine / kappa;
+      const egfr =
+        142 *
+        Math.pow(Math.min(ratio, 1), alpha) *
+        Math.pow(Math.max(ratio, 1), -1.2) *
+        Math.pow(0.9938, age) *
+        sexMult;
+      return Number.isFinite(egfr) ? egfr : null;
+    }
+
     default:
       return null;
   }
+}
+
+/**
+ * Evaluates a formula and returns both the primary numeric score and optional
+ * multi-outcome breakdown (e.g. AHA PREVENT 10-year & 30-year risk suite).
+ */
+export function evaluateFormulaDetailed(
+  formulaId: FormulaId,
+  values: Record<string, number>,
+  presentKeys?: ReadonlySet<string>
+): DetailedFormulaResult {
+  if (formulaId === "prevent") {
+    return evaluatePreventSuite(values, presentKeys);
+  }
+  return {
+    primaryScore: evaluateFormula(formulaId, values),
+  };
 }

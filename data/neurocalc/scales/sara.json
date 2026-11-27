@@ -1,0 +1,245 @@
+{
+  "id": "sara",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Scale for the Assessment and Rating of Ataxia (SARA)",
+    "short_name": "SARA",
+    "aliases": ["Ataxia Scale", "Cerebellar Ataxia"],
+    "subspecialties": ["Movement Disorders", "Stroke"],
+    "kind": "point_sum",
+    "summary": "8-item bedside clinical scale (0–40) quantifying cerebellar ataxia severity across gait, stance, sitting, speech, and limb coordination.",
+    "time_estimate": "3–5 min",
+    "clinical_pearls": [
+      "Items 5–8 (limb kinetic tests) are tested bilaterally; if left and right differ, enter the mean of both sides.",
+      "Total score ranges from 0 (no ataxia) to 40 (most severe ataxia).",
+      "Demonstrates high interrater reliability (ICC 0.98), test-retest reliability (ICC 0.90), and internal consistency (Cronbach alpha 0.94) in cerebellar ataxia (Schmitz-Hübsch et al., 2006).",
+      "Pitfall — Non-cerebellar confounders & oculomotor omission: Pyramidal weakness, spasticity, sensory loss, or orthopedic limitations can inflate gait/limb scores, and SARA does not score oculomotor signs (e.g., nystagmus or saccadic dysmetria)."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "sara_gait",
+      "code": "1",
+      "label": "Gait",
+      "subtitle": "Walk a safe distance parallel to a wall including a half-turn and tandem walk",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Normal, no difficulties in walking, turning, or walking tandem", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Slight difficulties, only visible when walking 10 consecutive steps in tandem", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Clearly abnormal; tandem walking > 10 steps not possible", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Considerable staggering, difficulties in half-turn, but without support", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Marked staggering, intermittent support of the wall required", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Severe staggering, permanent support of one stick or light support by one arm required", "points": 5, "badge": "5" },
+        { "id": "6", "label": "Walking > 10 m only with strong support (two special sticks or stroller or accompanying person)", "points": 6, "badge": "6" },
+        { "id": "7", "label": "Walking < 10 m only with strong support", "points": 7, "badge": "7" },
+        { "id": "8", "label": "Unable to walk, even supported", "points": 8, "badge": "8" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "sara_stance",
+      "code": "2",
+      "label": "Stance",
+      "subtitle": "Stand in natural position, feet together, and tandem for 10 seconds",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Normal, able to stand in tandem for > 10 s", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Able to stand with feet together without sway, but not in tandem for > 10 s", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Able to stand with feet together for > 10 s, but only with sway", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Able to stand for > 10 s without support in natural position, but not with feet together", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Able to stand for > 10 s in natural position only with intermittent support", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Able to stand for > 10 s in natural position only with constant support of one arm", "points": 5, "badge": "5" },
+        { "id": "6", "label": "Unable to stand for > 10 s even with constant support of one arm", "points": 6, "badge": "6" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "sara_sitting",
+      "code": "3",
+      "label": "Sitting",
+      "subtitle": "Sit on examination bed without support of feet, eyes open, arms outstretched",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Normal, no difficulties sitting > 10 s", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Slight difficulties, intermittent sway", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Constant sway, but able to sit > 10 s without support", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Able to sit for > 10 s only with intermittent support", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Unable to sit for > 10 s without continuous support", "points": 4, "badge": "4" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "sara_speech",
+      "code": "4",
+      "label": "Speech Disturbance",
+      "subtitle": "Assessed during normal conversation",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Normal", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Suggestion of speech disturbance", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Impaired speech, but easy to understand", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Occasional words difficult to understand", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Many words difficult to understand", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Only single words understandable", "points": 5, "badge": "5" },
+        { "id": "6", "label": "Speech unintelligible / anarthria", "points": 6, "badge": "6" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "sara_finger_chase",
+      "code": "5",
+      "label": "Finger Chase",
+      "subtitle": "Mean of right and left sides (5 consecutive sudden movements)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No dysmetria", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Dysmetria, under/overshooting target < 5 cm", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Dysmetria, under/overshooting target < 15 cm", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Dysmetria, under/overshooting target > 15 cm", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Unable to perform 5 pointing movements", "points": 4, "badge": "4" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "sara_nose_finger",
+      "code": "6",
+      "label": "Nose-Finger Test",
+      "subtitle": "Mean of right and left sides (kinetic tremor amplitude)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No tremor", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Tremor with an amplitude < 2 cm", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Tremor with an amplitude < 5 cm", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Tremor with an amplitude > 5 cm", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Unable to perform 5 pointing movements", "points": 4, "badge": "4" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "sara_fast_alternating",
+      "code": "7",
+      "label": "Fast Alternating Hand Movements",
+      "subtitle": "Mean of right and left sides (10 cycles of pronation/supination on thigh)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Normal, no irregularities (performs < 10 s)", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Slightly irregular (performs < 10 s)", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Clearly irregular, single movements difficult to distinguish or relevant interruptions, but performs < 10 s", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Very irregular, single movements difficult to distinguish or relevant interruptions, performs > 10 s", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Unable to complete 10 cycles", "points": 4, "badge": "4" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "sara_heel_shin",
+      "code": "8",
+      "label": "Heel-Shin Slide",
+      "subtitle": "Mean of right and left sides (3 slides along tibia)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "Normal", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Slightly abnormal, contact to shin maintained", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Clearly abnormal, goes off shin up to 3 times during 3 cycles", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Severely abnormal, goes off shin 4 or more times during 3 cycles", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Unable to perform the task", "points": 4, "badge": "4" }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "sum",
+    "min_score": 0,
+    "max_score": 40,
+    "unit": "pts",
+    "precision": 0
+  },
+  "interpretation": [
+    {
+      "id": "sara_none",
+      "min": 0,
+      "max": 0,
+      "label": "No Ataxia (0 pts)",
+      "severity": "normal",
+      "summary": "No clinical signs of cerebellar ataxia on examination.",
+      "refs": [{ "source_id": "schmitzhubsch-2006-sara", "locator": "Table 1" }]
+    },
+    {
+      "id": "sara_mild",
+      "min": 1,
+      "max": 14,
+      "label": "Mild Ataxia (1–14 pts)",
+      "severity": "mild",
+      "summary": "Mild cerebellar dysfunction; typically ambulatory without walking aids.",
+      "clinical_note": "SARA is a continuous severity measure; 1–14 / 15–24 / >=25 are pragmatic clinical strata.",
+      "refs": [{ "source_id": "schmitzhubsch-2006-sara", "locator": "p. 1718-1719" }]
+    },
+    {
+      "id": "sara_mod",
+      "min": 15,
+      "max": 24,
+      "label": "Moderate Ataxia (15–24 pts)",
+      "severity": "moderate",
+      "summary": "Moderate ataxia; often requires walking aid or assistance for gait and daily tasks.",
+      "refs": [{ "source_id": "schmitzhubsch-2006-sara", "locator": "p. 1718-1719" }]
+    },
+    {
+      "id": "sara_sev",
+      "min": 25,
+      "max": 40,
+      "label": "Severe Ataxia (25–40 pts)",
+      "severity": "severe",
+      "summary": "Severe ataxia; typically wheelchair-dependent or unable to stand/sit unsupported.",
+      "refs": [{ "source_id": "schmitzhubsch-2006-sara", "locator": "p. 1718-1719" }]
+    }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_sara_bilateral",
+      "target_type": "scale",
+      "target_id": "sara",
+      "chip_label": "Scoring Rule",
+      "title": "Bilateral Averaging for Items 5–8",
+      "bedside_steps": [
+        "Examine items 5 (Finger Chase), 6 (Nose-Finger), 7 (Fast Alternating Hand Movements), and 8 (Heel-Shin Slide) on both right and left sides separately.",
+        "If scores differ between sides, take the arithmetic mean (if a half-point results in asymmetric ataxia, round to the nearest integer in this 1-point selector)."
+      ],
+      "pitfalls_and_exceptions": [
+        "Do not score weakness or spasticity as ataxia if the task cannot be performed solely due to pyramidal paresis—document confounding deficits separately."
+      ],
+      "refs": [{ "source_id": "schmitzhubsch-2006-sara", "locator": "Appendix / Table 1" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "schmitzhubsch-2006-sara",
+      "citation": "Schmitz-Hübsch T, du Montcel ST, Baliko L, et al. Scale for the assessment and rating of ataxia: development of a new clinical scale. Neurology. 2006;66(11):1717-1720.",
+      "year": 2006,
+      "pmid": "16769946",
+      "doi": "10.1212/01.wnl.0000219042.60538.92",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16769946/",
+      "category": "primary"
+    }
+  ],
+  "test_cases": [
+    {
+      "name": "Normal (0)",
+      "inputs": { "sara_gait": "0", "sara_stance": "0", "sara_sitting": "0", "sara_speech": "0", "sara_finger_chase": "0", "sara_nose_finger": "0", "sara_fast_alternating": "0", "sara_heel_shin": "0" },
+      "expected_score": 0,
+      "expected_band_id": "sara_none"
+    },
+    {
+      "name": "Mild ataxia (10)",
+      "inputs": { "sara_gait": "3", "sara_stance": "2", "sara_sitting": "1", "sara_speech": "1", "sara_finger_chase": "1", "sara_nose_finger": "0", "sara_fast_alternating": "1", "sara_heel_shin": "1" },
+      "expected_score": 10,
+      "expected_band_id": "sara_mild"
+    },
+    {
+      "name": "Severe ataxia (32)",
+      "inputs": { "sara_gait": "7", "sara_stance": "5", "sara_sitting": "3", "sara_speech": "4", "sara_finger_chase": "3", "sara_nose_finger": "3", "sara_fast_alternating": "4", "sara_heel_shin": "3" },
+      "expected_score": 32,
+      "expected_band_id": "sara_sev"
+    }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

@@ -11,7 +11,10 @@
     "time_estimate": "< 1 min",
     "clinical_pearls": [
       "Evaluate actual performance and assistance required in daily life, not theoretical capacity.",
-      "Pre-stroke mRS is critical when determining acute thrombectomy eligibility."
+      "Pre-stroke mRS is critical when determining acute thrombectomy eligibility.",
+      "Standard measure of global functional outcome in stroke clinical trials; correlates with stroke type, infarct size, and other neurological impairment scales.",
+      "Pitfall — Subjectivity & interrater variability: Subjective grade boundaries can introduce variability and bias across raters (Banks & Marotta, 2007).",
+      "Pitfall — Unstructured interviews: Using a structured interview or simplified questionnaire improves interrater reliability compared with unstructured grading, though some variability remains."
     ]
   },
   "items": [
@@ -128,7 +131,33 @@
       "id": "vanswieten-1988-mrs",
       "citation": "van Swieten JC, Koudstaal PJ, Visser MC, Schouten HJ, van Gijn J. Interobserver agreement for the assessment of handicap in stroke patients. Stroke. 1988;19(5):604-607.",
       "year": 1988,
-      "pmid": "3363593"
+      "pmid": "3363593",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3363593/",
+      "category": "primary"
+    },
+    {
+      "id": "banks-2007-mrs-review",
+      "citation": "Banks JL, Marotta CA. Outcomes validity and reliability of the modified Rankin scale: implications for stroke clinical trials: a literature review and synthesis. Stroke. 2007;38(3):1091-1096.",
+      "year": 2007,
+      "pmid": "17272767",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17272767/",
+      "category": "validation"
+    },
+    {
+      "id": "fearon-2012-prestroke-mrs",
+      "citation": "Fearon P, McArthur KS, Garrity K, et al. Prestroke modified Rankin stroke scale has moderate interobserver reliability and validity in an acute stroke setting. Stroke. 2012;43(12):3184-3188.",
+      "year": 2012,
+      "pmid": "23150650",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23150650/",
+      "category": "validation"
+    },
+    {
+      "id": "lopez-cancio-2015-mrs",
+      "citation": "López-Cancio E, Salvat M, Cerdà N, et al. Phone and video-based modalities of central blinded adjudication of modified Rankin scores in an endovascular stroke trial. Stroke. 2015;46(12):3405-3410.",
+      "year": 2015,
+      "pmid": "26542697",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26542697/",
+      "category": "validation"
     }
   ],
   "test_cases": [

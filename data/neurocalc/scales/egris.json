@@ -1,0 +1,139 @@
+{
+  "id": "egris",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Erasmus GBS Respiratory Insufficiency Score (EGRIS)",
+    "short_name": "EGRIS",
+    "aliases": ["GBS respiratory score", "Guillain-Barre ventilation", "Walgaard score"],
+    "subspecialties": ["Neuromuscular", "Neurocritical Care"],
+    "kind": "point_sum",
+    "summary": "3-item admission score (0–7) predicting the probability of requiring mechanical ventilation within the first week in Guillain-Barré syndrome.",
+    "time_estimate": "< 1 min",
+    "clinical_pearls": [
+      "Calculate at hospital admission using MRC Sum Score (0–60), presence of facial/bulbar weakness, and days from weakness onset.",
+      "Even in low-risk patients, serial bedside FVC / NIF monitoring remains essential if clinical progression continues.",
+      "Externally validated across international IGOS regions (Doets et al., 2022), confirming strong overall discrimination for 1-week mechanical ventilation.",
+      "Pitfall — Regional calibration & admission-only scope: Absolute predicted probabilities can vary across geographic regions (requiring local calibration), and EGRIS does not replace dynamic respiratory monitoring (FVC < 20 mL/kg, NIF > -30 cmH2O) during hospitalization."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "days_onset_admission",
+      "code": "1",
+      "label": "Days Between Onset of Weakness and Hospital Admission",
+      "required": true,
+      "options": [
+        { "id": "gt7", "label": "> 7 days", "points": 0, "badge": "0" },
+        { "id": "4_7", "label": "4–7 days", "points": 1, "badge": "+1" },
+        { "id": "le3", "label": "<= 3 days", "points": 2, "badge": "+2" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "facial_bulbar_weakness",
+      "code": "2",
+      "label": "Facial and/or Bulbar Weakness at Admission",
+      "required": true,
+      "options": [
+        { "id": "absent", "label": "Absent", "points": 0, "badge": "0" },
+        { "id": "present", "label": "Present (facial palsy, dysphagia, dysarthria, or weak cough)", "points": 1, "badge": "+1" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "mrc_sum_admission",
+      "code": "3",
+      "label": "MRC Sum Score at Admission (0–60)",
+      "subtitle": "Sum of 6 bilateral muscle groups (0–5 each)",
+      "required": true,
+      "options": [
+        { "id": "51_60", "label": "51–60 (Normal or mild weakness)", "points": 0, "badge": "0" },
+        { "id": "41_50", "label": "41–50", "points": 1, "badge": "+1" },
+        { "id": "31_40", "label": "31–40", "points": 2, "badge": "+2" },
+        { "id": "21_30", "label": "21–30", "points": 3, "badge": "+3" },
+        { "id": "0_20", "label": "0–20 (Severe tetraparesis)", "points": 4, "badge": "+4" }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "sum",
+    "min_score": 0,
+    "max_score": 7,
+    "unit": "pts",
+    "precision": 0
+  },
+  "interpretation": [
+    {
+      "id": "egris_low",
+      "min": 0,
+      "max": 2,
+      "label": "Low Risk (0–2 pts · ~4% Ventilation Risk)",
+      "severity": "mild",
+      "summary": "Low probability (~4%) of mechanical ventilation within 1 week; monitor on neurology ward with regular respiratory checks.",
+      "refs": [{ "source_id": "walgaard-2010-egris", "locator": "Table 3" }]
+    },
+    {
+      "id": "egris_mod",
+      "min": 3,
+      "max": 4,
+      "label": "Intermediate Risk (3–4 pts · ~24% Ventilation Risk)",
+      "severity": "moderate",
+      "summary": "Intermediate probability (~24%) of mechanical ventilation within 1 week; consider step-down/ICU monitoring and frequent FVC/NIF.",
+      "refs": [{ "source_id": "walgaard-2010-egris", "locator": "Table 3" }]
+    },
+    {
+      "id": "egris_high",
+      "min": 5,
+      "max": 7,
+      "label": "High Risk (5–7 pts · ~65% Ventilation Risk)",
+      "severity": "critical",
+      "summary": "High probability (~65%) of mechanical ventilation within 1 week; admit to ICU and prepare for early elective intubation if FVC < 20 mL/kg or NIF > -30 cmH2O.",
+      "refs": [{ "source_id": "walgaard-2010-egris", "locator": "Table 3" }]
+    }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_egris_mrc",
+      "target_type": "item",
+      "target_id": "mrc_sum_admission",
+      "chip_label": "MRC Sum Guide",
+      "title": "Calculating Admission MRC Sum Score",
+      "bedside_steps": [
+        "Score 6 bilateral muscle pairs (0–5 each): shoulder abduction, elbow flexion, wrist extension, hip flexion, knee extension, ankle dorsiflexion.",
+        "Use the NeuroCalc 'MRC Sum Score' calculator if you need to sum all 12 individual muscle groups."
+      ],
+      "pitfalls_and_exceptions": [
+        "Rapidly progressive weakness (<= 3 days from onset to admission) is a major independent predictor of respiratory failure."
+      ],
+      "refs": [{ "source_id": "walgaard-2010-egris", "locator": "p. 782-785" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "walgaard-2010-egris",
+      "citation": "Walgaard C, Lingsma HF, Ruts L, et al. Prediction of respiratory insufficiency in Guillain-Barré syndrome. Ann Neurol. 2010;67(6):781-787.",
+      "year": 2010,
+      "pmid": "20517939",
+      "doi": "10.1002/ana.21976",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20517939/",
+      "category": "primary"
+    },
+    {
+      "id": "doets-2022-egris-igos",
+      "citation": "Doets AY, Walgaard C, Lingsma HF, et al. International Validation of the Erasmus Guillain-Barré Syndrome Respiratory Insufficiency Score. Ann Neurol. 2022;91(4):521-531.",
+      "year": 2022,
+      "pmid": "35188689",
+      "doi": "10.1002/ana.26312",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35188689/",
+      "category": "validation"
+    }
+  ],
+  "test_cases": [
+    { "name": "Low risk (0)", "inputs": { "days_onset_admission": "gt7", "facial_bulbar_weakness": "absent", "mrc_sum_admission": "51_60" }, "expected_score": 0, "expected_band_id": "egris_low" },
+    { "name": "Intermediate risk (4)", "inputs": { "days_onset_admission": "4_7", "facial_bulbar_weakness": "present", "mrc_sum_admission": "31_40" }, "expected_score": 4, "expected_band_id": "egris_mod" },
+    { "name": "High risk max (7)", "inputs": { "days_onset_admission": "le3", "facial_bulbar_weakness": "present", "mrc_sum_admission": "0_20" }, "expected_score": 7, "expected_band_id": "egris_high" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

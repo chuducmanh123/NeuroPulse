@@ -10,7 +10,9 @@
     "summary": "Calculates serum osmolality (2×Na + Glucose/18 + BUN/2.8 [+ Ethanol/4.6]) for osmolal gap and osmotherapy monitoring.",
     "time_estimate": "< 30 sec",
     "clinical_pearls": [
-      "An osmolal gap (Measured − Calculated > 10 mOsm/kg) suggests unmeasured osmoles such as mannitol, methanol, ethylene glycol, or propylene glycol."
+      "An osmolal gap (Measured − Calculated > 10 mOsm/kg) suggests unmeasured osmoles such as mannitol, methanol, ethylene glycol, or propylene glycol.",
+      "Serum osmolality (mOsm/kg solvent) is measured by an osmometer, whereas calculated formulas using plasma concentrations yield osmolarity (mOsm/L solution); in dilute plasma they are numerically nearly identical.",
+      "Pitfall — Extreme hyperglycemia: In hyperosmolar hyperglycemic state (HHS) and extreme hyperglycemia, the osmolar gap can be skewed and requires clinical judgment."
     ]
   },
   "items": [
@@ -103,7 +105,26 @@
       "id": "worthley-1987-osm",
       "citation": "Worthley LI, Guerin M, Pain RW. For calculating osmolality, the simplest formula is the best. Anaesth Intensive Care. 1987;15(2):199-202.",
       "year": 1987,
-      "pmid": "3605570"
+      "pmid": "3605570",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3605570/",
+      "category": "primary"
+    },
+    {
+      "id": "purssell-2001-ethanol-osm",
+      "citation": "Purssell RA, Pudek M, Brubacher J, Abu-Laban RB. Derivation and validation of a formula to calculate the contribution of ethanol to the osmolal gap. Ann Emerg Med. 2001;38(6):653-659.",
+      "year": 2001,
+      "pmid": "11719745",
+      "doi": "10.1067/mem.2001.119455",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11719745/",
+      "category": "primary"
+    },
+    {
+      "id": "siervo-2014-osm-validation",
+      "citation": "Siervo M, Bunn D, Prado CM, Hooper L. Accuracy of prediction equations for serum osmolarity in frail older people with and without diabetes. Am J Clin Nutr. 2014;100(3):867-876.",
+      "year": 2014,
+      "doi": "10.3945/ajcn.114.086769",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4135495/",
+      "category": "validation"
     }
   ],
   "test_cases": [

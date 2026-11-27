@@ -10,7 +10,11 @@
     "summary": "7-point score estimating 2-, 7-, and 90-day stroke risk after transient ischemic attack.",
     "time_estimate": "< 1 min",
     "clinical_pearls": [
-      "Low ABCD2 (0–3) does NOT exclude high-risk etiologies such as symptomatic carotid stenosis, atrial fibrillation, or crescendo TIA."
+      "Low ABCD2 (0–3) does NOT exclude high-risk etiologies such as symptomatic carotid stenosis, atrial fibrillation, or crescendo TIA.",
+      "Higher ABCD2 scores generally correlate with increased short-term stroke risk and higher likelihood of true TIA (Josephson et al., 2008).",
+      "Patients with low baseline stroke risk (≤ 2%) and low ABCD2 score (0–2) have a low 7-day stroke risk (0.4–0.8%).",
+      "Pitfall — Emergency department performance: Large prospective ED validation (Perry et al., 2011) showed poor sensitivity for identifying low-risk patients and poor specificity for high-risk patients.",
+      "Pitfall — Setting & rater bias: ABCD2 was derived in outpatient cohorts and shows lower accuracy when applied by non-specialists or in low-baseline-risk populations."
     ]
   },
   "items": [
@@ -123,7 +127,45 @@
       "id": "johnston-2007-abcd2",
       "citation": "Johnston SC, Rothwell PM, Nguyen-Huynh MN, et al. Validation and refinement of scores to predict very early stroke risk after transient ischaemic attack. Lancet. 2007;369(9558):283-292.",
       "year": 2007,
-      "pmid": "17258668"
+      "pmid": "17258668",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17258668/",
+      "category": "primary"
+    },
+    {
+      "id": "josephson-2008-abcd2",
+      "citation": "Josephson SA, Sidney S, Pham TN, Bernstein AL, Johnston SC. Higher ABCD2 score predicts patients most likely to have true transient ischemic attack. Stroke. 2008;39(11):3096-3098.",
+      "year": 2008,
+      "pmid": "18688003",
+      "doi": "10.1161/STROKEAHA.108.514562",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18688003/",
+      "category": "validation"
+    },
+    {
+      "id": "perry-2011-abcd2-ed",
+      "citation": "Perry JJ, Sharma M, Sivilotti ML, et al. Prospective validation of the ABCD2 score for patients in the emergency department with transient ischemic attack. CMAJ. 2011;183(10):1137-1145.",
+      "year": 2011,
+      "pmid": "21646462",
+      "doi": "10.1503/cmaj.101668",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21646462/",
+      "category": "validation"
+    },
+    {
+      "id": "stead-2011-abcd2-ed",
+      "citation": "Stead LG, Suravaram S, Bellolio MF, et al. An assessment of the incremental value of the ABCD2 score in the emergency department evaluation of transient ischemic attack. Ann Emerg Med. 2011;57(1):46-51.",
+      "year": 2011,
+      "pmid": "20855130",
+      "doi": "10.1016/j.annemergmed.2010.07.001",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20855130/",
+      "category": "validation"
+    },
+    {
+      "id": "sanders-2012-abcd2-meta",
+      "citation": "Sanders LM, Srikanth VK, Blacker DJ, Jolley DJ, Cooper KA, Phan TG. Performance of the ABCD2 score for stroke risk post TIA: meta-analysis and probability modeling. Neurology. 2012;79(10):971-980.",
+      "year": 2012,
+      "pmid": "22700810",
+      "doi": "10.1212/WNL.0b013e31825f9d02",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22700810/",
+      "category": "validation"
     }
   ],
   "test_cases": [

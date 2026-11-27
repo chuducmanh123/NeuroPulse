@@ -10,7 +10,11 @@
     "summary": "9-point score identifying modifiable bleeding risk factors in patients on anticoagulation for atrial fibrillation.",
     "time_estimate": "< 1 min",
     "clinical_pearls": [
-      "A high HAS-BLED score (>= 3) is NOT a contraindication to anticoagulation; it flags patients needing closer monitoring and correction of modifiable risks (BP, NSAIDs, alcohol, labile INR)."
+      "A high HAS-BLED score (>= 3) is NOT a contraindication to anticoagulation; it flags patients needing closer monitoring and correction of modifiable risks (BP, NSAIDs, alcohol, labile INR).",
+      "Annual major bleeding rate increases progressively with higher HAS-BLED scores across both VKA- and DOAC-treated cohorts.",
+      "Pitfall — Overlapping stroke and bleeding factors: Many components of HAS-BLED (age, hypertension, prior stroke) also drive stroke risk and favor anticoagulation.",
+      "Pitfall — Limited accuracy in CKD and cancer: HAS-BLED performs poorly in end-stage kidney disease and active malignancy; newer tools (e.g., DOAC Score) may better predict bleeding on direct oral anticoagulants.",
+      "Pitfall — Guideline stance: Major US and European AF guidelines emphasize addressing modifiable bleeding risks rather than relying on any single bleeding score cutoff to withhold anticoagulation."
     ]
   },
   "items": [
@@ -65,7 +69,45 @@
       "id": "pisters-2010-hasbled",
       "citation": "Pisters R, Lane DA, Nieuwlaat R, de Vos CB, Crijns HJ, Lip GY. A novel user-friendly score (HAS-BLED) to assess 1-year risk of major bleeding in patients with atrial fibrillation: the Euro Heart Survey. Chest. 2010;138(5):1093-1100.",
       "year": 2010,
-      "pmid": "20299623"
+      "pmid": "20299623",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20299623/",
+      "category": "primary"
+    },
+    {
+      "id": "lip-2011-hasbled-validation",
+      "citation": "Lip GY, Frison L, Halperin JL, Lane DA. Comparative validation of a novel risk score for predicting bleeding risk in anticoagulated patients with atrial fibrillation: the HAS-BLED score. J Am Coll Cardiol. 2011;57(2):173-180.",
+      "year": 2011,
+      "pmid": "21111555",
+      "doi": "10.1016/j.jacc.2010.09.024",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21111555/",
+      "category": "validation"
+    },
+    {
+      "id": "zhu-2015-hasbled-meta",
+      "citation": "Zhu W, He W, Guo L, Wang X, Hong K. The HAS-BLED Score for Predicting Major Bleeding Risk in Anticoagulated Patients With Atrial Fibrillation: A Systematic Review and Meta-analysis. Clin Cardiol. 2015;38(9):555-561.",
+      "year": 2015,
+      "pmid": "26418409",
+      "doi": "10.1002/clc.22435",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26418409/",
+      "category": "validation"
+    },
+    {
+      "id": "gao-2021-hasbled-doac",
+      "citation": "Gao X, Cai X, Yang Y, Zhou Y, Zhu W. Diagnostic Accuracy of the HAS-BLED Bleeding Score in VKA- or DOAC-Treated Patients With Atrial Fibrillation: A Systematic Review and Meta-Analysis. Front Cardiovasc Med. 2021;8:757087.",
+      "year": 2021,
+      "pmid": "34881309",
+      "doi": "10.3389/fcvm.2021.757087",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34881309/",
+      "category": "validation"
+    },
+    {
+      "id": "mei-2024-hasbled-doac",
+      "citation": "Mei DA, Imberti JF, Bonini N, et al. Performance of HAS-BLED and DOAC scores to predict major bleeding events in atrial fibrillation patients treated with direct oral anticoagulants: A report from a prospective European observational registry. Eur J Intern Med. 2024;128:63-70.",
+      "year": 2024,
+      "pmid": "38969571",
+      "doi": "10.1016/j.ejim.2024.06.022",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38969571/",
+      "category": "validation"
     }
   ],
   "test_cases": [

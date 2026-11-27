@@ -10,7 +10,9 @@
     "summary": "6-point baseline risk stratification tool for 30-day mortality in spontaneous intracerebral hemorrhage.",
     "time_estimate": "< 1 min",
     "clinical_pearls": [
-      "Do NOT use the ICH Score alone as a basis for early withdrawal of life-sustaining treatment (self-fulfilling prophecy bias)."
+      "Do NOT use the ICH Score alone as a basis for early withdrawal of life-sustaining treatment (self-fulfilling prophecy bias).",
+      "Designed as a standardized grading and communication tool after ICH diagnosis rather than a serial neurological exam (unlike GCS).",
+      "Pitfall — Early DNR/withdrawal confounding: Historical 30-day mortality estimates were heavily influenced by early care limitations and clinician gestalt; avoid using the score as the sole determinant of prognosis."
     ]
   },
   "items": [
@@ -103,7 +105,17 @@
       "id": "hemphill-2001-ich",
       "citation": "Hemphill JC 3rd, Bonovich DC, Besmertis L, Manley GT, Johnston SC. The ICH score: a simple, reliable grading scale for intracerebral hemorrhage. Stroke. 2001;32(4):891-897.",
       "year": 2001,
-      "pmid": "11283388"
+      "pmid": "11283388",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11283388/",
+      "category": "primary"
+    },
+    {
+      "id": "clarke-2004-ich-validation",
+      "citation": "Clarke JL, Johnston SC, Farrant M, Bernstein R, Tong D, Hemphill JC 3rd. External validation of the ICH score. Neurocrit Care. 2004;1(1):53-60.",
+      "year": 2004,
+      "pmid": "16174898",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16174898/",
+      "category": "validation"
     }
   ],
   "test_cases": [

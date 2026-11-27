@@ -6,6 +6,7 @@ import type {
   ScaleKind,
   ScaleRecord,
   ScaleReference,
+  ScaleReferenceCategory,
   SeverityLevel,
   ValidationError,
 } from "../../types/neurocalc.ts";
@@ -22,6 +23,10 @@ const VALID_SEVERITIES = new Set<SeverityLevel>([
   "critical",
   "info",
 ]);
+const VALID_REFERENCE_CATEGORIES = new Set<ScaleReferenceCategory>([
+  "primary",
+  "validation",
+]);
 const VALID_FORMULA_IDS = new Set<FormulaId>([
   "abc_2",
   "corrected_na_katz",
@@ -32,9 +37,12 @@ const VALID_FORMULA_IDS = new Set<FormulaId>([
   "score2_diabetes",
   "ascvd_pce",
   "smart2",
+  "prevent",
   "prevent_10y_cvd",
   "grace_2_1y_death",
   "rf_cl",
+  "cockcroft_gault_crcl",
+  "ckd_epi_2021_egfr",
 ]);
 const VALID_SUBSPECIALTIES = new Set<string>(
   SUBSPECIALTY_LIST.filter((s) => s !== "All Subspecialties")
@@ -95,6 +103,16 @@ function validateReferenceList(
       errors.push({
         path: `${p}.year`,
         message: "Year must be an integer between 1900 and 2100",
+      });
+    }
+    if (
+      entry.category !== undefined &&
+      (typeof entry.category !== "string" ||
+        !VALID_REFERENCE_CATEGORIES.has(entry.category as ScaleReferenceCategory))
+    ) {
+      errors.push({
+        path: `${p}.category`,
+        message: "Reference category must be 'primary' or 'validation'",
       });
     }
   });

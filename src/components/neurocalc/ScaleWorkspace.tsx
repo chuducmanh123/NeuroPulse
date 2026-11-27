@@ -18,9 +18,11 @@ import {
 import type {
   AssessmentGuide,
   NumericScaleItem,
+  ScaleReference,
   ScaleWithEffectiveStatus,
   SelectScaleItem,
 } from "@/types/neurocalc";
+import { sanitizeUrl } from "@/utils/safeUrl";
 import { AssessmentGuideDrawer } from "./AssessmentGuidePanel";
 import { NumericItemCard } from "./NumericItemCard";
 import { ScoreResultCard } from "./ScoreResultCard";
@@ -87,7 +89,23 @@ export function ScaleWorkspace({
   }, [evaluation.fieldErrors]);
 
   const handleSelectOption = (itemId: string, optionId: string) => {
-    setInputs((prev) => ({ ...prev, [itemId]: optionId }));
+    const targetItem = scale.items.find((i) => i.id === itemId);
+    setInputs((prev) => {
+      if (targetItem && !targetItem.required && prev[itemId] === optionId) {
+        const next = { ...prev };
+        delete next[itemId];
+        return next;
+      }
+      return { ...prev, [itemId]: optionId };
+    });
+  };
+
+  const handleClearItem = (itemId: string) => {
+    setInputs((prev) => {
+      const next = { ...prev };
+      delete next[itemId];
+      return next;
+    });
   };
 
   const handleNumericChange = (itemId: string, value: string, unit: string) => {
@@ -100,6 +118,7 @@ export function ScaleWorkspace({
 
   const scrollToNextUnanswered = () => {
     for (const item of scale.items) {
+      if (!item.required) continue;
       const val = inputs[item.id];
       const answered =
         item.kind === "select"
@@ -115,20 +134,14 @@ export function ScaleWorkspace({
     }
   };
 
-  const scrollToResult = () => {
-    document
-      .getElementById("neurocalc-result-card")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   const showProgressBar = scale.items.length >= 4;
   const progressPct =
     evaluation.requiredCount > 0
-      ? Math.round((evaluation.answeredCount / evaluation.requiredCount) * 100)
+      ? Math.round((evaluation.answeredRequiredCount / evaluation.requiredCount) * 100)
       : 0;
 
   return (
-    <div className="pb-24 lg:pb-8">
+    <div className="max-w-4xl mx-auto pb-4">
       {/* Top Breadcrumb & Scale Header Card */}
       <div className="mb-5">
         <button
@@ -195,7 +208,7 @@ export function ScaleWorkspace({
                 Completion Progress
               </span>
               <span className="font-mono-tech font-bold text-[var(--text-ink)]">
-                {evaluation.answeredCount} / {evaluation.requiredCount}
+                {evaluation.answeredRequiredCount} / {evaluation.requiredCount}
               </span>
             </div>
             <div className="h-2 w-full rounded-full bg-[var(--bg-subtle)] overflow-hidden">
@@ -219,9 +232,8 @@ export function ScaleWorkspace({
         </div>
       )}
 
-      {/* 2-Column Bedside Workspace */}
-      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_350px] gap-6 items-start">
-        <div className="space-y-3.5">
+      {/* Single-Column Bedside Workspace (Result stays docked at bottom) */}
+      <div className="space-y-3.5">
           {scale.items.map((item) => {
             if (item.kind === "select") {
               const selItem = item as SelectScaleItem;
@@ -236,6 +248,7 @@ export function ScaleWorkspace({
                   item={selItem}
                   selectedOptionId={selectedOptId}
                   onSelect={handleSelectOption}
+                  onClear={handleClearItem}
                   itemGuide={guidesIndex.itemGuides.get(selItem.id)}
                   optionGuidesByOptionId={
                     guidesIndex.optionGuides.get(selItem.id) ?? new Map()
@@ -275,110 +288,143 @@ export function ScaleWorkspace({
             );
           })}
 
-          {/* Clinical Pearls & References Accordion */}
-          {(scale.metadata.clinical_pearls?.length || scale.references.length > 0) && (
-            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] overflow-hidden">
-              <button
-                type="button"
-                onClick={() => setShowRefs((prev) => !prev)}
-                aria-expanded={showRefs}
-                className="w-full px-5 py-3.5 flex items-center justify-between text-left hover:bg-[var(--bg-subtle)]/50 transition-colors"
-              >
-                <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)]">
-                  <BookOpen className="w-4 h-4 text-[#0E7490] dark:text-cyan-400" aria-hidden="true" />
-                  <span>Clinical Pearls &amp; Primary References ({scale.references.length})</span>
-                </span>
-                {showRefs ? (
-                  <ChevronUp className="w-4 h-4 text-[var(--text-muted)]" aria-hidden="true" />
-                ) : (
-                  <ChevronDown className="w-4 h-4 text-[var(--text-muted)]" aria-hidden="true" />
-                )}
-              </button>
+          {/* Clinical Pearls and Pitfalls & References Accordion */}
+          {(scale.metadata.clinical_pearls?.length || scale.references.length > 0) && (() => {
+            const primaryRefs = scale.references.filter(
+              (ref) => ref.category !== "validation"
+            );
+            const validationRefs = scale.references.filter(
+              (ref) => ref.category === "validation"
+            );
+            const renderReferenceItem = (ref: ScaleReference) => {
+              const safeCustomUrl = sanitizeUrl(ref.url);
+              const trimmedPmid = ref.pmid?.trim();
+              const isNumericPmid =
+                typeof trimmedPmid === "string" && /^\d+$/.test(trimmedPmid);
+              const trimmedDoi = ref.doi?.trim();
+              const doiUrl = trimmedDoi
+                ? sanitizeUrl(`https://doi.org/${trimmedDoi}`)
+                : "";
 
-              {showRefs && (
-                <div className="px-5 pb-4 pt-1 border-t border-[var(--border-hairline)] space-y-4">
-                  {scale.metadata.clinical_pearls &&
-                    scale.metadata.clinical_pearls.length > 0 && (
+              return (
+                <li key={ref.id}>
+                  <span>{ref.citation}</span>
+                  {trimmedPmid && (
+                    isNumericPmid ? (
+                      <a
+                        href={`https://pubmed.ncbi.nlm.nih.gov/${trimmedPmid}/`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-1.5 font-mono-tech text-[11px] text-[#0E7490] dark:text-cyan-400 hover:underline"
+                      >
+                        PMID: {trimmedPmid}
+                      </a>
+                    ) : (
+                      <span className="ml-1.5 font-mono-tech text-[11px] text-[var(--text-muted)]">
+                        PMID: {trimmedPmid}
+                      </span>
+                    )
+                  )}
+                  {!trimmedPmid && trimmedDoi && (
+                    doiUrl ? (
+                      <a
+                        href={doiUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-1.5 font-mono-tech text-[11px] text-[#0E7490] dark:text-cyan-400 hover:underline"
+                      >
+                        DOI: {trimmedDoi}
+                      </a>
+                    ) : (
+                      <span className="ml-1.5 font-mono-tech text-[11px] text-[var(--text-muted)]">
+                        DOI: {trimmedDoi}
+                      </span>
+                    )
+                  )}
+                  {!trimmedPmid && !trimmedDoi && safeCustomUrl && (
+                    <a
+                      href={safeCustomUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-1.5 text-[11px] font-semibold text-[#0E7490] dark:text-cyan-400 hover:underline"
+                    >
+                      Link
+                    </a>
+                  )}
+                </li>
+              );
+            };
+
+            return (
+              <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => setShowRefs((prev) => !prev)}
+                  aria-expanded={showRefs}
+                  className="w-full px-5 py-3.5 flex items-center justify-between text-left hover:bg-[var(--bg-subtle)]/50 transition-colors"
+                >
+                  <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)]">
+                    <BookOpen className="w-4 h-4 text-[#0E7490] dark:text-cyan-400" aria-hidden="true" />
+                    <span>Clinical Pearls and Pitfalls &amp; References ({scale.references.length})</span>
+                  </span>
+                  {showRefs ? (
+                    <ChevronUp className="w-4 h-4 text-[var(--text-muted)]" aria-hidden="true" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4 text-[var(--text-muted)]" aria-hidden="true" />
+                  )}
+                </button>
+
+                {showRefs && (
+                  <div className="px-5 pb-4 pt-1 border-t border-[var(--border-hairline)] space-y-4">
+                    {scale.metadata.clinical_pearls &&
+                      scale.metadata.clinical_pearls.length > 0 && (
+                        <div>
+                          <h4 className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#0E7490] dark:text-cyan-400 mb-1.5">
+                            <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+                            <span>Clinical Pearls and Pitfalls</span>
+                          </h4>
+                          <ul className="list-disc list-inside space-y-1 text-xs text-[var(--text-secondary)] leading-relaxed">
+                            {scale.metadata.clinical_pearls.map((pearl, idx) => (
+                              <li key={idx}>{pearl}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                    {primaryRefs.length > 0 && (
                       <div>
-                        <h4 className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#0E7490] dark:text-cyan-400 mb-1.5">
-                          <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
-                          <span>Clinical Pearls</span>
+                        <h4 className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
+                          Original/Primary Reference
                         </h4>
-                        <ul className="list-disc list-inside space-y-1 text-xs text-[var(--text-secondary)] leading-relaxed">
-                          {scale.metadata.clinical_pearls.map((pearl, idx) => (
-                            <li key={idx}>{pearl}</li>
-                          ))}
-                        </ul>
+                        <ol className="list-decimal list-inside space-y-1.5 text-xs text-[var(--text-secondary)] leading-relaxed">
+                          {primaryRefs.map(renderReferenceItem)}
+                        </ol>
                       </div>
                     )}
 
-                  <div>
-                    <h4 className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
-                      Primary References
-                    </h4>
-                    <ol className="list-decimal list-inside space-y-1.5 text-xs text-[var(--text-secondary)] leading-relaxed">
-                      {scale.references.map((ref) => (
-                        <li key={ref.id}>
-                          <span>{ref.citation}</span>
-                          {ref.pmid && (
-                            <span className="ml-1.5 font-mono-tech text-[11px] text-[var(--text-muted)]">
-                              PMID: {ref.pmid}
-                            </span>
-                          )}
-                        </li>
-                      ))}
-                    </ol>
+                    {validationRefs.length > 0 && (
+                      <div>
+                        <h4 className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
+                          Validation
+                        </h4>
+                        <ol className="list-decimal list-inside space-y-1.5 text-xs text-[var(--text-secondary)] leading-relaxed">
+                          {validationRefs.map(renderReferenceItem)}
+                        </ol>
+                      </div>
+                    )}
                   </div>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-
-        {/* Sticky Live Result Column */}
-        <aside className="lg:sticky lg:top-24">
-          <ScoreResultCard
-            scale={scale}
-            evaluation={evaluation}
-            onReset={handleReset}
-          />
-        </aside>
+                )}
+              </div>
+            );
+          })()}
       </div>
 
-      {/* Mobile Sticky Bottom Score Summary Bar */}
-      {!evaluation.isGated && (
-        <div className="lg:hidden fixed bottom-0 inset-x-0 z-30 border-t border-[var(--border-hairline)] bg-[var(--bg-surface)]/95 backdrop-blur-md px-4 py-2.5 shadow-lg">
-          <div className="flex items-center justify-between gap-3">
-            <button
-              type="button"
-              onClick={scrollToResult}
-              className="flex items-center gap-3 text-left min-w-0 flex-1"
-            >
-              <span className="font-mono-tech text-2xl font-bold text-[var(--text-ink)]">
-                {evaluation.formattedScore ?? "—"}
-              </span>
-              <div className="min-w-0">
-                <span className="block text-xs font-bold text-[var(--text-ink)] truncate">
-                  {evaluation.band
-                    ? evaluation.band.label
-                    : `${evaluation.answeredCount}/${evaluation.requiredCount} answered`}
-                </span>
-                <span className="block text-[10.5px] text-[var(--text-muted)]">
-                  Tap to view full result
-                </span>
-              </div>
-            </button>
-
-            <button
-              type="button"
-              onClick={handleReset}
-              className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] px-3 py-2 text-xs font-semibold text-[var(--text-secondary)]"
-            >
-              Reset
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Fixed Bottom Live Result Dock */}
+      <ScoreResultCard
+        scale={scale}
+        evaluation={evaluation}
+        onReset={handleReset}
+      />
 
       <AssessmentGuideDrawer
         guide={drawerGuide}

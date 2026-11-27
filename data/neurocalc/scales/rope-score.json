@@ -1,0 +1,196 @@
+{
+  "id": "rope-score",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Risk of Paradoxical Embolism (RoPE) Score",
+    "short_name": "RoPE Score",
+    "aliases": ["PFO stroke score", "Paradoxical embolism", "Cryptogenic stroke PFO"],
+    "subspecialties": ["Stroke"],
+    "kind": "point_sum",
+    "summary": "10-point clinical index estimating the probability that a patent foramen ovale (PFO) is causally related vs incidental in cryptogenic ischemic stroke.",
+    "time_estimate": "< 1 min",
+    "clinical_pearls": [
+      "Points are awarded for the ABSENCE of traditional vascular risk factors, younger age, and a cortical infarct on neuroimaging.",
+      "High RoPE scores (>= 7) indicate a high PFO-attributable fraction (72%–88%) and correlate with greater relative benefit from PFO closure in pooled trial analyses (Kent et al., 2020).",
+      "Pitfall — Suggests causality, does not prove it: A high RoPE score in cryptogenic embolic stroke strongly suggests a PFO-related mechanism but does not replace thorough exclusion of occult atrial fibrillation or large-vessel disease.",
+      "Pitfall — Do not gate echocardiography or closure alone: Should NOT be used in isolation to decide which stroke patients undergo echocardiography or which PFO patients undergo closure without anatomical risk assessment (e.g., PASCAL)."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "no_htn",
+      "code": "1",
+      "label": "No History of Hypertension",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No (hypertension present)", "points": 0, "badge": "0" },
+        { "id": "yes", "label": "Yes (no hypertension)", "points": 1, "badge": "+1" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "no_dm",
+      "code": "2",
+      "label": "No History of Diabetes Mellitus",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No (diabetes present)", "points": 0, "badge": "0" },
+        { "id": "yes", "label": "Yes (no diabetes)", "points": 1, "badge": "+1" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "no_stroke_tia",
+      "code": "3",
+      "label": "No History of Prior Stroke or TIA",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No (prior stroke/TIA)", "points": 0, "badge": "0" },
+        { "id": "yes", "label": "Yes (first-ever event)", "points": 1, "badge": "+1" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "nonsmoker",
+      "code": "4",
+      "label": "Nonsmoker",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No (current smoker)", "points": 0, "badge": "0" },
+        { "id": "yes", "label": "Yes (nonsmoker)", "points": 1, "badge": "+1" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "cortical_infarct",
+      "code": "5",
+      "label": "Cortical Infarct on Neuroimaging",
+      "required": true,
+      "options": [
+        { "id": "no", "label": "No (deep/subcortical/lacunar)", "points": 0, "badge": "0" },
+        { "id": "yes", "label": "Yes (superficial/cortical)", "points": 1, "badge": "+1" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "age_group",
+      "code": "6",
+      "label": "Age",
+      "required": true,
+      "options": [
+        { "id": "ge70", "label": ">= 70 years", "points": 0, "badge": "0" },
+        { "id": "60_69", "label": "60–69 years", "points": 1, "badge": "+1" },
+        { "id": "50_59", "label": "50–59 years", "points": 2, "badge": "+2" },
+        { "id": "40_49", "label": "40–49 years", "points": 3, "badge": "+3" },
+        { "id": "30_39", "label": "30–39 years", "points": 4, "badge": "+4" },
+        { "id": "18_29", "label": "18–29 years", "points": 5, "badge": "+5" }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "sum",
+    "min_score": 0,
+    "max_score": 10,
+    "unit": "pts",
+    "precision": 0
+  },
+  "interpretation": [
+    {
+      "id": "rope_vlow",
+      "min": 0,
+      "max": 3,
+      "label": "Very Low Probability (0–3 pts · 0% PFO-Attributable)",
+      "severity": "normal",
+      "summary": "PFO is likely incidental; focus on conventional secondary prevention and occult AF/atherosclerosis workup.",
+      "refs": [{ "source_id": "kent-2013-rope", "locator": "Table 3" }]
+    },
+    {
+      "id": "rope_low_mod",
+      "min": 4,
+      "max": 5,
+      "label": "Low-to-Moderate Probability (4–5 pts · 34%–38% PFO-Attributable)",
+      "severity": "mild",
+      "summary": "34% (score 4) to 38% (score 5) PFO-attributable fraction; PFO is more likely incidental than causal unless high-risk anatomy is present.",
+      "refs": [{ "source_id": "kent-2013-rope", "locator": "Table 3" }]
+    },
+    {
+      "id": "rope_mod",
+      "min": 6,
+      "max": 6,
+      "label": "Moderate Probability (6 pts · 62% PFO-Attributable)",
+      "severity": "moderate",
+      "summary": "62% PFO-attributable fraction; integrate with PASCAL high-risk PFO features (large shunt, atrial septal aneurysm).",
+      "refs": [{ "source_id": "kent-2013-rope", "locator": "Table 3" }]
+    },
+    {
+      "id": "rope_high",
+      "min": 7,
+      "max": 8,
+      "label": "High Probability (7–8 pts · 72%–84% PFO-Attributable)",
+      "severity": "severe",
+      "summary": "72% (score 7) to 84% (score 8) PFO-attributable fraction; strong candidate for PFO closure evaluation after ruling out AF.",
+      "refs": [{ "source_id": "kent-2013-rope", "locator": "Table 3" }]
+    },
+    {
+      "id": "rope_vhigh",
+      "min": 9,
+      "max": 10,
+      "label": "Very High Probability (9–10 pts · 88% PFO-Attributable)",
+      "severity": "critical",
+      "summary": "88% PFO-attributable fraction; PFO is highly likely causal in this young cryptogenic stroke patient.",
+      "refs": [{ "source_id": "kent-2013-rope", "locator": "Table 3" }]
+    }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_rope_pascal",
+      "target_type": "scale",
+      "target_id": "rope-score",
+      "chip_label": "Clinical Context",
+      "title": "Applying RoPE Score in Cryptogenic Stroke",
+      "bedside_steps": [
+        "Apply only after standard stroke workup excludes large-artery atherosclerosis, cardioembolism (e.g. AF), and small-vessel lacunar disease."
+      ],
+      "pitfalls_and_exceptions": [
+        "RoPE does not incorporate PFO anatomical features (atrial septal aneurysm or large right-to-left shunt); pair with PASCAL classification when deciding on PFO closure."
+      ],
+      "refs": [{ "source_id": "kent-2013-rope", "locator": "p. 621-624" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "kent-2013-rope",
+      "citation": "Kent DM, Ruthazer R, Weimar C, et al. An index to identify stroke-related vs incidental patent foramen ovale in cryptogenic stroke. Neurology. 2013;81(7):619-625.",
+      "year": 2013,
+      "pmid": "23864310",
+      "doi": "10.1212/WNL.0b013e3182a08d59",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23864310/",
+      "category": "primary"
+    },
+    {
+      "id": "prefasi-2016-rope-young",
+      "citation": "Prefasi D, Martínez-Sánchez P, Fuentes B, Díez-Tejedor E. The utility of the RoPE score in cryptogenic stroke patients <= 50 years in predicting a stroke-related patent foramen ovale. Int J Stroke. 2016;11(1):NP7-NP8.",
+      "year": 2016,
+      "pmid": "26763040",
+      "doi": "10.1177/1747493015607505",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26763040/",
+      "category": "validation"
+    },
+    {
+      "id": "kent-2020-rope-closure",
+      "citation": "Kent DM, Saver JL, Ruthazer R, et al. Risk of Paradoxical Embolism (RoPE)-Estimated Attributable Fraction Correlates With the Benefit of Patent Foramen Ovale Closure: An Analysis of 3 Trials. Stroke. 2020;51(10):3119-3123.",
+      "year": 2020,
+      "pmid": "32921262",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32921262/",
+      "category": "validation"
+    }
+  ],
+  "test_cases": [
+    { "name": "Elderly vascular (0)", "inputs": { "no_htn": "no", "no_dm": "no", "no_stroke_tia": "no", "nonsmoker": "no", "cortical_infarct": "no", "age_group": "ge70" }, "expected_score": 0, "expected_band_id": "rope_vlow" },
+    { "name": "Moderate (6)", "inputs": { "no_htn": "yes", "no_dm": "yes", "no_stroke_tia": "yes", "nonsmoker": "no", "cortical_infarct": "yes", "age_group": "50_59" }, "expected_score": 6, "expected_band_id": "rope_mod" },
+    { "name": "Young cryptogenic max (10)", "inputs": { "no_htn": "yes", "no_dm": "yes", "no_stroke_tia": "yes", "nonsmoker": "yes", "cortical_infarct": "yes", "age_group": "18_29" }, "expected_score": 10, "expected_band_id": "rope_vhigh" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

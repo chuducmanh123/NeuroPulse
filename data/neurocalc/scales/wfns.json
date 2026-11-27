@@ -10,7 +10,10 @@
     "summary": "5-grade aneurysmal subarachnoid hemorrhage scale combining GCS and presence of motor deficit.",
     "time_estimate": "< 1 min",
     "clinical_pearls": [
-      "Reassess WFNS grade after resuscitation or EVD placement for acute hydrocephalus."
+      "Reassess WFNS grade after resuscitation or EVD placement for acute hydrocephalus.",
+      "Combines objective Glasgow Coma Scale (GCS) strata with presence of major focal motor deficit, yielding better interobserver reliability than the Hunt and Hess scale (Degen et al., 2011).",
+      "Pitfall — Hydrocephalus & sedation confounding: Pre-resuscitation WFNS grading can overestimate severity in patients with treatable acute hydrocephalus, post-ictal state, or sedating medications.",
+      "Pitfall — Wide GCS 7–12 Grade IV band: Grade IV spans a broad consciousness range (GCS 7–12) with heterogeneous outcomes, motivating modified WFNS proposals (Rosen & Macdonald, 2004)."
     ]
   },
   "items": [
@@ -55,7 +58,33 @@
       "id": "teasdale-1988-wfns",
       "citation": "Teasdale GM, Drake CG, Hunt W, et al. A universal subarachnoid hemorrhage scale: report of a committee of the World Federation of Neurosurgical Societies. J Neurol Neurosurg Psychiatry. 1988;51(11):1457.",
       "year": 1988,
-      "pmid": "3236024"
+      "pmid": "3236024",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3236024/",
+      "category": "primary"
+    },
+    {
+      "id": "oshiro-1997-wfns",
+      "citation": "Oshiro EM, Walter KA, Piantadosi S, Witham TF, Tamargo RJ. A new subarachnoid hemorrhage grading system based on the Glasgow Coma Scale: a comparison with the Hunt and Hess and World Federation of Neurological Surgeons scales in a clinical series. Neurosurgery. 1997;41(1):140-148.",
+      "year": 1997,
+      "pmid": "9218306",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9218306/",
+      "category": "validation"
+    },
+    {
+      "id": "rosen-2004-mwfns",
+      "citation": "Rosen DS, Macdonald RL. Grading of subarachnoid hemorrhage: modification of the World Federation of Neurosurgical Societies scale on the basis of data for a large series of patients. Neurosurgery. 2004;54(3):566-575.",
+      "year": 2004,
+      "pmid": "15028137",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15028137/",
+      "category": "validation"
+    },
+    {
+      "id": "degen-2011-sah-variability",
+      "citation": "Degen LA, Dorhout Mees SM, Algra A, Rinkel GJ. Interobserver variability of grading scales for aneurysmal subarachnoid hemorrhage. Stroke. 2011;42(6):1546-1549.",
+      "year": 2011,
+      "pmid": "21527761",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21527761/",
+      "category": "validation"
     }
   ],
   "test_cases": [

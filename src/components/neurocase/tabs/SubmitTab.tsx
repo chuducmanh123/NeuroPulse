@@ -319,6 +319,8 @@ export function SubmitTab({
           extracted.journal_short +
           "! Review the populated fields below and click Submit Case."
       );
+    } catch (err: any) {
+      setSubmitSuccessMsg("⚠️ " + (err?.message || "Could not extract clinical case from this article."));
     } finally {
       setIsExtractingAi(false);
     }

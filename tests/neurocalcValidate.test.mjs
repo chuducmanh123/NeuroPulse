@@ -326,4 +326,20 @@ describe("NeuroCalc Data Validator & 6-Block Merkle Hashing (T1)", () => {
     const errs = validateScaleRecord(formula);
     assert.ok(errs.some((e) => e.path === "scoring.expression"));
   });
+
+  it("validates optional reference category ('primary' | 'validation') and rejects invalid values", () => {
+    const scale = makeValidPointSumScale();
+    scale.references.push({
+      id: "ref-2",
+      citation: "Validation Study et al. Stroke. 2025.",
+      year: 2025,
+      category: "validation",
+    });
+    scale.references[0].category = "primary";
+    assert.deepEqual(validateScaleRecord(scale), []);
+
+    scale.references[1].category = "invalid_cat";
+    const errs = validateScaleRecord(scale);
+    assert.ok(errs.some((e) => e.path === "references[1].category"));
+  });
 });

@@ -10,7 +10,10 @@
     "summary": "9-point thromboembolic stroke risk score in non-valvular atrial fibrillation.",
     "time_estimate": "< 1 min",
     "clinical_pearls": [
-      "Female sex (Sc) alone without other risk factors (score 1 in women) does not by itself trigger anticoagulation in major AF guidelines."
+      "Female sex (Sc) alone without other risk factors (score 1 in women) does not by itself trigger anticoagulation in major AF guidelines.",
+      "Helps distinguish truly low-risk from elevated-risk AF patients, though overall discrimination is modest and must be paired with clinical judgment.",
+      "Pitfall — Special cardiomyopathies: 2024 ESC AF guidelines do NOT recommend using CHA2DS2-VASc to guide stroke prevention in hypertrophic cardiomyopathy or cardiac amyloidosis (anticoagulate regardless of score).",
+      "Pitfall — Uncaptured thrombotic risks: Additional factors not included in the score (such as impaired renal function or active malignancy) can worsen thromboembolic risk and affect score performance."
     ]
   },
   "items": [
@@ -73,7 +76,52 @@
       "id": "lip-2010-cha2ds2vasc",
       "citation": "Lip GY, Nieuwlaat R, Pisters R, Lane DA, Crijns HJ. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-based approach: the Euro Heart Survey on atrial fibrillation. Chest. 2010;137(2):263-272.",
       "year": 2010,
-      "pmid": "19762550"
+      "pmid": "19762550",
+      "doi": "10.1378/chest.09-1584",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19762550/",
+      "category": "primary"
+    },
+    {
+      "id": "olesen-2011-cha2ds2vasc",
+      "citation": "Olesen JB, Lip GY, Hansen ML, et al. Validation of risk stratification schemes for predicting stroke and thromboembolism in patients with atrial fibrillation: nationwide cohort study. BMJ. 2011;342:d124.",
+      "year": 2011,
+      "pmid": "21282258",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21282258/",
+      "category": "validation"
+    },
+    {
+      "id": "friberg-2012-swedish-af",
+      "citation": "Friberg L, Rosenqvist M, Lip GY. Evaluation of risk stratification schemes for ischaemic stroke and bleeding in 182 678 patients with atrial fibrillation: the Swedish Atrial Fibrillation cohort study. Eur Heart J. 2012;33(12):1500-1510.",
+      "year": 2012,
+      "pmid": "22246443",
+      "doi": "10.1093/eurheartj/ehr488",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22246443/",
+      "category": "validation"
+    },
+    {
+      "id": "okumura-2014-jrhythm",
+      "citation": "Okumura K, Inoue H, Atarashi H, et al. Validation of CHA2DS2-VASc and HAS-BLED scores in Japanese patients with nonvalvular atrial fibrillation: an analysis of the J-RHYTHM Registry. Circ J. 2014;78(7):1593-1599.",
+      "year": 2014,
+      "pmid": "24759791",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24759791/",
+      "category": "validation"
+    },
+    {
+      "id": "vandoorn-2017-cha2ds2vasc-meta",
+      "citation": "van Doorn S, Debray TPA, Kaasenbrood F, et al. Predictive performance of the CHA2DS2-VASc rule in atrial fibrillation: a systematic review and meta-analysis. J Thromb Haemost. 2017;15(6):1065-1077.",
+      "year": 2017,
+      "pmid": "28375552",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28375552/",
+      "category": "validation"
+    },
+    {
+      "id": "lam-2025-gloria-af",
+      "citation": "Lam SHM, Romiti GF, Corica B, et al. Stroke risk stratifications according to CHA2DS2-VASc vs. CHA2DS2-VA in patients with atrial fibrillation: insights from the GLORIA-AF registry. Eur Heart J Cardiovasc Pharmacother. 2025;11(5):433-440.",
+      "year": 2025,
+      "pmid": "40289614",
+      "doi": "10.1093/ehjcvp/pvaf031",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40289614/",
+      "category": "validation"
     }
   ],
   "test_cases": [

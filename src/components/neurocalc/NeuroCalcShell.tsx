@@ -158,7 +158,11 @@ export function NeuroCalcShell() {
   ];
 
   return (
-    <div className="min-h-screen bg-[var(--bg-paper)] text-[var(--text-ink)] transition-colors duration-200 pb-10 overflow-x-clip">
+    <div
+      className={`min-h-screen bg-[var(--bg-paper)] text-[var(--text-ink)] transition-colors duration-200 overflow-x-clip ${
+        activeScale ? "pb-36 sm:pb-40" : "pb-10"
+      }`}
+    >
       {/* Unified Sticky App Header (Cyan-Teal #0E7490 Accent) */}
       <header className="sticky top-0 z-30 border-b border-[var(--border-hairline)] bg-[var(--bg-paper)]/95 px-4 py-3.5 backdrop-blur-md transition-colors sm:px-8">
         <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-3">

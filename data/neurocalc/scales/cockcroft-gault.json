@@ -1,0 +1,182 @@
+{
+  "id": "cockcroft-gault",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Cockcroft-Gault Creatinine Clearance (CrCl)",
+    "short_name": "CrCl (Cockcroft-Gault)",
+    "aliases": ["Creatinine Clearance", "Cockcroft Gault", "CG CrCl", "Renal dosing"],
+    "subspecialties": ["Stroke", "Neurocritical Care", "Epilepsy", "Other"],
+    "kind": "formula",
+    "summary": "Estimates creatinine clearance (mL/min) for renal dose adjustments of DOACs, antiepileptics (levetiracetam, gabapentin, pregabalin), and antimicrobials.",
+    "time_estimate": "< 30 sec",
+    "clinical_pearls": [
+      "FDA drug labels and pivotal DOAC trials (RE-LY, ROCKET AF, ARISTOTLE, ENGAGE AF) specify Cockcroft-Gault CrCl rather than eGFR for renal dosing cutoffs.",
+      "In obese patients (> 120% ideal body weight), consider using Ideal Body Weight (IBW) or Adjusted Body Weight (AdjBW) to avoid overestimating CrCl (Winter et al., 2012; Brown et al., 2013).",
+      "Outputs unindexed CrCl in mL/min (incorporating body weight), unlike BSA-indexed MDRD or CKD-EPI eGFR (mL/min/1.73 m²).",
+      "Pitfall — Overestimation & assay drift: CrCl typically overestimates true GFR due to tubular creatinine secretion; additionally, the 1976 equation was derived from non-IDMS-standardized creatinine in a predominantly male (96%) cohort."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "sex_factor",
+      "label": "Biological Sex",
+      "required": true,
+      "options": [
+        { "id": "male", "label": "Male (factor = 1.0)", "points": 1, "badge": "Male" },
+        { "id": "female", "label": "Female (factor = 0.85)", "points": 0.85, "badge": "Female" }
+      ]
+    },
+    {
+      "kind": "numeric",
+      "id": "age",
+      "label": "Age",
+      "required": true,
+      "canonical_unit": "years",
+      "units": [
+        { "unit": "years", "label": "years", "to_canonical_factor": 1 }
+      ],
+      "min_canonical": 18,
+      "max_canonical": 120,
+      "step": 1
+    },
+    {
+      "kind": "numeric",
+      "id": "weight",
+      "label": "Body Weight",
+      "subtitle": "Actual body weight (or IBW/AdjBW in obesity)",
+      "required": true,
+      "canonical_unit": "kg",
+      "units": [
+        { "unit": "kg", "label": "kg", "to_canonical_factor": 1 },
+        { "unit": "lb", "label": "lb", "to_canonical_factor": 0.45359237 }
+      ],
+      "min_canonical": 20,
+      "max_canonical": 300,
+      "step": 0.5
+    },
+    {
+      "kind": "numeric",
+      "id": "creatinine",
+      "label": "Serum Creatinine (SCr)",
+      "required": true,
+      "canonical_unit": "mg/dL",
+      "units": [
+        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 1 },
+        { "unit": "umol/L", "label": "µmol/L", "to_canonical_factor": 0.01131222 }
+      ],
+      "min_canonical": 0.1,
+      "max_canonical": 25,
+      "step": 0.1
+    }
+  ],
+  "scoring": {
+    "method": "formula",
+    "min_score": 0,
+    "max_score": null,
+    "unit": "mL/min",
+    "precision": 1,
+    "formula_id": "cockcroft_gault_crcl"
+  },
+  "interpretation": [
+    {
+      "id": "crcl_g5",
+      "min": 0,
+      "max": 14.9,
+      "label": "Kidney Failure (CrCl < 15 mL/min)",
+      "severity": "critical",
+      "summary": "Severe renal failure; most renally cleared neuro-medications and DOACs are contraindicated or require dialysis-specific dosing.",
+      "refs": [{ "source_id": "cockcroft-1976-crcl", "locator": "p. 35" }]
+    },
+    {
+      "id": "crcl_g4",
+      "min": 15,
+      "max": 29.9,
+      "label": "Severe Reduction (15–29.9 mL/min)",
+      "severity": "severe",
+      "summary": "Markedly reduced clearance; dabigatran is contraindicated for AF (< 30 mL/min) and rivaroxaban/apixaban/levetiracetam require major dose reduction.",
+      "refs": [{ "source_id": "cockcroft-1976-crcl", "locator": "p. 35" }]
+    },
+    {
+      "id": "crcl_g3",
+      "min": 30,
+      "max": 59.9,
+      "label": "Moderate Reduction (30–59.9 mL/min)",
+      "severity": "moderate",
+      "summary": "Renal dose adjustments often required (e.g., rivaroxaban 15 mg OD for AF if CrCl 15–49; levetiracetam/gabapentin/pregabalin/acyclovir adjustments).",
+      "refs": [{ "source_id": "cockcroft-1976-crcl", "locator": "p. 35" }]
+    },
+    {
+      "id": "crcl_g2",
+      "min": 60,
+      "max": 89.9,
+      "label": "Mildly Decreased (60–89.9 mL/min)",
+      "severity": "mild",
+      "summary": "Mildly decreased creatinine clearance; standard dosing applies for most agents except narrow-therapeutic-index drugs.",
+      "refs": [{ "source_id": "cockcroft-1976-crcl", "locator": "p. 35" }]
+    },
+    {
+      "id": "crcl_g1",
+      "min": 90,
+      "max": null,
+      "label": "Normal / Preserved (>= 90 mL/min)",
+      "severity": "normal",
+      "summary": "Preserved renal clearance; monitor for augmented renal clearance in young neurocritical care trauma/SAH patients.",
+      "refs": [{ "source_id": "cockcroft-1976-crcl", "locator": "p. 35" }]
+    }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_crcl_weight",
+      "target_type": "item",
+      "target_id": "weight",
+      "chip_label": "Weight Choice",
+      "title": "Actual vs Ideal vs Adjusted Body Weight",
+      "bedside_steps": [
+        "If actual body weight (ABW) < ideal body weight (IBW), use ABW.",
+        "If ABW is between 100% and 120% of IBW, use IBW or ABW per institutional protocol.",
+        "If ABW > 120% of IBW (obesity), use Adjusted Body Weight: AdjBW = IBW + 0.4 * (ABW - IBW)."
+      ],
+      "pitfalls_and_exceptions": [
+        "Cockcroft-Gault is invalid in acute kidney injury (rapidly changing creatinine) or severe sarcopenia/cachexia."
+      ],
+      "refs": [{ "source_id": "cockcroft-1976-crcl", "locator": "p. 31-41" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "cockcroft-1976-crcl",
+      "citation": "Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine. Nephron. 1976;16(1):31-41.",
+      "year": 1976,
+      "pmid": "1244564",
+      "doi": "10.1159/000180580",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1244564/",
+      "category": "primary"
+    },
+    {
+      "id": "winter-2012-cg-weight",
+      "citation": "Winter MA, Guhr KN, Berg GM. Impact of various body weights and serum creatinine concentrations on the bias and accuracy of the Cockcroft-Gault equation. Pharmacotherapy. 2012;32(7):604-612.",
+      "year": 2012,
+      "pmid": "22576791",
+      "doi": "10.1002/j.1875-9114.2012.01098.x",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22576791/",
+      "category": "validation"
+    },
+    {
+      "id": "brown-2013-cg-dosing",
+      "citation": "Brown DL, Masselink AJ, Lalla CD. Functional range of creatinine clearance for renal drug dosing: a practical solution to the controversy of which weight to use in the Cockcroft-Gault equation. Ann Pharmacother. 2013;47(7-8):1039-1044.",
+      "year": 2013,
+      "pmid": "23757387",
+      "doi": "10.1345/aph.1S176",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23757387/",
+      "category": "validation"
+    }
+  ],
+  "test_cases": [
+    { "name": "Male 60y 70kg SCr 1.0 -> 77.8", "inputs": { "sex_factor": "male", "age": 60, "weight": 70, "creatinine": 1.0 }, "expected_score": 77.8, "expected_band_id": "crcl_g2" },
+    { "name": "Female 75y 60kg SCr 1.5 -> 30.7", "inputs": { "sex_factor": "female", "age": 75, "weight": 60, "creatinine": 1.5 }, "expected_score": 30.7, "expected_band_id": "crcl_g3" },
+    { "name": "SI SCr Female 80y 55kg 221 umol/L -> 15.6", "inputs": { "sex_factor": "female", "age": 80, "weight": 55, "creatinine": { "value": 221, "unit": "umol/L" } }, "expected_score": 15.6, "expected_band_id": "crcl_g4" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

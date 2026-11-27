@@ -11,7 +11,11 @@
     "time_estimate": "< 1 min",
     "clinical_pearls": [
       "Always record the best response observed in each domain; report E/V/M subscores alongside total.",
-      "For intubated patients, document V1T rather than guessing verbal output."
+      "For intubated patients, document V1T rather than guessing verbal output.",
+      "If any component is untestable (e.g., local eye edema/injury, intubation, sedation/paralysis), record it as NT rather than assigning 1 and do not sum into a total score (Teasdale et al., 2014).",
+      "Serial GCS trends over time are more accurate for prognosis and detecting deterioration than a single isolated measurement.",
+      "Pitfall — Intubation threshold: A GCS ≤ 8 signals severe obtundation requiring careful airway assessment, but should not be used in isolation without clinical context to decide intubation.",
+      "Pitfall — Simplified alternatives: Scores like the Simplified Motor Score (SMS) perform similarly for initial ED/prehospital triage, but lack the longitudinal trending validation of full GCS."
     ]
   },
   "items": [
@@ -115,7 +119,33 @@
       "id": "teasdale-1974-gcs",
       "citation": "Teasdale G, Jennett B. Assessment of coma and impaired consciousness. A practical scale. Lancet. 1974;2(7872):81-84.",
       "year": 1974,
-      "pmid": "4136544"
+      "pmid": "4136544",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/4136544/",
+      "category": "primary"
+    },
+    {
+      "id": "moore-2006-gcs-validation",
+      "citation": "Moore L, Lavoie A, Camden S, et al. Statistical validation of the Glasgow Coma Score. J Trauma. 2006;60(6):1238-1244.",
+      "year": 2006,
+      "pmid": "16766966",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16766966/",
+      "category": "validation"
+    },
+    {
+      "id": "reith-2016-gcs-reliability",
+      "citation": "Reith FC, Van den Brande R, Synnot A, Gruen R, Maas AI. The reliability of the Glasgow Coma Scale: a systematic review. Intensive Care Med. 2016;42(1):3-15.",
+      "year": 2016,
+      "pmid": "26564211",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26564211/",
+      "category": "validation"
+    },
+    {
+      "id": "teasdale-2014-gcs-40y",
+      "citation": "Teasdale G, Maas A, Lecky F, Manley G, Stocchetti N, Murray G. The Glasgow Coma Scale at 40 years: standing the test of time. Lancet Neurol. 2014;13(8):844-854.",
+      "year": 2014,
+      "pmid": "25030516",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25030516/",
+      "category": "validation"
     }
   ],
   "test_cases": [

@@ -1,0 +1,317 @@
+{
+  "id": "mrc-sum-score",
+  "schema_version": 1,
+  "metadata": {
+    "name": "Medical Research Council (MRC) Sum Score",
+    "short_name": "MRC Sum Score",
+    "aliases": ["MRC-SS", "ICU-AW", "GBS muscle score", "Tetraparesis score"],
+    "subspecialties": ["Neuromuscular", "Neurocritical Care"],
+    "kind": "point_sum",
+    "summary": "12-muscle bedside strength sum (0–60) across 6 bilateral upper and lower limb groups for GBS, CIDP, and ICU-acquired weakness.",
+    "time_estimate": "2–3 min",
+    "clinical_pearls": [
+      "An MRC Sum Score < 48 in an awake, cooperative critically ill patient defines ICU-acquired weakness (ICU-AW); < 36 indicates severe weakness.",
+      "Directly feeds into the EGRIS respiratory insufficiency score for Guillain-Barré syndrome.",
+      "Demonstrates very good interobserver reliability in both GBS (Kleyweg et al., 1991) and ICU-AW (Hermans et al., 2012; ICC 0.95).",
+      "Pitfall — Cooperation & floor/ceiling effects: Requires an awake, cooperative patient (RASS -1 to +1); sedation, delirium, pain, or focal orthopedic injury invalidate testing, and the ordinal 0–5 scale is less sensitive to small changes in grade 4 strength."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "arm_abduction_r",
+      "code": "R1",
+      "label": "Right Shoulder Abduction (Deltoid)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No visible contraction", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Visible contraction without limb movement", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Active movement with gravity eliminated", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Active movement against gravity", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Active movement against gravity and resistance", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Normal power", "points": 5, "badge": "5" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "arm_abduction_l",
+      "code": "L1",
+      "label": "Left Shoulder Abduction (Deltoid)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No visible contraction", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Visible contraction without limb movement", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Active movement with gravity eliminated", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Active movement against gravity", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Active movement against gravity and resistance", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Normal power", "points": 5, "badge": "5" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "elbow_flexion_r",
+      "code": "R2",
+      "label": "Right Elbow Flexion (Biceps)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No visible contraction", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Visible contraction without limb movement", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Active movement with gravity eliminated", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Active movement against gravity", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Active movement against gravity and resistance", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Normal power", "points": 5, "badge": "5" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "elbow_flexion_l",
+      "code": "L2",
+      "label": "Left Elbow Flexion (Biceps)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No visible contraction", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Visible contraction without limb movement", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Active movement with gravity eliminated", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Active movement against gravity", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Active movement against gravity and resistance", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Normal power", "points": 5, "badge": "5" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "wrist_extension_r",
+      "code": "R3",
+      "label": "Right Wrist Extension",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No visible contraction", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Visible contraction without limb movement", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Active movement with gravity eliminated", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Active movement against gravity", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Active movement against gravity and resistance", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Normal power", "points": 5, "badge": "5" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "wrist_extension_l",
+      "code": "L3",
+      "label": "Left Wrist Extension",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No visible contraction", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Visible contraction without limb movement", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Active movement with gravity eliminated", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Active movement against gravity", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Active movement against gravity and resistance", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Normal power", "points": 5, "badge": "5" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "hip_flexion_r",
+      "code": "R4",
+      "label": "Right Hip Flexion (Iliopsoas)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No visible contraction", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Visible contraction without limb movement", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Active movement with gravity eliminated", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Active movement against gravity", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Active movement against gravity and resistance", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Normal power", "points": 5, "badge": "5" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "hip_flexion_l",
+      "code": "L4",
+      "label": "Left Hip Flexion (Iliopsoas)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No visible contraction", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Visible contraction without limb movement", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Active movement with gravity eliminated", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Active movement against gravity", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Active movement against gravity and resistance", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Normal power", "points": 5, "badge": "5" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "knee_extension_r",
+      "code": "R5",
+      "label": "Right Knee Extension (Quadriceps)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No visible contraction", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Visible contraction without limb movement", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Active movement with gravity eliminated", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Active movement against gravity", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Active movement against gravity and resistance", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Normal power", "points": 5, "badge": "5" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "knee_extension_l",
+      "code": "L5",
+      "label": "Left Knee Extension (Quadriceps)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No visible contraction", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Visible contraction without limb movement", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Active movement with gravity eliminated", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Active movement against gravity", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Active movement against gravity and resistance", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Normal power", "points": 5, "badge": "5" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "ankle_dorsiflexion_r",
+      "code": "R6",
+      "label": "Right Ankle Dorsiflexion (Tibialis Anterior)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No visible contraction", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Visible contraction without limb movement", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Active movement with gravity eliminated", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Active movement against gravity", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Active movement against gravity and resistance", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Normal power", "points": 5, "badge": "5" }
+      ]
+    },
+    {
+      "kind": "select",
+      "id": "ankle_dorsiflexion_l",
+      "code": "L6",
+      "label": "Left Ankle Dorsiflexion (Tibialis Anterior)",
+      "required": true,
+      "options": [
+        { "id": "0", "label": "No visible contraction", "points": 0, "badge": "0" },
+        { "id": "1", "label": "Visible contraction without limb movement", "points": 1, "badge": "1" },
+        { "id": "2", "label": "Active movement with gravity eliminated", "points": 2, "badge": "2" },
+        { "id": "3", "label": "Active movement against gravity", "points": 3, "badge": "3" },
+        { "id": "4", "label": "Active movement against gravity and resistance", "points": 4, "badge": "4" },
+        { "id": "5", "label": "Normal power", "points": 5, "badge": "5" }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "sum",
+    "min_score": 0,
+    "max_score": 60,
+    "unit": "pts",
+    "precision": 0,
+    "subscores": [
+      {
+        "id": "upper_extremity",
+        "label": "Upper Limbs (0–30)",
+        "item_ids": ["arm_abduction_r", "arm_abduction_l", "elbow_flexion_r", "elbow_flexion_l", "wrist_extension_r", "wrist_extension_l"]
+      },
+      {
+        "id": "lower_extremity",
+        "label": "Lower Limbs (0–30)",
+        "item_ids": ["hip_flexion_r", "hip_flexion_l", "knee_extension_r", "knee_extension_l", "ankle_dorsiflexion_r", "ankle_dorsiflexion_l"]
+      }
+    ]
+  },
+  "interpretation": [
+    {
+      "id": "mrc_severe",
+      "min": 0,
+      "max": 35,
+      "label": "Severe Weakness (< 36 pts)",
+      "severity": "critical",
+      "summary": "Severe tetraparesis; high risk of respiratory insufficiency in GBS (check EGRIS) and prolonged ICU stay.",
+      "refs": [{ "source_id": "kleyweg-1991-mrc", "locator": "p. 1105" }]
+    },
+    {
+      "id": "mrc_icua",
+      "min": 36,
+      "max": 47,
+      "label": "Significant Weakness / ICU-AW (< 48 pts)",
+      "severity": "severe",
+      "summary": "Meets diagnostic threshold (< 48) for ICU-acquired weakness or moderate-to-severe neuromuscular tetraparesis.",
+      "refs": [{ "source_id": "kleyweg-1991-mrc", "locator": "p. 1105" }]
+    },
+    {
+      "id": "mrc_mild",
+      "min": 48,
+      "max": 59,
+      "label": "Mild-to-Moderate Weakness (48–59 pts)",
+      "severity": "mild",
+      "summary": "Mild or focal limb weakness; track serially for progression or treatment response.",
+      "refs": [{ "source_id": "kleyweg-1991-mrc", "locator": "p. 1105" }]
+    },
+    {
+      "id": "mrc_normal",
+      "min": 60,
+      "max": 60,
+      "label": "Normal Muscle Strength (60/60 pts)",
+      "severity": "normal",
+      "summary": "Full 5/5 strength across all 12 tested muscle groups.",
+      "refs": [{ "source_id": "kleyweg-1991-mrc", "locator": "p. 1104" }]
+    }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_mrc_exam",
+      "target_type": "scale",
+      "target_id": "mrc-sum-score",
+      "chip_label": "Exam Technique",
+      "title": "Standardized Bedside MRC Testing",
+      "bedside_steps": [
+        "Ensure patient is awake and cooperative (e.g., RASS -1 to +1) before diagnosing ICU-AW.",
+        "Test each muscle group in a standardized position with gravity eliminated first if unable to move against gravity."
+      ],
+      "pitfalls_and_exceptions": [
+        "Avoid using '+' or '-' modifiers (e.g. 4+ / 4-) when computing the formal MRC Sum Score; use integer 0–5 grades only."
+      ],
+      "refs": [{ "source_id": "kleyweg-1991-mrc", "locator": "p. 1104-1107" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "kleyweg-1991-mrc",
+      "citation": "Kleyweg RP, van der Meché FG, Schmitz PI. Interobserver agreement in the assessment of muscle strength and functional abilities in Guillain-Barré syndrome. Muscle Nerve. 1991;14(11):1103-1109.",
+      "year": 1991,
+      "pmid": "1745285",
+      "doi": "10.1002/mus.880141111",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1745285/",
+      "category": "primary"
+    },
+    {
+      "id": "hermans-2012-mrc-icu",
+      "citation": "Hermans G, Clerckx B, Vanhullebusch T, et al. Interobserver agreement of Medical Research Council sum-score and handgrip strength in the intensive care unit. Muscle Nerve. 2012;45(1):18-25.",
+      "year": 2012,
+      "pmid": "22190301",
+      "doi": "10.1002/mus.22219",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22190301/",
+      "category": "validation"
+    }
+  ],
+  "test_cases": [
+    {
+      "name": "Normal 60/60",
+      "inputs": { "arm_abduction_r": "5", "arm_abduction_l": "5", "elbow_flexion_r": "5", "elbow_flexion_l": "5", "wrist_extension_r": "5", "wrist_extension_l": "5", "hip_flexion_r": "5", "hip_flexion_l": "5", "knee_extension_r": "5", "knee_extension_l": "5", "ankle_dorsiflexion_r": "5", "ankle_dorsiflexion_l": "5" },
+      "expected_score": 60,
+      "expected_band_id": "mrc_normal"
+    },
+    {
+      "name": "ICU-AW threshold (42)",
+      "inputs": { "arm_abduction_r": "4", "arm_abduction_l": "4", "elbow_flexion_r": "4", "elbow_flexion_l": "4", "wrist_extension_r": "4", "wrist_extension_l": "4", "hip_flexion_r": "3", "hip_flexion_l": "3", "knee_extension_r": "3", "knee_extension_l": "3", "ankle_dorsiflexion_r": "3", "ankle_dorsiflexion_l": "3" },
+      "expected_score": 42,
+      "expected_band_id": "mrc_icua"
+    },
+    {
+      "name": "Severe tetraparesis (24)",
+      "inputs": { "arm_abduction_r": "2", "arm_abduction_l": "2", "elbow_flexion_r": "2", "elbow_flexion_l": "2", "wrist_extension_r": "2", "wrist_extension_l": "2", "hip_flexion_r": "2", "hip_flexion_l": "2", "knee_extension_r": "2", "knee_extension_l": "2", "ankle_dorsiflexion_r": "2", "ankle_dorsiflexion_l": "2" },
+      "expected_score": 24,
+      "expected_band_id": "mrc_severe"
+    }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

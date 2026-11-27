@@ -11,7 +11,10 @@
     "time_estimate": "~1 min",
     "clinical_pearls": [
       "Risk categories per ACC/AHA Primary Prevention guidelines: <5% Low, 5.0–7.4% Borderline, 7.5–19.9% Intermediate, >=20% High.",
-      "For patients of Asian or Hispanic/Latino ancestry, White/Other coefficients are used per ACC/AHA guidance, though risk may be over- or underestimated depending on subgroup."
+      "For patients of Asian or Hispanic/Latino ancestry, White/Other coefficients are used per ACC/AHA guidance, though risk may be over- or underestimated depending on subgroup.",
+      "Best calibrated near clinical decision thresholds (7.5%–10%) in non-Hispanic White and non-Hispanic Black U.S. adults.",
+      "Pitfall — Overestimation in modern cohorts: Derived from 1940s–1980s cohorts; may overestimate risk in contemporary populations receiving preventive care, higher socioeconomic groups, or predicted risk > 10%.",
+      "Pitfall — Underestimation & non-U.S. variability: May underestimate risk in South Asian/underrepresented groups, lower socioeconomic status, familial hypercholesterolemia, and chronic inflammatory diseases (HIV, RA, psoriasis, sarcoidosis); variable calibration outside the U.S."
     ]
   },
   "items": [
@@ -161,7 +164,44 @@
       "citation": "Goff DC Jr, Lloyd-Jones DM, Bennett G, et al. 2013 ACC/AHA guideline on the assessment of cardiovascular risk: a report of the American College of Cardiology/American Heart Association Task Force on Practice Guidelines. Circulation. 2014;129(25 Suppl 2):S49-S73.",
       "year": 2014,
       "pmid": "24222018",
-      "doi": "10.1161/01.cir.0000437741.48606.98"
+      "doi": "10.1161/01.cir.0000437741.48606.98",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24222018/",
+      "category": "primary"
+    },
+    {
+      "id": "rana-2016-ascvd-validation",
+      "citation": "Rana JS, Tabada GH, Solomon MD, et al. Accuracy of the Atherosclerotic Cardiovascular Risk Equation in a Large Contemporary, Multiethnic Population. J Am Coll Cardiol. 2016;67(18):2118-2130.",
+      "year": 2016,
+      "pmid": "27151343",
+      "doi": "10.1016/j.jacc.2016.02.055",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27151343/",
+      "category": "validation"
+    },
+    {
+      "id": "damen-2019-pce-meta",
+      "citation": "Damen JA, Pajouheshnia R, Heus P, et al. Performance of the Framingham risk models and pooled cohort equations for predicting 10-year risk of cardiovascular disease: a systematic review and meta-analysis. BMC Med. 2019;17(1):109.",
+      "year": 2019,
+      "doi": "10.1186/s12916-019-1340-7",
+      "url": "https://bmcmedicine.biomedcentral.com/articles/10.1186/s12916-019-1340-7",
+      "category": "validation"
+    },
+    {
+      "id": "medina-inojosa-2023-pce",
+      "citation": "Medina-Inojosa JR, Somers VK, Garcia M, et al. Performance of the ACC/AHA Pooled Cohort Cardiovascular Risk Equations in Clinical Practice. J Am Coll Cardiol. 2023;82(23):2199-2209.",
+      "year": 2023,
+      "pmid": "37793746",
+      "doi": "10.1016/j.jacc.2023.09.819",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37793746/",
+      "category": "validation"
+    },
+    {
+      "id": "ganjali-2025-pce-older",
+      "citation": "Ganjali S, Lotfaliany M, Tonkin A, et al. Predictive performance of cardiovascular disease risk prediction models in older adults: a validation and updating study. Heart. 2025;111(21):1004-1012.",
+      "year": 2025,
+      "pmid": "40368453",
+      "doi": "10.1136/heartjnl-2025-325665",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40368453/",
+      "category": "validation"
     }
   ],
   "test_cases": [

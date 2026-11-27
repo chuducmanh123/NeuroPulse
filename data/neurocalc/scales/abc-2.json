@@ -11,7 +11,8 @@
     "time_estimate": "~1 min",
     "clinical_pearls": [
       "Excludes intraventricular hemorrhage (IVH) and subarachnoid extension.",
-      "For lobar or irregular/multilobed hemorrhages, ABC/2 may overestimate volume compared with planimetry."
+      "Always measure length (A) and perpendicular width (B) accurately on the axial CT slice with the largest hemorrhage area.",
+      "Pitfall — Irregular or warfarin-related ICH: For lobar, irregular, or multilobed hemorrhages (including warfarin-related ICH), ABC/2 may overestimate volume compared with computer-assisted planimetry (Huttner et al., 2006)."
     ]
   },
   "items": [
@@ -138,7 +139,18 @@
       "id": "kothari-1996-abc2",
       "citation": "Kothari RU, Brott T, Broderick JP, et al. The ABCs of measuring intracerebral hemorrhage volumes. Stroke. 1996;27(8):1304-1305.",
       "year": 1996,
-      "pmid": "8711791"
+      "pmid": "8711791",
+      "doi": "10.1161/01.STR.27.8.1304",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8711791/",
+      "category": "primary"
+    },
+    {
+      "id": "huttner-2006-abc2",
+      "citation": "Huttner HB, Steiner T, Hartmann M, et al. Comparison of ABC/2 estimation technique to computer-assisted planimetric analysis in warfarin-related intracerebral parenchymal hemorrhage. Stroke. 2006;37(2):404-408.",
+      "year": 2006,
+      "doi": "10.1161/01.STR.0000198806.67472.5c",
+      "url": "https://stroke.ahajournals.org/content/37/2/404.full.pdf",
+      "category": "validation"
     }
   ],
   "test_cases": [

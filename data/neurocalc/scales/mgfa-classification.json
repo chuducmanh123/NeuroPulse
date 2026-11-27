@@ -1,0 +1,138 @@
+{
+  "id": "mgfa-classification",
+  "schema_version": 1,
+  "metadata": {
+    "name": "MGFA Clinical Classification (Myasthenia Gravis)",
+    "short_name": "MGFA Class",
+    "aliases": ["Myasthenia Gravis Foundation of America", "MGFA", "MG staging"],
+    "subspecialties": ["Neuromuscular", "Neuroimmunology"],
+    "kind": "ordinal_grade",
+    "summary": "Standardized clinical classification (Class I–V) of Myasthenia Gravis by distribution and severity of muscle weakness.",
+    "time_estimate": "< 1 min",
+    "clinical_pearls": [
+      "Assign class based on the patient's worst clinical status (or current status with explicit notation); pair with MG-ADL for longitudinal symptom tracking.",
+      "Subtype 'a' denotes predominantly limb/axial weakness; subtype 'b' denotes predominantly oropharyngeal/respiratory weakness.",
+      "Pitfall — Subjective grading & low sensitivity: Separating mild (II), moderate (III), and severe (IV) weakness is subjective, limiting interrater agreement and sensitivity to small clinical changes.",
+      "Pitfall — Staging vs outcome tool: MGFA Clinical Classification is a baseline/worst-status staging system rather than an outcome measure; use MGFA Post-Intervention Status (PIS) to assess treatment response and do not use it to directly compare severity across patients."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "mgfa_class",
+      "label": "MGFA Clinical Class",
+      "required": true,
+      "options": [
+        { "id": "class_i", "label": "Any ocular muscle weakness (may have eye closure weakness); all other muscle strength is normal", "points": 1, "badge": "Class I" },
+        { "id": "class_iia", "label": "Mild weakness affecting other than ocular muscles; predominantly affecting limb, axial muscles, or both", "points": 2.1, "badge": "Class IIa" },
+        { "id": "class_iib", "label": "Mild weakness affecting other than ocular muscles; predominantly affecting oropharyngeal, respiratory muscles, or both", "points": 2.2, "badge": "Class IIb" },
+        { "id": "class_iiia", "label": "Moderate weakness affecting other than ocular muscles; predominantly affecting limb, axial muscles, or both", "points": 3.1, "badge": "Class IIIa" },
+        { "id": "class_iiib", "label": "Moderate weakness affecting other than ocular muscles; predominantly affecting oropharyngeal, respiratory muscles, or both", "points": 3.2, "badge": "Class IIIb" },
+        { "id": "class_iva", "label": "Severe weakness affecting other than ocular muscles; predominantly affecting limb, axial muscles, or both", "points": 4.1, "badge": "Class IVa" },
+        { "id": "class_ivb", "label": "Severe weakness affecting other than ocular muscles; predominantly affecting oropharyngeal, respiratory muscles, or both", "points": 4.2, "badge": "Class IVb" },
+        { "id": "class_v", "label": "Defined by intubation, with or without mechanical ventilation (except during routine postoperative management)", "points": 5, "badge": "Class V" }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "single_select",
+    "min_score": 1,
+    "max_score": 5,
+    "unit": "class",
+    "precision": 1
+  },
+  "interpretation": [
+    {
+      "id": "mgfa_1",
+      "min": 1,
+      "max": 1,
+      "label": "Class I — Purely Ocular MG",
+      "severity": "mild",
+      "summary": "Weakness restricted to extraocular muscles (diplopia, ptosis) and orbicularis oculi; no generalized or bulbar involvement.",
+      "refs": [{ "source_id": "jaretzki-2000-mgfa", "locator": "Table 1" }]
+    },
+    {
+      "id": "mgfa_2",
+      "min": 2,
+      "max": 2.9,
+      "label": "Class II — Mild Generalized MG (IIa / IIb)",
+      "severity": "mild",
+      "summary": "Mild generalized weakness; Class IIb indicates predominant bulbar/respiratory involvement requiring closer monitoring.",
+      "refs": [{ "source_id": "jaretzki-2000-mgfa", "locator": "Table 1" }]
+    },
+    {
+      "id": "mgfa_3",
+      "min": 3,
+      "max": 3.9,
+      "label": "Class III — Moderate Generalized MG (IIIa / IIIb)",
+      "severity": "moderate",
+      "summary": "Moderate generalized weakness; Class IIIb patients with dysphagia/dysarthria or dyspnea carry elevated crisis risk.",
+      "refs": [{ "source_id": "jaretzki-2000-mgfa", "locator": "Table 1" }]
+    },
+    {
+      "id": "mgfa_4",
+      "min": 4,
+      "max": 4.9,
+      "label": "Class IV — Severe Generalized MG (IVa / IVb)",
+      "severity": "severe",
+      "summary": "Severe generalized weakness; Class IVb warrants urgent ICU-level respiratory monitoring and rapid immunotherapy (IVIG/PLEX).",
+      "refs": [{ "source_id": "jaretzki-2000-mgfa", "locator": "Table 1" }]
+    },
+    {
+      "id": "mgfa_5",
+      "min": 5,
+      "max": 5,
+      "label": "Class V — Myasthenic Crisis (Intubated)",
+      "severity": "critical",
+      "summary": "Intubation required for respiratory failure or airway protection; manage in ICU with IVIG or plasmapheresis.",
+      "refs": [{ "source_id": "jaretzki-2000-mgfa", "locator": "Table 1" }]
+    }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_mgfa_subtypes",
+      "target_type": "scale",
+      "target_id": "mgfa-classification",
+      "chip_label": "Subtype Rules",
+      "title": "Distinguishing Subtypes 'a' vs 'b' & Class V",
+      "bedside_steps": [
+        "Determine whether any non-ocular muscles are weak (if only ocular/eyelid closure -> Class I).",
+        "Grade overall non-ocular severity (Mild = II, Moderate = III, Severe = IV).",
+        "Assign 'a' if limb/axial weakness predominates, or 'b' if oropharyngeal/respiratory weakness predominates (even if limb weakness is also present)."
+      ],
+      "pitfalls_and_exceptions": [
+        "Use of a feeding tube without intubation classifies the patient as Class IVb, not Class V.",
+        "Routine postoperative intubation after thymectomy does not automatically assign Class V unless prolonged/crisis-related."
+      ],
+      "refs": [{ "source_id": "jaretzki-2000-mgfa", "locator": "p. 17-18" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "jaretzki-2000-mgfa",
+      "citation": "Jaretzki A 3rd, Barohn RJ, Ernstoff RM, et al. Myasthenia gravis: recommendations for clinical research standards. Task Force of the Medical Scientific Advisory Board of the Myasthenia Gravis Foundation of America. Neurology. 2000;55(1):16-23.",
+      "year": 2000,
+      "pmid": "10891897",
+      "doi": "10.1212/wnl.55.1.16",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10891897/",
+      "category": "primary"
+    },
+    {
+      "id": "benatar-2012-mg-trials",
+      "citation": "Benatar M, Sanders DB, Burns TM, et al. Recommendations for myasthenia gravis clinical trials. Muscle Nerve. 2012;45(6):909-917.",
+      "year": 2012,
+      "pmid": "22581550",
+      "doi": "10.1002/mus.23330",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22581550/",
+      "category": "validation"
+    }
+  ],
+  "test_cases": [
+    { "name": "Class I Ocular", "inputs": { "mgfa_class": "class_i" }, "expected_score": 1.0, "expected_band_id": "mgfa_1" },
+    { "name": "Class IIb Mild Bulbar", "inputs": { "mgfa_class": "class_iib" }, "expected_score": 2.2, "expected_band_id": "mgfa_2" },
+    { "name": "Class IVb Severe Bulbar", "inputs": { "mgfa_class": "class_ivb" }, "expected_score": 4.2, "expected_band_id": "mgfa_4" },
+    { "name": "Class V Intubated", "inputs": { "mgfa_class": "class_v" }, "expected_score": 5.0, "expected_band_id": "mgfa_5" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

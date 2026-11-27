@@ -11,7 +11,9 @@
     "time_estimate": "~2 min",
     "clinical_pearls": [
       "Requires at least one manifest atherosclerotic disease location (coronary, cerebrovascular, peripheral arterial, or abdominal aortic aneurysm).",
-      "Uses the updated SMART2 algorithm (Hageman et al., Eur Heart J 2022) with competing-risk and geographic E/O recalibration."
+      "Uses the updated SMART2 algorithm (Hageman et al., Eur Heart J 2022) with competing-risk and geographic E/O recalibration across 369,044 external validation patients.",
+      "Pitfall — Modest discrimination & regional variation: C-statistics in secondary prevention cohorts vary (~0.60–0.77), and regional recalibration intercepts may not capture local healthcare disparities or modern intensive GDMT (PCSK9i, SGLT2i) lowering contemporary event rates.",
+      "Pitfall — Non-European 10-year extrapolation: True 10-year follow-up in external validation was strongest in European cohorts; non-European 10-year projections rely partially on shorter-horizon extrapolation."
     ]
   },
   "items": [
@@ -252,7 +254,9 @@
       "citation": "Hageman SHJ, McKay AJ, Ueda P, et al. Estimation of recurrent atherosclerotic cardiovascular event risk in patients with established cardiovascular disease: the updated SMART2 algorithm. Eur Heart J. 2022;43(18):1715-1727.",
       "year": 2022,
       "pmid": "35165703",
-      "doi": "10.1093/eurheartj/ehac056"
+      "doi": "10.1093/eurheartj/ehac056",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35165703/",
+      "category": "primary"
     }
   ],
   "test_cases": [

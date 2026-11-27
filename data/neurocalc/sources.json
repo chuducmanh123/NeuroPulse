@@ -190,5 +190,54 @@
     "year": 2024,
     "pmid": "39210710",
     "doi": "10.1093/eurheartj/ehae177"
+  },
+  {
+    "id": "cockcroft-1976-crcl",
+    "citation": "Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine. Nephron. 1976;16(1):31-41.",
+    "year": 1976,
+    "pmid": "1244564",
+    "doi": "10.1159/000180580"
+  },
+  {
+    "id": "inker-2021-ckdepi",
+    "citation": "Inker LA, Eneanya ND, Coresh J, et al. New Creatinine- and Cystatin C-Based Equations to Estimate GFR without Race. N Engl J Med. 2021;385(19):1737-1749.",
+    "year": 2021,
+    "pmid": "34554658",
+    "doi": "10.1056/NEJMoa2102953"
+  },
+  {
+    "id": "schmitzhubsch-2006-sara",
+    "citation": "Schmitz-Hübsch T, du Montcel ST, Baliko L, et al. Scale for the assessment and rating of ataxia: development of a new clinical scale. Neurology. 2006;66(11):1717-1720.",
+    "year": 2006,
+    "pmid": "16769946",
+    "doi": "10.1212/01.wnl.0000219042.60538.92"
+  },
+  {
+    "id": "jaretzki-2000-mgfa",
+    "citation": "Jaretzki A 3rd, Barohn RJ, Ernstoff RM, et al. Myasthenia gravis: recommendations for clinical research standards. Task Force of the Medical Scientific Advisory Board of the Myasthenia Gravis Foundation of America. Neurology. 2000;55(1):16-23.",
+    "year": 2000,
+    "pmid": "10891897",
+    "doi": "10.1212/wnl.55.1.16"
+  },
+  {
+    "id": "walgaard-2010-egris",
+    "citation": "Walgaard C, Lingsma HF, Ruts L, et al. Prediction of respiratory insufficiency in Guillain-Barré syndrome. Ann Neurol. 2010;67(6):781-787.",
+    "year": 2010,
+    "pmid": "20517939",
+    "doi": "10.1002/ana.21976"
+  },
+  {
+    "id": "kleyweg-1991-mrc",
+    "citation": "Kleyweg RP, van der Meché FG, Schmitz PI. Interobserver agreement in the assessment of muscle strength and functional abilities in Guillain-Barré syndrome. Muscle Nerve. 1991;14(11):1103-1109.",
+    "year": 1991,
+    "pmid": "1745285",
+    "doi": "10.1002/mus.880141111"
+  },
+  {
+    "id": "kent-2013-rope",
+    "citation": "Kent DM, Ruthazer R, Weimar C, et al. An index to identify stroke-related vs incidental patent foramen ovale in cryptogenic stroke. Neurology. 2013;81(7):619-625.",
+    "year": 2013,
+    "pmid": "23864310",
+    "doi": "10.1212/WNL.0b013e3182a08d59"
   }
 ]

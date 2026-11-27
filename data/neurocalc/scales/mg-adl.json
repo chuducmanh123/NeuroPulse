@@ -11,7 +11,10 @@
     "time_estimate": "~1–2 min",
     "clinical_pearls": [
       "A change of >= 2 points is considered clinically meaningful.",
-      "Any breathing (score >= 2) or swallowing impairment warrants urgent evaluation for impending myasthenic crisis."
+      "Any breathing (score >= 2) or swallowing impairment warrants urgent evaluation for impending myasthenic crisis.",
+      "Distilled from 8 patient-reported items of the 13-item Quantitative Myasthenia Gravis (QMG) scale.",
+      "Pitfall — Ceiling & ocular effects: Discrimination is limited above ~20 points (ceiling effect), and purely ocular MG (ptosis/diplopia) may be underrated; axial weakness is not assessed.",
+      "Pitfall — Linear weighting & comorbidities: Equal 0–3 scoring per item can understate critical deficits (e.g., ventilator dependence), while non-MG comorbidities (arthritis, stroke, depression) can falsely elevate the total; do not use alone to triage impending crisis."
     ]
   },
   "items": [
@@ -53,7 +56,37 @@
       "id": "wolfe-1999-mgadl",
       "citation": "Wolfe GI, Herbelin L, Nations SP, Foster B, Bryan WW, Barohn RJ. Myasthenia gravis activities of daily living profile. Neurology. 1999;52(7):1487-1489.",
       "year": 1999,
-      "pmid": "10227640"
+      "pmid": "10227640",
+      "doi": "10.1212/wnl.52.7.1487",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10227640/",
+      "category": "primary"
+    },
+    {
+      "id": "muppidi-2011-mgadl",
+      "citation": "Muppidi S, Wolfe GI, Conaway M, Burns TM; MG Composite and MG-QOL15 Study Group. MG-ADL: still a relevant outcome measure. Muscle Nerve. 2011;44(5):727-731.",
+      "year": 2011,
+      "pmid": "22006686",
+      "doi": "10.1002/mus.22140",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22006686/",
+      "category": "validation"
+    },
+    {
+      "id": "muppidi-2012-mgadl",
+      "citation": "Muppidi S. The myasthenia gravis-specific activities of daily living profile. Ann N Y Acad Sci. 2012;1274:114-119.",
+      "year": 2012,
+      "pmid": "23252905",
+      "doi": "10.1111/j.1749-6632.2012.06817.x",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23252905/",
+      "category": "validation"
+    },
+    {
+      "id": "muppidi-2022-mgadl",
+      "citation": "Muppidi S, Silvestri NJ, Tan R, Riggs K, Leighton T, Phillips GA. Utilization of MG-ADL in myasthenia gravis clinical research and care. Muscle Nerve. 2022;65(6):630-639.",
+      "year": 2022,
+      "pmid": "34989427",
+      "doi": "10.1002/mus.27476",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34989427/",
+      "category": "validation"
     }
   ],
   "test_cases": [

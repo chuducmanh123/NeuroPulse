@@ -11,7 +11,10 @@
     "time_estimate": "~1–2 min",
     "clinical_pearls": [
       "Detects locked-in syndrome via vertical eye tracking/blinking on command.",
-      "Eliminates the verbal subscore limitation of GCS in intubated patients."
+      "Eliminates the verbal subscore limitation of GCS in intubated and nonverbal patients.",
+      "Better stratifies coma severity among patients at the lowest GCS floor (GCS 3) and helps detect impending neurological decline.",
+      "Demonstrates strong interrater reliability across clinicians with different levels of training (ICU nurses, ED physicians, and neurointensivists).",
+      "Pitfall — Sedation & ocular weighting: Sedating medications can artifactually lower the score, and the scale is heavily weighted toward ocular/brainstem components."
     ]
   },
   "items": [
@@ -128,7 +131,33 @@
       "id": "wijdicks-2005-four",
       "citation": "Wijdicks EF, Bamlet WR, Maramattom BV, Manno EM, McClelland RL. Validation of a new coma scale: The FOUR score. Ann Neurol. 2005;58(4):585-593.",
       "year": 2005,
-      "pmid": "16178024"
+      "pmid": "16178024",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16178024/",
+      "category": "primary"
+    },
+    {
+      "id": "wolf-2007-four-icu",
+      "citation": "Wolf CA, Wijdicks EF, Bamlet WR, McClelland RL. Further validation of the FOUR score coma scale by intensive care nurses. Mayo Clin Proc. 2007;82(4):435-438.",
+      "year": 2007,
+      "pmid": "17418071",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17418071/",
+      "category": "validation"
+    },
+    {
+      "id": "iyer-2009-four-micu",
+      "citation": "Iyer VN, Mandrekar JN, Danielson RD, Zubkov AY, Elmer JL, Wijdicks EF. Validity of the FOUR score coma scale in the medical intensive care unit. Mayo Clin Proc. 2009;84(8):694-701.",
+      "year": 2009,
+      "pmid": "19648386",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19648386/",
+      "category": "validation"
+    },
+    {
+      "id": "stead-2009-four-ed",
+      "citation": "Stead LG, Wijdicks EF, Bhagra A, et al. Validation of a new coma scale, the FOUR score, in the emergency department. Neurocrit Care. 2009;10(1):50-54.",
+      "year": 2009,
+      "pmid": "18807215",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18807215/",
+      "category": "validation"
     }
   ],
   "test_cases": [

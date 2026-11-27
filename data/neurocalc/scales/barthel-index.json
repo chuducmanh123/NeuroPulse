@@ -11,7 +11,9 @@
     "time_estimate": "~2–3 min",
     "clinical_pearls": [
       "Score what the patient actually does over the past 24–48 hours, not what they could theoretically do.",
-      "Use of assistive devices (e.g., grab bars, walker, wheelchair) does NOT reduce independence points if no human help is needed."
+      "Use of assistive devices (e.g., grab bars, walker, wheelchair) does NOT reduce independence points if no human help is needed.",
+      "Widely validated for tracking longitudinal stroke rehabilitation and predicting discharge disposition alongside mRS (Sulter et al., 1999).",
+      "Pitfall — Ceiling effect & self-report bias: Patients with mild deficits may hit the maximum 100 score despite residual instrumental ADL or cognitive limitations; self-reported scores in older adults (>= 75 years) can diverge from observed performance."
     ]
   },
   "items": [
@@ -54,7 +56,33 @@
       "id": "mahoney-1965-barthel",
       "citation": "Mahoney FI, Barthel DW. Functional evaluation: the Barthel Index. Md State Med J. 1965;14:61-65.",
       "year": 1965,
-      "pmid": "14258950"
+      "pmid": "14258950",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14258950/",
+      "category": "primary"
+    },
+    {
+      "id": "granger-1979-barthel",
+      "citation": "Granger CV, Dewis LS, Peters NC, Sherwood CC, Barrett JE. Stroke rehabilitation: analysis of repeated Barthel index measures. Arch Phys Med Rehabil. 1979;60(1):14-17.",
+      "year": 1979,
+      "pmid": "420565",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/420565/",
+      "category": "validation"
+    },
+    {
+      "id": "shah-1989-barthel-sensitivity",
+      "citation": "Shah S, Vanclay F, Cooper B. Improving the sensitivity of the Barthel Index for stroke rehabilitation. J Clin Epidemiol. 1989;42(8):703-709.",
+      "year": 1989,
+      "pmid": "2760661",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2760661/",
+      "category": "validation"
+    },
+    {
+      "id": "sulter-1999-barthel-mrs",
+      "citation": "Sulter G, Steen C, De Keyser J. Use of the Barthel index and modified Rankin scale in acute stroke trials. Stroke. 1999;30(8):1538-1541.",
+      "year": 1999,
+      "pmid": "10436097",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10436097/",
+      "category": "validation"
     }
   ],
   "test_cases": [

@@ -11,7 +11,9 @@
     "time_estimate": "< 30 sec",
     "clinical_pearls": [
       "No correction is added when serum glucose is <= 100 mg/dL (5.55 mmol/L).",
-      "For extreme hyperglycemia (> 400 mg/dL), some clinicians also compare with Hillier's 2.4 factor."
+      "For extreme hyperglycemia (> 400 mg/dL), compare with Hillier's 2.4 mEq/L per 100 mg/dL correction factor (Hillier et al., 1999).",
+      "Repeat serum sodium frequently during insulin and fluid therapy, as sodium shifts rapidly with glucose correction.",
+      "Pitfall — True hyponatremia & pseudohyponatremia: Extreme hyperglycemia can mask underlying true hypotonic hyponatremia (associated with worse outcomes), and an elevated osmolality gap should prompt screening for pseudohyponatremia."
     ]
   },
   "items": [
@@ -78,7 +80,25 @@
       "id": "katz-1973-na",
       "citation": "Katz MA. Hyperglycemia-induced hyponatremia—calculation of expected serum sodium depression. N Engl J Med. 1973;289(16):843-844.",
       "year": 1973,
-      "pmid": "4763428"
+      "pmid": "4763428",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/4763428/",
+      "category": "primary"
+    },
+    {
+      "id": "hillier-1999-na",
+      "citation": "Hillier TA, Abbott RD, Barrett EJ. Hyponatremia: evaluating the correction factor for hyperglycemia. Am J Med. 1999;106(4):399-403.",
+      "year": 1999,
+      "pmid": "10225241",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10225241/",
+      "category": "validation"
+    },
+    {
+      "id": "chuang-2020-corrected-na",
+      "citation": "Chuang C, Guo YW, Chen HS. Corrected sodium levels for hyperglycemia is a better predictor than measured sodium levels for clinical outcomes among patients with extreme hyperglycemia. J Chin Med Assoc. 2020;83(9):845-851.",
+      "year": 2020,
+      "pmid": "32773588",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32773588/",
+      "category": "validation"
     }
   ],
   "test_cases": [

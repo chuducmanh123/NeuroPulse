@@ -460,6 +460,39 @@ async function callGeminiCaseWaterfall(
 }
 
 /**
+ * Rejects unmistakable non-case-report research articles (RCTs, retrospective/prospective cohorts,
+ * systematic reviews, meta-analyses, ML/radiomics studies, and case series) when no individual patient is described.
+ */
+function detectNonCaseReportText(cleanedText: string): string | null {
+  const head = cleanedText.slice(0, 3500);
+  const hasSinglePatient =
+    /\b(?:\d{1,2}\s*[-–]?\s*(?:year|month|week|day)\s*[-–]?\s*old)\s+(?:right-handed\s+|left-handed\s+|previously\s+healthy\s+)?(?:man|woman|male|female|boy|girl|infant|child|neonate|patient|gentleman|lady|adolescent)\b/i.test(
+      cleanedText.slice(0, 8000)
+    );
+
+  if (
+    /\b(?:case series|a series of (?:\d+|two|three|four|five|six|several) (?:cases|patients)|we (?:present|report|describe) (?:\d+|two|three|four|five|six|several) (?:cases|patients))\b/i.test(
+      head
+    ) ||
+    (/\bCase\s*1\b/i.test(cleanedText) && /\bCase\s*2\b/i.test(cleanedText)) ||
+    (/\bPatient\s*1\b/i.test(cleanedText) && /\bPatient\s*2\b/i.test(cleanedText))
+  ) {
+    return "Article appears to be a multi-patient case series.";
+  }
+
+  if (
+    !hasSinglePatient &&
+    /\b(?:original research|systematic review|meta-analysis|randomi[sz]ed\s+(?:controlled\s+)?trial|retrospective(?:ly)?\s+(?:study|analysis|cohort)|prospective(?:ly)?\s+(?:study|analysis|cohort)|cohort\s+study|case-control\s+study|cross-sectional\s+study|observational\s+study|machine\s+learning|decision\s+curve\s+analysis)\b/i.test(
+      head
+    )
+  ) {
+    return "Article appears to be an original research study, cohort, RCT, or review rather than a single-patient clinical case report.";
+  }
+
+  return null;
+}
+
+/**
  * Extracts a structured clinical case from raw article text (or PDF base64) using a 3-Pass Gemini pipeline
  * (Pass 1: Board Director Draft -> Pass 2: Strict Examiner Critique -> Pass 3: Harsh Medical Editor)
  * or deterministic clinical NLP rules when no API key is set.
@@ -476,10 +509,18 @@ export async function extractClinicalCaseFromArticleText(
     try {
       const { presentationSection, discussionSection } = splitArticleSections(cleaned);
 
-      // PASS 1: Board Director Draft (Clinical Inflection Point + Chronology + Timepoint Cutoff)
+      // PASS 1: Board Director Draft (Single-Case Gate + Clinical Inflection Point + Chronology + Timepoint Cutoff)
       const pass1Prompt = `You are an expert Academic Neurologist & Stroke Fellowship Director creating an interactive clinical challenge for NeuroCase (modeled after NEJM Image Challenge & Neurology Resident & Fellow Section).
-Read the published neurology article below and return ONLY a valid JSON object matching this exact schema:
+
+CRITICAL RULE 0 — STRICT SINGLE-PATIENT CASE REPORT GATE (NO FABRICATION):
+First verify that the source article describes ONE real individual clinical patient (NOT a retrospective or prospective cohort study, NOT a randomized controlled trial, NOT a case-control/observational study, NOT a systematic review/meta-analysis, NOT a machine learning/original research study, and NOT a multi-patient case series).
+NEVER invent or fabricate a fictional patient to fit a research paper.
+If the article is NOT a single-patient clinical case report, return ONLY:
+{"is_single_patient_case_report": false, "reject_reason": "Brief reason (e.g., Retrospective cohort of 118 patients / Original research ML study / RCT / Case series)"}
+
+Otherwise, set "is_single_patient_case_report": true and return ONLY a valid JSON object matching this exact schema:
 {
+  "is_single_patient_case_report": true,
   "title": "Blind clinical presentation title without giving away the final diagnosis",
   "subspecialty": "One of: Stroke | Neurocritical Care | Epilepsy | Dementia | Neuroimmunology | Neuromuscular | Movement Disorders | Headache & Pain | CNS Infections | Neuro-Oncology | Other",
   "difficulty": "Resident | Fellow | Attending",
@@ -526,6 +567,12 @@ ${discussionSection || "Derive key diagnostic inflection point and differential 
 
       let parsed = await callGeminiCaseWaterfall(pass1Parts, geminiApiKey, "pass1_director", 0.2);
 
+      if (parsed && parsed.is_single_patient_case_report === false) {
+        throw new Error(
+          `Article rejected: ${parsed.reject_reason || "Not a single-patient clinical case report"}. NeuroCase only accepts single-patient clinical case reports (not case series, retrospective/prospective cohorts, RCTs, or reviews).`
+        );
+      }
+
       if (parsed && parsed.question && parsed.final_diagnosis) {
         // PASS 2: Strict Examiner Critique (Anti-Leakage, Timepoint Cutoff, Single-Focus)
         const pass2Prompt = `You are a Strict Senior Neurology Examination Committee Reviewer.
@@ -535,7 +582,7 @@ ${JSON.stringify(parsed, null, 2)}
 EXAMINER CHECKLIST:
 1. SINGLE-FOCUS QUESTION: Ensure 'question' asks strictly ONE clinical concept (no 'and the optimal management' or 'as well as').
 2. STRICT ONE-WAY CHRONOLOGY: The UI concatenates 'history_of_present_illness + " " + neuro_exam + " " + key_labs_csf' into ONE paragraph. Remove any late ICU/coma/intubation events from HPI if 'neuro_exam' starts with an alert initial exam.
-3. ZERO LEXICAL OR SEMANTIC LEAKAGE: Ensure 'title', 'chief_complaint', 'history_of_present_illness', 'neuro_exam', 'key_labs_csf', 'figure_caption', 'findings_summary', and 'question' NEVER reveal 'final_diagnosis' or diagnostic buzzwords.
+3. ZERO LEXICAL OR SEMANTIC LEAKAGE (INCLUDING FIGURE CAPTION): Ensure 'title', 'chief_complaint', 'history_of_present_illness', 'neuro_exam', 'key_labs_csf', 'figure_caption', 'findings_summary', and 'question' NEVER reveal 'final_diagnosis', the correct option text, disease acronyms/eponyms, or diagnostic buzzwords. Rewrite 'figure_caption' to replace diagnostic framing (e.g., "Imaging studies of a patient with [Diagnosis]...") with neutral anatomical/temporal framing and complete sentences.
 4. DIAGNOSTIC TIMEPOINT CUTOFF: Strip late confirmatory or broad exclusion workup (e.g., negative broad PCR panels, negative bacterial/fungal cultures, negative oligoclonal bands, definitive autoantibodies, biopsy) from 'key_labs_csf' if they prematurely rule out the distractors; move those findings into 'clinical_discussion'.
 5. REAL DIFFERENTIALS: Ensure all 4 options are homogeneous, clinically plausible given the withheld late tests, and 'correctOption' remains "${parsed.correctOption || "A"}".
 Output ONLY valid JSON matching the exact same schema.`;
@@ -545,8 +592,10 @@ Output ONLY valid JSON matching the exact same schema.`;
           parsed = pass2;
         }
 
-        // PASS 3: Harsh Senior Medical Editor (Grammar, Narrative Continuity, End-to-End Logic)
+        // PASS 3: Harsh Senior Medical Editor (Grammar, Narrative Continuity, End-to-End Logic, Blinded Captions)
         const combinedVignette = `${parsed.history_of_present_illness || ""} ${parsed.neuro_exam || ""} ${parsed.key_labs_csf || ""}`.trim();
+        const correctOptKey = parsed.correctOption || "A";
+        const correctOptText = parsed[`opt${correctOptKey}`] || "";
         const pass3Prompt = `You are a Harsh Senior Medical Editor for NEJM Clinical & Imaging Challenge.
 Audit and polish this clinical case JSON for academic medical prose, narrative continuity, and end-to-end clinical logic:
 ${JSON.stringify(parsed, null, 2)}
@@ -554,10 +603,15 @@ ${JSON.stringify(parsed, null, 2)}
 RENDERED VIGNETTE PREVIEW:
 "${combinedVignette}"
 
+RENDERED FIGURE CAPTION PREVIEW (readers can view 'figure_caption' as a hint BEFORE answering; final_diagnosis = "${parsed.final_diagnosis || ""}", correctOption = "${correctOptText}"):
+- figure_caption: "${parsed.figure_caption || ""}"
+- findings_summary: "${parsed.findings_summary || ""}"
+
 HARSH EDITOR CHECKLIST (FIX ALL ISSUES DIRECTLY):
 1. MEDICAL GRAMMAR & TENSE: Ensure precise academic English, consistent past tense for patient history/exam/labs, present tense for general medical rules in 'teaching_points' and 'clinical_pitfalls', and standardized units (cmH2O, mg/dL, µL, mmHg).
 2. SEAMLESS CONTINUITY: Remove repetition between 'history_of_present_illness' and 'neuro_exam' and verify strict chronological flow when read together in the rendered vignette preview.
 3. END-TO-END LOGIC: Verify vignette clues + imaging findings logically support 'correctOption' without contradiction, rationales align with vignette facts, 'clinical_discussion' has 3 cohesive paragraphs explaining differentials + withheld confirmatory tests + management, and 'teaching_points' / 'clinical_pitfalls' are high-yield and aligned with the question.
+4. BLINDED FIGURE CAPTION: Audit 'figure_caption' and 'findings_summary' against 'final_diagnosis' and the correct option text. Rewrite any diagnostic framing (e.g., "Imaging studies of a patient with [Diagnosis]...") into neutral anatomical/temporal wording, remove any disease names or acronyms, and ensure complete, non-truncated sentences.
 Output ONLY valid JSON matching the exact same schema.`;
 
         const pass3 = await callGeminiCaseWaterfall([{ text: pass3Prompt }], geminiApiKey, "pass3_editor", 0.1);
@@ -605,9 +659,19 @@ Output ONLY valid JSON matching the exact same schema.`;
           clinical_pitfalls: Array.isArray(parsed.clinical_pitfalls) ? parsed.clinical_pitfalls : [],
         };
       }
-    } catch (err) {
+    } catch (err: any) {
+      if (typeof err?.message === "string" && err.message.startsWith("Article rejected:")) {
+        throw err;
+      }
       console.warn("Gemini API extraction fallback triggered:", err);
     }
+  }
+
+  const nonCaseReason = detectNonCaseReportText(cleaned);
+  if (nonCaseReason) {
+    throw new Error(
+      `Article rejected: ${nonCaseReason} NeuroCase only accepts single-patient clinical case reports (not case series, retrospective/prospective cohorts, RCTs, or reviews).`
+    );
   }
 
   // Deterministic Clinical NLP Rule-Based Extraction (works offline / without API key)

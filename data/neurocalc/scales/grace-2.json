@@ -11,7 +11,10 @@
     "time_estimate": "~1 min",
     "clinical_pearls": [
       "Replaces linear GRACE 1.0 point bins with restricted cubic splines for age, heart rate, SBP, and serum creatinine (Fox et al., BMJ Open 2014; UMass GRACE V2 2017).",
-      "1-year mortality risk strata: <3% Low, 3.0–7.9% Intermediate, >=8.0% High."
+      "1-year mortality risk strata: <3% Low, 3.0–7.9% Intermediate, >=8.0% High.",
+      "Widely validated across > 20,000 ACS patients (AUC ~0.8) to guide invasive strategy timing and risk communication.",
+      "Pitfall — Prognostic only & STEMI timing: Not designed to diagnose undifferentiated chest pain or ACS, and must never delay emergent reperfusion in STEMI.",
+      "Pitfall — Calibration drift & unmeasured factors: Calibration can vary over time or across health systems; omits frailty, comorbidity burden, and socioeconomic factors, and relies on subjective Killip class."
     ]
   },
   "items": [
@@ -149,13 +152,42 @@
       "citation": "Fox KA, Fitzgerald G, Puymirat E, et al. Should patients with acute coronary disease be stratified for management according to their risk? Derivation, external validation and outcomes using the updated GRACE risk score. BMJ Open. 2014;4(2):e004425.",
       "year": 2014,
       "pmid": "24561498",
-      "doi": "10.1136/bmjopen-2013-004425"
+      "doi": "10.1136/bmjopen-2013-004425",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24561498/",
+      "category": "primary"
+    },
+    {
+      "id": "fox-2006-grace",
+      "citation": "Fox KA, Dabbous OH, Goldberg RJ, et al. Prediction of risk of death and myocardial infarction in the six months after presentation with acute coronary syndrome: prospective multinational observational study (GRACE). BMJ. 2006;333(7578):1091.",
+      "year": 2006,
+      "pmid": "17032691",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17032691/",
+      "category": "primary"
+    },
+    {
+      "id": "huang-2016-grace2",
+      "citation": "Huang W, FitzGerald G, Goldberg RJ, et al. Performance of the GRACE Risk Score 2.0 Simplified Algorithm for Predicting 1-Year Death After Hospitalization for an Acute Coronary Syndrome in a Contemporary Multiracial Cohort. Am J Cardiol. 2016;118(8):1105-1110.",
+      "year": 2016,
+      "pmid": "27561191",
+      "doi": "10.1016/j.amjcard.2016.07.029",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27561191/",
+      "category": "validation"
     },
     {
       "id": "hara-2022-grace2",
       "citation": "Hara H, Takahashi K, van Klaveren D, et al. External validation of the GRACE 2.0 risk score in patients with acute coronary syndrome. EuroIntervention. 2022;17(16):1362-1364.",
       "year": 2022,
-      "doi": "10.4244/EIJ-D-21-00612"
+      "doi": "10.4244/EIJ-D-21-00612",
+      "category": "validation"
+    },
+    {
+      "id": "vandersangen-2022-grace",
+      "citation": "van der Sangen NMR, Azzahhafi J, Chan Pin Yin DRPP, et al. External validation of the GRACE risk score and the risk-treatment paradox in patients with acute coronary syndrome. Open Heart. 2022;9(1):e001984.",
+      "year": 2022,
+      "pmid": "35354660",
+      "doi": "10.1136/openhrt-2022-001984",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35354660/",
+      "category": "validation"
     }
   ],
   "test_cases": [

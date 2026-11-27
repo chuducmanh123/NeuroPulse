@@ -10,7 +10,10 @@
     "summary": "8-stage global clinical staging scale (0–5) for Parkinson's disease motor progression and postural instability.",
     "time_estimate": "< 1 min",
     "clinical_pearls": [
-      "Document whether staging was performed in the medication ON or OFF state."
+      "Document whether staging was performed in the medication ON or OFF state.",
+      "The modified Hoehn & Yahr scale adds stages 1.5 and 2.5 to better capture early unilateral-to-axial and mild bilateral disease progression.",
+      "Pitfall — Heavy postural weighting: Progression from Stage 2.5 to 3 hinges on postural instability (pull test), which may under-represent severe bradykinesia, tremor, or gait freezing without falls.",
+      "Pitfall — Non-motor blind spot: Does not assess cognitive decline, mood disorders, sleep dysfunction, or autonomic symptoms; pair with MDS-UPDRS or dedicated non-motor scales."
     ]
   },
   "items": [
@@ -57,10 +60,20 @@
   ],
   "references": [
     {
+      "id": "hoehn-1967-hy",
+      "citation": "Hoehn MM, Yahr MD. Parkinsonism: onset, progression and mortality. Neurology. 1967;17(5):427-442.",
+      "year": 1967,
+      "pmid": "6067254",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6067254/",
+      "category": "primary"
+    },
+    {
       "id": "goetz-2004-hy",
       "citation": "Goetz CG, Poewe W, Rascol O, et al. Movement Disorder Society Task Force report on the Hoehn and Yahr staging scale: status and recommendations. Mov Disord. 2004;19(9):1020-1028.",
       "year": 2004,
-      "pmid": "15372591"
+      "pmid": "15372591",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15372591/",
+      "category": "validation"
     }
   ],
   "test_cases": [

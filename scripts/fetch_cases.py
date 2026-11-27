@@ -94,8 +94,53 @@ EXCLUDED_JOURNALS_REGEX = re.compile(
     re.IGNORECASE
 )
 EXCLUDED_TITLES_REGEX = re.compile(
-    r"\b(systematic review|meta-analysis|randomized|retrospective cohort|prospective cohort|study protocol|registry|bibliometric|mendelian randomization|alluvial|mouse|mice|rat|in vitro|case series|series of (?:cases|patients)|multiple cases|two cases|three cases|four cases|five cases|six cases|\d+\s+cases|\d+\s+patients)\b",
+    r"\b("
+    r"systematic review|meta-analysis|meta-regression|scoping review|narrative review|literature review|umbrella review|pooled analysis|"
+    r"randomized|randomised|rct|clinical trial|controlled trial|double-blind|single-blind|open-label|placebo-controlled|phase\s+(?:i|ii|iii|iv|1|2|3|4)|trial protocol|study protocol|post-hoc|sub-analysis|"
+    r"retrospective|prospective|cohort|case-control|cross-sectional|observational|multicenter|multi-center|nationwide|population-based|registry|epidemiolog(?:y|ical)|comparative study|validation study|diagnostic accuracy|real-world|longitudinal study|propensity score|"
+    r"machine learning|deep learning|artificial intelligence|radiomics|nomogram|prediction model|predictive model|convolutional neural|neural network|random forest|xgboost|decision curve|feature extraction|"
+    r"bibliometric|mendelian randomization|genome-wide|gwas|in vitro|mouse|mice|rat|rats|animal model|alluvial|"
+    r"case series|case-series|series of (?:cases|patients)|multiple cases|mini-series|"
+    r"(?:two|three|four|five|six|seven|eight|nine|ten|\d+)\s+(?:cases|patients|subjects|individuals)"
+    r")\b",
     re.IGNORECASE
+)
+
+EXCLUDED_PUB_TYPES = {
+    "review",
+    "review-article",
+    "systematic review",
+    "systematic-review",
+    "meta-analysis",
+    "clinical trial",
+    "clinical-trial",
+    "randomized controlled trial",
+    "randomized-controlled-trial",
+    "controlled clinical trial",
+    "pragmatic clinical trial",
+    "observational study",
+    "observational-study",
+    "multicenter study",
+    "multicenter-study",
+    "comparative study",
+    "comparative-study",
+    "evaluation study",
+    "validation study",
+    "clinical study",
+    "editorial",
+    "letter",
+    "comment",
+    "erratum",
+    "retraction",
+    "study protocol",
+    "protocol",
+    "methods",
+    "data-paper",
+}
+
+CASE_REPORT_TITLE_HINT_REGEX = re.compile(
+    r"\b(case report|clinical reasoning|teaching neuroimages|mystery case|clinical image|images in neurology)\b",
+    re.IGNORECASE,
 )
 
 CASE_SERIES_ABSTRACT_REGEX = re.compile(
@@ -103,18 +148,95 @@ CASE_SERIES_ABSTRACT_REGEX = re.compile(
     re.IGNORECASE
 )
 
+NON_CASE_STUDY_ABSTRACT_REGEX = re.compile(
+    r"\b("
+    r"(?:retrospective(?:ly)?|prospective(?:ly)?)\s+(?:study|analysis|cohort|review|evaluation|investigation|collected|enrolled|included|data|multicenter|single-center)|"
+    r"randomi[sz]ed\s+(?:controlled\s+)?trial|"
+    r"(?:case-control|cross-sectional|observational|multicenter|multi-center|cohort)\s+(?:study|analysis|trial|design)|"
+    r"(?:systematic\s+review|meta-analysis|scoping\s+review|bibliometric\s+analysis)|"
+    r"(?:a\s+total\s+of|total\s+of|we\s+(?:enrolled|included|recruited|analyzed|evaluated|reviewed|screened|identified)|enrolled|included|recruited)\s+\d{2,}\s+(?:consecutive\s+)?(?:patients|cases|subjects|participants|individuals)|"
+    r"\d{2,}\s+(?:consecutive\s+)?(?:patients|cases|subjects|participants|individuals)\s+(?:were\s+(?:enrolled|included|recruited|analyzed|evaluated|divided|randomi[sz]ed|retrospectively|prospectively)|with\b)|"
+    r"(?:training|validation|test(?:ing)?)\s+(?:set|cohort|dataset|subset)|"
+    r"(?:machine\s+learning|deep\s+learning|radiomics|decision\s+curve\s+analysis|convolutional\s+neural\s+network|random\s+forest|logistic\s+regression|cox\s+(?:proportional|regression)|kaplan-meier|receiver\s+operating\s+characteristic|area\s+under\s+the\s+(?:roc\s+)?curve)|"
+    r"n\s*=\s*\d{2,}|interquartile\s+range|baseline\s+characteristics\s+of\s+(?:the\s+)?patients"
+    r")\b",
+    re.IGNORECASE,
+)
+
+PMC_NON_CASE_HTML_TYPE_REGEX = re.compile(
+    r"\b(original research|research-article|research article|systematic review|meta-analysis|clinical trial|study protocol|brief research report|mini review|review article|methods)\b",
+    re.IGNORECASE,
+)
+
+SINGLE_PATIENT_EVIDENCE_REGEX = re.compile(
+    r"\b(?:"
+    r"(?:\d{1,2}\s*[-–]?\s*(?:year|month|week|day)\s*[-–]?\s*old)\s+(?:right-handed\s+|left-handed\s+|previously\s+healthy\s+|pregnant\s+|hispanic\s+|caucasian\s+|asian\s+|african\s+|elderly\s+|young\s+)?(?:man|woman|male|female|boy|girl|infant|child|neonate|patient|gentleman|lady|adolescent)"
+    r"|(?:a|an)\s+\d{1,2}\s*[-–]?\s*(?:year|month)\s*[-–]?\s*old"
+    r")\b",
+    re.IGNORECASE,
+)
+
 CASE_SERIES_CAPTION_REGEX = re.compile(
     r"\b(?:(?:case|patient)\s*[2-9]\b|(?:cases|patients)\s*\d+\s*[-–&,]\s*\d+)\b",
     re.IGNORECASE
 )
 
+CASE_REPORT_QUERY_CONSTRAINT = (
+    '(PUB_TYPE:"Case Reports" OR PUB_TYPE:"case-report" '
+    'OR TITLE:"case report" OR TITLE:"clinical reasoning" '
+    'OR TITLE:"teaching neuroimages" OR TITLE:"mystery case") '
+    'AND NOT (PUB_TYPE:"Review" OR PUB_TYPE:"Systematic Review" '
+    'OR PUB_TYPE:"Meta-Analysis" OR PUB_TYPE:"Clinical Trial" '
+    'OR PUB_TYPE:"Randomized Controlled Trial" '
+    'OR PUB_TYPE:"Observational Study" OR PUB_TYPE:"Multicenter Study" '
+    'OR PUB_TYPE:"Comparative Study" OR PUB_TYPE:"Evaluation Study" '
+    'OR PUB_TYPE:"Validation Study")'
+)
 
-def detect_case_series(title: str = "", abstract_text: str = "", paragraphs: list = None, captions: list = None) -> str:
-    """Trả về lý do nếu bài báo là loạt ca (case series), ngược lại trả về chuỗi rỗng."""
+
+def detect_non_case_report(
+    title: str = "",
+    abstract_text: str = "",
+    paragraphs: list = None,
+    captions: list = None,
+    pub_types: list = None,
+    html_str: str = "",
+) -> str:
+    """Trả về lý do nếu bài báo KHÔNG phải ca lâm sàng đơn lẻ (hồi cứu, tiến cứu, RCT, cohort, ML, loạt ca...); ngược lại trả về chuỗi rỗng."""
+    if pub_types:
+        norm_pts = [str(pt).strip().lower() for pt in pub_types if str(pt).strip()]
+        for pt in norm_pts:
+            if pt in EXCLUDED_PUB_TYPES:
+                return f"Excluded publication type: {pt}"
+        has_case_pt = any(pt in ("case-report", "case reports", "case report") for pt in norm_pts)
+        if "research-article" in norm_pts and not has_case_pt and not CASE_REPORT_TITLE_HINT_REGEX.search(title or ""):
+            return "Publication type is research-article (not a case report)"
+
+    if html_str:
+        head_chunk = html_str[:12000]
+        meta_types = re.findall(
+            r'<meta[^>]+name=["\'](?:citation_article_type|dc\.type)["\'][^>]+content=["\']([^"\']+)["\']',
+            head_chunk,
+            flags=re.IGNORECASE,
+        )
+        attr_types = re.findall(r'article-type=["\']([^"\']+)["\']', head_chunk, flags=re.IGNORECASE)
+        article_type_tokens = " ".join(meta_types + attr_types).strip()
+        if article_type_tokens:
+            if PMC_NON_CASE_HTML_TYPE_REGEX.search(article_type_tokens) and not re.search(
+                r"\bcase[- ]?report\b", article_type_tokens, re.IGNORECASE
+            ):
+                return f"PMC HTML article type is non-case: {article_type_tokens[:60]}"
+        elif re.search(r"\bORIGINAL RESEARCH article\b|\bSYSTEMATIC REVIEW article\b|\bCLINICAL TRIAL article\b", head_chunk, re.IGNORECASE):
+            return "PMC HTML header indicates Original Research / Review / Clinical Trial"
+
     if title and EXCLUDED_TITLES_REGEX.search(title):
         return f"Excluded title pattern: {title[:80]}"
-    if abstract_text and CASE_SERIES_ABSTRACT_REGEX.search(abstract_text):
-        return "Abstract describes a case series / multiple cases"
+
+    if abstract_text:
+        if CASE_SERIES_ABSTRACT_REGEX.search(abstract_text):
+            return "Abstract describes a case series / multiple cases"
+        if NON_CASE_STUDY_ABSTRACT_REGEX.search(abstract_text):
+            return "Abstract describes a multi-patient study / trial / cohort / ML research"
 
     if captions:
         for cap in captions:
@@ -134,10 +256,38 @@ def detect_case_series(title: str = "", abstract_text: str = "", paragraphs: lis
         if has_case_1_2 or has_patient_1_2:
             return "Article body contains multiple numbered cases (Case/Patient 1 & 2)"
 
+        # Chỉ kiểm tra các đoạn đầu (Methods / Intro / Case body, trước Discussion) để tránh loại nhầm ca lâm sàng có trích dẫn RCT trong Discussion
+        leading_body = "\n".join(paragraphs[:4])
+        if NON_CASE_STUDY_ABSTRACT_REGEX.search(leading_body):
+            return "Leading body paragraphs describe a multi-patient study / trial / cohort / ML research"
+
     return ""
+
+
+def detect_case_series(title: str = "", abstract_text: str = "", paragraphs: list = None, captions: list = None) -> str:
+    """Wrapper tương thích ngược cho detect_non_case_report."""
+    return detect_non_case_report(
+        title=title,
+        abstract_text=abstract_text,
+        paragraphs=paragraphs,
+        captions=captions,
+    )
+
+
 EXCLUDED_CAPTIONS_REGEX = re.compile(
-    r"\b(flow diagram|flowchart|prisma|forest plot|alluvial|schematic|study protocol|patient inclusion|eligibility|kaplan-meier|roc curve|bar graph|scatter plot|funnel plot|pedigree|timeline of the patient)\b",
+    r"\b("
+    r"workflow|flow diagram|flowchart|pipeline|framework|architecture|prisma|forest plot|alluvial|schematic|"
+    r"study protocol|study design|patient inclusion|patient selection|eligibility|consort|"
+    r"kaplan-meier|survival curve|roc curve|receiver operating|auc|auroc|decision curve|dca|calibration curve|"
+    r"nomogram|confusion matrix|bar graph|bar chart|histogram|scatter plot|box plot|boxplot|violin plot|funnel plot|"
+    r"heatmap|shap|grad-cam|feature importance|feature extraction|data partitioning|prediction model|machine learning|deep learning|classification|"
+    r"pedigree|timeline"
+    r")\b",
     re.IGNORECASE
+)
+EXCLUDED_MODALITIES_REGEX = re.compile(
+    r"\b(workflow|diagram|flowchart|pipeline|decision curve|dca|roc curve|kaplan-meier|forest plot|machine learning|bar chart|scatter plot|timeline|schematic|nomogram|heatmap)\b",
+    re.IGNORECASE,
 )
 NEUROIMAGING_CAPTION_REGEX = re.compile(
     r"\b(MRI|FLAIR|DWI|diffusion-weighted|ADC|T1-weighted|T2-weighted|SWI|MRV|MRA|CTA|CT\b|DSA|angiogram|angiography|hyperintense|hyperintensity|hypointense|infarction|occlusion|thrombosis|enhancement|gadolinium|EEG|electroencephalogram|clinical photograph|photograph|rash|lesion|erythema|skin|papules|purpura|fundus|fundoscopy|papilledema|cranial nerve|ptosis|ophthalmoplegia|pupil|biopsy|histopathology|myopathy|muscle biopsy|EMG|electromyography)\b",
@@ -330,8 +480,20 @@ def save_cases_to_disk(cases_list: list):
         json.dump(cases_list[:MAX_CASES_STORED], f, ensure_ascii=False, indent=2)
 
 
-def extract_figures_and_text_from_pmc(pmcid: str, doi: str, pmid: str, title: str, journal_title: str, journal_short: str, pub_year: str, abstract_text: str):
-    """Tải nội dung ca bệnh (Presentation + Discussion) và trích xuất 1-2 hình ảnh thật từ PMC CDN."""
+def extract_figures_and_text_from_pmc(
+    pmcid: str,
+    doi: str,
+    pmid: str,
+    title: str,
+    journal_title: str,
+    journal_short: str,
+    pub_year: str,
+    abstract_text: str,
+    pub_types: list | None = None,
+):
+    """Tải nội dung ca bệnh (Presentation + Discussion) và trích xuất 1-2 hình ảnh thật từ PMC CDN.
+    Từ chối mọi bài báo không phải ca lâm sàng đơn lẻ (hồi cứu, tiến cứu, RCT, cohort, ML, loạt ca...).
+    """
     os.makedirs(FIGURES_DIR, exist_ok=True)
     case_body_text = abstract_text or ""
     discussion_text = ""
@@ -352,11 +514,11 @@ def extract_figures_and_text_from_pmc(pmcid: str, doi: str, pmid: str, title: st
             ):
                 all_paragraphs.append(txt)
 
-        # Khối 1: Đoạn mô tả bệnh án (Case Presentation)
+        # Khối 1: Đoạn mô tả ca bệnh cá thể (Case Presentation) — ưu tiên câu chuyện lâm sàng của 1 bệnh nhân
         pres_paragraphs = []
         for txt in all_paragraphs:
             if len(txt) > 100 and re.search(
-                r"\b(year-old|years old|man|woman|patient|presented with|admitted|history of|neurological examination|examination revealed|MRI|CT|CSF|treated with)\b",
+                r"\b(year-old|years old|month-old|presented with|presented to|admitted|chief complaint|physical examination|neurological examination|examination revealed|history of present)\b",
                 txt,
                 flags=re.IGNORECASE
             ):
@@ -396,14 +558,25 @@ def extract_figures_and_text_from_pmc(pmcid: str, doi: str, pmid: str, title: st
             for m in [re.search(r"<figcaption[^>]*>([\s\S]*?)</figcaption>", block, flags=re.IGNORECASE)]
             if m
         ]
-        series_reason = detect_case_series(
+        non_case_reason = detect_non_case_report(
             title=title,
             abstract_text=abstract_text,
             paragraphs=all_paragraphs,
             captions=all_captions,
+            pub_types=pub_types,
+            html_str=html_str,
         )
-        if series_reason:
-            print(f"   [skip] {pmcid}: {series_reason}")
+        if non_case_reason:
+            print(f"   [skip] {pmcid}: {non_case_reason}")
+            return None
+
+        # Bắt buộc phải có bằng chứng mô tả 1 bệnh nhân cụ thể (tuổi/giới) trong abstract hoặc phần bệnh án
+        pres_joined = "\n".join(pres_paragraphs)
+        if not (
+            SINGLE_PATIENT_EVIDENCE_REGEX.search(abstract_text or "")
+            or SINGLE_PATIENT_EVIDENCE_REGEX.search(pres_joined)
+        ):
+            print(f"   [skip] {pmcid}: No single-patient clinical presentation detected")
             return None
 
         for block in fig_blocks:
@@ -472,7 +645,7 @@ def extract_figures_and_text_from_pmc(pmcid: str, doi: str, pmid: str, title: st
 
 
 def find_new_pmc_candidate(used_pmcids: set, day_index: int, target_subspecialty: str = None):
-    """Duyệt qua ngân hàng chủ đề lâm sàng trên các tạp chí uy tín để tìm 1 ca bệnh PMC mới có hình ảnh thần kinh, ưu tiên theo chuyên khoa luân phiên của ngày."""
+    """Duyệt qua ngân hàng chủ đề lâm sàng trên các tạp chí uy tín để tìm 1 ca bệnh PMC đơn lẻ mới có hình ảnh thần kinh, ưu tiên theo chuyên khoa luân phiên của ngày."""
     topics = list(CLINICAL_CASE_TOPIC_BANK)
     if target_subspecialty:
         # Đưa các chủ đề thuộc chuyên khoa mục tiêu của ngày lên ưu tiên hàng đầu
@@ -483,7 +656,7 @@ def find_new_pmc_candidate(used_pmcids: set, day_index: int, target_subspecialty
     total_topics = len(topics)
     for offset in range(total_topics):
         topic_cfg = topics[(day_index + offset) % total_topics]
-        full_query = f"({topic_cfg['query']}) AND ({HIGH_IMPACT_JOURNAL_FILTER}) AND OPEN_ACCESS:y"
+        full_query = f"({topic_cfg['query']}) AND ({CASE_REPORT_QUERY_CONSTRAINT}) AND ({HIGH_IMPACT_JOURNAL_FILTER}) AND OPEN_ACCESS:y"
         encoded = urllib.parse.quote(full_query)
         search_url = (
             f"https://www.ebi.ac.uk/europepmc/webservices/rest/search"
@@ -510,16 +683,35 @@ def find_new_pmc_candidate(used_pmcids: set, day_index: int, target_subspecialty
             journal_short = journal_info.get("isoAbbreviation") or journal_title
             pub_year = str(item.get("pubYear", "2025"))
             abstract_text = strip_html_tags(item.get("abstractText", ""))
+            raw_pub_types = item.get("pubTypeList", {}).get("pubType", [])
+            if isinstance(raw_pub_types, str):
+                pub_types = [raw_pub_types]
+            elif isinstance(raw_pub_types, list):
+                pub_types = [str(pt) for pt in raw_pub_types if pt]
+            else:
+                pub_types = []
 
             if EXCLUDED_JOURNALS_REGEX.search(journal_title):
                 continue
-            skip_reason = detect_case_series(title=title, abstract_text=abstract_text)
+            skip_reason = detect_non_case_report(
+                title=title,
+                abstract_text=abstract_text,
+                pub_types=pub_types,
+            )
             if skip_reason:
                 print(f"   [skip] {pmcid}: {skip_reason}")
                 continue
 
             candidate = extract_figures_and_text_from_pmc(
-                pmcid, doi, pmid, title, journal_title, journal_short, pub_year, abstract_text
+                pmcid,
+                doi,
+                pmid,
+                title,
+                journal_title,
+                journal_short,
+                pub_year,
+                abstract_text,
+                pub_types=pub_types,
             )
             if candidate:
                 candidate["default_subspecialty"] = topic_cfg["subspecialty"]
@@ -565,13 +757,58 @@ def _normalize_peer_percentages(options: list, correct_opt: str) -> None:
                 opt["peer_percentage"] = cand
 
 
+def _extract_leak_terms(final_diag: str, correct_opt_text: str) -> list[str]:
+    """Trích xuất danh sách cụm từ dễ lộ đáp án (tên đầy đủ, đáp án đúng, gốc bệnh lý, và từ viết tắt trong ngoặc)."""
+    terms: list[str] = []
+    for raw in (final_diag, correct_opt_text):
+        cleaned = (raw or "").strip()
+        if len(cleaned) > 4:
+            terms.append(cleaned)
+        # Lấy phần gốc trước các cụm nguyên nhân/bổ nghĩa hoặc dấu ngoặc đơn
+        stem = re.split(
+            r"\s+(?:secondary to|due to|associated with|caused by|complicating|following|in a)\b|\s*\(",
+            cleaned,
+            maxsplit=1,
+            flags=re.IGNORECASE,
+        )[0].strip()
+        if len(stem) > 5:
+            terms.append(stem)
+        # Lấy các từ viết tắt in hoa trong ngoặc đơn (vd: (PRES), (ADEM), (NMDAR))
+        for acro in re.findall(r"\(([A-Z0-9-]{3,10})\)", cleaned):
+            terms.append(acro)
+
+    # Khử trùng lặp (không phân biệt hoa/thường) và sắp xếp dài -> ngắn để thay thế chính xác
+    seen: set[str] = set()
+    unique: list[str] = []
+    for t in sorted(terms, key=len, reverse=True):
+        key = t.lower()
+        if key not in seen:
+            seen.add(key)
+            unique.append(t)
+    return unique
+
+
+def _redact_leak_terms(text: str, leak_terms: list[str], replacement: str) -> str:
+    """Ẩn toàn bộ các cụm từ lộ đáp án trong caption / findings_summary."""
+    if not text:
+        return text
+    out = text
+    for term in leak_terms:
+        if len(term) <= 4 and term.isupper():
+            # Từ viết tắt ngắn (vd: PRES, ADEM) -> khớp theo ranh giới từ và đúng chữ hoa để tránh thay nhầm từ thường
+            out = re.sub(rf"\b{re.escape(term)}\b", replacement, out)
+        else:
+            out = re.sub(re.escape(term), replacement, out, flags=re.IGNORECASE)
+    return out
+
+
 def validate_case_quality(case: dict) -> tuple[bool, str]:
     """Kiểm tra chất lượng học thuật, dòng thời gian và chống lộ đáp án:
     1. question_type phải hợp lệ và đủ 4 options A, B, C, D.
     2. Câu hỏi không được hỏi 2 ý (Compound double-barrel question).
-    3. Tên chẩn đoán cuối không được lộ trong tiêu đề, câu hỏi, chief complaint, HPI, neuro_exam, hoặc key_labs_csf.
+    3. Tên chẩn đoán cuối và đáp án đúng không được lộ trong tiêu đề, câu hỏi, chief complaint, HPI, neuro_exam, hoặc key_labs_csf.
     4. Kiểm tra đảo ngược thời gian giữa HPI (diễn tiến ICU/hôn mê muộn) và neuro_exam (khám tỉnh ban đầu).
-    5. Tự động làm sạch caption/findings của hình ảnh và chuẩn hóa peer_percentage về tổng 100.
+    5. Tự động làm sạch caption/findings của hình ảnh (kể cả tên bệnh rút gọn & từ viết tắt) và chuẩn hóa peer_percentage về tổng 100.
     """
     challenge = case.get("challenge") or {}
     q_text = challenge.get("question", "")
@@ -610,7 +847,18 @@ def validate_case_quality(case: dict) -> tuple[bool, str]:
     if late_hpi_re.search(hpi) and alert_exam_re.search(neuro_exam):
         return False, "Chronological reversal between HPI and neuro_exam"
 
-    # 3. Kiểm tra lộ chẩn đoán cuối trong toàn bộ dữ kiện trước khi giải
+    # 2b. Kiểm tra hình ảnh không phải biểu đồ / workflow diagram / DCA / ROC
+    for img in pres.get("imaging", []):
+        if EXCLUDED_MODALITIES_REGEX.search(img.get("modality", "")) or EXCLUDED_CAPTIONS_REGEX.search(img.get("caption", "")):
+            return False, "Non-clinical figure/diagram detected in imaging"
+
+    # 3. Kiểm tra lộ chẩn đoán cuối / đáp án đúng trong toàn bộ dữ kiện trước khi giải
+    correct_opt_text = next(
+        (str(o.get("text", "")).strip() for o in options if o.get("id") == correct_opt),
+        "",
+    )
+    leak_terms = _extract_leak_terms(final_diag, correct_opt_text)
+
     if len(final_diag) > 4:
         diag_lower = final_diag.lower()
         if diag_lower in q_text.lower():
@@ -626,12 +874,28 @@ def validate_case_quality(case: dict) -> tuple[bool, str]:
         if diag_lower in labs_csf.lower():
             return False, "Final diagnosis appears inside key_labs_csf (answer leakage)"
 
-        # 4. Làm sạch caption và findings_summary nếu lỡ chứa tên chẩn đoán cuối
+    if q_type == "Diagnosis" and len(correct_opt_text) > 5:
+        opt_lower = correct_opt_text.lower()
+        if opt_lower in q_text.lower():
+            return False, "Correct option appears inside the question text (answer leakage)"
+        if opt_lower in title.lower():
+            return False, "Correct option appears inside the title"
+        if opt_lower in cc.lower():
+            return False, "Correct option appears inside the chief complaint"
+        if opt_lower in hpi.lower():
+            return False, "Correct option appears inside HPI (answer leakage)"
+        if opt_lower in neuro_exam.lower():
+            return False, "Correct option appears inside neuro_exam (answer leakage)"
+        if opt_lower in labs_csf.lower():
+            return False, "Correct option appears inside key_labs_csf (answer leakage)"
+
+    # 4. Làm sạch caption và findings_summary nếu lỡ chứa tên chẩn đoán cuối, đáp án đúng hoặc từ viết tắt
+    if leak_terms:
         for img in pres.get("imaging", []):
-            if "caption" in img and diag_lower in img["caption"].lower():
-                img["caption"] = re.sub(re.escape(final_diag), "characteristic pathology", img["caption"], flags=re.IGNORECASE)
-            if "findings_summary" in img and diag_lower in img["findings_summary"].lower():
-                img["findings_summary"] = re.sub(re.escape(final_diag), "the primary abnormality", img["findings_summary"], flags=re.IGNORECASE)
+            if "caption" in img and img["caption"]:
+                img["caption"] = _redact_leak_terms(img["caption"], leak_terms, "characteristic pathology")
+            if "findings_summary" in img and img["findings_summary"]:
+                img["findings_summary"] = _redact_leak_terms(img["findings_summary"], leak_terms, "the primary abnormality")
 
     # 5. Chuẩn hóa peer_percentage tổng bằng 100
     _normalize_peer_percentages(options, correct_opt)
@@ -738,8 +1002,9 @@ EXAMINER REVIEW CHECKLIST (REVISE STRICTLY AS NEEDED):
 2. STRICT ONE-WAY CHRONOLOGY:
    - The UI concatenates `history_of_present_illness + " " + neuro_exam + " " + key_labs_csf` into ONE paragraph.
    - `history_of_present_illness` MUST stop at initial ED/clinic arrival. Remove any late hospital course, ICU deterioration, coma, intubation, or EVD from HPI if `neuro_exam` starts with an alert initial exam (or move post-arrival deterioration strictly after the initial exam / into `clinical_discussion`).
-3. ZERO LEXICAL OR SEMANTIC ANSWER LEAKAGE:
-   - Remove the final diagnosis name AND overly specific syndrome buzzwords (e.g., "encephalopathy", "meningoencephalitis", pathognomonic eponymous names when asked for diagnosis) from `title`, `chief_complaint`, `history_of_present_illness`, `neuro_exam`, `key_labs_csf`, `question`, and `imaging_metadata[].findings_summary`.
+3. ZERO LEXICAL OR SEMANTIC ANSWER LEAKAGE (INCLUDING IMAGE CAPTIONS):
+   - Remove the final diagnosis name, the correct option text, disease acronyms/eponyms (e.g., "PRES", "ADEM", "NMDAR"), AND overly specific syndrome buzzwords from `title`, `chief_complaint`, `history_of_present_illness`, `neuro_exam`, `key_labs_csf`, `question`, `imaging_metadata[].caption`, and `imaging_metadata[].findings_summary`.
+   - Specifically audit EVERY `presentation.imaging_metadata[].caption`: replace diagnostic framing (e.g., "Imaging studies of a patient with [Diagnosis]...") with neutral anatomical/temporal framing (e.g., "Neuroimaging obtained immediately after the clinical event..."), ensure it describes only modality/panels and objective findings, and ensure it ends as a complete sentence (no mid-sentence truncation).
    - Use objective clinical signs instead of diagnostic labels.
 4. DIAGNOSTIC TIMEPOINT CUTOFF (CRITICAL):
    - Keep only INITIAL/FIRST-LINE labs and CSF in `key_labs_csf` (e.g., opening pressure, cell count, protein, glucose).
@@ -771,6 +1036,21 @@ def editorial_and_logic_review_with_gemini(case_json: dict, candidate: dict | No
         f"{pres.get('neuro_exam', '')} "
         f"{pres.get('key_labs_csf', '')}"
     ).strip()
+    correct_opt_id = case_json.get("challenge", {}).get("correct_option", "A")
+    correct_opt_text = next(
+        (
+            str(o.get("text", "")).strip()
+            for o in case_json.get("challenge", {}).get("options", [])
+            if o.get("id") == correct_opt_id
+        ),
+        "",
+    )
+    img_meta_list = pres.get("imaging_metadata", [])
+    captions_preview = "\n".join(
+        f"- Figure {i + 1} | modality={m.get('modality', '')} | caption={m.get('caption', '')} | findings_summary={m.get('findings_summary', '')}"
+        for i, m in enumerate(img_meta_list)
+        if isinstance(m, dict)
+    )
 
     editor_prompt = f"""You are a Harsh Senior Medical Editor for NEJM Clinical & Imaging Challenge and Neurology Resident & Fellow Section.
 Audit and polish this clinical case JSON for academic medical prose, narrative continuity, and end-to-end clinical logic:
@@ -778,6 +1058,9 @@ Audit and polish this clinical case JSON for academic medical prose, narrative c
 
 RENDERED VIGNETTE PREVIEW (this exact concatenated paragraph is what readers see before answering):
 "{combined_vignette}"
+
+RENDERED FIGURE CAPTIONS PREVIEW (readers can view `caption` as a hint BEFORE answering; `final_diagnosis` = "{case_json.get('resolution', {}).get('final_diagnosis', '')}", `correct_option` = "{correct_opt_text}"):
+{captions_preview or "None"}
 
 HARSH EDITOR REVIEW CHECKLIST (FIX ALL DEFECTS DIRECTLY IN THE OUTPUT JSON):
 1. MEDICAL GRAMMAR, TENSE & UNITS:
@@ -795,8 +1078,12 @@ HARSH EDITOR REVIEW CHECKLIST (FIX ALL DEFECTS DIRECTLY IN THE OUTPUT JSON):
      * Paragraph 2: The diagnostic inflection point, the late confirmatory/exclusion tests withheld from the vignette, and pathophysiology of `final_diagnosis`.
      * Paragraph 3: Targeted management and clinical outcome.
    - Verify `resolution.teaching_points` (3-4 generalizable, high-yield board pearls) and `resolution.clinical_pitfalls` (2-3 concrete diagnostic/management traps) align directly with the question and the article's main lesson.
-   - Preserve `challenge.correct_option` ("{case_json.get('challenge', {}).get('correct_option', 'A')}") and exact `imaging_metadata` count ({len(pres.get('imaging_metadata', []))}).
-4. Output ONLY 100% valid JSON matching the exact same schema."""
+   - Preserve `challenge.correct_option` ("{correct_opt_id}") and exact `imaging_metadata` count ({len(img_meta_list)}).
+4. BLINDED FIGURE CAPTIONS & RADIOLOGICAL CONSISTENCY:
+   - Audit EVERY entry in `RENDERED FIGURE CAPTIONS PREVIEW` against `final_diagnosis` and `correct_option`.
+   - Rewrite any `imaging_metadata[].caption` or `findings_summary` that mentions or hints at the diagnosis, correct option, or its acronym (e.g., "Imaging studies of a patient with [Diagnosis]..." -> "Neuroimaging obtained immediately after the acute event...").
+   - Ensure every `caption` is a complete, grammatically intact sentence (no mid-sentence truncation) and aligns radiologically with the vignette.
+5. Output ONLY 100% valid JSON matching the exact same schema."""
 
     edited = _call_gemini_json(editor_prompt, temperature=0.1, stage_label="pass3_editor")
     if isinstance(edited, dict) and edited.get("challenge") and edited.get("resolution"):
@@ -828,6 +1115,11 @@ SOURCE ARTICLE METADATA:
 {figures_desc}
 
 CRITICAL DESIGN RULES (6-STAGE PIPELINE — PASS 1):
+0. STRICT SINGLE-PATIENT CASE REPORT GATE (ZERO FABRICATION):
+   - First verify that the source article describes ONE real individual clinical patient (NOT a retrospective or prospective cohort study, NOT a randomized controlled trial, NOT a case-control/observational study, NOT a systematic review/meta-analysis, NOT a machine learning/original research study, and NOT a multi-patient case series) AND that the extracted figures are real clinical/neuroimaging figures of that patient (NOT workflow diagrams, ML pipelines, ROC/DCA curves, or statistical charts).
+   - NEVER invent or fabricate a fictional patient to fit a non-case research paper.
+   - If the article is NOT a single-patient clinical case report or its figures are non-clinical diagrams/charts, return ONLY:
+     {{"is_single_patient_case_report": false, "reject_reason": "Brief reason"}}
 1. IDENTIFY THE CLINICAL INFLECTION POINT:
    - Read "Discussion & Authors' Key Takeaways" to identify WHY the authors published this case (e.g., a deceptive clinical mimic, difficult etiologic workup, pivotal next diagnostic test, neuroanatomical localization, or acute management trap).
    - Do NOT ask a trivial broad-syndrome diagnosis (e.g., "encephalitis") if the clinical syndrome is already obvious and the real challenge is the underlying etiology or next best diagnostic/therapeutic step.
@@ -838,8 +1130,8 @@ CRITICAL DESIGN RULES (6-STAGE PIPELINE — PASS 1):
    - `history_of_present_illness`: Strictly chronological pre-arrival history up to ED/clinic presentation (3-4 sentences). NEVER include subsequent hospital deterioration, ICU admission, coma, mechanical ventilation, EVD, or final outcome here.
    - `neuro_exam`: Initial neurological exam at presentation (avoid repeating HPI symptoms).
    - `key_labs_csf`: ONLY initial/first-line laboratory and CSF results available at the diagnostic decision point. WITHHOLD late confirmatory or broad exclusion tests (e.g., negative broad bacterial/viral PCR panels, negative cultures, negative oligoclonal bands, definitive autoantibodies, biopsy) that would prematurely eliminate the distractors; move those results to `resolution.clinical_discussion`.
-4. IMAGING:
-   - Return `imaging_metadata` matching the {len(candidate['figures'])} figure(s) above in exact order, specifying `"modality"` and `"findings_summary"` (1 concise sentence describing purely anatomical/radiological features WITHOUT naming the final diagnosis).
+4. IMAGING (BLINDED CAPTIONS):
+   - Return `imaging_metadata` matching the {len(candidate['figures'])} figure(s) above in exact order, specifying `"modality"`, `"caption"` (a complete, grammatically intact BLINDED rewrite of the original figure caption describing ONLY imaging modality/panels and objective anatomical/signal findings WITHOUT naming the final diagnosis, correct option, or disease acronyms), and `"findings_summary"` (1 concise sentence describing purely anatomical/radiological features WITHOUT naming the final diagnosis).
 5. 4-OPTION MCQ & REAL DIFFERENTIALS (SINGLE-FOCUS RULE):
    - Ask strictly ONE clinical concept (`"Diagnosis"`, `"Next Best Step"`, `"Acute Management"`, or `"Localization"`). NEVER combine two questions.
    - All 3 incorrect options MUST come from plausible differential diagnoses actually relevant to or considered in the article, and remain plausible given the withheld late workup.
@@ -874,6 +1166,7 @@ CRITICAL DESIGN RULES (6-STAGE PIPELINE — PASS 1):
     "imaging_metadata": [
       {{
         "modality": "string",
+        "caption": "string (complete blinded figure caption without diagnosis or acronym)",
         "findings_summary": "string"
       }}
     ]
@@ -900,13 +1193,34 @@ CRITICAL DESIGN RULES (6-STAGE PIPELINE — PASS 1):
 
     # Stage 2 (Pass 1): Board Director Draft
     parsed = _call_gemini_json(prompt, temperature=0.2, stage_label="pass1_director")
-    if not parsed or not parsed.get("challenge") or not parsed.get("resolution"):
+    if not parsed:
+        return None
+    if parsed.get("is_single_patient_case_report") is False:
+        reason = parsed.get("reject_reason") or "Not a single-patient clinical case report"
+        print(f"   [skip/AI-reject] {candidate['pmcid']}: {reason}")
+        return {"_rejected_non_case": True, "reason": reason}
+    if not parsed.get("challenge") or not parsed.get("resolution"):
         return None
 
-    # Stage 3 (Pass 2): Strict Examiner Critique (Anti-Leakage, Cutoff, Chronology)
+    # Chuẩn hóa imaging_metadata trước Stage 3 & 4 để Pass 2 & Pass 3 luôn rà soát được caption thật
+    pres_draft = parsed.setdefault("presentation", {})
+    raw_img_meta = pres_draft.get("imaging_metadata", [])
+    if not isinstance(raw_img_meta, list):
+        raw_img_meta = []
+    normalized_img_meta = []
+    for idx, fig in enumerate(candidate["figures"]):
+        m = raw_img_meta[idx] if idx < len(raw_img_meta) and isinstance(raw_img_meta[idx], dict) else {}
+        normalized_img_meta.append({
+            "modality": m.get("modality") or "Brain MRI / Neuroimaging",
+            "caption": m.get("caption") or fig["caption"],
+            "findings_summary": m.get("findings_summary") or fig["caption"][:200],
+        })
+    pres_draft["imaging_metadata"] = normalized_img_meta
+
+    # Stage 3 (Pass 2): Strict Examiner Critique (Anti-Leakage including Captions, Cutoff, Chronology)
     parsed = critique_and_refine_with_gemini(parsed, candidate)
 
-    # Stage 4 (Pass 3): Harsh Senior Medical Editor (Grammar, Continuity, Logic)
+    # Stage 4 (Pass 3): Harsh Senior Medical Editor (Grammar, Continuity, Logic, Blinded Captions)
     parsed = editorial_and_logic_review_with_gemini(parsed, candidate)
 
     case_id = f"nc-2026-{str(next_case_num).zfill(3)}"
@@ -924,7 +1238,7 @@ CRITICAL DESIGN RULES (6-STAGE PIPELINE — PASS 1):
             "image_url": fig["image_url"],
             "pmcid": candidate["pmcid"],
             "doi_url": candidate["doi_url"],
-            "caption": fig["caption"],
+            "caption": meta.get("caption") or fig["caption"],
             "findings_summary": meta.get("findings_summary") or fig["caption"][:200]
         })
 
@@ -972,7 +1286,9 @@ CRITICAL DESIGN RULES (6-STAGE PIPELINE — PASS 1):
     # Stage 5: Kiểm tra chất lượng tự động bằng code (Deterministic Guardrails)
     valid, reason = validate_case_quality(case_obj)
     if not valid:
-        print(f"   [!] Case quality check failed ({reason}). Falling back to deterministic builder.")
+        print(f"   [!] Case quality check failed ({reason}).")
+        if "Non-clinical figure/diagram" in reason:
+            return {"_rejected_non_case": True, "reason": reason}
         return None
 
     return case_obj
@@ -1130,6 +1446,54 @@ def build_structured_clinical_case_deterministic(candidate: dict, next_case_num:
     }
 
 
+def _acquire_and_build_case(
+    used_pmcids: set,
+    day_index: int,
+    max_num: int,
+    today_str: str,
+    is_daily: bool,
+    target_subspecialty: str = None,
+    max_attempts: int = 4,
+):
+    """Tìm ứng viên ca bệnh đơn lẻ hợp lệ; nếu AI từ chối vì không phải case report thì thử ứng viên khác, không rơi về fallback bịa/lỗi."""
+    label = "Daily Challenge" if is_daily else "Archive Case"
+    for attempt in range(max_attempts):
+        cand = find_new_pmc_candidate(
+            used_pmcids,
+            day_index + attempt,
+            target_subspecialty=target_subspecialty,
+        )
+        if not cand:
+            return None, max_num
+
+        used_pmcids.add(cand["pmcid"].strip())
+        print(
+            f"   -> Ứng viên {label} (lần {attempt + 1}/{max_attempts}): "
+            f"{cand['pmcid']} ({cand['journal_title']}) - {len(cand['figures'])} hình ảnh."
+        )
+
+        case_obj = None
+        if GEMINI_API_KEY:
+            print(f"   -> Đang gọi Gemini AI biên soạn {label} (3-Pass Review)...")
+            case_obj = generate_clinical_case_with_gemini(cand, max_num + 1, today_str, is_daily=is_daily)
+            if isinstance(case_obj, dict) and case_obj.get("_rejected_non_case"):
+                print(f"   [skip] {cand['pmcid']} bị loại ({case_obj.get('reason')}). Tìm ứng viên khác...")
+                continue
+
+        if not case_obj or not case_obj.get("challenge") or not case_obj.get("resolution"):
+            print(f"   -> Dùng bộ biên soạn lâm sàng tất định cho {label}...")
+            case_obj = build_structured_clinical_case_deterministic(cand, max_num + 1, today_str, is_daily=is_daily)
+
+        if case_obj:
+            valid, reason = validate_case_quality(case_obj)
+            if not valid:
+                print(f"   [skip] {cand['pmcid']} không đạt validate_case_quality ({reason}). Tìm ứng viên khác...")
+                continue
+            return case_obj, max_num + 1
+
+    return None, max_num
+
+
 def run():
     print("[NeuroCase 1/3] Đang kiểm tra kho dữ liệu ca lâm sàng tại public/data/cases.json...")
     existing_cases = load_existing_cases()
@@ -1186,42 +1550,31 @@ def run():
     # 1. Cập nhật 1 ca Daily Challenge nếu ngày hôm nay chưa có
     if not has_daily_today:
         print(f"[NeuroCase 2/3] 🎯 Đang tìm ca bệnh Open Access mới làm Daily Challenge ({target_subspecialty}) cho ngày {today_str}...")
-        cand_daily = find_new_pmc_candidate(used_pmcids, day_index, target_subspecialty=target_subspecialty)
-        if cand_daily:
-            used_pmcids.add(cand_daily["pmcid"].strip())
-            max_num += 1
-            print(f"   -> Ứng viên Daily: {cand_daily['pmcid']} ({cand_daily['journal_title']}) - {len(cand_daily['figures'])} hình ảnh.")
-            case_daily = None
-            if GEMINI_API_KEY:
-                print("   -> Đang gọi Gemini AI biên soạn Daily Challenge (3-Pass Review)...")
-                case_daily = generate_clinical_case_with_gemini(cand_daily, max_num, today_str, is_daily=True)
-            if not case_daily or not case_daily.get("challenge") or not case_daily.get("resolution"):
-                print("   -> Dùng bộ biên soạn lâm sàng tất định cho Daily Challenge...")
-                case_daily = build_structured_clinical_case_deterministic(cand_daily, max_num, today_str, is_daily=True)
-
-            if case_daily:
-                newly_added.append(case_daily)
-                print(f"   ✨ Đã xuất bản Daily Challenge [{case_daily['case_code']}]: {case_daily['title']}")
+        case_daily, max_num = _acquire_and_build_case(
+            used_pmcids,
+            day_index,
+            max_num,
+            today_str,
+            is_daily=True,
+            target_subspecialty=target_subspecialty,
+        )
+        if case_daily:
+            newly_added.append(case_daily)
+            print(f"   ✨ Đã xuất bản Daily Challenge [{case_daily['case_code']}]: {case_daily['title']}")
 
     # 2. Cập nhật 1 ca Case Archive nếu ngày hôm nay chưa có
     if not has_archive_today:
         print(f"[NeuroCase 2/3] 📚 Đang tìm ca bệnh Open Access mới lưu trữ vào Case Archive cho ngày {today_str}...")
-        cand_archive = find_new_pmc_candidate(used_pmcids, day_index + 17)
-        if cand_archive:
-            used_pmcids.add(cand_archive["pmcid"].strip())
-            max_num += 1
-            print(f"   -> Ứng viên Archive: {cand_archive['pmcid']} ({cand_archive['journal_title']}) - {len(cand_archive['figures'])} hình ảnh.")
-            case_archive = None
-            if GEMINI_API_KEY:
-                print("   -> Đang gọi Gemini AI biên soạn Archive Case...")
-                case_archive = generate_clinical_case_with_gemini(cand_archive, max_num, today_str, is_daily=False)
-            if not case_archive or not case_archive.get("challenge") or not case_archive.get("resolution"):
-                print("   -> Dùng bộ biên soạn lâm sàng tất định cho Archive Case...")
-                case_archive = build_structured_clinical_case_deterministic(cand_archive, max_num, today_str, is_daily=False)
-
-            if case_archive:
-                newly_added.append(case_archive)
-                print(f"   📚 Đã xuất bản Archive Case [{case_archive['case_code']}]: {case_archive['title']}")
+        case_archive, max_num = _acquire_and_build_case(
+            used_pmcids,
+            day_index + 17,
+            max_num,
+            today_str,
+            is_daily=False,
+        )
+        if case_archive:
+            newly_added.append(case_archive)
+            print(f"   📚 Đã xuất bản Archive Case [{case_archive['case_code']}]: {case_archive['title']}")
 
     if newly_added:
         updated_cases = newly_added + existing_cases

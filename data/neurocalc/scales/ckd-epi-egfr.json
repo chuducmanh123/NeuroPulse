@@ -1,0 +1,173 @@
+{
+  "id": "ckd-epi-egfr",
+  "schema_version": 1,
+  "metadata": {
+    "name": "CKD-EPI 2021 eGFR (Race-Free Creatinine)",
+    "short_name": "eGFR (CKD-EPI 2021)",
+    "aliases": ["CKD-EPI 2021", "eGFR", "Estimated GFR", "KDIGO GFR"],
+    "subspecialties": ["Stroke", "Neurocritical Care", "Other"],
+    "kind": "formula",
+    "summary": "2021 race-free CKD-EPI creatinine equation estimating glomerular filtration rate (mL/min/1.73 m²) for CKD staging.",
+    "time_estimate": "< 30 sec",
+    "clinical_pearls": [
+      "The 2021 CKD-EPI equation removes the race coefficient and is recommended by NKF/ASN and KDIGO for routine CKD staging.",
+      "For medication dosing (especially DOACs), check whether the drug label specifies Cockcroft-Gault CrCl (mL/min) rather than BSA-indexed eGFR.",
+      "Combined creatinine + cystatin C equations improve accuracy when muscle mass is abnormal, though creatinine-alone eGFR is adequate for most routine clinical decisions.",
+      "Pitfall — Unreliable populations & dialysis: Creatinine-based eGFR is inaccurate in acute kidney injury, dialysis, pregnancy, early diabetes before overt nephropathy, and extremes of muscle mass (amputees, paraplegia, severe malnutrition, obesity)."
+    ]
+  },
+  "items": [
+    {
+      "kind": "select",
+      "id": "sex",
+      "label": "Biological Sex",
+      "required": true,
+      "options": [
+        { "id": "female", "label": "Female", "points": 0, "badge": "Female" },
+        { "id": "male", "label": "Male", "points": 1, "badge": "Male" }
+      ]
+    },
+    {
+      "kind": "numeric",
+      "id": "age",
+      "label": "Age",
+      "required": true,
+      "canonical_unit": "years",
+      "units": [
+        { "unit": "years", "label": "years", "to_canonical_factor": 1 }
+      ],
+      "min_canonical": 18,
+      "max_canonical": 120,
+      "step": 1
+    },
+    {
+      "kind": "numeric",
+      "id": "creatinine",
+      "label": "Serum Creatinine (SCr)",
+      "required": true,
+      "canonical_unit": "mg/dL",
+      "units": [
+        { "unit": "mg/dL", "label": "mg/dL", "to_canonical_factor": 1 },
+        { "unit": "umol/L", "label": "µmol/L", "to_canonical_factor": 0.01131222 }
+      ],
+      "min_canonical": 0.1,
+      "max_canonical": 25,
+      "step": 0.1
+    }
+  ],
+  "scoring": {
+    "method": "formula",
+    "min_score": 0,
+    "max_score": null,
+    "unit": "mL/min/1.73m²",
+    "precision": 1,
+    "formula_id": "ckd_epi_2021_egfr"
+  },
+  "interpretation": [
+    {
+      "id": "egfr_g5",
+      "min": 0,
+      "max": 14.9,
+      "label": "G5 — Kidney Failure (< 15)",
+      "severity": "critical",
+      "summary": "Kidney failure; nephrology co-management and dialysis consideration required.",
+      "refs": [{ "source_id": "inker-2021-ckdepi", "locator": "Table 2" }]
+    },
+    {
+      "id": "egfr_g4",
+      "min": 15,
+      "max": 29.9,
+      "label": "G4 — Severely Decreased (15–29.9)",
+      "severity": "severe",
+      "summary": "Severely decreased GFR; high risk of contrast-associated AKI and drug accumulation.",
+      "refs": [{ "source_id": "inker-2021-ckdepi", "locator": "Table 2" }]
+    },
+    {
+      "id": "egfr_g3b",
+      "min": 30,
+      "max": 44.9,
+      "label": "G3b — Moderately to Severely Decreased (30–44.9)",
+      "severity": "moderate",
+      "summary": "Moderate-to-severe reduction; review renally cleared therapies and contrast prophylaxis.",
+      "refs": [{ "source_id": "inker-2021-ckdepi", "locator": "Table 2" }]
+    },
+    {
+      "id": "egfr_g3a",
+      "min": 45,
+      "max": 59.9,
+      "label": "G3a — Mildly to Moderately Decreased (45–59.9)",
+      "severity": "moderate",
+      "summary": "Mild-to-moderate reduction; monitor renal function and avoid nephrotoxins.",
+      "refs": [{ "source_id": "inker-2021-ckdepi", "locator": "Table 2" }]
+    },
+    {
+      "id": "egfr_g2",
+      "min": 60,
+      "max": 89.9,
+      "label": "G2 — Mildly Decreased (60–89.9)",
+      "severity": "mild",
+      "summary": "Mildly decreased GFR relative to young adult level; CKD only if markers of kidney damage are present.",
+      "refs": [{ "source_id": "inker-2021-ckdepi", "locator": "Table 2" }]
+    },
+    {
+      "id": "egfr_g1",
+      "min": 90,
+      "max": null,
+      "label": "G1 — Normal or High (>= 90)",
+      "severity": "normal",
+      "summary": "Normal or high estimated glomerular filtration rate.",
+      "refs": [{ "source_id": "inker-2021-ckdepi", "locator": "Table 2" }]
+    }
+  ],
+  "assessment_guides": [
+    {
+      "id": "guide_egfr_scope",
+      "target_type": "scale",
+      "target_id": "ckd-epi-egfr",
+      "chip_label": "Equation Notes",
+      "title": "When Creatinine-Based eGFR Is Unreliable",
+      "bedside_steps": [
+        "Use standardized IDMS-traceable serum creatinine in steady-state patients."
+      ],
+      "pitfalls_and_exceptions": [
+        "Inaccurate in acute kidney injury (non-steady state), extremes of muscle mass (amputation, neuromuscular atrophy, bodybuilders), or pregnancy.",
+        "Consider Cystatin C-based eGFR when muscle mass is markedly abnormal."
+      ],
+      "refs": [{ "source_id": "inker-2021-ckdepi", "locator": "p. 1738-1747" }]
+    }
+  ],
+  "references": [
+    {
+      "id": "inker-2021-ckdepi",
+      "citation": "Inker LA, Eneanya ND, Coresh J, et al. New Creatinine- and Cystatin C-Based Equations to Estimate GFR without Race. N Engl J Med. 2021;385(19):1737-1749.",
+      "year": 2021,
+      "pmid": "34554658",
+      "doi": "10.1056/NEJMoa2102953",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34554658/",
+      "category": "primary"
+    },
+    {
+      "id": "levey-2009-ckdepi",
+      "citation": "Levey AS, Stevens LA, Schmid CH, et al. A new equation to estimate glomerular filtration rate. Ann Intern Med. 2009;150(9):604-612.",
+      "year": 2009,
+      "pmid": "19414839",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19414839/",
+      "category": "primary"
+    },
+    {
+      "id": "inker-2012-ckdepi-cysc",
+      "citation": "Inker LA, Schmid CH, Tighiouart H, et al. Estimating glomerular filtration rate from serum creatinine and cystatin C. N Engl J Med. 2012;367(1):20-29.",
+      "year": 2012,
+      "pmid": "22762315",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22762315/",
+      "category": "validation"
+    }
+  ],
+  "test_cases": [
+    { "name": "Male 60y SCr 1.0 -> 86.2", "inputs": { "sex": "male", "age": 60, "creatinine": 1.0 }, "expected_score": 86.2, "expected_band_id": "egfr_g2" },
+    { "name": "Female 50y SCr 0.7 -> 105.3", "inputs": { "sex": "female", "age": 50, "creatinine": 0.7 }, "expected_score": 105.3, "expected_band_id": "egfr_g1" },
+    { "name": "SI SCr Male 72y 176.8 umol/L -> 34.8", "inputs": { "sex": "male", "age": 72, "creatinine": { "value": 176.8, "unit": "umol/L" } }, "expected_score": 34.8, "expected_band_id": "egfr_g3b" }
+  ],
+  "status": "draft",
+  "verification": { "verified_by": null, "verified_at": null, "content_hash": null }
+}

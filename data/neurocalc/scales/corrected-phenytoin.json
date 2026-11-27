@@ -10,7 +10,9 @@
     "summary": "Estimates total phenytoin equivalent in hypoalbuminemia and/or end-stage renal disease.",
     "time_estimate": "< 30 sec",
     "clinical_pearls": [
-      "Winter-Tozer is an approximation; directly measure free (unbound) phenytoin whenever available in ICU, pregnancy, or valproate co-therapy."
+      "Winter-Tozer is an approximation; directly measure free (unbound) phenytoin whenever available in ICU, pregnancy, or valproate co-therapy.",
+      "Phenytoin has a narrow therapeutic window and is ~90% protein-bound; standard lab assays measure total phenytoin, whereas unbound phenytoin crosses the blood-brain barrier and exerts pharmacologic activity.",
+      "Pitfall — ICU, trauma, and displacing drugs: Winter-Tozer and derivative equations show variable predictive performance in neuro-ICU, trauma, and hypoalbuminemic elderly patients (Kane et al., 2013; Kiang & Ensom, 2016), and cannot account for protein-binding displacement by valproate, salicylates, or hyperbilirubinemia."
     ]
   },
   "items": [
@@ -87,7 +89,40 @@
     {
       "id": "winter-1988-phenytoin",
       "citation": "Winter ME, Tozer TN. Phenytoin. In: Evans WE, Schentag JJ, Jusko WJ, eds. Applied Pharmacokinetics: Principles of Therapeutic Drug Monitoring. 2nd ed. 1986;493-539.",
-      "year": 1986
+      "year": 1986,
+      "category": "primary"
+    },
+    {
+      "id": "martin-1977-phenytoin",
+      "citation": "Martin E, Tozer TN, Sheiner LB, Riegelman S. The clinical pharmacokinetics of phenytoin. J Pharmacokinet Biopharm. 1977;5(6):579-596.",
+      "year": 1977,
+      "pmid": "599408",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/599408/",
+      "category": "primary"
+    },
+    {
+      "id": "anderson-1997-winter-tozer",
+      "citation": "Anderson GD, Pak C, Doane KW, et al. Revised Winter-Tozer equation for normalized phenytoin concentrations in trauma and elderly patients with hypoalbuminemia. Ann Pharmacother. 1997;31(3):279-284.",
+      "year": 1997,
+      "pmid": "9066931",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9066931/",
+      "category": "validation"
+    },
+    {
+      "id": "kane-2013-neuroicu-phenytoin",
+      "citation": "Kane SP, Bress AP, Tesoro EP. Characterization of unbound phenytoin concentrations in neurointensive care unit patients using a revised Winter-Tozer equation. Ann Pharmacother. 2013;47(5):628-636.",
+      "year": 2013,
+      "pmid": "23606554",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23606554/",
+      "category": "validation"
+    },
+    {
+      "id": "kiang-2016-sheiner-tozer",
+      "citation": "Kiang TK, Ensom MH. A comprehensive review on the predictive performance of the Sheiner-Tozer and derivative equations for the correction of phenytoin concentrations. Ann Pharmacother. 2016;50(4):311-325.",
+      "year": 2016,
+      "pmid": "26825643",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26825643/",
+      "category": "validation"
     }
   ],
   "test_cases": [

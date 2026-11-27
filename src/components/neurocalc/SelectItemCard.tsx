@@ -13,6 +13,7 @@ interface SelectItemCardProps {
   item: SelectScaleItem;
   selectedOptionId: string | undefined;
   onSelect: (itemId: string, optionId: string) => void;
+  onClear?: (itemId: string) => void;
   itemGuide?: AssessmentGuide;
   optionGuidesByOptionId: ReadonlyMap<string, AssessmentGuide>;
   references: ScaleReference[];
@@ -24,6 +25,7 @@ export function SelectItemCard({
   item,
   selectedOptionId,
   onSelect,
+  onClear,
   itemGuide,
   optionGuidesByOptionId,
   references,
@@ -54,6 +56,11 @@ export function SelectItemCard({
             )}
             <h3 className="text-sm sm:text-[15px] font-bold text-[var(--text-ink)] leading-snug">
               {item.label}
+              {!item.required && (
+                <span className="ml-1.5 text-xs font-normal text-[var(--text-muted)]">
+                  (Optional)
+                </span>
+              )}
             </h3>
           </div>
           {item.subtitle && (
@@ -63,7 +70,17 @@ export function SelectItemCard({
           )}
         </div>
 
-        {itemGuide && (
+        <div className="flex items-center gap-1.5 shrink-0">
+          {!item.required && isAnswered && onClear && (
+            <button
+              type="button"
+              onClick={() => onClear(item.id)}
+              className="rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] px-2 py-1 text-[11px] font-semibold text-[var(--text-muted)] hover:text-[var(--text-ink)] hover:bg-[var(--bg-subtle)] transition-colors"
+            >
+              Clear
+            </button>
+          )}
+          {itemGuide && (
           <>
             <button
               type="button"
@@ -85,6 +102,7 @@ export function SelectItemCard({
             </button>
           </>
         )}
+        </div>
       </div>
 
       {itemGuide && openInlineItemGuide && (
