@@ -20,11 +20,11 @@ interface ClinicalToolCardItem {
 const CLINICAL_TOOLS: ClinicalToolCardItem[] = [
   {
     id: "abg-analyzer",
-    title: "Arterial Blood Gas (ABG) Analyzer",
+    title: "Blood Gas (ABG / VBG) Analyzer",
     description:
-      "Stepwise acid-base interpretation including primary disorder, Winters/expected compensation, anion gap, and delta-delta ratio.",
+      "6-step ABG/VBG interpretation: Kassirer-Bleich validation, P/F & A-aDO2 oxygenation, compensation & triple disorders, corrected Anion Gap, Delta/Osmolal/UAG, and EN/VI clinical workup.",
     icon: FlaskConical,
-    available: false,
+    available: true,
   },
   {
     id: "insulin-titration",

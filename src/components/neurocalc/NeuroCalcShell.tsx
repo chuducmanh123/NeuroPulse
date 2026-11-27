@@ -6,7 +6,6 @@ import {
   Calculator,
   Moon,
   RefreshCw,
-  Search,
   Sun,
   Wifi,
   WifiOff,
@@ -32,6 +31,7 @@ import { ClinicalToolsTab } from "./ClinicalToolsTab";
 import { ScaleDirectory } from "./ScaleDirectory";
 import { ScaleQuickSwitcher } from "./ScaleQuickSwitcher";
 import { ScaleWorkspace } from "./ScaleWorkspace";
+import { BloodGasAnalyzerTool } from "./tools/BloodGasAnalyzerTool";
 import { InsulinTitrationTool } from "./tools/InsulinTitrationTool";
 
 type NeuroCalcTab = "scales" | "tools";
@@ -236,19 +236,6 @@ export function NeuroCalcShell() {
 
           {/* Header Controls */}
           <div className="flex flex-wrap items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setQuickSwitcherOpen(true)}
-              aria-label="Quick jump to scale"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2.5 py-1.5 text-xs font-medium text-[var(--text-secondary)] hover:border-[#0E7490] hover:text-[var(--text-ink)] transition-colors"
-            >
-              <Search className="w-3.5 h-3.5 text-[#0E7490] dark:text-cyan-400" aria-hidden="true" />
-              <span className="hidden sm:inline">Quick Jump</span>
-              <kbd className="hidden md:inline-flex rounded border border-[var(--border-hairline)] bg-[var(--bg-paper)] px-1 py-0.5 font-mono-tech text-[10px] leading-none text-[var(--text-muted)]">
-                ⌘K
-              </kbd>
-            </button>
-
             {isAdmin && (
               <div className="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2.5 py-1.5 text-xs font-mono-tech font-medium text-[var(--text-secondary)]">
                 {syncState.status === "offline" ? (
@@ -380,6 +367,8 @@ export function NeuroCalcShell() {
           ) : activeTab === "tools" ? (
             selectedTool === "insulin-titration" ? (
               <InsulinTitrationTool onBack={() => navigateToTool(null)} />
+            ) : selectedTool === "abg-analyzer" ? (
+              <BloodGasAnalyzerTool onBack={() => navigateToTool(null)} />
             ) : (
               <ClinicalToolsTab onSelectTool={(id) => navigateToTool(id)} />
             )
