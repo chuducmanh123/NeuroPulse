@@ -925,23 +925,33 @@ export function VasopressorTool({ onBack, initialDrugId }: VasopressorToolProps)
                                 </span>
                               )}
                             </div>
-                            <select
+                            <CustomSelect
                               value={st.presetId}
-                              onChange={(e) =>
-                                updateDrugState(id, { presetId: e.target.value })
+                              onChange={(val) =>
+                                updateDrugState(id, { presetId: val })
                               }
-                              aria-label={`${spec.shortLabel} dilution`}
-                              className="w-full h-10 lg:h-9 px-2.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-xs font-semibold text-[var(--text-ink)] focus:outline-none focus:border-[#0E7490]"
-                            >
-                              {spec.presets.map((preset) => (
-                                <option key={preset.id} value={preset.id}>
-                                  {t(lang, preset.labelEn, preset.labelVi)}
-                                </option>
-                              ))}
-                              <option value="custom">
-                                {t(lang, "Custom concentration...", "Tự nhập nồng độ pha...")}
-                              </option>
-                            </select>
+                              options={[
+                                ...spec.presets.map((preset) => ({
+                                  value: preset.id,
+                                  label: t(lang, preset.labelEn, preset.labelVi),
+                                })),
+                                {
+                                  value: "custom",
+                                  label: t(
+                                    lang,
+                                    "Custom concentration...",
+                                    "Tự nhập nồng độ pha..."
+                                  ),
+                                },
+                              ]}
+                              ariaLabel={`${spec.shortLabel} dilution`}
+                              accent="teal"
+                              size="form-sm"
+                              showIndicator="check"
+                              className="w-full"
+                              buttonClassName="!bg-[var(--bg-paper)] text-xs font-semibold"
+                              menuClassName="w-full"
+                            />
 
                             {st.presetId === "custom" && (
                               <div className="grid grid-cols-2 gap-2 pt-1">
@@ -1086,12 +1096,12 @@ export function VasopressorTool({ onBack, initialDrugId }: VasopressorToolProps)
                         <div
                           className={`md:col-span-5 rounded-xl border p-3.5 flex flex-col justify-between h-full min-h-[124px] relative transition-colors ${
                             res.valid
-                              ? "border-[#0E7490]/40 bg-[#0E7490]/[0.07] dark:bg-[#0E7490]/15 shadow-2xs"
-                              : "border-[#0E7490]/20 bg-[#0E7490]/[0.03]"
+                              ? "border-emerald-500/40 bg-emerald-500/[0.07] dark:bg-emerald-500/14 shadow-2xs"
+                              : "border-emerald-500/20 bg-emerald-500/[0.03]"
                           }`}
                         >
                           <div className="flex items-center justify-between gap-2">
-                            <span className="text-[10.5px] font-bold uppercase tracking-wider text-[#0E7490] dark:text-cyan-400">
+                            <span className="text-[10.5px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
                               {st.direction === "dose_to_rate"
                                 ? t(lang, "Pump Rate", "Tốc độ bơm")
                                 : t(lang, "Delivered Dose", "Liều truyền")}
@@ -1110,8 +1120,8 @@ export function VasopressorTool({ onBack, initialDrugId }: VasopressorToolProps)
                                 aria-expanded={Boolean(openTitrationByDrug[id])}
                                 className={`p-1.5 rounded-lg border transition-colors cursor-pointer ${
                                   openTitrationByDrug[id]
-                                    ? "bg-[#0E7490] border-[#0E7490] text-white"
-                                    : "border-[#0E7490]/25 bg-[var(--bg-surface)] text-[#0E7490] dark:text-cyan-300 hover:border-[#0E7490]/60"
+                                    ? "bg-emerald-600 border-emerald-600 text-white"
+                                    : "border-emerald-500/25 bg-[var(--bg-surface)] text-emerald-700 dark:text-emerald-300 hover:border-emerald-500/60"
                                 }`}
                               >
                                 <Table2 className="w-3.5 h-3.5" />
@@ -1121,12 +1131,12 @@ export function VasopressorTool({ onBack, initialDrugId }: VasopressorToolProps)
                           {res.valid ? (
                             <div className="mt-2 space-y-1.5">
                               <div className="flex items-baseline gap-1.5">
-                                <span className="text-3xl sm:text-4xl font-extrabold font-mono-tech tabular-nums text-[#0E7490] dark:text-cyan-300">
+                                <span className="text-3xl sm:text-4xl font-extrabold font-mono-tech tabular-nums text-emerald-700 dark:text-emerald-300">
                                   {st.direction === "dose_to_rate"
                                     ? res.rateMlHr
                                     : res.dosePrimary}
                                 </span>
-                                <span className="text-xs font-bold text-[#0E7490]/80 dark:text-cyan-200/80">
+                                <span className="text-xs font-bold text-emerald-700/80 dark:text-emerald-200/80">
                                   {st.direction === "dose_to_rate" ? "mL/h" : uLabel}
                                 </span>
                               </div>
@@ -1137,7 +1147,7 @@ export function VasopressorTool({ onBack, initialDrugId }: VasopressorToolProps)
                                     : `= ${res.rateMlHr} mL/h`}
                                 </span>
                                 {res.doseSecondaryLabel && (
-                                  <span className="px-2 py-0.5 rounded-md bg-[#0E7490]/15 text-[#0E7490] dark:text-cyan-300 font-semibold">
+                                  <span className="px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-semibold">
                                     {res.doseSecondaryLabel}
                                   </span>
                                 )}
@@ -1218,6 +1228,7 @@ export function VasopressorTool({ onBack, initialDrugId }: VasopressorToolProps)
               )}
 
               {/* AUTO-COMPUTED NEE & VIS SUMMARY CARD */}
+              {neeVisResult.hasAnyActive && (
               <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5 shadow-xs space-y-3.5">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
@@ -1267,15 +1278,15 @@ export function VasopressorTool({ onBack, initialDrugId }: VasopressorToolProps)
                     </div>
                   </div>
 
-                  <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/[0.06] dark:bg-indigo-500/12 p-3.5">
-                    <div className="text-[10.5px] font-bold uppercase tracking-wider text-indigo-700 dark:text-indigo-300">
+                  <div className="rounded-xl border border-amber-500/35 bg-amber-500/[0.07] dark:bg-amber-500/12 p-3.5">
+                    <div className="text-[10.5px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300">
                       Vasoactive-Inotropic Score (VIS · Gaies 2010)
                     </div>
                     <div className="mt-1 flex items-baseline gap-2">
-                      <span className="text-3xl font-extrabold font-mono-tech tabular-nums text-indigo-700 dark:text-indigo-300">
+                      <span className="text-3xl font-extrabold font-mono-tech tabular-nums text-amber-700 dark:text-amber-300">
                         {neeVisResult.vis ?? "—"}
                       </span>
-                      <span className="text-xs font-semibold text-indigo-600/80 dark:text-indigo-200/80">
+                      <span className="text-xs font-semibold text-amber-700/80 dark:text-amber-200/80">
                         {neeVisResult.visMissingWeightForVaso
                           ? t(lang, "Partial (need weight)", "Thiếu cân nặng")
                           : neeVisResult.visTier}
@@ -1342,6 +1353,7 @@ export function VasopressorTool({ onBack, initialDrugId }: VasopressorToolProps)
                   </div>
                 )}
               </div>
+              )}
             </div>
           )}
 
