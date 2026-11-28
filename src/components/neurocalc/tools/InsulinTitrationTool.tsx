@@ -66,16 +66,59 @@ function severityPillClass(tone: ClinicalSeverity): string {
   }
 }
 
-function severityBannerClass(tone: ClinicalSeverity): string {
+type SectionAccent = "cyan" | "emerald" | "amber" | "purple" | "indigo" | "rose";
+
+const SECTION_ACCENT_STYLES: Record<
+  SectionAccent,
+  { banner: string; text: string }
+> = {
+  cyan: {
+    banner:
+      "border-l-4 border-l-[#0E7490] border-[var(--border-hairline)] bg-[#0E7490]/8",
+    text: "text-[#0E7490] dark:text-cyan-400",
+  },
+  emerald: {
+    banner:
+      "border-l-4 border-l-emerald-600 border-[var(--border-hairline)] bg-emerald-500/8",
+    text: "text-emerald-700 dark:text-emerald-400",
+  },
+  amber: {
+    banner:
+      "border-l-4 border-l-amber-600 border-[var(--border-hairline)] bg-amber-500/8",
+    text: "text-amber-700 dark:text-amber-400",
+  },
+  purple: {
+    banner:
+      "border-l-4 border-l-purple-600 border-[var(--border-hairline)] bg-purple-500/8",
+    text: "text-purple-700 dark:text-purple-300",
+  },
+  indigo: {
+    banner:
+      "border-l-4 border-l-indigo-600 border-[var(--border-hairline)] bg-indigo-500/8",
+    text: "text-indigo-700 dark:text-indigo-300",
+  },
+  rose: {
+    banner:
+      "border-l-4 border-l-rose-600 border-[var(--border-hairline)] bg-rose-500/8",
+    text: "text-rose-700 dark:text-rose-400",
+  },
+};
+
+function severityBannerClass(
+  tone: ClinicalSeverity,
+  accent?: SectionAccent
+): string {
   switch (tone) {
     case "danger":
       return "border-l-4 border-l-rose-600 border-[var(--border-hairline)] bg-rose-500/8";
     case "warning":
       return "border-l-4 border-l-amber-500 border-[var(--border-hairline)] bg-amber-500/8";
     case "ok":
-      return "border-l-4 border-l-emerald-600 border-[var(--border-hairline)] bg-emerald-500/8";
+      return accent
+        ? SECTION_ACCENT_STYLES[accent].banner
+        : "border-l-4 border-l-emerald-600 border-[var(--border-hairline)] bg-emerald-500/8";
     default:
-      return "border-l-4 border-l-[#0E7490] border-[var(--border-hairline)] bg-[#0E7490]/8";
+      return SECTION_ACCENT_STYLES[accent ?? "cyan"].banner;
   }
 }
 
@@ -184,17 +227,21 @@ function DetailSectionBlock({
   section,
   externalDetailsControl = false,
   detailsOpen = false,
+  accent = "cyan",
 }: {
   section: DetailSection;
   externalDetailsControl?: boolean;
   detailsOpen?: boolean;
+  accent?: SectionAccent;
 }) {
   const hasDetails = Boolean(section.detailSteps && section.detailSteps.length > 0);
+  const accentTextClass = SECTION_ACCENT_STYLES[accent].text;
   return (
     <div className="space-y-2">
       <div
         className={`rounded-r-xl border px-3.5 py-2.5 ${severityBannerClass(
-          section.tone
+          section.tone,
+          accent
         )}`}
       >
         <p className="text-[13px] font-semibold text-[var(--text-ink)] leading-relaxed">
@@ -215,7 +262,7 @@ function DetailSectionBlock({
 
       {hasDetails && !externalDetailsControl && (
         <details className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/55 px-3 py-2 text-xs text-[var(--text-secondary)]">
-          <summary className="font-semibold text-[#0E7490] dark:text-cyan-400 cursor-pointer select-none flex items-center gap-1.5">
+          <summary className={`font-semibold ${accentTextClass} cursor-pointer select-none flex items-center gap-1.5`}>
             <Calculator className="w-3.5 h-3.5 shrink-0" />
             <span>{section.detailsTitle}</span>
           </summary>
@@ -233,7 +280,7 @@ function DetailSectionBlock({
       {hasDetails && externalDetailsControl && detailsOpen && (
         <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/55 px-3 py-2 text-xs text-[var(--text-secondary)]">
           {section.detailsTitle && (
-            <div className="font-semibold text-[#0E7490] dark:text-cyan-400 flex items-center gap-1.5 pb-1.5 mb-1.5 border-b border-[var(--border-hairline)]">
+            <div className={`font-semibold ${accentTextClass} flex items-center gap-1.5 pb-1.5 mb-1.5 border-b border-[var(--border-hairline)]`}>
               <Calculator className="w-3.5 h-3.5 shrink-0" />
               <span>{section.detailsTitle}</span>
             </div>
@@ -1820,19 +1867,22 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
                       <Utensils className="w-4 h-4" />
                       <span>{INSULIN_UI_TEXT.pillars.nutri[lang]}</span>
                     </div>
-                    <DetailSectionBlock section={evaluation.nutritionPlan} />
+                    <DetailSectionBlock
+                      section={evaluation.nutritionPlan}
+                      accent="emerald"
+                    />
                   </div>
 
                   <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 sm:p-4 space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0E7490] dark:text-cyan-400 pb-1.5 border-b border-[var(--border-hairline)]">
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 pb-1.5 border-b border-[var(--border-hairline)]">
                       <Clock className="w-4 h-4" />
                       <span>{INSULIN_UI_TEXT.pillars.timeline[lang]}</span>
                     </div>
-                    <div className="rounded-r-xl border border-[var(--border-hairline)] border-l-4 border-l-[#0E7490] bg-[#0E7490]/8 px-3.5 py-2.5">
+                    <div className="rounded-r-xl border border-[var(--border-hairline)] border-l-4 border-l-amber-600 bg-amber-500/8 px-3.5 py-2.5">
                       <ul className="space-y-1.5 text-[13px] text-[var(--text-ink)] leading-relaxed">
                         {evaluation.timeline.map((ev, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <span className="font-mono-tech font-semibold text-[#0E7490] dark:text-cyan-400 shrink-0">
+                            <span className="font-mono-tech font-semibold text-amber-700 dark:text-amber-400 shrink-0">
                               {ev.time}:
                             </span>
                             <span className="font-semibold text-[var(--text-ink)]">
@@ -1851,6 +1901,7 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
                     </div>
                     <DetailSectionBlock
                       section={evaluation.regimenAdjustment}
+                      accent="purple"
                     />
                   </div>
                 </div>
@@ -1928,6 +1979,7 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
                         </div>
                         <DetailSectionBlock
                           section={evaluation.axes.potassiumAcidBase}
+                          accent="rose"
                         />
                       </div>
 
@@ -1943,7 +1995,10 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
                             </span>
                           )}
                         </div>
-                        <DetailSectionBlock section={evaluation.axes.insulin} />
+                        <DetailSectionBlock
+                          section={evaluation.axes.insulin}
+                          accent="indigo"
+                        />
                       </div>
 
                       <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 sm:p-4 space-y-2">
@@ -1962,6 +2017,7 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
                         </div>
                         <DetailSectionBlock
                           section={evaluation.axes.monitoringTransition}
+                          accent="emerald"
                         />
                       </div>
                     </div>

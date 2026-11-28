@@ -42,22 +42,22 @@ const ACCENT_SELECTED: Record<
 > = {
   cyan: {
     dark: "bg-cyan-500/15 text-cyan-200",
-    light: "bg-cyan-50 text-cyan-800",
+    light: "bg-cyan-50 dark:bg-cyan-500/15 text-cyan-800 dark:text-cyan-200",
     check: "text-cyan-500 dark:text-cyan-400",
   },
   amber: {
     dark: "bg-amber-500/15 text-amber-200",
-    light: "bg-amber-50 text-amber-800",
+    light: "bg-amber-50 dark:bg-amber-500/15 text-amber-800 dark:text-amber-200",
     check: "text-amber-500 dark:text-amber-400",
   },
   sky: {
     dark: "bg-sky-500/15 text-sky-200",
-    light: "bg-sky-50 text-sky-800",
+    light: "bg-sky-50 dark:bg-sky-500/15 text-sky-800 dark:text-sky-200",
     check: "text-sky-500 dark:text-sky-400",
   },
   teal: {
     dark: "bg-teal-500/15 text-teal-200",
-    light: "bg-teal-50 text-teal-800",
+    light: "bg-teal-50 dark:bg-teal-500/15 text-teal-800 dark:text-teal-200",
     check: "text-teal-500 dark:text-teal-400",
   },
 };
@@ -194,7 +194,7 @@ export function CustomSelect<T extends string = string>({
                     ? `${darkMode ? accentStyle.dark : accentStyle.light} font-bold`
                     : darkMode
                     ? "text-slate-200 hover:bg-slate-800/80 font-medium"
-                    : "text-slate-700 hover:bg-slate-100/80 font-medium"
+                    : "text-slate-700 dark:text-slate-200 hover:bg-slate-100/80 dark:hover:bg-slate-800/80 font-medium"
                 }`}
               >
                 <span className="flex items-center gap-2 min-w-0">
@@ -205,7 +205,7 @@ export function CustomSelect<T extends string = string>({
                           ? "border-current bg-current/10"
                           : darkMode
                           ? "border-slate-700 bg-slate-800/60"
-                          : "border-slate-300 bg-slate-50"
+                          : "border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60"
                       }`}
                       aria-hidden="true"
                     >
@@ -225,7 +225,7 @@ export function CustomSelect<T extends string = string>({
                     className={`shrink-0 text-[11px] font-semibold px-1.5 py-0.5 rounded-md ${
                       darkMode
                         ? "bg-slate-800 text-slate-300"
-                        : "bg-slate-100 text-slate-600"
+                        : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
                     }`}
                   >
                     {opt.badge}

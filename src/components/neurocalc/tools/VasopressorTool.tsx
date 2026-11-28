@@ -34,6 +34,7 @@ import {
   type VasoLang,
   type VasopressorId,
 } from "@/lib/neurocalc/tools/vasopressorI18n";
+import { CustomSelect } from "@/components/ecosystem/CustomSelect";
 import {
   computeNeeAndVis,
   computeSmartDrip,
@@ -497,32 +498,34 @@ export function VasopressorTool({ onBack, initialDrugId }: VasopressorToolProps)
             </div>
 
             {/* Target Profile Select */}
-            <div className="px-3.5 py-2.5 flex items-center justify-between gap-2">
-              <label
-                htmlFor="vaso-target"
-                className="text-xs font-medium text-[var(--text-ink)] shrink-0"
-              >
+            <div className="px-3.5 py-2.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-2">
+              <span className="text-xs font-medium text-[var(--text-ink)] shrink-0">
                 {t(lang, "Target", "Đích BP")}
-              </label>
-              <select
-                id="vaso-target"
+              </span>
+              <CustomSelect
                 value={targetProfile}
-                onChange={(e) =>
-                  setTargetProfile(e.target.value as NeuroTargetProfileId)
+                onChange={(val) =>
+                  setTargetProfile(val as NeuroTargetProfileId)
                 }
-                className="min-w-0 max-w-[195px] h-9 px-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-paper)] text-xs font-semibold text-[var(--text-ink)] focus:outline-none focus:border-[#0E7490]"
-              >
-                {(Object.keys(NEURO_TARGET_PROFILES) as NeuroTargetProfileId[]).map(
+                options={(Object.keys(NEURO_TARGET_PROFILES) as NeuroTargetProfileId[]).map(
                   (pid) => {
                     const prof = NEURO_TARGET_PROFILES[pid];
-                    return (
-                      <option key={pid} value={pid}>
-                        {t(lang, prof.labelEn, prof.labelVi)} ({prof.badge})
-                      </option>
-                    );
+                    return {
+                      value: pid,
+                      label: t(lang, prof.labelEn, prof.labelVi),
+                      badge: prof.badge,
+                    };
                   }
                 )}
-              </select>
+                ariaLabel={t(lang, "Target", "Đích BP")}
+                accent="teal"
+                align="right"
+                size="form-sm"
+                showIndicator="check"
+                className="w-full sm:flex-1 sm:min-w-0 sm:max-w-[260px]"
+                buttonClassName="!bg-[var(--bg-paper)] text-xs font-semibold"
+                menuClassName="w-full sm:w-max sm:min-w-[280px]"
+              />
             </div>
           </div>
 
@@ -930,12 +933,12 @@ export function VasopressorTool({ onBack, initialDrugId }: VasopressorToolProps)
         {/* ================================================================= */}
         <section className="lg:col-span-8 space-y-3.5">
           {/* Slim Context Strip */}
-          <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 py-2 flex flex-wrap items-center justify-between gap-2 text-xs">
-            <div className="flex items-center gap-2 min-w-0">
+          <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 py-2 flex flex-wrap items-start sm:items-center justify-between gap-2 text-xs">
+            <div className="flex items-start sm:items-center gap-2 min-w-0 flex-1">
               <span className="px-2 py-0.5 rounded-md bg-[#0E7490]/12 text-[#0E7490] dark:text-cyan-300 font-mono-tech font-bold shrink-0">
                 {activeProfile.badge}
               </span>
-              <span className="text-[var(--text-secondary)] truncate">
+              <span className="text-[var(--text-secondary)] leading-snug">
                 {t(lang, activeProfile.noteEn, activeProfile.noteVi)}
               </span>
             </div>
