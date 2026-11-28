@@ -247,21 +247,21 @@ export function computeSmartDrip(input: SmartDripInput): SmartDripResult {
             ? "Norepinephrine liều cao (≥ 0.5 mcg/kg/phút)"
             : "Đạt ngưỡng phối hợp thuốc (NE ≥ 0.25 mcg/kg/phút)",
         detailEn:
-          "SSC 2021: Consider adding fixed-dose Vasopressin 0.03 U/min and IV Hydrocortisone 200 mg/day if ongoing ≥ 4 h.",
+          "SSC 2026: Add fixed-dose Vasopressin 0.03 U/min on escalating NE (panel median 0.3, IQR 0.2–0.5 mcg/kg/min) and consider IV Hydrocortisone 200 mg/day in septic shock.",
         detailVi:
-          "SSC 2021: Cân nhắc phối hợp Vasopressin 0.03 U/phút và Hydrocortisone 200 mg/ngày TM nếu duy trì ≥ 4 giờ.",
+          "SSC 2026: Cân nhắc thêm Vasopressin 0.03 U/phút khi tăng liều NE (trung vị 0.3, IQR 0.2–0.5 mcg/kg/phút) và Hydrocortisone 200 mg/ngày TM trong sốc nhiễm khuẩn.",
       });
     }
     if (input.drugId === "dopamine") {
       const bandEn =
         weightNormalizedDose < 5
-          ? "Low-dose band (<5 mcg/kg/min): D1/D2 predominant — NOT recommended for renal protection (SSC 2021)."
+          ? "Low-dose band (<5 mcg/kg/min): D1/D2 predominant — NOT recommended for renal protection (SSC 2026)."
           : weightNormalizedDose <= 10
           ? "Intermediate band (5–10 mcg/kg/min): β1 inotropic/chronotropic predominant."
           : "High-dose band (>10 mcg/kg/min): α1 vasoconstriction predominant; high tachyarrhythmia risk.";
       const bandVi =
         weightNormalizedDose < 5
-          ? "Dải liều thấp (<5 mcg/kg/phút): Ưu thế D1/D2 — KHÔNG dùng để bảo vệ thận (SSC 2021)."
+          ? "Dải liều thấp (<5 mcg/kg/phút): Ưu thế D1/D2 — KHÔNG dùng để bảo vệ thận (SSC 2026)."
           : weightNormalizedDose <= 10
           ? "Dải liều trung bình (5–10 mcg/kg/phút): Ưu thế β1 tăng co bóp & nhịp tim."
           : "Dải liều cao (>10 mcg/kg/phút): Ưu thế co mạch α1; nguy cơ nhịp nhanh loạn nhịp cao.";
@@ -433,23 +433,23 @@ export function computeNeeAndVis(
   if (ne >= 0.25 && vaso === 0) {
     escalationAlerts.push({
       severity: "warning",
-      titleEn: "SSC 2021: Consider Adding Vasopressin 0.03 U/min",
-      titleVi: "SSC 2021: Cân nhắc thêm Vasopressin 0.03 U/phút",
+      titleEn: "SSC 2026: Consider Adding Vasopressin 0.03 U/min",
+      titleVi: "SSC 2026: Cân nhắc thêm Vasopressin 0.03 U/phút",
       detailEn:
-        "Norepinephrine has reached ≥ 0.25 mcg/kg/min. Adding fixed-dose Vasopressin (0.03 U/min) reduces catecholamine burden instead of escalating NE alone.",
+        "Norepinephrine has reached ≥ 0.25 mcg/kg/min (SSC 2026 panel median 0.3, IQR 0.2–0.5). Adding fixed-dose Vasopressin (0.03 U/min) reduces catecholamine burden and AF risk vs escalating NE alone.",
       detailVi:
-        "Norepinephrine đã đạt ≥ 0.25 mcg/kg/phút. Thêm Vasopressin liều cố định 0.03 U/phút giúp giảm gánh nặng catecholamin thay vì tiếp tục tăng NE đơn độc.",
+        "Norepinephrine đạt ≥ 0.25 mcg/kg/phút (trung vị SSC 2026 là 0.3, IQR 0.2–0.5). Thêm Vasopressin 0.03 U/phút giúp giảm gánh nặng catecholamin và nguy cơ rung nhĩ thay vì tăng NE đơn độc.",
     });
   }
   if (nee >= 0.25) {
     escalationAlerts.push({
       severity: nee > 0.5 ? "danger" : "warning",
-      titleEn: "SSC 2021: Stress-Dose Hydrocortisone (200 mg/day IV)",
-      titleVi: "SSC 2021: Cân nhắc Hydrocortisone 200 mg/ngày TM",
+      titleEn: "SSC 2026: IV Hydrocortisone (200 mg/day)",
+      titleVi: "SSC 2026: Cân nhắc Hydrocortisone 200 mg/ngày TM",
       detailEn:
-        "For ongoing vasopressor requirement (NEE ≥ 0.25 mcg/kg/min for ≥ 4 h), suggest IV Hydrocortisone 50 mg q6h or 200 mg/day continuous infusion.",
+        "For septic shock with ongoing vasopressor requirement (typically NE/NEE ≥ 0.2–0.3 mcg/kg/min), suggest IV Hydrocortisone 200 mg/day (50 mg q6h or continuous).",
       detailVi:
-        "Khi nhu cầu vận mạch kéo dài (NEE ≥ 0.25 mcg/kg/phút ≥ 4 giờ), cân nhắc Hydrocortisone 50 mg TM mỗi 6 giờ hoặc truyền liên tục 200 mg/ngày.",
+        "Trong sốc nhiễm khuẩn cần vận mạch kéo dài (thường khi NE/NEE ≥ 0.2–0.3 mcg/kg/phút), gợi ý Hydrocortisone 200 mg/ngày TM (50 mg mỗi 6 giờ hoặc truyền liên tục).",
     });
   }
   if (dopa > 0) {
@@ -458,9 +458,9 @@ export function computeNeeAndVis(
       titleEn: "Dopamine Active — Review Indication",
       titleVi: "Đang dùng Dopamine — Rà soát chỉ định",
       detailEn:
-        "SSC 2021 recommends norepinephrine over dopamine in septic shock due to higher tachyarrhythmia risk, unless patient has symptomatic bradycardia.",
+        "SSC 2026 recommends norepinephrine over dopamine in septic shock due to higher tachyarrhythmia risk; reserve dopamine for symptomatic bradycardia.",
       detailVi:
-        "SSC 2021 khuyến cáo dùng Norepinephrine thay Dopamine trong sốc nhiễm khuẩn do nguy cơ loạn nhịp cao, trừ khi có nhịp chậm có triệu chứng.",
+        "SSC 2026 khuyến cáo dùng Norepinephrine thay Dopamine trong sốc nhiễm khuẩn do nguy cơ loạn nhịp cao; chỉ cân nhắc khi nhịp chậm có triệu chứng.",
     });
   }
   if (nee > 0.5) {
@@ -522,10 +522,52 @@ export interface WeaningStep {
   rationaleVi: string;
 }
 
+export type VasopressorActionVerdict =
+  | "escalate"
+  | "maintain"
+  | "caution_wean"
+  | "wean"
+  | "no_agents";
+
+export type AgentActionType = "increase" | "maintain" | "wean" | "stop" | "switch";
+
+export interface AgentActionPlan {
+  drugId: VasopressorId;
+  currentDose: number;
+  unitLabel: string;
+  action: AgentActionType;
+  priority: number;
+  titleEn: string;
+  titleVi: string;
+  instructionEn: string;
+  instructionVi: string;
+  rationaleEn: string;
+  rationaleVi: string;
+}
+
+export interface RegimenChangeSuggestion {
+  kind: "add" | "remove" | "switch";
+  severity: ClinicalSeverity;
+  drugId?: VasopressorId;
+  titleEn: string;
+  titleVi: string;
+  detailEn: string;
+  detailVi: string;
+}
+
 export interface WeaningCoachResult {
   readiness: "ready" | "caution" | "hold" | "no_agents";
+  actionVerdict: VasopressorActionVerdict;
+  verdictTitleEn: string;
+  verdictTitleVi: string;
+  verdictSummaryEn: string;
+  verdictSummaryVi: string;
+  nee: number;
+  mapStatus: "below" | "at_target" | "above" | "unknown";
   computedCpp: number | null;
   checklist: WeaningChecklistItem[];
+  agentActions: AgentActionPlan[];
+  regimenChanges: RegimenChangeSuggestion[];
   orderedSteps: WeaningStep[];
   reboundFlagsEn: string[];
   reboundFlagsVi: string[];
@@ -552,6 +594,7 @@ export function evaluateWeaningCoach(
     : 0;
 
   const hasActive = ne > 0 || epi > 0 || dopa > 0 || dobut > 0 || vaso > 0;
+  const nee = roundTo(ne + epi + dopa / 100 + vaso * 2.5, 3);
 
   let computedCpp: number | null = null;
   if (
@@ -564,22 +607,35 @@ export function evaluateWeaningCoach(
     computedCpp = roundTo(input.currentMap - input.currentIcp, 1);
   }
 
-  // Hemodynamic target check
+  // Hemodynamic target check & mapStatus
   let mapTargetMet = false;
-  if (profile.usesCpp) {
-    if (computedCpp !== null && profile.minCpp !== undefined) {
-      mapTargetMet = computedCpp >= profile.minCpp;
-    } else if (
-      typeof input.currentMap === "number" &&
-      Number.isFinite(input.currentMap)
-    ) {
-      mapTargetMet = input.currentMap >= profile.minMap;
+  let mapStatus: WeaningCoachResult["mapStatus"] = "unknown";
+  if (profile.usesCpp && computedCpp !== null && profile.minCpp !== undefined) {
+    if (computedCpp < profile.minCpp) {
+      mapStatus = "below";
+    } else if (profile.maxCpp !== undefined && computedCpp > profile.maxCpp) {
+      mapStatus = "above";
+      mapTargetMet = true;
+    } else {
+      mapStatus = "at_target";
+      mapTargetMet = true;
     }
   } else if (
     typeof input.currentMap === "number" &&
     Number.isFinite(input.currentMap)
   ) {
-    mapTargetMet = input.currentMap >= profile.minMap;
+    if (input.currentMap < profile.minMap) {
+      mapStatus = "below";
+    } else if (profile.maxMap !== undefined && input.currentMap > profile.maxMap) {
+      mapStatus = "above";
+      mapTargetMet = true;
+    } else if (!profile.maxMap && input.currentMap >= profile.minMap + 20) {
+      mapStatus = "above";
+      mapTargetMet = true;
+    } else {
+      mapStatus = "at_target";
+      mapTargetMet = true;
+    }
   }
 
   const stableMet =
@@ -745,20 +801,55 @@ export function evaluateWeaningCoach(
       "Co thắt mạch SAH: Xuất hiện lại dấu thần kinh khu trú hoặc tụt GCS khi giảm liều → khôi phục ngay mức MAP trước đó."
     );
   }
-  if (input.targetProfile === "sci") {
+  if (input.targetProfile === "septic_elderly") {
     reboundFlagsEn.push(
-      "Acute SCI: Do not wean below MAP 85 mmHg within the first 5–7 days post-injury."
+      "SSC 2026 (Age ≥ 65): Target MAP 60–65 mmHg; avoid pushing MAP higher if end-organ perfusion is adequate."
     );
     reboundFlagsVi.push(
-      "Chấn thương tủy cấp: Không cai xuống dưới MAP 85 mmHg trong 5–7 ngày đầu sau chấn thương."
+      "SSC 2026 (≥ 65 tuổi): Giữ đích MAP 60–65 mmHg; tránh đẩy MAP lên cao hơn nếu tưới máu cơ quan đã đạt."
+    );
+  }
+  if (input.targetProfile === "cardiogenic") {
+    reboundFlagsEn.push(
+      "ACC 2025 CS: Use vasoactive agents at the lowest dose for the shortest duration; monitor transrenal perfusion pressure (MAP − CVP), lactate, and arrhythmias."
+    );
+    reboundFlagsVi.push(
+      "ACC 2025 CS: Dùng vận mạch ở liều thấp nhất trong thời gian ngắn nhất; theo dõi áp lực tưới máu thận (MAP − CVP), lactat và rối loạn nhịp."
     );
   }
 
+  const regimenChanges: RegimenChangeSuggestion[] = [];
+  const agentActions: AgentActionPlan[] = [];
+
   if (!hasActive) {
+    if (mapStatus === "below") {
+      regimenChanges.push({
+        kind: "add",
+        severity: "warning",
+        drugId: "norepinephrine",
+        titleEn: "Consider Starting Norepinephrine (0.05 mcg/kg/min)",
+        titleVi: "Cân nhắc khởi trị Norepinephrine (0.05 mcg/kg/phút)",
+        detailEn:
+          "Target MAP/CPP is not met and no vasopressor is active. Verify fluid responsiveness/euvolemia first; if still hypotensive, initiate Norepinephrine as first-line pressor.",
+        detailVi:
+          "MAP/CPP chưa đạt đích và chưa có vận mạch. Kiểm tra bù đủ dịch trước; nếu vẫn tụt huyết áp, khởi trị Norepinephrine đầu tay.",
+      });
+    }
     return {
       readiness: "no_agents",
+      actionVerdict: "no_agents",
+      verdictTitleEn: "Enter Active Vasopressor Doses",
+      verdictTitleVi: "Nhập liều vận mạch đang truyền",
+      verdictSummaryEn:
+        "Enter the patient's current vasopressor doses on the left (or sync from Tab 1/2) to get an active recommendation: increase, maintain, wean, stop, or add/switch agents.",
+      verdictSummaryVi:
+        "Nhập liều các thuốc vận mạch bệnh nhân đang dùng ở cột trái (hoặc đồng bộ từ tab 1/2) để nhận hướng dẫn cụ thể: tăng liều, duy trì, giảm liều/ngưng hoặc thêm/đổi thuốc.",
+      nee,
+      mapStatus,
       computedCpp,
       checklist,
+      agentActions,
+      regimenChanges,
       orderedSteps: [],
       reboundFlagsEn,
       reboundFlagsVi,
@@ -773,10 +864,539 @@ export function evaluateWeaningCoach(
     readiness = "caution";
   }
 
+  // Active Clinical Decision Verdict
+  let actionVerdict: VasopressorActionVerdict = "maintain";
+  let verdictTitleEn = "";
+  let verdictTitleVi = "";
+  let verdictSummaryEn = "";
+  let verdictSummaryVi = "";
+
+  if (mapStatus === "below") {
+    actionVerdict = "escalate";
+    verdictTitleEn = "ESCALATE — Increase Dose or Add Second-Line Agent";
+    verdictTitleVi = "TĂNG LIỀU / PHỐI HỢP THÊM VẬN MẠCH";
+    verdictSummaryEn = profile.usesCpp && computedCpp !== null
+      ? `CPP (${computedCpp} mmHg) is below target (≥ ${profile.minCpp} mmHg). Up-titrate vasopressor or add second-line support while addressing ICP & volume status.`
+      : `Current MAP is below target (≥ ${profile.minMap} mmHg). Titrate up or add a catecholamine-sparing agent; verify volume & reversible causes.`;
+    verdictSummaryVi = profile.usesCpp && computedCpp !== null
+      ? `CPP hiện tại (${computedCpp} mmHg) thấp hơn đích (≥ ${profile.minCpp} mmHg). Cần tăng liều hoặc phối hợp thêm thuốc, đồng thời xử trí tăng ICP và đánh giá dịch.`
+      : `MAP hiện tại thấp hơn đích (≥ ${profile.minMap} mmHg). Cần tăng liều hoặc phối hợp thêm thuốc; kiểm tra lại thể tích tuần hoàn và nguyên nhân.`;
+  } else if (mapStatus === "above") {
+    if (input.perfusionOk && lactateMet) {
+      actionVerdict = "wean";
+      verdictTitleEn = "WEAN / REDUCE — Above Target Range";
+      verdictTitleVi = "GIẢM LIỀU — Huyết áp vượt ngưỡng đích";
+      verdictSummaryEn = profile.usesCpp && computedCpp !== null
+        ? `CPP (${computedCpp} mmHg) exceeds upper target (${profile.maxCpp} mmHg) with adequate perfusion. Actively step down vasopressors to avoid hyperperfusion.`
+        : `MAP is above target range while on vasopressors with good perfusion. Actively step down to minimize unnecessary vasoconstriction.`;
+      verdictSummaryVi = profile.usesCpp && computedCpp !== null
+        ? `CPP (${computedCpp} mmHg) vượt ngưỡng trên (${profile.maxCpp} mmHg) và tưới máu ổn. Chủ động giảm liều vận mạch để tránh tăng tưới máu quá mức.`
+        : `MAP đang cao hơn ngưỡng đích khi vẫn còn vận mạch và tưới máu tốt. Chủ động giảm liều để hạn chế co mạch không cần thiết.`;
+    } else {
+      actionVerdict = "caution_wean";
+      verdictTitleEn = "TRIM EXCESS PRESSOR & REASSESS PERFUSION";
+      verdictTitleVi = "HẠ BỚT VẬN MẠCH QUÁ MỨC & ĐÁNH GIÁ TƯỚI MÁU";
+      verdictSummaryEn =
+        "MAP/CPP is above target, but lactate or end-organ perfusion is not yet normalized. Gently trim excess pressor while checking cardiac output, volume, and microcirculation.";
+      verdictSummaryVi =
+        "MAP/CPP đã vượt đích nhưng lactat hoặc tưới máu mô chưa hồi phục hoàn toàn. Giảm nhẹ phần liều dư và đánh giá lại cung lượng tim, thể tích dịch.";
+    }
+  } else if (readiness === "ready") {
+    actionVerdict = "wean";
+    verdictTitleEn = "WEAN / STOP — Ready to De-escalate";
+    verdictTitleVi = "GIẢM LIỀU / NGƯNG VẬN MẠCH";
+    verdictSummaryEn =
+      "All hemodynamic, stability (≥ 2h), and perfusion criteria are met. Follow the prioritized step-down or trial-off plan below.";
+    verdictSummaryVi =
+      "Đã đạt đủ tiêu chuẩn huyết động, ổn định ≥ 2 giờ và tưới máu mô. Thực hiện giảm liều hoặc ngưng thử theo thứ tự ưu tiên bên dưới.";
+  } else if (readiness === "caution") {
+    actionVerdict = "caution_wean";
+    verdictTitleEn = "MAINTAIN OR CAUTIOUS STEP-DOWN";
+    verdictTitleVi = "DUY TRÌ HOẶC GIẢM NHẸ THẬN TRỌNG";
+    verdictSummaryEn =
+      "MAP/CPP and perfusion are adequate, but stability < 2h or volume/source control is unconfirmed. Prefer maintaining current rate until ≥ 2h stable.";
+    verdictSummaryVi =
+      "MAP/CPP và tưới máu đạt, nhưng thời gian ổn định < 2 giờ hoặc chưa chắc chắn đủ dịch/kiểm soát nguồn. Ưu tiên duy trì liều hiện tại đến khi ổn định ≥ 2 giờ.";
+  } else {
+    actionVerdict = "maintain";
+    verdictTitleEn =
+      mapStatus === "unknown"
+        ? "ENTER MAP TO GUIDE TITRATION"
+        : "MAINTAIN CURRENT DOSE — Hold Weaning";
+    verdictTitleVi =
+      mapStatus === "unknown"
+        ? "NHẬP MAP ĐỂ ĐỊNH HƯỚNG CHỈNH LIỀU"
+        : "DUY TRÌ LIỀU HIỆN TẠI — Chưa giảm liều";
+    verdictSummaryEn =
+      mapStatus === "unknown"
+        ? "Current MAP is not entered. Maintain current infusion and enter MAP (and ICP if TBI) to determine whether to escalate, maintain, or wean."
+        : "Target MAP is met, but rising lactate or inadequate end-organ perfusion precludes weaning. Maintain current dose and investigate occult hypoperfusion.";
+    verdictSummaryVi =
+      mapStatus === "unknown"
+        ? "Chưa nhập MAP hiện tại. Duy trì tốc độ truyền và nhập MAP (thêm ICP nếu CTSN) để xác định hướng tăng, giữ hay giảm liều."
+        : "MAP đã đạt đích nhưng lactat còn tăng hoặc tưới máu mô chưa đạt. Duy trì liều hiện tại, chưa cai vận mạch và tìm nguyên nhân giảm tưới máu ẩn.";
+  }
+
+  // Regimen Add / Remove / Switch Recommendations
+  const isSepticProfile =
+    input.targetProfile === "septic" || input.targetProfile === "septic_elderly";
+  const isCardiogenicProfile = input.targetProfile === "cardiogenic";
+
+  if (ne >= 0.25 && vaso === 0 && (mapStatus === "below" || nee >= 0.25)) {
+    regimenChanges.push({
+      kind: "add",
+      severity: mapStatus === "below" ? "danger" : "warning",
+      drugId: "vasopressin",
+      titleEn: "Add Vasopressin 0.03 U/min (Fixed-Dose, CVC)",
+      titleVi: "Thêm Vasopressin 0.03 U/phút (Liều cố định, qua CVC)",
+      detailEn:
+        "SSC 2026: On escalating NE (median 0.3, IQR 0.2–0.5 mcg/kg/min), add fixed-dose Vasopressin 0.03 U/min to spare catecholamines instead of pushing NE higher alone.",
+      detailVi:
+        "SSC 2026: Khi tăng liều NE (trung vị 0.3, IQR 0.2–0.5 mcg/kg/phút), thêm Vasopressin 0.03 U/phút cố định để giảm gánh nặng catecholamin thay vì tăng NE đơn độc.",
+    });
+  }
+  if (nee >= 0.25 && isSepticProfile) {
+    regimenChanges.push({
+      kind: "add",
+      severity: nee > 0.5 ? "danger" : "warning",
+      titleEn: "Add IV Hydrocortisone (200 mg/day)",
+      titleVi: "Thêm Hydrocortisone 200 mg/ngày TM",
+      detailEn:
+        "SSC 2026: For septic shock with ongoing vasopressor requirement (NE/NEE ≥ 0.2–0.3 mcg/kg/min), suggest IV Hydrocortisone 200 mg/day (50 mg q6h or continuous).",
+      detailVi:
+        "SSC 2026: Trong sốc nhiễm khuẩn cần vận mạch kéo dài (NE/NEE ≥ 0.2–0.3 mcg/kg/phút), gợi ý Hydrocortisone 200 mg/ngày TM (50 mg mỗi 6 giờ hoặc truyền liên tục).",
+    });
+  }
+  if (nee > 0.5 && epi === 0 && mapStatus === "below") {
+    regimenChanges.push({
+      kind: "add",
+      severity: "danger",
+      drugId: "epinephrine",
+      titleEn: "Consider Adding Epinephrine (0.02–0.05 mcg/kg/min)",
+      titleVi: "Cân nhắc thêm Epinephrine (0.02–0.05 mcg/kg/phút)",
+      detailEn:
+        "SSC 2026: Inadequate MAP despite NE + Vasopressin (NEE > 0.5): add Epinephrine as 3rd-line pressor (or directly to NE if Vasopressin unavailable) and perform bedside echo.",
+      detailVi:
+        "SSC 2026: Chưa đạt MAP dù đã phối hợp NE + Vasopressin (NEE > 0.5): thêm Epinephrine bậc 3 (hoặc thêm vào NE nếu không có Vasopressin) và siêu âm tim tại giường.",
+    });
+  }
+  if (
+    isCardiogenicProfile &&
+    dobut === 0 &&
+    (!input.perfusionOk || !lactateMet)
+  ) {
+    regimenChanges.push({
+      kind: "add",
+      severity: "warning",
+      drugId: "dobutamine",
+      titleEn: "ACC 2025 CS: Consider Adding Dobutamine (2–10 mcg/kg/min)",
+      titleVi: "ACC 2025 CS: Cân nhắc thêm Dobutamine (2–10 mcg/kg/phút)",
+      detailEn:
+        "Cardiogenic shock with persistent hypoperfusion despite MAP support: add Dobutamine (2–10 mcg/kg/min; or Milrinone if high SVR & preserved renal function) while maintaining MAP > 60–65 mmHg with NE.",
+      detailVi:
+        "Sốc tim còn giảm tưới máu dù đã nâng MAP: thêm Dobutamine (2–10 mcg/kg/phút; hoặc Milrinone nếu SVR cao và chức năng thận ổn) trong khi giữ MAP > 60–65 mmHg bằng NE.",
+    });
+  }
+  if (isCardiogenicProfile && dobut > 10) {
+    regimenChanges.push({
+      kind: "remove",
+      severity: "warning",
+      drugId: "dobutamine",
+      titleEn: "ACC 2025 CS: Dobutamine > 10 mcg/kg/min — Review Risk",
+      titleVi: "ACC 2025 CS: Dobutamine > 10 mcg/kg/phút — Cân nhắc giảm",
+      detailEn:
+        "ACC 2025 CS Table 2 lists Dobutamine dosing at 2–10 mcg/kg/min; higher doses increase arrhythmia and myocardial O2 demand without proportional CO gain.",
+      detailVi:
+        "Bảng 2 ACC 2025 CS khuyến cáo dải liều Dobutamine 2–10 mcg/kg/phút; liều cao hơn làm tăng nguy cơ loạn nhịp và tiêu thụ oxy cơ tim.",
+    });
+  }
+  if (
+    isCardiogenicProfile &&
+    (nee > 0.5 ||
+      [ne > 0, epi > 0, vaso > 0, dopa > 0, dobut > 0].filter(Boolean).length >= 2) &&
+    (mapStatus === "below" || !input.perfusionOk || !lactateMet)
+  ) {
+    regimenChanges.push({
+      kind: "add",
+      severity: "danger",
+      titleEn: "ACC 2025 CS (SCAI D/E): Activate Shock Team / Evaluate tMCS",
+      titleVi: "ACC 2025 CS (SCAI D/E): Hội chẩn Đội Sốc tim / Cân nhắc tMCS",
+      detailEn:
+        "Escalating pressors or ≥ 2 vasoactive agents with persistent hypoperfusion indicates SCAI Stage D/E. Evaluate temporary Mechanical Circulatory Support (tMCS) to unload the ventricle and de-escalate catecholamines; avoid Phenylephrine monotherapy.",
+      detailVi:
+        "Tăng liều vận mạch hoặc phối hợp ≥ 2 thuốc mà vẫn giảm tưới máu tương ứng SCAI D/E. Cần hội chẩn Đội Sốc tim và đánh giá hỗ trợ tuần hoàn cơ học (tMCS) để giảm tải thất và cai bớt catecholamin; tránh dùng Phenylephrine đơn độc.",
+    });
+  }
+  if (dopa > 0) {
+    regimenChanges.push({
+      kind: "switch",
+      severity: "warning",
+      drugId: "dopamine",
+      titleEn: "Switch Dopamine → Norepinephrine",
+      titleVi: "Chuyển đổi Dopamine → Norepinephrine",
+      detailEn:
+        "SSC 2026 & ACC 2025 CS recommend Norepinephrine over Dopamine due to lower tachyarrhythmia risk, unless patient has symptomatic bradycardia.",
+      detailVi:
+        "SSC 2026 & ACC 2025 CS ưu tiên Norepinephrine hơn Dopamine để giảm nguy cơ loạn nhịp nhanh, trừ trường hợp nhịp chậm có triệu chứng.",
+    });
+  }
+
+  // Per-Agent Action Plan
+  let actionPriority = 1;
+  const addAgentAction = (plan: Omit<AgentActionPlan, "priority">) => {
+    agentActions.push({ ...plan, priority: actionPriority++ });
+  };
+
+  if (actionVerdict === "escalate") {
+    if (dopa > 0) {
+      addAgentAction({
+        drugId: "dopamine",
+        currentDose: dopa,
+        unitLabel: "mcg/kg/min",
+        action: "switch",
+        titleEn: "Switch Dopamine to Norepinephrine",
+        titleVi: "Chuyển Dopamine sang Norepinephrine",
+        instructionEn:
+          "Start Norepinephrine (0.05–0.1 mcg/kg/min) and down-titrate Dopamine as NE takes effect (unless bradycardic).",
+        instructionVi:
+          "Khởi trị Norepinephrine (0.05–0.1 mcg/kg/phút) và giảm dần Dopamine khi NE có tác dụng (trừ khi nhịp chậm).",
+        rationaleEn: "Superior vasopressor efficacy with significantly fewer arrhythmias.",
+        rationaleVi: "Hiệu quả nâng áp tốt hơn và ít gây rối loạn nhịp hơn rõ rệt.",
+      });
+    }
+    if (ne > 0) {
+      if (ne >= 0.25 && vaso === 0) {
+        addAgentAction({
+          drugId: "norepinephrine",
+          currentDose: ne,
+          unitLabel: "mcg/kg/min",
+          action: "maintain",
+          titleEn: "Hold NE Solo Escalation — Add Vasopressin",
+          titleVi: "Hạn chế tăng NE đơn độc — Phối hợp Vasopressin",
+          instructionEn:
+            "Keep NE around current rate while initiating Vasopressin 0.03 U/min; titrate NE +0.02–0.05 mcg/kg/min only if MAP stays low.",
+          instructionVi:
+            "Giữ tạm NE khi bắt đầu thêm Vasopressin 0.03 U/phút; chỉ tăng thêm NE 0.02–0.05 mcg/kg/phút nếu MAP vẫn chưa đạt.",
+          rationaleEn: "Reduces catecholamine toxicity and atrial fibrillation risk.",
+          rationaleVi: "Giảm độc tính catecholamin và nguy cơ rung nhĩ.",
+        });
+      } else {
+        addAgentAction({
+          drugId: "norepinephrine",
+          currentDose: ne,
+          unitLabel: "mcg/kg/min",
+          action: "increase",
+          titleEn: "Increase Norepinephrine",
+          titleVi: "Tăng liều Norepinephrine",
+          instructionEn:
+            "Increase by 0.02–0.05 mcg/kg/min every 2–5 min until target MAP/CPP is achieved.",
+          instructionVi:
+            "Tăng thêm 0.02–0.05 mcg/kg/phút mỗi 2–5 phút đến khi đạt đích MAP/CPP.",
+          rationaleEn: "First-line titratable pressor with rapid onset (1–2 min).",
+          rationaleVi: "Thuốc vận mạch đầu tay, đáp ứng nhanh sau 1–2 phút.",
+        });
+      }
+    }
+    if (vaso > 0) {
+      if (vaso < 0.03) {
+        addAgentAction({
+          drugId: "vasopressin",
+          currentDose: vaso,
+          unitLabel: "U/min",
+          action: "increase",
+          titleEn: "Increase Vasopressin to 0.03 U/min",
+          titleVi: "Tăng Vasopressin lên 0.03 U/phút",
+          instructionEn: "Step up to standard fixed dose of 0.03 U/min (max 0.04 U/min).",
+          instructionVi: "Tăng lên liều chuẩn cố định 0.03 U/phút (tối đa 0.04 U/phút).",
+          rationaleEn: "Restores V1 vascular tone in catecholamine-resistant shock.",
+          rationaleVi: "Phục hồi trương lực mạch qua thụ thể V1 khi giảm đáp ứng catecholamin.",
+        });
+      } else {
+        addAgentAction({
+          drugId: "vasopressin",
+          currentDose: vaso,
+          unitLabel: "U/min",
+          action: "maintain",
+          titleEn: "Maintain Vasopressin Fixed Dose",
+          titleVi: "Duy trì Vasopressin liều cố định",
+          instructionEn:
+            "Keep at 0.03–0.04 U/min; do not exceed 0.04 U/min routinely due to ischemic risk.",
+          instructionVi:
+            "Giữ ở mức 0.03–0.04 U/phút; không tăng quá 0.04 U/phút thường quy do nguy cơ thiếu máu tạng/chi.",
+          rationaleEn: "Vasopressin is used as a fixed-dose adjunct, not high-dose monotherapy.",
+          rationaleVi: "Vasopressin dùng liều cố định phối hợp, không đẩy liều cao đơn độc.",
+        });
+      }
+    }
+    if (epi > 0) {
+      addAgentAction({
+        drugId: "epinephrine",
+        currentDose: epi,
+        unitLabel: "mcg/kg/min",
+        action: "increase",
+        titleEn: "Titrate Epinephrine if Refractory",
+        titleVi: "Tăng Epinephrine nếu sốc kháng trị",
+        instructionEn:
+          "Increase by 0.02–0.05 mcg/kg/min q5–15 min if MAP remains low; watch for tachycardia and lactic acidosis.",
+        instructionVi:
+          "Tăng 0.02–0.05 mcg/kg/phút mỗi 5–15 phút nếu MAP vẫn tụt; theo dõi nhịp nhanh và tăng lactat.",
+        rationaleEn: "Provides combined α1 vasoconstriction and β1 inotropy.",
+        rationaleVi: "Vừa co mạch α1 vừa tăng co bóp β1 trong sốc kháng trị.",
+      });
+    }
+    if (dobut > 0) {
+      addAgentAction({
+        drugId: "dobutamine",
+        currentDose: dobut,
+        unitLabel: "mcg/kg/min",
+        action: !input.perfusionOk || !lactateMet ? "increase" : "maintain",
+        titleEn:
+          !input.perfusionOk || !lactateMet
+            ? "Optimize Dobutamine (Check Echo)"
+            : "Maintain Dobutamine",
+        titleVi:
+          !input.perfusionOk || !lactateMet
+            ? "Tối ưu Dobutamine (Siêu âm tim)"
+            : "Duy trì Dobutamine",
+        instructionEn:
+          !input.perfusionOk || !lactateMet
+            ? "If cardiac output is low on echo, increase by 2.5 mcg/kg/min q10–15 min (can lower SVR if hypovolemic)."
+            : "Keep current rate while correcting MAP with vasopressors.",
+        instructionVi:
+          !input.perfusionOk || !lactateMet
+            ? "Nếu siêu âm tim có cung lượng thấp, tăng 2.5 mcg/kg/phút mỗi 10–15 phút (lưu ý có thể gây giãn mạch nhẹ)."
+            : "Giữ nguyên liều trong lúc nâng MAP bằng thuốc vận mạch.",
+        rationaleEn: "Supports cardiac output without replacing α1 vasoconstriction.",
+        rationaleVi: "Hỗ trợ cung lượng tim nhưng không thay thế thuốc co mạch α1.",
+      });
+    }
+  } else if (actionVerdict === "wean") {
+    // Prioritized weaning & stop-at-minimal-dose logic
+    const hasHighPriorityPressor = epi > 0 || dopa > 0;
+    if (epi > 0) {
+      const canStop = epi <= 0.02;
+      addAgentAction({
+        drugId: "epinephrine",
+        currentDose: epi,
+        unitLabel: "mcg/kg/min",
+        action: canStop ? "stop" : "wean",
+        titleEn: canStop ? "Discontinue / Trial Off Epinephrine" : "Wean Epinephrine First",
+        titleVi: canStop ? "Ngưng thử Epinephrine" : "Giảm Epinephrine trước tiên",
+        instructionEn: canStop
+          ? "Dose is minimal (≤ 0.02 mcg/kg/min). Stop Epinephrine and monitor MAP/HR q5–15 min."
+          : "Decrease by 0.02–0.05 mcg/kg/min every 15–30 min until discontinued.",
+        instructionVi: canStop
+          ? "Liều đã tối thiểu (≤ 0.02 mcg/kg/phút). Có thể ngưng Epinephrine và theo dõi MAP/nhịp tim mỗi 5–15 phút."
+          : "Giảm 0.02–0.05 mcg/kg/phút mỗi 15–30 phút đến khi ngừng hẳn.",
+        rationaleEn:
+          "Highest risk of tachyarrhythmia, myocardial O2 demand, and β2-mediated hyperlactatemia.",
+        rationaleVi:
+          "Nguy cơ gây nhịp nhanh loạn nhịp, tăng tiêu thụ oxy cơ tim và tăng lactat cao nhất.",
+      });
+      if (canStop) {
+        regimenChanges.push({
+          kind: "remove",
+          severity: "ok",
+          drugId: "epinephrine",
+          titleEn: "Remove Epinephrine (At Minimal Dose)",
+          titleVi: "Bỏ Epinephrine (Đã ở liều tối thiểu)",
+          detailEn: "Epinephrine ≤ 0.02 mcg/kg/min with stable hemodynamics — ready to discontinue.",
+          detailVi: "Epinephrine ≤ 0.02 mcg/kg/phút và huyết động ổn — có thể ngưng thuốc.",
+        });
+      }
+    }
+    if (dopa > 0) {
+      const canStop = dopa <= 2;
+      addAgentAction({
+        drugId: "dopamine",
+        currentDose: dopa,
+        unitLabel: "mcg/kg/min",
+        action: canStop ? "stop" : "wean",
+        titleEn: canStop ? "Discontinue Dopamine" : "Wean Dopamine",
+        titleVi: canStop ? "Ngưng Dopamine" : "Giảm liều Dopamine",
+        instructionEn: canStop
+          ? "Dose is minimal (≤ 2 mcg/kg/min). Stop Dopamine; avoid low-dose dopamine for renal protection."
+          : "Decrease by 1–2 mcg/kg/min every 15–30 min as tolerated.",
+        instructionVi: canStop
+          ? "Liều đã tối thiểu (≤ 2 mcg/kg/phút). Ngưng Dopamine (không duy trì liều thấp để bảo vệ thận)."
+          : "Giảm 1–2 mcg/kg/phút mỗi 15–30 phút theo đáp ứng huyết áp.",
+        rationaleEn: "Minimizes chronotropic arrhythmia burden as vascular tone recovers.",
+        rationaleVi: "Giảm nguy cơ rối loạn nhịp nhanh khi trương lực mạch hồi phục.",
+      });
+    }
+    if (ne > 0) {
+      const canStop = ne <= 0.03 && !hasHighPriorityPressor && (vaso === 0 || vaso <= 0.01);
+      if (hasHighPriorityPressor) {
+        addAgentAction({
+          drugId: "norepinephrine",
+          currentDose: ne,
+          unitLabel: "mcg/kg/min",
+          action: "maintain",
+          titleEn: "Maintain Norepinephrine While Stopping Epi/Dopa",
+          titleVi: "Giữ tạm Norepinephrine trong lúc cai Epi/Dopa",
+          instructionEn:
+            "Hold NE steady until Epinephrine/Dopamine are weaned off, then taper NE.",
+          instructionVi:
+            "Giữ nguyên NE cho đến khi cắt xong Epinephrine/Dopamine rồi mới giảm NE.",
+          rationaleEn: "Avoids weaning multiple pressors simultaneously.",
+          rationaleVi: "Tránh giảm đồng thời nhiều thuốc vận mạch gây tụt áp khó kiểm soát.",
+        });
+      } else {
+        addAgentAction({
+          drugId: "norepinephrine",
+          currentDose: ne,
+          unitLabel: "mcg/kg/min",
+          action: canStop ? "stop" : "wean",
+          titleEn: canStop
+            ? "Discontinue / Trial Off Norepinephrine"
+            : vaso > 0
+            ? "Wean Norepinephrine First (Before Vasopressin)"
+            : "Wean Norepinephrine",
+          titleVi: canStop
+            ? "Ngưng thử Norepinephrine"
+            : vaso > 0
+            ? "Giảm Norepinephrine trước (trước Vasopressin)"
+            : "Giảm dần Norepinephrine",
+          instructionEn: canStop
+            ? "NE is at minimal dose (≤ 0.03 mcg/kg/min). Trial off and check MAP q5–15 min."
+            : vaso > 0
+            ? "Decrease NE by 0.02–0.05 mcg/kg/min q15–30 min until ≤ 0.05–0.1 mcg/kg/min while keeping Vasopressin steady."
+            : "Decrease by 0.02–0.05 mcg/kg/min every 15–30 min while maintaining target MAP.",
+          instructionVi: canStop
+            ? "NE đã ở mức tối thiểu (≤ 0.03 mcg/kg/phút). Có thể ngưng thử và theo dõi MAP mỗi 5–15 phút."
+            : vaso > 0
+            ? "Giảm NE 0.02–0.05 mcg/kg/phút mỗi 15–30 phút đến ≤ 0.05–0.1 mcg/kg/phút trong khi giữ nguyên Vasopressin."
+            : "Giảm 0.02–0.05 mcg/kg/phút mỗi 15–30 phút nếu MAP vẫn đạt đích.",
+          rationaleEn:
+            vaso > 0
+              ? "Stopping Vasopressin while NE is moderate/high increases rebound hypotension; reduce catecholamine burden first."
+              : "Short half-life (1–2 min) enables rapid bedside reassessment after each step-down.",
+          rationaleVi:
+            vaso > 0
+              ? "Ngưng Vasopressin sớm khi NE còn cao dễ gây tụt huyết áp dội ngược; ưu tiên giảm catecholamin trước."
+              : "Thời gian bán thải ngắn (1–2 phút) cho phép đánh giá nhanh sau mỗi bước giảm.",
+        });
+        if (canStop) {
+          regimenChanges.push({
+            kind: "remove",
+            severity: "ok",
+            drugId: "norepinephrine",
+            titleEn: "Remove Norepinephrine (At Minimal Dose)",
+            titleVi: "Ngưng Norepinephrine (Đã ở liều tối thiểu)",
+            detailEn: "NE ≤ 0.03 mcg/kg/min and hemodynamically stable — trial off.",
+            detailVi: "NE ≤ 0.03 mcg/kg/phút và huyết động ổn định — có thể ngưng thử.",
+          });
+        }
+      }
+    }
+    if (vaso > 0) {
+      const waitForNe = ne > 0.1 || hasHighPriorityPressor;
+      const canStop = !waitForNe && vaso <= 0.01 && ne <= 0.03;
+      addAgentAction({
+        drugId: "vasopressin",
+        currentDose: vaso,
+        unitLabel: "U/min",
+        action: waitForNe ? "maintain" : canStop ? "stop" : "wean",
+        titleEn: waitForNe
+          ? "Maintain Vasopressin Until NE ≤ 0.1"
+          : canStop
+          ? "Discontinue Vasopressin"
+          : "Step-Down Vasopressin",
+        titleVi: waitForNe
+          ? "Giữ nguyên Vasopressin đến khi NE ≤ 0.1"
+          : canStop
+          ? "Ngưng Vasopressin"
+          : "Giảm bậc Vasopressin",
+        instructionEn: waitForNe
+          ? "Keep Vasopressin steady while tapering Norepinephrine down to ≤ 0.05–0.1 mcg/kg/min."
+          : canStop
+          ? "Vasopressin is at 0.01 U/min with minimal/off NE. Discontinue and monitor MAP for 30–60 min."
+          : "Decrease by 0.01 U/min every 30–60 min (0.03 → 0.02 → 0.01 → off).",
+        instructionVi: waitForNe
+          ? "Giữ cố định Vasopressin trong khi giảm dần Norepinephrine về ≤ 0.05–0.1 mcg/kg/phút."
+          : canStop
+          ? "Vasopressin đã ở mức 0.01 U/phút và NE tối thiểu/đã cắt. Ngưng thuốc và theo dõi MAP 30–60 phút."
+          : "Giảm 0.01 U/phút mỗi 30–60 phút (0.03 → 0.02 → 0.01 → ngừng).",
+        rationaleEn: "Gradual step-down prevents delayed rebound vasodilation (half-life 10–20 min).",
+        rationaleVi: "Giảm bậc thang chậm tránh tụt huyết áp muộn (thời gian bán thải 10–20 phút).",
+      });
+    }
+    if (dobut > 0) {
+      const pressorsActive = ne > 0.05 || epi > 0 || vaso > 0 || dopa > 0;
+      const canStop = !pressorsActive && dobut <= 2.5;
+      addAgentAction({
+        drugId: "dobutamine",
+        currentDose: dobut,
+        unitLabel: "mcg/kg/min",
+        action: pressorsActive ? "maintain" : canStop ? "stop" : "wean",
+        titleEn: pressorsActive
+          ? "Maintain Dobutamine Until Pressors Minimal"
+          : canStop
+          ? "Discontinue Dobutamine"
+          : "Wean Dobutamine Last",
+        titleVi: pressorsActive
+          ? "Giữ Dobutamine đến khi cắt/giảm hết vận mạch"
+          : canStop
+          ? "Ngưng Dobutamine"
+          : "Cai Dobutamine sau cùng",
+        instructionEn: pressorsActive
+          ? "Keep Dobutamine steady until vasopressors are minimal or discontinued."
+          : canStop
+          ? "At minimal dose (≤ 2.5 mcg/kg/min). Stop and monitor ScvO2, lactate, and UOP."
+          : "Decrease by 2.5 mcg/kg/min every 1–2 hours; monitor ScvO2, lactate, and UOP.",
+        instructionVi: pressorsActive
+          ? "Giữ nguyên Dobutamine cho đến khi các thuốc vận mạch đã ở mức tối thiểu hoặc ngừng."
+          : canStop
+          ? "Đã ở liều tối thiểu (≤ 2.5 mcg/kg/phút). Ngưng và theo dõi ScvO2, lactat, nước tiểu."
+          : "Giảm 2.5 mcg/kg/phút mỗi 1–2 giờ; theo dõi ScvO2, lactat và nước tiểu.",
+        rationaleEn: "Maintain inotropic support until vascular tone stabilizes.",
+        rationaleVi: "Duy trì hỗ trợ co bóp cơ tim đến khi trương lực mạch ổn định.",
+      });
+    }
+  } else {
+    // maintain or caution_wean
+    const activeList: Array<{ id: VasopressorId; dose: number; unit: string }> = [];
+    if (ne > 0) activeList.push({ id: "norepinephrine", dose: ne, unit: "mcg/kg/min" });
+    if (epi > 0) activeList.push({ id: "epinephrine", dose: epi, unit: "mcg/kg/min" });
+    if (vaso > 0) activeList.push({ id: "vasopressin", dose: vaso, unit: "U/min" });
+    if (dopa > 0) activeList.push({ id: "dopamine", dose: dopa, unit: "mcg/kg/min" });
+    if (dobut > 0) activeList.push({ id: "dobutamine", dose: dobut, unit: "mcg/kg/min" });
+
+    for (const item of activeList) {
+      addAgentAction({
+        drugId: item.id,
+        currentDose: item.dose,
+        unitLabel: item.unit,
+        action: "maintain",
+        titleEn: `Maintain ${VASOPRESSOR_CATALOG[item.id].shortLabel} at Current Rate`,
+        titleVi: `Duy trì ${VASOPRESSOR_CATALOG[item.id].shortLabel} ở mức hiện tại`,
+        instructionEn:
+          actionVerdict === "caution_wean"
+            ? "Keep current rate until ≥ 2h stability and euvolemia/source control are confirmed (or trial a minimal step-down only if MAP is well above target)."
+            : "Do not reduce rate while perfusion/lactate criteria are unmet; reassess q30–60 min.",
+        instructionVi:
+          actionVerdict === "caution_wean"
+            ? "Giữ nguyên tốc độ đến khi ổn định ≥ 2 giờ và chắc chắn đủ dịch/kiểm soát nguồn (chỉ thử giảm nhẹ nếu MAP cao hơn đích nhiều)."
+            : "Chưa giảm liều khi lactat/tưới máu mô chưa đạt; đánh giá lại mỗi 30–60 phút.",
+        rationaleEn: "Premature de-escalation risks recurrent shock and organ hypoperfusion.",
+        rationaleVi: "Giảm liều sớm khi chưa ổn định dễ gây tái tụt huyết áp và thiếu máu cơ quan.",
+      });
+    }
+  }
+
   return {
     readiness,
+    actionVerdict,
+    verdictTitleEn,
+    verdictTitleVi,
+    verdictSummaryEn,
+    verdictSummaryVi,
+    nee,
+    mapStatus,
     computedCpp,
     checklist,
+    agentActions,
+    regimenChanges,
     orderedSteps,
     reboundFlagsEn,
     reboundFlagsVi,

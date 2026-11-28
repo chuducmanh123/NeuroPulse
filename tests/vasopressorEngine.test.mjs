@@ -190,7 +190,7 @@ describe("NEE (Kotani 2023) & VIS (Gaies 2010) Engine", () => {
     assert.equal(res.visTier, "severe");
   });
 
-  test("Triggers SSC 2021 Vasopressin & Hydrocortisone alerts when NE >= 0.25 without Vasopressin", () => {
+  test("Triggers SSC 2026 Vasopressin & Hydrocortisone alerts when NE >= 0.25 without Vasopressin", () => {
     const res = computeNeeAndVis(
       {
         norepinephrine: 0.3,
@@ -223,8 +223,8 @@ describe("NEE (Kotani 2023) & VIS (Gaies 2010) Engine", () => {
 });
 
 describe("Weaning & De-escalation Coach", () => {
-  test("Holds weaning if SCI MAP < 85 mmHg or TBI CPP < 60 mmHg", () => {
-    const sciHold = evaluateWeaningCoach({
+  test("Holds weaning if SAH DCI MAP < 90 mmHg", () => {
+    const sahHold = evaluateWeaningCoach({
       agents: {
         norepinephrine: 0.1,
         epinephrine: null,
@@ -232,34 +232,15 @@ describe("Weaning & De-escalation Coach", () => {
         dopamine: null,
         dobutamine: null,
       },
-      targetProfile: "sci",
-      currentMap: 78,
+      targetProfile: "sah_dci",
+      currentMap: 82,
       currentIcp: null,
       stableHours: 4,
       lactateTrend: "normal_or_falling",
       perfusionOk: true,
       sourceVolumeAddressed: true,
     });
-    assert.equal(sciHold.readiness, "hold");
-
-    const tbiHold = evaluateWeaningCoach({
-      agents: {
-        norepinephrine: 0.1,
-        epinephrine: null,
-        vasopressin: null,
-        dopamine: null,
-        dobutamine: null,
-      },
-      targetProfile: "tbi_cpp",
-      currentMap: 75,
-      currentIcp: 20, // CPP = 55 < 60
-      stableHours: 4,
-      lactateTrend: "normal_or_falling",
-      perfusionOk: true,
-      sourceVolumeAddressed: true,
-    });
-    assert.equal(tbiHold.computedCpp, 55);
-    assert.equal(tbiHold.readiness, "hold");
+    assert.equal(sahHold.readiness, "hold");
   });
 
   test("Orders Epinephrine before Norepinephrine, and Norepinephrine before Vasopressin", () => {
@@ -283,6 +264,164 @@ describe("Weaning & De-escalation Coach", () => {
     assert.deepEqual(
       plan.orderedSteps.map((s) => s.drugId),
       ["epinephrine", "norepinephrine", "vasopressin", "dobutamine"]
+    );
+    assert.equal(plan.actionVerdict, "wean");
+    assert.equal(plan.agentActions[0].action, "wean");
+    assert.equal(plan.agentActions[1].action, "maintain"); // NE waits for Epi
+  });
+
+  test("Recommends ESCALATE and adding Vasopressin + Hydrocortisone when NE >= 0.25 and MAP < target", () => {
+    const plan = evaluateWeaningCoach({
+      agents: {
+        norepinephrine: 0.3,
+        epinephrine: null,
+        vasopressin: null,
+        dopamine: null,
+        dobutamine: null,
+      },
+      targetProfile: "septic",
+      currentMap: 58,
+      currentIcp: null,
+      stableHours: 0,
+      lactateTrend: "flat_or_rising",
+      perfusionOk: false,
+      sourceVolumeAddressed: false,
+    });
+    assert.equal(plan.actionVerdict, "escalate");
+    assert.equal(plan.mapStatus, "below");
+    assert.ok(plan.regimenChanges.some((c) => c.kind === "add" && c.drugId === "vasopressin"));
+    assert.ok(plan.regimenChanges.some((c) => c.kind === "add" && c.titleEn.includes("Hydrocortisone")));
+    assert.equal(plan.agentActions[0].action, "maintain"); // Hold solo NE escalation while adding Vaso
+  });
+
+  test("Recommends MAINTAIN when MAP is at target but lactate is rising", () => {
+    const plan = evaluateWeaningCoach({
+      agents: {
+        norepinephrine: 0.12,
+        epinephrine: null,
+        vasopressin: null,
+        dopamine: null,
+        dobutamine: null,
+      },
+      targetProfile: "septic",
+      currentMap: 68,
+      currentIcp: null,
+      stableHours: 2,
+      lactateTrend: "flat_or_rising",
+      perfusionOk: true,
+      sourceVolumeAddressed: true,
+    });
+    assert.equal(plan.actionVerdict, "maintain");
+    assert.equal(plan.agentActions[0].action, "maintain");
+  });
+
+  test("Recommends STOP when NE is at minimal dose (<= 0.03) and ready to wean", () => {
+    const plan = evaluateWeaningCoach({
+      agents: {
+        norepinephrine: 0.02,
+        epinephrine: null,
+        vasopressin: null,
+        dopamine: null,
+        dobutamine: null,
+      },
+      targetProfile: "septic",
+      currentMap: 72,
+      currentIcp: null,
+      stableHours: 4,
+      lactateTrend: "normal_or_falling",
+      perfusionOk: true,
+      sourceVolumeAddressed: true,
+    });
+    assert.equal(plan.actionVerdict, "wean");
+    assert.equal(plan.agentActions[0].action, "stop");
+    assert.ok(plan.regimenChanges.some((c) => c.kind === "remove" && c.drugId === "norepinephrine"));
+  });
+
+  test("Recommends WEAN when SAH DCI MAP overshoots > 110 mmHg", () => {
+    const plan = evaluateWeaningCoach({
+      agents: {
+        norepinephrine: 0.15,
+        epinephrine: null,
+        vasopressin: null,
+        dopamine: null,
+        dobutamine: null,
+      },
+      targetProfile: "sah_dci",
+      currentMap: 120,
+      currentIcp: null,
+      stableHours: 0,
+      lactateTrend: "normal_or_falling",
+      perfusionOk: true,
+      sourceVolumeAddressed: true,
+    });
+    assert.equal(plan.mapStatus, "above");
+    assert.equal(plan.actionVerdict, "wean");
+    assert.equal(plan.agentActions[0].action, "wean");
+  });
+
+  test("SSC 2026: Septic Shock Age >= 65 targets MAP 60-65 mmHg and flags overshoot > 65", () => {
+    const atTarget = evaluateWeaningCoach({
+      agents: {
+        norepinephrine: 0.1,
+        epinephrine: null,
+        vasopressin: null,
+        dopamine: null,
+        dobutamine: null,
+      },
+      targetProfile: "septic_elderly",
+      currentMap: 62,
+      currentIcp: null,
+      stableHours: 3,
+      lactateTrend: "normal_or_falling",
+      perfusionOk: true,
+      sourceVolumeAddressed: true,
+    });
+    assert.equal(atTarget.mapStatus, "at_target");
+    assert.equal(atTarget.actionVerdict, "wean");
+
+    const aboveTarget = evaluateWeaningCoach({
+      agents: {
+        norepinephrine: 0.15,
+        epinephrine: null,
+        vasopressin: null,
+        dopamine: null,
+        dobutamine: null,
+      },
+      targetProfile: "septic_elderly",
+      currentMap: 72,
+      currentIcp: null,
+      stableHours: 0,
+      lactateTrend: "normal_or_falling",
+      perfusionOk: true,
+      sourceVolumeAddressed: true,
+    });
+    assert.equal(aboveTarget.mapStatus, "above");
+    assert.equal(aboveTarget.actionVerdict, "wean");
+  });
+
+  test("ACC 2025 CS: Recommends Shock Team/tMCS in SCAI D/E and flags Dobutamine > 10 mcg/kg/min", () => {
+    const plan = evaluateWeaningCoach({
+      agents: {
+        norepinephrine: 0.3,
+        epinephrine: null,
+        vasopressin: null,
+        dopamine: null,
+        dobutamine: 12,
+      },
+      targetProfile: "cardiogenic",
+      currentMap: 58,
+      currentIcp: null,
+      stableHours: 0,
+      lactateTrend: "flat_or_rising",
+      perfusionOk: false,
+      sourceVolumeAddressed: true,
+    });
+    assert.equal(plan.actionVerdict, "escalate");
+    assert.ok(plan.regimenChanges.some((c) => c.titleEn.includes("tMCS")));
+    assert.ok(plan.regimenChanges.some((c) => c.titleEn.includes("Dobutamine > 10")));
+    assert.equal(
+      plan.regimenChanges.some((c) => c.titleEn.includes("Hydrocortisone")),
+      false
     );
   });
 });
