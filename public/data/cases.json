@@ -1,5 +1,226 @@
 [
   {
+    "id": "nc-2026-073",
+    "case_code": "NC-2026-073",
+    "title": "Refractory Intrusive Thoughts, Compulsive Finger-Tapping, and Bilateral Optic Disc Edema in a Young Woman",
+    "subspecialty": "Neuro-ophthalmology",
+    "subspecialties": [
+      "Neuro-ophthalmology",
+      "Behavioral Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-28",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13227841",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04895-5",
+      "pmcid": "PMC13227841",
+      "pmid": "42226173",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "23-year-old female",
+      "chief_complaint": "Refractory intrusive thoughts, compulsive finger-tapping rituals, bitemporal headache, and transient visual obscurations",
+      "history_of_present_illness": "A 23-year-old woman with a body mass index (BMI) of 30 kg/m² and no prior personal or family psychiatric history developed acute-onset intrusive thoughts over 2 to 3 weeks centered on fears of contamination and causing harm through carelessness. To neutralize these distressing thoughts, she performed elaborate finger-tapping rituals in multiples of four for 2 to 3 hours daily despite recognizing their irrationality and was diagnosed with obsessive–compulsive disorder (Yale–Brown Obsessive–Compulsive Scale [Y-BOCS] score, 22; Taylor Manifest Anxiety Scale score, 33). Over the subsequent 6 months, she showed no clinical improvement despite high-dose selective serotonin reuptake inhibitor therapy, antipsychotic augmentation, and cognitive-behavioral therapy. Concurrently, she experienced a refractory bitemporal headache, tinnitus, and transient visual obscurations, prompting neurological evaluation.",
+      "past_medical_history": "Obesity (BMI, 30 kg/m²); no prior personal or family history of psychiatric or neurological disease.",
+      "vitals": {
+        "bp": "118/76 mmHg",
+        "hr": "76 bpm",
+        "rr": "16 breaths/min",
+        "temp": "36.7 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "Mental status examination confirmed intact insight alongside repetitive finger-tapping compulsions, and fundoscopic examination revealed bilateral optic disc edema; the remainder of the cranial nerve, motor, sensory, and cerebellar examination was unremarkable.",
+      "key_labs_csf": "Complete blood count, comprehensive metabolic panel, and inflammatory markers were unremarkable. Brain MRI, magnetic resonance venography, and digital subtraction venography were subsequently performed.",
+      "imaging": [
+        {
+          "modality": "Brain MRI / MRV / Digital Subtraction Venography",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13227841)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13227841_fig1.jpg",
+          "pmcid": "PMC13227841",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04895-5",
+          "caption": "Neuroimaging and catheter venography obtained during neurological evaluation. Axial T1-weighted brain MRI demonstrates distention of the optic nerve sheath complex (a). Magnetic resonance venography shows focal narrowing at the right transverse–sigmoid sinus junction (b). Digital subtraction venography confirms focal luminal narrowing at the right transverse–sigmoid sinus junction (c) with subsequent restoration of venous sinus caliber across the same segment (d).",
+          "findings_summary": "Brain MRI and magnetic resonance venography demonstrate distention of the optic nerve sheath complex and focal narrowing at the right transverse–sigmoid sinus junction; digital subtraction venography confirms focal luminal narrowing with subsequent restoration of venous sinus caliber."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis explaining this patient's refractory neuropsychiatric and visual presentation?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cerebral venous sinus thrombosis",
+          "peer_percentage": 18,
+          "rationale": "Incorrect. Although cerebral venous sinus thrombosis can cause headache, papilledema, tinnitus, and impaired venous outflow on magnetic resonance venography, digital subtraction venography demonstrated focal stenosis without intraluminal thrombus, and a protracted course without venous infarction is atypical."
+        },
+        {
+          "id": "B",
+          "text": "Idiopathic intracranial hypertension",
+          "peer_percentage": 68,
+          "rationale": "Correct! This young woman with obesity presented with classic features of elevated intracranial pressure—bitemporal headache, tinnitus, transient visual obscurations, and bilateral papilledema—accompanied by optic nerve sheath distention and transverse–sigmoid sinus stenosis driving a secondary, treatment-refractory obsessive–compulsive syndrome."
+        },
+        {
+          "id": "C",
+          "text": "Primary obsessive–compulsive disorder with incidental sinus hypoplasia",
+          "peer_percentage": 9,
+          "rationale": "Incorrect. Although the thematic content of her obsessions resembled primary obsessive–compulsive disorder, the unusually acute onset without psychiatric history, complete resistance to 6 months of optimized pharmacotherapy and psychotherapy, and concurrent optic disc edema with optic nerve sheath distention point to a secondary organic etiology."
+        },
+        {
+          "id": "D",
+          "text": "Dural arteriovenous fistula",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. A dural arteriovenous fistula can produce pulsatile tinnitus, intracranial hypertension, and papilledema, but catheter venography revealed isolated narrowing at the transverse–sigmoid sinus junction without abnormal arteriovenous shunting or cortical venous reflux."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Idiopathic intracranial hypertension (IIH) presenting with secondary obsessive–compulsive disorder",
+      "clinical_discussion": "Although the content of this patient's contamination fears and checking rituals mimicked primary obsessive–compulsive disorder (OCD), several red flags indicated a secondary organic etiology: an unusually acute onset over 2 to 3 weeks, absence of personal or family psychiatric history, complete nonresponse to 6 months of optimized selective serotonin reuptake inhibitor (SSRI), antipsychotic, and cognitive-behavioral therapy, and concurrent headache, tinnitus, and transient visual obscurations. Alternative psychiatric explanations—such as SSRI-induced behavioral activation, maladaptive coping with chronic pain, or sleep disruption from nocturnal headache and tinnitus—were argued against by symptom onset prior to pharmacotherapy and persistence despite targeted psychotherapy. Vascular mimics of papilledema and venous outflow obstruction on magnetic resonance venography, including cerebral venous sinus thrombosis and dural arteriovenous fistula, were also important considerations in the differential diagnosis.\n\nThe critical diagnostic inflection point was performing fundoscopy, which uncovered bilateral papilledema and prompted neuroimaging. Brain MRI and magnetic resonance venography demonstrated distention of the optic nerve sheath complex and focal stenosis at the right transverse–sigmoid sinus junction. Subsequent lumbar puncture confirmed markedly elevated intracranial pressure with an opening pressure of 30 cmH2O, while digital subtraction venography confirmed focal venous sinus stenosis without intraluminal thrombus or arteriovenous shunting. Whereas depression and generalized anxiety are well-recognized comorbidities in idiopathic intracranial hypertension (IIH), de novo OCD is exceedingly rare; chronically elevated intracranial pressure is thought to disrupt frontostriatal circuits implicated in obsessive–compulsive pathophysiology.\n\nFollowing initiation of medical therapy with acetazolamide (2 g/day), the patient remained symptomatic despite transient relief after cerebrospinal fluid drainage via lumbar puncture. She subsequently underwent endovascular venous sinus stenting across the stenotic right transverse–sigmoid sinus junction, restoring normal venous outflow and abolishing the trans-stenotic pressure gradient. Within 3 months of stenting, her headache improved markedly, bilateral papilledema resolved, and her obsessive thoughts and finger-tapping compulsions remitted completely off all psychiatric medications, with her Y-BOCS score decreasing from 22 to 5.",
+      "teaching_points": [
+        "Idiopathic intracranial hypertension (IIH) typically affects young women with obesity and presents with headache, papilledema, tinnitus, and transient visual obscurations, but can rarely manifest with predominant neuropsychiatric symptoms mimicking primary psychiatric disease.",
+        "Red flags for an organic etiology in apparent obsessive–compulsive disorder include unusually acute onset, absence of personal or family psychiatric history, refractoriness to optimized pharmacotherapy and psychotherapy, and accompanying neurological or visual symptoms.",
+        "Routine fundoscopic examination is essential in patients presenting with atypical psychiatric syndromes accompanied by headache, tinnitus, or visual disturbances to avoid delayed diagnosis and vision-threatening papilledema.",
+        "In patients with IIH and hemodynamically significant transverse sinus stenosis refractory to medical therapy such as acetazolamide, endovascular venous sinus stenting can normalize intracranial pressure and resolve secondary neuropsychiatric manifestations."
+      ],
+      "clinical_pitfalls": [
+        "Failing to perform fundoscopy in a young woman with obesity presenting with new-onset psychiatric symptoms and coexisting headache, tinnitus, or transient visual obscurations.",
+        "Escalating psychiatric polypharmacy for refractory obsessive–compulsive disorder without re-evaluating for an underlying intracranial pressure disorder when red-flag neurological features are present.",
+        "Misattributing obsessive–compulsive symptoms solely to chronic pain or sleep disturbance without investigating persistent papilledema and elevated intracranial pressure."
+      ],
+      "related_keywords": [
+        "Idiopathic intracranial hypertension",
+        "Obsessive-compulsive disorder",
+        "Papilledema",
+        "Transverse sinus stenosis",
+        "Venous sinus stenting"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-074",
+    "case_code": "NC-2026-074",
+    "title": "Progressive Lower Limb Weakness and Dorsal Column Lesions Following Intrathecal Chemotherapy",
+    "subspecialty": "Neuro-oncology",
+    "subspecialties": [
+      "Neuro-oncology",
+      "Neuromuscular",
+      "General Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-28",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13366892",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04977-4",
+      "pmcid": "PMC13366892",
+      "pmid": "42163128",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "61-year-old man",
+      "chief_complaint": "Bilateral lower-extremity paresthesias and progressive weakness",
+      "history_of_present_illness": "A 61-year-old man with extranodal natural killer/T-cell lymphoma, nasal type, presented with bilateral lower-extremity paresthesias 4 days after receiving his 11th course of intrathecal chemotherapy containing methotrexate; over the next 5 days, his symptoms progressed to severe paraparesis.",
+      "past_medical_history": "Extranodal natural killer/T-cell lymphoma, nasal type, with central nervous system involvement, previously treated with systemic and intrathecal chemotherapy.",
+      "vitals": {
+        "bp": "124/78 mmHg",
+        "hr": "72 bpm",
+        "rr": "16 /min",
+        "temp": "36.7 °C",
+        "spo2": "99% on room air"
+      },
+      "neuro_exam": "On examination at day 9, cognitive function and cranial nerves were intact. Motor testing demonstrated proximal-predominant lower-extremity weakness (Medical Research Council grade 1/5 in the iliopsoas, quadriceps, and hamstrings), brisk lower-limb deep tendon reflexes, and a right extensor plantar response. Sensory examination revealed impaired vibration and proprioception in the lower extremities, accompanied by bladder and bowel sphincter dysfunction.",
+      "key_labs_csf": "Cerebrospinal fluid analysis showed 1 cell/µL, normal protein and glucose concentrations, and negative cytology (class I). Initial complete blood count, serum vitamin B12 level, and routine biochemical panels were unremarkable.",
+      "imaging": [
+        {
+          "modality": "Spinal MRI (Thoracic)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13366892)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13366892_fig1.jpg",
+          "pmcid": "PMC13366892",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04977-4",
+          "caption": "Axial and sagittal T2-weighted thoracic spinal magnetic resonance images demonstrate longitudinally extensive hyperintense signal localized to the posterior columns, with corresponding post-contrast T1-weighted images showing no abnormal enhancement.",
+          "findings_summary": "Longitudinally extensive T2-hyperintense lesions restricted to the thoracic posterior columns without gadolinium enhancement."
+        },
+        {
+          "modality": "Spinal MRI (Follow-up Axial T2)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13366892)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13366892_fig2.jpg",
+          "pmcid": "PMC13366892",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04977-4",
+          "caption": "Follow-up axial T2-weighted spinal magnetic resonance image shows prominent, well-demarcated hyperintense signal strictly confined to the bilateral dorsal columns without parenchymal mass effect.",
+          "findings_summary": "Prominent T2-hyperintensity isolated to the bilateral dorsal columns without mass effect or enhancement."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "What is the most likely etiology of the clinical syndrome and neuroimaging findings in this patient?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Intramedullary spinal cord relapse of extranodal NK/T-cell lymphoma",
+          "peer_percentage": 22,
+          "rationale": "Incorrect. Intramedullary spinal cord lymphoma typically presents as a poorly circumscribed, contrast-enhancing mass lesion with T1-isointensity and T2-hyperintensity, often accompanied by leptomeningeal dissemination and malignant cells in the cerebrospinal fluid, rather than non-enhancing lesions restricted to the dorsal columns."
+        },
+        {
+          "id": "B",
+          "text": "Subacute combined degeneration secondary to severe vitamin B12 deficiency",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Although the spinal magnetic resonance imaging findings closely mimic subacute combined degeneration, the acute onset shortly after intrathecal antimetabolite administration, normal serum vitamin B12 concentration, and absence of hematologic abnormalities point toward drug-induced neurotoxicity rather than primary nutritional deficiency."
+        },
+        {
+          "id": "C",
+          "text": "Methotrexate-induced myelopathy",
+          "peer_percentage": 60,
+          "rationale": "Correct! Progressive transverse myelopathy with ascending, non-enhancing T2-hyperintense lesions localized to the dorsal columns occurring shortly after intrathecal methotrexate administration—in the setting of acellular cerebrospinal fluid and negative cytology—is characteristic of methotrexate-induced myelopathy."
+        },
+        {
+          "id": "D",
+          "text": "Paraneoplastic necrotic myelopathy",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. Paraneoplastic necrotizing myelopathy typically causes rapidly progressive, devastating cord destruction with mixed gray and white matter involvement and variable contrast enhancement, lacking the specific temporal relationship to intrathecal chemotherapy seen in this patient."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Methotrexate-induced myelopathy",
+      "clinical_discussion": "In a patient with central nervous system lymphoma presenting with subacute paraparesis, dorsal column sensory loss, and sphincter dysfunction, the differential diagnosis encompasses intramedullary spinal cord relapse, leptomeningeal tumor infiltration, paraneoplastic necrotizing myelopathy, infectious myelitis, and nutritional subacute combined degeneration. Intramedullary and leptomeningeal lymphoma are particularly plausible mimics given the underlying malignancy, whereas vitamin B12 deficiency produces nearly identical tract-specific T2-hyperintense lesions within the posterior columns. Distinguishing treatment-related neurotoxicity from malignant recurrence is critical because misattribution can lead to inappropriate escalation of neurotoxic chemotherapy or missed opportunities for metabolic rescue.\n\nThe diagnostic inflection point relies on recognizing the close temporal relationship between intrathecal methotrexate administration and acute neurological decline, paired with characteristic neuroimaging showing longitudinally extensive, non-enhancing T2-hyperintense lesions confined primarily to the posterior and lateral columns. Confirming methotrexate-induced myelopathy requires excluding active tumor relapse and infectious or nutritional mimics through repeat cerebrospinal fluid cytopathology and flow cytometry, microbiologic assays, and serum vitamin B12 and folate assessment; notably, initial spinal imaging may appear normal and lag several days behind clinical onset. Pathophysiologically, intrathecal methotrexate inhibits dihydrofolate reductase and disrupts folate-dependent one-carbon metabolism, impairing methionine synthase and S-adenosylmethionine synthesis, which leads to demyelination, vacuolation, and axonal injury within vulnerable spinal white matter tracts.\n\nManagement centers on immediate discontinuation of intrathecal methotrexate and supportive neurorehabilitation, often supplemented with folate metabolites (such as leucovorin), vitamin B12, or S-adenosylmethionine to counteract metabolic blockade and promote biochemical rescue. Although serial neuroimaging frequently demonstrates rostral progression of dorsal column signal abnormalities, neurological deterioration often stabilizes and partial motor recovery may occur, whereas bladder and bowel sphincter dysfunction commonly persists. Clinicians should also remain vigilant during long-term follow-up for secondary or overlapping peripheral nerve complications, such as neurolymphomatosis.",
+      "teaching_points": [
+        "Methotrexate-induced myelopathy closely mimics subacute combined degeneration both clinically and radiologically, demonstrating selective, non-enhancing T2-hyperintensity in the posterior and lateral spinal columns.",
+        "Spinal magnetic resonance imaging abnormalities in toxic myelopathy frequently lag behind the clinical onset of neurological symptoms by several days.",
+        "Absence of gadolinium enhancement on spinal imaging, acellular cerebrospinal fluid, and persistently negative cytopathology help distinguish methotrexate neurotoxicity from intramedullary lymphoma relapse.",
+        "Management requires prompt cessation of intrathecal methotrexate and consideration of metabolic rescue with folinic acid (leucovorin), vitamin B12, or S-adenosylmethionine."
+      ],
+      "clinical_pitfalls": [
+        "Assuming all acute or subacute myelopathy in a patient with central nervous system lymphoma represents tumor relapse, leading to further administration of neurotoxic intrathecal chemotherapy.",
+        "Relying on an early normal spinal magnetic resonance imaging scan to exclude toxic myelopathy when clinical deficits suggest dorsal column or corticospinal tract dysfunction.",
+        "Overlooking delayed peripheral nervous system complications, such as neurolymphomatosis, during subsequent clinical follow-up of hematologic malignancies."
+      ],
+      "related_keywords": [
+        "Methotrexate-induced myelopathy",
+        "Intrathecal chemotherapy",
+        "Dorsal column myelopathy",
+        "Extranodal NK/T-cell lymphoma",
+        "Subacute combined degeneration mimic"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-071",
     "case_code": "NC-2026-071",
     "title": "Postpartum Thunderclap Headache Exacerbated in the Supine Position",
