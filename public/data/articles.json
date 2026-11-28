@@ -1,5 +1,247 @@
 [
   {
+    "id": "10.1016/s0140-6736(26)02258-0",
+    "title": "The CAMS–Lancet Commission on reducing the burden of stroke in China: preventing stroke and reducing disability",
+    "journal": {
+      "name": "The Lancet",
+      "short_name": "The Lancet",
+      "badge_bg": "#DBEAFE",
+      "badge_text": "#1E40AF"
+    },
+    "pub_date": "2026-11-27T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Xu Weihai",
+      "Wang Guohua",
+      "Wang Helena Hui",
+      "Shao Ruitai",
+      "Wu Chuanjie",
+      "Jha Prabhat",
+      "Sarrafzadegan Nizal",
+      "Lu Yao",
+      "Liu Jianmin",
+      "Ji Xunming"
+    ],
+    "doi_url": "https://doi.org/10.1016/s0140-6736(26)02258-0",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at The Lancet via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00391-1",
+    "title": "Safety and efficacy of optimised, anteromedial pallidal deep brain stimulation for severe Tourette's syndrome in the UK (Op-TICS): a single-centre, randomised, double-blind, crossover trial",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-27T00:00:00Z",
+    "article_type": "RCT",
+    "article_types": [
+      "RCT",
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Limousin Patricia",
+      "Foltynie Tom",
+      "Ahmed Norin",
+      "Chowdhury Kashfia",
+      "Lind Valentina",
+      "Krueger Marie T",
+      "Akram Harith",
+      "Tyagi Himanshu",
+      "Milabo Catherine",
+      "Esperida John",
+      "Bindman Dorothea",
+      "Sims Hannah",
+      "Auld Grace",
+      "Moosa Atiyyah",
+      "King Alexa",
+      "Silverdale Monty",
+      "Schrag Anette",
+      "Joyce Eileen",
+      "Zrinzo Ludvic"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00391-1",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Brain"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00396-0",
+    "title": "Diagnosis and management of facioscapulohumeral muscular dystrophy",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-27T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Kinoshita June",
+      "el Markhous Sarah",
+      "van Haaren-Pater Ronne",
+      "Badiani Rajeshri",
+      "Berggren Kiera",
+      "Cao Michelle",
+      "Ciafaloni Emma",
+      "Demirhan Mehmet",
+      "Drescher Kent",
+      "Duong Tina",
+      "Eichinger Katy",
+      "Elhassan Bassem",
+      "Erasmus Corrie E",
+      "Eren Ilker",
+      "Fauroux Brigitte",
+      "Féasson Léonard",
+      "Fitzsimons Robin B",
+      "Graham Christopher D",
+      "Heatwole Chad",
+      "van der Heijden Olivier W H",
+      "Johnson Nicholas E",
+      "Kang Peter B",
+      "Knuijt Simone",
+      "Lark Robert K",
+      "Lemmers Richard J L F",
+      "Limongelli Giuseppe",
+      "Mathews Katherine D",
+      "Milone Margherita",
+      "Moore Steven A",
+      "Mul Karlien",
+      "Nobile Maria",
+      "Padberg George W",
+      "Politano Luisa",
+      "Roy Amrita",
+      "Sasaki-Honda Mitsuru",
+      "Tawil Rabi",
+      "Teboul Frederic",
+      "Thornburg Loralei L",
+      "de Valle Katy",
+      "Vissing John",
+      "Voet Nicoline B M",
+      "Evangelista Teresinha",
+      "Statland Jeffrey M",
+      "Voermans Nicol C"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00396-0",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Muscular dystrophy"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00431-x",
+    "title": "Deep brain stimulation for Tourette's syndrome",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-27T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Baldermann Juan Carlos"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00431-x",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Brain"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00412-6",
+    "title": "Evolving diagnosis and management recommendations in facioscapulohumeral muscular dystrophy",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-27T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Tasca Giorgio"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00412-6",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Muscular dystrophy"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1056/nejmc2608489",
     "title": "Dual-Target Adaptive Deep-Brain Stimulation for Tourette Syndrome",
     "journal": {
