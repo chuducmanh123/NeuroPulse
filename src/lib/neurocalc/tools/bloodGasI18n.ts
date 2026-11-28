@@ -92,7 +92,7 @@ export const BLOODGAS_UI_TEXT = {
     en: "6-STEP CLINICAL CDS",
     vi: "PHÂN TÍCH 6 BƯỚC",
   },
-  resetCase: { en: "Reset", vi: "Nhập lại" },
+  resetCase: { en: "Reset", vi: "Reset" },
   refsBtn: { en: "Refs & Formulas", vi: "Tham chiếu & Công thức" },
   closeBtn: { en: "Close", vi: "Đóng" },
   copyReport: { en: "Copy Report", vi: "Copy Kết quả" },

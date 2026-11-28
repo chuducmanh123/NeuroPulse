@@ -207,6 +207,34 @@ export function searchDrugs(
       continue;
     }
 
+    // 2b. Alias match (e.g. noradrenaline -> norepinephrine, adrenaline -> epinephrine)
+    const aliases = drug.aliases || [];
+    let matchedAlias: { text: string; exact: boolean } | null = null;
+    for (const alias of aliases) {
+      const normAlias = normalizeVietnamese(alias);
+      if (normAlias === normQuery) {
+        matchedAlias = { text: alias, exact: true };
+        break;
+      }
+      if (
+        normAlias.startsWith(normQuery) ||
+        terms.every((t) => normAlias.includes(normalizeVietnamese(t)))
+      ) {
+        matchedAlias = { text: alias, exact: false };
+      }
+    }
+    if (matchedAlias) {
+      results.push({
+        drug,
+        effectiveStatus: item.effectiveStatus,
+        hashMatches: item.hashMatches,
+        score: matchedAlias.exact ? 1000 : 800,
+        matchedBy: matchedAlias.exact ? "generic_exact" : "generic_prefix",
+        matchedText: matchedAlias.text,
+      });
+      continue;
+    }
+
     // 3. Brand match (e.g. Keppra)
     const brands = drug.vn_products?.value || [];
     let matchedBrand: string | null = null;

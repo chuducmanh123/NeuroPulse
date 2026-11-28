@@ -1,0 +1,282 @@
+{
+  "id": "dobutamine",
+  "generic_name": "dobutamine",
+  "aliases": [
+    "dobutrex",
+    "dobutamine hydrochloride"
+  ],
+  "tall_man": {
+    "value": "DOBUTamine",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "DOBUTamine DOPamine Glipizide Glyburide glipiZIDE glyBURIDE Hydralazine Hydroxyzine hydrALAZINE hydrOXYzine Hydromorphone HYDROmorphone Medroxyprogesterone Methylprednisolone Methyltestosterone medroxyPROGESTERone methylPREDNISolone methylTESTOSTERone Methylprednisolone Methyltestosterone methylPREDNISol"
+      }
+    ],
+    "note": "ISMP/FDA Tall Man lettering distinguishes DOBUTamine from DOPamine"
+  },
+  "classes": [
+    "inotrope",
+    "beta-1 adrenergic agonist",
+    "catecholamine"
+  ],
+  "subspecialties": [
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "dobut-iv-inotropic-adult",
+      "indication": "Short-Term Inotropic Support in Cardiac Decompensation / Septic Cardiomyopathy (Adults — Continuous IV)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-dobutamine-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "Dobutamine in 5% Dextrose Injection, USP is indicated when parenteral therapy is necessary for inotropic support in the short-term treatment of patients with cardiac decompensation due to depressed contractility resulting either from organic heart disease or from cardiac surgical procedures."
+        },
+        {
+          "source_id": "fda-dobutamine-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "0.5 to 1.0 µg/kg/min) and titrated at intervals of a few minutes, guided by the patient's response, including systemic blood pressure, urine flow, frequency of ectopic activity, heart rate, and (whenever possible) measurements of cardiac output, central venous pressure, and/or pulmonary capillary wedge pressure."
+        },
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 1 Epinephrine & Dobutamine",
+          "quote": "For adults with septic shock and cardiac dysfunction with persistent hypoperfusion despite adequate volume status and arterial blood pressure, suggest either adding dobutamine to norepinephrine or using epinephrine alone. Dopamine Restriction: Recommend against using dopamine for septic shock except in highly selected patients with low risk of tach"
+        }
+      ],
+      "dose": null,
+      "dose_text": "Start at 0.5 to 1.0 mcg/kg/min (usual clinical range 2 to 20 mcg/kg/min, max 40 mcg/kg/min) continuous IV infusion via calibrated pump; titrate every few minutes based on cardiac output, BP, heart rate, ectopy, and urine output. Often combined with norepinephrine if vasodilatory hypotension coexists."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": [],
+    "note": "No renal adjustment required; short plasma half-life ~2 minutes"
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "No hepatic dose-adjustment bands specified in labeling"
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-dobutamine-label",
+        "locator": "12 CLINICAL PHARMACOLOGY",
+        "quote": "Dobutamine is a direct-acting inotropic agent whose primary activity results from stimulation of the β-receptors of the heart while producing comparatively mild chronotropic, hypertensive, arrhythmogenic, and vasodilative effects. It does not cause the release of endogenous norepinephrine, as does dopamine."
+      }
+    ],
+    "note": "No neuromuscular junction blockade reported"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Intravenous infusion only; inactive orally"
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic testing required"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Increase in heart rate (5-15 bpm) and systolic BP (10-20 mmHg)",
+        "Ventricular ectopic activity",
+        "Nausea, headache, angina, dyspnea"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-dobutamine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "A 10- to 20-mm Hg increase in systolic blood pressure and an increase in heart rate of 5 to 15 beats/minute have been noted in most patients (see WARNINGS regarding exaggerated chronotropic and pressor effects). Approximately 5% of adult patients have had increased premature ventricular beats during infusions. These effects are dose related."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Exaggerated tachycardia, ventricular arrhythmias, myocardial ischemia",
+        "Hypotension (beta-2 mediated vasodilation if hypovolemic)",
+        "Contraindicated in idiopathic hypertrophic subaortic stenosis (IHSS/HOCM)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-dobutamine-label",
+          "locator": "4 CONTRAINDICATIONS",
+          "quote": "Dobutamine in 5% Dextrose Injection, USP is contraindicated in patients with idiopathic hypertrophic subaortic stenosis and in patients who have shown previous manifestations of hypersensitivity to dobutamine or any of its components. === 6 ADVERSE REACTIONS === Increased Heart Rate, Blood Pressure, and Ventricular Ectopic Activity: A 10- to 20-m"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Direct-acting synthetic catecholamine whose primary inotropic activity results from cardiac beta-1 adrenergic receptor stimulation with mild beta-2 vasodilation.",
+    "refs": [
+      {
+        "source_id": "fda-dobutamine-label",
+        "locator": "12 CLINICAL PHARMACOLOGY",
+        "quote": "Dobutamine is a direct-acting inotropic agent whose primary activity results from stimulation of the β-receptors of the heart while producing comparatively mild chronotropic, hypertensive, arrhythmogenic, and vasodilative effects. It does not cause the release of endogenous norepinephrine, as does dopamine."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-dobutamine-label",
+        "locator": "12 CLINICAL PHARMACOLOGY",
+        "quote": "Dobutamine is a direct-acting inotropic agent whose primary activity results from stimulation of the β-receptors of the heart while producing comparatively mild chronotropic, hypertensive, arrhythmogenic, and vasodilative effects. It does not cause the release of endogenous norepinephrine, as does dopamine."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "COMT Inhibitors (e.g., entacapone)",
+        "severity": "moderate",
+        "effect": "May result in higher heart rate, arrhythmias, and exaggerated blood pressure fluctuations.",
+        "management": "Monitor ECG and arterial pressure closely during concomitant therapy.",
+        "refs": [
+          {
+            "source_id": "fda-dobutamine-label",
+            "locator": "PRECAUTIONS Drug Interactions",
+            "quote": "Concomitant use of dobutamine and catechol-O-methyltranferase (COMT) inhibitors (e.g., entacapone) may result in increased heart rate, arrhythmias, and changes in blood pressure."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Nitroprusside",
+        "severity": "moderate",
+        "effect": "Additive hemodynamic effect yielding higher cardiac output and lower pulmonary wedge pressure.",
+        "management": "Monitor arterial blood pressure and cardiac filling pressures.",
+        "refs": [
+          {
+            "source_id": "fda-dobutamine-label",
+            "locator": "PRECAUTIONS Drug Interactions",
+            "quote": "nitroprusside results in a higher cardiac output and, usually, a lower pulmonary wedge pressure than when either drug is used alone. Concomitant use of dobutamine and catechol-O-methyltranferase (COMT) inhibitors (e.g., entacapone) may result in increased heart rate, arrhythmias, and changes in blood pressure."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-dobutamine-label",
+        "locator": "PRECAUTIONS Drug Interactions",
+        "quote": "Concomitant use of dobutamine and catechol-O-methyltranferase (COMT) inhibitors (e.g., entacapone) may result in increased heart rate, arrhythmias, and changes in blood pressure."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "5-axis synthesis: Animal reproduction studies in rats/rabbits showed no fetal harm, but adequate human pregnancy studies are lacking; reserve for clear maternal cardiac decompensation.",
+      "refs": [
+        {
+          "source_id": "fda-dobutamine-label",
+          "locator": "PRECAUTIONS Pregnancy",
+          "quote": "Reproduction studies performed in rats and rabbits have revealed no evidence of harm to the fetus due to dobutamine. The drug, however, has not been administered to pregnant women and should be used only when the expected benefits clearly outweigh the potential risks to the fetus."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "No formal pregnancy PK adjustment; titrate to maternal hemodynamic/cardiac output response.",
+      "refs": [
+        {
+          "source_id": "fda-dobutamine-label",
+          "locator": "PRECAUTIONS Pregnancy",
+          "quote": "The drug, however, has not been administered to pregnant women and should be used only when the expected benefits clearly outweigh the potential risks to the fetus. Pediatric Use: Dobutamine has been shown to increase cardiac output and systemic pressure in pediatric patients of every age group."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Standard ICU hemodynamic tapering applies postpartum (e.g., peripartum cardiomyopathy).",
+      "refs": [
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 4 Peripartum & Obstetric Critical Care",
+          "quote": "Following delivery, standard adult ICU vasopressor titration applies with close monitoring for postpartum hemorrhage, cardiomyopathy, or pre-eclampsia overlap; no routine postpartum dose-reduction schedule is required beyond standard hemodynamic weaning."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "Not established (inactive orally; half-life ~2 min)",
+      "refs": [
+        {
+          "source_id": "lactmed-vasopressors",
+          "locator": "LactMed [dobutamine] Drug Levels",
+          "quote": "No data are available on the excretion of dobutamine into human milk."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Dobutamine is inactive orally and has a ~2 minute plasma half-life; clinically significant infant exposure via breastmilk is not expected.",
+      "refs": [
+        {
+          "source_id": "lactmed-vasopressors",
+          "locator": "LactMed [dobutamine] Summary of Use",
+          "quote": "Because dobutamine is poorly absorbed orally and has an extremely short plasma half-life, clinically significant exposure in a breastfed infant is not expected."
+        }
+      ]
+    }
+  },
+  "tools": {
+    "iv_infusion": {
+      "value": {
+        "diluent": "Dilute in D5W or 0.9% NaCl (avoid alkaline solutions); e.g., 250 mg/50 mL (5,000 mcg/mL) syringe or 250 mg/250 mL (1,000 mcg/mL).",
+        "rate": "Usual 2 to 20 mcg/kg/min (initiate 0.5-1 mcg/kg/min); titrate by cardiac output, BP, and HR.",
+        "instructions": "Use calibrated electronic infusion pump; correct hypovolemia before initiation to avoid beta-2 mediated hypotension."
+      },
+      "refs": [
+        {
+          "source_id": "fda-dobutamine-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "A calibrated electronic infusion device is recommended for controlling the rate of flow in mL/hour or drops/minute."
+        }
+      ]
+    }
+  },
+  "links": {
+    "neurocalc": "/neurocalc?tab=tools&tool=vasopressor-titration&drug=dobutamine"
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

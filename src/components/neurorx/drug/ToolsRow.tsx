@@ -48,7 +48,7 @@ export function ToolsRow({
   const hasReversal = Boolean(tools.reversal?.value && tools.reversal.value.length > 0);
   const isParkinson =
     drug.subspecialties?.includes("movement_disorders") ||
-    drug.classes?.some((c) => c.toLowerCase().includes("parkinson") || c.toLowerCase().includes("dopamine")) ||
+    drug.classes?.some((c) => c.toLowerCase().includes("parkinson") || c.toLowerCase().includes("dopamine agonist")) ||
     Boolean((tools as any)?.ledd);
 
   if (!hasHoldRestart && !hasTitration && !hasMissedDose && !hasReversal && !isParkinson) {

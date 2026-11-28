@@ -171,6 +171,11 @@ export function validateDrug(drug: unknown, knownSourceIds: Set<string>): Valida
   if (!d.generic_name || typeof d.generic_name !== "string" || d.generic_name.trim() === "") {
     errors.push({ path: "drug.generic_name", message: "generic_name is required" });
   }
+  if (d.aliases !== undefined) {
+    if (!Array.isArray(d.aliases) || d.aliases.some((a) => typeof a !== "string" || a.trim() === "")) {
+      errors.push({ path: "drug.aliases", message: "aliases must be an array of non-empty strings" });
+    }
+  }
 
   // Sourced fields
   errors.push(...validateSourced(d.tall_man, "drug.tall_man", knownSourceIds));

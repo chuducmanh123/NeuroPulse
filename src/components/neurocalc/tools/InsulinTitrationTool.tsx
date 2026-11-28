@@ -142,7 +142,7 @@ function CompactNumericRow({
           )}
         </div>
 
-        <div className="w-[152px] sm:w-[184px] shrink-0 flex items-stretch h-10 sm:h-8.5 rounded-lg border border-[var(--border-hairline)] overflow-hidden bg-[var(--bg-paper)] focus-within:border-[#0E7490] focus-within:ring-2 focus-within:ring-[#0E7490]/20 transition-colors">
+        <div className="w-[144px] sm:w-[156px] shrink-0 flex items-stretch h-10 sm:h-8.5 rounded-lg border border-[var(--border-hairline)] overflow-hidden bg-[var(--bg-paper)] focus-within:border-[#0E7490] focus-within:ring-2 focus-within:ring-[#0E7490]/20 transition-colors">
           <input
             id={id}
             type="number"
@@ -180,7 +180,16 @@ function CompactNumericRow({
   );
 }
 
-function DetailSectionBlock({ section }: { section: DetailSection }) {
+function DetailSectionBlock({
+  section,
+  externalDetailsControl = false,
+  detailsOpen = false,
+}: {
+  section: DetailSection;
+  externalDetailsControl?: boolean;
+  detailsOpen?: boolean;
+}) {
+  const hasDetails = Boolean(section.detailSteps && section.detailSteps.length > 0);
   return (
     <div className="space-y-2">
       <div
@@ -204,14 +213,14 @@ function DetailSectionBlock({ section }: { section: DetailSection }) {
         </ul>
       )}
 
-      {section.detailSteps && section.detailSteps.length > 0 && (
+      {hasDetails && !externalDetailsControl && (
         <details className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/55 px-3 py-2 text-xs text-[var(--text-secondary)]">
           <summary className="font-semibold text-[#0E7490] dark:text-cyan-400 cursor-pointer select-none flex items-center gap-1.5">
             <Calculator className="w-3.5 h-3.5 shrink-0" />
             <span>{section.detailsTitle}</span>
           </summary>
           <ul className="mt-2 pt-2 border-t border-[var(--border-hairline)] space-y-1 leading-relaxed">
-            {section.detailSteps.map((step, idx) => (
+            {section.detailSteps!.map((step, idx) => (
               <li key={idx} className="flex items-start gap-1.5">
                 <span className="text-[var(--text-muted)]">•</span>
                 <span>{step}</span>
@@ -219,6 +228,25 @@ function DetailSectionBlock({ section }: { section: DetailSection }) {
             ))}
           </ul>
         </details>
+      )}
+
+      {hasDetails && externalDetailsControl && detailsOpen && (
+        <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)]/55 px-3 py-2 text-xs text-[var(--text-secondary)]">
+          {section.detailsTitle && (
+            <div className="font-semibold text-[#0E7490] dark:text-cyan-400 flex items-center gap-1.5 pb-1.5 mb-1.5 border-b border-[var(--border-hairline)]">
+              <Calculator className="w-3.5 h-3.5 shrink-0" />
+              <span>{section.detailsTitle}</span>
+            </div>
+          )}
+          <ul className="space-y-1 leading-relaxed">
+            {section.detailSteps!.map((step, idx) => (
+              <li key={idx} className="flex items-start gap-1.5">
+                <span className="text-[var(--text-muted)]">•</span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
@@ -264,6 +292,7 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
   const [manualDelta, setManualDelta] = useState<string | null>(null);
   const [copiedEmr, setCopiedEmr] = useState(false);
   const [showSafetyModal, setShowSafetyModal] = useState(false);
+  const [showMedDetails, setShowMedDetails] = useState(false);
   const outputSectionRef = useRef<HTMLElement | null>(null);
 
   const parsedBgMgDl = useMemo(() => {
@@ -743,12 +772,12 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
   return (
     <div className="space-y-3.5">
       {/* Compact Top Toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-2.5 print:hidden">
-        <div className="flex items-center gap-2.5 min-w-0">
+      <div className="flex items-center justify-between gap-2 print:hidden">
+        <div className="flex items-center gap-2 min-w-0 flex-1">
           <button
             type="button"
             onClick={onBack}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2.5 py-1.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-ink)] hover:bg-[var(--bg-subtle)] transition-colors"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2.5 py-1.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-ink)] hover:bg-[var(--bg-subtle)] transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">
@@ -756,17 +785,12 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
             </span>
           </button>
 
-          <div className="flex items-center gap-2 min-w-0">
-            <h2 className="text-sm sm:text-base font-bold text-[var(--text-ink)] tracking-tight truncate">
-              {INSULIN_UI_TEXT.toolTitle[lang]}
-            </h2>
-            <span className="hidden sm:inline-flex shrink-0 rounded-md bg-[#0E7490]/12 border border-[#0E7490]/25 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#0E7490] dark:text-cyan-300">
-              {INSULIN_UI_TEXT.toolBadge[lang]}
-            </span>
-          </div>
+          <h2 className="text-sm sm:text-base font-bold text-[var(--text-ink)] tracking-tight truncate">
+            {INSULIN_UI_TEXT.toolTitle[lang]}
+          </h2>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 shrink-0">
           {/* Bilingual Toggle EN | VI (Default EN) */}
           <div
             role="group"
@@ -797,23 +821,20 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
             onClick={handleResetCase}
             aria-label={INSULIN_UI_TEXT.resetCase[lang]}
             title={INSULIN_UI_TEXT.resetCase[lang]}
-            className="inline-flex items-center gap-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2.5 py-1.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-rose-600 dark:hover:text-rose-400 hover:bg-[var(--bg-subtle)] transition-colors"
+            className="inline-flex items-center gap-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2 py-1.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-rose-600 dark:hover:text-rose-400 hover:bg-[var(--bg-subtle)] transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">
-              {INSULIN_UI_TEXT.resetCase[lang]}
-            </span>
+            <span>{INSULIN_UI_TEXT.resetCase[lang]}</span>
           </button>
 
           <button
             type="button"
             onClick={() => setShowSafetyModal(true)}
-            className="inline-flex items-center gap-1 rounded-xl border border-amber-500/35 bg-amber-500/8 px-2.5 py-1.5 text-xs font-semibold text-amber-800 dark:text-amber-300 hover:bg-amber-500/15 transition-colors"
+            aria-label={INSULIN_UI_TEXT.safetyBtn[lang]}
+            title={INSULIN_UI_TEXT.safetyBtn[lang]}
+            className="inline-flex items-center justify-center rounded-xl border border-amber-500/35 bg-amber-500/8 p-1.5 text-xs font-semibold text-amber-800 dark:text-amber-300 hover:bg-amber-500/15 transition-colors"
           >
-            <ShieldAlert className="w-3.5 h-3.5" />
-            <span className="hidden xs:inline sm:inline">
-              {INSULIN_UI_TEXT.safetyBtn[lang]}
-            </span>
+            <ShieldAlert className="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -880,7 +901,7 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
       {/* Main 2-Column Workspace (Mobile: Inputs -> Output -> Shift Log) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
         {/* Left Column Wrapper (transparent on mobile via contents) */}
-        <div className="contents lg:block lg:col-span-5 lg:space-y-3.5 print:hidden">
+        <div className="contents lg:block lg:col-span-4 lg:space-y-3.5 print:hidden">
           <div className="order-1 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] overflow-hidden">
             <div className="px-3.5 py-2.5 sm:px-4 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/40 flex items-center justify-between">
               <h3 className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-secondary)]">
@@ -1044,7 +1065,7 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
                 <>
                   {inputs.tp !== "t0" && (
                     <div className="px-3.5 py-2 sm:px-4">
-                      <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_184px] items-center gap-1.5 sm:gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_156px] items-center gap-1.5 sm:gap-3">
                         <label
                           htmlFor="insulin-syndrome-lock"
                           className="text-xs sm:text-[13px] font-medium text-[var(--text-ink)]"
@@ -1509,7 +1530,7 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
         {/* Right Column: Decision Support Output */}
         <section
           ref={outputSectionRef}
-          className="order-2 lg:order-none lg:col-span-7 space-y-3.5"
+          className="order-2 lg:order-none lg:col-span-8 space-y-3.5"
         >
           {!isConfirmed || !evaluation ? (
             <div className="rounded-2xl border-2 border-dashed border-[#0E7490]/40 bg-[var(--bg-surface)] p-6 sm:p-8 text-center space-y-3">
@@ -1764,11 +1785,34 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
               {evaluation.kind === "inpatient" && (
                 <div className="space-y-3">
                   <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 sm:p-4 space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0E7490] dark:text-cyan-400 pb-1.5 border-b border-[var(--border-hairline)]">
-                      <Syringe className="w-4 h-4" />
-                      <span>{INSULIN_UI_TEXT.pillars.med[lang]}</span>
+                    <div className="flex items-center justify-between gap-2 pb-1.5 border-b border-[var(--border-hairline)]">
+                      <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0E7490] dark:text-cyan-400 min-w-0">
+                        <Syringe className="w-4 h-4 shrink-0" />
+                        <span className="truncate">{INSULIN_UI_TEXT.pillars.med[lang]}</span>
+                      </div>
+                      {evaluation.medicationOrder.detailSteps &&
+                        evaluation.medicationOrder.detailSteps.length > 0 && (
+                          <button
+                            type="button"
+                            onClick={() => setShowMedDetails((v) => !v)}
+                            aria-expanded={showMedDetails}
+                            aria-label={evaluation.medicationOrder.detailsTitle}
+                            title={evaluation.medicationOrder.detailsTitle}
+                            className={`inline-flex items-center justify-center rounded-lg border p-1.5 transition-colors shrink-0 ${
+                              showMedDetails
+                                ? "border-[#0E7490] bg-[#0E7490]/12 text-[#0E7490] dark:text-cyan-300"
+                                : "border-[var(--border-hairline)] bg-[var(--bg-paper)] text-[var(--text-secondary)] hover:text-[#0E7490] hover:border-[#0E7490]/40"
+                            }`}
+                          >
+                            <Calculator className="w-3.5 h-3.5" />
+                          </button>
+                        )}
                     </div>
-                    <DetailSectionBlock section={evaluation.medicationOrder} />
+                    <DetailSectionBlock
+                      section={evaluation.medicationOrder}
+                      externalDetailsControl
+                      detailsOpen={showMedDetails}
+                    />
                   </div>
 
                   <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 sm:p-4 space-y-2">
@@ -1784,30 +1828,19 @@ export function InsulinTitrationTool({ onBack }: InsulinTitrationToolProps) {
                       <Clock className="w-4 h-4" />
                       <span>{INSULIN_UI_TEXT.pillars.timeline[lang]}</span>
                     </div>
-                    <div className="space-y-1.5">
-                      {evaluation.timeline.map((ev, idx) => (
-                        <div
-                          key={idx}
-                          className={`rounded-xl border px-3 py-2 flex flex-wrap items-center gap-2 text-xs ${
-                            ev.critical
-                              ? "border-rose-500/35 bg-rose-500/8"
-                              : "border-[var(--border-hairline)] bg-[var(--bg-paper)]"
-                          }`}
-                        >
-                          <span
-                            className={`rounded-md px-2 py-0.5 font-mono-tech font-bold text-[11px] ${
-                              ev.critical
-                                ? "bg-rose-600 text-white"
-                                : "bg-[var(--bg-subtle)] text-[var(--text-ink)]"
-                            }`}
-                          >
-                            {ev.time}
-                          </span>
-                          <span className="font-medium text-[var(--text-ink)]">
-                            {ev.desc}
-                          </span>
-                        </div>
-                      ))}
+                    <div className="rounded-r-xl border border-[var(--border-hairline)] border-l-4 border-l-[#0E7490] bg-[#0E7490]/8 px-3.5 py-2.5">
+                      <ul className="space-y-1.5 text-[13px] text-[var(--text-ink)] leading-relaxed">
+                        {evaluation.timeline.map((ev, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <span className="font-mono-tech font-semibold text-[#0E7490] dark:text-cyan-400 shrink-0">
+                              {ev.time}:
+                            </span>
+                            <span className="font-semibold text-[var(--text-ink)]">
+                              {ev.desc}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
 

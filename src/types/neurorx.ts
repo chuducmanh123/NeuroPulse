@@ -217,6 +217,7 @@ export interface EcosystemLinks {
   neurocase?: string;
   neurovision?: string;
   neuropulse?: string;
+  neurocalc?: string;
 }
 
 export type RecordStatus = "draft" | "verified" | "retired";
@@ -232,6 +233,7 @@ export interface DrugInteractionItem {
 export interface DrugRecord {
   id: string;
   generic_name: string;
+  aliases?: string[];
   tall_man: Sourced<string>;
   classes: string[];
   subspecialties: Subspecialty[];

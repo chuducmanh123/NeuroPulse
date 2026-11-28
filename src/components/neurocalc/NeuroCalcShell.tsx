@@ -33,6 +33,7 @@ import { ScaleQuickSwitcher } from "./ScaleQuickSwitcher";
 import { ScaleWorkspace } from "./ScaleWorkspace";
 import { BloodGasAnalyzerTool } from "./tools/BloodGasAnalyzerTool";
 import { InsulinTitrationTool } from "./tools/InsulinTitrationTool";
+import { VasopressorTool } from "./tools/VasopressorTool";
 
 type NeuroCalcTab = "scales" | "tools";
 
@@ -84,6 +85,7 @@ export function NeuroCalcShell() {
 
   const scaleParam = searchParams.get("scale") || "";
   const toolParam = searchParams.get("tool") || "";
+  const drugParam = searchParams.get("drug") || "";
   const initialTab: NeuroCalcTab =
     searchParams.get("tab") === "tools" || Boolean(toolParam)
       ? "tools"
@@ -165,6 +167,7 @@ export function NeuroCalcShell() {
         params.set("tool", nextTool);
       } else {
         params.delete("tool");
+        params.delete("drug");
       }
       const qs = params.toString();
       window.history.pushState(null, "", qs ? `/neurocalc?${qs}` : "/neurocalc");
@@ -369,6 +372,11 @@ export function NeuroCalcShell() {
               <InsulinTitrationTool onBack={() => navigateToTool(null)} />
             ) : selectedTool === "abg-analyzer" ? (
               <BloodGasAnalyzerTool onBack={() => navigateToTool(null)} />
+            ) : selectedTool === "vasopressor-titration" ? (
+              <VasopressorTool
+                onBack={() => navigateToTool(null)}
+                initialDrugId={drugParam || undefined}
+              />
             ) : (
               <ClinicalToolsTab onSelectTool={(id) => navigateToTool(id)} />
             )

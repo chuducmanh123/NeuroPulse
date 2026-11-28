@@ -116,7 +116,8 @@ export function DrugAccordions({
       (links.neuroguide ||
         links.neurocase ||
         links.neurovision ||
-        links.neuropulse)
+        links.neuropulse ||
+        links.neurocalc)
   );
 
   return (
@@ -835,6 +836,19 @@ export function DrugAccordions({
                     <span className="text-[var(--text-muted)] text-xs sm:text-sm font-medium">Pivotal trials &amp; literature</span>
                   </div>
                   <ExternalLink className="w-4 h-4 text-[#B91C1C]" />
+                </a>
+              )}
+
+              {links.neurocalc && (
+                <a
+                  href={links.neurocalc}
+                  className="p-3.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-paper)] hover:border-[#0E7490] transition-colors flex items-center justify-between mt-3"
+                >
+                  <div>
+                    <span className="font-extrabold text-[var(--text-ink)] text-sm sm:text-base block">NeuroCalc · Vasopressor &amp; Inotrope Suite</span>
+                    <span className="text-[var(--text-muted)] text-xs sm:text-sm font-medium">Smart drip calculator, NEE / VIS score &amp; weaning coach</span>
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-[#0E7490] shrink-0" />
                 </a>
               )}
             </div>

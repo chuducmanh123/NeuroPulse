@@ -1,0 +1,22 @@
+Intensive Care, Neurocritical Care, and Peripartum Vasopressor & Inotrope Consensus Guidelines Compendium
+
+=== SECTION 1: SURVIVING SEPSIS CAMPAIGN (SSC 2021) ===
+First-Line Vasopressor & MAP Target: Evans et al. (Intensive Care Med 2021): For adults with septic shock, recommend norepinephrine as the first-line agent over other vasopressors and recommend an initial target mean arterial pressure (MAP) of 65 mmHg over higher MAP targets.
+Vasopressin Escalation: For adults with septic shock on norepinephrine with inadequate MAP levels, suggest adding vasopressin (up to 0.03 units/min) instead of escalating the dose of norepinephrine alone; vasopressin is typically initiated when norepinephrine dose is in the range of 0.25 to 0.5 mcg/kg/min.
+Epinephrine & Dobutamine: For adults with septic shock and inadequate MAP levels despite norepinephrine and vasopressin, suggest adding epinephrine. For adults with septic shock and cardiac dysfunction with persistent hypoperfusion despite adequate volume status and arterial blood pressure, suggest either adding dobutamine to norepinephrine or using epinephrine alone.
+Dopamine Restriction: Recommend against using dopamine for septic shock except in highly selected patients with low risk of tachyarrhythmias and absolute or relative bradycardia; recommend against using low-dose dopamine for renal protection.
+Hydrocortisone in Refractory Shock: For adults with septic shock and an ongoing requirement for vasopressor therapy (typically norepinephrine or epinephrine >= 0.25 mcg/kg/min at least 4 hours after initiation), suggest intravenous hydrocortisone at a dose of 200 mg/day (50 mg IV every 6 hours or continuous infusion).
+Peripheral Vasopressor Initiation: For adults with septic shock, suggest starting vasopressors peripherally to restore MAP rather than delaying initiation until central venous access is secured; peripheral infusion should be administered for a short period (< 24 to 48 hours) in a vein in or proximal to the antecubital fossa with frequent site monitoring.
+
+=== SECTION 2: NEUROCRITICAL CARE HEMODYNAMIC TARGETS ===
+Spinal Cord Injury (AANS/CNS): In acute traumatic cervical or thoracic spinal cord injury, avoid hypotension (SBP < 90 mmHg) and maintain MAP between 85 and 90 mmHg for the first 5 to 7 days post-injury to optimize spinal cord perfusion; norepinephrine is generally preferred over dopamine in cervical/high-thoracic SCI due to fewer arrhythmias and lower ICP effects.
+Subarachnoid Hemorrhage DCI (AHA/NCS): For symptomatic cerebral vasospasm and delayed cerebral ischemia (DCI) after aneurysmal SAH, induced hypertension using norepinephrine (or phenylephrine) targeting stepwise MAP elevation (typically MAP 90 to 110 mmHg or +20% to 30% above baseline) is recommended until neurological deficits resolve or cardiac/cerebral safety limits are reached.
+Traumatic Brain Injury (BTF 4th Ed): In severe TBI, maintain cerebral perfusion pressure (CPP = MAP - ICP) between 60 and 70 mmHg; avoid aggressive fluid/vasopressor hyperperfusion (CPP > 70 mmHg) due to increased ARDS risk.
+
+=== SECTION 3: NOREPINEPHRINE EQUIVALENT (NEE) & VIS SCORES ===
+NEE Formula (Kotani et al., Crit Care 2023; Goradia et al., J Crit Care 2021): Standardized Norepinephrine Equivalent (NEE, mcg/kg/min) = Norepinephrine (mcg/kg/min) + Epinephrine (mcg/kg/min) + Dopamine (mcg/kg/min) / 100 + Vasopressin (units/min) * 2.5. Pure inotropes such as dobutamine are excluded from NEE.
+Vasoactive-Inotropic Score (VIS, Gaies et al., Pediatr Crit Care Med 2010): VIS = Dopamine (mcg/kg/min) + Dobutamine (mcg/kg/min) + 100 * Epinephrine (mcg/kg/min) + 100 * Norepinephrine (mcg/kg/min) + 10000 * Vasopressin (units/kg/min).
+
+=== SECTION 4: PERIPARTUM & OBSTETRIC CRITICAL CARE (ACOG / SMFM / ESC) ===
+Maternal Shock Stabilization: In pregnant patients with septic, cardiogenic, or anaphylactic shock, maternal hemodynamic stabilization and restoration of uteroplacental perfusion take absolute priority; norepinephrine and epinephrine should not be withheld due to theoretical fetal concerns. Because alpha-adrenergic vasoconstriction can reduce uterine blood flow, titrate to the lowest effective dose with continuous fetal heart rate monitoring when viable.
+Postpartum Vasopressor Use: Following delivery, standard adult ICU vasopressor titration applies with close monitoring for postpartum hemorrhage, cardiomyopathy, or pre-eclampsia overlap; no routine postpartum dose-reduction schedule is required beyond standard hemodynamic weaning.

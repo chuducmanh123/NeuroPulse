@@ -1,0 +1,320 @@
+{
+  "id": "epinephrine",
+  "generic_name": "epinephrine",
+  "aliases": [
+    "adrenaline",
+    "adrenalin",
+    "epi"
+  ],
+  "tall_man": {
+    "value": "epinephrine",
+    "refs": [
+      {
+        "source_id": "fda-epinephrine-label",
+        "locator": "Section 1 INDICATIONS AND USAGE",
+        "quote": "Adrenalin ® is a non-selective alpha and beta adrenergic agonist indicated for: Emergency treatment of allergic reactions (Type 1), including anaphylaxis ( 1.1 ) To increase mean arterial blood pressure in adult patients with hypotension associated with septic shock ( 1.2 ) 1.1 Anaphylaxis Emergency treatment of allergic reactions (Type I), includi"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "vasopressor",
+    "inotrope",
+    "catecholamine",
+    "non-selective alpha and beta adrenergic agonist"
+  ],
+  "subspecialties": [
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "epi-iv-septic-shock-adult",
+      "indication": "Hypotension Associated with Septic Shock (Adults — Continuous IV Infusion)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-epinephrine-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "To increase mean arterial blood pressure in adult patients with hypotension associated with septic shock ( 1.2 ) 1.1 Anaphylaxis Emergency treatment of allergic reactions (Type I), including anaphylaxis, which may result from insect stings or bites, foods, drugs, sera, diagnostic testing substances and other allergens, as well as idiopathic anaphyl"
+        },
+        {
+          "source_id": "fda-epinephrine-label",
+          "locator": "Section 2.3 Septic Shock",
+          "quote": "0.05 mcg/kg/min to 2 mcg/kg/min, titrated to achieve desired mean arterial pressure ( 2.3 ) Wean gradually ( 2.3 ) See Full Prescribing Information for instructions on dilution and administration of the injection."
+        }
+      ],
+      "dose": null,
+      "dose_text": "0.05 mcg/kg/min to 2 mcg/kg/min continuous IV infusion, titrated every 10-15 minutes to achieve desired MAP (typically second-line add-on to norepinephrine or when cardiac dysfunction coexists). Wean gradually when hemodynamic stability is achieved."
+    },
+    {
+      "id": "epi-im-anaphylaxis-adult",
+      "indication": "Anaphylaxis — Adults and Children >= 30 kg (IM/SC)",
+      "setting": "acute_inpatient",
+      "route": "IM",
+      "refs": [
+        {
+          "source_id": "fda-epinephrine-label",
+          "locator": "Section 2.2 Anaphylaxis",
+          "quote": "Adults and Children 30 kg (66 lbs) or more : 0.3 mg to 0.5 mg (0.3 mL to 0.5 mL) intramuscularly or subcutaneously into anterolateral aspect of the thigh every 5 to 10 minutes as necessary ( 2.2 ) Children 30 kg (66 lbs) or less : 0.01 mg/kg (0.01 mL/kg), up to 0.3 mg (0.3 mL), intramuscularly or subcutaneously into anterolateral aspect of the thig"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.3,
+        "unit": "mg",
+        "frequency": "IM into anterolateral thigh every 5-10 minutes as necessary (range 0.3-0.5 mg)",
+        "max_single": 0.5
+      },
+      "dose_text": "0.3 mg to 0.5 mg (0.3 mL to 0.5 mL of 1 mg/mL) IM or SC into anterolateral aspect of the thigh every 5 to 10 minutes as necessary."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": [],
+    "note": "No renal adjustment required; cleared rapidly via COMT and MAO"
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "No formal hepatic dose adjustment in labeling; titrate to hemodynamic response"
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-epinephrine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Epinephrine acts on both alpha and beta-adrenergic receptors. The mechanism of the rise in blood pressure is 3-fold: a direct myocardial stimulation that increases the strength of ventricular contraction (positive inotropic action), an increased heart rate (positive chronotropic action), and peripheral vasoconstriction."
+      }
+    ],
+    "note": "No neuromuscular junction blockade; safe in myasthenia gravis for acute anaphylaxis or shock"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Parenteral administration only; rapidly inactivated in GI tract"
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic testing required"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Anxiety, restlessness, tremor, headache",
+        "Palpitations, tachycardia, diaphoresis",
+        "Nausea, vomiting, pallor"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-epinephrine-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Common adverse reactions to systemically administered epinephrine include anxiety, apprehensiveness, restlessness, tremor, weakness, dizziness, sweating, palpitations, pallor, nausea and vomiting, headache, and respiratory difficulties."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe hypertension and cerebrovascular hemorrhage",
+        "Pulmonary edema and ventricular arrhythmias",
+        "Injection site necrosis / necrotizing fasciitis (rare IM thigh)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-epinephrine-label",
+          "locator": "Section 10 OVERDOSAGE",
+          "quote": "Overdosage of epinephrine may produce extremely elevated arterial pressure, which may result in cerebrovascular hemorrhage, particularly in elderly patients. Overdosage may also result in pulmonary edema because of peripheral vascular constriction together with cardiac stimulation."
+        },
+        {
+          "source_id": "fda-epinephrine-label",
+          "locator": "Section 5 Warnings",
+          "quote": "Rare cases of serious skin and soft tissue infections, including necrotizing fasciitis and myonecrosis caused by Clostridia (gas gangrene), have been reported following epinephrine injection in the thigh [ see Warnings and Precautions (5.2) ]."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Epinephrine acts on both alpha and beta-adrenergic receptors, increasing ventricular contractility (positive inotropic), heart rate (positive chronotropic), and peripheral vasoconstriction.",
+    "refs": [
+      {
+        "source_id": "fda-epinephrine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Epinephrine acts on both alpha and beta-adrenergic receptors. The mechanism of the rise in blood pressure is 3-fold: a direct myocardial stimulation that increases the strength of ventricular contraction (positive inotropic action), an increased heart rate (positive chronotropic action), and peripheral vasoconstriction."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-epinephrine-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "Following intravenous injection, epinephrine is rapidly cleared from the plasma with an effective half-life of < 5 minutes. A pharmacokinetic steady state following continuous intravenous infusion is achieved within 10 to 15 minutes."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Tricyclic Antidepressants, MAO Inhibitors, COMT Inhibitors (e.g., entacapone)",
+        "severity": "major",
+        "effect": "Potentiates cardiovascular pressor and arrhythmogenic effects of epinephrine.",
+        "management": "Monitor blood pressure and ECG continuously; start at lower infusion rates.",
+        "refs": [
+          {
+            "source_id": "fda-epinephrine-label",
+            "locator": "Section 7.2 Drugs that Potentiate Epinephrine",
+            "quote": "Drugs that potentiate the effects of epinephrine include sympathomimetics, beta blockers, tricyclic antidepressants, MAO inhibitors, COMT inhibitors, clonidine, doxapram, oxytocin, levothyroxine sodium, quinidine and certain antihistamines."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Non-selective Beta Blockers (e.g., labetalol, propranolol)",
+        "severity": "major",
+        "effect": "Unopposed alpha-adrenergic vasoconstriction can cause severe hypertension and reflex bradycardia.",
+        "management": "Monitor arterial blood pressure closely; consider alternative pressor/vasodilator strategies.",
+        "refs": [
+          {
+            "source_id": "fda-epinephrine-label",
+            "locator": "Section 7.2 Drugs that Potentiate Epinephrine",
+            "quote": "Drugs that potentiate the effects of epinephrine include sympathomimetics, beta blockers, tricyclic antidepressants, MAO inhibitors, COMT inhibitors, clonidine, doxapram, oxytocin, levothyroxine sodium, quinidine and certain antihistamines."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-epinephrine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Drugs that counter the pressor effects of epinephrine include alpha blockers, vasodilators such as nitrates, diuretics, antihypertensives and ergot alkaloids."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "5-axis synthesis: Prolonged human experience has not identified increased major birth defects, though label notes potential fetal harm from uterine vasoconstriction/hypoxia; in maternal anaphylaxis or shock, epinephrine must not be withheld.",
+      "refs": [
+        {
+          "source_id": "fda-epinephrine-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Prolonged experience with epinephrine use in pregnant women over several decades, based on published literature, do not identify a drug associated risk of major birth defects, miscarriage or adverse maternal or fetal outcomes."
+        },
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 4 Peripartum & Obstetric Critical Care",
+          "quote": "In pregnant patients with septic, cardiogenic, or anaphylactic shock, maternal hemodynamic stabilization and restoration of uteroplacental perfusion take absolute priority; norepinephrine and epinephrine should not be withheld due to theoretical fetal concerns."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "No formal pregnancy PK dose adjustment; titrate to lowest effective dose for maternal MAP/anaphylaxis reversal with continuous fetal monitoring.",
+      "refs": [
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 4 Peripartum & Obstetric Critical Care",
+          "quote": "Because alpha-adrenergic vasoconstriction can reduce uterine blood flow, titrate to the lowest effective dose with continuous fetal heart rate monitoring when viable. Postpartum Vasopressor Use: Following delivery, standard adult ICU vasopressor titration applies with close monitoring for postpartum hemorrhage, cardiomyopathy, or pre-eclampsia over"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Standard adult ICU titration and gradual weaning apply postpartum.",
+      "refs": [
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 4 Peripartum & Obstetric Critical Care",
+          "quote": "Following delivery, standard adult ICU vasopressor titration applies with close monitoring for postpartum hemorrhage, cardiomyopathy, or pre-eclampsia overlap; no routine postpartum dose-reduction schedule is required beyond standard hemodynamic weaning."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "Not established (expected negligible oral infant absorption)",
+      "refs": [
+        {
+          "source_id": "lactmed-vasopressors",
+          "locator": "LactMed [epinephrine] Drug Levels",
+          "quote": "No data are available on the excretion of epinephrine into human milk."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Poor oral bioavailability and plasma half-life < 5 minutes make clinically significant infant exposure via breastmilk unlikely.",
+      "refs": [
+        {
+          "source_id": "fda-epinephrine-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "There is no information regarding the presence of epinephrine in human milk or the effects of epinephrine on the breastfed infant or on milk production. However, due to its poor oral bioavailability and short half-life, epinephrine exposure is expected to be very low in the breastfed infant."
+        },
+        {
+          "source_id": "lactmed-vasopressors",
+          "locator": "LactMed [epinephrine] Summary of Use",
+          "quote": "Because epinephrine is poorly absorbed orally and rapidly inactivated in the infant gastrointestinal tract, maternal intravenous or parenteral administration is not expected to cause adverse effects in breastfed infants."
+        }
+      ]
+    }
+  },
+  "tools": {
+    "iv_infusion": {
+      "value": {
+        "diluent": "Dilute 1 mg/mL concentrate in D5W or 0.9% NaCl; e.g., 5 mg/50 mL (100 mcg/mL) for syringe pump or 4 mg/250 mL (16 mcg/mL).",
+        "rate": "Septic shock: 0.05 to 2 mcg/kg/min continuous IV infusion; titrate q10-15 min and wean gradually.",
+        "instructions": "Infuse via central venous catheter when possible; inspect solution for discoloration/precipitate before use."
+      },
+      "refs": [
+        {
+          "source_id": "fda-epinephrine-label",
+          "locator": "Section 2.3 Septic Shock",
+          "quote": "0.05 mcg/kg/min to 2 mcg/kg/min, titrated to achieve desired mean arterial pressure ( 2.3 ) Wean gradually ( 2.3 ) See Full Prescribing Information for instructions on dilution and administration of the injection."
+        },
+        {
+          "source_id": "fda-epinephrine-label",
+          "locator": "Section 2.1 General Considerations",
+          "quote": "Inspect visually for particulate matter and discoloration prior to administration; solution should be clear and colorless. Do not use if the solution is colored or cloudy, or if it contains particulate matter."
+        }
+      ]
+    }
+  },
+  "links": {
+    "neurocalc": "/neurocalc?tab=tools&tool=vasopressor-titration&drug=epinephrine"
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

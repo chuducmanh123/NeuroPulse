@@ -515,12 +515,12 @@ export function BloodGasAnalyzerTool({ onBack }: BloodGasAnalyzerToolProps) {
   return (
     <div className="space-y-3.5">
       {/* Top Toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-2.5 print:hidden">
-        <div className="flex items-center gap-2.5 min-w-0">
+      <div className="flex items-center justify-between gap-2 print:hidden">
+        <div className="flex items-center gap-2 min-w-0 flex-1">
           <button
             type="button"
             onClick={onBack}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2.5 py-1.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-ink)] hover:bg-[var(--bg-subtle)] transition-colors"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2.5 py-1.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-ink)] hover:bg-[var(--bg-subtle)] transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">
@@ -528,17 +528,12 @@ export function BloodGasAnalyzerTool({ onBack }: BloodGasAnalyzerToolProps) {
             </span>
           </button>
 
-          <div className="flex items-center gap-2 min-w-0">
-            <h2 className="text-sm sm:text-base font-bold text-[var(--text-ink)] tracking-tight truncate">
-              {BLOODGAS_UI_TEXT.toolTitle[lang]}
-            </h2>
-            <span className="hidden sm:inline-flex shrink-0 rounded-md bg-[#0E7490]/12 border border-[#0E7490]/25 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#0E7490] dark:text-cyan-300">
-              {BLOODGAS_UI_TEXT.toolBadge[lang]}
-            </span>
-          </div>
+          <h2 className="text-sm sm:text-base font-bold text-[var(--text-ink)] tracking-tight truncate">
+            {BLOODGAS_UI_TEXT.toolTitle[lang]}
+          </h2>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 shrink-0">
           {/* Language Toggle EN | VI */}
           <div
             role="group"
@@ -564,23 +559,22 @@ export function BloodGasAnalyzerTool({ onBack }: BloodGasAnalyzerToolProps) {
           <button
             type="button"
             onClick={handleReset}
-            className="inline-flex items-center gap-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2.5 py-1.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-rose-600 dark:hover:text-rose-400 hover:bg-[var(--bg-subtle)] transition-colors"
+            aria-label={BLOODGAS_UI_TEXT.resetCase[lang]}
+            title={BLOODGAS_UI_TEXT.resetCase[lang]}
+            className="inline-flex items-center gap-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2 py-1.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-rose-600 dark:hover:text-rose-400 hover:bg-[var(--bg-subtle)] transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">
-              {BLOODGAS_UI_TEXT.resetCase[lang]}
-            </span>
+            <span>{BLOODGAS_UI_TEXT.resetCase[lang]}</span>
           </button>
 
           <button
             type="button"
             onClick={() => setShowRefsModal(true)}
-            className="inline-flex items-center gap-1 rounded-xl border border-[#0E7490]/30 bg-[#0E7490]/8 px-2.5 py-1.5 text-xs font-semibold text-[#0E7490] dark:text-cyan-300 hover:bg-[#0E7490]/15 transition-colors"
+            aria-label={BLOODGAS_UI_TEXT.refsBtn[lang]}
+            title={BLOODGAS_UI_TEXT.refsBtn[lang]}
+            className="inline-flex items-center justify-center rounded-xl border border-[#0E7490]/30 bg-[#0E7490]/8 p-1.5 text-xs font-semibold text-[#0E7490] dark:text-cyan-300 hover:bg-[#0E7490]/15 transition-colors"
           >
-            <BookOpen className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">
-              {BLOODGAS_UI_TEXT.refsBtn[lang]}
-            </span>
+            <BookOpen className="w-4 h-4" />
           </button>
         </div>
       </div>

@@ -1,0 +1,289 @@
+{
+  "id": "dopamine",
+  "generic_name": "dopamine",
+  "aliases": [
+    "intropin",
+    "dopamine hydrochloride"
+  ],
+  "tall_man": {
+    "value": "DOPamine",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "DOPamine Glipizide Glyburide glipiZIDE glyBURIDE Hydralazine Hydroxyzine hydrALAZINE hydrOXYzine Hydromorphone HYDROmorphone Medroxyprogesterone Methylprednisolone Methyltestosterone medroxyPROGESTERone methylPREDNISolone methylTESTOSTERone Methylprednisolone Methyltestosterone methylPREDNISolone methylT"
+      }
+    ],
+    "note": "ISMP/FDA Tall Man lettering distinguishes DOPamine from DOBUTamine"
+  },
+  "classes": [
+    "vasopressor",
+    "inopressor",
+    "catecholamine",
+    "adrenergic and dopaminergic sympathomimetic"
+  ],
+  "subspecialties": [
+    "neurocritical_care",
+    "stroke"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "dopa-iv-shock-adult",
+      "indication": "Hemodynamic Imbalance in Shock / Symptomatic Bradycardia (Adults — Continuous IV Infusion)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-dopamine-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "2 to 5 mcg/kg/minute as a continuous intravenous infusion. Titrate in 5 to 10 mcg/kg/minute increments based on hemodynamic response and tolerability, up to not more than 50 mcg/kg/minute. ( 2.2 ) • See the Full Prescribing Information for important preparation instructions and drug incompatibilities."
+        },
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 1 Dopamine Restriction",
+          "quote": "Recommend against using dopamine for septic shock except in highly selected patients with low risk of tachyarrhythmias and absolute or relative bradycardia; recommend against using low-dose dopamine for renal protection. Hydrocortisone in Refractory Shock: For adults with septic shock and an ongoing requirement for vasopressor therapy (typically no"
+        }
+      ],
+      "dose": null,
+      "dose_text": "Initiate at 2 to 5 mcg/kg/min continuous IV infusion; titrate in 5 to 10 mcg/kg/min increments up to 20-50 mcg/kg/min (SSC 2021 recommends against dopamine in septic shock except select patients with bradycardia and low arrhythmia risk; avoid low-dose dopamine for renal protection)."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": [],
+    "note": "No renal adjustment required; short plasma half-life < 2 minutes"
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "No hepatic dose-adjustment bands specified in FDA labeling"
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-dopamine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Dopamine is a natural catecholamine formed by the decarboxylation of 3,4-dihydroxyphenylalanine (DOPA). It is a precursor to norepinephrine in noradrenergic nerves and is also a neurotransmitter in certain areas of the central nervous system, especially in the nigrostriatal tract, and in a few peripheral sympathetic nerves."
+      }
+    ],
+    "note": "No neuromuscular junction blockade reported"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Intravenous infusion only; inactive orally"
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic testing required"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Tachycardia and ectopic beats",
+        "Nausea, vomiting, headache",
+        "Vasoconstriction and dyspnea"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-dopamine-label",
+          "locator": "Section 12.1 Mechanism of Action",
+          "quote": "Dopamine is a natural catecholamine formed by the decarboxylation of 3,4-dihydroxyphenylalanine (DOPA). It is a precursor to norepinephrine in noradrenergic nerves and is also a neurotransmitter in certain areas of the central nervous system, especially in the nigrostriatal tract, and in a few peripheral sympathetic nerves."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Ventricular arrhythmias and tachyarrhythmias",
+        "Tissue ischemia and extravasation sloughing/necrosis",
+        "Severe hypertension (especially with MAOIs)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-dopamine-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Hypotension [see Warnings and Precautions (5.3) ] • Severe Hypersensitivity Reactions [see Warnings and Precautions (5.4) ] The following adverse reactions have been identified during post-approval use of dopamine."
+        },
+        {
+          "source_id": "fda-dopamine-label",
+          "locator": "Section 7 DRUG INTERACTIONS",
+          "quote": "monoamine oxidase (MAO), inhibition of this enzyme prolongs and potentiates the effect of dopamine which may result in severe hypertension and cardiac arrhythmia."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Endogenous catecholamine acting on dopaminergic (D1/D2), beta-1 adrenergic (inotropic/chronotropic at 5-10 mcg/kg/min), and alpha-1 adrenergic (vasoconstriction >10 mcg/kg/min) receptors.",
+    "refs": [
+      {
+        "source_id": "fda-dopamine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Dopamine is a natural catecholamine formed by the decarboxylation of 3,4-dihydroxyphenylalanine (DOPA). It is a precursor to norepinephrine in noradrenergic nerves and is also a neurotransmitter in certain areas of the central nervous system, especially in the nigrostriatal tract, and in a few peripheral sympathetic nerves."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-dopamine-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "The half-life of dopamine in adults is less than 2 minutes."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "MAO Inhibitors (e.g., linezolid, rasagiline)",
+        "severity": "major",
+        "effect": "Prolongs and potentiates dopamine pressor effect, causing severe hypertension and arrhythmias.",
+        "management": "Reduce recommended starting dosage of dopamine to no greater than one-tenth (1/10) of the usual dose.",
+        "refs": [
+          {
+            "source_id": "fda-dopamine-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "monoamine oxidase (MAO), inhibition of this enzyme prolongs and potentiates the effect of dopamine which may result in severe hypertension and cardiac arrhythmia."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Tricyclic Antidepressants (e.g., amitriptyline)",
+        "severity": "major",
+        "effect": "Concomitant use may potentiate cardiovascular pressor effects (hypertension).",
+        "management": "Monitor arterial blood pressure continuously and titrate cautiously.",
+        "refs": [
+          {
+            "source_id": "fda-dopamine-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Tricyclic Antidepressants Clinical Impact: Concomitant use may potentiate the cardiovascular effects of dopamine (e.g., hypertension). Intervention: Monitor blood pressure. Examples: amitriptyline, desipramine, doxepin, imipramine, nortriptyline. Vasopressors Clinical Impact: Concomitant use may result in severe hypertension."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-dopamine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "monoamine oxidase (MAO), inhibition of this enzyme prolongs and potentiates the effect of dopamine which may result in severe hypertension and cardiac arrhythmia."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "5-axis synthesis: No human pregnancy data; norepinephrine is preferred in maternal shock because dopamine carries higher arrhythmia risk and potential uterine vasoconstriction.",
+      "refs": [
+        {
+          "source_id": "fda-dopamine-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "There are no human data with dopamine use in pregnant women. There are risks to the mother and fetus from hypotension associated with shock, which can be fatal if left untreated ( see Clinical Considerations )."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "No pregnancy PK adjustment established; reserve for select bradycardic shock where norepinephrine is unsuitable, with fetal monitoring.",
+      "refs": [
+        {
+          "source_id": "fda-dopamine-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "There are risks to the mother and fetus from hypotension associated with shock, which can be fatal if left untreated ( see Clinical Considerations )."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Standard ICU weaning applies postpartum; note that dopamine suppresses maternal prolactin and may inhibit lactation initiation.",
+      "refs": [
+        {
+          "source_id": "lactmed-vasopressors",
+          "locator": "LactMed [dopamine] Summary of Use",
+          "quote": "However, dopamine is a physiological prolactin-inhibiting factor that suppresses maternal serum prolactin secretion and can inhibit lactogenesis or reduce breastmilk production during infusion."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "Not established (poor oral absorption; suppresses maternal prolactin)",
+      "refs": [
+        {
+          "source_id": "lactmed-vasopressors",
+          "locator": "LactMed [dopamine] Drug Levels",
+          "quote": "No data are available on the excretion of dopamine into human milk. Dopamine has poor oral bioavailability and a plasma half-life of approximately 2 minutes. Summary of Use during Lactation: Intravenous dopamine is not expected to be absorbed orally by a breastfed infant."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Oral infant absorption is negligible, but intravenous dopamine suppresses maternal prolactin and can inhibit milk production during infusion; production recovers after stopping.",
+      "refs": [
+        {
+          "source_id": "fda-dopamine-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "There are no data regarding the presence of dopamine in human milk, the effects of dopamine on the breastfed infant, or the effects of the drug on milk production. 8.4 Pediatric Use Dopamine HCl infusions have been used in pediatric patients from birth through adolescence."
+        },
+        {
+          "source_id": "lactmed-vasopressors",
+          "locator": "LactMed [dopamine] Summary of Use",
+          "quote": "However, dopamine is a physiological prolactin-inhibiting factor that suppresses maternal serum prolactin secretion and can inhibit lactogenesis or reduce breastmilk production during infusion."
+        }
+      ]
+    }
+  },
+  "tools": {
+    "iv_infusion": {
+      "value": {
+        "diluent": "Compatible with D5W or 0.9% NaCl (avoid alkaline solutions such as sodium bicarbonate); e.g., 200 mg/50 mL (4,000 mcg/mL) syringe or 400 mg/250 mL (1,600 mcg/mL).",
+        "rate": "2 to 5 mcg/kg/min initial; titrate in 5-10 mcg/kg/min increments (max 50 mcg/kg/min).",
+        "instructions": "Infuse into a large central vein via calibrated infusion pump; avoid extravasation (phentolamine rescue if extravasation occurs)."
+      },
+      "refs": [
+        {
+          "source_id": "fda-dopamine-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Administer Dopamine HCl in Dextrose Injection into a large vein [see Warnings and Precautions (5.1) ] with the use of an infusion pump preferably in an intensive care setting. Remove outer wrap (moisture and oxygen barrier) only when ready to administer the product. Discard product if outer wrap is damaged (e.g., tears or holes)."
+        }
+      ]
+    }
+  },
+  "links": {
+    "neurocalc": "/neurocalc?tab=tools&tool=vasopressor-titration&drug=dopamine"
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

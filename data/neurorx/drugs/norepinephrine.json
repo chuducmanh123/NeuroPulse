@@ -1,0 +1,330 @@
+{
+  "id": "norepinephrine",
+  "generic_name": "norepinephrine",
+  "aliases": [
+    "noradrenaline",
+    "norad",
+    "levophed",
+    "levarterenol"
+  ],
+  "tall_man": {
+    "value": "norepinephrine",
+    "refs": [
+      {
+        "source_id": "fda-norepinephrine-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Norepinephrine (sometimes referred to as l-arterenol/Levarterenol or l-norepinephrine) is a sympathomimetic amine which differs from epinephrine by the absence of a methyl group on the nitrogen atom."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "vasopressor",
+    "catecholamine",
+    "alpha-1 and beta-1 adrenergic agonist"
+  ],
+  "subspecialties": [
+    "neurocritical_care",
+    "stroke"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ne-iv-hypotension-adult",
+      "indication": "Acute Hypotension / Septic & Neurogenic Shock (Adults — Continuous IV Infusion)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-norepinephrine-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "LEVOPHED is indicated to raise blood pressure in adult patients with severe, acute hypotension. LEVOPHED is a catecholamine indicated for restoration of blood pressure in adult patients with acute hypotensive states."
+        },
+        {
+          "source_id": "fda-norepinephrine-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Initial dose of 0.25 mL to 0.375 mL (from 8 mcg to 12 mcg of base) per minute, adjust the rate of flow to establish and maintain a low to normal blood pressure (usually 80 mm Hg to 100 mm Hg systolic) sufficient to maintain the circulation of vital organs."
+        },
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 1 Surviving Sepsis Campaign (SSC 2021)",
+          "quote": "For adults with septic shock, recommend norepinephrine as the first-line agent over other vasopressors and recommend an initial target mean arterial pressure (MAP) of 65 mmHg over higher MAP targets. Vasopressin Escalation: For adults with septic shock on norepinephrine with inadequate MAP levels, suggest adding vasopressin (up to 0.03 units/min) i"
+        }
+      ],
+      "dose": null,
+      "dose_text": "FDA label: Initiate at 8 to 12 mcg/min (0.25 to 0.375 mL/min of 4 mg/1000 mL dilution) and titrate to maintain low-normal BP (usually SBP 80-100 mmHg, or MAP >= 65 mmHg per SSC 2021); average maintenance 2 to 4 mcg/min (weight-based ICU titration typically 0.01 to 0.5+ mcg/kg/min). Correct occult hypovolemia prior to or during therapy."
+    },
+    {
+      "id": "ne-iv-sci-sah-map",
+      "indication": "Neurocritical Care Hemodynamic Augmentation (Acute SCI MAP 85-90 mmHg / SAH DCI Induced HTN)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 2 Neurocritical Care Hemodynamic Targets",
+          "quote": "In acute traumatic cervical or thoracic spinal cord injury, avoid hypotension (SBP < 90 mmHg) and maintain MAP between 85 and 90 mmHg for the first 5 to 7 days post-injury to optimize spinal cord perfusion; norepinephrine is generally preferred over dopamine in cervical/high-thoracic SCI due to fewer arrhythmias and lower ICP effects. Subarachnoid"
+        },
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 2 Neurocritical Care Hemodynamic Targets",
+          "quote": "For symptomatic cerebral vasospasm and delayed cerebral ischemia (DCI) after aneurysmal SAH, induced hypertension using norepinephrine (or phenylephrine) targeting stepwise MAP elevation (typically MAP 90 to 110 mmHg or +20% to 30% above baseline) is recommended until neurological deficits resolve or cardiac/cerebral safety limits are reached. Trau"
+        }
+      ],
+      "dose": null,
+      "dose_text": "Acute SCI: Titrate IV norepinephrine to maintain MAP 85 to 90 mmHg for 5 to 7 days post-injury. Symptomatic aSAH DCI: Titrate stepwise to target MAP 90 to 110 mmHg (+20% to 30% above baseline) until clinical reversal or safety limits."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": [],
+    "note": "No formal renal dose-adjustment bands; titrate to hemodynamic response"
+  },
+  "hepatic": {
+    "value": "No formal hepatic dose-adjustment schedule; titrate carefully in patients with hepatic, renal, or cardiac dysfunction.",
+    "refs": [
+      {
+        "source_id": "fda-norepinephrine-label",
+        "locator": "Section 8.5 Geriatric Use",
+        "quote": "hepatic, renal, or cardiac function, and of concomitant disease or other drug therapy."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-norepinephrine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Norepinephrine is a peripheral vasoconstrictor (alpha-adrenergic action) and an inotropic stimulator of the heart and dilator of coronary arteries (beta-adrenergic action). 12.2 Pharmacodynamics The primary pharmacodynamic effects of norepinephrine are cardiac stimulation and vasoconstriction."
+      }
+    ],
+    "note": "No neuromuscular junction blockade reported; safe for hemodynamic support in myasthenia gravis when clinically indicated"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Intravenous infusion only; inactive orally"
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic testing required"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Hypertension and reflex bradycardia",
+        "Peripheral vasoconstriction and cold extremities",
+        "Anxiety, transient headache"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-norepinephrine-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "The most common adverse reactions are hypertension and bradycardia."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Tissue ischemia and extravasation necrosis at injection site",
+        "Severe hypertension and reflex bradycardia (overdose)",
+        "Cardiac arrhythmias (especially with hypoxia or hypercarbia)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-norepinephrine-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Tissue Ischemia [see Warnings and Precautions (5.1) ] • Hypotension [see Warnings and Precautions (5.2) ] • Cardiac Arrhythmias [see Warnings and Precautions (5.3) ] The most common adverse reactions are hypertension and bradycardia."
+        },
+        {
+          "source_id": "fda-norepinephrine-label",
+          "locator": "Section 10 OVERDOSAGE",
+          "quote": "Overdosage with LEVOPHED may result in headache, severe hypertension, reflex bradycardia, marked increase in peripheral resistance, and decreased cardiac output."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Norepinephrine is a peripheral vasoconstrictor (alpha-adrenergic action) and an inotropic stimulator of the heart and dilator of coronary arteries (beta-adrenergic action).",
+    "refs": [
+      {
+        "source_id": "fda-norepinephrine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Norepinephrine is a peripheral vasoconstrictor (alpha-adrenergic action) and an inotropic stimulator of the heart and dilator of coronary arteries (beta-adrenergic action). 12.2 Pharmacodynamics The primary pharmacodynamic effects of norepinephrine are cardiac stimulation and vasoconstriction."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-norepinephrine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Norepinephrine is a peripheral vasoconstrictor (alpha-adrenergic action) and an inotropic stimulator of the heart and dilator of coronary arteries (beta-adrenergic action). 12.2 Pharmacodynamics The primary pharmacodynamic effects of norepinephrine are cardiac stimulation and vasoconstriction."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "MAO Inhibitors (e.g., linezolid, rasagiline, phenelzine) & Tricyclic Antidepressants",
+        "severity": "major",
+        "effect": "Co-administration can cause severe, prolonged hypertension.",
+        "management": "Avoid if possible; if unavoidable, initiate at very low rates and monitor arterial blood pressure continuously.",
+        "refs": [
+          {
+            "source_id": "fda-norepinephrine-label",
+            "locator": "Section 7.1 MAO-Inhibiting Drugs",
+            "quote": "Co-administration of LEVOPHED with monoamine oxidase (MAO) inhibitors or other drugs with MAO-inhibiting properties (e.g., linezolid) can cause severe, prolonged hypertension."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Halogenated / Cyclopropane Anesthetics",
+        "severity": "major",
+        "effect": "Increases cardiac autonomic irritability and risk of ventricular arrhythmias.",
+        "management": "Monitor continuous ECG and avoid concomitant use with sensitizing volatile anesthetics where possible.",
+        "refs": [
+          {
+            "source_id": "fda-norepinephrine-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Cyclopropane and halothane anesthetics increase cardiac autonomic irritability. ( 7.4 ) 7.1 MAO-Inhibiting Drugs Co-administration of LEVOPHED with monoamine oxidase (MAO) inhibitors or other drugs with MAO-inhibiting properties (e.g., linezolid) can cause severe, prolonged hypertension."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-norepinephrine-label",
+        "locator": "Section 7.1 MAO-Inhibiting Drugs",
+        "quote": "Co-administration of LEVOPHED with monoamine oxidase (MAO) inhibitors or other drugs with MAO-inhibiting properties (e.g., linezolid) can cause severe, prolonged hypertension."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "5-axis synthesis: Limited published human data at delivery have not identified an increased risk of major birth defects, but alpha-adrenergic uterine vasoconstriction can reduce uteroplacental perfusion; maternal hemodynamic stabilization in shock takes priority.",
+      "refs": [
+        {
+          "source_id": "fda-norepinephrine-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Limited published data consisting of a small number of case reports and multiple small trials involving the use of norepinephrine in pregnant women at the time of delivery have not identified an increased risk of major birth defects, miscarriage or adverse maternal or fetal outcomes."
+        },
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 4 Peripartum & Obstetric Critical Care",
+          "quote": "In pregnant patients with septic, cardiogenic, or anaphylactic shock, maternal hemodynamic stabilization and restoration of uteroplacental perfusion take absolute priority; norepinephrine and epinephrine should not be withheld due to theoretical fetal concerns."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "No formal pregnancy PK dose-adjustment schedule; titrate to lowest effective dose maintaining maternal MAP >= 65 mmHg with continuous fetal heart rate monitoring when viable.",
+      "refs": [
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 4 Peripartum & Obstetric Critical Care",
+          "quote": "Because alpha-adrenergic vasoconstriction can reduce uterine blood flow, titrate to the lowest effective dose with continuous fetal heart rate monitoring when viable. Postpartum Vasopressor Use: Following delivery, standard adult ICU vasopressor titration applies with close monitoring for postpartum hemorrhage, cardiomyopathy, or pre-eclampsia over"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Standard adult ICU vasopressor titration applies postpartum; no routine postpartum dose-reduction schedule required beyond hemodynamic weaning.",
+      "refs": [
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 4 Peripartum & Obstetric Critical Care",
+          "quote": "Following delivery, standard adult ICU vasopressor titration applies with close monitoring for postpartum hemorrhage, cardiomyopathy, or pre-eclampsia overlap; no routine postpartum dose-reduction schedule is required beyond standard hemodynamic weaning."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "Not established (expected negligible oral infant absorption)",
+      "refs": [
+        {
+          "source_id": "lactmed-vasopressors",
+          "locator": "LactMed [norepinephrine] Drug Levels",
+          "quote": "No data are available on the excretion of norepinephrine into human milk."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "No data on human milk excretion; because norepinephrine has poor oral bioavailability and a 1 to 2 minute plasma half-life, clinically relevant infant exposure is not expected.",
+      "refs": [
+        {
+          "source_id": "fda-norepinephrine-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "There are no data on the presence of norepinephrine in either human or animal milk, the effects on the breastfed infant, or the effects on milk production. Clinically relevant exposure to the infant is not expected based on the short half-life and poor oral bioavailability of norepinephrine."
+        },
+        {
+          "source_id": "lactmed-vasopressors",
+          "locator": "LactMed [norepinephrine] Summary of Use",
+          "quote": "Because norepinephrine is poorly absorbed orally and has a short half-life, amounts ingested by the infant are expected to be negligible and destroyed in the gastrointestinal tract; however, intravenous norepinephrine is used in critically ill mothers where maternal stabilization is the primary consideration. [epinephrine] Drug Levels: No data are"
+        }
+      ]
+    }
+  },
+  "tools": {
+    "iv_infusion": {
+      "value": {
+        "diluent": "Dilute in 5% dextrose (D5W) or 5% dextrose in 0.9% NaCl (D5NS) to protect against oxidation; e.g., 4 mg/50 mL (80 mcg/mL) for syringe pump or 4 mg/250 mL (16 mcg/mL).",
+        "rate": "Initiate at 8-12 mcg/min (or 0.05-0.1 mcg/kg/min) and titrate every 2-5 min to target MAP.",
+        "instructions": "Infuse into a large central vein whenever possible. Avoid leg veins in elderly or occlusive vascular disease. Short-term peripheral infusion (<24-48 h) only in or proximal to antecubital fossa with q1-2h site checks."
+      },
+      "refs": [
+        {
+          "source_id": "fda-norepinephrine-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Dilute LEVOPHED prior to use [see Dosage and Administration (2.3) ] . Infuse LEVOPHED into a large vein. Avoid infusions into the veins of the leg in the elderly or in patients with occlusive vascular disease of the legs [see Warnings and Precautions (5.1) ]. Avoid using a catheter-tie-in technique ."
+        },
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 1 Peripheral Vasopressor Initiation",
+          "quote": "For adults with septic shock, suggest starting vasopressors peripherally to restore MAP rather than delaying initiation until central venous access is secured; peripheral infusion should be administered for a short period (< 24 to 48 hours) in a vein in or proximal to the antecubital fossa with frequent site monitoring. === SECTION 2: NEUROCRITICA"
+        }
+      ]
+    }
+  },
+  "links": {
+    "neurocalc": "/neurocalc?tab=tools&tool=vasopressor-titration&drug=norepinephrine"
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

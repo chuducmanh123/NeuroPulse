@@ -194,7 +194,7 @@ export const INSULIN_UI_TEXT = {
     vi: "Điều Chỉnh Liều Insulin & Cấp Cứu DKA/HHS",
   },
   toolBadge: { en: "INPATIENT + ICU", vi: "NỘI TRÚ + CẤP CỨU" },
-  resetCase: { en: "Reset New Case", vi: "Nhập Ca Mới" },
+  resetCase: { en: "Reset", vi: "Reset" },
   safetyBtn: { en: "Safety & Refs", vi: "An toàn & Nguồn" },
   closeBtn: { en: "Close", vi: "Đóng" },
   modifiersHeader: { en: "Clinical Modifiers", vi: "Yếu tố lâm sàng kèm theo" },

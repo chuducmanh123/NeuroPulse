@@ -12,6 +12,8 @@ import {
   Layers,
   HelpCircle,
   Edit,
+  Activity,
+  ExternalLink,
 } from "lucide-react";
 import type { DrugRecord, Source } from "@/types/neurorx";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
@@ -264,9 +266,15 @@ export function DrugDetail({
           </div>
         )}
 
-        {/* Myasthenia Gravis Safety & Nasogastric Tube Administration */}
-        {(mgSafety || ngTube) && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+        {/* Myasthenia Gravis Safety, Nasogastric Tube Administration & NeuroCalc Link */}
+        {(mgSafety || ngTube || drug.links?.neurocalc) && (
+          <div
+            className={`grid grid-cols-1 gap-3 sm:gap-4 ${
+              mgSafety && ngTube && drug.links?.neurocalc
+                ? "md:grid-cols-3"
+                : "md:grid-cols-2"
+            }`}
+          >
             {mgSafety && (
               <div
                 className={`p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border transition-colors flex items-start justify-between gap-3 ${
@@ -351,11 +359,27 @@ export function DrugDetail({
                 />
               </div>
             )}
+
+            {drug.links?.neurocalc && (
+              <a
+                href={drug.links.neurocalc}
+                className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border border-[#0E7490]/30 border-l-4 border-l-[#0E7490] bg-[#0E7490]/5 hover:bg-[#0E7490]/10 dark:bg-cyan-950/20 dark:hover:bg-cyan-950/35 shadow-xs transition-colors flex items-center justify-between gap-3 group min-h-[44px]"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="p-2 rounded-xl bg-[#0E7490]/15 text-[#0E7490] dark:text-cyan-400 shrink-0">
+                    <Activity className="w-5 h-5" />
+                  </div>
+                  <div className="min-w-0 text-xs sm:text-sm font-bold text-[var(--text-ink)] group-hover:text-[#0E7490] dark:group-hover:text-cyan-300 transition-colors">
+                    Open in NeuroCalc · Vasopressor &amp; Inotrope Suite
+                  </div>
+                </div>
+                <ExternalLink className="w-4 h-4 text-[#0E7490] dark:text-cyan-400 shrink-0" />
+              </a>
+            )}
           </div>
         )}
       </div>
 
-          {/* 4. Tier 3: Contextual Tools Row */}
           <ToolsRow
             drug={drug}
             effectiveStatus={currentDrugItem.effectiveStatus}

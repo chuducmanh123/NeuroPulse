@@ -1,0 +1,21 @@
+Drugs and Lactation Database (LactMed) — NCBI Bookshelf (NBK501922) Monograph Extracts for Vasopressors and Inotropes
+
+[norepinephrine]
+Drug Levels: No data are available on the excretion of norepinephrine into human milk. Because norepinephrine has poor oral bioavailability and a very short plasma half-life of approximately 1 to 2 minutes, it is unlikely to reach clinically significant levels in breastmilk or be absorbed by the breastfed infant.
+Summary of Use during Lactation: No information is available on the clinical use of norepinephrine during breastfeeding. Because norepinephrine is poorly absorbed orally and has a short half-life, amounts ingested by the infant are expected to be negligible and destroyed in the gastrointestinal tract; however, intravenous norepinephrine is used in critically ill mothers where maternal stabilization is the primary consideration.
+
+[epinephrine]
+Drug Levels: No data are available on the excretion of epinephrine into human milk. Epinephrine is rapidly destroyed in the gastrointestinal tract and has a plasma half-life of less than 5 minutes.
+Summary of Use during Lactation: Because epinephrine is poorly absorbed orally and rapidly inactivated in the infant gastrointestinal tract, maternal intravenous or parenteral administration is not expected to cause adverse effects in breastfed infants. Observe standard clinical precautions if high maternal doses are used, though no breastfeeding interruption is typically required once the mother is clinically stable.
+
+[dopamine]
+Drug Levels: No data are available on the excretion of dopamine into human milk. Dopamine has poor oral bioavailability and a plasma half-life of approximately 2 minutes.
+Summary of Use during Lactation: Intravenous dopamine is not expected to be absorbed orally by a breastfed infant. However, dopamine is a physiological prolactin-inhibiting factor that suppresses maternal serum prolactin secretion and can inhibit lactogenesis or reduce breastmilk production during infusion. Milk production typically recovers after discontinuation of the infusion.
+
+[dobutamine]
+Drug Levels: No data are available on the excretion of dobutamine into human milk. Dobutamine is inactive when given orally and has a plasma half-life of approximately 2 minutes.
+Summary of Use during Lactation: Because dobutamine is poorly absorbed orally and has an extremely short plasma half-life, clinically significant exposure in a breastfed infant is not expected. Monitor the infant for rare hemodynamic symptoms only if prolonged maternal critical care infusion coincides with early neonatal feeding.
+
+[vasopressin]
+Drug Levels: No data are available on the excretion of exogenous vasopressin into human milk. Vasopressin is a peptide hormone that is inactivated by trypsin in the gastrointestinal tract and has a plasma half-life of 10 to 20 minutes.
+Summary of Use during Lactation: Because vasopressin is a peptide rapidly degraded in the gastrointestinal tract with negligible oral bioavailability, maternal intravenous vasopressin is not expected to reach the breastfed infant's systemic circulation or cause adverse effects.

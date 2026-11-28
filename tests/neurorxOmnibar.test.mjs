@@ -175,4 +175,43 @@ describe("NeuroRx Drug Search & Ranking (searchDrugs)", () => {
     const results = searchDrugs([], fixtureDrugs);
     assert.equal(results.length, 3);
   });
+
+  test("matches VN/BAN aliases (noradrenaline -> norepinephrine, adrenaline -> epinephrine)", () => {
+    const vasoFixtures = [
+      {
+        id: "norepinephrine",
+        generic_name: "norepinephrine",
+        aliases: ["noradrenaline", "norad", "levophed"],
+        tall_man: { value: "norepinephrine", refs: [] },
+        classes: ["vasopressor"],
+        subspecialties: ["neurocritical_care"],
+        vn_products: { value: null, refs: [] },
+        ae_tags: { value: null, refs: [] },
+        status: "draft",
+        verification: { verified_by: null, verified_at: null, content_hash: null },
+      },
+      {
+        id: "epinephrine",
+        generic_name: "epinephrine",
+        aliases: ["adrenaline", "adrenalin", "epi"],
+        tall_man: { value: "epinephrine", refs: [] },
+        classes: ["vasopressor"],
+        subspecialties: ["neurocritical_care"],
+        vn_products: { value: null, refs: [] },
+        ae_tags: { value: null, refs: [] },
+        status: "draft",
+        verification: { verified_by: null, verified_at: null, content_hash: null },
+      },
+    ];
+
+    const norad = searchDrugs(["noradrenaline"], vasoFixtures);
+    assert.equal(norad.length, 1);
+    assert.equal(norad[0].drug.id, "norepinephrine");
+    assert.equal(norad[0].score, 1000);
+
+    const adren = searchDrugs(["adrenaline"], vasoFixtures);
+    assert.ok(adren.length >= 1);
+    assert.equal(adren[0].drug.id, "epinephrine");
+    assert.equal(adren[0].score, 1000);
+  });
 });

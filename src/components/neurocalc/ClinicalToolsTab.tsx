@@ -6,6 +6,7 @@ import {
   ArrowRight,
   Droplets,
   FlaskConical,
+  HeartPulse,
   Syringe,
 } from "lucide-react";
 
@@ -32,6 +33,14 @@ const CLINICAL_TOOLS: ClinicalToolCardItem[] = [
     description:
       "Premixed NovoMix 30 / Actrapid inpatient titration (06:00 & 18:00/night) and JBDS/ADA DKA–HHS emergency protocol with EN/VI support.",
     icon: Syringe,
+    available: true,
+  },
+  {
+    id: "vasopressor-titration",
+    title: "Vasopressor & Inotrope Suite",
+    description:
+      "Smart Drip & Titration (VN 50 mL & 250 mL), NEE (Kotani 2023) & VIS score, Neuro-ICU MAP/CPP targets, Weaning Coach & NeuroRx cross-links.",
+    icon: HeartPulse,
     available: true,
   },
   {

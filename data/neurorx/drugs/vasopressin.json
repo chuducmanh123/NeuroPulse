@@ -1,0 +1,308 @@
+{
+  "id": "vasopressin",
+  "generic_name": "vasopressin",
+  "aliases": [
+    "argipressin",
+    "vasostrict",
+    "pitressin",
+    "adh",
+    "arginine vasopressin"
+  ],
+  "tall_man": {
+    "value": "vasopressin",
+    "refs": [
+      {
+        "source_id": "fda-vasopressin-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Vasopressin is a polypeptide hormone that causes contraction of vascular and other smooth muscles and antidiuresis. Vasostrict ® is a sterile, aqueous solution of synthetic arginine vasopressin for intravenous administration."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "vasopressor",
+    "non-catecholamine vasopressin V1/V2 agonist",
+    "antidiuretic hormone analogue"
+  ],
+  "subspecialties": [
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "vaso-iv-septic-shock-adult",
+      "indication": "Vasodilatory / Septic Shock (Adults — Continuous IV Infusion, Catecholamine-Sparing)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-vasopressin-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "Vasostrict ® is indicated to increase blood pressure in adults with vasodilatory shock (e.g., post-cardiotomy or sepsis) who remain hypotensive despite fluids and catecholamines."
+        },
+        {
+          "source_id": "fda-vasopressin-label",
+          "locator": "Section 2.2 Septic Shock",
+          "quote": "For septic shock, start with a dose of 0.01 units/minute. If the target blood pressure response is not achieved, titrate up by 0.005 units/minute at 10- to 15-minute intervals. The maximum dose for post-cardiotomy shock is 0.1 units/minute and for septic shock 0.07 units/minute."
+        },
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 1 Vasopressin Escalation",
+          "quote": "suggest adding vasopressin (up to 0.03 units/min) instead of escalating the dose of norepinephrine alone; vasopressin is typically initiated when norepinephrine dose is in the range of 0.25 to 0.5 mcg/kg/min. Epinephrine & Dobutamine: For adults with septic shock and inadequate MAP levels despite norepinephrine and vasopressin, suggest adding epine"
+        }
+      ],
+      "dose": null,
+      "dose_text": "Septic shock: Fixed 0.03 units/min continuous IV infusion (SSC 2021) or FDA range 0.01 to 0.07 units/min (titrate by 0.005 units/min q10-15 min). Post-cardiotomy vasodilatory shock: 0.03 to 0.1 units/min. Administer via central venous line."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": [],
+    "note": "No renal adjustment required; short plasma t1/2 <= 10 minutes"
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "No hepatic dose-adjustment bands specified in labeling"
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-vasopressin-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "The vasoconstrictive effects of vasopressin are mediated by vascular V 1 receptors. Vascular V 1 receptors are directly coupled to phopholipase C, resulting in release of calcium, leading to vasoconstriction. In addition, vasopressin stimulates antidiuresis via stimulation of V 2 receptors which are coupled to adenyl cyclase."
+      }
+    ],
+    "note": "No neuromuscular junction blockade; monitor serum sodium for hyponatremia"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Intravenous infusion only; peptide inactivated by GI trypsin"
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic testing required"
+  },
+  "ae_tags": {
+    "value": [
+      "hyponatremia"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-vasopressin-label",
+        "locator": "Section 10 OVERDOSAGE",
+        "quote": "Overdosage with Vasostrict ® can be expected to manifest as consequences of vasoconstriction of various vascular beds (peripheral, mesenteric, and coronary) and as hyponatremia. In addition, overdosage may lead less commonly to ventricular tachyarrhythmias (including Torsade de Pointes), rhabdomyolysis, and non-specific gastrointestinal symptoms."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Decreased cardiac output and bradycardia",
+        "Hyponatremia and water intoxication",
+        "Peripheral / digital vasoconstriction"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-vasopressin-label",
+          "locator": "Section 10 OVERDOSAGE",
+          "quote": "Overdosage with Vasostrict ® can be expected to manifest as consequences of vasoconstriction of various vascular beds (peripheral, mesenteric, and coronary) and as hyponatremia. In addition, overdosage may lead less commonly to ventricular tachyarrhythmias (including Torsade de Pointes), rhabdomyolysis, and non-specific gastrointestinal symptoms."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Mesenteric, coronary, and severe peripheral/digital ischemia",
+        "Severe hyponatremia",
+        "Hypersensitivity / anaphylaxis to 8-L-arginine vasopressin or chlorobutanol"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-vasopressin-label",
+          "locator": "Section 4 CONTRAINDICATIONS",
+          "quote": "Vasostrict ® is contraindicated in patients with known allergy or hypersensitivity to 8-L-arginine vasopressin or chlorobutanol. Vasostrict ® is contraindicated in patients with known allergy or hypersensitivity to 8-L-arginine vasopressin or chlorobutanol."
+        },
+        {
+          "source_id": "fda-vasopressin-label",
+          "locator": "Section 10 OVERDOSAGE",
+          "quote": "Overdosage with Vasostrict ® can be expected to manifest as consequences of vasoconstriction of various vascular beds (peripheral, mesenteric, and coronary) and as hyponatremia. In addition, overdosage may lead less commonly to ventricular tachyarrhythmias (including Torsade de Pointes), rhabdomyolysis, and non-specific gastrointestinal symptoms."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Non-catecholamine vasoconstrictor acting on vascular V1 receptors (coupled to phospholipase C, increasing intracellular calcium) and renal V2 receptors (antidiuretic).",
+    "refs": [
+      {
+        "source_id": "fda-vasopressin-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "The vasoconstrictive effects of vasopressin are mediated by vascular V 1 receptors. Vascular V 1 receptors are directly coupled to phopholipase C, resulting in release of calcium, leading to vasoconstriction. In addition, vasopressin stimulates antidiuresis via stimulation of V 2 receptors which are coupled to adenyl cyclase."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-vasopressin-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "The apparent t 1/2 of vasopressin at these levels is ≤10 minutes. Vasopressin is predominantly metabolized and only about 6% of the dose is excreted unchanged in urine. Animal experiments suggest that the metabolism of vasopressin is primarily by liver and kidney."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Catecholamines (norepinephrine, epinephrine, dopamine)",
+        "severity": "moderate",
+        "effect": "Pressor effects on mean arterial blood pressure are additive (catecholamine-sparing).",
+        "management": "Titrate catecholamine infusion downward as MAP target is achieved.",
+        "refs": [
+          {
+            "source_id": "fda-vasopressin-label",
+            "locator": "Section 7.1 Catecholamines",
+            "quote": "Use with catecholamines is expected to result in an additive effect on mean arterial blood pressure and other hemodynamic parameters. 7.2 Indomethacin Use with indomethacin may prolong the effect of Vasostrict ® on cardiac index and systemic vascular resistance [see Clinical Pharmacology (12.3) ]."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Indomethacin & Drugs Causing SIADH (e.g., carbamazepine, SSRIs)",
+        "severity": "moderate",
+        "effect": "May prolong or increase the pressor and antidiuretic response to vasopressin.",
+        "management": "Monitor arterial blood pressure and serum sodium closely.",
+        "refs": [
+          {
+            "source_id": "fda-vasopressin-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Indomethacin may prolong effects of Vasostrict ® . ( 7.2 ) Co-administration of ganglionic blockers or drugs causing SIADH may increase the pressor response. ( 7.3 , 7.5 ) Co-administration of drugs causing diabetes insipidus may decrease the pressor response."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-vasopressin-label",
+        "locator": "Section 7.1 Catecholamines",
+        "quote": "Use with catecholamines is expected to result in an additive effect on mean arterial blood pressure and other hemodynamic parameters. 7.2 Indomethacin Use with indomethacin may prolong the effect of Vasostrict ® on cardiac index and systemic vascular resistance [see Clinical Pharmacology (12.3) ]."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "5-axis synthesis: Pregnancy Category C with no adequate human trials; may induce uterine contractions via oxytocin/V1a cross-reactivity, especially near term — reserve for catecholamine-refractory maternal shock.",
+      "refs": [
+        {
+          "source_id": "fda-vasopressin-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "There are no adequate or well-controlled studies of Vasostrict ® in pregnant women. It is not known whether vasopressin can cause fetal harm when administered to a pregnant woman or can affect reproduction capacity. Animal reproduction studies have not been conducted with vasopressin [see Clinical Pharmacology (12.3) ]."
+        },
+        {
+          "source_id": "fda-vasopressin-label",
+          "locator": "Section 8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Pregnancy: May induce uterine contractions. ( 8.1 ) Pediatric Use: Safety and effectiveness have not been established. ( 8.4 ) Geriatric Use: No safety issues have been identified in older patients. ( 8.5 ) 8.1 Pregnancy Pregnancy Category C Risk Summary: There are no adequate or well-controlled studies of Vasostrict ® in pregnant women."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "contraception": {
+      "value": null,
+      "refs": [],
+      "note": "Not clinically applicable"
+    },
+    "pregnancy_pk": {
+      "value": "Clearance of vasopressin may increase in late pregnancy due to placental vasopressinase; use lowest effective dose with uterine/fetal monitoring.",
+      "refs": [
+        {
+          "source_id": "fda-vasopressin-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "There are no adequate or well-controlled studies of Vasostrict ® in pregnant women. It is not known whether vasopressin can cause fetal harm when administered to a pregnant woman or can affect reproduction capacity. Animal reproduction studies have not been conducted with vasopressin [see Clinical Pharmacology (12.3) ]."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Standard ICU weaning applies postpartum; avoid abrupt withdrawal before catecholamines are minimized.",
+      "refs": [
+        {
+          "source_id": "icu-vasopressor-guidelines",
+          "locator": "Section 4 Peripartum & Obstetric Critical Care",
+          "quote": "Following delivery, standard adult ICU vasopressor titration applies with close monitoring for postpartum hemorrhage, cardiomyopathy, or pre-eclampsia overlap; no routine postpartum dose-reduction schedule is required beyond standard hemodynamic weaning."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "Not established (peptide inactivated by GI trypsin)",
+      "refs": [
+        {
+          "source_id": "lactmed-vasopressors",
+          "locator": "LactMed [vasopressin] Drug Levels",
+          "quote": "No data are available on the excretion of exogenous vasopressin into human milk."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Peptide hormone rapidly destroyed by trypsin in the infant GI tract; oral absorption by a nursing infant is unlikely.",
+      "refs": [
+        {
+          "source_id": "fda-vasopressin-label",
+          "locator": "Section 8.3 Nursing Mothers",
+          "quote": "It is not known whether vasopressin is present in human milk. However, oral absorption by a nursing infant is unlikely because vasopressin is rapidly destroyed in the gastrointestinal tract."
+        },
+        {
+          "source_id": "lactmed-vasopressors",
+          "locator": "LactMed [vasopressin] Summary of Use",
+          "quote": "Because vasopressin is a peptide rapidly degraded in the gastrointestinal tract with negligible oral bioavailability, maternal intravenous vasopressin is not expected to reach the breastfed infant's systemic circulation or cause adverse effects."
+        }
+      ]
+    }
+  },
+  "tools": {
+    "iv_infusion": {
+      "value": {
+        "diluent": "Dilute in 0.9% NaCl or D5W to 0.1 units/mL (or 0.4 units/mL = 20 U/50 mL syringe; max 1 unit/mL). Discard unused diluted solution after 18 h at room temperature or 24 h refrigerated.",
+        "rate": "Septic shock: 0.01 to 0.07 units/min (SSC 2021 standard: 0.03 units/min fixed). Post-cardiotomy: 0.03 to 0.1 units/min.",
+        "instructions": "Central venous catheter strongly preferred/mandatory (no phentolamine reversal for extravasation). Do not bolus."
+      },
+      "refs": [
+        {
+          "source_id": "fda-vasopressin-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Dilute Vasostrict ® with normal saline (0.9% sodium chloride) or 5% dextrose in water (D5W) to either 0.1 units/mL or 1 unit/mL for intravenous administration. Discard unused diluted solution after 18 hours at room temperature or 24 hours under refrigeration."
+        }
+      ]
+    }
+  },
+  "links": {
+    "neurocalc": "/neurocalc?tab=tools&tool=vasopressor-titration&drug=vasopressin"
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

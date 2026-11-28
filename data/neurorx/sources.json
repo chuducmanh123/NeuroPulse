@@ -1395,5 +1395,77 @@
     "version": "8ebcb33c-f43b-4b36-9f94-9774b2a59e06",
     "file": "fda-nifedipine-label.txt",
     "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-norepinephrine-label",
+    "type": "fda_label",
+    "title": "LEVOPHED (norepinephrine bitartrate) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Hospira, Inc.",
+    "year": 2026,
+    "version": "2c7dd2b0-cc10-4db6-bf56-6eb154ebeb10",
+    "file": "fda-norepinephrine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-epinephrine-label",
+    "type": "fda_label",
+    "title": "Adrenalin Vials (epinephrine) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Sina Health Inc",
+    "year": 2026,
+    "version": "28649937-8ae1-a022-e063-6394a90aebe0",
+    "file": "fda-epinephrine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-vasopressin-label",
+    "type": "fda_label",
+    "title": "Vasostrict (vasopressin) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Medical Purchasin Solutions, LLC",
+    "year": 2026,
+    "version": "6672a5c9-bcfd-d7fc-e053-2991aa0aef88",
+    "file": "fda-vasopressin-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-dopamine-label",
+    "type": "fda_label",
+    "title": "Dopamine Hydrochloride in Dextrose (dopamine hydrochloride) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Hospira, Inc.",
+    "year": 2026,
+    "version": "08f23f6e-150d-45ea-098e-f2edf64c21a1",
+    "file": "fda-dopamine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-dobutamine-label",
+    "type": "fda_label",
+    "title": "DOBUTAMINE IN DEXTROSE (dobutamine hydrochloride) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / HF Acquisition Co. LLC, DBA HealthFirst",
+    "year": 2026,
+    "version": "3418aa46-2d9a-39f3-e063-6294a90a2961",
+    "file": "fda-dobutamine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "lactmed-vasopressors",
+    "type": "lactmed",
+    "title": "Drugs and Lactation Database (LactMed) — NCBI Bookshelf Monograph Extracts for Vasopressors and Inotropes",
+    "publisher": "National Institute of Child Health and Human Development (NICHD) / U.S. National Library of Medicine",
+    "year": 2026,
+    "version": "NBK501922-Vasopressors",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK501922/",
+    "file": "lactmed-vasopressors.txt",
+    "accessed": "2026-11-28"
+  },
+  {
+    "id": "icu-vasopressor-guidelines",
+    "type": "guideline",
+    "title": "Surviving Sepsis Campaign (SSC 2021), Neurocritical Care Hemodynamic Targets (AANS/CNS, AHA/NCS, BTF), and Standardized Vasopressor Scoring (NEE/VIS) Compendium",
+    "publisher": "Society of Critical Care Medicine / ESICM / Neurocritical Care Society / ACOG",
+    "year": 2024,
+    "version": "ICU-Vaso-2024",
+    "url": "https://doi.org/10.1007/s00134-021-06506-y",
+    "file": "icu-vasopressor-guidelines.txt",
+    "accessed": "2026-11-28"
   }
 ]

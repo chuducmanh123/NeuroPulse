@@ -3067,5 +3067,129 @@
         "quote": "There have been rare reports of increased prothrombin time in patients taking coumarin anticoagulants to whom nifedipine was administered. However, the relationship to nifedipine therapy is uncertain."
       }
     ]
+  },
+  {
+    "id": "norepinephrine-amitriptyline",
+    "drug_a": "norepinephrine",
+    "drug_b": "amitriptyline",
+    "severity": "major",
+    "mechanism": "Tricyclic antidepressants inhibit neuronal reuptake of norepinephrine, markedly potentiating alpha-adrenergic pressor response.",
+    "clinical_effect": "Severe, prolonged hypertension and reflex bradycardia or cardiac arrhythmias.",
+    "management": "Avoid if possible; if vasopressor support is required, initiate norepinephrine at reduced rates with continuous arterial blood pressure and ECG monitoring.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-norepinephrine-label",
+        "locator": "Section 7.1 MAO-Inhibiting Drugs",
+        "quote": "antidepressants of the triptyline or imipramine types may result in hypertension. ( 7.1 ) • Cyclopropane and halothane anesthetics increase cardiac autonomic irritability."
+      }
+    ]
+  },
+  {
+    "id": "norepinephrine-rasagiline",
+    "drug_a": "norepinephrine",
+    "drug_b": "rasagiline",
+    "severity": "major",
+    "mechanism": "Monoamine oxidase inhibition impairs catecholamine degradation, prolonging and amplifying norepinephrine pressor activity.",
+    "clinical_effect": "Severe, prolonged hypertension and hypertensive crisis.",
+    "management": "Avoid concomitant use where possible; if norepinephrine is clinically essential, start at minimal infusion rates under continuous invasive BP monitoring.",
+    "alternatives": [
+      {
+        "drug_id": "vasopressin",
+        "rationale": "Non-catecholamine V1 vasoconstrictor not metabolized by MAO"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-norepinephrine-label",
+        "locator": "Section 7.1 MAO-Inhibiting Drugs",
+        "quote": "Co-administration of LEVOPHED with monoamine oxidase (MAO) inhibitors or other drugs with MAO-inhibiting properties (e.g., linezolid) can cause severe, prolonged hypertension."
+      }
+    ]
+  },
+  {
+    "id": "epinephrine-amitriptyline",
+    "drug_a": "epinephrine",
+    "drug_b": "amitriptyline",
+    "severity": "major",
+    "mechanism": "Tricyclic antidepressants block presynaptic catecholamine reuptake, potentiating alpha- and beta-adrenergic cardiovascular effects.",
+    "clinical_effect": "Marked hypertension, tachycardia, and ventricular arrhythmias.",
+    "management": "Use lowest effective epinephrine rate and monitor continuous ECG and arterial blood pressure.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-epinephrine-label",
+        "locator": "Section 7.2 Drugs that Potentiate Epinephrine",
+        "quote": "Drugs that potentiate the effects of epinephrine include sympathomimetics, beta blockers, tricyclic antidepressants, MAO inhibitors, COMT inhibitors, clonidine, doxapram, oxytocin, levothyroxine sodium, quinidine and certain antihistamines."
+      }
+    ]
+  },
+  {
+    "id": "epinephrine-labetalol",
+    "drug_a": "epinephrine",
+    "drug_b": "labetalol",
+    "severity": "major",
+    "mechanism": "Beta-adrenergic blockade leaves alpha-1 mediated vasoconstriction unopposed when exogenous epinephrine is infused.",
+    "clinical_effect": "Paradoxical severe hypertension and reflex bradycardia.",
+    "management": "Monitor blood pressure closely; avoid non-selective beta-blockers during acute epinephrine infusion unless specifically indicated.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-epinephrine-label",
+        "locator": "Section 7.2 Drugs that Potentiate Epinephrine",
+        "quote": "Drugs that potentiate the effects of epinephrine include sympathomimetics, beta blockers, tricyclic antidepressants, MAO inhibitors, COMT inhibitors, clonidine, doxapram, oxytocin, levothyroxine sodium, quinidine and certain antihistamines."
+      }
+    ]
+  },
+  {
+    "id": "dopamine-rasagiline",
+    "drug_a": "dopamine",
+    "drug_b": "rasagiline",
+    "severity": "major",
+    "mechanism": "MAO inhibition prevents breakdown of exogenous dopamine and its norepinephrine metabolite, markedly prolonging pressor activity.",
+    "clinical_effect": "Severe hypertension and cardiac arrhythmias.",
+    "management": "Reduce the recommended starting dosage of dopamine to no greater than one-tenth (1/10) of the usual dose and monitor continuously.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-dopamine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "monoamine oxidase (MAO), inhibition of this enzyme prolongs and potentiates the effect of dopamine which may result in severe hypertension and cardiac arrhythmia."
+      }
+    ]
+  },
+  {
+    "id": "dobutamine-entacapone",
+    "drug_a": "dobutamine",
+    "drug_b": "entacapone",
+    "severity": "moderate",
+    "mechanism": "COMT inhibition impairs metabolic inactivation of dobutamine.",
+    "clinical_effect": "Higher heart rate, arrhythmias, and exaggerated blood pressure changes.",
+    "management": "Monitor continuous ECG and arterial blood pressure when infusing dobutamine in patients receiving entacapone.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-dobutamine-label",
+        "locator": "PRECAUTIONS Drug Interactions",
+        "quote": "Concomitant use of dobutamine and catechol-O-methyltranferase (COMT) inhibitors (e.g., entacapone) may result in increased heart rate, arrhythmias, and changes in blood pressure."
+      }
+    ]
+  },
+  {
+    "id": "vasopressin-carbamazepine",
+    "drug_a": "vasopressin",
+    "drug_b": "carbamazepine",
+    "severity": "moderate",
+    "mechanism": "Carbamazepine enhances renal V2 antidiuretic sensitivity and SIADH risk, potentiating vasopressin effects.",
+    "clinical_effect": "Increased pressor and antidiuretic response with heightened risk of hyponatremia.",
+    "management": "Monitor serum sodium and arterial blood pressure closely during concomitant vasopressin infusion.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-vasopressin-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Co-administration of ganglionic blockers or drugs causing SIADH may increase the pressor response. ( 7.3 , 7.5 ) Co-administration of drugs causing diabetes insipidus may decrease the pressor response."
+      }
+    ]
   }
 ]
