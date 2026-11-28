@@ -39,43 +39,7 @@ export default function RootLayout({
                     document.documentElement.classList.remove('dark', 'night-shift');
                   }
                 } catch (e) {}
-                window.tailwind = {
-                  darkMode: 'class',
-                  config: {
-                    darkMode: 'class',
-                    theme: {
-                      extend: {
-                        fontFamily: {
-                          sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
-                          serif: ['"Playfair Display"', 'Georgia', 'serif'],
-                          mono: ['"JetBrains Mono"', 'monospace'],
-                        }
-                      }
-                    }
-                  }
-                };
               })();
-            `,
-          }}
-        />
-        <script src="https://cdn.tailwindcss.com" referrerPolicy="no-referrer"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if (typeof tailwind !== 'undefined') {
-                tailwind.config = {
-                  darkMode: 'class',
-                  theme: {
-                    extend: {
-                      fontFamily: {
-                        sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
-                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-                        mono: ['"JetBrains Mono"', 'monospace'],
-                      }
-                    }
-                  }
-                };
-              }
             `,
           }}
         />

@@ -364,7 +364,7 @@ export default function SliceScrollbar({ className = "" }: SliceScrollbarProps) 
 
           {/* Compact Thumb Handle */}
           <div
-            className={`absolute left-1/2 -translate-x-1/2 w-6 sm:w-7 h-3 sm:h-3.5 rounded-sm ${axisColorTheme.bg} ${axisColorTheme.glow} border border-white/70 flex items-center justify-center transition-[top] duration-75 shadow-md cursor-grab active:cursor-grabbing active:scale-105 z-10`}
+            className={`absolute inset-x-0 mx-auto w-6 sm:w-7 h-3 sm:h-3.5 rounded-sm ${axisColorTheme.bg} ${axisColorTheme.glow} border border-white/70 flex items-center justify-center transition-[top] duration-75 shadow-md cursor-grab active:cursor-grabbing active:scale-105 z-10`}
             style={{
               top: `calc(${(1 - fraction) * 100}% - ${fraction > 0.5 ? 12 : 2}px)`,
             }}
